@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Kaelo/store-link/components/ViewTracker.tsx"],"sourcesContent":["\"use client\";\r\n\r\nimport { useEffect, useRef } from \"react\";\r\nimport { supabase } from \"@/lib/supabase\";\r\n\r\nexport default function ViewTracker({ storeId }: { storeId: string }) {\r\n  const hasCounted = useRef(false);\r\n\r\n  useEffect(() => {\r\n    // Prevent double counting in React Strict Mode or re-renders\r\n    if (hasCounted.current) return;\r\n    \r\n    const countView = async () => {\r\n      hasCounted.current = true;\r\n      await supabase.rpc('increment_store_views', { row_id: storeId });\r\n    };\r\n\r\n    countView();\r\n  }, [storeId]);\r\n\r\n  return null; // It renders nothing visibly\r\n}"],"names":[],"mappings":";;;;AAEA;AACA;;AAHA;;;AAKe,SAAS,YAAY,EAAE,OAAO,EAAuB;;IAClE,MAAM,aAAa,IAAA,uKAAM,EAAC;IAE1B,IAAA,0KAAS;iCAAC;YACR,6DAA6D;YAC7D,IAAI,WAAW,OAAO,EAAE;YAExB,MAAM;mDAAY;oBAChB,WAAW,OAAO,GAAG;oBACrB,MAAM,8HAAQ,CAAC,GAAG,CAAC,yBAAyB;wBAAE,QAAQ;oBAAQ;gBAChE;;YAEA;QACF;gCAAG;QAAC;KAAQ;IAEZ,OAAO,MAAM,6BAA6B;AAC5C;GAhBwB;KAAA"}}]
+}

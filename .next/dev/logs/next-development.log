@@ -1,0 +1,2470 @@
+[00:00:04.527] Server  LOG      ✓ Ready in 3.4s
+[00:04:31.660] Server  LOG      ○ Compiling /marketplace ...
+[00:04:42.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:44.213] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:44.213] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:44.213] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:44.213] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:44.213] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:44.213] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:04:44.214] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:06:15.240] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:33.589] Server  LOG      ○ Compiling /dashboard ...
+[00:06:36.483] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:52.371] Server  LOG      ✓ Compiled in 2.9s
+[00:07:10.651] Server  LOG      ✓ Compiled in 309ms
+[00:07:10.682] Browser ERROR   ./app/opengraph-image.tsx:77:1
+Parsing ecmascript source code failed
+  75 |       </div>
+  76 |     ),
+> 77 | \    {
+     | ^
+  78 |       ...size,
+  79 |     }
+  80 |   );
+
+Expected unicode escape
+
+Import trace:
+  Server Component:
+    ./app/opengraph-image.tsx
+    ./app/opengraph-image--metadata.js
+[00:07:10.751] Browser ERROR   ./app/opengraph-image.tsx:77:1
+Parsing ecmascript source code failed
+  75 |       </div>
+  76 |     ),
+> 77 | \    {
+     | ^
+  78 |       ...size,
+  79 |     }
+  80 |   );
+
+Expected unicode escape
+
+Import trace:
+  Server Component:
+    ./app/opengraph-image.tsx
+    ./app/opengraph-image--metadata.js
+[00:07:12.139] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:13.253] Server  LOG      ✓ Compiled in 183ms
+[00:07:15.626] Server  LOG      ✓ Compiled in 211ms
+[00:07:26.949] Server  LOG      ✓ Compiled in 133ms
+[00:07:59.488] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:06.862] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:07.225] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:08:07.225] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643820864-vrjf2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:08:11.205] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:08:17.486] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:17.703] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:08:17.703] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:08:17.703] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:11:48.550] Server  LOG      ✓ Compiled in 202ms
+[00:11:50.202] Server  LOG      ✓ Compiled in 181ms
+[00:11:52.740] Server  LOG      ✓ Compiled in 334ms
+[00:11:56.749] Server  LOG      ✓ Compiled in 143ms
+[00:11:59.061] Server  LOG      ✓ Compiled in 196ms
+[00:12:01.556] Server  LOG      ✓ Compiled in 116ms
+[00:12:04.551] Server  LOG      ✓ Compiled in 389ms
+[00:12:07.708] Server  LOG      ✓ Compiled in 187ms
+[00:12:09.388] Server  LOG      ✓ Compiled in 140ms
+[00:12:11.655] Server  LOG      ✓ Compiled in 207ms
+[00:12:14.147] Server  LOG      ✓ Compiled in 175ms
+[00:12:17.134] Server  LOG      ✓ Compiled in 300ms
+[00:12:20.219] Server  LOG      ✓ Compiled in 236ms
+[00:12:23.618] Server  LOG      ✓ Compiled in 179ms
+[00:12:28.761] Server  LOG      ✓ Compiled in 211ms
+[00:12:33.100] Server  LOG      ✓ Compiled in 151ms
+[00:12:35.331] Server  LOG      ✓ Compiled in 343ms
+[00:13:10.683] Server  LOG      ✓ Compiled in 191ms
+[00:13:14.237] Server  LOG      ✓ Compiled in 269ms
+[00:13:17.927] Server  LOG      ✓ Compiled in 361ms
+[00:13:18.946] Server  LOG      ✓ Compiled in 174ms
+[00:13:22.245] Server  LOG      ✓ Compiled in 404ms
+[00:13:25.812] Server  LOG      ✓ Compiled in 207ms
+[00:13:48.370] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:49.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:13:49.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:13:49.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:14:08.240] Browser ERROR   ./app/product/[id]/page.tsx:14:1
+Parsing ecmascript source code failed
+  12 | export const dynamic = 'force-dynamic';
+  13 |
+> 14 | \export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+     | ^
+  15 |   const resolvedParams = await params;
+  16 |
+  17 |   // Use storefront_products for security in metadata too
+
+Expected unicode escape
+[00:14:08.241] Browser ERROR   ./app/product/[id]/page.tsx:14:1
+Parsing ecmascript source code failed
+  12 | export const dynamic = 'force-dynamic';
+  13 |
+> 14 | \export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+     | ^
+  15 |   const resolvedParams = await params;
+  16 |
+  17 |   // Use storefront_products for security in metadata too
+
+Expected unicode escape
+[00:14:08.241] Browser ERROR   ./app/product/[id]/page.tsx:14:1
+Parsing ecmascript source code failed
+  12 | export const dynamic = 'force-dynamic';
+  13 |
+> 14 | \export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+     | ^
+  15 |   const resolvedParams = await params;
+  16 |
+  17 |   // Use storefront_products for security in metadata too
+
+Expected unicode escape
+[00:14:08.242] Browser ERROR   ./app/product/[id]/page.tsx:14:1
+Parsing ecmascript source code failed
+  12 | export const dynamic = 'force-dynamic';
+  13 |
+> 14 | \export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+     | ^
+  15 |   const resolvedParams = await params;
+  16 |
+  17 |   // Use storefront_products for security in metadata too
+
+Expected unicode escape
+[00:14:09.025] Server  LOG      ✓ Compiled in 123ms
+[00:14:11.548] Server  LOG      ✓ Compiled in 113ms
+[00:14:12.758] Server  LOG      ✓ Compiled in 165ms
+[00:14:16.102] Server  LOG      ✓ Compiled in 132ms
+[00:14:17.762] Server  LOG      ✓ Compiled in 106ms
+[00:14:20.255] Server  LOG      ✓ Compiled in 179ms
+[00:14:23.687] Server  LOG      ✓ Compiled in 118ms
+[00:14:25.376] Server  LOG      ✓ Compiled in 85ms
+[00:14:29.197] Server  LOG      ✓ Compiled in 116ms
+[00:15:28.803] Server  LOG      ✓ Compiled in 93ms
+[00:15:31.069] Server  LOG      ✓ Compiled in 279ms
+[00:15:33.731] Server  LOG      ✓ Compiled in 130ms
+[00:15:36.788] Server  LOG      ✓ Compiled in 242ms
+[00:15:38.889] Server  LOG      ✓ Compiled in 107ms
+[00:15:40.807] Server  LOG      ✓ Compiled in 157ms
+[00:15:43.858] Server  LOG      ✓ Compiled in 99ms
+[00:15:44.955] Server  LOG      ✓ Compiled in 129ms
+[00:15:49.037] Server  LOG      ✓ Compiled in 377ms
+[00:15:58.907] Server  LOG      ✓ Compiled in 106ms
+[00:16:01.104] Server  LOG      ✓ Compiled in 96ms
+[00:16:02.538] Server  LOG      ✓ Compiled in 114ms
+[00:16:04.683] Server  LOG      ✓ Compiled in 171ms
+[00:16:07.813] Server  LOG      ✓ Compiled in 163ms
+[00:16:09.618] Server  LOG      ✓ Compiled in 89ms
+[00:16:11.834] Server  LOG      ✓ Compiled in 133ms
+[00:16:15.505] Server  LOG      ✓ Compiled in 88ms
+[00:16:17.182] Server  LOG      ✓ Compiled in 230ms
+[00:16:19.880] Server  LOG      ✓ Compiled in 142ms
+[00:16:22.660] Server  LOG      ✓ Compiled in 121ms
+[00:16:25.527] Server  LOG      ✓ Compiled in 175ms
+[00:16:28.112] Server  LOG      ✓ Compiled in 194ms
+[00:16:30.856] Server  LOG      ✓ Compiled in 141ms
+[00:16:34.393] Server  LOG      ✓ Compiled in 1467ms
+[00:19:02.662] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:03.101] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:19:03.101] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:19:03.101] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:19:03.101] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:19:03.101] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:19:03.101] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:19:03.101] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:20:03.746] Server  LOG      ✓ Compiled in 97ms
+[00:20:04.910] Server  LOG      ✓ Compiled in 88ms
+[00:20:06.639] Server  LOG      ✓ Compiled in 88ms
+[00:20:09.724] Server  LOG      ✓ Compiled in 128ms
+[00:20:12.188] Server  LOG      ✓ Compiled in 212ms
+[00:20:17.657] Server  LOG      ✓ Compiled in 127ms
+[00:20:20.126] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:20:24.029] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:25:43.408] Server  LOG      ✓ Compiled in 440ms
+[00:26:02.669] Server  LOG      ✓ Compiled in 205ms
+[00:26:25.217] Server  LOG      ✓ Compiled in 272ms
+[00:26:38.995] Server  LOG      ✓ Compiled in 112ms
+[00:26:43.261] Server  LOG      ✓ Compiled in 147ms
+[00:26:46.429] Server  LOG      ✓ Compiled in 110ms
+[00:26:48.282] Server  LOG      ✓ Compiled in 121ms
+[00:27:23.280] Server  LOG      ✓ Compiled in 563ms
+[00:27:41.284] Server  LOG      ✓ Compiled in 395ms
+[00:27:47.152] Server  LOG      ✓ Compiled in 198ms
+[00:38:37.051] Server  LOG      ✓ Compiled in 108ms
+[00:38:39.410] Server  LOG      ✓ Compiled in 89ms
+[00:38:41.600] Server  LOG      ✓ Compiled in 101ms
+[00:38:44.621] Server  LOG      ✓ Compiled in 199ms
+[00:38:46.871] Server  LOG      ✓ Compiled in 103ms
+[00:38:49.174] Server  LOG      ✓ Compiled in 152ms
+[00:38:51.967] Server  LOG      ✓ Compiled in 92ms
+[00:38:56.957] Server  LOG      ✓ Compiled in 151ms
+[00:39:00.374] Server  LOG      ✓ Compiled in 138ms
+[00:39:02.194] Server  LOG      ✓ Compiled in 280ms
+[00:39:05.816] Server  LOG      ✓ Compiled in 144ms
+[00:39:10.160] Server  LOG      ✓ Compiled in 374ms
+[00:40:24.531] Server  LOG      ✓ Compiled in 164ms
+[00:40:26.364] Server  LOG      ✓ Compiled in 142ms
+[00:40:30.911] Server  LOG      ✓ Compiled in 128ms
+[00:40:33.808] Server  LOG      ✓ Compiled in 232ms
+[00:40:40.608] Server  LOG      ✓ Compiled in 110ms
+[00:40:43.508] Server  LOG      ✓ Compiled in 97ms
+[00:40:45.368] Server  LOG      ✓ Compiled in 73ms
+[00:40:47.682] Server  LOG      ✓ Compiled in 282ms
+[00:40:51.470] Server  LOG      ✓ Compiled in 146ms
+[00:40:56.572] Server  LOG      ✓ Compiled in 101ms
+[00:40:59.542] Server  LOG      ✓ Compiled in 101ms
+[00:41:02.407] Server  LOG      ✓ Compiled in 126ms
+[00:41:04.927] Server  LOG      ✓ Compiled in 191ms
+[00:41:08.198] Server  LOG      ✓ Compiled in 234ms
+[00:41:11.706] Server  LOG      ✓ Compiled in 103ms
+[00:41:13.609] Server  LOG      ✓ Compiled in 94ms
+[00:41:15.999] Server  LOG      ✓ Compiled in 326ms
+[00:41:18.623] Server  LOG      ✓ Compiled in 145ms
+[00:41:21.095] Server  LOG      ✓ Compiled in 181ms
+[00:41:24.714] Server  LOG      ✓ Compiled in 257ms
+[00:41:26.601] Server  LOG      ✓ Compiled in 93ms
+[00:41:28.687] Server  LOG      ✓ Compiled in 77ms
+[00:41:32.091] Server  LOG      ✓ Compiled in 123ms
+[00:41:34.799] Server  LOG      ✓ Compiled in 271ms
+[00:41:37.660] Server  LOG      ✓ Compiled in 116ms
+[00:41:53.453] Server  LOG      ✓ Compiled in 97ms
+[00:41:59.835] Server  LOG      ✓ Compiled in 159ms
+[00:47:45.888] Server  LOG      ✓ Compiled in 398ms
+[00:47:50.230] Server  LOG      ✓ Compiled in 134ms
+[00:47:54.021] Server  LOG      ✓ Compiled in 154ms
+[00:47:56.806] Server  LOG      ✓ Compiled in 191ms
+[00:48:00.829] Server  LOG      ✓ Compiled in 144ms
+[00:48:02.712] Server  LOG      ✓ Compiled in 234ms
+[00:48:05.157] Server  LOG      ✓ Compiled in 210ms
+[00:48:07.830] Server  LOG      ✓ Compiled in 149ms
+[00:48:10.880] Server  LOG      ✓ Compiled in 137ms
+[00:48:12.677] Server  LOG      ✓ Compiled in 180ms
+[00:48:15.808] Server  LOG      ✓ Compiled in 219ms
+[00:48:18.889] Server  LOG      ✓ Compiled in 230ms
+[00:48:24.321] Server  LOG      ✓ Compiled in 277ms
+[00:48:27.197] Server  LOG      ✓ Compiled in 196ms
+[00:48:31.993] Server  LOG      ✓ Compiled in 115ms
+[00:48:45.428] Server  LOG      ✓ Compiled in 137ms
+[00:48:48.292] Server  LOG      ✓ Compiled in 211ms
+[00:48:50.948] Server  LOG      ✓ Compiled in 215ms
+[00:48:53.935] Server  LOG      ✓ Compiled in 125ms
+[00:48:58.690] Server  LOG      ✓ Compiled in 153ms
+[00:49:01.885] Server  LOG      ✓ Compiled in 319ms
+[00:51:16.935] Server  LOG      ✓ Compiled in 617ms
+[00:56:32.298] Server  LOG      ✓ Compiled in 961ms
+[00:56:42.685] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:56:42.968] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:56:42.968] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:56:42.969] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:59:50.739] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:59:51.067] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:59:51.067] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:00:00.129] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468"
+[01:00:00.135] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9"
+[01:00:00.151] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag"
+[01:00:00.214] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx"
+[01:00:00.218] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l"
+[01:00:00.283] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:00:00.312] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:00:00.319] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:00:00.322] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:00:00.334] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[01:00:00.365] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[01:00:00.380] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[01:05:02.857] Server  LOG      ✓ Compiled in 274ms
+[01:05:09.465] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:05:09.465] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:05:20.123] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:05:20.454] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:05:20.454] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:05:29.129] Server  LOG      ✓ Compiled in 277ms
+[01:05:38.564] Server  LOG      ✓ Compiled in 299ms
+[01:05:50.132] Server  LOG      ✓ Compiled in 116ms
+[01:05:53.547] Server  LOG      ✓ Compiled in 193ms
+[01:06:11.382] Server  LOG      ✓ Compiled in 130ms
+[01:06:13.503] Server  LOG      ✓ Compiled in 507ms
+[01:06:27.883] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:06:27.883] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:06:27.883] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:06:27.883] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:06:27.883] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:06:35.764] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643820864-vrjf2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:08:31.641] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:08:32.704] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:08:49.936] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:08:50.160] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:08:50.160] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:08:50.160] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:08:52.807] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:08:53.042] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[01:08:53.042] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:08:53.042] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:10:16.483] Server  LOG      ✓ Compiled in 1187ms
+[01:10:25.095] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:10:25.095] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:10:25.095] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:10:25.095] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:10:25.095] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:10:38.828] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643820864-vrjf2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:11:15.189] Server  LOG      ✓ Compiled in 110ms
+[01:11:16.970] Server  LOG      ✓ Compiled in 132ms
+[01:11:21.076] Server  LOG      ✓ Compiled in 167ms
+[01:11:23.085] Server  LOG      ✓ Compiled in 150ms
+[01:11:37.626] Server  LOG      ✓ Compiled in 182ms
+[01:21:09.219] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |         email: formData.email,
+  27 |         message: formData.message
+  28 |     });
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:09.219] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |         email: formData.email,
+  27 |         message: formData.message
+  28 |     });
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:09.220] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |         email: formData.email,
+  27 |         message: formData.message
+  28 |     });
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:09.220] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |         email: formData.email,
+  27 |         message: formData.message
+  28 |     });
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:15.218] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |         
+  27 |     if (error) {
+  28 |         alert("Failed to send message. Please try again.");
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:15.218] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |         
+  27 |     if (error) {
+  28 |         alert("Failed to send message. Please try again.");
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:15.218] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |         
+  27 |     if (error) {
+  28 |         alert("Failed to send message. Please try again.");
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:15.219] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |         
+  27 |     if (error) {
+  28 |         alert("Failed to send message. Please try again.");
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:19.218] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |     if (error) {
+  27 |         alert("Failed to send message. Please try again.");
+  28 |     } else {
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:19.219] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |     if (error) {
+  27 |         alert("Failed to send message. Please try again.");
+  28 |     } else {
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:19.219] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |     if (error) {
+  27 |         alert("Failed to send message. Please try again.");
+  28 |     } else {
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:19.220] Browser ERROR   ./app/contact/page.tsx:25:72
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 | const { error } = await supabase.from("contact_messages").insert({ ... });        name: `${formData.firstName} ${formData.lastName}`,
+     |                                                                        ^
+  26 |     if (error) {
+  27 |         alert("Failed to send message. Please try again.");
+  28 |     } else {
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:27.026] Server  LOG      ✓ Compiled in 144ms
+[01:21:43.222] Browser ERROR   ./app/contact/page.tsx:25:76
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 |     const { error } = await supabase.from("contact_messages").insert({ ... });
+     |                                                                            ^
+  26 |
+  27 |     if (error) {
+  28 |         alert("Failed to send message. Please try again.");
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:43.223] Browser ERROR   ./app/contact/page.tsx:25:76
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 |     const { error } = await supabase.from("contact_messages").insert({ ... });
+     |                                                                            ^
+  26 |
+  27 |     if (error) {
+  28 |         alert("Failed to send message. Please try again.");
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:43.224] Browser ERROR   ./app/contact/page.tsx:25:76
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 |     const { error } = await supabase.from("contact_messages").insert({ ... });
+     |                                                                            ^
+  26 |
+  27 |     if (error) {
+  28 |         alert("Failed to send message. Please try again.");
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:43.225] Browser ERROR   ./app/contact/page.tsx:25:76
+Parsing ecmascript source code failed
+  23 |     setLoading(true);
+  24 |
+> 25 |     const { error } = await supabase.from("contact_messages").insert({ ... });
+     |                                                                            ^
+  26 |
+  27 |     if (error) {
+  28 |         alert("Failed to send message. Please try again.");
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/contact/page.tsx [Client Component Browser]
+    ./app/contact/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/contact/page.tsx [Client Component SSR]
+    ./app/contact/page.tsx [Server Component]
+[01:21:57.676] Server  LOG      ✓ Compiled in 310ms
+[01:40:41.341] Server  LOG      ✓ Compiled in 120ms
+[01:40:43.306] Server  LOG      ✓ Compiled in 102ms
+[01:41:35.748] Server  LOG      ✓ Compiled in 135ms
+[01:41:38.177] Server  LOG      ✓ Compiled in 121ms
+[01:55:04.305] Server  LOG      ✓ Compiled in 309ms
+[01:55:50.149] Server  LOG      ✓ Compiled in 180ms
+[01:55:51.229] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:55:51.229] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:55:51.229] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:55:51.229] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:55:51.229] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:55:51.229] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:55:51.229] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:55:51.229] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:08.227] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:08.227] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:08.227] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:08.227] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:08.228] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:08.228] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:08.228] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:08.228] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:18.242] Browser ERROR   ./components/dashboard/StoreSettings.tsx:194:2
+Parsing ecmascript source code failed
+  192 |     </div>
+  193 |   );
+> 194 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:18.242] Browser ERROR   ./components/dashboard/StoreSettings.tsx:89:4
+Parsing ecmascript source code failed
+  87 |           setTimeout(() => setStatus(""), 3000); // Fade out
+  88 |       } 
+> 89 |   };
+     |    ^
+  90 |
+  91 |   return (
+  92 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:18.243] Browser ERROR   ./components/dashboard/StoreSettings.tsx:194:2
+Parsing ecmascript source code failed
+  192 |     </div>
+  193 |   );
+> 194 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:18.243] Browser ERROR   ./components/dashboard/StoreSettings.tsx:89:4
+Parsing ecmascript source code failed
+  87 |           setTimeout(() => setStatus(""), 3000); // Fade out
+  88 |       } 
+> 89 |   };
+     |    ^
+  90 |
+  91 |   return (
+  92 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:18.244] Browser ERROR   ./components/dashboard/StoreSettings.tsx:194:2
+Parsing ecmascript source code failed
+  192 |     </div>
+  193 |   );
+> 194 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:18.244] Browser ERROR   ./components/dashboard/StoreSettings.tsx:89:4
+Parsing ecmascript source code failed
+  87 |           setTimeout(() => setStatus(""), 3000); // Fade out
+  88 |       } 
+> 89 |   };
+     |    ^
+  90 |
+  91 |   return (
+  92 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:18.244] Browser ERROR   ./components/dashboard/StoreSettings.tsx:194:2
+Parsing ecmascript source code failed
+  192 |     </div>
+  193 |   );
+> 194 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:18.244] Browser ERROR   ./components/dashboard/StoreSettings.tsx:89:4
+Parsing ecmascript source code failed
+  87 |           setTimeout(() => setStatus(""), 3000); // Fade out
+  88 |       } 
+> 89 |   };
+     |    ^
+  90 |
+  91 |   return (
+  92 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:32.221] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:32.221] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:32.221] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:32.221] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:32.222] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:32.222] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:32.222] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:32.223] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:46.536] Server  LOG      ✓ Compiled in 138ms
+[01:56:47.217] Browser ERROR   ./components/dashboard/StoreSettings.tsx:88:18
+Parsing ecmascript source code failed
+  86 |           setStatus("✅ Settings saved!");
+  87 |           setTimeout(() => setStatus(""), 3000); // Fade out
+> 88 |       } expected {
+     |                  ^
+  89 |       setLoading(false);
+  90 |     }
+  91 |   };
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:47.218] Browser ERROR   ./components/dashboard/StoreSettings.tsx:88:18
+Parsing ecmascript source code failed
+  86 |           setStatus("✅ Settings saved!");
+  87 |           setTimeout(() => setStatus(""), 3000); // Fade out
+> 88 |       } expected {
+     |                  ^
+  89 |       setLoading(false);
+  90 |     }
+  91 |   };
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:47.218] Browser ERROR   ./components/dashboard/StoreSettings.tsx:88:18
+Parsing ecmascript source code failed
+  86 |           setStatus("✅ Settings saved!");
+  87 |           setTimeout(() => setStatus(""), 3000); // Fade out
+> 88 |       } expected {
+     |                  ^
+  89 |       setLoading(false);
+  90 |     }
+  91 |   };
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:47.219] Browser ERROR   ./components/dashboard/StoreSettings.tsx:88:18
+Parsing ecmascript source code failed
+  86 |           setStatus("✅ Settings saved!");
+  87 |           setTimeout(() => setStatus(""), 3000); // Fade out
+> 88 |       } expected {
+     |                  ^
+  89 |       setLoading(false);
+  90 |     }
+  91 |   };
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:54.833] Server  LOG      ✓ Compiled in 97ms
+[01:56:55.219] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:55.219] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:55.220] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:55.220] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:55.220] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:55.220] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:55.221] Browser ERROR   ./components/dashboard/StoreSettings.tsx:196:2
+Parsing ecmascript source code failed
+  194 |     </div>
+  195 |   );
+> 196 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:56:55.221] Browser ERROR   ./components/dashboard/StoreSettings.tsx:91:4
+Parsing ecmascript source code failed
+  89 |       setLoading(false);
+  90 |     }
+> 91 |   };
+     |    ^
+  92 |
+  93 |   return (
+  94 |     <div className="max-w-3xl">
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/StoreSettings.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/StoreSettings.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[01:57:11.344] Server  LOG      ✓ Compiled in 224ms
+[02:03:26.033] Server  LOG      ✓ Compiled in 184ms
+[02:03:44.685] Server  LOG      ✓ Compiled in 327ms
+[02:04:12.979] Server  LOG      ✓ Compiled in 380ms
+[02:04:14.397] Server  LOG      ✓ Compiled in 180ms
+[02:04:20.177] Server  LOG      ✓ Compiled in 128ms
+[02:04:40.135] Server  LOG      ✓ Compiled in 178ms
+[02:04:41.403] Server  LOG      ✓ Compiled in 290ms
+[02:04:46.298] Server  LOG      ✓ Compiled in 138ms
+[02:19:14.673] Server  LOG      ✓ Compiled in 601ms
+[02:26:11.691] Server  LOG      ✓ Compiled in 1008ms
+[02:26:12.443] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:12.532] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:12.567] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:13.225] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:24.503] Server  ERROR    ⨯ ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+
+[02:26:24.645] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:25.271] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:25.386] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:25.403] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:27.326] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:27.527] Server  LOG      ○ Compiling /_error ...
+[02:26:27.857] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:28.222] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:28.222] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:28.223] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:28.223] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:28.227] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:28.227] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:31.165] Browser ERROR   uncaughtError: Error: ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+
+[02:26:31.471] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:32.105] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:32.160] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:33.225] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:33.225] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:33.226] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:33.226] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:26:33.226] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:27:39.924] Server  LOG      ✓ Compiled in 783ms
+[02:27:40.535] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:27:44.693] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:28:07.105] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[02:28:07.105] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[02:29:49.326] Server  LOG      ✓ Compiled in 683ms
+[02:30:58.046] Server  LOG      ✓ Compiled in 478ms
+[02:30:59.399] Server  LOG      ✓ Compiled in 419ms
+[02:30:59.511] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:31:00.231] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:31:00.235] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:31:00.236] Browser ERROR   ./components/landing/Hero.tsx:121:82
+Ecmascript file had an error
+  119 |              <div className="absolute top-12 -right-2 md:top-20 md:-right-10 bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-gray-100 animate-bounce duration-[3000ms] z-0">
+  120 |                 <div className="flex items-center gap-3">
+> 121 |                    <div className="bg-green-100 p-2 rounded-full text-green-600"><CheckCircle size={18} md:size={20}/></div>
+      |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  122 |                    <div>
+  123 |                       <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+  124 |                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
+
+JSX Namespace is disabled by default because react does not support it yet. You can specify jsc.transform.react.throwIfNamespace to false to override default behavior
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Hero.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Hero.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[02:31:02.160] Server  LOG      ✓ Compiled in 316ms
+[02:31:40.295] Server  LOG      ✓ Compiled in 259ms
+[02:31:55.825] Server  LOG      ✓ Compiled in 158ms
+[02:32:14.901] Server  LOG      ✓ Compiled in 117ms
+[02:32:26.568] Server  LOG      ✓ Compiled in 114ms
+[02:32:46.340] Server  LOG      ✓ Compiled in 166ms
+[02:32:56.668] Server  LOG      ✓ Compiled in 420ms
+[02:32:57.836] Server  LOG      ✓ Compiled in 171ms
+[02:33:01.494] Server  LOG      ✓ Compiled in 242ms
+[02:33:02.577] Server  LOG      ✓ Compiled in 247ms
+[02:33:46.287] Server  LOG      ✓ Compiled in 192ms
+[02:33:50.495] Server  LOG      ✓ Compiled in 173ms
+[02:35:15.077] Server  LOG      ✓ Compiled in 277ms
+[02:35:15.249] Browser ERROR   An empty string ("") was passed to the %s attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to %s instead of an empty string. src src
+[02:35:53.017] Server  LOG      ✓ Compiled in 180ms
+[02:37:38.943] Server  LOG      ✓ Compiled in 358ms
+[02:39:09.124] Server  LOG      ✓ Compiled in 573ms
+[02:41:04.432] Server  LOG      ✓ Compiled in 114ms
+[02:41:05.263] Browser ERROR   An empty string ("") was passed to the %s attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to %s instead of an empty string. src src
+[02:41:05.577] Server  LOG      ✓ Compiled in 124ms
+[02:41:17.279] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:41:32.889] Server  LOG      ✓ Compiled in 320ms
+[02:41:33.043] Browser ERROR   An empty string ("") was passed to the %s attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to %s instead of an empty string. src src
+[02:44:56.796] Server  LOG      ✓ Compiled in 317ms
+[02:45:05.734] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:45:20.473] Server  LOG      ✓ Compiled in 256ms
+[02:45:21.237] Browser ERROR   An empty string ("") was passed to the %s attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to %s instead of an empty string. src src
+[02:45:22.892] Server  LOG      ✓ Compiled in 765ms
+[02:47:22.841] Server  LOG      ✓ Compiled in 131ms
+[02:48:49.614] Server  LOG      ✓ Compiled in 119ms
+[02:49:02.118] Server  LOG      ✓ Compiled in 202ms
+[02:52:53.689] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[02:52:53.689] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[02:55:33.449] Server  LOG      ✓ Compiled in 147ms
+[02:55:46.100] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:56:11.793] Server  LOG      ✓ Compiled in 142ms
+[02:56:18.271] Server  LOG      ✓ Compiled in 142ms
+[02:56:38.463] Server  LOG      ✓ Compiled in 174ms
+[02:56:59.693] Server  LOG      ✓ Compiled in 128ms
+[02:57:05.794] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:57:07.214] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[02:57:07.215] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[02:58:20.017] Server  LOG      ✓ Compiled in 270ms
+[02:58:21.732] Server  LOG      ✓ Compiled in 181ms
+[02:58:23.791] Server  LOG      ✓ Compiled in 226ms
+[02:58:26.015] Server  LOG      ✓ Compiled in 545ms
+[02:58:28.162] Server  LOG      ✓ Compiled in 225ms
+[02:58:30.342] Server  LOG      ✓ Compiled in 161ms
+[02:58:35.717] Server  LOG      ✓ Compiled in 150ms
+[02:58:37.892] Server  LOG      ✓ Compiled in 319ms
+[02:58:39.345] Server  LOG      ✓ Compiled in 176ms
+[02:58:45.157] Server  LOG      ✓ Compiled in 163ms
+[02:58:50.887] Server  LOG      ✓ Compiled in 244ms
+[02:58:53.944] Server  LOG      ✓ Compiled in 213ms
+[02:58:56.610] Server  LOG      ✓ Compiled in 269ms
+[02:59:02.258] Server  LOG      ✓ Compiled in 162ms
+[02:59:05.073] Server  LOG      ✓ Compiled in 148ms
+[02:59:07.962] Server  LOG      ✓ Compiled in 154ms
+[02:59:10.666] Server  LOG      ✓ Compiled in 163ms
+[02:59:14.445] Server  LOG      ✓ Compiled in 279ms
+[02:59:16.620] Server  LOG      ✓ Compiled in 142ms
+[03:01:12.189] Server  LOG      ✓ Compiled in 277ms
+[03:01:18.897] Server  LOG      ✓ Compiled in 344ms
+[03:02:01.241] Server  LOG      ✓ Compiled in 160ms
+[03:02:54.147] Server  LOG      ✓ Compiled in 355ms
+[03:02:56.556] Server  LOG      ✓ Compiled in 115ms
+[03:03:40.124] Server  LOG      ✓ Compiled in 127ms
+[03:03:46.182] Server  LOG      ✓ Compiled in 95ms
+[03:03:48.753] Server  LOG      ✓ Compiled in 144ms
+[03:03:49.846] Server  LOG      ✓ Compiled in 85ms
+[03:04:23.504] Server  LOG      ✓ Compiled in 144ms
+[03:04:25.040] Server  LOG      ✓ Compiled in 171ms
+[03:04:26.899] Server  LOG      ✓ Compiled in 80ms
+[03:04:33.020] Server  LOG      ✓ Compiled in 162ms
+[03:04:34.074] Server  LOG      ✓ Compiled in 104ms
+[03:04:35.896] Server  LOG      ✓ Compiled in 99ms
+[03:04:37.374] Server  LOG      ✓ Compiled in 106ms
+[03:04:44.131] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:04:44.961] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[03:04:44.961] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[03:04:55.535] Server  LOG      ✓ Compiled in 267ms
+[03:05:44.744] Server  LOG      ✓ Compiled in 116ms
+[03:05:51.214] Server  LOG      ✓ Compiled in 117ms
+[03:05:52.832] Server  LOG      ✓ Compiled in 420ms
+[03:08:02.385] Server  LOG      ✓ Compiled in 381ms
+[03:08:14.438] Server  LOG      ✓ Compiled in 244ms
+[03:08:18.784] Server  LOG      ✓ Compiled in 242ms
