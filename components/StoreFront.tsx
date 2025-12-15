@@ -211,8 +211,7 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                               className="object-cover group-hover:scale-105 transition duration-500" 
                             />
                           ) : (
-                            <div className="flex items-center justify-center h-full text-gray-300"><Image size={32}/></div>
-                          )}
+                           <div className="flex items-center justify-center h-full text-gray-300"><Package size={32}/></div>                          )}
                           {product.stock_quantity === 0 && (
                              <div className="absolute top-2 right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded">SOLD OUT</div>
                           )}
