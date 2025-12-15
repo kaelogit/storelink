@@ -11,26 +11,29 @@ interface PageProps {
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const resolvedParams = await params;
-
+export async function generateMetadata({ params }: { params: { id: string } }) {
   const { data: product } = await supabase
     .from("storefront_products")
-    .select("name, description, image_urls, price, stores(name)")
-    .eq("id", resolvedParams.id)
+    .select("*, stores(name)")
+    .eq("id", params.id)
     .single();
 
-  if (!product) return { title: "Product Not Found" };
+  if (!product) {
+    return {
+      title: "Product Not Found",
+    };
+  }
 
-  const productImage = product.image_urls?.[0] || "/og-image.png";
+  const p: any = product; 
+  const storeName = Array.isArray(p.stores) ? p.stores[0]?.name : p.stores?.name;
 
   return {
-    title: `${product.name} - ₦${product.price.toLocaleString()}`,
-    description: product.description || `Buy ${product.name} from ${product.stores?.name}`,
+    title: `${p.name} - ₦${p.price.toLocaleString()}`,
+    description: p.description || `Buy ${p.name} from ${storeName}`,
     openGraph: {
-      title: `${product.name} | ${product.stores?.name}`,
-      description: `Price: ₦${product.price.toLocaleString()}. Order via WhatsApp.`,
-      images: [productImage],
+      title: `${p.name} | ${storeName}`,
+      description: `Price: ₦${p.price.toLocaleString()}. Order via WhatsApp.`,
+      images: p.image_urls || [],
     },
   };
 }
