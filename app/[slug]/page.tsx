@@ -25,7 +25,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  // Use cover image if available, otherwise logo, otherwise default
   const shareImage = store.cover_image_url || store.logo_url || "/og-image.png";
 
   return {
@@ -39,11 +38,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// 2. MAIN PAGE COMPONENT
 export default async function VendorStorePage({ params }: PageProps) {
   const resolvedParams = await params;
   
-  // A. Fetch Store
   const { data: store } = await supabase
     .from("stores")
     .select("*")
@@ -52,7 +49,6 @@ export default async function VendorStorePage({ params }: PageProps) {
 
   if (!store) return notFound();
 
-  // B. Fetch Products (Using the Secure View)
   const { data: products } = await supabase
     .from("storefront_products")
     .select("*")
@@ -60,13 +56,11 @@ export default async function VendorStorePage({ params }: PageProps) {
     .eq("is_active", true)
     .order("created_at", { ascending: false });
 
-  // C. Fetch Categories
   const { data: categories } = await supabase
     .from("categories")
     .select("*")
     .eq("store_id", store.id);
 
-  // D. Render Design
   return (
     <StoreFront 
       store={store} 

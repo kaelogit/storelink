@@ -4,7 +4,7 @@ export default function HowItWorks() {
   const steps = [
     { icon: UserPlus, title: "1. Create Account", desc: "Sign up in 30 seconds." },
     { icon: PlusSquare, title: "2. Add Products", desc: "Snap photos & set prices." },
-    { icon: Share2, title: "3. Share Link", desc: "Post to WhatsApp Status." }
+    { icon: Share2, title: "3. Share Link", desc: "Post to Bio and Status." }
   ];
 
   return (

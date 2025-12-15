@@ -2854,3 +2854,342 @@ Expression expected
 [05:17:22.016] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
 [05:17:22.034] Server  LOG      ✓ Compiled in 188ms
 [05:17:25.390] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:29:37.695] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.695] Browser ERROR   ./app/terms/page.tsx:8:7
+Parsing ecmascript source code failed
+   6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+   7 |       <
+>  8 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+     |       ^
+   9 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  10 |
+  11 |       <div className="space-y-8 leading-relaxed">
+
+Expression expected
+[05:29:37.695] Browser ERROR   ./app/terms/page.tsx:8:7
+Parsing ecmascript source code failed
+   6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+   7 |       <Navcar
+>  8 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+     |       ^
+   9 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  10 |
+  11 |       <div className="space-y-8 leading-relaxed">
+
+Expression expected
+[05:29:37.695] Browser ERROR   ./app/terms/page.tsx:8:7
+Parsing ecmascript source code failed
+   6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+   7 |       <Nav
+>  8 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+     |       ^
+   9 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  10 |
+  11 |       <div className="space-y-8 leading-relaxed">
+
+Expression expected
+[05:29:37.695] Browser ERROR   ./app/terms/page.tsx:8:7
+Parsing ecmascript source code failed
+   6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+   7 |       <Navbar /
+>  8 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+     |       ^
+   9 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  10 |
+  11 |       <div className="space-y-8 leading-relaxed">
+
+Expression expected
+[05:29:37.695] Browser ERROR   ./app/terms/page.tsx:49:3
+Parsing ecmascript source code failed
+  47 |     </div>
+  48 |     <
+> 49 |   );
+     |   ^
+  50 | }
+
+Expression expected
+[05:29:37.695] Browser ERROR   ./app/terms/page.tsx:48:14
+Parsing ecmascript source code failed
+  46 |       </div>
+  47 |     </div>
+> 48 |     <Footer />
+     |              ^
+  49 |   );
+  50 | }
+
+Expression expected
+[05:29:37.695] Browser ERROR   ./app/terms/page.tsx:7:10
+Parsing ecmascript source code failed
+   5 |   return (
+   6 |     <Navbar />
+>  7 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+     |          ^^^^^^^^^
+   8 |       
+   9 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+  10 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expected ',', got 'className'
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:3:5
+Parsing ecmascript source code failed
+  1 | export default function PrivacyPage() {
+  2 |   return (
+> 3 |     <
+    |     ^
+  4 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+  5 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  6 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expression expected
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:4:10
+Parsing ecmascript source code failed
+  2 |   return (
+  3 |     <></>
+> 4 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  5 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  6 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  7 |
+
+Expected ',', got 'className'
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:5:10
+Parsing ecmascript source code failed
+  3 |     <>
+  4 |     </>
+> 5 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  6 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  7 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  8 |
+
+Expected ',', got 'className'
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:6:10
+Parsing ecmascript source code failed
+  4 |     
+  5 |     </>
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expected ',', got 'className'
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:46:1
+Parsing ecmascript source code failed
+  44 |     </div>
+  45 |   );
+> 46 | }
+     | ^
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:5:10
+Parsing ecmascript source code failed
+  3 |     <>
+  4 |     </>
+> 5 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  6 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  7 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  8 |
+
+Expected ',', got 'className'
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:6:10
+Parsing ecmascript source code failed
+  4 |     
+  5 |     </>
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expected ',', got 'className'
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:6:10
+Parsing ecmascript source code failed
+  4 |     
+  5 |     </>
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expected ',', got 'className'
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:6:10
+Parsing ecmascript source code failed
+  4 |     
+  5 |     </>
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expected ',', got 'className'
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:47:5
+Parsing ecmascript source code failed
+  45 |     </div>
+  46 |     <f
+> 47 |     </>
+     |     ^
+  48 |   );
+  49 | }
+
+Expression expected
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:47:6
+Parsing ecmascript source code failed
+  45 |     </div>
+  46 |     <f
+> 47 |     </>
+     |      ^^
+  48 |   );
+  49 | }
+
+Unterminated regexp literal
+[05:29:37.695] Browser ERROR   ./app/privacy/page.tsx:47:5
+Parsing ecmascript source code failed
+  45 |     </div>
+  46 |     <Footer
+> 47 |     </>
+     |     ^
+  48 |   );
+  49 | }
+
+Expression expected
+[05:29:37.696] Browser ERROR   ./app/privacy/page.tsx:47:6
+Parsing ecmascript source code failed
+  45 |     </div>
+  46 |     <Footer
+> 47 |     </>
+     |      ^^
+  48 |   );
+  49 | }
+
+Unterminated regexp literal
+[05:29:37.696] Browser ERROR   ./app/privacy/page.tsx:6:5
+Parsing ecmascript source code failed
+  4 |     <
+  5 |     
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |     ^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expression expected
+[05:29:37.696] Browser ERROR   ./app/privacy/page.tsx:3:1
+Parsing ecmascript source code failed
+  1 | import
+  2 |
+> 3 | export default function PrivacyPage() {
+    | ^^^^^^
+  4 |   return (
+  5 |     <>
+  6 |     <Navbar />
+
+Expected 'from', got 'export'
+[05:29:37.696] Browser ERROR   ./app/terms/page.tsx:6:5
+Parsing ecmascript source code failed
+  4 | export default function TermsPage() {
+  5 |   return (
+> 6 |     <
+    |     ^
+  7 |
+  8 |
+  9 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+
+Expression expected
+[05:29:37.696] Browser ERROR   ./app/terms/page.tsx:11:10
+Parsing ecmascript source code failed
+   9 |
+  10 |
+> 11 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+     |          ^^^^^^^^^
+  12 |       
+  13 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+  14 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expected ',', got 'className'
+[05:29:37.696] Browser ERROR   ./app/terms/page.tsx:10:10
+Parsing ecmascript source code failed
+   8 |     </>
+   9 |
+> 10 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+     |          ^^^^^^^^^
+  11 |       
+  12 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+  13 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expected ',', got 'className'
+[05:29:37.696] Browser ERROR   ./app/terms/page.tsx:8:5
+Parsing ecmascript source code failed
+   6 |     <>
+   7 |     <Navbar
+>  8 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+     |     ^
+   9 |       
+  10 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+  11 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expression expected
+[05:29:37.697] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.698] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.700] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.703] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.710] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.712] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.713] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.716] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.718] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.720] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.721] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.722] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.728] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.729] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.730] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.733] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.734] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.735] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.736] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:37.738] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:29:39.211] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:39.212] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:40.296] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:40.296] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:41.610] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:29:41.938] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:41.938] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:41.938] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:41.938] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:41.938] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:29:41.938] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:33:19.021] Server  LOG      ✓ Compiled in 504ms
+[05:33:28.018] Server  LOG      ✓ Compiled in 158ms
+[05:33:33.581] Server  LOG      ✓ Compiled in 157ms
+[05:33:38.718] Server  LOG      ✓ Compiled in 311ms
+[05:33:44.791] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:33:53.715] Server  LOG      ✓ Compiled in 233ms
+[05:34:15.990] Server  LOG      ✓ Compiled in 167ms
+[05:34:19.439] Server  LOG      ✓ Compiled in 167ms
+[05:34:21.580] Server  LOG      ✓ Compiled in 406ms
+[05:34:22.436] Server  LOG      ✓ Compiled in 231ms
+[05:34:23.863] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:34:23.863] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:38:58.439] Server  LOG      ✓ Compiled in 263ms
+[05:39:02.132] Server  LOG      ✓ Compiled in 114ms
+[05:39:07.070] Server  LOG      ✓ Compiled in 101ms
+[05:39:08.814] Server  LOG      ✓ Compiled in 128ms
+[05:39:11.024] Server  LOG      ✓ Compiled in 275ms
+[05:48:37.634] Server  LOG      ✓ Compiled in 427ms
+[05:50:54.159] Server  LOG      ✓ Compiled in 372ms
+[05:50:59.541] Server  LOG      ✓ Compiled in 564ms
+[05:51:06.676] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:51:32.400] Server  LOG      ✓ Compiled in 250ms
+[05:51:34.169] Server  LOG      ✓ Compiled in 219ms
+[05:51:36.871] Server  LOG      ✓ Compiled in 128ms
+[05:51:40.575] Server  LOG      ✓ Compiled in 147ms
+[05:51:42.012] Server  LOG      ✓ Compiled in 223ms
+[05:51:43.849] Server  LOG      ✓ Compiled in 163ms
+[05:51:54.191] Server  LOG      ✓ Compiled in 279ms
+[05:52:00.257] Server  LOG      ✓ Compiled in 136ms
+[05:52:12.054] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:52:12.054] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
