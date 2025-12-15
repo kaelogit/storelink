@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { X, Trash2, MessageCircle, Loader2 } from "lucide-react";
-import { supabase } from "@/lib/supabase"; // Import Supabase to save data
+import { supabase } from "@/lib/supabase"; 
 import { Store, Product } from "@/types";
+import { AlertTriangle } from "lucide-react";
 
 interface CheckoutModalProps {
   isOpen: boolean;

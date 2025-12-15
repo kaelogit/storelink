@@ -34,7 +34,7 @@ export default function FullMarketplaceClient({ initialProducts, stores }: FullM
         whatsapp_number: product.stores?.whatsapp_number || "", 
     };
 
-    addToCart(product, storeData);
+    addToCart(product, storeData as any);
     
     setToast({ show: true, msg: `Added ${product.name} to bag` });
     setTimeout(() => setToast({ show: false, msg: "" }), 3000);

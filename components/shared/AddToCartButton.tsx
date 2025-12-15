@@ -25,7 +25,6 @@ export default function AddToCartButton({ product, store }: AddToCartButtonProps
        cover_image_url: "",
        subscription_plan: store.subscription_plan,
        view_count: 0,
-       created_at: ""
     };
 
     addToCart(product, storeObj);

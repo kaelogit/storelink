@@ -3,29 +3,53 @@ import Footer from "@/components/landing/Footer";
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-white font-sans">
-      <Navbar />
-      <div className="max-w-3xl mx-auto px-4 py-16">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-8">Terms of Service</h1>
-        
-        <div className="prose prose-lg text-gray-600">
+    <>
+    <Navbar />
+    
+    <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+      
+      <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+      <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
 
-           <h3>1. Agreement to Terms</h3>
-           <p>By using StoreLink, you agree to be bound by these Terms. If you disagree with any part of the terms, then you may not access the Service.</p>
-           <br />
-           <h3>2. User Accounts</h3>
-           <p>When you create an account with us, you must provide information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms.</p>
-           <br />
+      <div className="space-y-8 leading-relaxed">
+        <section>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">1. Acceptance of Terms</h2>
+          <p>By accessing or using StoreLink ("the Platform"), you agree to comply with and be bound by these Terms of Service. If you do not agree, you may not use our services.</p>
+        </section>
 
-           <h3>3. Content</h3>
-           <p>Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material ("Content"). You are responsible for the Content that you post to the Service.</p>
-            <br />
-           <h3>4. Termination</h3>
-           <p>We may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
-           
-        </div>
+        <section>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">2. Account Registration</h2>
+          <p>You must provide accurate and complete information when creating an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">3. Vendor Obligations</h2>
+          <p>Vendors on StoreLink must not sell prohibited items, including but not limited to: illegal drugs, weapons, counterfeit goods, or fraudulent services. StoreLink reserves the right to suspend any store found in violation of these rules.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">4. Payments & Subscriptions</h2>
+          <p>Subscription fees for Premium and Diamond plans are billed monthly. Payments are processed securely via Paystack. StoreLink does not store your credit card information directly.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">5. Limitation of Liability</h2>
+          <p>StoreLink provides the platform "as is". We are not a party to the transactions between buyers and vendors. We are not liable for any disputes, refunds, or damages arising from purchases made on vendor stores.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">6. Governing Law</h2>
+          <p>These terms shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">7. Contact Us</h2>
+          <p>For any questions regarding these terms, please contact us at ksqkareem@gmail.com.</p>
+        </section>
       </div>
-      <Footer />
+      
     </div>
+    <Footer />
+    </>
   );
 }

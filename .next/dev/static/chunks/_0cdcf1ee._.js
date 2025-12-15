@@ -39,7 +39,7 @@ function Navbar() {
                                 size: 24
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 16,
+                                lineNumber: 15,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -47,13 +47,13 @@ function Navbar() {
                                 children: "StoreLink"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 17,
+                                lineNumber: 16,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Navbar.tsx",
-                        lineNumber: 15,
+                        lineNumber: 14,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -67,14 +67,14 @@ function Navbar() {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 23,
+                                        lineNumber: 21,
                                         columnNumber: 14
                                     }, this),
                                     " Marketplace"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 22,
+                                lineNumber: 20,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -85,14 +85,14 @@ function Navbar() {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 26,
+                                        lineNumber: 24,
                                         columnNumber: 14
                                     }, this),
                                     " Login"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 25,
+                                lineNumber: 23,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -104,19 +104,19 @@ function Navbar() {
                                         size: 14
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 29,
+                                        lineNumber: 27,
                                         columnNumber: 28
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 28,
+                                lineNumber: 26,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Navbar.tsx",
-                        lineNumber: 21,
+                        lineNumber: 19,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -128,23 +128,23 @@ function Navbar() {
                                 size: 24
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 40,
+                                lineNumber: 36,
                                 columnNumber: 27
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
                                 size: 24
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 40,
+                                lineNumber: 36,
                                 columnNumber: 45
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/landing/Navbar.tsx",
-                            lineNumber: 36,
+                            lineNumber: 32,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/landing/Navbar.tsx",
-                        lineNumber: 34,
+                        lineNumber: 31,
                         columnNumber: 9
                     }, this)
                 ]
@@ -167,14 +167,14 @@ function Navbar() {
                                     size: 18
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 54,
+                                    lineNumber: 49,
                                     columnNumber: 17
                                 }, this),
                                 " Shop Marketplace"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/landing/Navbar.tsx",
-                            lineNumber: 49,
+                            lineNumber: 44,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -186,21 +186,21 @@ function Navbar() {
                                     size: 18
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 61,
+                                    lineNumber: 56,
                                     columnNumber: 17
                                 }, this),
                                 " Vendor Login"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/landing/Navbar.tsx",
-                            lineNumber: 56,
+                            lineNumber: 51,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "h-px bg-gray-100 my-2"
                         }, void 0, false, {
                             fileName: "[project]/components/landing/Navbar.tsx",
-                            lineNumber: 63,
+                            lineNumber: 58,
                             columnNumber: 14
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -210,18 +210,18 @@ function Navbar() {
                             children: "Create My Store"
                         }, void 0, false, {
                             fileName: "[project]/components/landing/Navbar.tsx",
-                            lineNumber: 64,
+                            lineNumber: 59,
                             columnNumber: 14
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/landing/Navbar.tsx",
-                    lineNumber: 48,
+                    lineNumber: 43,
                     columnNumber: 12
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/landing/Navbar.tsx",
-                lineNumber: 47,
+                lineNumber: 42,
                 columnNumber: 9
             }, this)
         ]
@@ -251,61 +251,102 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$twitter$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Twitter$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/twitter.js [app-client] (ecmascript) <export default as Twitter>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$instagram$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Instagram$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/instagram.js [app-client] (ecmascript) <export default as Instagram>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$linkedin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Linkedin$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/linkedin.js [app-client] (ecmascript) <export default as Linkedin>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$dashboard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutDashboard$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/layout-dashboard.js [app-client] (ecmascript) <export default as LayoutDashboard>");
 "use client";
 ;
 ;
 ;
 function Footer() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
-        className: "bg-gray-900 text-white pt-16 pb-10 px-6 font-sans border-t border-gray-800",
+        className: "bg-gray-900 text-white pt-10 pb-8 px-6 font-sans border-t border-gray-800",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 text-center md:text-left mb-16",
+                className: "max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8 mb-12 text-left",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "col-span-1 md:col-span-1 flex flex-col items-center md:items-start",
+                        className: "col-span-2 md:col-span-1 flex flex-col items-start",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                 className: "font-extrabold text-2xl tracking-tight mb-4 flex items-center gap-2",
-                                children: "StoreLink."
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$dashboard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutDashboard$3e$__["LayoutDashboard"], {
+                                        size: 20,
+                                        className: "text-emerald-500"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/landing/Footer.tsx",
+                                        lineNumber: 14,
+                                        columnNumber: 14
+                                    }, this),
+                                    " StoreLink."
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 14,
+                                lineNumber: 13,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-gray-400 text-sm leading-relaxed max-w-xs md:max-w-none mx-auto md:mx-0",
+                                className: "text-gray-400 text-sm leading-relaxed max-w-sm",
                                 children: "The engine for the Naija Hustle. We help you turn WhatsApp chats into a professional empire."
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 17,
+                                lineNumber: 16,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 13,
+                        lineNumber: 12,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center md:items-start",
+                        className: "flex flex-col items-start",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                className: "font-bold text-gray-200 mb-5 text-sm uppercase tracking-wider",
+                                className: "font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500",
                                 children: "Platform"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 24,
+                                lineNumber: 22,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                className: "space-y-4 text-sm text-gray-400",
+                                className: "space-y-3 text-sm text-gray-400 font-medium",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             href: "/login",
-                                            className: "hover:text-white hover:underline transition",
+                                            className: "hover:text-white transition",
                                             children: "Vendor Login"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/landing/Footer.tsx",
+                                            lineNumber: 24,
+                                            columnNumber: 18
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/landing/Footer.tsx",
+                                        lineNumber: 24,
+                                        columnNumber: 14
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            href: "/signup",
+                                            className: "hover:text-white transition",
+                                            children: "Start Selling"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/landing/Footer.tsx",
+                                            lineNumber: 25,
+                                            columnNumber: 18
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/landing/Footer.tsx",
+                                        lineNumber: 25,
+                                        columnNumber: 14
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            href: "/marketplace",
+                                            className: "hover:text-white transition",
+                                            children: "Marketplace"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
                                             lineNumber: 26,
@@ -315,189 +356,159 @@ function Footer() {
                                         fileName: "[project]/components/landing/Footer.tsx",
                                         lineNumber: 26,
                                         columnNumber: 14
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/signup",
-                                            className: "hover:text-white hover:underline transition",
-                                            children: "Start Selling"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 27,
-                                            columnNumber: 18
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 27,
-                                        columnNumber: 14
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/marketplace",
-                                            className: "hover:text-white hover:underline transition",
-                                            children: "Marketplace"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 28,
-                                            columnNumber: 18
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 28,
-                                        columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 25,
+                                lineNumber: 23,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 23,
+                        lineNumber: 21,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center md:items-start",
+                        className: "flex flex-col items-start",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                className: "font-bold text-gray-200 mb-5 text-sm uppercase tracking-wider",
+                                className: "font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500",
                                 children: "Support"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 34,
+                                lineNumber: 31,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                className: "space-y-4 text-sm text-gray-400",
+                                className: "space-y-3 text-sm text-gray-400 font-medium",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             href: "/report",
-                                            className: "hover:text-white hover:underline transition",
-                                            children: "Report a Vendor"
+                                            className: "hover:text-white transition",
+                                            children: "Report Vendor"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 37,
+                                            lineNumber: 33,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 37,
+                                        lineNumber: 33,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             href: "/safety",
-                                            className: "hover:text-white hover:underline transition",
+                                            className: "hover:text-white transition",
                                             children: "Safety Tips"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 38,
+                                            lineNumber: 34,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 38,
+                                        lineNumber: 34,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             href: "/contact",
-                                            className: "hover:text-white hover:underline transition",
+                                            className: "hover:text-white transition",
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 39,
+                                            lineNumber: 35,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 39,
+                                        lineNumber: 35,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 35,
+                                lineNumber: 32,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 33,
+                        lineNumber: 30,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col items-center md:items-start",
+                        className: "col-span-2 md:col-span-1 flex flex-col items-start",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                className: "font-bold text-gray-200 mb-5 text-sm uppercase tracking-wider",
+                                className: "font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500",
                                 children: "Follow Us"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 45,
+                                lineNumber: 40,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-center md:justify-start gap-4",
+                                className: "flex gap-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                         href: "#",
-                                        className: "p-3 bg-gray-800 rounded-xl hover:bg-emerald-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1",
+                                        className: "p-2 bg-gray-800 rounded-lg hover:bg-emerald-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$twitter$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Twitter$3e$__["Twitter"], {
-                                            size: 20
+                                            size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 47,
+                                            lineNumber: 42,
                                             columnNumber: 159
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 47,
+                                        lineNumber: 42,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                         href: "#",
-                                        className: "p-3 bg-gray-800 rounded-xl hover:bg-pink-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1",
+                                        className: "p-2 bg-gray-800 rounded-lg hover:bg-pink-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$instagram$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Instagram$3e$__["Instagram"], {
-                                            size: 20
+                                            size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 48,
+                                            lineNumber: 43,
                                             columnNumber: 156
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 48,
+                                        lineNumber: 43,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                         href: "#",
-                                        className: "p-3 bg-gray-800 rounded-xl hover:bg-blue-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1",
+                                        className: "p-2 bg-gray-800 rounded-lg hover:bg-blue-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$linkedin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Linkedin$3e$__["Linkedin"], {
-                                            size: 20
+                                            size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 49,
+                                            lineNumber: 44,
                                             columnNumber: 156
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 49,
+                                        lineNumber: 44,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 46,
+                                lineNumber: 41,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 44,
+                        lineNumber: 39,
                         columnNumber: 9
                     }, this)
                 ]
@@ -507,25 +518,40 @@ function Footer() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "max-w-6xl mx-auto border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-500",
+                className: "max-w-6xl mx-auto border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: "© 2025 StoreLink Inc. Lagos, Nigeria."
                     }, void 0, false, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 56,
+                        lineNumber: 51,
                         columnNumber: 10
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex gap-6",
                         children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/about",
+                                    className: "hover:text-white transition",
+                                    children: "About Us"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/landing/Footer.tsx",
+                                    lineNumber: 53,
+                                    columnNumber: 17
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/components/landing/Footer.tsx",
+                                lineNumber: 53,
+                                columnNumber: 13
+                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                 href: "/privacy",
                                 className: "hover:text-gray-300 transition",
                                 children: "Privacy Policy"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 59,
+                                lineNumber: 54,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -534,19 +560,19 @@ function Footer() {
                                 children: "Terms of Service"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 60,
+                                lineNumber: 55,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 57,
+                        lineNumber: 52,
                         columnNumber: 10
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/landing/Footer.tsx",
-                lineNumber: 55,
+                lineNumber: 50,
                 columnNumber: 7
             }, this)
         ]

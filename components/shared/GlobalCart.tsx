@@ -5,6 +5,7 @@ import { useCart } from "@/context/CartContext";
 import { X, ShoppingBag, MessageCircle, Trash2, User, MapPin, Phone, ArrowRight, Loader2, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
+import { AlertTriangle } from "lucide-react";
 
 export default function GlobalCart() {
   const { cart, isCartOpen, closeCart, removeFromCart, clearCart } = useCart();

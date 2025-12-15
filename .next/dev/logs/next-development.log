@@ -2478,3 +2478,379 @@ Import traces:
 [04:09:05.744] Server  LOG      ✓ Compiled in 144ms
 [04:09:11.523] Server  LOG      ✓ Compiled in 152ms
 [04:09:13.194] Server  LOG      ✓ Compiled in 276ms
+[04:18:37.927] Server  LOG      ✓ Compiled in 1801ms
+[04:18:50.404] Server  LOG      ✓ Compiled in 336ms
+[04:22:11.112] Server  LOG      ✓ Compiled in 316ms
+[04:24:27.947] Server  LOG      ✓ Compiled in 132ms
+[04:24:31.522] Server  LOG      ✓ Compiled in 126ms
+[04:24:39.693] Server  LOG      ✓ Compiled in 104ms
+[04:24:45.221] Server  LOG      ✓ Compiled in 80ms
+[04:24:46.955] Server  LOG      ✓ Compiled in 93ms
+[04:25:09.311] Server  LOG      ✓ Compiled in 93ms
+[04:25:56.782] Server  LOG      ✓ Compiled in 295ms
+[04:26:03.157] Server  LOG      ✓ Compiled in 96ms
+[04:26:09.510] Server  LOG      ✓ Compiled in 124ms
+[04:26:16.949] Server  LOG      ✓ Compiled in 91ms
+[04:26:21.247] Server  LOG      ✓ Compiled in 87ms
+[04:26:24.225] Browser ERROR   ./app/terms/page.tsx:8:7
+Parsing ecmascript source code failed
+   6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+   7 |       <
+>  8 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+     |       ^
+   9 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  10 |
+  11 |       <div className="space-y-8 leading-relaxed">
+
+Expression expected
+[04:26:27.223] Browser ERROR   ./app/terms/page.tsx:8:7
+Parsing ecmascript source code failed
+   6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+   7 |       <Navcar
+>  8 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+     |       ^
+   9 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  10 |
+  11 |       <div className="space-y-8 leading-relaxed">
+
+Expression expected
+[04:26:29.217] Browser ERROR   ./app/terms/page.tsx:8:7
+Parsing ecmascript source code failed
+   6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+   7 |       <Nav
+>  8 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+     |       ^
+   9 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  10 |
+  11 |       <div className="space-y-8 leading-relaxed">
+
+Expression expected
+[04:26:33.228] Browser ERROR   ./app/terms/page.tsx:8:7
+Parsing ecmascript source code failed
+   6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+   7 |       <Navbar /
+>  8 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+     |       ^
+   9 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  10 |
+  11 |       <div className="space-y-8 leading-relaxed">
+
+Expression expected
+[04:26:34.837] Server  LOG      ✓ Compiled in 114ms
+[04:27:02.226] Browser ERROR   ./app/terms/page.tsx:49:3
+Parsing ecmascript source code failed
+  47 |     </div>
+  48 |     <
+> 49 |   );
+     |   ^
+  50 | }
+
+Expression expected
+[04:27:08.221] Browser ERROR   ./app/terms/page.tsx:48:14
+Parsing ecmascript source code failed
+  46 |       </div>
+  47 |     </div>
+> 48 |     <Footer />
+     |              ^
+  49 |   );
+  50 | }
+
+Expression expected
+[04:27:13.137] Server  LOG      ✓ Compiled in 93ms
+[04:27:25.052] Server  LOG      ✓ Compiled in 98ms
+[04:29:39.395] Server  LOG      ✓ Compiled in 217ms
+[04:29:42.212] Browser ERROR   ./app/terms/page.tsx:7:10
+Parsing ecmascript source code failed
+   5 |   return (
+   6 |     <Navbar />
+>  7 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+     |          ^^^^^^^^^
+   8 |       
+   9 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+  10 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expected ',', got 'className'
+[04:31:34.197] Server  LOG      ✓ Compiled in 584ms
+[04:31:35.984] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:32:30.930] Server  LOG      ✓ Compiled in 138ms
+[04:32:33.274] Server  LOG      ✓ Compiled in 139ms
+[04:32:41.670] Server  LOG      ✓ Compiled in 256ms
+[04:32:43.813] Server  LOG      ✓ Compiled in 102ms
+[04:32:45.898] Server  LOG      ✓ Compiled in 135ms
+[04:32:48.775] Server  LOG      ✓ Compiled in 133ms
+[04:32:50.845] Server  LOG      ✓ Compiled in 134ms
+[04:32:52.511] Server  LOG      ✓ Compiled in 87ms
+[04:32:54.086] Server  LOG      ✓ Compiled in 109ms
+[04:35:10.852] Server  LOG      ✓ Compiled in 271ms
+[04:37:27.449] Server  LOG      ✓ Compiled in 102ms
+[04:37:30.218] Browser ERROR   ./app/privacy/page.tsx:3:5
+Parsing ecmascript source code failed
+  1 | export default function PrivacyPage() {
+  2 |   return (
+> 3 |     <
+    |     ^
+  4 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+  5 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  6 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expression expected
+[04:37:55.237] Browser ERROR   ./app/privacy/page.tsx:4:10
+Parsing ecmascript source code failed
+  2 |   return (
+  3 |     <></>
+> 4 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  5 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  6 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  7 |
+
+Expected ',', got 'className'
+[04:37:55.237] Browser ERROR   ./app/privacy/page.tsx:5:10
+Parsing ecmascript source code failed
+  3 |     <>
+  4 |     </>
+> 5 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  6 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  7 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  8 |
+
+Expected ',', got 'className'
+[04:37:56.212] Browser ERROR   ./app/privacy/page.tsx:6:10
+Parsing ecmascript source code failed
+  4 |     
+  5 |     </>
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expected ',', got 'className'
+[04:38:13.856] Server  LOG      ✓ Compiled in 126ms
+[04:38:45.216] Browser ERROR   ./app/privacy/page.tsx:46:1
+Parsing ecmascript source code failed
+  44 |     </div>
+  45 |   );
+> 46 | }
+     | ^
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+[04:38:45.216] Browser ERROR   ./app/privacy/page.tsx:5:10
+Parsing ecmascript source code failed
+  3 |     <>
+  4 |     </>
+> 5 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  6 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  7 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  8 |
+
+Expected ',', got 'className'
+[04:38:47.226] Browser ERROR   ./app/privacy/page.tsx:6:10
+Parsing ecmascript source code failed
+  4 |     
+  5 |     </>
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expected ',', got 'className'
+[04:39:03.226] Browser ERROR   ./app/privacy/page.tsx:6:10
+Parsing ecmascript source code failed
+  4 |     
+  5 |     </>
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expected ',', got 'className'
+[04:39:05.215] Browser ERROR   ./app/privacy/page.tsx:6:10
+Parsing ecmascript source code failed
+  4 |     
+  5 |     </>
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |          ^^^^^^^^^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expected ',', got 'className'
+[04:39:06.282] Server  LOG      ✓ Compiled in 128ms
+[04:39:14.220] Browser ERROR   ./app/privacy/page.tsx:47:5
+Parsing ecmascript source code failed
+  45 |     </div>
+  46 |     <f
+> 47 |     </>
+     |     ^
+  48 |   );
+  49 | }
+
+Expression expected
+[04:39:14.220] Browser ERROR   ./app/privacy/page.tsx:47:6
+Parsing ecmascript source code failed
+  45 |     </div>
+  46 |     <f
+> 47 |     </>
+     |      ^^
+  48 |   );
+  49 | }
+
+Unterminated regexp literal
+[04:39:18.214] Browser ERROR   ./app/privacy/page.tsx:47:5
+Parsing ecmascript source code failed
+  45 |     </div>
+  46 |     <Footer
+> 47 |     </>
+     |     ^
+  48 |   );
+  49 | }
+
+Expression expected
+[04:39:18.214] Browser ERROR   ./app/privacy/page.tsx:47:6
+Parsing ecmascript source code failed
+  45 |     </div>
+  46 |     <Footer
+> 47 |     </>
+     |      ^^
+  48 |   );
+  49 | }
+
+Unterminated regexp literal
+[04:39:20.519] Server  LOG      ✓ Compiled in 101ms
+[04:39:35.988] Server  LOG      ✓ Compiled in 404ms
+[04:39:38.217] Browser ERROR   ./app/privacy/page.tsx:6:5
+Parsing ecmascript source code failed
+  4 |     <
+  5 |     
+> 6 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    |     ^
+  7 |       <h1 className="text-4xl font-extrabold mb-8">Privacy Policy</h1>
+  8 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+  9 |
+
+Expression expected
+[04:39:44.274] Server  LOG      ✓ Compiled in 153ms
+[04:39:47.319] Server  LOG      ✓ Compiled in 199ms
+[04:39:52.215] Browser ERROR   ./app/privacy/page.tsx:3:1
+Parsing ecmascript source code failed
+  1 | import
+  2 |
+> 3 | export default function PrivacyPage() {
+    | ^^^^^^
+  4 |   return (
+  5 |     <>
+  6 |     <Navbar />
+
+Expected 'from', got 'export'
+[04:39:53.238] Server  LOG      ✓ Compiled in 172ms
+[04:40:09.449] Server  LOG      ✓ Compiled in 276ms
+[04:40:31.233] Browser ERROR   ./app/terms/page.tsx:6:5
+Parsing ecmascript source code failed
+  4 | export default function TermsPage() {
+  5 |   return (
+> 6 |     <
+    |     ^
+  7 |
+  8 |
+  9 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+
+Expression expected
+[04:40:33.223] Browser ERROR   ./app/terms/page.tsx:11:10
+Parsing ecmascript source code failed
+   9 |
+  10 |
+> 11 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+     |          ^^^^^^^^^
+  12 |       
+  13 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+  14 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expected ',', got 'className'
+[04:40:44.418] Browser ERROR   ./app/terms/page.tsx:10:10
+Parsing ecmascript source code failed
+   8 |     </>
+   9 |
+> 10 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+     |          ^^^^^^^^^
+  11 |       
+  12 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+  13 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expected ',', got 'className'
+[04:40:55.182] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:40:56.865] Server  LOG      ✓ Compiled in 152ms
+[04:41:04.822] Server  LOG      ✓ Compiled in 119ms
+[04:41:15.242] Browser ERROR   ./app/terms/page.tsx:8:5
+Parsing ecmascript source code failed
+   6 |     <>
+   7 |     <Navbar
+>  8 |     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+     |     ^
+   9 |       
+  10 |       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
+  11 |       <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+
+Expression expected
+[04:43:04.126] Server  LOG      ✓ Compiled in 386ms
+[04:56:00.746] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:56:00.761] Server  LOG      ✓ Compiled in 245ms
+[04:56:03.567] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:56:04.377] Server  LOG      ✓ Compiled in 303ms
+[04:56:08.987] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:56:09.011] Server  LOG      ✓ Compiled in 146ms
+[04:56:10.557] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:56:12.093] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:56:12.112] Server  LOG      ✓ Compiled in 163ms
+[04:56:14.307] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:57:42.283] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:57:42.814] Server  LOG      ✓ Compiled in 128ms
+[04:57:43.718] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:57:44.881] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:57:44.888] Server  LOG      ✓ Compiled in 152ms
+[04:57:46.384] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:57:48.947] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:57:48.962] Server  LOG      ✓ Compiled in 126ms
+[04:57:50.866] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:57:51.714] Server  LOG      ✓ Compiled in 270ms
+[04:57:51.810] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:57:53.259] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:57:55.042] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:57:55.061] Server  LOG      ✓ Compiled in 136ms
+[04:57:56.468] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:57:57.675] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:57:57.697] Server  LOG      ✓ Compiled in 104ms
+[04:57:58.970] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:58:22.268] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:58:22.748] Server  LOG      ✓ Compiled in 102ms
+[04:58:23.646] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:58:34.882] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:58:35.189] Server  LOG      ✓ Compiled in 88ms
+[04:58:36.002] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:58:36.753] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:58:37.279] Server  LOG      ✓ Compiled in 143ms
+[04:58:38.272] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:58:40.841] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:58:40.860] Server  LOG      ✓ Compiled in 106ms
+[04:58:42.688] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:58:45.267] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[04:58:45.279] Server  LOG      ✓ Compiled in 110ms
+[04:58:46.453] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:11:50.214] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:11:50.617] Server  LOG      ✓ Compiled in 164ms
+[05:11:51.685] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:17:08.987] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:17:09.021] Server  LOG      ✓ Compiled in 302ms
+[05:17:11.550] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:17:13.415] Server  LOG      ✓ Compiled in 644ms
+[05:17:18.229] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:17:18.253] Server  LOG      ✓ Compiled in 125ms
+[05:17:19.993] Server  LOG      ✓ Compiled in 173ms
+[05:17:20.228] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:17:22.016] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[05:17:22.034] Server  LOG      ✓ Compiled in 188ms
+[05:17:25.390] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

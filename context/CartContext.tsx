@@ -11,12 +11,16 @@ export type CartItem = {
 
 interface CartContextType {
   cart: CartItem[];
-  isCartOpen: boolean;
-  setIsCartOpen: (isOpen: boolean) => void;
+  cartCount: number;
+  cartTotal: number;
   addToCart: (product: Product, store: Store) => void;
   removeFromCart: (productId: string) => void;
+  updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
-  cartCount: number; // <--- The correct total number
+  isCartOpen: boolean;
+  setIsCartOpen: (isOpen: boolean) => void;
+  openCart: () => void;
+  closeCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -26,7 +30,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false); // <--- PREVENTS WIPING DATA
 
-  // 1. Load Cart on Mount
   useEffect(() => {
     const savedCart = localStorage.getItem("storelink_cart");
     if (savedCart) {
@@ -39,12 +42,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setIsInitialized(true); // Mark as loaded
   }, []);
 
-  // 2. Save Cart (Only after initialization)
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem("storelink_cart", JSON.stringify(cart));
     }
   }, [cart, isInitialized]);
+
 
   const addToCart = (product: Product, store: Store) => {
     setCart((prev) => {
@@ -56,28 +59,49 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { product, store, qty: 1 }];
     });
-    // We do NOT auto-open cart here anymore, per your request
+    setIsCartOpen(true); // Automatically open cart when adding
   };
 
   const removeFromCart = (productId: string) => {
     setCart((prev) => prev.filter((item) => item.product.id !== productId));
   };
 
+  const updateQuantity = (productId: string, quantity: number) => {
+    setCart((prev) => 
+      prev.map((item) => 
+        item.product.id === productId 
+          ? { ...item, qty: Math.max(1, quantity) } // Prevent going below 1
+          : item
+      )
+    );
+  };
+
   const clearCart = () => setCart([]);
 
-  // Calculate Total Quantity (e.g., 2 apples + 1 banana = 3 items)
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
+
+
   const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
+
+  const cartTotal = cart.reduce((total, item) => {
+    return total + (item.product.price * item.qty);
+  }, 0);
 
   return (
     <CartContext.Provider
       value={{
         cart,
+        cartCount,
+        cartTotal,
         isCartOpen,
         setIsCartOpen,
         addToCart,
         removeFromCart,
+        updateQuantity,
         clearCart,
-        cartCount, // <--- EXPOSING THE CORRECT COUNT
+        openCart,
+        closeCart,
       }}
     >
       {children}

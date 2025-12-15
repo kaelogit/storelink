@@ -58,7 +58,7 @@ export default function StorePageWrapper({ store, products }: StorePageWrapperPr
   return (
     <div className="min-h-screen bg-gray-50 font-sans pb-20">
       
-      <StoreHeader store={store} />
+      <StoreHeader store={store} onOpenInfo={() => {}} />
 
       <div className="max-w-6xl mx-auto p-4 md:p-8">
          

@@ -20,7 +20,6 @@ function CartProvider({ children }) {
     const [cart, setCart] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isCartOpen, setIsCartOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isInitialized, setIsInitialized] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false); // <--- PREVENTS WIPING DATA
-    // 1. Load Cart on Mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CartProvider.useEffect": ()=>{
             const savedCart = localStorage.getItem("storelink_cart");
@@ -34,7 +33,6 @@ function CartProvider({ children }) {
             setIsInitialized(true); // Mark as loaded
         }
     }["CartProvider.useEffect"], []);
-    // 2. Save Cart (Only after initialization)
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CartProvider.useEffect": ()=>{
             if (isInitialized) {
@@ -63,28 +61,43 @@ function CartProvider({ children }) {
                 }
             ];
         });
-    // We do NOT auto-open cart here anymore, per your request
+        setIsCartOpen(true); // Automatically open cart when adding
     };
     const removeFromCart = (productId)=>{
         setCart((prev)=>prev.filter((item)=>item.product.id !== productId));
     };
+    const updateQuantity = (productId, quantity)=>{
+        setCart((prev)=>prev.map((item)=>item.product.id === productId ? {
+                    ...item,
+                    qty: Math.max(1, quantity)
+                } // Prevent going below 1
+                 : item));
+    };
     const clearCart = ()=>setCart([]);
-    // Calculate Total Quantity (e.g., 2 apples + 1 banana = 3 items)
+    const openCart = ()=>setIsCartOpen(true);
+    const closeCart = ()=>setIsCartOpen(false);
     const cartCount = cart.reduce((acc, item)=>acc + item.qty, 0);
+    const cartTotal = cart.reduce((total, item)=>{
+        return total + item.product.price * item.qty;
+    }, 0);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CartContext.Provider, {
         value: {
             cart,
+            cartCount,
+            cartTotal,
             isCartOpen,
             setIsCartOpen,
             addToCart,
             removeFromCart,
+            updateQuantity,
             clearCart,
-            cartCount
+            openCart,
+            closeCart
         },
         children: children
     }, void 0, false, {
         fileName: "[project]/context/CartContext.tsx",
-        lineNumber: 72,
+        lineNumber: 92,
         columnNumber: 5
     }, this);
 }
