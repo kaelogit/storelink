@@ -89,7 +89,7 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
       }
     });
 
-    const finalY = doc.lastAutoTable.finalY + 15;
+    const finalY = (doc as any).lastAutoTable.finalY + 15;
     
     doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
