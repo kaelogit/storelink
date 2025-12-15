@@ -101,7 +101,7 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                <Image src={store.cover_image_url} alt="Cover" fill className="object-cover" priority />
             ) : (
                <div className="absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-100">
-                  <Image size={48} opacity={0.2} />
+                  <Package size={48} className="opacity-20" />
                </div>
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
