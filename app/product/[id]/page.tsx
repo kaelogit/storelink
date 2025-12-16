@@ -11,7 +11,7 @@ interface PageProps {
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: PageProps) {
   const resolvedParams = await params; 
   
   const { data: product } = await supabase
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage({ params }: PageProps) {
   const resolvedParams = await params; // ✅ Await it first!
   
   const { data: product } = await supabase
