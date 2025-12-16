@@ -25,10 +25,11 @@ export default function DashboardPage() {
           return;
         }
 
+        // 1. Fetch Store (Using user_id to find the owner)
         const { data: storeData } = await supabase
           .from("stores")
           .select("*")
-          .eq("owner_id", user.id)
+          .eq("user_id", user.id) // 👈 Changed 'owner_id' to 'user_id' (Standard Convention)
           .single();
 
         if (!storeData) {
@@ -38,6 +39,7 @@ export default function DashboardPage() {
 
         setStore(storeData);
 
+        // 2. Fetch Products
         const { data: productsData } = await supabase
           .from("products")
           .select("*, categories(name)")
@@ -46,6 +48,7 @@ export default function DashboardPage() {
         
         setProducts(productsData || []);
 
+        // 3. Fetch Orders
         const { data: ordersData } = await supabase
           .from("orders")
           .select("*")
@@ -54,9 +57,15 @@ export default function DashboardPage() {
 
         setOrders(ordersData || []);
 
-        const revenue = ordersData?.reduce((acc, order) => acc + (order.status === 'completed' ? order.total_amount : 0), 0) || 0;
+        // 4. Calculate Stats
+        const revenue = ordersData?.reduce((acc, order) => {
+             // Only count revenue if status is completed (adjust 'paid'/'completed' based on your logic)
+             return acc + (['completed', 'paid'].includes(order.status) ? order.total_amount : 0);
+        }, 0) || 0;
+
         const count = productsData?.length || 0;
         
+        // 5. Set Stats (Including the new View Count)
         setStats({ 
           revenue, 
           productCount: count, 

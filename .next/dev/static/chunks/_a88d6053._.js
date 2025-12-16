@@ -3388,24 +3388,36 @@ function DashboardPage() {
                             router.push("/login");
                             return;
                         }
-                        const { data: storeData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*").eq("owner_id", user.id).single();
+                        // 1. Fetch Store (Using user_id to find the owner)
+                        const { data: storeData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*").eq("user_id", user.id) // 👈 Changed 'owner_id' to 'user_id' (Standard Convention)
+                        .single();
                         if (!storeData) {
                             router.push("/onboarding");
                             return;
                         }
                         setStore(storeData);
+                        // 2. Fetch Products
                         const { data: productsData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("products").select("*, categories(name)").eq("store_id", storeData.id).order("created_at", {
                             ascending: false
                         });
                         setProducts(productsData || []);
+                        // 3. Fetch Orders
                         const { data: ordersData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("orders").select("*").eq("store_id", storeData.id).order("created_at", {
                             ascending: false
                         });
                         setOrders(ordersData || []);
+                        // 4. Calculate Stats
                         const revenue = ordersData?.reduce({
-                            "DashboardPage.useEffect.loadDashboardData": (acc, order)=>acc + (order.status === 'completed' ? order.total_amount : 0)
+                            "DashboardPage.useEffect.loadDashboardData": (acc, order)=>{
+                                // Only count revenue if status is completed (adjust 'paid'/'completed' based on your logic)
+                                return acc + ([
+                                    'completed',
+                                    'paid'
+                                ].includes(order.status) ? order.total_amount : 0);
+                            }
                         }["DashboardPage.useEffect.loadDashboardData"], 0) || 0;
                         const count = productsData?.length || 0;
+                        // 5. Set Stats (Including the new View Count)
                         setStats({
                             revenue,
                             productCount: count,
@@ -3430,12 +3442,12 @@ function DashboardPage() {
                 className: "w-8 h-8 animate-spin text-gray-400"
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 79,
+                lineNumber: 88,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 78,
+            lineNumber: 87,
             columnNumber: 7
         }, this);
     }
@@ -3447,7 +3459,7 @@ function DashboardPage() {
         stats: stats
     }, void 0, false, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 87,
+        lineNumber: 96,
         columnNumber: 5
     }, this);
 }

@@ -1,1 +1,8 @@
-{}
+{
+  "/[slug]/page": "app/[slug]/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/subscription/page": "app/dashboard/subscription/page.js",
+  "/icon/route": "app-edge-has-no-entrypoint",
+  "/login/page": "app/login/page.js",
+  "/marketplace/page": "app/marketplace/page.js"
+}

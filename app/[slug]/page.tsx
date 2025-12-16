@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import StoreFront from "@/components/StoreFront";
 import type { Metadata } from "next"; 
 import { shuffleArray } from "@/utils/shuffle";
+import ViewTracker from "@/components/ViewTracker";
 
 export const dynamic = 'force-dynamic';
 
@@ -42,7 +43,7 @@ export default async function VendorStorePage({ params }: PageProps) {
   const resolvedParams = await params;
   const { data: store } = await supabase
     .from("stores")
-    .select("*, products(*)") // Ensure products are selected for views loop
+    .select("*, products(*)") 
     .eq("slug", resolvedParams.slug)
     .single();
 

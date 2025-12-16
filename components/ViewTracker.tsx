@@ -7,11 +7,21 @@ export default function ViewTracker({ storeId }: { storeId: string }) {
   const hasCounted = useRef(false);
 
   useEffect(() => {
-    if (hasCounted.current) return;
+    const sessionKey = `viewed_store_${storeId}`;
     
+    if (hasCounted.current || sessionStorage.getItem(sessionKey)) {
+      return;
+    }
+
     const countView = async () => {
-      hasCounted.current = true;
-      await supabase.rpc('increment_store_views', { row_id: storeId });
+      try {
+        hasCounted.current = true;
+        sessionStorage.setItem(sessionKey, "true");
+
+        await supabase.rpc('increment_store_view', { store_uuid: storeId });
+      } catch (error) {
+        console.error("View tracking error:", error);
+      }
     };
 
     countView();
