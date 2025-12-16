@@ -3561,54 +3561,78 @@ function DashboardPage() {
         productCount: 0,
         views: 0
     });
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        const loadDashboardData = async ()=>{
-            try {
-                const { data: { user } } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.getUser();
-                if (!user) {
-                    router.push("/login");
-                    return;
-                }
-                const { data: storeData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*").eq("owner_id", user.id).single();
-                if (!storeData) {
-                    router.push("/onboarding");
-                    return;
-                }
-                setStore(storeData);
-                // 2. Fetch Products
-                const { data: productsData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("products").select("*, categories(name)").eq("store_id", storeData.id).order("created_at", {
-                    ascending: false
-                });
-                setProducts(productsData || []);
-                // 3. Fetch Orders
-                const { data: ordersData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("orders").select("*").eq("store_id", storeData.id).order("created_at", {
-                    ascending: false
-                });
-                setOrders(ordersData || []);
-                // 4. Calculate Stats
-                const revenue = ordersData?.reduce((acc, order)=>{
-                    // Only count revenue if status is completed (adjust 'paid'/'completed' based on your logic)
-                    return acc + ([
-                        'completed',
-                        'paid'
-                    ].includes(order.status) ? order.total_amount : 0);
-                }, 0) || 0;
-                const count = productsData?.length || 0;
-                // 5. Set Stats (Including the new View Count)
-                setStats({
-                    revenue,
-                    productCount: count,
-                    views: storeData.view_count || 0
-                });
-            } catch (error) {
-                console.error("Dashboard Load Error:", error);
-            } finally{
-                setLoading(false);
+    // 1. We wrap the fetch logic in 'useCallback' so we can re-run it anytime
+    const loadDashboardData = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async ()=>{
+        try {
+            const { data: { user } } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.getUser();
+            if (!user) {
+                router.push("/login");
+                return;
             }
-        };
-        loadDashboardData();
+            // Fetch Store (Using owner_id as verified)
+            const { data: storeData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*").eq("owner_id", user.id).single();
+            if (!storeData) {
+                router.push("/onboarding");
+                return;
+            }
+            setStore(storeData);
+            // Fetch Products
+            const { data: productsData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("products").select("*, categories(name)").eq("store_id", storeData.id).order("created_at", {
+                ascending: false
+            });
+            setProducts(productsData || []);
+            // Fetch Orders
+            const { data: ordersData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("orders").select("*").eq("store_id", storeData.id).order("created_at", {
+                ascending: false
+            });
+            setOrders(ordersData || []);
+            // Calculate Stats
+            const revenue = ordersData?.reduce((acc, order)=>{
+                return acc + ([
+                    'completed',
+                    'paid'
+                ].includes(order.status) ? order.total_amount : 0);
+            }, 0) || 0;
+            const count = productsData?.length || 0;
+            // Set Stats
+            setStats({
+                revenue,
+                productCount: count,
+                views: storeData.view_count || 0
+            });
+        } catch (error) {
+            console.error("Dashboard Load Error:", error);
+        } finally{
+            setLoading(false);
+        }
     }, [
         router
+    ]);
+    // 2. Initial Load + Realtime Listener
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        loadDashboardData();
+        // 👇 This is the Magic Part: Listen for changes!
+        const channel = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].channel('dashboard-updates').on('postgres_changes', {
+            event: '*',
+            schema: 'public',
+            table: 'orders'
+        }, (payload)=>{
+            console.log('Order update!', payload);
+            loadDashboardData(); // Reload data if an order changes
+        }).on('postgres_changes', {
+            event: '*',
+            schema: 'public',
+            table: 'stores'
+        }, (payload)=>{
+            console.log('View count update!', payload);
+            loadDashboardData(); // Reload data if view count changes
+        }).subscribe();
+        // Cleanup when leaving page
+        return ()=>{
+            __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].removeChannel(channel);
+        };
+    }, [
+        loadDashboardData
     ]);
     if (loading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3617,12 +3641,12 @@ function DashboardPage() {
                 className: "w-8 h-8 animate-spin text-gray-400"
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 87,
+                lineNumber: 116,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 86,
+            lineNumber: 115,
             columnNumber: 7
         }, this);
     }
@@ -3634,7 +3658,7 @@ function DashboardPage() {
         stats: stats
     }, void 0, false, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 95,
+        lineNumber: 124,
         columnNumber: 5
     }, this);
 }

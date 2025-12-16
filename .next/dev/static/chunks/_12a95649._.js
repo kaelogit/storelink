@@ -213,7 +213,7 @@ function GlobalCartSidebar() {
             let cleanNumber = whatsappNumber?.replace(/\D/g, '') || "";
             if (cleanNumber.startsWith('0')) cleanNumber = '234' + cleanNumber.substring(1);
             const itemLines = items.map((i)=>`- ${i.qty}x ${i.product.name} (₦${(i.product.price * i.qty).toLocaleString()})`).join('\n');
-            const msg = `*New Order #${newOrderId.slice(0, 8)}* 📦\n\nHello ${storeName}, I want to place an order:\n\n${itemLines}\n\n*Total: ₦${storeTotal.toLocaleString()}*\n\n*Customer Details:*\nName: ${formData.name}\nPhone: ${formData.phone}\nAddress: ${formData.address}\n\n(Placed via StoreLink)`;
+            const msg = `*New Order #${newOrderId.slice(0, 8)}* 📦\n\nHello ${storeName}, I want to place an order:\n\n${itemLines}\n\n*Total: ₦${storeTotal.toLocaleString()}*\n\n*Customer Details:*\nName: ${formData.name}\nPhone: ${formData.phone}\nAddress: ${formData.address}\n\nKindly provide your account detials to make payment and expected delivery date\n\n(Placed via StoreLink)`;
             const whatsappLink = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`;
             window.open(whatsappLink, "_blank");
             items.forEach((item)=>{

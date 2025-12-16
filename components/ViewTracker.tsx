@@ -8,9 +8,8 @@ export default function ViewTracker({ storeId }: { storeId: string }) {
 
   useEffect(() => {
     const sessionKey = `viewed_store_${storeId}`;
-    
-    if (hasCounted.current || sessionStorage.getItem(sessionKey)) {
-      return;
+    if (sessionStorage.getItem(sessionKey) || hasCounted.current) {
+      return; 
     }
 
     const countView = async () => {
@@ -20,7 +19,7 @@ export default function ViewTracker({ storeId }: { storeId: string }) {
 
         await supabase.rpc('increment_store_view', { store_uuid: storeId });
       } catch (error) {
-        console.error("View tracking error:", error);
+        console.error(error); 
       }
     };
 

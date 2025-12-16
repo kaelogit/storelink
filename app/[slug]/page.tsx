@@ -49,11 +49,6 @@ export default async function VendorStorePage({ params }: PageProps) {
 
   if (!store) return notFound();
 
-  if (store.products) {
-    for (const product of store.products) {
-        await supabase.rpc('increment_product_view', { product_id: product.id }); 
-    }
-  }
   const { data: products } = await supabase
     .from("storefront_products")
     .select("*")
@@ -69,10 +64,14 @@ export default async function VendorStorePage({ params }: PageProps) {
   const shuffledProducts = shuffleArray(products || []);
 
   return (
-    <StoreFront 
-      store={store} 
-      products={shuffledProducts}
-      categories={categories || []} 
-    />
+    <>
+      <ViewTracker storeId={store.id} />
+
+      <StoreFront 
+        store={store} 
+        products={shuffledProducts}
+        categories={categories || []} 
+      />
+    </>
   );
 }

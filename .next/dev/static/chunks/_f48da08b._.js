@@ -3628,60 +3628,90 @@ function DashboardPage() {
         productCount: 0,
         views: 0
     });
+    // 1. We wrap the fetch logic in 'useCallback' so we can re-run it anytime
+    const loadDashboardData = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "DashboardPage.useCallback[loadDashboardData]": async ()=>{
+            try {
+                const { data: { user } } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.getUser();
+                if (!user) {
+                    router.push("/login");
+                    return;
+                }
+                // Fetch Store (Using owner_id as verified)
+                const { data: storeData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*").eq("owner_id", user.id).single();
+                if (!storeData) {
+                    router.push("/onboarding");
+                    return;
+                }
+                setStore(storeData);
+                // Fetch Products
+                const { data: productsData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("products").select("*, categories(name)").eq("store_id", storeData.id).order("created_at", {
+                    ascending: false
+                });
+                setProducts(productsData || []);
+                // Fetch Orders
+                const { data: ordersData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("orders").select("*").eq("store_id", storeData.id).order("created_at", {
+                    ascending: false
+                });
+                setOrders(ordersData || []);
+                // Calculate Stats
+                const revenue = ordersData?.reduce({
+                    "DashboardPage.useCallback[loadDashboardData]": (acc, order)=>{
+                        return acc + ([
+                            'completed',
+                            'paid'
+                        ].includes(order.status) ? order.total_amount : 0);
+                    }
+                }["DashboardPage.useCallback[loadDashboardData]"], 0) || 0;
+                const count = productsData?.length || 0;
+                // Set Stats
+                setStats({
+                    revenue,
+                    productCount: count,
+                    views: storeData.view_count || 0
+                });
+            } catch (error) {
+                console.error("Dashboard Load Error:", error);
+            } finally{
+                setLoading(false);
+            }
+        }
+    }["DashboardPage.useCallback[loadDashboardData]"], [
+        router
+    ]);
+    // 2. Initial Load + Realtime Listener
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "DashboardPage.useEffect": ()=>{
-            const loadDashboardData = {
-                "DashboardPage.useEffect.loadDashboardData": async ()=>{
-                    try {
-                        const { data: { user } } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.getUser();
-                        if (!user) {
-                            router.push("/login");
-                            return;
-                        }
-                        const { data: storeData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*").eq("owner_id", user.id).single();
-                        if (!storeData) {
-                            router.push("/onboarding");
-                            return;
-                        }
-                        setStore(storeData);
-                        // 2. Fetch Products
-                        const { data: productsData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("products").select("*, categories(name)").eq("store_id", storeData.id).order("created_at", {
-                            ascending: false
-                        });
-                        setProducts(productsData || []);
-                        // 3. Fetch Orders
-                        const { data: ordersData } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("orders").select("*").eq("store_id", storeData.id).order("created_at", {
-                            ascending: false
-                        });
-                        setOrders(ordersData || []);
-                        // 4. Calculate Stats
-                        const revenue = ordersData?.reduce({
-                            "DashboardPage.useEffect.loadDashboardData": (acc, order)=>{
-                                // Only count revenue if status is completed (adjust 'paid'/'completed' based on your logic)
-                                return acc + ([
-                                    'completed',
-                                    'paid'
-                                ].includes(order.status) ? order.total_amount : 0);
-                            }
-                        }["DashboardPage.useEffect.loadDashboardData"], 0) || 0;
-                        const count = productsData?.length || 0;
-                        // 5. Set Stats (Including the new View Count)
-                        setStats({
-                            revenue,
-                            productCount: count,
-                            views: storeData.view_count || 0
-                        });
-                    } catch (error) {
-                        console.error("Dashboard Load Error:", error);
-                    } finally{
-                        setLoading(false);
-                    }
-                }
-            }["DashboardPage.useEffect.loadDashboardData"];
             loadDashboardData();
+            // 👇 This is the Magic Part: Listen for changes!
+            const channel = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].channel('dashboard-updates').on('postgres_changes', {
+                event: '*',
+                schema: 'public',
+                table: 'orders'
+            }, {
+                "DashboardPage.useEffect.channel": (payload)=>{
+                    console.log('Order update!', payload);
+                    loadDashboardData(); // Reload data if an order changes
+                }
+            }["DashboardPage.useEffect.channel"]).on('postgres_changes', {
+                event: '*',
+                schema: 'public',
+                table: 'stores'
+            }, {
+                "DashboardPage.useEffect.channel": (payload)=>{
+                    console.log('View count update!', payload);
+                    loadDashboardData(); // Reload data if view count changes
+                }
+            }["DashboardPage.useEffect.channel"]).subscribe();
+            // Cleanup when leaving page
+            return ({
+                "DashboardPage.useEffect": ()=>{
+                    __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].removeChannel(channel);
+                }
+            })["DashboardPage.useEffect"];
         }
     }["DashboardPage.useEffect"], [
-        router
+        loadDashboardData
     ]);
     if (loading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3690,12 +3720,12 @@ function DashboardPage() {
                 className: "w-8 h-8 animate-spin text-gray-400"
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 87,
+                lineNumber: 116,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 86,
+            lineNumber: 115,
             columnNumber: 7
         }, this);
     }
@@ -3707,11 +3737,11 @@ function DashboardPage() {
         stats: stats
     }, void 0, false, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 95,
+        lineNumber: 124,
         columnNumber: 5
     }, this);
 }
-_s(DashboardPage, "+F1TYlrlzDb8LJ6f8WekUhVjFxQ=", false, function() {
+_s(DashboardPage, "0nQuHVSeDsDIvHk3KsAYlJGbM78=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
