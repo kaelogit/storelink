@@ -4,5 +4,7 @@
   "/dashboard/subscription/page": "app/dashboard/subscription/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
   "/login/page": "app/login/page.js",
-  "/marketplace/page": "app/marketplace/page.js"
+  "/marketplace/page": "app/marketplace/page.js",
+  "/onboarding/page": "app/onboarding/page.js",
+  "/product/[id]/page": "app/product/[id]/page.js"
 }

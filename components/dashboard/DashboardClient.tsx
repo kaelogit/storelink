@@ -12,6 +12,7 @@ import AddProductModal from "@/components/store/AddProductModal";
 import CategoryManager from "@/components/store/CategoryManager";
 import OrderDetailsModal from "@/components/dashboard/OrderDetailsModal";
 import StoreSettings from "@/components/dashboard/StoreSettings";
+import ShareStore from "./ShareStore";
 
 interface DashboardClientProps {
   store: any;
@@ -31,7 +32,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
   const [selectedOrder, setSelectedOrder] = useState<any>(null);
   const [productToEdit, setProductToEdit] = useState<any>(null);
 
-  const [copied, setCopied] = useState(false);
 
   const isPremium = store.subscription_plan === 'premium';
   const isDiamond = store.subscription_plan === 'diamond';
@@ -39,11 +39,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
   const isExpired = store.subscription_expiry && new Date(store.subscription_expiry) < new Date();
   const isFreeLimitReached = isFree && stats.productCount >= 5;
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(`${window.location.origin}/${store.slug}`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -142,10 +137,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
           </div>
 
           <div className="flex flex-wrap gap-2 w-full md:w-auto">
-            <button onClick={handleCopyLink} className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50 transition">
-              {copied ? <Check size={16} className="text-green-500"/> : <Copy size={16}/>} 
-              {copied ? "Copied!" : "Copy Link"}
-            </button>
+            
             <a href={`/${store.slug}`} target="_blank" className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition">
               <ExternalLink size={16} /> View Store
             </a>
@@ -177,6 +169,10 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
              </div>
              <p className="text-2xl font-extrabold text-gray-900">{stats.views.toLocaleString()}</p>
           </div>
+        </div>
+
+        <div className="mb-8">
+           <ShareStore slug={store.slug} />
         </div>
 
         {isExpired && (

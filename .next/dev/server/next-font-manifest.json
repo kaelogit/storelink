@@ -14,6 +14,12 @@
     ],
     "[project]/app/marketplace/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/app/onboarding/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
+    ],
+    "[project]/app/product/[id]/page": [
+      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ]
   },
   "appUsingSizeAdjust": true,

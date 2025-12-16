@@ -25,11 +25,10 @@ export default function DashboardPage() {
           return;
         }
 
-        // 1. Fetch Store (Using user_id to find the owner)
         const { data: storeData } = await supabase
           .from("stores")
           .select("*")
-          .eq("user_id", user.id) // 👈 Changed 'owner_id' to 'user_id' (Standard Convention)
+          .eq("owner_id", user.id) 
           .single();
 
         if (!storeData) {
