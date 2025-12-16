@@ -3,14 +3,16 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { X, Loader2, Trash2, Plus, Lock, Crown } from "lucide-react";
+import { X, Loader2, Trash2, Plus, Lock, Crown, Sparkles } from "lucide-react"; // 👈 Added Sparkles
+import { compressImage } from "@/utils/imageCompressor";
+import { removeBackground } from "@/utils/removeBackground"; // 👈 Added AI Import
 
 interface AddProductModalProps {
   storeId: string;
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
-  productToEdit?: any; // <--- NEW: Optional product to edit
+  productToEdit?: any;
 }
 
 export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit }: AddProductModalProps) {
@@ -22,6 +24,10 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
   const [isExpired, setIsExpired] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   
+  // 👇 NEW: AI States
+  const [removeBg, setRemoveBg] = useState(false);
+  const [processingImages, setProcessingImages] = useState(false);
+  
   const [formData, setFormData] = useState({
     name: "",
     price: "",
@@ -32,10 +38,13 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
   
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
-  const [existingImages, setExistingImages] = useState<string[]>([]); // For editing
+  const [existingImages, setExistingImages] = useState<string[]>([]); 
 
   useEffect(() => {
     if (isOpen) {
+      // Reset AI Toggle on open
+      setRemoveBg(false);
+      
       if (productToEdit) {
         setFormData({
           name: productToEdit.name,
@@ -85,7 +94,7 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
               setIsLimitReached(false);
             }
         } else {
-            setIsLimitReached(false); // Can always edit existing
+            setIsLimitReached(false); 
         }
       };
       
@@ -95,17 +104,49 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
 
   if (!isOpen) return null;
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // 👇 UPDATED: Handle Image Selection with AI Logic
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const newFiles = Array.from(e.target.files);
-      const totalImages = existingImages.length + imageFiles.length + newFiles.length;
+      const newRawFiles = Array.from(e.target.files);
+      const totalImages = existingImages.length + imageFiles.length + newRawFiles.length;
+      
       if (totalImages > 4) {
           setErrorMsg("Max 4 images allowed"); setTimeout(() => setErrorMsg(""), 3000);
           return;
       }
-      const combinedFiles = [...imageFiles, ...newFiles];
-      setImageFiles(combinedFiles);
-      setPreviews(combinedFiles.map(file => URL.createObjectURL(file)));
+
+      // If AI Toggle is ON, process images
+      if (removeBg) {
+        setProcessingImages(true);
+        const processedFiles: File[] = [];
+
+        try {
+            for (const file of newRawFiles) {
+                // 1. Send to remove.bg
+                const blob = await removeBackground(file);
+                // 2. Convert Blob back to File (ensure it's PNG to keep transparency)
+                const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".png", { type: "image/png" });
+                processedFiles.push(newFile);
+            }
+            
+            // 3. Update State with processed images
+            const combinedFiles = [...imageFiles, ...processedFiles];
+            setImageFiles(combinedFiles);
+            setPreviews(combinedFiles.map(file => URL.createObjectURL(file)));
+
+        } catch (err: any) {
+            console.error(err);
+            setErrorMsg("Background removal failed. Check API limit.");
+        } finally {
+            setProcessingImages(false);
+        }
+
+      } else {
+        // Normal Upload (No AI)
+        const combinedFiles = [...imageFiles, ...newRawFiles];
+        setImageFiles(combinedFiles);
+        setPreviews(combinedFiles.map(file => URL.createObjectURL(file)));
+      }
     }
   };
 
@@ -127,9 +168,15 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
 
     try {
       const uploadedUrls: string[] = [];
+      
       for (const file of imageFiles) {
+        // We compress all files to ensure optimization
+        const compressedFile = await compressImage(file);
+
         const fileName = `${storeId}/${Date.now()}-${Math.random().toString(36).substring(7)}`;
-        const { error } = await supabase.storage.from("products").upload(fileName, file);
+        
+        const { error } = await supabase.storage.from("products").upload(fileName, compressedFile);
+        
         if (error) throw error;
         
         const { data } = supabase.storage.from("products").getPublicUrl(fileName);
@@ -195,13 +242,13 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
 
         ) : (isLimitReached && !productToEdit) ? (
           <div className="p-8 text-center flex flex-col items-center justify-center h-full">
-             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                <Crown size={32} className="text-yellow-500 fill-yellow-500" />
-             </div>
-             <h3 className="text-xl font-bold text-gray-900 mb-2">Free Limit Reached</h3>
-             <button onClick={() => router.push("/dashboard/subscription")} className="w-full bg-gradient-to-r from-gray-900 to-gray-800 text-white py-4 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2">
-               <Crown size={20} className="text-yellow-400" /> Upgrade to Premium
-             </button>
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                 <Crown size={32} className="text-yellow-500 fill-yellow-500" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Free Limit Reached</h3>
+              <button onClick={() => router.push("/dashboard/subscription")} className="w-full bg-gradient-to-r from-gray-900 to-gray-800 text-white py-4 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2">
+                <Crown size={20} className="text-yellow-400" /> Upgrade to Premium
+              </button>
           </div>
 
         ) : (
@@ -209,7 +256,26 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
             <form onSubmit={handleSubmit} className="space-y-4">
               
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Images (Max 4)</label>
+                <div className="flex items-center justify-between mb-2">
+                    <label className="block text-sm font-bold text-gray-700">Images (Max 4)</label>
+                    
+                    {/* 👇 AI TOGGLE SWITCH */}
+                    <button 
+                        type="button" 
+                        onClick={() => setRemoveBg(!removeBg)}
+                        disabled={processingImages || existingImages.length + previews.length >= 4}
+                        className={`
+                            flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full transition border
+                            ${removeBg 
+                                ? 'bg-purple-100 text-purple-700 border-purple-200 shadow-sm' 
+                                : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'}
+                        `}
+                    >
+                        <Sparkles size={14} className={removeBg ? "animate-pulse" : ""} />
+                        {removeBg ? "AI Removal ON" : "Remove Background?"}
+                    </button>
+                </div>
+
                 <div className="grid grid-cols-4 gap-2">
                   {existingImages.map((src, index) => (
                     <div key={`existing-${index}`} className="aspect-square relative rounded-xl overflow-hidden border border-gray-200">
@@ -219,15 +285,26 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
                   ))}
                   
                   {previews.map((src, index) => (
-                    <div key={`new-${index}`} className="aspect-square relative rounded-xl overflow-hidden border border-gray-200">
+                    <div key={`new-${index}`} className="aspect-square relative rounded-xl overflow-hidden border border-gray-200 bg-gray-100">
                       <img src={src} alt="Preview" className="w-full h-full object-cover" />
                       <button type="button" onClick={() => removeNewImage(index)} className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"><Trash2 size={12} /></button>
                     </div>
                   ))}
 
-                  {(existingImages.length + previews.length) < 4 && (
-                    <label className="aspect-square rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 bg-gray-50 cursor-pointer hover:border-gray-900 hover:text-gray-900 transition">
-                      <Plus size={24} className="mb-1"/>
+                  {/* 👇 Show Spinner if AI is processing */}
+                  {processingImages && (
+                    <div className="aspect-square rounded-xl border border-gray-200 flex flex-col items-center justify-center bg-purple-50">
+                        <Loader2 className="animate-spin text-purple-600 mb-1" size={20} />
+                        <span className="text-[10px] font-bold text-purple-600">AI working...</span>
+                    </div>
+                  )}
+
+                  {(existingImages.length + previews.length) < 4 && !processingImages && (
+                    <label className={`
+                        aspect-square rounded-xl border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition
+                        ${removeBg ? 'border-purple-300 bg-purple-50 text-purple-400 hover:bg-purple-100' : 'border-gray-300 bg-gray-50 text-gray-400 hover:border-gray-900 hover:text-gray-900'}
+                    `}>
+                      {removeBg ? <Sparkles size={24} className="mb-1"/> : <Plus size={24} className="mb-1"/>}
                       <input type="file" accept="image/*" multiple onChange={handleFileChange} className="hidden" />
                     </label>
                   )}
@@ -277,7 +354,7 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
                       ⚠️ {errorMsg}
                   </div>
               )}
-              <button type="submit" disabled={loading} className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-gray-800 active:scale-95 transition">
+              <button type="submit" disabled={loading || processingImages} className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-gray-800 active:scale-95 transition disabled:opacity-70 disabled:cursor-not-allowed">
                 {loading ? <Loader2 className="animate-spin" /> : (productToEdit ? "Update Product" : "Save Product")}
               </button>
             </form>

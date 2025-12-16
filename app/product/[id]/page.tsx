@@ -11,11 +11,13 @@ interface PageProps {
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata({ params }: Props) {
+  const resolvedParams = await params; 
+  
   const { data: product } = await supabase
     .from("storefront_products")
     .select("*, stores(name)")
-    .eq("id", params.id)
+    .eq("id", resolvedParams.id) 
     .single();
 
   if (!product) {
@@ -38,13 +40,13 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default async function ProductPage({ params }: PageProps) {
-  const resolvedParams = await params;
+export default async function ProductPage({ params }: Props) {
+  const resolvedParams = await params; // ✅ Await it first!
   
   const { data: product } = await supabase
-    .from("storefront_products") 
-    .select("*")
-    .eq("id", resolvedParams.id)
+    .from("storefront_products")
+    .select("*, stores(*)")
+    .eq("id", resolvedParams.id) // ✅ Use the resolved version
     .single();
 
   if (!product) return notFound();

@@ -27,8 +27,7 @@ function AddToCartButton({ product, store }) {
             description: "",
             cover_image_url: "",
             subscription_plan: store.subscription_plan,
-            view_count: 0,
-            created_at: ""
+            view_count: 0
         };
         addToCart(product, storeObj);
     };
@@ -45,7 +44,7 @@ function AddToCartButton({ product, store }) {
                             children: "Total Price"
                         }, void 0, false, {
                             fileName: "[project]/components/shared/AddToCartButton.tsx",
-                            lineNumber: 38,
+                            lineNumber: 37,
                             columnNumber: 12
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -56,13 +55,13 @@ function AddToCartButton({ product, store }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/shared/AddToCartButton.tsx",
-                            lineNumber: 39,
+                            lineNumber: 38,
                             columnNumber: 12
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/shared/AddToCartButton.tsx",
-                    lineNumber: 37,
+                    lineNumber: 36,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -75,7 +74,7 @@ function AddToCartButton({ product, store }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/components/shared/AddToCartButton.tsx",
-                                lineNumber: 49,
+                                lineNumber: 48,
                                 columnNumber: 16
                             }, this),
                             " Add to Bag"
@@ -83,18 +82,18 @@ function AddToCartButton({ product, store }) {
                     }, void 0, true) : "Sold Out"
                 }, void 0, false, {
                     fileName: "[project]/components/shared/AddToCartButton.tsx",
-                    lineNumber: 42,
+                    lineNumber: 41,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/shared/AddToCartButton.tsx",
-            lineNumber: 36,
+            lineNumber: 35,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/shared/AddToCartButton.tsx",
-        lineNumber: 35,
+        lineNumber: 34,
         columnNumber: 5
     }, this);
 }

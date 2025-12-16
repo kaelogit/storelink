@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { X, Trash2, MessageCircle, Loader2 } from "lucide-react";
+import { X, Trash2, MessageCircle, Loader2, AlertTriangle } from "lucide-react";
 import { supabase } from "@/lib/supabase"; 
 import { Store, Product } from "@/types";
-import { AlertTriangle } from "lucide-react";
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -34,8 +33,12 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setCheckoutError(""); // Clear previous errors
 
     try {
+      console.log("Attempting to create order..."); // Debug Log
+
+      // 1. Insert Order
       const { data: orderData, error: orderError } = await supabase
         .from("orders")
         .insert({
@@ -45,24 +48,35 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
           customer_email: customer.email,
           customer_address: customer.address,
           total_amount: cartTotal,
-          status: 'pending' // <--- Shows as yellow pending in dashboard
+          status: 'pending' 
         })
         .select()
         .single();
 
-      if (orderError) throw orderError;
+      if (orderError) {
+        console.error("Order Insert Error:", orderError); // <--- SEE THIS IN CONSOLE
+        throw orderError;
+      }
 
+      console.log("Order created:", orderData.id); // Debug Log
+
+      // 2. Insert Items
       const orderItems = cart.map(item => ({
         order_id: orderData.id,
         product_id: item.product.id,
-        product_name: item.product.name, // Save name in case product is deleted later
+        product_name: item.product.name,
         quantity: item.qty,
         price: item.product.price
       }));
 
       const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
-      if (itemsError) throw itemsError;
+      
+      if (itemsError) {
+        console.error("Order Items Insert Error:", itemsError); // <--- SEE THIS IN CONSOLE
+        throw itemsError;
+      }
 
+      // 3. WhatsApp Redirect
       const itemsList = cart
         .map((item) => `- ${item.qty}x ${item.product.name} (₦${(item.product.price * item.qty).toLocaleString()})`)
         .join("\n");
@@ -78,7 +92,8 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
       onClose();
 
     } catch (error: any) {
-      setCheckoutError("Failed to process order. Please try again.");
+      console.error("FULL CHECKOUT ERROR:", error); // <--- GLOBAL ERROR LOG
+      setCheckoutError(error.message || "Failed to process order.");
     } finally {
       setLoading(false);
     }
@@ -89,7 +104,7 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
       <div className="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl animate-in slide-in-from-bottom-10 flex flex-col max-h-[90vh]">
         
         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-          <h2 className="font-bold text-lg text-gray-900">Checkout</h2>
+          <h2 className="font-bold text-lg text-red-600">Checkout - I AM REAL</h2>.
           <button onClick={onClose} className="p-2 bg-white rounded-full shadow-sm text-gray-500 hover:bg-gray-100"><X size={20} /></button>
         </div>
 

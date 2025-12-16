@@ -72,6 +72,8 @@ __turbopack_context__.n(__TURBOPACK__imported__module__$5b$project$5d2f$componen
 __turbopack_context__.s([
     "default",
     ()=>LandingPage,
+    "dynamic",
+    ()=>dynamic,
     "revalidate",
     ()=>revalidate
 ]);
@@ -82,11 +84,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$landing$2f$Lan
 ;
 ;
 const revalidate = 0;
+const dynamic = 'force-dynamic';
 async function LandingPage() {
-    const { data: premiumStores } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("id").neq("subscription_plan", "free"); // <--- FILTER: NO FREE VENDORS
+    const { data: premiumStores } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("id").neq("subscription_plan", "free");
     const premiumStoreIds = premiumStores?.map((s)=>s.id) || [];
-    const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("products").select("*").in("store_id", premiumStoreIds) // <--- Only show items from paid stores
-    .eq("is_active", true).limit(100).order("created_at", {
+    const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("products").select("*").in("store_id", premiumStoreIds).eq("is_active", true).limit(100).order("created_at", {
         ascending: false
     });
     const { data: stores } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*").limit(50);
@@ -95,7 +97,7 @@ async function LandingPage() {
         stores: stores || []
     }, void 0, false, {
         fileName: "[project]/app/page.tsx",
-        lineNumber: 30,
+        lineNumber: 33,
         columnNumber: 5
     }, this);
 }

@@ -16,13 +16,23 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
   const [view, setView] = useState<'products' | 'vendors'>('products');
   const [search, setSearch] = useState("");
 
+  const isPaidPlan = (plan?: string) => plan === 'premium' || plan === 'diamond';
+
   const filteredProducts = products
-    .filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
-    .slice(0, 8); 
+    .filter(p => {
+       const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
+       const isPremiumStore = isPaidPlan(p.stores?.subscription_plan);
+       return matchesSearch && isPremiumStore;
+    })
+    .slice(0, 12); // 👈 Changed from 8 to 12
 
   const filteredStores = stores
-    .filter(s => s.name.toLowerCase().includes(search.toLowerCase()))
-    .slice(0, 6);
+    .filter(s => {
+       const matchesSearch = s.name.toLowerCase().includes(search.toLowerCase());
+       const isPremiumStore = isPaidPlan(s.subscription_plan);
+       return matchesSearch && isPremiumStore;
+    })
+    .slice(0, 12); // 👈 Changed from 6 to 12
 
   return (
     <section id="marketplace" className="py-16 px-4 bg-gray-50 min-h-screen border-t border-gray-100">
@@ -51,12 +61,34 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
         </div>
 
         {view === 'products' ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          
+          <div className="
+            /* MOBILE: Horizontal Slider with 2 Rows */
+            grid 
+            grid-rows-2             /* Force 2 rows height */
+            grid-flow-col           /* Fill top-to-bottom, then left-to-right */
+            auto-cols-[45%]         /* Each column takes 85% width (shows peek of next) */
+            gap-4 
+            overflow-x-auto         /* Allow horizontal scroll */
+            snap-x snap-mandatory   /* Smooth snapping */
+            pb-4                    /* Space for scrollbar */
+            
+            /* DESKTOP: Standard Vertical Grid */
+            md:grid-cols-4 
+            md:grid-rows-none 
+            md:grid-flow-row 
+            md:auto-cols-auto 
+            md:overflow-visible
+            md:pb-0
+          ">
             {filteredProducts.map(product => (
               <Link 
                 href={`/product/${product.id}`}
                 key={product.id} 
-                className="bg-white p-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition group cursor-pointer block"
+                className="
+                  snap-start 
+                  bg-white p-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition group cursor-pointer block h-full
+                "
               >
                 <div className="aspect-square bg-gray-100 rounded-xl mb-3 relative overflow-hidden">
                   {product.image_urls?.[0] ? (
@@ -76,9 +108,9 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                   <h3 className="font-bold text-gray-900 text-sm truncate">{product.name}</h3>
                   
                   <div className="flex items-center gap-1 text-xs text-gray-400 mb-1">
-                     <span className="truncate max-w-[100px]">{product.stores?.name}</span>
-                     {product.stores?.subscription_plan === 'diamond' && <Gem size={10} className="text-purple-600" />}
-                     {product.stores?.subscription_plan === 'premium' && <BadgeCheck size={10} className="text-blue-600" />}
+                      <span className="truncate max-w-[100px]">{product.stores?.name}</span>
+                      {product.stores?.subscription_plan === 'diamond' && <Gem size={10} className="text-purple-600" />}
+                      {product.stores?.subscription_plan === 'premium' && <BadgeCheck size={10} className="text-blue-600" />}
                   </div>
 
                   <p className="text-emerald-600 font-bold text-sm">₦{product.price.toLocaleString()}</p>
@@ -86,21 +118,47 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
               </Link>
             ))}
           </div>
+
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div className="
+            /* MOBILE: Horizontal Slider with 2 Rows */
+            grid 
+            grid-rows-2 
+            grid-flow-col 
+            auto-cols-[75%] 
+            gap-4 
+            overflow-x-auto 
+            snap-x snap-mandatory 
+            pb-4
+
+            /* DESKTOP: Standard Vertical Grid */
+            md:grid-cols-3 
+            md:grid-rows-none 
+            md:grid-flow-row 
+            md:auto-cols-auto 
+            md:overflow-visible 
+            md:pb-0
+          ">
             {filteredStores.map(store => (
-              <a href={`/${store.slug}`} key={store.id} className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4">
-                <div className="w-16 h-16 bg-gray-100 rounded-full overflow-hidden relative border border-gray-100">
+              <a 
+                href={`/${store.slug}`} 
+                key={store.id} 
+                className="
+                  snap-start
+                  bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4 h-full
+                "
+              >
+                <div className="w-16 h-16 bg-gray-100 rounded-full overflow-hidden relative border border-gray-100 shrink-0">
                   {store.logo_url ? <Image src={store.logo_url} alt="" fill className="object-cover" /> : null}
                 </div>
-                <div>
-                   <h3 className="font-bold text-gray-900 flex items-center gap-1">
-                     {store.name} 
-                     {/* --- NEW: Vendor Badges --- */}
-                     {store.subscription_plan === 'diamond' && <Gem size={14} className="text-purple-600 fill-purple-50" />}
-                     {store.subscription_plan === 'premium' && <BadgeCheck size={14} className="text-blue-600 fill-blue-50" />}
+                <div className="min-w-0">
+                   <h3 className="font-bold text-gray-900 flex items-center gap-1 text-sm truncate">
+                     <span className="truncate">{store.name}</span>
+                     {store.subscription_plan === 'diamond' && <Gem size={14} className="text-purple-600 fill-purple-50 shrink-0" />}
+                     {store.subscription_plan === 'premium' && <BadgeCheck size={14} className="text-blue-600 fill-blue-50 shrink-0" />}
                    </h3>
-                   <p className="text-xs text-gray-500 mt-1">{store.location}</p>
+                   <p className="text-xs text-gray-500 mt-1 truncate">{store.location}</p>
                    <div className="text-xs text-emerald-600 font-bold mt-1 flex items-center gap-1">
                      Visit Store <ChevronRight size={12} />
                    </div>

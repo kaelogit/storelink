@@ -4,27 +4,27 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link"; 
-import { Search, Package, Filter, Loader2, CheckCircle, Plus, ShoppingBag, BadgeCheck, Gem } from "lucide-react"; // Added BadgeCheck, Gem
+import { Search, Package, Filter, Loader2, CheckCircle, Plus, ShoppingBag, BadgeCheck, Gem } from "lucide-react"; 
 import { useCart } from "@/context/CartContext"; 
-import { Product } from "@/types"; 
 
 interface FullMarketplaceClientProps {
   initialProducts: any[];
-  stores: { id: string; name: string }[];
+  categories: { id: string; name: string; slug: string }[]; // 👈 Changed from 'stores'
 }
 
-export default function FullMarketplaceClient({ initialProducts, stores }: FullMarketplaceClientProps) {
-  const { addToCart, cart, cartCount, setIsCartOpen } = useCart();
+export default function FullMarketplaceClient({ initialProducts, categories }: FullMarketplaceClientProps) {
+  const { addToCart, cartCount, setIsCartOpen } = useCart();
+  const PAGE_SIZE = 12;
 
   const [products, setProducts] = useState(initialProducts);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [selectedStoreId, setSelectedStoreId] = useState("all");
-  const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
+  const [page, setPage] = useState(Math.ceil(initialProducts.length / PAGE_SIZE));
   
-  const PAGE_SIZE = 20;
+  const [search, setSearch] = useState("");
+  // 👇 Filtering by Category Slug now
+  const [selectedCategory, setSelectedCategory] = useState("all"); 
+  const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
 
   const handleAddToCart = (product: any) => {
     const storeData = {
@@ -33,9 +33,7 @@ export default function FullMarketplaceClient({ initialProducts, stores }: FullM
         slug: product.stores?.slug,
         whatsapp_number: product.stores?.whatsapp_number || "", 
     };
-
     addToCart(product, storeData as any);
-    
     setToast({ show: true, msg: `Added ${product.name} to bag` });
     setTimeout(() => setToast({ show: false, msg: "" }), 3000);
   };
@@ -47,12 +45,12 @@ export default function FullMarketplaceClient({ initialProducts, stores }: FullM
 
       let query = supabase
         .from("storefront_products")
-        .select("*, stores(name, slug, subscription_plan, whatsapp_number, location, logo_url)")
+        .select("*, stores!inner(name, slug, subscription_plan, category)") 
         .order("created_at", { ascending: false })
         .range(0, PAGE_SIZE - 1);
 
-      if (selectedStoreId !== "all") {
-        query = query.eq("store_id", selectedStoreId);
+      if (selectedCategory !== "all") {
+        query = query.eq("stores.category", selectedCategory);
       }
 
       const { data } = await query;
@@ -61,10 +59,13 @@ export default function FullMarketplaceClient({ initialProducts, stores }: FullM
       setLoading(false);
     };
 
-    if (selectedStoreId !== "all" || products !== initialProducts) {
+    if (selectedCategory !== "all") {
       fetchFiltered();
+    } else if (page === 1) {
+        // Reset to initial if 'all' is clicked and we aren't using the shuffled initial data
+        setProducts(initialProducts);
     }
-  }, [selectedStoreId]);
+  }, [selectedCategory]);
 
   const loadMore = async () => {
     setLoading(true);
@@ -73,15 +74,16 @@ export default function FullMarketplaceClient({ initialProducts, stores }: FullM
 
     let query = supabase
       .from("storefront_products")
-      .select("*, stores(name, slug, subscription_plan, whatsapp_number, location, logo_url)")
+      .select("*, stores!inner(name, slug, subscription_plan, category)")
       .order("created_at", { ascending: false })
       .range(from, to);
 
-    if (selectedStoreId !== "all") {
-      query = query.eq("store_id", selectedStoreId);
+    if (selectedCategory !== "all") {
+      query = query.eq("stores.category", selectedCategory);
     }
 
     const { data: newProducts } = await query;
+    
     if (newProducts && newProducts.length > 0) {
       setProducts([...products, ...newProducts]);
       setPage(page + 1);
@@ -112,12 +114,12 @@ export default function FullMarketplaceClient({ initialProducts, stores }: FullM
              <Filter className="absolute left-4 top-3.5 text-gray-500 w-4 h-4" />
              <select 
                className="w-full pl-10 pr-8 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 bg-white text-gray-700 appearance-none font-medium cursor-pointer"
-               value={selectedStoreId}
-               onChange={(e) => setSelectedStoreId(e.target.value)}
+               value={selectedCategory}
+               onChange={(e) => setSelectedCategory(e.target.value)}
              >
-               <option value="all">All Vendors</option>
-               {stores.map(store => (
-                 <option key={store.id} value={store.id}>{store.name}</option>
+               <option value="all">All Categories</option>
+               {(categories || []).map(cat => (
+                 <option key={cat.id} value={cat.slug}>{cat.name}</option>
                ))}
              </select>
           </div>
@@ -179,7 +181,7 @@ export default function FullMarketplaceClient({ initialProducts, stores }: FullM
         </div>
       )}
 
-      {hasMore && !search && (
+      {hasMore && !search && selectedCategory === 'all' && (
         <div className="mt-12 text-center pb-20">
            <button onClick={loadMore} disabled={loading} className="px-8 py-3 bg-white border border-gray-200 text-gray-900 font-bold rounded-xl hover:bg-gray-50 transition shadow-sm flex items-center gap-2 mx-auto disabled:opacity-50">
              {loading ? <Loader2 className="animate-spin" /> : "Load More Products"}

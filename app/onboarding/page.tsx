@@ -100,34 +100,20 @@ export default function OnboardingPage() {
                 >
                   <option value="" disabled>Select a Category</option>
                   
-                  <optgroup label="Popular">
-                    <option>Fashion & Clothing</option>
-                    <option>Beauty & Skincare</option>
-                    <option>Food & Groceries</option>
-                    <option>Electronics & Gadgets</option>
+                  <optgroup label="Main Categories">
+                    <option value="fashion">Fashion & Apparel</option>
+                    <option value="beauty">Beauty & Personal Care</option>
+                    <option value="electronics">Electronics & Gadgets</option>
+                    <option value="home-kitchen">Home & Kitchen</option>
+                    <option value="groceries">Groceries & Food</option>
                   </optgroup>
 
-                  <optgroup label="Lifestyle & Home">
-                    <option>Home & Kitchen</option>
-                    <option>Furniture & Decor</option>
-                    <option>Kids & Babies</option>
-                    <option>Health & Wellness</option>
-                    <option>Pets & Supplies</option>
+                  <optgroup label="Specialty">
+                    <option value="real-estate">Real Estate</option>
+                    <option value="automotive">Automotive</option>
+                    <option value="services">Services</option>
                   </optgroup>
 
-                  <optgroup label="Services & Digital">
-                    <option>Digital Services</option>
-                    <option>Education & Books</option>
-                    <option>Events & Party</option>
-                    <option>Automotive</option>
-                    <option>Real Estate</option>
-                  </optgroup>
-
-                  <optgroup label="Others">
-                    <option>Art & Crafts</option>
-                    <option>Sports & Outdoors</option>
-                    <option>Other</option>
-                  </optgroup>
                 </select>
              </div>
              

@@ -110,8 +110,16 @@ async function generateMetadata({ params }) {
 }
 async function VendorStorePage({ params }) {
     const resolvedParams = await params;
-    const { data: store } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*").eq("slug", resolvedParams.slug).single();
+    const { data: store } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*, products(*)") // Ensure products are selected for views loop
+    .eq("slug", resolvedParams.slug).single();
     if (!store) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$components$2f$navigation$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["notFound"])();
+    if (store.products) {
+        for (const product of store.products){
+            await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].rpc('increment_product_view', {
+                product_id: product.id
+            });
+        }
+    }
     const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*").eq("store_id", store.id).eq("is_active", true).order("created_at", {
         ascending: false
     });
@@ -122,7 +130,7 @@ async function VendorStorePage({ params }) {
         categories: categories || []
     }, void 0, false, {
         fileName: "[project]/app/[slug]/page.tsx",
-        lineNumber: 65,
+        lineNumber: 70,
         columnNumber: 5
     }, this);
 }

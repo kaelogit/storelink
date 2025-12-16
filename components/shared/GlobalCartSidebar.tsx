@@ -2,17 +2,20 @@
 
 import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
-import { X, ShoppingBag, MessageCircle, MapPin, Phone, User, Trash2 } from "lucide-react";
+import { X, ShoppingBag, MessageCircle, User, Trash2, Loader2, AlertTriangle } from "lucide-react";
 import Image from "next/image";
+import { supabase } from "@/lib/supabase"; // 👈 Added Supabase Import
 
 export default function GlobalCartSidebar() {
-  const { cart, isCartOpen, setIsCartOpen, removeFromCart } = useCart();
+  const { cart, isCartOpen, setIsCartOpen, removeFromCart, clearCart } = useCart();
   
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     address: ""
   });
+
+  const [loadingStoreId, setLoadingStoreId] = useState<string | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("storelink_billing");
@@ -31,6 +34,58 @@ export default function GlobalCartSidebar() {
     acc[storeId].items.push(item);
     return acc;
   }, {} as Record<string, { store: any, items: any[] }>);
+
+  const handleCheckout = async (storeId: string, storeName: string, whatsappNumber: string, items: any[]) => {
+    setLoadingStoreId(storeId); 
+
+    try {
+        const storeTotal = items.reduce((sum: number, i: any) => sum + (i.product.price * i.qty), 0);
+        
+        const orderItemsForRPC = items.map((item: any) => ({
+            product_id: item.product.id,
+            product_name: item.product.name,
+            quantity: item.qty,
+            price: item.product.price
+        }));
+
+        const { data: newOrderId, error } = await supabase.rpc('create_new_order', {
+            store_uuid: storeId,
+            customer_name: formData.name,
+            customer_phone: formData.phone,
+            customer_email: null, 
+            customer_address: formData.address,
+            total_amount_paid: storeTotal,
+            order_items_array: orderItemsForRPC,
+        });
+
+        if (error) throw error;
+
+        let cleanNumber = whatsappNumber?.replace(/\D/g, '') || "";
+        if (cleanNumber.startsWith('0')) cleanNumber = '234' + cleanNumber.substring(1);
+
+        const itemLines = items.map((i: any) => `- ${i.qty}x ${i.product.name} (₦${(i.product.price * i.qty).toLocaleString()})`).join('\n');
+        
+        const msg = `*New Order #${newOrderId.slice(0,8)}* 📦\n\nHello ${storeName}, I want to place an order:\n\n${itemLines}\n\n*Total: ₦${storeTotal.toLocaleString()}*\n\n*Customer Details:*\nName: ${formData.name}\nPhone: ${formData.phone}\nAddress: ${formData.address}\n\n(Placed via StoreLink)`;
+        
+        const whatsappLink = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`;
+        
+        window.open(whatsappLink, "_blank");
+        
+        items.forEach((item: any) => {
+            removeFromCart(item.product.id);
+        });
+
+        if (cart.length === items.length) {
+            setIsCartOpen(false);
+        }
+
+    } catch (err: any) {
+        console.error("Checkout Failed:", err);
+        alert(`Failed to save order: ${err.message}`);
+    } finally {
+        setLoadingStoreId(null); 
+    }
+  };
 
   if (!isCartOpen) return null;
 
@@ -87,17 +142,8 @@ export default function GlobalCartSidebar() {
 
                {Object.values(cartByVendor).map(({ store, items }) => {
                  const storeTotal = items.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
-                 
                  const isFormValid = formData.name && formData.phone && formData.address;
-                 
-                 let cleanNumber = store.whatsapp_number?.replace(/\D/g, '') || "";
-                 if (cleanNumber.startsWith('0')) cleanNumber = '234' + cleanNumber.substring(1);
-
-                 const itemLines = items.map(i => `- ${i.qty}x ${i.product.name} (₦${(i.product.price * i.qty).toLocaleString()})`).join('\n');
-                 
-                 const msg = `*New Order via StoreLink* 🛍️\n\nHello ${store.name}, I want to place an order:\n\n${itemLines}\n\n*Total: ₦${storeTotal.toLocaleString()}*\n\n*Customer Details:*\nName: ${formData.name}\nPhone: ${formData.phone}\nAddress: ${formData.address}\n\nKindly provide me with your Account Details to complete payment and let me know the expected delivery day.`;
-                 
-                 const whatsappLink = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`;
+                 const isLoading = loadingStoreId === store.id; // Check if THIS specific button is loading
 
                  return (
                    <div key={store.id} className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
@@ -126,13 +172,17 @@ export default function GlobalCartSidebar() {
                       </div>
 
                       {isFormValid ? (
-                        <a 
-                          href={whatsappLink} 
-                          target="_blank" 
-                          className="flex items-center justify-center gap-2 w-full bg-gray-900 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-gray-800 transition active:scale-95"
+                        <button 
+                          onClick={() => handleCheckout(store.id, store.name, store.whatsapp_number, items)}
+                          disabled={isLoading}
+                          className="flex items-center justify-center gap-2 w-full bg-gray-900 text-white py-3.5 rounded-xl font-bold text-sm hover:bg-gray-800 transition active:scale-95 disabled:bg-gray-500 disabled:cursor-not-allowed"
                         >
-                          <MessageCircle size={18} /> Send Order to {store.name}
-                        </a>
+                          {isLoading ? (
+                              <Loader2 className="animate-spin" size={18} /> 
+                          ) : (
+                              <><MessageCircle size={18} /> Send Order to {store.name}</>
+                          )}
+                        </button>
                       ) : (
                         <button disabled className="w-full bg-gray-200 text-gray-400 py-3.5 rounded-xl font-bold text-sm cursor-not-allowed">
                           Fill Billing Details to Checkout

@@ -5,7 +5,7 @@ import { TrendingUp, Store, Search, ShoppingBag, CheckCircle, Star } from "lucid
 
 export default function Hero() {
   return (
-    <section className="relative pt-10 pb-12 md:pt-20 md:pb-20 overflow-hidden bg-white px-4 md:px-16 lg:px-32">
+    <section className="relative pt-20 pb-12 md:pt-28 md:pb-20 overflow-hidden bg-white px-4 md:px-16 lg:px-32">
       
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
          <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>

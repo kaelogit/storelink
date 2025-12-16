@@ -3193,3 +3193,899 @@ Expression expected
 [05:52:00.257] Server  LOG      ✓ Compiled in 136ms
 [05:52:12.054] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [05:52:12.054] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:55:15.530] Server  LOG      ✓ Compiled in 134ms
+[05:55:24.086] Server  LOG      ✓ Compiled in 429ms
+[05:55:30.905] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:55:31.403] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:55:31.403] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:55:55.101] Server  LOG      ✓ Compiled in 280ms
+[05:56:08.782] Server  LOG      ✓ Compiled in 134ms
+[05:59:16.875] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:10:14.772] Server  LOG      ✓ Compiled in 540ms
+[06:10:16.140] Server  LOG      ✓ Compiled in 156ms
+[06:27:50.776] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:29:26.738] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:29:52.914] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:33:49.228] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:33:49.711] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[06:33:49.711] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[06:33:49.711] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[06:36:42.888] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:36:42.895] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:36:42.918] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[06:36:45.226] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643820864-vrjf2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[06:38:22.550] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:38:22.552] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:38:22.562] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[06:38:24.298] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:38:24.576] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[06:38:24.576] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643820864-vrjf2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[06:38:40.785] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:39:32.886] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[06:43:16.978] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[06:43:16.978] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[06:53:07.819] Server  LOG      ✓ Compiled in 2.2s
+[06:53:08.757] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:53:08.767] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:53:08.775] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[06:53:09.009] Server  LOG      ✓ Compiled in 725ms
+[06:53:10.085] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:53:10.092] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:53:10.110] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[06:53:10.515] Server  LOG      ✓ Compiled in 272ms
+[06:53:12.291] Server  LOG      ✓ Compiled in 244ms
+[06:53:16.190] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:53:16.195] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:53:16.199] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[06:53:16.518] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:53:16.521] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[06:53:16.528] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[06:53:17.719] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:29:40.779] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:29:42.625] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:29:42.625] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:29:42.625] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:29:42.625] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:29:42.774] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:29:42.774] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:29:42.774] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:30:36.060] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:30:36.062] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:30:36.068] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[07:30:37.410] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:30:37.661] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:30:37.661] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643820864-vrjf2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:30:44.757] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:30:52.748] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:32:30.602] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:32:30.604] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:32:30.611] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[07:32:31.893] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642709738-yarwyj" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[07:42:11.942] Server  LOG      ✓ Compiled in 569ms
+[07:42:12.062] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:12.064] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:12.071] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[07:42:12.191] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:12.193] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:12.197] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[07:42:35.784] Server  LOG      ✓ Compiled in 137ms
+[07:42:35.891] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:35.897] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:35.902] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[07:42:35.995] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:36.001] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:36.007] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[07:42:40.637] Server  LOG      ✓ Compiled in 176ms
+[07:42:40.851] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:40.862] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:40.880] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[07:42:41.015] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:41.019] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[07:42:41.024] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[11:44:41.372] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_3b4d20e1._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[11:44:41.375] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[11:44:41.380] Server  WARN    Error: Route "/product/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[11:44:44.480] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[11:44:44.933] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[11:44:44.933] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643820864-vrjf2" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[11:44:51.872] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[11:44:51.872] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[11:45:49.703] Server  LOG     
+[11:45:49.705] Server  LOG     Could not open page.tsx in the editor.
+[11:45:49.706] Server  LOG     
+[11:45:49.707] Server  LOG     When running on Windows, file names are checked against an access list to protect against remote code execution attacks. File names may consist only of alphanumeric characters (all languages), periods, dashes, slashes, and underscores.
+[11:45:49.708] Server  LOG     
+[11:45:51.810] Server  LOG     
+[11:45:51.811] Server  LOG     Could not open page.tsx in the editor.
+[11:45:51.812] Server  LOG     
+[11:45:51.813] Server  LOG     When running on Windows, file names are checked against an access list to protect against remote code execution attacks. File names may consist only of alphanumeric characters (all languages), periods, dashes, slashes, and underscores.
+[11:45:51.814] Server  LOG     
+[11:45:52.460] Server  LOG     
+[11:45:52.461] Server  LOG     Could not open page.tsx in the editor.
+[11:45:52.462] Server  LOG     
+[11:45:52.466] Server  LOG     When running on Windows, file names are checked against an access list to protect against remote code execution attacks. File names may consist only of alphanumeric characters (all languages), periods, dashes, slashes, and underscores.
+[11:45:52.467] Server  LOG     
+[11:45:52.634] Server  LOG     
+[11:45:52.635] Server  LOG     Could not open page.tsx in the editor.
+[11:45:52.635] Server  LOG     
+[11:45:52.637] Server  LOG     When running on Windows, file names are checked against an access list to protect against remote code execution attacks. File names may consist only of alphanumeric characters (all languages), periods, dashes, slashes, and underscores.
+[11:45:52.638] Server  LOG     
+[11:49:34.873] Server  LOG      ✓ Compiled in 424ms
+[11:49:40.371] Server  LOG      ✓ Compiled in 155ms
+[11:50:29.179] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[11:50:30.249] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[11:50:30.249] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[11:50:30.249] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[11:52:13.153] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:02:16.091] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:02:16.094] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:02:16.096] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:02:16.098] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:02:16.115] Server  ERROR   TypeError: fetch failed
+[12:06:25.215] Server  LOG      ✓ Compiled in 5.2s
+[12:06:32.803] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:06:32.806] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_StoreFront_tsx_61ff29bf._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:06:32.808] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[12:06:36.009] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:06:37.165] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:06:37.668] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:06:40.982] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:06:40.982] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:06:40.982] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:14.589] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:07:14.849] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[12:07:14.849] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:14.849] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642709738-yarwyj" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:20.127] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:07:20.514] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:20.514] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:20.514] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:20.514] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:20.514] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:20.514] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:07:20.514] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:13:50.698] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[12:13:57.291] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:13:57.809] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:13:57.809] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:13:57.809] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:14:10.156] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:20:04.633] Server  LOG      ✓ Compiled in 223ms
+[12:27:04.103] Server  LOG      ✓ Compiled in 557ms
+[12:29:59.011] Server  LOG      ✓ Compiled in 210ms
+[12:30:59.520] Server  LOG      ✓ Compiled in 438ms
+[12:31:00.230] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   useEffect(() => {
+  21 |     if (isOpen && order) {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:00.231] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   useEffect(() => {
+  21 |     if (isOpen && order) {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:00.231] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   useEffect(() => {
+  21 |     if (isOpen && order) {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:01.225] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   
+  21 |   useEffect(() => {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:01.240] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   
+  21 |   useEffect(() => {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:01.248] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   
+  21 |   useEffect(() => {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:09.248] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   useEffect(() => {
+  21 |     if (isOpen && order) {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:09.248] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   useEffect(() => {
+  21 |     if (isOpen && order) {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:09.249] Browser ERROR   ./components/dashboard/OrderDetailsModal.tsx:18:46
+Parsing ecmascript source code failed
+  16 | }
+  17 |
+> 18 | export default function OrderDetailsModal(...) {
+     |                                              ^
+  19 |   const router = useRouter();
+  20 |   useEffect(() => {
+  21 |     if (isOpen && order) {
+
+Unexpected token `)`. Expected yield, an identifier, [ or {
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component Browser]
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/OrderDetailsModal.tsx [Client Component SSR]
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[12:31:10.677] Server  LOG      ✓ Compiled in 470ms
+[12:31:24.059] Server  LOG      ✓ Compiled in 169ms
+[12:31:32.861] Server  LOG      ✓ Compiled in 746ms
+[12:31:47.411] Server  LOG      ✓ Compiled in 258ms
+[12:31:54.301] Server  LOG      ✓ Compiled in 215ms
+[12:36:56.713] Server  LOG      ✓ Compiled in 175ms
+[12:36:57.867] Server  LOG      ✓ Compiled in 160ms
+[12:37:00.252] Server  LOG      ✓ Compiled in 144ms
+[12:37:16.220] Browser ERROR   ./app/marketplace/page.tsx:7:14
+Ecmascript file had an error
+   5 |
+   6 | export const dynamic = 'force-dynamic';
+>  7 | export const dynamic = 'force-dynamic';
+     |              ^^^^^^^
+   8 | export default async function MarketplacePage() {
+   9 |   
+  10 |   const { data: initialProducts } = await supabase
+
+the name `dynamic` is defined multiple times
+[12:37:16.221] Browser ERROR   ./app/marketplace/page.tsx:7:14
+Ecmascript file had an error
+   5 |
+   6 | export const dynamic = 'force-dynamic';
+>  7 | export const dynamic = 'force-dynamic';
+     |              ^^^^^^^
+   8 | export default async function MarketplacePage() {
+   9 |   
+  10 |   const { data: initialProducts } = await supabase
+
+the name `dynamic` is defined multiple times
+[12:37:16.221] Browser ERROR   ./app/marketplace/page.tsx:7:14
+Ecmascript file had an error
+   5 |
+   6 | export const dynamic = 'force-dynamic';
+>  7 | export const dynamic = 'force-dynamic';
+     |              ^^^^^^^
+   8 | export default async function MarketplacePage() {
+   9 |   
+  10 |   const { data: initialProducts } = await supabase
+
+the name `dynamic` is defined multiple times
+[12:37:18.750] Server  LOG      ✓ Compiled in 97ms
+[12:37:51.229] Browser ERROR   ./app/[slug]/page.tsx:7:14
+Ecmascript file had an error
+   5 |
+   6 | export const dynamic = 'force-dynamic';
+>  7 | export const dynamic = 'force-dynamic';
+     |              ^^^^^^^
+   8 | interface PageProps {
+   9 |   params: Promise<{ slug: string }>;
+  10 | }
+
+the name `dynamic` is defined multiple times
+[12:37:51.230] Browser ERROR   ./app/[slug]/page.tsx:7:14
+Ecmascript file had an error
+   5 |
+   6 | export const dynamic = 'force-dynamic';
+>  7 | export const dynamic = 'force-dynamic';
+     |              ^^^^^^^
+   8 | interface PageProps {
+   9 |   params: Promise<{ slug: string }>;
+  10 | }
+
+the name `dynamic` is defined multiple times
+[12:37:51.230] Browser ERROR   ./app/[slug]/page.tsx:7:14
+Ecmascript file had an error
+   5 |
+   6 | export const dynamic = 'force-dynamic';
+>  7 | export const dynamic = 'force-dynamic';
+     |              ^^^^^^^
+   8 | interface PageProps {
+   9 |   params: Promise<{ slug: string }>;
+  10 | }
+
+the name `dynamic` is defined multiple times
+[12:37:51.572] Server  LOG      ✓ Compiled in 116ms
+[12:37:55.994] Server  LOG      ✓ Compiled in 375ms
+[12:39:54.158] Server  LOG      ✓ Compiled in 108ms
+[12:40:06.871] Server  LOG      ✓ Compiled in 111ms
+[12:40:57.469] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:40:57.802] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:40:57.802] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:40:57.802] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:40:57.802] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:40:57.802] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:40:57.802] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:40:57.802] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:36.422] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:43:36.825] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:36.825] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:36.825] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:36.825] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:36.825] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:36.825] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:36.825] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:44.088] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:43:44.388] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:44.388] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:44.388] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:44.388] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:44.388] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:44.388] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:43:44.388] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:46:18.972] Server  LOG      ✓ Compiled in 119ms
+[12:47:16.993] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:47:17.326] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:47:56.501] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:47:56.716] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:50:59.765] Server  LOG      ✓ Compiled in 294ms
+[12:51:00.807] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__329ac192._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:51:00.817] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:51:01.215] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:51:06.102] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__329ac192._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:51:06.113] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:51:08.274] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:51:09.219] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:51:23.022] Server  LOG      ✓ Compiled in 116ms
+[12:51:25.150] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__329ac192._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:51:25.152] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:51:25.537] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:51:26.239] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:51:29.710] Server  LOG      ✓ Compiled in 290ms
+[12:51:32.429] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__329ac192._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:51:32.431] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:51:33.274] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:51:34.226] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:51:49.588] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__329ac192._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:51:49.590] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:51:50.269] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:51:51.431] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:51:53.211] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__b91f3eb4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:51:53.216] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:51:54.099] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:51:55.217] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:52:24.467] Browser ERROR   ./app/marketplace/page.tsx:62:28
+Parsing ecmascript source code failed
+  60 |
+  61 |     </div>
+> 62 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+     |                            ^^^^^^^^^^^^^^^
+  63 |   );
+  64 | }
+
+Expected ',', got 'initialProducts'
+[12:52:24.483] Browser ERROR   ./app/marketplace/page.tsx:62:28
+Parsing ecmascript source code failed
+  60 |
+  61 |     </div>
+> 62 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+     |                            ^^^^^^^^^^^^^^^
+  63 |   );
+  64 | }
+
+Expected ',', got 'initialProducts'
+[12:52:24.483] Browser ERROR   ./app/marketplace/page.tsx:62:28
+Parsing ecmascript source code failed
+  60 |
+  61 |     </div>
+> 62 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+     |                            ^^^^^^^^^^^^^^^
+  63 |   );
+  64 | }
+
+Expected ',', got 'initialProducts'
+[12:52:25.879] Server  LOG      ✓ Compiled in 138ms
+[12:52:27.397] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__b91f3eb4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:52:27.405] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:52:29.342] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:52:30.218] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:52:39.958] Server  LOG      ✓ Compiled in 111ms
+[12:52:41.681] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__b91f3eb4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:52:41.684] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:52:42.224] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:42.224] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:42.229] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:42.229] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:42.311] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:52:42.916] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:42.916] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:42.916] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:52:42.916] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:43.228] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:43.228] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:43.228] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:43.228] Browser ERROR   ./app/marketplace/page.tsx:27:10
+Parsing ecmascript source code failed
+  25 |   return (
+  26 |     <FullMarketplaceClient initialProducts={shuffledProducts} />
+> 27 |     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+     |          ^^^^^^^^^
+  28 |        
+  29 |        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
+  30 |          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
+
+Expected ',', got 'className'
+[12:52:43.483] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__b91f3eb4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:52:43.486] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:52:44.090] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:52:45.212] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:52:45.937] Server  LOG      ✓ Compiled in 138ms
+[12:52:47.143] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__b91f3eb4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:52:47.149] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:52:47.796] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:52:49.222] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:53:02.958] Server  LOG      ✓ Compiled in 166ms
+[12:53:04.870] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__b91f3eb4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:53:04.874] Server  ERROR    ⨯ ReferenceError: initialProducts is not defined
+[12:53:05.482] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:53:06.228] Browser ERROR   uncaughtError: ReferenceError: initialProducts is not defined
+[12:53:53.096] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:53:53.106] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_marketplace_FullMarketplaceClient_tsx_6044ba6c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[12:53:53.109] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[12:53:54.112] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:53:55.538] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:53:55.538] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:53:55.538] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:53:55.538] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:53:55.538] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:53:55.538] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:53:56.213] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:53:56.548] Server  LOG      ✓ Compiled in 127ms
+[12:53:59.035] Server  LOG      ✓ Compiled in 194ms
+[12:54:09.054] Server  LOG      ✓ Compiled in 157ms
+[12:54:16.313] Server  LOG      ✓ Compiled in 152ms
+[12:54:18.152] Server  LOG      ✓ Compiled in 319ms
+[12:54:20.738] Server  LOG      ✓ Compiled in 177ms
+[12:54:26.104] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[12:54:30.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[12:54:31.179] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[12:54:31.179] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:54:31.180] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:54:31.180] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:54:31.180] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:54:31.180] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:54:31.180] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:54:31.180] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[12:56:17.975] Server  LOG      ✓ Compiled in 623ms
+[13:01:51.628] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:03:44.361] Server  LOG      ✓ Compiled in 167ms
+[13:03:47.218] Server  LOG      ✓ Compiled in 110ms
+[13:03:50.792] Server  LOG      ✓ Compiled in 123ms
+[13:04:03.551] Server  LOG      ✓ Compiled in 199ms
+[13:04:31.176] Server  LOG      ✓ Compiled in 119ms
+[13:04:34.235] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:04:34.236] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:04:34.236] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:04:34.236] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:04:34.236] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:04:34.236] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:04:34.236] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:04:42.189] Server  LOG      ✓ Compiled in 89ms
+[13:04:44.826] Server  LOG      ✓ Compiled in 124ms
+[13:05:11.890] Server  LOG      ✓ Compiled in 169ms
+[13:05:59.479] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[13:06:06.644] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:06:06.984] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[13:06:06.984] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:06:06.984] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:06:06.984] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:06:06.984] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:06:06.984] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:06:06.984] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:06:06.984] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:09:24.559] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:09:25.899] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:10:05.686] Server  LOG      ✓ Compiled in 718ms
+[13:10:21.581] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:10:22.219] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[13:10:38.714] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:10:38.714] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:11:42.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:11:42.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:11:42.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:11:42.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:11:42.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:11:42.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:11:42.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:12:18.491] Server  LOG      ✓ Compiled in 365ms
+[13:14:14.463] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:14:15.118] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[13:14:37.226] Server  LOG      ✓ Compiled in 186ms
+[13:14:42.374] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:14:42.902] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[13:15:13.545] Server  LOG      ✓ Compiled in 117ms
+[13:15:36.052] Server  LOG      ✓ Compiled in 124ms
+[13:15:44.464] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:15:44.464] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:16:03.048] Server  LOG      ✓ Compiled in 131ms
+[13:16:06.112] Server  LOG      ✓ Compiled in 307ms
+[13:16:07.406] Server  LOG      ✓ Compiled in 421ms
+[13:16:11.393] Server  LOG      ✓ Compiled in 269ms
+[13:16:13.620] Server  LOG      ✓ Compiled in 145ms
+[13:16:14.999] Server  LOG      ✓ Compiled in 272ms
+[13:16:21.390] Server  LOG      ✓ Compiled in 213ms
+[13:16:26.338] Server  LOG      ✓ Compiled in 160ms
+[13:16:28.657] Server  LOG      ✓ Compiled in 200ms
+[13:16:30.671] Server  LOG      ✓ Compiled in 100ms
+[13:16:40.566] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:16:40.566] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:16:40.566] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:16:40.566] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:16:40.566] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:16:40.566] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:16:40.566] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:16:53.934] Server  LOG      ✓ Compiled in 333ms
+[13:16:56.990] Server  LOG      ✓ Compiled in 112ms
+[13:17:12.731] Server  LOG      ✓ Compiled in 146ms
+[13:17:14.987] Server  LOG      ✓ Compiled in 110ms
+[13:17:17.203] Server  LOG      ✓ Compiled in 152ms
+[13:17:19.551] Server  LOG      ✓ Compiled in 329ms
+[13:30:55.144] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'map')
+[13:32:56.509] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[13:32:59.321] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:33:00.220] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:33:00.220] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:33:00.220] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:33:00.220] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:33:00.220] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:33:00.220] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:33:00.220] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:33:27.300] Server  LOG      ✓ Compiled in 470ms
+[13:33:34.649] Server  LOG      ✓ Compiled in 124ms
+[13:33:39.537] Server  LOG      ✓ Compiled in 198ms
+[13:33:44.402] Server  LOG      ✓ Compiled in 358ms
+[13:33:49.431] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[13:43:17.649] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:43:18.238] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:43:18.238] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:43:18.238] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:43:54.410] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:43:54.641] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:43:54.642] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:43:54.642] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:44:53.145] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:44:53.349] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:44:57.658] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:51:19.783] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:19.785] Server  LOG      ✓ Compiled in 340ms
+[13:51:19.789] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:19.792] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:21.545] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:21.549] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:21.553] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:24.501] Server  LOG      ✓ Compiled in 20ms
+[13:51:24.503] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:24.510] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:24.513] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:25.925] Server  LOG      ✓ Compiled in 5ms
+[13:51:26.001] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:26.003] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:26.004] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./context/CartContext.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[13:51:31.456] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[13:51:31.476] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_marketplace_FullMarketplaceClient_tsx_6044ba6c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[13:51:31.480] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[13:51:31.558] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[13:51:31.560] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_marketplace_FullMarketplaceClient_tsx_6044ba6c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[13:51:31.564] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[13:51:31.757] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[13:51:31.777] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_marketplace_FullMarketplaceClient_tsx_6044ba6c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[13:51:31.788] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[13:51:32.205] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[13:51:32.209] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_StoreFront_tsx_61ff29bf._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[13:51:32.212] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[13:51:32.988] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:51:33.280] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:51:33.611] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:51:34.760] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1765677385434" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:34.760] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:34.760] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:35.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:35.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:35.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:35.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:35.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:35.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:51:35.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[13:54:24.917] Server  LOG      ✓ Compiled in 268ms
+[13:54:26.383] Server  LOG      ✓ Compiled in 478ms
+[13:54:47.209] Server  LOG      ✓ Compiled in 125ms
+[13:54:54.550] Server  LOG      ✓ Compiled in 198ms
+[13:54:56.948] Server  LOG      ✓ Compiled in 162ms
+[13:55:00.941] Server  LOG      ✓ Compiled in 164ms
+[13:55:03.421] Server  LOG      ✓ Compiled in 132ms
+[13:55:06.728] Server  LOG      ✓ Compiled in 170ms
+[13:55:08.852] Server  LOG      ✓ Compiled in 88ms
+[13:55:10.756] Server  LOG      ✓ Compiled in 88ms
+[13:55:12.652] Server  LOG      ✓ Compiled in 211ms
+[14:03:59.110] Server  LOG        Reload env: .env.local
+[14:04:00.143] Server  LOG        Reload env: .env.local
+[14:04:03.202] Server  LOG      ✓ Compiled in 1111ms
+[14:04:13.666] Server  LOG        Reload env: .env.local
+[14:09:45.441] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:10:29.992] Server  LOG      ✓ Compiled in 4.4s
+[14:12:31.623] Server  LOG      ✓ Compiled in 697ms
+[14:12:39.691] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:14:16.585] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:14:31.154] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:14:31.463] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[14:14:31.463] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:31.463] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:31.463] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:31.463] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:31.463] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:31.463] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:31.463] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:32.566] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765843696728-3qar5k" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:38.281] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765843699541-0zkyy7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:14:38.713] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765843701497-1w9dzo" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes

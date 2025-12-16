@@ -118,6 +118,7 @@
     --color-purple-50: #faf5ff;
     --color-purple-100: #f3e8ff;
     --color-purple-200: #e9d5ff;
+    --color-purple-300: #d9b3ff;
     --color-purple-400: #c07eff;
     --color-purple-500: #ac4bff;
     --color-purple-600: #9810fa;
@@ -190,6 +191,7 @@
     --ease-in-out: cubic-bezier(.4, 0, .2, 1);
     --animate-spin: spin 1s linear infinite;
     --animate-ping: ping 1s cubic-bezier(0, 0, .2, 1) infinite;
+    --animate-pulse: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
     --animate-bounce: bounce 1s infinite;
     --blur-sm: 8px;
     --blur-md: 12px;
@@ -244,6 +246,7 @@
       --color-purple-50: lab(97.1626% 2.99937 -4.13398);
       --color-purple-100: lab(93.3333% 6.9744 -9.83434);
       --color-purple-200: lab(87.8405% 13.4282 -18.7159);
+      --color-purple-300: lab(78.3298% 26.2195 -34.9499);
       --color-purple-400: lab(63.6946% 47.6127 -59.2066);
       --color-purple-500: lab(52.0183% 66.11 -78.2316);
       --color-purple-600: lab(43.0295% 75.21 -86.5669);
@@ -519,6 +522,10 @@
 @layer utilities {
   .pointer-events-none {
     pointer-events: none;
+  }
+
+  .visible {
+    visibility: visible;
   }
 
   .sr-only {
@@ -909,6 +916,10 @@
 
   .inline-flex {
     display: inline-flex;
+  }
+
+  .table {
+    display: table;
   }
 
   .aspect-\[4\/5\] {
@@ -1320,6 +1331,10 @@
     animation: var(--animate-ping);
   }
 
+  .animate-pulse {
+    animation: var(--animate-pulse);
+  }
+
   .animate-spin {
     animation: var(--animate-spin);
   }
@@ -1348,12 +1363,56 @@
     scroll-snap-align: center;
   }
 
+  .snap-start {
+    scroll-snap-align: start;
+  }
+
   .list-disc {
     list-style-type: disc;
   }
 
   .appearance-none {
     appearance: none;
+  }
+
+  .auto-cols-\[5\%\] {
+    grid-auto-columns: 5%;
+  }
+
+  .auto-cols-\[20\%\] {
+    grid-auto-columns: 20%;
+  }
+
+  .auto-cols-\[35\%\] {
+    grid-auto-columns: 35%;
+  }
+
+  .auto-cols-\[45\%\] {
+    grid-auto-columns: 45%;
+  }
+
+  .auto-cols-\[55\%\] {
+    grid-auto-columns: 55%;
+  }
+
+  .auto-cols-\[65\%\] {
+    grid-auto-columns: 65%;
+  }
+
+  .auto-cols-\[75\%\] {
+    grid-auto-columns: 75%;
+  }
+
+  .auto-cols-\[85\%\] {
+    grid-auto-columns: 85%;
+  }
+
+  .auto-cols-\[875\%\] {
+    grid-auto-columns: 875%;
+  }
+
+  .grid-flow-col {
+    grid-auto-flow: column;
   }
 
   .grid-cols-1 {
@@ -1366,6 +1425,10 @@
 
   .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .grid-rows-2 {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
   }
 
   .flex-col {
@@ -1700,6 +1763,10 @@
 
   .border-purple-200 {
     border-color: var(--color-purple-200);
+  }
+
+  .border-purple-300 {
+    border-color: var(--color-purple-300);
   }
 
   .border-purple-500 {
@@ -2050,6 +2117,10 @@
   .bg-gradient-to-t {
     --tw-gradient-position: to top in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
+  }
+
+  .bg-\[url\(\'\/transparent-grid\.png\'\)\] {
+    background-image: url("/transparent-grid.png");
   }
 
   .from-black\/50 {
@@ -3304,6 +3375,12 @@
   }
 
   @media (hover: hover) {
+    .hover\:bg-purple-100:hover {
+      background-color: var(--color-purple-100);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:bg-red-50:hover {
       background-color: var(--color-red-50);
     }
@@ -3579,12 +3656,20 @@
     background-color: var(--color-gray-300);
   }
 
+  .disabled\:bg-gray-500:disabled {
+    background-color: var(--color-gray-500);
+  }
+
   .disabled\:text-blue-300:disabled {
     color: var(--color-blue-300);
   }
 
   .disabled\:opacity-50:disabled {
     opacity: .5;
+  }
+
+  .disabled\:opacity-70:disabled {
+    opacity: .7;
   }
 
   .has-\[\>svg\]\:px-2\.5:has( > svg) {
@@ -4081,6 +4166,18 @@
   }
 
   @media (min-width: 48rem) {
+    .md\:auto-cols-auto {
+      grid-auto-columns: auto;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:grid-flow-row {
+      grid-auto-flow: row;
+    }
+  }
+
+  @media (min-width: 48rem) {
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -4095,6 +4192,12 @@
   @media (min-width: 48rem) {
     .md\:grid-cols-4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:grid-rows-none {
+      grid-template-rows: none;
     }
   }
 
@@ -4155,6 +4258,12 @@
   @media (min-width: 48rem) {
     .md\:gap-12 {
       gap: calc(var(--spacing) * 12);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:overflow-visible {
+      overflow: visible;
     }
   }
 
@@ -5062,6 +5171,12 @@
   75%, 100% {
     opacity: 0;
     transform: scale(2);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
   }
 }
 

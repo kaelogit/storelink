@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { X, Printer, Download, CheckCircle } from "lucide-react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { useRouter } from "next/navigation";
 
 interface OrderDetailsModalProps {
   order: any;
@@ -16,6 +17,7 @@ interface OrderDetailsModalProps {
 
 export default function OrderDetailsModal({ order, storeName, isOpen, onClose, onUpdate }: OrderDetailsModalProps) {
   const [items, setItems] = useState<any[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     if (isOpen && order) {
@@ -29,7 +31,10 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
 
   const updateStatus = async (status: string) => {
     if (!confirm(`Mark order as ${status}?`)) return;
+    
     await supabase.from("orders").update({ status }).eq("id", order.id);
+    
+    router.refresh();
     onUpdate();
     onClose();
   };

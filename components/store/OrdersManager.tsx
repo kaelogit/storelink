@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { useRouter } from "next/navigation";
 
 interface Order {
   id: string;
@@ -26,13 +27,15 @@ interface OrdersManagerProps {
   onUpdate: () => void; 
 }
 
+
 export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps) {
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState<Order[]>([]);
   const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
   const [storeInfo, setStoreInfo] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState("");
-  
+  const router = useRouter();
+
   const fetchOrders = async () => {
     setLoading(true);
     
@@ -73,8 +76,9 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
 
     if (error) setErrorMsg(error.message);
     else {
-      fetchOrders(); 
-      onUpdate();    
+      router.refresh(); 
+      fetchOrders();  
+      onUpdate();       
     }
   };
 

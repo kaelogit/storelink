@@ -2,6 +2,7 @@ import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import StoreFront from "@/components/StoreFront";
 import type { Metadata } from "next"; 
+import { shuffleArray } from "@/utils/shuffle";
 
 export const dynamic = 'force-dynamic';
 
@@ -9,7 +10,6 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-// 1. GENERATE METADATA (Runs on server for WhatsApp previews)
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   
@@ -40,15 +40,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function VendorStorePage({ params }: PageProps) {
   const resolvedParams = await params;
-  
   const { data: store } = await supabase
     .from("stores")
-    .select("*")
+    .select("*, products(*)") // Ensure products are selected for views loop
     .eq("slug", resolvedParams.slug)
     .single();
 
   if (!store) return notFound();
 
+  if (store.products) {
+    for (const product of store.products) {
+        await supabase.rpc('increment_product_view', { product_id: product.id }); 
+    }
+  }
   const { data: products } = await supabase
     .from("storefront_products")
     .select("*")
@@ -61,10 +65,12 @@ export default async function VendorStorePage({ params }: PageProps) {
     .select("*")
     .eq("store_id", store.id);
 
+  const shuffledProducts = shuffleArray(products || []);
+
   return (
     <StoreFront 
       store={store} 
-      products={products || []} 
+      products={shuffledProducts}
       categories={categories || []} 
     />
   );
