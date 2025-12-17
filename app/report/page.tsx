@@ -10,7 +10,7 @@ export default function ReportPage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-
+  
   const [formData, setFormData] = useState({
     link: "",
     reason: "Scam / Fraud",
@@ -21,19 +21,29 @@ export default function ReportPage() {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await supabase.from("reports").insert({
-        vendor_link: formData.link,
-        reason: formData.reason,
-        description: formData.description
+    const { error } = await supabase.from("contact_messages").insert({
+        name: "Anonymous Reporter",
+        email: "report@storelink.system",
+        subject: `🚨 REPORT: ${formData.reason}`,
+        message: `VENDOR LINK: ${formData.link}\n\nDETAILS:\n${formData.description}`
     });
 
     if (error) {
+        console.log("FULL ERROR:", error); // Check Console
+        alert(`Error: ${error.message}`); // 👈 This will pop up the exact reason
         setErrorMsg("Could not submit report. Try again later.");
-      } else {
-         setSuccess(true);
-      }
-      setLoading(false);
+    } else {
+        setSuccess(true);
+        setFormData({
+            link: "",
+            reason: "Scam / Fraud",
+            description: ""
+        });
+    }
+    setLoading(false);
    };
+
+   
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">

@@ -24,11 +24,10 @@ __turbopack_context__.s([
     "supabase",
     ()=>supabase
 ]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$esm$2f$wrapper$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@supabase/supabase-js/dist/esm/wrapper.mjs [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@supabase/ssr/dist/module/index.js [app-rsc] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@supabase/ssr/dist/module/createBrowserClient.js [app-rsc] (ecmascript)");
 ;
-const supabaseUrl = ("TURBOPACK compile-time value", "https://yolqfndprzohjkrizbzu.supabase.co");
-const supabaseKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlvbHFmbmRwcnpvaGprcml6Ynp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2MTcyNjgsImV4cCI6MjA4MTE5MzI2OH0.EMR9Pqts44-TGo8_3hiA_PRAKUUlXB_zmdR-8_5MEVM");
-const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$esm$2f$wrapper$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createClient"])(supabaseUrl, supabaseKey);
+const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$ssr$2f$dist$2f$module$2f$createBrowserClient$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["createBrowserClient"])(("TURBOPACK compile-time value", "https://yolqfndprzohjkrizbzu.supabase.co"), ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlvbHFmbmRwcnpvaGprcml6Ynp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2MTcyNjgsImV4cCI6MjA4MTE5MzI2OH0.EMR9Pqts44-TGo8_3hiA_PRAKUUlXB_zmdR-8_5MEVM"));
 }),
 "[project]/components/marketplace/FullMarketplaceClient.tsx [app-rsc] (client reference proxy) <module evaluation>", ((__turbopack_context__) => {
 "use strict";
@@ -111,14 +110,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$
 ;
 const dynamic = 'force-dynamic';
 async function MarketplacePage() {
-    // 1. Fetch Products
     const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category)").eq("is_active", true).order("created_at", {
         ascending: false
     }).limit(60);
     const shuffledProducts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["shuffleArray"])(products || []);
-    // 2. Fetch Categories (Global Only)
-    const { data: categories } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("categories").select("id, name, slug").is("store_id", null) // 👈 THIS IS THE FIX
-    .order("name", {
+    const { data: categories } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("categories").select("id, name, slug").is("store_id", null).order("name", {
         ascending: true
     });
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -135,14 +131,14 @@ async function MarketplacePage() {
                                 className: "text-emerald-600"
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 33,
+                                lineNumber: 31,
                                 columnNumber: 13
                             }, this),
                             " StoreLink"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/marketplace/page.tsx",
-                        lineNumber: 32,
+                        lineNumber: 30,
                         columnNumber: 10
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -150,7 +146,7 @@ async function MarketplacePage() {
                         children: "Marketplace"
                     }, void 0, false, {
                         fileName: "[project]/app/marketplace/page.tsx",
-                        lineNumber: 36,
+                        lineNumber: 34,
                         columnNumber: 10
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -161,7 +157,7 @@ async function MarketplacePage() {
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 41,
+                                lineNumber: 39,
                                 columnNumber: 12
                             }, this),
                             " ",
@@ -170,19 +166,19 @@ async function MarketplacePage() {
                                 children: "Back to Home"
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 41,
+                                lineNumber: 39,
                                 columnNumber: 36
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/marketplace/page.tsx",
-                        lineNumber: 40,
+                        lineNumber: 38,
                         columnNumber: 10
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 31,
+                lineNumber: 29,
                 columnNumber: 8
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -192,12 +188,12 @@ async function MarketplacePage() {
                     categories: categories || []
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 46,
+                    lineNumber: 44,
                     columnNumber: 10
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 45,
+                lineNumber: 43,
                 columnNumber: 8
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -212,15 +208,15 @@ async function MarketplacePage() {
                                     className: "text-gray-200"
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 55,
-                                    columnNumber: 17
+                                    lineNumber: 53,
+                                    columnNumber: 18
                                 }, this),
                                 " StoreLink"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 54,
-                            columnNumber: 14
+                            lineNumber: 52,
+                            columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "text-xs text-gray-300 mt-6",
@@ -231,24 +227,24 @@ async function MarketplacePage() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 57,
-                            columnNumber: 14
+                            lineNumber: 55,
+                            columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 53,
+                    lineNumber: 51,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 52,
+                lineNumber: 50,
                 columnNumber: 8
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/marketplace/page.tsx",
-        lineNumber: 29,
+        lineNumber: 27,
         columnNumber: 5
     }, this);
 }

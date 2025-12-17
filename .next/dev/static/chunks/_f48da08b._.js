@@ -2414,11 +2414,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$dashboard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutDashboard$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/layout-dashboard.js [app-client] (ecmascript) <export default as LayoutDashboard>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/package.js [app-client] (ecmascript) <export default as Package>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shopping-bag.js [app-client] (ecmascript) <export default as ShoppingBag>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$settings$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Settings$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/settings.js [app-client] (ecmascript) <export default as Settings>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/log-out.js [app-client] (ecmascript) <export default as LogOut>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-client] (ecmascript) <export default as Plus>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/external-link.js [app-client] (ecmascript) <export default as ExternalLink>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/crown.js [app-client] (ecmascript) <export default as Crown>");
@@ -2428,8 +2425,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tags$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tags$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/tags.js [app-client] (ecmascript) <export default as Tags>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/square-pen.js [app-client] (ecmascript) <export default as Edit>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/menu.js [app-client] (ecmascript) <export default as Menu>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$store$2f$AddProductModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/store/AddProductModal.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$store$2f$CategoryManager$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/store/CategoryManager.tsx [app-client] (ecmascript)");
@@ -2453,7 +2448,6 @@ function DashboardClient({ store, initialProducts, initialOrders, stats }) {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("products");
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isAddModalOpen, setIsAddModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isCatModalOpen, setIsCatModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedOrder, setSelectedOrder] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -2463,10 +2457,6 @@ function DashboardClient({ store, initialProducts, initialOrders, stats }) {
     const isFree = store.subscription_plan === 'free';
     const isExpired = store.subscription_expiry && new Date(store.subscription_expiry) < new Date();
     const isFreeLimitReached = isFree && stats.productCount >= 5;
-    const handleSignOut = async ()=>{
-        await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
-        router.push("/login");
-    };
     const deleteProduct = async (id)=>{
         if (!confirm("Are you sure you want to delete this product?")) return;
         const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("products").delete().eq("id", id);
@@ -2480,1070 +2470,898 @@ function DashboardClient({ store, initialProducts, initialOrders, stats }) {
         setIsAddModalOpen(false);
         setProductToEdit(null);
     };
-    const navClick = (tab)=>{
-        setActiveTab(tab);
-        setIsMobileMenuOpen(false);
-    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen bg-gray-50 font-sans flex flex-col md:flex-row",
+        className: "space-y-6",
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "md:hidden bg-white border-b border-gray-200 p-4 flex justify-between items-center sticky top-0 z-30",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        href: "/",
-                        className: "font-extrabold text-lg text-gray-900 flex items-center gap-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$dashboard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutDashboard$3e$__["LayoutDashboard"], {
-                                className: "text-emerald-600",
-                                size: 20
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 74,
-                                columnNumber: 12
-                            }, this),
-                            " StoreLink"
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 73,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: ()=>setIsMobileMenuOpen(true),
-                        className: "p-2 text-gray-700",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
-                            size: 24
-                        }, void 0, false, {
-                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 77,
-                            columnNumber: 12
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 76,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 72,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `
-        fixed inset-0 z-40 transform transition-transform duration-300 md:relative md:translate-x-0 md:w-64 bg-white border-r border-gray-200 flex flex-col
-        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-      `,
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
+                className: "flex flex-col md:flex-row justify-between items-start md:items-center gap-4",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-6 flex justify-between items-center",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: "/",
-                                className: "font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                className: "text-3xl font-black text-gray-900 flex items-center gap-2 flex-wrap tracking-tight",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$dashboard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutDashboard$3e$__["LayoutDashboard"], {
-                                        className: "text-emerald-600"
+                                    "Dashboard",
+                                    isDiamond && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-md border border-purple-200 whitespace-nowrap font-bold",
+                                        children: "Diamond"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 87,
-                                        columnNumber: 13
+                                        lineNumber: 62,
+                                        columnNumber: 29
                                     }, this),
-                                    " StoreLink"
+                                    isPremium && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-md border border-blue-200 whitespace-nowrap font-bold",
+                                        children: "Premium"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 63,
+                                        columnNumber: 29
+                                    }, this),
+                                    isFree && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-md border border-gray-200 whitespace-nowrap font-bold",
+                                        children: "Free"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 64,
+                                        columnNumber: 26
+                                    }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 86,
-                                columnNumber: 11
+                                lineNumber: 60,
+                                columnNumber: 13
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>setIsMobileMenuOpen(false),
-                                className: "md:hidden text-gray-500",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                    size: 24
-                                }, void 0, false, {
-                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 90,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-gray-500 text-sm mt-1",
+                                children: [
+                                    "Welcome Back, ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "font-bold text-gray-900",
+                                        children: store.name
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 68,
+                                        columnNumber: 29
+                                    }, this),
+                                    " (Manage your Empire)"
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 89,
-                                columnNumber: 11
+                                lineNumber: 67,
+                                columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 85,
-                        columnNumber: 9
+                        lineNumber: 59,
+                        columnNumber: 11
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-                        className: "px-4 space-y-1 flex-1",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-wrap gap-2 w-full md:w-auto",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                            href: `/${store.slug}`,
+                            target: "_blank",
+                            className: "flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition shadow-lg shadow-gray-200",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
+                                    size: 16
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                    lineNumber: 74,
+                                    columnNumber: 15
+                                }, this),
+                                " View Store"
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                            lineNumber: 73,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 72,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                lineNumber: 58,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "grid grid-cols-1 md:grid-cols-3 gap-4",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>navClick("products"),
-                                className: `w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition ${activeTab === "products" ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-50"}`,
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-3 mb-2",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"], {
-                                        size: 18
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "p-2 bg-emerald-50 text-emerald-600 rounded-xl",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
+                                            size: 20
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                            lineNumber: 82,
+                                            columnNumber: 79
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 96,
-                                        columnNumber: 13
+                                        lineNumber: 82,
+                                        columnNumber: 16
                                     }, this),
-                                    " Products"
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-sm font-bold text-gray-400 uppercase tracking-wider",
+                                        children: "Revenue"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 83,
+                                        columnNumber: 16
+                                    }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 95,
-                                columnNumber: 11
+                                lineNumber: 81,
+                                columnNumber: 14
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>navClick("orders"),
-                                className: `w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition ${activeTab === "orders" ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-50"}`,
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-3xl font-black text-gray-900",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
-                                        size: 18
+                                    "₦",
+                                    stats.revenue.toLocaleString()
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 85,
+                                columnNumber: 14
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 80,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-3 mb-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "p-2 bg-blue-50 text-blue-600 rounded-xl",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"], {
+                                            size: 20
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                            lineNumber: 89,
+                                            columnNumber: 73
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 89,
+                                        columnNumber: 16
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-sm font-bold text-gray-400 uppercase tracking-wider",
+                                        children: "Products"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 90,
+                                        columnNumber: 16
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 88,
+                                columnNumber: 14
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-baseline gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-3xl font-black text-gray-900",
+                                        children: stats.productCount
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 93,
+                                        columnNumber: 16
+                                    }, this),
+                                    isFree && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xs font-bold text-gray-400",
+                                        children: "/ 5 Limit"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 94,
+                                        columnNumber: 27
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 92,
+                                columnNumber: 14
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 87,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-3 mb-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "p-2 bg-purple-50 text-purple-600 rounded-xl",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
+                                            size: 20
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                            lineNumber: 99,
+                                            columnNumber: 77
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
                                         lineNumber: 99,
-                                        columnNumber: 13
+                                        columnNumber: 16
                                     }, this),
-                                    " Orders"
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-sm font-bold text-gray-400 uppercase tracking-wider",
+                                        children: "Views"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 100,
+                                        columnNumber: 16
+                                    }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
                                 lineNumber: 98,
-                                columnNumber: 11
+                                columnNumber: 14
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>navClick("settings"),
-                                className: `w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition ${activeTab === "settings" ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-50"}`,
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$settings$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Settings$3e$__["Settings"], {
-                                        size: 18
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 102,
-                                        columnNumber: 13
-                                    }, this),
-                                    " Settings"
-                                ]
-                            }, void 0, true, {
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-3xl font-black text-gray-900",
+                                children: stats.views.toLocaleString()
+                            }, void 0, false, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 101,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: "/dashboard/subscription",
-                                className: `w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition text-gray-500 hover:bg-gray-50`,
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {
-                                        size: 18,
-                                        className: "text-yellow-500"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 105,
-                                        columnNumber: 13
-                                    }, this),
-                                    " Subscription"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 104,
-                                columnNumber: 11
+                                lineNumber: 102,
+                                columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 94,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-4 border-t border-gray-100",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            onClick: handleSignOut,
-                            className: "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-red-500 hover:bg-red-50 transition",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__["LogOut"], {
-                                    size: 18
-                                }, void 0, false, {
-                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 111,
-                                    columnNumber: 13
-                                }, this),
-                                " Sign Out"
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 110,
-                            columnNumber: 11
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 109,
-                        columnNumber: 9
+                        lineNumber: 97,
+                        columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 81,
-                columnNumber: 7
-            }, this),
-            isMobileMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 z-30 bg-black/50 md:hidden backdrop-blur-sm",
-                onClick: ()=>setIsMobileMenuOpen(false)
-            }, void 0, false, {
-                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 117,
+                lineNumber: 79,
                 columnNumber: 9
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-                className: "flex-1 p-4 md:p-8 overflow-y-auto max-w-full",
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2f$ShareStore$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                slug: store.slug
+            }, void 0, false, {
+                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                lineNumber: 106,
+                columnNumber: 9
+            }, this),
+            isExpired && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "bg-red-50 border border-red-100 p-4 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3 animate-pulse",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
-                        className: "flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8",
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center gap-3",
                         children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"], {
+                                className: "text-red-500 shrink-0"
+                            }, void 0, false, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 111,
+                                columnNumber: 16
+                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "text-sm",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                        className: "text-2xl font-bold text-gray-900 flex items-center gap-2 flex-wrap",
-                                        children: [
-                                            "Dashboard",
-                                            isDiamond && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-md border border-purple-200 whitespace-nowrap",
-                                                children: "Diamond"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 129,
-                                                columnNumber: 29
-                                            }, this),
-                                            isPremium && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-md border border-blue-200 whitespace-nowrap",
-                                                children: "Premium"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 130,
-                                                columnNumber: 29
-                                            }, this),
-                                            isFree && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-md border border-gray-200 whitespace-nowrap",
-                                                children: "Free"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 131,
-                                                columnNumber: 26
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "font-bold text-red-900",
+                                        children: "Plan Expired."
+                                    }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 127,
-                                        columnNumber: 13
+                                        lineNumber: 113,
+                                        columnNumber: 18
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-500 text-sm mt-1",
-                                        children: [
-                                            "Welcome Back, ",
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "font-bold text-gray-900",
-                                                children: store.name
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 135,
-                                                columnNumber: 29
-                                            }, this),
-                                            " (Manage your Empire)"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 134,
-                                        columnNumber: 13
-                                    }, this)
+                                    " Your store is currently hidden."
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 126,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-wrap gap-2 w-full md:w-auto",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                    href: `/${store.slug}`,
-                                    target: "_blank",
-                                    className: "flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
-                                            size: 16
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 142,
-                                            columnNumber: 15
-                                        }, this),
-                                        " View Store"
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 141,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 139,
-                                columnNumber: 11
+                                lineNumber: 112,
+                                columnNumber: 16
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 125,
-                        columnNumber: 9
+                        lineNumber: 110,
+                        columnNumber: 14
                     }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        href: "/dashboard/subscription",
+                        className: "px-4 py-2 bg-red-600 text-white text-xs font-bold rounded-lg hover:bg-red-700 w-full md:w-auto text-center",
+                        children: "Renew Now"
+                    }, void 0, false, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 116,
+                        columnNumber: 14
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                lineNumber: 109,
+                columnNumber: 11
+            }, this),
+            isFreeLimitReached && !isExpired && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "bg-amber-50 border border-amber-100 p-4 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3",
+                children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 md:grid-cols-3 gap-4 mb-8",
+                        className: "flex items-center gap-3",
                         children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {
+                                className: "text-amber-600 shrink-0"
+                            }, void 0, false, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 123,
+                                columnNumber: 16
+                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white p-6 rounded-2xl border border-gray-100 shadow-sm",
+                                className: "text-sm",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-3 mb-2",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-2 bg-emerald-50 text-emerald-600 rounded-lg",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
-                                                    size: 20
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 150,
-                                                    columnNumber: 79
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 150,
-                                                columnNumber: 16
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-sm font-bold text-gray-500",
-                                                children: "Revenue"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 151,
-                                                columnNumber: 16
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "font-bold text-amber-900",
+                                        children: "Limit Reached."
+                                    }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 149,
-                                        columnNumber: 14
+                                        lineNumber: 125,
+                                        columnNumber: 18
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-2xl font-extrabold text-gray-900",
+                                    " You've hit the 5-product limit."
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 124,
+                                columnNumber: 16
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 122,
+                        columnNumber: 14
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        href: "/dashboard/subscription",
+                        className: "px-4 py-2 bg-amber-500 text-white text-xs font-bold rounded-lg hover:bg-amber-600 w-full md:w-auto text-center",
+                        children: "Upgrade Plan"
+                    }, void 0, false, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 128,
+                        columnNumber: 14
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                lineNumber: 121,
+                columnNumber: 11
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex gap-2 overflow-x-auto pb-2 border-b border-gray-100",
+                children: [
+                    'products',
+                    'orders',
+                    'settings'
+                ].map((tab)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: ()=>setActiveTab(tab),
+                        className: `px-4 py-2 rounded-xl text-sm font-bold capitalize transition-all ${activeTab === tab ? 'bg-gray-900 text-white shadow-lg shadow-gray-200' : 'text-gray-500 hover:bg-gray-100'}`,
+                        children: tab
+                    }, tab, false, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 134,
+                        columnNumber: 14
+                    }, this))
+            }, void 0, false, {
+                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                lineNumber: 132,
+                columnNumber: 9
+            }, this),
+            activeTab === "products" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "animate-in fade-in slide-in-from-bottom-4 duration-500",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                className: "font-bold text-lg text-gray-900",
+                                children: "Inventory"
+                            }, void 0, false, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 151,
+                                columnNumber: 15
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex gap-2 w-full md:w-auto",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setIsCatModalOpen(true),
+                                        className: "flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50 transition",
                                         children: [
-                                            "₦",
-                                            stats.revenue.toLocaleString()
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tags$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tags$3e$__["Tags"], {
+                                                size: 16
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 154,
+                                                columnNumber: 21
+                                            }, this),
+                                            " Categories"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
                                         lineNumber: 153,
-                                        columnNumber: 14
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 148,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white p-6 rounded-2xl border border-gray-100 shadow-sm",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-3 mb-2",
+                                        columnNumber: 18
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setIsAddModalOpen(true),
+                                        className: "flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-emerald-200 hover:bg-emerald-500 transition",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-2 bg-blue-50 text-blue-600 rounded-lg",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"], {
-                                                    size: 20
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 157,
-                                                    columnNumber: 73
-                                                }, this)
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
                                                 lineNumber: 157,
-                                                columnNumber: 16
+                                                columnNumber: 21
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-sm font-bold text-gray-500",
-                                                children: "Products"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 158,
-                                                columnNumber: 16
-                                            }, this)
+                                            " Add Product"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
                                         lineNumber: 156,
-                                        columnNumber: 14
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-baseline gap-2",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-2xl font-extrabold text-gray-900",
-                                                children: stats.productCount
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 161,
-                                                columnNumber: 16
-                                            }, this),
-                                            isFree && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs font-bold text-gray-400",
-                                                children: "/ 5 Limit"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 162,
-                                                columnNumber: 27
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 160,
-                                        columnNumber: 14
+                                        columnNumber: 18
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 155,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white p-6 rounded-2xl border border-gray-100 shadow-sm",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-3 mb-2",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "p-2 bg-purple-50 text-purple-600 rounded-lg",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
-                                                    size: 20
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 167,
-                                                    columnNumber: 77
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 167,
-                                                columnNumber: 16
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-sm font-bold text-gray-500",
-                                                children: "Views"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 168,
-                                                columnNumber: 16
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 166,
-                                        columnNumber: 14
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-2xl font-extrabold text-gray-900",
-                                        children: stats.views.toLocaleString()
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 170,
-                                        columnNumber: 14
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 165,
-                                columnNumber: 11
+                                lineNumber: 152,
+                                columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 147,
-                        columnNumber: 9
+                        lineNumber: 150,
+                        columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mb-8",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2f$ShareStore$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                            slug: store.slug
+                        className: "bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm",
+                        children: initialProducts.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "p-12 text-center text-gray-400",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"], {
+                                    size: 48,
+                                    className: "mx-auto mb-4 opacity-20"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                    lineNumber: 165,
+                                    columnNumber: 20
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: "No products yet. Add your first one!"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                    lineNumber: 166,
+                                    columnNumber: 20
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                            lineNumber: 164,
+                            columnNumber: 18
+                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "overflow-x-auto",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                                className: "w-full text-left min-w-[600px]",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
+                                        className: "bg-gray-50/50 border-b border-gray-100 text-xs uppercase text-gray-500",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold",
+                                                    children: "Product"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 173,
+                                                    columnNumber: 26
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold",
+                                                    children: "Category"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 174,
+                                                    columnNumber: 26
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold",
+                                                    children: "Price"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 175,
+                                                    columnNumber: 26
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold",
+                                                    children: "Stock"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 176,
+                                                    columnNumber: 26
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold text-right",
+                                                    children: "Actions"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 177,
+                                                    columnNumber: 26
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                            lineNumber: 172,
+                                            columnNumber: 24
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 171,
+                                        columnNumber: 22
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
+                                        className: "divide-y divide-gray-100",
+                                        children: initialProducts.map((p)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                className: "hover:bg-gray-50/80 transition",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 font-bold text-gray-900 truncate max-w-[200px]",
+                                                        children: p.name
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 183,
+                                                        columnNumber: 28
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 text-gray-500 text-sm",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "px-2 py-1 bg-gray-100 rounded-lg text-xs font-bold",
+                                                            children: p.categories?.name || 'Uncategorized'
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                            lineNumber: 185,
+                                                            columnNumber: 30
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 184,
+                                                        columnNumber: 28
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 text-emerald-600 font-bold text-sm",
+                                                        children: [
+                                                            "₦",
+                                                            p.price.toLocaleString()
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 187,
+                                                        columnNumber: 28
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 text-sm",
+                                                        children: p.stock_quantity === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-red-500 font-bold bg-red-50 px-2 py-1 rounded-lg text-xs",
+                                                            children: "Out of Stock"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                            lineNumber: 190,
+                                                            columnNumber: 34
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-gray-600 font-bold",
+                                                            children: p.stock_quantity
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                            lineNumber: 191,
+                                                            columnNumber: 34
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 188,
+                                                        columnNumber: 28
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 text-right flex justify-end gap-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>openEditModal(p),
+                                                                className: "p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
+                                                                    size: 16
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                                    lineNumber: 196,
+                                                                    columnNumber: 34
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                                lineNumber: 195,
+                                                                columnNumber: 31
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                                onClick: ()=>deleteProduct(p.id),
+                                                                className: "p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                                    size: 16
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                                    lineNumber: 199,
+                                                                    columnNumber: 34
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                                lineNumber: 198,
+                                                                columnNumber: 31
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 194,
+                                                        columnNumber: 28
+                                                    }, this)
+                                                ]
+                                            }, p.id, true, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 182,
+                                                columnNumber: 26
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 180,
+                                        columnNumber: 22
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 170,
+                                columnNumber: 20
+                            }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 175,
-                            columnNumber: 12
+                            lineNumber: 169,
+                            columnNumber: 18
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 174,
-                        columnNumber: 9
-                    }, this),
-                    isExpired && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mb-6 bg-red-50 border border-red-100 p-4 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-3",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"], {
-                                        className: "text-red-500 shrink-0"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 181,
-                                        columnNumber: 16
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-sm",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "font-bold text-red-900",
-                                                children: "Plan Expired."
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 183,
-                                                columnNumber: 18
-                                            }, this),
-                                            " Your store is currently hidden."
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 182,
-                                        columnNumber: 16
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 180,
-                                columnNumber: 14
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: "/dashboard/subscription",
-                                className: "px-4 py-2 bg-red-600 text-white text-xs font-bold rounded-lg hover:bg-red-700 w-full md:w-auto text-center",
-                                children: "Renew"
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 186,
-                                columnNumber: 14
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 179,
-                        columnNumber: 11
-                    }, this),
-                    isFreeLimitReached && !isExpired && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mb-6 bg-yellow-50 border border-yellow-100 p-4 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-3",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {
-                                        className: "text-yellow-600 shrink-0"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 193,
-                                        columnNumber: 16
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-sm",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "font-bold text-yellow-900",
-                                                children: "Limit Reached."
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 195,
-                                                columnNumber: 18
-                                            }, this),
-                                            " You've hit the 5-product limit."
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 194,
-                                        columnNumber: 16
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 192,
-                                columnNumber: 14
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: "/dashboard/subscription",
-                                className: "px-4 py-2 bg-yellow-500 text-white text-xs font-bold rounded-lg hover:bg-yellow-600 w-full md:w-auto text-center",
-                                children: "Upgrade"
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 198,
-                                columnNumber: 14
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 191,
-                        columnNumber: 11
-                    }, this),
-                    activeTab === "products" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "font-bold text-lg text-gray-900",
-                                        children: "Your Products"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 205,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex gap-2 w-full md:w-auto",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                onClick: ()=>setIsCatModalOpen(true),
-                                                className: "flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tags$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tags$3e$__["Tags"], {
-                                                        size: 16
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 208,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    " Cats"
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 207,
-                                                columnNumber: 18
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                onClick: ()=>setIsAddModalOpen(true),
-                                                className: "flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-bold shadow-lg hover:bg-gray-800",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
-                                                        size: 16
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 211,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    " Add"
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 210,
-                                                columnNumber: 18
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 206,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 204,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm",
-                                children: initialProducts.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-12 text-center text-gray-400",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"], {
-                                            size: 48,
-                                            className: "mx-auto mb-4 opacity-20"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 219,
-                                            columnNumber: 20
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            children: "No products yet."
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 220,
-                                            columnNumber: 20
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 218,
-                                    columnNumber: 18
-                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "overflow-x-auto",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
-                                        className: "w-full text-left min-w-[600px]",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
-                                                className: "bg-gray-50 border-b border-gray-100 text-xs uppercase text-gray-500",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold",
-                                                            children: "Product"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 227,
-                                                            columnNumber: 26
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold",
-                                                            children: "Category"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 228,
-                                                            columnNumber: 26
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold",
-                                                            children: "Price"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 229,
-                                                            columnNumber: 26
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold",
-                                                            children: "Stock"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 230,
-                                                            columnNumber: 26
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold text-right",
-                                                            children: "Actions"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 231,
-                                                            columnNumber: 26
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 226,
-                                                    columnNumber: 24
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 225,
-                                                columnNumber: 22
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
-                                                className: "divide-y divide-gray-100",
-                                                children: initialProducts.map((p)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                        className: "hover:bg-gray-50/50 transition",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4 font-medium text-gray-900 truncate max-w-[200px]",
-                                                                children: p.name
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 237,
-                                                                columnNumber: 28
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4 text-gray-500 text-sm",
-                                                                children: p.categories?.name || '-'
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 238,
-                                                                columnNumber: 28
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4 text-gray-900 font-bold text-sm",
-                                                                children: [
-                                                                    "₦",
-                                                                    p.price.toLocaleString()
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 239,
-                                                                columnNumber: 28
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4 text-sm",
-                                                                children: p.stock_quantity === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    className: "text-red-500 font-bold",
-                                                                    children: "Out"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 240,
-                                                                    columnNumber: 88
-                                                                }, this) : p.stock_quantity
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 240,
-                                                                columnNumber: 28
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4 text-right flex justify-end gap-2",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                        onClick: ()=>openEditModal(p),
-                                                                        className: "p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition",
-                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
-                                                                            size: 16
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                            lineNumber: 243,
-                                                                            columnNumber: 34
-                                                                        }, this)
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                        lineNumber: 242,
-                                                                        columnNumber: 31
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                        onClick: ()=>deleteProduct(p.id),
-                                                                        className: "p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition",
-                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
-                                                                            size: 16
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                            lineNumber: 246,
-                                                                            columnNumber: 34
-                                                                        }, this)
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                        lineNumber: 245,
-                                                                        columnNumber: 31
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 241,
-                                                                columnNumber: 28
-                                                            }, this)
-                                                        ]
-                                                    }, p.id, true, {
-                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 236,
-                                                        columnNumber: 26
-                                                    }, this))
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 234,
-                                                columnNumber: 22
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 224,
-                                        columnNumber: 20
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 223,
-                                    columnNumber: 18
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 216,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 203,
-                        columnNumber: 11
-                    }, this),
-                    activeTab === "orders" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "font-bold text-lg text-gray-900 mb-6",
-                                children: "Order History"
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 261,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm",
-                                children: initialOrders.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-12 text-center text-gray-400",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
-                                            size: 48,
-                                            className: "mx-auto mb-4 opacity-20"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 265,
-                                            columnNumber: 20
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            children: "No orders yet."
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 266,
-                                            columnNumber: 20
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 264,
-                                    columnNumber: 18
-                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "overflow-x-auto",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
-                                        className: "w-full text-left min-w-[600px]",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
-                                                className: "bg-gray-50 border-b border-gray-100 text-xs uppercase text-gray-500",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold",
-                                                            children: "Customer"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 273,
-                                                            columnNumber: 26
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold",
-                                                            children: "Total"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 274,
-                                                            columnNumber: 26
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold",
-                                                            children: "Status"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 275,
-                                                            columnNumber: 26
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                            className: "px-6 py-4 font-bold text-right",
-                                                            children: "Action"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 276,
-                                                            columnNumber: 26
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 272,
-                                                    columnNumber: 24
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 271,
-                                                columnNumber: 22
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
-                                                className: "divide-y divide-gray-100",
-                                                children: initialOrders.map((order)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                        className: "hover:bg-gray-50/50 transition cursor-pointer",
-                                                        onClick: ()=>setSelectedOrder(order),
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "font-bold text-gray-900 text-sm",
-                                                                    children: order.customer_name
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 283,
-                                                                    columnNumber: 30
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 282,
-                                                                columnNumber: 28
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4 text-emerald-600 font-bold text-sm",
-                                                                children: [
-                                                                    "₦",
-                                                                    order.total_amount.toLocaleString()
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 285,
-                                                                columnNumber: 28
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4 text-sm capitalize",
-                                                                children: order.status
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 286,
-                                                                columnNumber: 28
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                className: "px-6 py-4 text-right",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                    className: "text-xs font-bold text-gray-500 border border-gray-200 px-2 py-1 rounded hover:bg-gray-100",
-                                                                    children: "View"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 288,
-                                                                    columnNumber: 30
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 287,
-                                                                columnNumber: 28
-                                                            }, this)
-                                                        ]
-                                                    }, order.id, true, {
-                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 281,
-                                                        columnNumber: 26
-                                                    }, this))
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 279,
-                                                columnNumber: 22
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 270,
-                                        columnNumber: 20
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 269,
-                                    columnNumber: 18
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 262,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 260,
-                        columnNumber: 11
-                    }, this),
-                    activeTab === "settings" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2f$StoreSettings$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        store: store
-                    }, void 0, false, {
-                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 300,
-                        columnNumber: 38
+                        lineNumber: 162,
+                        columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 123,
-                columnNumber: 7
+                lineNumber: 149,
+                columnNumber: 11
+            }, this),
+            activeTab === "orders" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "animate-in fade-in slide-in-from-bottom-4 duration-500",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                        className: "font-bold text-lg text-gray-900 mb-6",
+                        children: "Recent Orders"
+                    }, void 0, false, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 214,
+                        columnNumber: 13
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm",
+                        children: initialOrders.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "p-12 text-center text-gray-400",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__["ShoppingBag"], {
+                                    size: 48,
+                                    className: "mx-auto mb-4 opacity-20"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                    lineNumber: 218,
+                                    columnNumber: 20
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: "No orders yet. Share your store link!"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                    lineNumber: 219,
+                                    columnNumber: 20
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                            lineNumber: 217,
+                            columnNumber: 18
+                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "overflow-x-auto",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                                className: "w-full text-left min-w-[600px]",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
+                                        className: "bg-gray-50/50 border-b border-gray-100 text-xs uppercase text-gray-500",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold",
+                                                    children: "Customer"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 226,
+                                                    columnNumber: 26
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold",
+                                                    children: "Total"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 227,
+                                                    columnNumber: 26
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold",
+                                                    children: "Status"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 228,
+                                                    columnNumber: 26
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "px-6 py-4 font-bold text-right",
+                                                    children: "Action"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 229,
+                                                    columnNumber: 26
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                            lineNumber: 225,
+                                            columnNumber: 24
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 224,
+                                        columnNumber: 22
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
+                                        className: "divide-y divide-gray-100",
+                                        children: initialOrders.map((order)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                className: "hover:bg-gray-50/80 transition cursor-pointer",
+                                                onClick: ()=>setSelectedOrder(order),
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "font-bold text-gray-900 text-sm",
+                                                                children: order.customer_name
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                                lineNumber: 236,
+                                                                columnNumber: 30
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "text-xs text-gray-400",
+                                                                children: new Date(order.created_at).toLocaleDateString()
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                                lineNumber: 237,
+                                                                columnNumber: 30
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 235,
+                                                        columnNumber: 28
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 text-emerald-600 font-bold text-sm",
+                                                        children: [
+                                                            "₦",
+                                                            order.total_amount.toLocaleString()
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 239,
+                                                        columnNumber: 28
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 text-sm",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: `px-2 py-1 rounded-lg text-xs font-bold uppercase ${order.status === 'paid' ? 'bg-emerald-100 text-emerald-700' : order.status === 'pending' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-600'}`,
+                                                            children: order.status
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                            lineNumber: 241,
+                                                            columnNumber: 31
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 240,
+                                                        columnNumber: 28
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "px-6 py-4 text-right",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            className: "text-xs font-bold text-gray-500 border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-900 hover:text-white transition",
+                                                            children: "View Details"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                            lineNumber: 250,
+                                                            columnNumber: 30
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                        lineNumber: 249,
+                                                        columnNumber: 28
+                                                    }, this)
+                                                ]
+                                            }, order.id, true, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 234,
+                                                columnNumber: 26
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 232,
+                                        columnNumber: 22
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 223,
+                                columnNumber: 20
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                            lineNumber: 222,
+                            columnNumber: 18
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 215,
+                        columnNumber: 13
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                lineNumber: 213,
+                columnNumber: 11
+            }, this),
+            activeTab === "settings" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "animate-in fade-in slide-in-from-bottom-4 duration-500",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2f$StoreSettings$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                    store: store
+                }, void 0, false, {
+                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                    lineNumber: 264,
+                    columnNumber: 15
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                lineNumber: 263,
+                columnNumber: 12
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$store$2f$AddProductModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 storeId: store.id,
@@ -3553,7 +3371,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats }) {
                 productToEdit: productToEdit
             }, void 0, false, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 304,
+                lineNumber: 268,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$store$2f$CategoryManager$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3562,7 +3380,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats }) {
                 onClose: ()=>setIsCatModalOpen(false)
             }, void 0, false, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 312,
+                lineNumber: 276,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2f$OrderDetailsModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3573,17 +3391,17 @@ function DashboardClient({ store, initialProducts, initialOrders, stats }) {
                 onUpdate: ()=>router.refresh()
             }, void 0, false, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 318,
+                lineNumber: 282,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-        lineNumber: 70,
+        lineNumber: 57,
         columnNumber: 5
     }, this);
 }
-_s(DashboardClient, "B3IpzYhnKSHC61C/QZ9qzLBW+D0=", false, function() {
+_s(DashboardClient, "qaRsF5bPc1pHJ60meQb4vVBlexM=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];

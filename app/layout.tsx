@@ -7,7 +7,7 @@ import GlobalCartSidebar from "@/components/shared/GlobalCartSidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://storelink.ng'), // Uses your NG domain
+  metadataBase: new URL('https://storelink.ng'), 
   title: {
     default: "StoreLink | The Engine for Naija Hustle",
     template: "%s | StoreLink", 
@@ -17,13 +17,6 @@ export const metadata: Metadata = {
     title: "StoreLink | The Engine for Naija Hustle",
     description: "Turn your WhatsApp chats into a professional online store in minutes.",
     siteName: "StoreLink",
-    images: [
-      {
-        url: "/og-image.png", // Ensure you add this image to your public folder later
-        width: 1200,
-        height: 630,
-      },
-    ],
     locale: "en_NG",
     type: "website",
   },

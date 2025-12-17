@@ -4,6 +4,7 @@ import StoreFront from "@/components/StoreFront";
 import type { Metadata } from "next"; 
 import { shuffleArray } from "@/utils/shuffle";
 import ViewTracker from "@/components/ViewTracker";
+import { AlertTriangle, Lock } from "lucide-react"; // 👈 Added Icons
 
 export const dynamic = 'force-dynamic';
 
@@ -48,6 +49,24 @@ export default async function VendorStorePage({ params }: PageProps) {
     .single();
 
   if (!store) return notFound();
+
+  if (store.subscription_expiry && new Date(store.subscription_expiry) < new Date()) {
+     return (
+        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 text-center">
+           <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center mb-6">
+              <Lock size={32} className="text-gray-400" />
+           </div>
+           <h1 className="text-2xl font-black text-gray-900 mb-2">Store Unavailable</h1>
+           <p className="text-gray-500 max-w-md">
+             This store is currently inactive due to a subscription issue. 
+             Please contact the vendor directly or check back later.
+           </p>
+           <div className="mt-8 pt-8 border-t border-gray-200 w-full max-w-xs">
+              <p className="text-xs text-gray-400 font-mono">ERROR: SUB_EXPIRED</p>
+           </div>
+        </div>
+     );
+  }
 
   const { data: products } = await supabase
     .from("storefront_products")

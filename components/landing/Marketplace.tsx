@@ -18,13 +18,20 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
 
   const isPaidPlan = (plan?: string) => plan === 'premium' || plan === 'diamond';
 
+  const getRank = (plan?: string) => {
+     if (plan === 'diamond') return 3;
+     if (plan === 'premium') return 2;
+     return 1;
+  };
+
   const filteredProducts = products
     .filter(p => {
        const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
        const isPremiumStore = isPaidPlan(p.stores?.subscription_plan);
        return matchesSearch && isPremiumStore;
     })
-    .slice(0, 12); // 👈 Changed from 8 to 12
+    .sort((a, b) => getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan))
+    .slice(0, 12); 
 
   const filteredStores = stores
     .filter(s => {
@@ -32,7 +39,8 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
        const isPremiumStore = isPaidPlan(s.subscription_plan);
        return matchesSearch && isPremiumStore;
     })
-    .slice(0, 12); // 👈 Changed from 6 to 12
+    .sort((a, b) => getRank(b.subscription_plan) - getRank(a.subscription_plan))
+    .slice(0, 12); 
 
   return (
     <section id="marketplace" className="py-16 px-4 bg-gray-50 min-h-screen border-t border-gray-100">
@@ -65,13 +73,13 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
           <div className="
             /* MOBILE: Horizontal Slider with 2 Rows */
             grid 
-            grid-rows-2             /* Force 2 rows height */
-            grid-flow-col           /* Fill top-to-bottom, then left-to-right */
-            auto-cols-[45%]         /* Each column takes 85% width (shows peek of next) */
+            grid-rows-2 
+            grid-flow-col 
+            auto-cols-[45%] 
             gap-4 
-            overflow-x-auto         /* Allow horizontal scroll */
-            snap-x snap-mandatory   /* Smooth snapping */
-            pb-4                    /* Space for scrollbar */
+            overflow-x-auto 
+            snap-x snap-mandatory 
+            pb-4 
             
             /* DESKTOP: Standard Vertical Grid */
             md:grid-cols-4 

@@ -9,7 +9,7 @@ import { useCart } from "@/context/CartContext";
 
 interface FullMarketplaceClientProps {
   initialProducts: any[];
-  categories: { id: string; name: string; slug: string }[]; // 👈 Changed from 'stores'
+  categories: { id: string; name: string; slug: string }[]; 
 }
 
 export default function FullMarketplaceClient({ initialProducts, categories }: FullMarketplaceClientProps) {
@@ -22,7 +22,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
   const [page, setPage] = useState(Math.ceil(initialProducts.length / PAGE_SIZE));
   
   const [search, setSearch] = useState("");
-  // 👇 Filtering by Category Slug now
   const [selectedCategory, setSelectedCategory] = useState("all"); 
   const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
 
@@ -36,6 +35,12 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     addToCart(product, storeData as any);
     setToast({ show: true, msg: `Added ${product.name} to bag` });
     setTimeout(() => setToast({ show: false, msg: "" }), 3000);
+  };
+
+  const getRank = (plan?: string) => {
+     if (plan === 'diamond') return 3;
+     if (plan === 'premium') return 2;
+     return 1;
   };
 
   useEffect(() => {
@@ -54,6 +59,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
       }
 
       const { data } = await query;
+      // Note: We don't sort here by default to keep "Browse" fair.
       setProducts(data || []);
       setHasMore(data && data.length === PAGE_SIZE ? true : false);
       setLoading(false);
@@ -62,8 +68,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     if (selectedCategory !== "all") {
       fetchFiltered();
     } else if (page === 1) {
-        // Reset to initial if 'all' is clicked and we aren't using the shuffled initial data
-        setProducts(initialProducts);
+        setProducts(initialProducts); 
     }
   }, [selectedCategory]);
 
@@ -93,7 +98,13 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     setLoading(false);
   };
 
-  const filteredProducts = products.filter((p: any) => p.name.toLowerCase().includes(search.toLowerCase()));
+  let filteredProducts = products.filter((p: any) => p.name.toLowerCase().includes(search.toLowerCase()));
+
+  if (search.length > 0) {
+     filteredProducts = filteredProducts.sort((a: any, b: any) => {
+        return getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan);
+     });
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">

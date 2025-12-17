@@ -8,7 +8,6 @@ export const dynamic = 'force-dynamic';
 
 export default async function MarketplacePage() {
   
-  // 1. Fetch Products
   const { data: products } = await supabase
     .from("storefront_products") 
     .select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category)") 
@@ -18,11 +17,10 @@ export default async function MarketplacePage() {
 
   const shuffledProducts = shuffleArray(products || []);
 
-  // 2. Fetch Categories (Global Only)
   const { data: categories } = await supabase
     .from("categories")
     .select("id, name, slug")
-    .is("store_id", null) // 👈 THIS IS THE FIX
+    .is("store_id", null) 
     .order("name", { ascending: true });
 
   return (
@@ -51,10 +49,10 @@ export default async function MarketplacePage() {
 
        <footer className="bg-white border-t border-gray-200 py-8 mt-auto">
           <div className="max-w-6xl mx-auto px-4 text-center">
-             <p className="font-extrabold text-gray-300 text-2xl mb-2 flex items-center justify-center gap-2">
-                <LayoutDashboard className="text-gray-200"/> StoreLink
-             </p>
-             <p className="text-xs text-gray-300 mt-6">© {new Date().getFullYear()} StoreLink. All rights reserved.</p>
+              <p className="font-extrabold text-gray-300 text-2xl mb-2 flex items-center justify-center gap-2">
+                 <LayoutDashboard className="text-gray-200"/> StoreLink
+              </p>
+              <p className="text-xs text-gray-300 mt-6">© {new Date().getFullYear()} StoreLink. All rights reserved.</p>
           </div>
        </footer>
 
