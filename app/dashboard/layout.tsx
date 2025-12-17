@@ -6,7 +6,7 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { 
   Loader2, LayoutDashboard, ShoppingBag, Bell, Settings, LogOut, 
-  Menu, X, Crown, AlertTriangle 
+  Menu, X, Crown, BadgeCheck, AlertTriangle 
 } from "lucide-react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -52,6 +52,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { name: "Orders", href: "/dashboard/orders", icon: ShoppingBag },
     { name: "Notifications", href: "/dashboard/notifications", icon: Bell },
     { name: "Subscription", href: "/dashboard/subscription", icon: Crown },
+    { name: "Verification", href: "/dashboard/verification", icon: BadgeCheck },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
 

@@ -12,16 +12,18 @@ import {
   Settings, 
   Megaphone,
   Menu,
-  X   
+  X,
+  BadgeCheck  
 } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // 👈 State for mobile toggle
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const links = [
     { name: "Overview", href: "/admin", icon: LayoutDashboard },
     { name: "Manage Stores", href: "/admin/stores", icon: Store },
+    { name: "Verifications", href: "/admin/verifications", icon: BadgeCheck },
     { name: "Inbox / Support", href: "/admin/messages", icon: Mail },
     { name: "Broadcast", href: "/admin/broadcast", icon: Megaphone },
     { name: "Settings", href: "/admin/settings", icon: Settings },

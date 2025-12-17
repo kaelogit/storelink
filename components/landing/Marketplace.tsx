@@ -71,32 +71,14 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
         {view === 'products' ? (
           
           <div className="
-            /* MOBILE: Horizontal Slider with 2 Rows */
-            grid 
-            grid-rows-2 
-            grid-flow-col 
-            auto-cols-[45%] 
-            gap-4 
-            overflow-x-auto 
-            snap-x snap-mandatory 
-            pb-4 
-            
-            /* DESKTOP: Standard Vertical Grid */
-            md:grid-cols-4 
-            md:grid-rows-none 
-            md:grid-flow-row 
-            md:auto-cols-auto 
-            md:overflow-visible
-            md:pb-0
+            grid grid-rows-2 grid-flow-col auto-cols-[45%] gap-4 overflow-x-auto snap-x snap-mandatory pb-4 
+            md:grid-cols-4 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0
           ">
             {filteredProducts.map(product => (
               <Link 
                 href={`/product/${product.id}`}
                 key={product.id} 
-                className="
-                  snap-start 
-                  bg-white p-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition group cursor-pointer block h-full
-                "
+                className="snap-start bg-white p-2 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition group cursor-pointer block h-full"
               >
                 <div className="aspect-square bg-gray-100 rounded-xl mb-3 relative overflow-hidden">
                   {product.image_urls?.[0] ? (
@@ -105,6 +87,13 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                     <div className="w-full h-full flex items-center justify-center text-gray-300"><Package /></div>
                   )}
                   
+                  {/* 👇 RESTORED: The TOP Badge for Diamond Users */}
+                  {product.stores?.subscription_plan === 'diamond' && (
+                    <span className="absolute top-2 left-2 bg-purple-600/90 backdrop-blur-md text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-sm flex items-center gap-1 z-20">
+                       <Gem size={10} className="fill-white"/> TOP
+                    </span>
+                  )}
+
                   <button 
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); onAddToCart(product); }} 
                     className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-900 hover:text-white transition z-10"
@@ -117,8 +106,16 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                   
                   <div className="flex items-center gap-1 text-xs text-gray-400 mb-1">
                       <span className="truncate max-w-[100px]">{product.stores?.name}</span>
-                      {product.stores?.subscription_plan === 'diamond' && <Gem size={10} className="text-purple-600" />}
-                      {product.stores?.subscription_plan === 'premium' && <BadgeCheck size={10} className="text-blue-600" />}
+                      
+                      {/* 1. Verified Identity (Blue Tick) */}
+                      {product.stores?.verification_status === 'verified' && (
+                        <BadgeCheck size={12} className="text-blue-500 fill-blue-50" />
+                      )}
+
+                      {/* 2. Diamond Status (Purple Gem Icon) */}
+                      {product.stores?.subscription_plan === 'diamond' && (
+                        <Gem size={12} className="text-purple-600" />
+                      )}
                   </div>
 
                   <p className="text-emerald-600 font-bold text-sm">₦{product.price.toLocaleString()}</p>
@@ -130,32 +127,14 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
         ) : (
           
           <div className="
-            /* MOBILE: Horizontal Slider with 2 Rows */
-            grid 
-            grid-rows-2 
-            grid-flow-col 
-            auto-cols-[75%] 
-            gap-4 
-            overflow-x-auto 
-            snap-x snap-mandatory 
-            pb-4
-
-            /* DESKTOP: Standard Vertical Grid */
-            md:grid-cols-3 
-            md:grid-rows-none 
-            md:grid-flow-row 
-            md:auto-cols-auto 
-            md:overflow-visible 
-            md:pb-0
+            grid grid-rows-2 grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto snap-x snap-mandatory pb-4
+            md:grid-cols-3 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0
           ">
             {filteredStores.map(store => (
               <a 
                 href={`/${store.slug}`} 
                 key={store.id} 
-                className="
-                  snap-start
-                  bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4 h-full
-                "
+                className="snap-start bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4 h-full"
               >
                 <div className="w-16 h-16 bg-gray-100 rounded-full overflow-hidden relative border border-gray-100 shrink-0">
                   {store.logo_url ? <Image src={store.logo_url} alt="" fill className="object-cover" /> : null}
@@ -163,8 +142,16 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                 <div className="min-w-0">
                    <h3 className="font-bold text-gray-900 flex items-center gap-1 text-sm truncate">
                      <span className="truncate">{store.name}</span>
-                     {store.subscription_plan === 'diamond' && <Gem size={14} className="text-purple-600 fill-purple-50 shrink-0" />}
-                     {store.subscription_plan === 'premium' && <BadgeCheck size={14} className="text-blue-600 fill-blue-50 shrink-0" />}
+                     
+                     {/* 1. Verified Identity (Blue Tick) */}
+                     {store.verification_status === 'verified' && (
+                       <BadgeCheck size={14} className="text-blue-500 fill-blue-50 shrink-0" />
+                     )}
+
+                     {/* 2. Diamond Status (Purple Gem) */}
+                     {store.subscription_plan === 'diamond' && (
+                       <Gem size={14} className="text-purple-600 fill-purple-50 shrink-0" />
+                     )}
                    </h3>
                    <p className="text-xs text-gray-500 mt-1 truncate">{store.location}</p>
                    <div className="text-xs text-emerald-600 font-bold mt-1 flex items-center gap-1">

@@ -16,7 +16,7 @@ export default async function LandingPage() {
 
   const { data: products } = await supabase
     .from("storefront_products") 
-    .select("*, stores(name, slug, subscription_plan)")
+    .select("*, stores(name, slug, logo_url, subscription_plan, verification_status)")
     .in("store_id", premiumStoreIds) 
     .eq("is_active", true)
     .limit(100)

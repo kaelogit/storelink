@@ -50,7 +50,8 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
       let query = supabase
         .from("storefront_products")
-        .select("*, stores!inner(name, slug, subscription_plan, category)") 
+        // 👇 UPDATED: Added 'verification_status' to the select
+        .select("*, stores!inner(name, slug, subscription_plan, category, verification_status)") 
         .order("created_at", { ascending: false })
         .range(0, PAGE_SIZE - 1);
 
@@ -59,7 +60,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
       }
 
       const { data } = await query;
-      // Note: We don't sort here by default to keep "Browse" fair.
       setProducts(data || []);
       setHasMore(data && data.length === PAGE_SIZE ? true : false);
       setLoading(false);
@@ -79,7 +79,8 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
     let query = supabase
       .from("storefront_products")
-      .select("*, stores!inner(name, slug, subscription_plan, category)")
+      // 👇 UPDATED: Added 'verification_status' here too
+      .select("*, stores!inner(name, slug, subscription_plan, category, verification_status)")
       .order("created_at", { ascending: false })
       .range(from, to);
 
@@ -170,6 +171,11 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
               
               <div className="flex items-center gap-1 text-xs text-gray-500 mb-2 truncate">
                 <span className="truncate">{product.stores?.name}</span>
+                
+                {product.stores?.verification_status === 'verified' && (
+                   <BadgeCheck size={14} className="text-blue-500 fill-blue-50/50" />
+                )}
+
                 {product.stores?.subscription_plan === 'diamond' && <Gem size={12} className="text-purple-600 fill-purple-50 shrink-0"/>}
                 {product.stores?.subscription_plan === 'premium' && <BadgeCheck size={12} className="text-blue-600 fill-blue-50 shrink-0"/>}
               </div>

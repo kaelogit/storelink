@@ -9,16 +9,19 @@ export interface Store {
   logo_url: string | null;
   cover_image_url: string | null;
   
-  // Socials
   instagram_url?: string | null;
   tiktok_url?: string | null;
   instagram_handle?: string; 
 
-  // Stats & Plan
+  verification_status?: 'none' | 'pending' | 'verified' | 'rejected';
+  verification_doc_url?: string;
+  verification_note?: string;
+
   view_count?: number; // <--- ADDED THIS (Needed for Dashboard Stats)
   subscription_plan: 'free' | 'premium' | 'diamond'; // <--- ADDED DIAMOND
   subscription_status?: 'active' | 'inactive' | 'expired'; // <--- ADDED THIS (Good for logic)
 }
+
 
 export interface Category {
   id: string;
@@ -38,7 +41,6 @@ export interface Product {
   image_urls: string[];
   is_active: boolean;
   
-  // Joins (Data coming from other tables)
   stores?: Store; 
   categories?: { name: string }; // <--- ADDED THIS (Needed for Dashboard & Marketplace)
 }

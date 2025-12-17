@@ -6,33 +6,31 @@ import Link from "next/link";
 import { 
   MapPin, Info, Copy, Check, ShoppingBag, 
   X, Instagram, Search, Package, Phone, LayoutDashboard, ChevronRight,
-  BadgeCheck, Gem // <--- Added these two icons
+  BadgeCheck, Gem 
 } from "lucide-react";
 import { Store } from "@/types";
 import { useCart } from "@/context/CartContext";
 
-// --- CUSTOM ICONS ---
 const TiktokIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
 );
 
-// --- HELPER: BADGE COMPONENT (The only new addition) ---
-const VerificationBadge = ({ plan }: { plan?: string }) => {
-  if (plan === 'diamond') {
-    return (
-      <span className="inline-flex items-center justify-center ml-1.5 align-middle" title="Diamond Vendor">
-        <Gem size={18} className="text-purple-600 fill-purple-50" />
-      </span>
-    );
-  }
-  if (plan === 'premium') {
-    return (
-      <span className="inline-flex items-center justify-center ml-1.5 align-middle" title="Verified Premium">
-        <BadgeCheck size={18} className="text-blue-600 fill-blue-50" />
-      </span>
-    );
-  }
-  return null;
+const VerificationBadge = ({ store }: { store: any }) => {
+  return (
+    <div className="inline-flex items-center gap-1 ml-1.5 align-middle">
+      {store.verification_status === 'verified' && (
+        <span title="Verified Vendor">
+          <BadgeCheck size={18} className="text-blue-500 fill-blue-50" />
+        </span>
+      )}
+      
+      {store.subscription_plan === 'diamond' && (
+        <span title="Diamond Vendor">
+          <Gem size={18} className="text-purple-600 fill-purple-50" />
+        </span>
+      )}
+    </div>
+  );
 };
 
 interface StoreFrontProps {
@@ -68,7 +66,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col">
       
-      {/* --- 1. SOFT STICKY HEADER --- */}
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-100 h-16 flex items-center justify-between px-4 md:px-8 shadow-sm">
          <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-1 group">
@@ -82,7 +79,7 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                </div>
                <h1 className="font-bold text-gray-900 truncate max-w-[150px] md:max-w-none flex items-center">
                  {store.name}
-                 <VerificationBadge plan={store.subscription_plan} />
+                 <VerificationBadge store={store} />
                </h1>
             </div>
          </div>
@@ -94,7 +91,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
          </div>
       </nav>
 
-      {/* --- 2. HERO SECTION --- */}
       <div className="relative w-full bg-gray-50 border-b border-gray-100">
          <div className="w-full h-48 md:h-64 relative overflow-hidden bg-gray-200">
             {store.cover_image_url ? (
@@ -122,7 +118,7 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                   <div className="hidden md:block mb-2">
                      <h2 className="text-3xl font-extrabold text-gray-900 flex items-center gap-2">
                        {store.name}
-                       <VerificationBadge plan={store.subscription_plan} />
+                       <VerificationBadge store={store} />
                      </h2>
                      <p className="text-gray-500 flex items-center gap-1 text-sm mt-1"><MapPin size={14}/> {store.location}</p>
                   </div>
@@ -139,11 +135,10 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                </div>
             </div>
 
-            {/* Mobile Bio */}
             <div className="mt-4 md:hidden">
                <h2 className="text-2xl font-extrabold text-gray-900 flex items-center gap-2">
                  {store.name}
-                 <VerificationBadge plan={store.subscription_plan} />
+                 <VerificationBadge store={store} />
                </h2>
                <p className="text-gray-500 text-sm mt-1">{store.description || "Welcome to our digital storefront."}</p>
                <div className="flex items-center gap-4 mt-3 text-xs font-medium text-gray-400">
@@ -155,7 +150,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
          </div>
       </div>
 
-      {/* --- 3. STICKY CATEGORY BAR --- */}
       <div className="sticky top-16 z-30 bg-white border-b border-gray-100 shadow-sm">
          <div className="max-w-7xl mx-auto px-4 md:px-8 py-3">
             <div className="flex gap-2 overflow-x-auto scrollbar-hide items-center">
@@ -188,7 +182,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
          </div>
       </div>
 
-      {/* --- 4. PRODUCT GRID --- */}
       <div className="flex-1 bg-gray-50/50">
          <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
             {filteredProducts.length === 0 ? (
@@ -201,7 +194,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                   {filteredProducts.map(product => (
                     <div key={product.id} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-                       {/* Image Area */}
                        <Link href={`/product/${product.id}`} className="block relative aspect-[4/5] bg-gray-100 overflow-hidden">
                           {product.image_urls?.[0] ? (
                             <Image 
@@ -217,7 +209,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                           )}
                        </Link>
 
-                       {/* Content Area */}
                        <div className="p-4 flex flex-col flex-1">
                           <div className="mb-2">
                              <p className="text-xs text-gray-400 font-medium mb-1">{product.categories?.name}</p>
@@ -248,7 +239,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
          </p>
       </footer>
 
-      {/* --- 6. FLOATING CART --- */}
       {cartCount > 0 && !isCartOpen && (
         <button 
           onClick={() => setIsCartOpen(true)} 
@@ -261,7 +251,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
         </button>
       )}
 
-      {/* --- 7. INFO DRAWER --- */}
       {isInfoOpen && (
          <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex justify-end animate-in fade-in">
             <div className="absolute inset-0" onClick={() => setIsInfoOpen(false)}></div>
@@ -272,26 +261,23 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                   <button onClick={() => setIsInfoOpen(false)} className="p-2 bg-gray-100 rounded-full hover:bg-gray-200"><X size={20}/></button>
                </div>
 
-               {/* Branding in Drawer */}
                <div className="text-center mb-8">
                   <div className="w-24 h-24 bg-gray-100 rounded-2xl mx-auto mb-4 overflow-hidden border-2 border-gray-100 relative">
                       {store.logo_url ? <Image src={store.logo_url} alt="" fill className="object-cover" /> : null}
                   </div>
                   <h3 className="font-extrabold text-2xl text-gray-900 flex items-center justify-center gap-2">
                     {store.name}
-                    <VerificationBadge plan={store.subscription_plan} />
+                    <VerificationBadge store={store} />
                   </h3>
                   <p className="text-gray-500 text-sm mt-1">{store.location}</p>
                </div>
 
-               {/* Bio */}
                <div className="bg-gray-50 p-5 rounded-2xl mb-8 border border-gray-100">
                   <p className="text-gray-700 text-sm leading-relaxed italic text-center">
                      "{store.description || 'Welcome to our store! We sell amazing products.'}"
                   </p>
                </div>
 
-               {/* Links */}
                <div className="space-y-3 mt-auto">
                    <h4 className="font-bold text-gray-900 text-sm uppercase tracking-wide mb-2">Connect</h4>
                    

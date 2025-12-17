@@ -2,20 +2,13 @@
   "/[slug]/page": "app/[slug]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/admin/broadcast/page": "app/admin/broadcast/page.js",
-  "/admin/messages/page": "app/admin/messages/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/settings/page": "app/admin/settings/page.js",
   "/admin/stores/page": "app/admin/stores/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
-  "/dashboard/orders/page": "app/dashboard/orders/page.js",
+  "/admin/verifications/page": "app/admin/verifications/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/settings/page": "app/dashboard/settings/page.js",
   "/dashboard/subscription/page": "app/dashboard/subscription/page.js",
+  "/dashboard/verification/page": "app/dashboard/verification/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
-  "/login/page": "app/login/page.js",
   "/marketplace/page": "app/marketplace/page.js",
   "/page": "app/page.js",
-  "/product/[id]/page": "app/product/[id]/page.js",
-  "/report/page": "app/report/page.js"
+  "/product/[id]/page": "app/product/[id]/page.js"
 }

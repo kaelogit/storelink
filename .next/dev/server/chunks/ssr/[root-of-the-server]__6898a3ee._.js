@@ -110,7 +110,7 @@ const dynamic = 'force-dynamic';
 async function LandingPage() {
     const { data: premiumStores } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("id").neq("subscription_plan", "free");
     const premiumStoreIds = premiumStores?.map((s)=>s.id) || [];
-    const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores(name, slug, subscription_plan)").in("store_id", premiumStoreIds).eq("is_active", true).limit(100).order("created_at", {
+    const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores(name, slug, logo_url, subscription_plan, verification_status)").in("store_id", premiumStoreIds).eq("is_active", true).limit(100).order("created_at", {
         ascending: false
     });
     const { data: stores } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*, subscription_plan").neq("subscription_plan", "free").limit(50);
