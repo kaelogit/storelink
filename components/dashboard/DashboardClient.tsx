@@ -39,8 +39,15 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
   const deleteProduct = async (id: string) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
+    
     const { error } = await supabase.from("products").delete().eq("id", id);
-    if (!error) router.refresh();
+    
+    if (error) {
+       console.error(error);
+       alert("Could not delete product.");
+    } else {
+       router.refresh(); 
+    }
   };
 
   const openEditModal = (product: any) => {

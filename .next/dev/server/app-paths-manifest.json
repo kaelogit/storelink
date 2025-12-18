@@ -2,6 +2,7 @@
   "/[slug]/page": "app/[slug]/page.js",
   "/admin/verifications/page": "app/admin/verifications/page.js",
   "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js",
   "/dashboard/subscription/page": "app/dashboard/subscription/page.js",
   "/dashboard/verification/page": "app/dashboard/verification/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
