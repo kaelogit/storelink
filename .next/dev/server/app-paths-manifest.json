@@ -1,8 +1,5 @@
 {
   "/[slug]/page": "app/[slug]/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/admin/broadcast/page": "app/admin/broadcast/page.js",
-  "/admin/stores/page": "app/admin/stores/page.js",
   "/admin/verifications/page": "app/admin/verifications/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/subscription/page": "app/dashboard/subscription/page.js",

@@ -514,7 +514,7 @@ function Hero() {
                                             className: "bg-gray-900 text-white p-3 pt-6 text-center relative",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-[10px] md:text-xs font-medium opacity-70",
-                                                children: "storelink.ng/miras-perfume"
+                                                children: "storelink.ng/lemar-essential"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/Hero.tsx",
                                                 lineNumber: 65,
@@ -540,7 +540,7 @@ function Hero() {
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             className: "text-[10px]",
-                                                            children: "Search perfumes..."
+                                                            children: "Search Your Essentials..."
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/landing/Hero.tsx",
                                                             lineNumber: 72,
@@ -559,7 +559,7 @@ function Hero() {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-sm",
-                                                                children: "M"
+                                                                children: "L"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/landing/Hero.tsx",
                                                                 lineNumber: 77,
@@ -569,7 +569,7 @@ function Hero() {
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                                         className: "font-bold text-gray-900 text-sm",
-                                                                        children: "Mira's Perfume"
+                                                                        children: "Lemar Essential"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/landing/Hero.tsx",
                                                                         lineNumber: 79,
@@ -577,7 +577,7 @@ function Hero() {
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                         className: "text-[10px] text-gray-500",
-                                                                        children: "Lagos • Luxury Scents"
+                                                                        children: "Lagos • Luxury Wears"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/landing/Hero.tsx",
                                                                         lineNumber: 80,
@@ -609,7 +609,7 @@ function Hero() {
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden",
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                        src: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=300&q=80",
+                                                                        src: "https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=1974&auto=format&fit=crop",
                                                                         alt: "Perfume 1",
                                                                         className: "object-cover w-full h-full"
                                                                     }, void 0, false, {
@@ -624,7 +624,7 @@ function Hero() {
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                     className: "font-bold text-[10px] text-gray-900 truncate",
-                                                                    children: "Chanel No. 5"
+                                                                    children: "Nike Air Jordan 1"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/landing/Hero.tsx",
                                                                     lineNumber: 90,
@@ -650,7 +650,7 @@ function Hero() {
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden",
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                        src: "https://images.unsplash.com/photo-1700522604220-471669e4364c?q=80&w=300&auto=format&fit=crop",
+                                                                        src: "https://images.unsplash.com/photo-1682364853446-db043f643207?q=80&w=1170&auto=format&fit=crop",
                                                                         alt: "Perfume 2",
                                                                         className: "object-cover w-full h-full"
                                                                     }, void 0, false, {
@@ -665,7 +665,7 @@ function Hero() {
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                     className: "font-bold text-[10px] text-gray-900 truncate",
-                                                                    children: "Dior Sauvage"
+                                                                    children: "Gucci"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/landing/Hero.tsx",
                                                                     lineNumber: 98,
@@ -691,7 +691,7 @@ function Hero() {
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden",
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                        src: "https://images.unsplash.com/photo-1663525056290-fa420c335b81?q=80&w=300&auto=format&fit=crop",
+                                                                        src: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=880&auto=format&fit=crop",
                                                                         alt: "Perfume 3",
                                                                         className: "object-cover w-full h-full"
                                                                     }, void 0, false, {
@@ -706,7 +706,7 @@ function Hero() {
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                     className: "font-bold text-[10px] text-gray-900 truncate",
-                                                                    children: "YSL Libre"
+                                                                    children: "Rayban"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/landing/Hero.tsx",
                                                                     lineNumber: 106,
@@ -732,7 +732,7 @@ function Hero() {
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden",
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                        src: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=300&auto=format&fit=crop",
+                                                                        src: "https://images.unsplash.com/flagged/photo-1555895312-bbc472c964f3?q=80&w=688&auto=format&fit=crop",
                                                                         alt: "Perfume 4",
                                                                         className: "object-cover w-full h-full"
                                                                     }, void 0, false, {
@@ -747,7 +747,7 @@ function Hero() {
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                     className: "font-bold text-[10px] text-gray-900 truncate",
-                                                                    children: "Versace Eros"
+                                                                    children: "Kid wears"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/landing/Hero.tsx",
                                                                     lineNumber: 114,

@@ -62,22 +62,22 @@ export default function Hero() {
              <div className="relative z-10 bg-white rounded-[2.5rem] border-[6px] md:border-8 border-gray-900 shadow-2xl overflow-hidden aspect-[9/18] max-h-[500px] md:max-h-[600px] mx-auto rotate-[-2deg] hover:rotate-0 transition duration-500 group">
                 
                 <div className="bg-gray-900 text-white p-3 pt-6 text-center relative">
-                   <p className="text-[10px] md:text-xs font-medium opacity-70">storelink.ng/miras-perfume</p>
+                   <p className="text-[10px] md:text-xs font-medium opacity-70">storelink.ng/lemar-essential</p>
                 </div>
                 
                 <div className="p-3 space-y-3 bg-gray-50 h-full overflow-hidden relative pb-10">
                    
                    <div className="bg-white p-2 rounded-lg border border-gray-100 flex items-center gap-2 text-gray-300">
                       <Search size={14} /> 
-                      <span className="text-[10px]">Search perfumes...</span>
+                      <span className="text-[10px]">Search Your Essentials...</span>
                    </div>
 
                    <div className="bg-white p-3 rounded-xl border border-gray-100">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-sm">M</div>
+                        <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-sm">L</div>
                         <div>
-                           <h3 className="font-bold text-gray-900 text-sm">Mira's Perfume</h3>
-                           <p className="text-[10px] text-gray-500">Lagos • Luxury Scents</p>
+                           <h3 className="font-bold text-gray-900 text-sm">Lemar Essential</h3>
+                           <p className="text-[10px] text-gray-500">Lagos • Luxury Wears</p>
                         </div>
                       </div>
                    </div>
@@ -85,33 +85,33 @@ export default function Hero() {
                    <div className="grid grid-cols-2 gap-2">
                       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
                          <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=300&q=80" alt="Perfume 1" className="object-cover w-full h-full" />
+                            <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=1974&auto=format&fit=crop" alt="Perfume 1" className="object-cover w-full h-full" />
                          </div>
-                         <p className="font-bold text-[10px] text-gray-900 truncate">Chanel No. 5</p>
+                         <p className="font-bold text-[10px] text-gray-900 truncate">Nike Air Jordan 1</p>
                          <p className="text-[10px] text-emerald-600 font-bold">₦85,000</p>
                       </div>
 
                       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
                          <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1700522604220-471669e4364c?q=80&w=300&auto=format&fit=crop" alt="Perfume 2" className="object-cover w-full h-full" />
+                            <img src="https://images.unsplash.com/photo-1682364853446-db043f643207?q=80&w=1170&auto=format&fit=crop" alt="Perfume 2" className="object-cover w-full h-full" />
                          </div>
-                         <p className="font-bold text-[10px] text-gray-900 truncate">Dior Sauvage</p>
+                         <p className="font-bold text-[10px] text-gray-900 truncate">Gucci</p>
                          <p className="text-[10px] text-emerald-600 font-bold">₦120,000</p>
                       </div>
 
                       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
                          <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1663525056290-fa420c335b81?q=80&w=300&auto=format&fit=crop" alt="Perfume 3" className="object-cover w-full h-full" />
+                            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=880&auto=format&fit=crop" alt="Perfume 3" className="object-cover w-full h-full" />
                          </div>
-                         <p className="font-bold text-[10px] text-gray-900 truncate">YSL Libre</p>
+                         <p className="font-bold text-[10px] text-gray-900 truncate">Rayban</p>
                          <p className="text-[10px] text-emerald-600 font-bold">₦95,000</p>
                       </div>
 
                       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
                          <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=300&auto=format&fit=crop" alt="Perfume 4" className="object-cover w-full h-full" />
+                            <img src="https://images.unsplash.com/flagged/photo-1555895312-bbc472c964f3?q=80&w=688&auto=format&fit=crop" alt="Perfume 4" className="object-cover w-full h-full" />
                          </div>
-                         <p className="font-bold text-[10px] text-gray-900 truncate">Versace Eros</p>
+                         <p className="font-bold text-[10px] text-gray-900 truncate">Kid wears</p>
                          <p className="text-[10px] text-emerald-600 font-bold">₦60,000</p>
                       </div>
                    </div>
