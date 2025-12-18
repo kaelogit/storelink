@@ -4847,3 +4847,379 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [16:32:02.047] Server  LOG      ✓ Compiled in 208ms
 [16:32:04.798] Server  LOG      ✓ Compiled in 251ms
 [16:32:14.404] Server  LOG      ✓ Compiled in 168ms
+[20:01:10.293] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:04:14.032] Server  LOG      ✓ Compiled in 208ms
+[20:04:14.342] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:04:18.169] Server  LOG      ✓ Compiled in 114ms
+[20:04:18.209] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:04:19.345] Server  LOG      ✓ Compiled in 125ms
+[20:04:19.387] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:04:22.761] Server  LOG      ✓ Compiled in 103ms
+[20:04:22.975] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:04:26.501] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:04:26.527] Server  LOG      ✓ Compiled in 172ms
+[20:04:29.292] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:04:29.323] Server  LOG      ✓ Compiled in 96ms
+[20:04:34.381] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:04:34.388] Server  LOG      ✓ Compiled in 106ms
+[20:08:03.943] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:08:03.948] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_landing_d8a80690._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:08:03.952] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[20:08:04.531] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:08:05.972] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:05.972] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:05.972] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:05.972] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:05.972] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:05.972] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:05.972] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:06.062] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:08:07.217] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:07.217] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:07.217] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:07.217] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:07.217] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:08:07.217] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:09:06.678] Server  LOG      ✓ Compiled in 641ms
+[20:09:07.225] Browser ERROR   uncaughtError: ReferenceError: T is not defined
+[20:09:07.225] Browser ERROR   uncaughtError: ReferenceError: T is not defined
+[20:09:08.917] Server  LOG      ✓ Compiled in 197ms
+[20:09:09.008] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:09:09.936] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_landing_ffb5ae65._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:09:09.938] Server  ERROR    ⨯ ReferenceError: Tiktok is not defined
+[20:09:10.054] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:09:10.709] Browser ERROR   uncaughtError: ReferenceError: Tiktok is not defined
+[20:09:11.710] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:09:13.463] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_landing_d8a80690._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:09:13.471] Server  ERROR    ⨯ ReferenceError: Tiktok is not defined
+[20:09:14.226] Browser ERROR   uncaughtError: ReferenceError: Tiktok is not defined
+[20:09:14.283] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:09:15.211] Browser ERROR   uncaughtError: ReferenceError: Tiktok is not defined
+[20:09:44.249] Server  LOG      ✓ Compiled in 16.2s
+[20:09:45.225] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-client] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:45.225] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-ssr] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:45.226] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-client] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:45.226] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-ssr] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:45.227] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-client] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:45.227] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-ssr] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:45.227] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-client] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:45.227] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-ssr] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:54.230] Server  LOG      ✓ Compiled in 906ms
+[20:09:54.510] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:09:55.440] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-client] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:55.440] Browser ERROR   ./components/landing/Footer.tsx:4:1
+Export Tiktok doesn't exist in target module
+  2 |
+  3 | import Link from "next/link";
+> 4 | import { Tiktok, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Footer() {
+  7 |   return (
+
+The export Tiktok was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.js [app-ssr] (ecmascript).
+Did you mean to import TicketIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/landing/Footer.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/landing/Footer.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./components/landing/LandingPageWrapper.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[20:09:57.774] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_landing_d8a80690._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:09:57.783] Server  ERROR    ⨯ ReferenceError: Tiktok is not defined
+[20:09:59.579] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:09:59.625] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_landing_d8a80690._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:09:59.668] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[20:10:00.668] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:10:01.288] Server  LOG      ✓ Compiled in 709ms
+[20:10:01.551] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:10:02.590] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:10:03.371] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[20:10:05.275] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:10:06.234] Browser ERROR   uncaughtError: ReferenceError: Tiktok is not defined
+[20:10:06.525] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:10:07.355] Browser ERROR   uncaughtError: Error: Module [project]/node_modules/lucide-react/dist/esm/icons/twitter.js [app-client] (ecmascript) <export default as Twitter> was instantiated because it was required from module [project]/components/landing/Footer.tsx [app-client] (ecmascript), but the module factory is not available. It might have been deleted in an HMR update.
+[20:11:45.211] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:45.211] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./components/landing/Footer.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[20:11:45.214] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:45.248] Server  LOG      ✓ Compiled in 355ms
+[20:11:46.382] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:46.383] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:46.383] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:46.384] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./components/landing/Footer.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[20:11:46.385] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:46.393] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:46.395] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:46.396] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./components/landing/Footer.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[20:11:46.396] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:46.397] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:46.398] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./components/landing/Footer.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[20:11:46.398] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:47.335] Server  LOG      ✓ Compiled in 197ms
+[20:11:47.401] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:47.401] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./components/landing/Footer.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[20:11:47.403] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:48.229] Server  LOG      ✓ Compiled in 201ms
+[20:11:48.783] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:48.784] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./components/landing/Footer.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[20:11:48.800] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[20:11:49.844] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:11:49.849] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_landing_d8a80690._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:11:49.852] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[20:11:50.341] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:11:50.343] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_landing_d8a80690._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:11:50.344] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[20:11:51.294] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:11:51.295] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_landing_d8a80690._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[20:11:51.296] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[20:11:51.626] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:11:52.033] Server  LOG      ✓ Compiled in 218ms
+[20:11:53.556] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:11:55.221] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:11:55.221] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:11:55.221] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:11:55.221] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:11:55.221] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:11:55.221] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:11:55.221] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[20:12:03.740] Server  LOG      ✓ Compiled in 166ms
+[20:15:05.511] Server  LOG      ✓ Compiled in 135ms
+[20:19:07.395] Server  LOG      ✓ Compiled in 127ms
+[20:19:11.964] Server  LOG      ✓ Compiled in 105ms
+[20:19:14.064] Server  LOG      ✓ Compiled in 145ms
+[20:19:18.125] Server  LOG      ✓ Compiled in 568ms
+[20:19:18.574] Server  LOG      ✓ Compiled in 128ms
+[20:19:23.749] Server  LOG      ✓ Compiled in 150ms

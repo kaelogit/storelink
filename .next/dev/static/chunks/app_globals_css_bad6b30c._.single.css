@@ -3863,6 +3863,12 @@
   }
 
   @media (hover: hover) {
+    .hover\:bg-black:hover {
+      background-color: var(--color-black);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:bg-blue-50:hover {
       background-color: var(--color-blue-50);
     }

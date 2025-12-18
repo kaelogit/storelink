@@ -3,6 +3,21 @@
 import Link from "next/link";
 import { Twitter, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
 
+const TiktokIcon = ({ size = 18 }: { size?: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+  </svg>
+);
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white pt-10 pb-8 px-6 font-sans border-t border-gray-800">
@@ -40,8 +55,12 @@ export default function Footer() {
           <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Follow Us</h4>
           <div className="flex gap-3">
              <a href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-emerald-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1"><Twitter size={18}/></a>
-             <a href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-pink-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1"><Instagram size={18}/></a>
+             <a href="https://www.instagram.com/storelink.ng" className="p-2 bg-gray-800 rounded-lg hover:bg-pink-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1"><Instagram size={18}/></a>
              <a href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-blue-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1"><Linkedin size={18}/></a>
+             
+             <a href="https://tiktok.com/@storelink.ng" target="_blank" className="p-2 bg-gray-800 rounded-lg hover:bg-black hover:text-white text-gray-400 transition transform hover:-translate-y-1">
+                <TiktokIcon size={18}/>
+             </a>
           </div>
         </div>
 
@@ -50,7 +69,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
          <p>© 2025 StoreLink Inc. Lagos, Nigeria.</p>
          <div className="flex gap-6">
-            <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
+            <Link href="/about" className="hover:text-white transition">About Us</Link>
             <Link href="/privacy" className="hover:text-gray-300 transition">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-gray-300 transition">Terms of Service</Link>
          </div>

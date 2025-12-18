@@ -68,7 +68,7 @@ export default function AboutPage() {
                <div className="bg-gray-100 p-3 rounded-full"><Mail size={20}/></div>
                <div>
                  <h4 className="font-bold">Email Us</h4>
-                 <p className="text-gray-500 text-sm">ksqkareem@gmail.com</p>
+                 <p className="text-gray-500 text-sm">hello@storelink.ng</p>
                </div>
             </div>
             <div className="flex items-start gap-4">
