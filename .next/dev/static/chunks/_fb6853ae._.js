@@ -20,6 +20,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shopping-bag.js [app-client] (ecmascript) <export default as ShoppingBag>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/badge-check.js [app-client] (ecmascript) <export default as BadgeCheck>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Gem$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/gem.js [app-client] (ecmascript) <export default as Gem>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$context$2f$CartContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/context/CartContext.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -61,6 +62,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                 msg: ""
             }), 3000);
     };
+    // Helper: Diamond Priority Sort
     const getRank = (plan)=>{
         if (plan === 'diamond') return 3;
         if (plan === 'premium') return 2;
@@ -72,7 +74,8 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                 "FullMarketplaceClient.useEffect.fetchFiltered": async ()=>{
                     setLoading(true);
                     setPage(1);
-                    let query = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores!inner(name, slug, subscription_plan, category, verification_status)").order("created_at", {
+                    // UPDATED: Added is_verified to the select query
+                    let query = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores!inner(name, slug, subscription_plan, category, is_verified)").order("created_at", {
                         ascending: false
                     }).range(0, PAGE_SIZE - 1);
                     if (selectedCategory !== "all") {
@@ -99,7 +102,8 @@ function FullMarketplaceClient({ initialProducts, categories }) {
         setLoading(true);
         const from = page * PAGE_SIZE;
         const to = from + PAGE_SIZE - 1;
-        let query = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores!inner(name, slug, subscription_plan, category, verification_status)").order("created_at", {
+        // UPDATED: Added is_verified to the loadMore query
+        let query = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores!inner(name, slug, subscription_plan, category, is_verified)").order("created_at", {
             ascending: false
         }).range(from, to);
         if (selectedCategory !== "all") {
@@ -117,6 +121,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
         }
         setLoading(false);
     };
+    // SEARCH LOGIC
     let filteredProducts = products.filter((p)=>p.name.toLowerCase().includes(search.toLowerCase()));
     if (search.length > 0) {
         filteredProducts = filteredProducts.sort((a, b)=>{
@@ -138,7 +143,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                     className: "absolute left-4 top-3.5 text-gray-400 w-5 h-5"
                                 }, void 0, false, {
                                     fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                    lineNumber: 114,
+                                    lineNumber: 119,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -148,13 +153,13 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                     onChange: (e)=>setSearch(e.target.value)
                                 }, void 0, false, {
                                     fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                    lineNumber: 115,
+                                    lineNumber: 120,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                            lineNumber: 113,
+                            lineNumber: 118,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -164,7 +169,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                     className: "absolute left-4 top-3.5 text-gray-500 w-4 h-4"
                                 }, void 0, false, {
                                     fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                    lineNumber: 124,
+                                    lineNumber: 129,
                                     columnNumber: 14
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -177,7 +182,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                             children: "All Categories"
                                         }, void 0, false, {
                                             fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                            lineNumber: 130,
+                                            lineNumber: 135,
                                             columnNumber: 16
                                         }, this),
                                         (categories || []).map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -185,30 +190,30 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                                 children: cat.name
                                             }, cat.id, false, {
                                                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                                lineNumber: 132,
+                                                lineNumber: 137,
                                                 columnNumber: 18
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                    lineNumber: 125,
+                                    lineNumber: 130,
                                     columnNumber: 14
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                            lineNumber: 123,
+                            lineNumber: 128,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                    lineNumber: 112,
+                    lineNumber: 117,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                lineNumber: 111,
+                lineNumber: 116,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -227,18 +232,18 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                         className: "object-cover"
                                     }, void 0, false, {
                                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 154,
                                         columnNumber: 17
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-full h-full flex items-center justify-center text-gray-300",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"], {}, void 0, false, {
                                             fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                            lineNumber: 150,
+                                            lineNumber: 156,
                                             columnNumber: 95
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                        lineNumber: 150,
+                                        lineNumber: 156,
                                         columnNumber: 17
                                     }, this),
                                     product.stores?.subscription_plan === 'diamond' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -249,14 +254,14 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                                 className: "fill-white"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                                lineNumber: 155,
+                                                lineNumber: 162,
                                                 columnNumber: 20
                                             }, this),
                                             " TOP"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                        lineNumber: 154,
+                                        lineNumber: 161,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -271,18 +276,18 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                             strokeWidth: 3
                                         }, void 0, false, {
                                             fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                            lineNumber: 163,
+                                            lineNumber: 170,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                        lineNumber: 159,
+                                        lineNumber: 166,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                lineNumber: 146,
+                                lineNumber: 152,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -293,7 +298,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                         children: product.name
                                     }, void 0, false, {
                                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                        lineNumber: 168,
+                                        lineNumber: 175,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -304,29 +309,37 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                                 children: product.stores?.name
                                             }, void 0, false, {
                                                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                                lineNumber: 171,
+                                                lineNumber: 179,
                                                 columnNumber: 17
-                                            }, this),
-                                            product.stores?.verification_status === 'verified' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
-                                                size: 12,
-                                                className: "text-blue-600 fill-blue-50 shrink-0"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                                lineNumber: 174,
-                                                columnNumber: 19
                                             }, this),
                                             product.stores?.subscription_plan === 'diamond' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Gem$3e$__["Gem"], {
                                                 size: 12,
                                                 className: "text-purple-600 fill-purple-50 shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                                lineNumber: 178,
+                                                lineNumber: 183,
+                                                columnNumber: 19
+                                            }, this),
+                                            product.stores?.subscription_plan === 'premium' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
+                                                size: 12,
+                                                className: "text-amber-500 fill-amber-50 shrink-0"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
+                                                lineNumber: 188,
+                                                columnNumber: 19
+                                            }, this),
+                                            product.stores?.is_verified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
+                                                size: 12,
+                                                className: "text-blue-600 fill-blue-50 shrink-0"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
+                                                lineNumber: 193,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                        lineNumber: 170,
+                                        lineNumber: 178,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -340,7 +353,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                                lineNumber: 184,
+                                                lineNumber: 198,
                                                 columnNumber: 17
                                             }, this),
                                             product.stock_quantity === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -348,30 +361,30 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                                                 children: "Sold Out"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                                lineNumber: 186,
+                                                lineNumber: 200,
                                                 columnNumber: 20
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                        lineNumber: 183,
+                                        lineNumber: 197,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                                lineNumber: 167,
+                                lineNumber: 174,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, product.id, true, {
                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                        lineNumber: 141,
+                        lineNumber: 147,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                lineNumber: 139,
+                lineNumber: 145,
                 columnNumber: 7
             }, this),
             toast.show && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -382,7 +395,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                         className: "text-green-400"
                     }, void 0, false, {
                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                        lineNumber: 196,
+                        lineNumber: 211,
                         columnNumber: 12
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -390,13 +403,13 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                         children: toast.msg
                     }, void 0, false, {
                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                        lineNumber: 197,
+                        lineNumber: 212,
                         columnNumber: 12
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                lineNumber: 195,
+                lineNumber: 210,
                 columnNumber: 9
             }, this),
             hasMore && !search && selectedCategory === 'all' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -409,17 +422,17 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                         className: "animate-spin"
                     }, void 0, false, {
                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                        lineNumber: 204,
+                        lineNumber: 220,
                         columnNumber: 25
                     }, this) : "Load More Products"
                 }, void 0, false, {
                     fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                    lineNumber: 203,
+                    lineNumber: 219,
                     columnNumber: 12
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                lineNumber: 202,
+                lineNumber: 218,
                 columnNumber: 9
             }, this),
             cartCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -430,7 +443,7 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                         size: 24
                     }, void 0, false, {
                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                        lineNumber: 214,
+                        lineNumber: 231,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -438,19 +451,19 @@ function FullMarketplaceClient({ initialProducts, categories }) {
                         children: cartCount
                     }, void 0, false, {
                         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                        lineNumber: 215,
+                        lineNumber: 232,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-                lineNumber: 210,
+                lineNumber: 227,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/marketplace/FullMarketplaceClient.tsx",
-        lineNumber: 109,
+        lineNumber: 113,
         columnNumber: 5
     }, this);
 }
@@ -1661,6 +1674,44 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/gem.js [app-client] (ecmascript)");
 }),
+"[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * @license lucide-react v0.561.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */ __turbopack_context__.s([
+    "__iconNode",
+    ()=>__iconNode,
+    "default",
+    ()=>Star
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$createLucideIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/createLucideIcon.js [app-client] (ecmascript)");
+;
+const __iconNode = [
+    [
+        "path",
+        {
+            d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
+            key: "r04s7s"
+        }
+    ]
+];
+const Star = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$createLucideIcon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])("star", __iconNode);
+;
+ //# sourceMappingURL=star.js.map
+}),
+"[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript) <export default as Star>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Star",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/star.js [app-client] (ecmascript)");
+}),
 ]);
 
-//# sourceMappingURL=_4c4dc5e2._.js.map
+//# sourceMappingURL=_fb6853ae._.js.map

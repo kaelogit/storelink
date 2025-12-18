@@ -110,7 +110,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$
 ;
 const dynamic = 'force-dynamic';
 async function MarketplacePage() {
-    const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category)").eq("is_active", true).order("created_at", {
+    const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category, verification_status)").eq("is_active", true).order("created_at", {
         ascending: false
     }).limit(60);
     const shuffledProducts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["shuffleArray"])(products || []);

@@ -2644,6 +2644,10 @@
     background-clip: text;
   }
 
+  .fill-amber-50 {
+    fill: var(--color-amber-50);
+  }
+
   .fill-blue-50 {
     fill: var(--color-blue-50);
   }

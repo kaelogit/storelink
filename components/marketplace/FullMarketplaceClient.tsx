@@ -50,7 +50,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
       let query = supabase
         .from("storefront_products")
-        // 👇 UPDATED: Added 'verification_status' to the select
         .select("*, stores!inner(name, slug, subscription_plan, category, verification_status)") 
         .order("created_at", { ascending: false })
         .range(0, PAGE_SIZE - 1);
@@ -70,7 +69,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     } else if (page === 1) {
         setProducts(initialProducts); 
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, initialProducts, page]);
 
   const loadMore = async () => {
     setLoading(true);
@@ -79,7 +78,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
     let query = supabase
       .from("storefront_products")
-      // 👇 UPDATED: Added 'verification_status' here too
       .select("*, stores!inner(name, slug, subscription_plan, category, verification_status)")
       .order("created_at", { ascending: false })
       .range(from, to);
@@ -102,9 +100,9 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
   let filteredProducts = products.filter((p: any) => p.name.toLowerCase().includes(search.toLowerCase()));
 
   if (search.length > 0) {
-     filteredProducts = filteredProducts.sort((a: any, b: any) => {
-        return getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan);
-     });
+      filteredProducts = filteredProducts.sort((a: any, b: any) => {
+         return getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan);
+      });
   }
 
   return (
@@ -173,11 +171,13 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
                 <span className="truncate">{product.stores?.name}</span>
                 
                 {product.stores?.verification_status === 'verified' && (
-                   <BadgeCheck size={14} className="text-blue-500 fill-blue-50/50" />
+                  <BadgeCheck size={12} className="text-blue-600 fill-blue-50 shrink-0" />
                 )}
 
-                {product.stores?.subscription_plan === 'diamond' && <Gem size={12} className="text-purple-600 fill-purple-50 shrink-0"/>}
-                {product.stores?.subscription_plan === 'premium' && <BadgeCheck size={12} className="text-blue-600 fill-blue-50 shrink-0"/>}
+                {product.stores?.subscription_plan === 'diamond' && (
+                  <Gem size={12} className="text-purple-600 fill-purple-50 shrink-0" />
+                )}
+                
               </div>
 
               <div className="mt-auto flex items-center justify-between">

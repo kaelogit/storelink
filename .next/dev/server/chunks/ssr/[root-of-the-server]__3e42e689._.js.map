@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 24, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Kaelo/store-link/app/marketplace/page.tsx"],"sourcesContent":["// Inside app/marketplace/page.tsx\r\n\r\n  const { data: products } = await supabase\r\n    .from(\"storefront_products\") \r\n    // 👇 ADDED verification_status TO THE SELECT STRING BELOW\r\n    .select(\"*, stores!inner(name, whatsapp_number, slug, subscription_plan, category, verification_status)\") \r\n    .eq(\"is_active\", true)\r\n    .order(\"created_at\", { ascending: false }) \r\n    .limit(60);"],"names":[],"mappings":"AAAA,kCAAkC;AAEhC,MAAM,EAAE,MAAM,QAAQ,EAAE,GAAG,MAAM,SAC9B,IAAI,CAAC,sBACN,0DAA0D;CACzD,MAAM,CAAC,kGACP,EAAE,CAAC,aAAa,MAChB,KAAK,CAAC,cAAc;IAAE,WAAW;AAAM,GACvC,KAAK,CAAC"}}]
+}

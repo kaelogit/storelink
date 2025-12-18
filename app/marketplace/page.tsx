@@ -10,7 +10,7 @@ export default async function MarketplacePage() {
   
   const { data: products } = await supabase
     .from("storefront_products") 
-    .select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category)") 
+    .select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category, verification_status)") 
     .eq("is_active", true)
     .order("created_at", { ascending: false }) 
     .limit(60);
