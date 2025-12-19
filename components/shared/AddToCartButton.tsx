@@ -1,8 +1,9 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
-import { ShoppingBag, Plus } from "lucide-react";
+import { ShoppingBag, Check } from "lucide-react";
 import { Product, Store } from "@/types";
+import { useState } from "react";
 
 interface AddToCartButtonProps {
   product: Product;
@@ -11,6 +12,7 @@ interface AddToCartButtonProps {
 
 export default function AddToCartButton({ product, store }: AddToCartButtonProps) {
   const { addToCart } = useCart();
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleAdd = () => {
     const storeObj: Store = {
@@ -28,29 +30,49 @@ export default function AddToCartButton({ product, store }: AddToCartButtonProps
     };
 
     addToCart(product, storeObj);
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
   };
 
-  return (
-    <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100 pb-8 md:pb-4 z-40">
-      <div className="max-w-5xl mx-auto flex gap-4">
-        <div className="hidden md:block">
-           <p className="text-xs text-gray-500">Total Price</p>
-           <p className="text-xl font-bold text-gray-900">₦{product.price.toLocaleString()}</p>
-        </div>
+  const isOutOfStock = product.stock_quantity < 1;
 
+  return (
+    <div className="w-full mt-10">
+      <div className="flex flex-col gap-4">
+        
         <button 
           onClick={handleAdd}
-          disabled={product.stock_quantity < 1}
-          className="flex-1 bg-gray-900 text-white h-14 rounded-xl font-bold text-lg shadow-lg hover:bg-gray-800 active:scale-95 transition flex items-center justify-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed"
+          disabled={isOutOfStock}
+          className={`
+            w-full h-16 rounded-[1.5rem] font-black text-sm uppercase tracking-[0.2em] 
+            transition-all duration-300 shadow-xl
+            flex items-center justify-center gap-3 active:scale-95
+            ${isOutOfStock 
+               ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+               : isAdded 
+                 ? 'bg-emerald-600 text-white shadow-emerald-100' 
+                 : 'bg-gray-900 text-white hover:bg-black'
+            }
+          `}
         >
-           {product.stock_quantity > 0 ? (
+           {isOutOfStock ? (
+             "Sold Out"
+           ) : isAdded ? (
              <>
-               <ShoppingBag size={20} /> Add to Bag
+               <Check size={20} strokeWidth={3} className="animate-in zoom-in" />
+               <span>Added to Bag</span>
              </>
            ) : (
-             "Sold Out"
+             <>
+               <ShoppingBag size={20} strokeWidth={2.5} />
+               <span>Add to My Bag</span>
+             </>
            )}
         </button>
+
+        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest text-center">
+          Secure WhatsApp Checkout via StoreLink
+        </p>
       </div>
     </div>
   );

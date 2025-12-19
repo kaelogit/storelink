@@ -57,7 +57,6 @@ export default async function ProductPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col">
       
-      {/* UPDATED: SMART HEADER */}
       <ProductHeader 
         storeSlug={store.slug}
         storeLogo={store.logo_url} />
@@ -86,11 +85,17 @@ export default async function ProductPage({ params }: PageProps) {
                   </span>
                 </div>
              </div>
-             <div className="bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100 mb-8 relative">
+             
+             {/* 1. DESCRIPTION BOX */}
+             <div className="bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100 mb-6 relative">
                 <div className="absolute -top-3 left-8 bg-white px-3 text-[10px] font-black uppercase tracking-widest text-gray-400 border border-gray-100 rounded-lg">Product Details</div>
                 <div className="prose prose-sm text-gray-600 leading-relaxed font-medium">
                   <p className="whitespace-pre-line">{product.description || "No detailed description provided for this item."}</p>
                 </div>
+             </div>
+
+             <div className="mb-10">
+                <AddToCartButton product={product} store={store} />
              </div>
 
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
@@ -113,7 +118,7 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
       </main>
 
-      <footer className="bg-gray-50 border-t border-gray-100 py-16 text-center mt-20 pb-40">
+      <footer className="bg-gray-50 border-t border-gray-100 py-10 md:py-16 text-center mt-10 md:mt-20">
           <div className="flex justify-center items-center gap-6 mb-8">
             <div className="flex flex-col items-center gap-2 opacity-40">
               <ShieldCheck size={24} className="text-gray-900"/>
@@ -131,13 +136,6 @@ export default async function ProductPage({ params }: PageProps) {
           </Link>
           <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.3em] mt-4">Security Guaranteed • 2025</p>
       </footer>
-
-      <div className="fixed bottom-0 left-0 w-full p-4 md:p-6 z-40">
-        <div className="max-w-xl mx-auto">
-          <AddToCartButton product={product} store={store} />
-        </div>
-      </div>
-
     </div>
   );
 }
