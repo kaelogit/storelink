@@ -313,18 +313,20 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                          <td className="px-6 py-4 text-right flex justify-end gap-1 md:gap-2">
                             <button 
                               onClick={(e) => {
-                                e.stopPropagation(); 
+                                e.stopPropagation();
                                 setSelectedFlashProduct(p);
                               }} 
-                              className={`p-2 transition active:scale-75 ${
+                              className={`p-2 transition-all duration-500 rounded-lg ${
                                 p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() 
-                                  ? 'text-amber-500' 
-                                  : 'text-gray-300 hover:text-amber-500'
+                                  ? 'text-amber-500 bg-amber-50 shadow-inner scale-110' // Gold glow when active
+                                  : 'text-gray-300 hover:text-amber-500 hover:bg-gray-50'
                               }`}
+                              title={p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? "Active Drop" : "Start Flash Drop"}
                             >
                               <Zap 
-                                size={16} 
+                                size={18} 
                                 fill={p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? "currentColor" : "none"} 
+                                className={p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? "animate-pulse" : ""}
                               />
                             </button>
                             
@@ -338,7 +340,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                               <Edit size={16}/>
                             </button>
 
-                            {/* DELETE BUTTON */}
                             <button 
                               onClick={(e) => {
                                 e.stopPropagation();
