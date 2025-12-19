@@ -8,9 +8,10 @@ interface CategoryManagerProps {
   storeId: string;
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => void; 
 }
 
-export default function CategoryManager({ storeId, isOpen, onClose }: CategoryManagerProps) {
+export default function CategoryManager({ storeId, isOpen, onClose, onSuccess }: CategoryManagerProps) {
   const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
   const [newCat, setNewCat] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,10 +30,12 @@ export default function CategoryManager({ storeId, isOpen, onClose }: CategoryMa
     if (!newCat.trim()) return;
     setLoading(true);
 
-    await supabase.from("categories").insert({
+    const { error } = await supabase.from("categories").insert({
       store_id: storeId,
       name: newCat.trim()
     });
+
+    if (!error && onSuccess) onSuccess(); 
 
     setNewCat("");
     loadCats(); 
@@ -41,7 +44,10 @@ export default function CategoryManager({ storeId, isOpen, onClose }: CategoryMa
 
   const deleteCategory = async (id: string) => {
     if (!confirm("Delete this category?")) return;
-    await supabase.from("categories").delete().eq("id", id);
+    const { error } = await supabase.from("categories").delete().eq("id", id);
+    
+    if (!error && onSuccess) onSuccess(); 
+    
     loadCats();
   };
 

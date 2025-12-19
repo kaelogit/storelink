@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Loader2, Save, Upload, Camera, Image as ImageIcon } from "lucide-react";
+import { Loader2, Save, Upload, Camera, Image as ImageIcon, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
-export default function StoreSettings({ store }: { store: any }) {
+// Added onUpdate to the props interface
+export default function StoreSettings({ store, onUpdate }: { store: any, onUpdate?: () => void }) {
   const [loading, setLoading] = useState(false);
   
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ export default function StoreSettings({ store }: { store: any }) {
     whatsapp: store.whatsapp_number,
     location: store.location,
     instagram: store.instagram_handle || "",
-    tiktok: store.tiktok_url || "", // <--- CORRECT: TikTok URL is now included in state
+    tiktok: store.tiktok_url || "", 
   });
 
   const [logoFile, setLogoFile] = useState<File | null>(null);
@@ -43,6 +44,7 @@ export default function StoreSettings({ store }: { store: any }) {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setStatus(""); // Clear previous status
 
     try {
       let newLogoUrl = store.logo_url;
@@ -74,7 +76,7 @@ export default function StoreSettings({ store }: { store: any }) {
           whatsapp_number: formData.whatsapp,
           location: formData.location,
           instagram_handle: formData.instagram,
-          tiktok_url: formData.tiktok, // <--- CORRECT: Saving TikTok URL
+          tiktok_url: formData.tiktok, 
           logo_url: newLogoUrl,
           cover_image_url: newCoverUrl
         })
@@ -84,7 +86,10 @@ export default function StoreSettings({ store }: { store: any }) {
           setStatus("❌ " + error.message);
       } else {
           setStatus("✅ Settings saved!");
-          setTimeout(() => setStatus(""), 3000); // Fade out
+          // Trigger the refresh in the Dashboard Brain
+          if (onUpdate) onUpdate(); 
+          
+          setTimeout(() => setStatus(""), 3000); 
       }
     } catch (error) {
       setStatus("❌ An error occurred");
@@ -94,9 +99,18 @@ export default function StoreSettings({ store }: { store: any }) {
   };
 
   return (
-    <div className="max-w-3xl">
+    <div className="max-w-3xl relative">
       <h3 className="font-bold text-lg text-gray-900 mb-6">Store Settings</h3>
       
+      {status.includes("✅") && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] animate-in slide-in-from-top-4 fade-in duration-300">
+          <div className="bg-emerald-600 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-emerald-500">
+            <CheckCircle2 size={20} />
+            <span className="font-black text-xs uppercase tracking-widest">Settings Saved Successfully</span>
+          </div>
+        </div>
+      )}
+
       <form onSubmit={handleSave} className="space-y-6">
         
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-6">
@@ -189,7 +203,9 @@ export default function StoreSettings({ store }: { store: any }) {
             </div>
         </div>
 
-        <button type="submit" disabled={loading} className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition">
+        {status.includes("❌") && <p className="text-red-600 text-xs font-bold text-center">{status}</p>}
+
+        <button type="submit" disabled={loading} className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition disabled:opacity-50">
           {loading ? <Loader2 className="animate-spin" /> : <><Save size={18} /> Save Changes</>}
         </button>
 

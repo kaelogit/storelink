@@ -4,6 +4,7 @@
   "/admin/stores/page": "app/admin/stores/page.js",
   "/dashboard/orders/page": "app/dashboard/orders/page.js",
   "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js",
   "/dashboard/subscription/page": "app/dashboard/subscription/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
   "/login/page": "app/login/page.js",

@@ -203,18 +203,18 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
               <div className="p-6 md:p-8 bg-gray-50/50 flex flex-col md:flex-row gap-4 justify-between items-center border-t border-gray-100">
                  <div className="flex gap-6 w-full md:w-auto justify-around md:justify-start">
-                    <div>
+                   <div>
                        <p className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase">Avg Order</p>
                        <p className="font-bold text-gray-900">₦{(stats.revenue / (initialOrders.length || 1)).toLocaleString()}</p>
-                    </div>
-                    <div className="border-x border-gray-200 px-6">
+                   </div>
+                   <div className="border-x border-gray-200 px-6">
                        <p className="font-bold text-gray-900">
-                          ₦{initialOrders.length > 0 
-                          ? (stats.revenue / initialOrders.length).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) 
-                          : "0.00"}
+                         ₦{initialOrders.length > 0 
+                         ? (stats.revenue / initialOrders.length).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) 
+                         : "0.00"}
                        </p>
                        <p className="font-bold text-gray-900">{initialOrders.length}</p>
-                    </div>
+                   </div>
                  </div>
                  <button onClick={() => setIsAnalyticsOpen(false)} className="w-full md:w-auto px-8 py-3 bg-gray-900 text-white rounded-2xl font-bold text-sm shadow-xl">Close Report</button>
               </div>
@@ -370,12 +370,12 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
         {activeTab === "settings" && (
            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <StoreSettings store={store} />
+              <StoreSettings store={store} onUpdate={() => router.refresh()} />
            </div>
         )}
 
       <AddProductModal storeId={store.id} isOpen={isAddModalOpen} onClose={closeProductModal} onSuccess={() => router.refresh()} productToEdit={productToEdit} />
-      <CategoryManager storeId={store.id} isOpen={isCatModalOpen} onClose={() => setIsCatModalOpen(false)} />
+      <CategoryManager storeId={store.id} isOpen={isCatModalOpen} onClose={() => setIsCatModalOpen(false)} onSuccess={() => router.refresh()} />
       <OrderDetailsModal order={selectedOrder} storeName={store.name} isOpen={!!selectedOrder} onClose={() => setSelectedOrder(null)} onUpdate={() => router.refresh()} />
 
     </div>

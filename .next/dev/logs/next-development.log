@@ -1113,3 +1113,336 @@ Import trace:
 [17:20:09.567] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884441023-td75w8h" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [17:20:09.567] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [17:20:09.567] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[17:26:59.289] Browser ERROR   {}
+[17:26:59.515] Browser ERROR   {}
+[17:26:59.933] Browser ERROR   {}
+[17:27:00.749] Browser ERROR   {}
+[17:27:02.363] Browser ERROR   {}
+[17:27:05.594] Browser ERROR   {}
+[17:27:12.005] Browser ERROR   {}
+[17:27:24.828] Browser ERROR   {}
+[17:27:29.274] Browser ERROR   {}
+[17:27:29.483] Browser ERROR   {}
+[17:27:29.891] Browser ERROR   {}
+[17:27:30.708] Browser ERROR   {}
+[17:27:32.323] Browser ERROR   {}
+[17:27:35.537] Browser ERROR   {}
+[17:27:41.947] Browser ERROR   {}
+[17:27:54.754] Browser ERROR   {}
+[17:27:59.284] Browser ERROR   {}
+[17:27:59.501] Browser ERROR   {}
+[17:27:59.917] Browser ERROR   {}
+[17:28:00.733] Browser ERROR   {}
+[17:28:02.348] Browser ERROR   {}
+[17:28:05.561] Browser ERROR   {}
+[17:28:11.973] Browser ERROR   {}
+[17:28:24.778] Browser ERROR   {}
+[17:28:29.276] Browser ERROR   {}
+[17:28:29.492] Browser ERROR   {}
+[17:28:29.898] Browser ERROR   {}
+[17:28:30.725] Browser ERROR   {}
+[17:28:32.340] Browser ERROR   {}
+[17:28:35.554] Browser ERROR   {}
+[17:28:41.964] Browser ERROR   {}
+[17:28:54.771] Browser ERROR   {}
+[17:28:59.284] Browser ERROR   {}
+[17:28:59.501] Browser ERROR   {}
+[17:28:59.906] Browser ERROR   {}
+[17:29:00.717] Browser ERROR   {}
+[17:29:02.332] Browser ERROR   {}
+[17:29:05.546] Browser ERROR   {}
+[17:29:11.958] Browser ERROR   {}
+[17:29:24.763] Browser ERROR   {}
+[17:29:29.275] Browser ERROR   {}
+[17:29:29.493] Browser ERROR   {}
+[17:29:29.898] Browser ERROR   {}
+[17:29:30.726] Browser ERROR   {}
+[17:29:32.340] Browser ERROR   {}
+[17:29:35.554] Browser ERROR   {}
+[17:29:41.966] Browser ERROR   {}
+[17:29:54.788] Browser ERROR   {}
+[17:29:59.284] Browser ERROR   {}
+[17:29:59.501] Browser ERROR   {}
+[17:29:59.907] Browser ERROR   {}
+[17:30:00.735] Browser ERROR   {}
+[17:30:02.348] Browser ERROR   {}
+[17:30:05.553] Browser ERROR   {}
+[17:30:11.974] Browser ERROR   {}
+[17:30:24.779] Browser ERROR   {}
+[17:30:29.280] Browser ERROR   {}
+[17:30:29.493] Browser ERROR   {}
+[17:30:29.910] Browser ERROR   {}
+[17:30:30.726] Browser ERROR   {}
+[17:30:32.340] Browser ERROR   {}
+[17:30:35.555] Browser ERROR   {}
+[17:30:41.966] Browser ERROR   {}
+[17:30:54.788] Browser ERROR   {}
+[17:30:59.285] Browser ERROR   {}
+[17:30:59.502] Browser ERROR   {}
+[17:30:59.909] Browser ERROR   {}
+[17:31:00.722] Browser ERROR   {}
+[17:31:02.349] Browser ERROR   {}
+[17:31:05.563] Browser ERROR   {}
+[17:31:11.974] Browser ERROR   {}
+[17:31:24.781] Browser ERROR   {}
+[17:31:29.277] Browser ERROR   {}
+[17:31:29.494] Browser ERROR   {}
+[17:31:29.901] Browser ERROR   {}
+[17:31:30.709] Browser ERROR   {}
+[17:31:32.324] Browser ERROR   {}
+[17:31:35.538] Browser ERROR   {}
+[17:31:41.950] Browser ERROR   {}
+[17:31:54.762] Browser ERROR   {}
+[17:31:59.276] Browser ERROR   {}
+[17:31:59.486] Browser ERROR   {}
+[17:31:59.892] Browser ERROR   {}
+[17:32:00.702] Browser ERROR   {}
+[17:32:02.317] Browser ERROR   {}
+[17:32:05.531] Browser ERROR   {}
+[17:32:11.949] Browser ERROR   {}
+[17:32:24.765] Browser ERROR   {}
+[17:32:29.278] Browser ERROR   {}
+[17:32:29.484] Browser ERROR   {}
+[17:32:29.911] Browser ERROR   {}
+[17:32:30.728] Browser ERROR   {}
+[17:32:32.342] Browser ERROR   {}
+[17:32:35.557] Browser ERROR   {}
+[17:32:41.967] Browser ERROR   {}
+[17:32:54.773] Browser ERROR   {}
+[17:32:59.286] Browser ERROR   {}
+[17:32:59.504] Browser ERROR   {}
+[17:32:59.910] Browser ERROR   {}
+[17:33:00.718] Browser ERROR   {}
+[17:33:02.324] Browser ERROR   {}
+[17:33:05.538] Browser ERROR   {}
+[17:33:11.960] Browser ERROR   {}
+[17:33:24.766] Browser ERROR   {}
+[17:33:29.279] Browser ERROR   {}
+[17:33:29.512] Browser ERROR   {}
+[17:33:29.929] Browser ERROR   {}
+[17:33:30.741] Browser ERROR   {}
+[17:33:32.359] Browser ERROR   {}
+[17:33:35.563] Browser ERROR   {}
+[17:33:41.985] Browser ERROR   {}
+[17:33:54.790] Browser ERROR   {}
+[17:33:59.277] Browser ERROR   {}
+[17:33:59.504] Browser ERROR   {}
+[17:33:59.911] Browser ERROR   {}
+[17:34:00.720] Browser ERROR   {}
+[17:34:02.335] Browser ERROR   {}
+[17:34:05.549] Browser ERROR   {}
+[17:34:11.960] Browser ERROR   {}
+[17:34:24.766] Browser ERROR   {}
+[17:34:29.280] Browser ERROR   {}
+[17:34:29.513] Browser ERROR   {}
+[17:34:29.918] Browser ERROR   {}
+[17:34:30.729] Browser ERROR   {}
+[17:34:32.344] Browser ERROR   {}
+[17:34:35.557] Browser ERROR   {}
+[17:34:41.969] Browser ERROR   {}
+[17:34:54.776] Browser ERROR   {}
+[17:34:59.288] Browser ERROR   {}
+[17:34:59.522] Browser ERROR   {}
+[17:34:59.938] Browser ERROR   {}
+[17:35:00.754] Browser ERROR   {}
+[17:35:02.369] Browser ERROR   {}
+[17:35:05.583] Browser ERROR   {}
+[17:35:11.994] Browser ERROR   {}
+[17:35:24.800] Browser ERROR   {}
+[17:35:29.281] Browser ERROR   {}
+[17:35:29.497] Browser ERROR   {}
+[17:35:29.902] Browser ERROR   {}
+[17:35:30.713] Browser ERROR   {}
+[17:35:32.317] Browser ERROR   {}
+[17:35:35.541] Browser ERROR   {}
+[17:35:41.953] Browser ERROR   {}
+[17:35:54.759] Browser ERROR   {}
+[17:35:59.289] Browser ERROR   {}
+[17:35:59.505] Browser ERROR   {}
+[17:35:59.911] Browser ERROR   {}
+[17:36:00.738] Browser ERROR   {}
+[17:36:02.353] Browser ERROR   {}
+[17:36:05.567] Browser ERROR   {}
+[17:36:11.978] Browser ERROR   {}
+[17:36:24.784] Browser ERROR   {}
+[17:36:29.281] Browser ERROR   {}
+[17:36:29.498] Browser ERROR   {}
+[17:36:29.914] Browser ERROR   {}
+[17:36:30.730] Browser ERROR   {}
+[17:36:32.345] Browser ERROR   {}
+[17:36:35.565] Browser ERROR   {}
+[17:36:41.986] Browser ERROR   {}
+[17:36:54.793] Browser ERROR   {}
+[17:36:59.290] Browser ERROR   {}
+[17:36:59.506] Browser ERROR   {}
+[17:36:59.912] Browser ERROR   {}
+[17:37:00.722] Browser ERROR   {}
+[17:37:02.337] Browser ERROR   {}
+[17:37:05.567] Browser ERROR   {}
+[17:37:11.978] Browser ERROR   {}
+[17:37:24.785] Browser ERROR   {}
+[17:37:29.281] Browser ERROR   {}
+[17:37:29.498] Browser ERROR   {}
+[17:37:29.904] Browser ERROR   {}
+[17:37:30.714] Browser ERROR   {}
+[17:37:32.329] Browser ERROR   {}
+[17:37:35.543] Browser ERROR   {}
+[17:37:41.955] Browser ERROR   {}
+[17:37:54.761] Browser ERROR   {}
+[17:37:59.290] Browser ERROR   {}
+[17:37:59.507] Browser ERROR   {}
+[17:37:59.923] Browser ERROR   {}
+[17:38:00.739] Browser ERROR   {}
+[17:38:02.344] Browser ERROR   {}
+[17:38:05.569] Browser ERROR   {}
+[17:38:11.979] Browser ERROR   {}
+[17:38:24.785] Browser ERROR   {}
+[17:38:29.282] Browser ERROR   {}
+[17:38:29.500] Browser ERROR   {}
+[17:38:29.915] Browser ERROR   {}
+[17:38:30.731] Browser ERROR   {}
+[17:38:32.347] Browser ERROR   {}
+[17:38:35.559] Browser ERROR   {}
+[17:38:41.971] Browser ERROR   {}
+[17:38:54.777] Browser ERROR   {}
+[17:38:59.274] Browser ERROR   {}
+[17:38:59.491] Browser ERROR   {}
+[17:38:59.895] Browser ERROR   {}
+[17:39:00.707] Browser ERROR   {}
+[17:39:02.322] Browser ERROR   {}
+[17:39:05.526] Browser ERROR   {}
+[17:39:11.947] Browser ERROR   {}
+[17:39:24.754] Browser ERROR   {}
+[17:39:29.283] Browser ERROR   {}
+[17:39:29.500] Browser ERROR   {}
+[17:39:29.916] Browser ERROR   {}
+[17:39:30.732] Browser ERROR   {}
+[17:39:32.336] Browser ERROR   {}
+[17:39:35.561] Browser ERROR   {}
+[17:39:41.972] Browser ERROR   {}
+[17:39:54.778] Browser ERROR   {}
+[17:39:59.276] Browser ERROR   {}
+[17:39:59.492] Browser ERROR   {}
+[17:39:59.897] Browser ERROR   {}
+[17:40:00.707] Browser ERROR   {}
+[17:40:02.323] Browser ERROR   {}
+[17:40:05.526] Browser ERROR   {}
+[17:40:11.937] Browser ERROR   {}
+[17:40:24.754] Browser ERROR   {}
+[17:40:29.281] Browser ERROR   {}
+[17:40:29.500] Browser ERROR   {}
+[17:40:29.907] Browser ERROR   {}
+[17:40:30.716] Browser ERROR   {}
+[17:40:32.321] Browser ERROR   {}
+[17:40:35.531] Browser ERROR   {}
+[17:40:41.956] Browser ERROR   {}
+[17:40:54.779] Browser ERROR   {}
+[17:40:59.275] Browser ERROR   {}
+[17:40:59.493] Browser ERROR   {}
+[17:40:59.898] Browser ERROR   {}
+[17:41:00.725] Browser ERROR   {}
+[17:41:02.339] Browser ERROR   {}
+[17:41:05.554] Browser ERROR   {}
+[17:41:11.954] Browser ERROR   {}
+[17:41:24.761] Browser ERROR   {}
+[17:41:26.831] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\store-link\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:565:23
+    at _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:919:24)
+    at _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:906:24)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4777:225
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:635:42
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:647:11
+    at new Promise (<anonymous>)
+    at retryable (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:629:21)
+    at SupabaseAuthClient._refreshAccessToken (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4772:224)
+    at SupabaseAuthClient._callRefreshToken (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4928:48)
+    at SupabaseAuthClient.__loadSession (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4075:57)
+    at async SupabaseAuthClient._useSession (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4005:28)
+    at async SupabaseAuthClient._emitInitialSession (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4552:16) {
+  
+}
+[17:41:27.071] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\store-link\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:565:23
+    at _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:919:24)
+    at _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:906:24)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4777:225
+    at async C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:635:36 {
+  
+}
+[17:41:27.505] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\store-link\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:565:23
+    at _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:919:24)
+    at _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:906:24)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4777:225
+    at async C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:635:36 {
+  
+}
+[17:41:28.357] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\store-link\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:565:23
+    at _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:919:24)
+    at _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:906:24)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4777:225
+    at async C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:635:36 {
+  
+}
+[17:41:29.284] Browser ERROR   {}
+[17:41:29.501] Browser ERROR   {}
+[17:41:29.906] Browser ERROR   {}
+[17:41:29.995] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\store-link\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:565:23
+    at _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:919:24)
+    at _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:906:24)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4777:225
+    at async C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:635:36 {
+  
+}
+[17:41:30.716] Browser ERROR   {}
+[17:41:32.333] Browser ERROR   {}
+[17:41:33.202] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\store-link\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:565:23
+    at _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:919:24)
+    at _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:906:24)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4777:225
+    at async C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:635:36 {
+  
+}
+[17:41:35.546] Browser ERROR   {}
+[17:41:39.621] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\store-link\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:565:23
+    at _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:919:24)
+    at _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:906:24)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:4777:225
+    at async C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_1b8e0626._.js:635:36 {
+  
+}
+[17:41:41.974] Browser ERROR   {}
+[17:42:00.971] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[17:43:18.266] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:01:46.117] Server  LOG      ✓ Compiled in 1545ms
+[18:11:18.295] Server  LOG      ✓ Compiled in 325ms
+[18:11:31.712] Server  LOG      ✓ Compiled in 143ms
+[18:11:36.855] Server  LOG      ✓ Compiled in 141ms
+[18:16:11.100] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:16:52.745] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:17:28.766] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:17:29.165] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.165] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.165] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.165] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.322] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:17:29.911] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/45044b2e-1f4c-4d0f-a058-ce8bf2149d93-1765884156127" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.911] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884407928-63hus9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.911] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884441023-td75w8h" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.911] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884320488-u51q6" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.911] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1766105811748-djppl" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.911] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884376189-ovwbz" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:17:29.911] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884487383-7n7cmv" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:18:54.786] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:19:14.982] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

@@ -4358,6 +4358,10 @@
     --tw-enter-translate-y: -.5rem;
   }
 
+  .slide-in-from-top-4 {
+    --tw-enter-translate-y: -1rem;
+  }
+
   .slide-in-from-top-5 {
     --tw-enter-translate-y: -1.25rem;
   }
