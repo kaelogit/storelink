@@ -8,14 +8,37 @@ export const dynamic = 'force-dynamic';
 
 export default async function MarketplacePage() {
   
-  const { data: products } = await supabase
+  const { data: rawProducts } = await supabase
     .from("storefront_products") 
-    .select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category, verification_status)") 
+    .select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category, verification_status, subscription_expiry)") 
     .eq("is_active", true)
     .order("created_at", { ascending: false }) 
-    .limit(60);
+    .limit(100);
 
-  const shuffledProducts = shuffleArray(products || []);
+  const storeItemTracker: Record<string, number> = {};
+  const now = new Date();
+  
+  const filteredByPlan = (rawProducts || []).filter(product => {
+    const plan = product.stores?.subscription_plan;
+    const storeId = product.store_id;
+    const expiry = product.stores?.subscription_expiry;
+
+    if (expiry && new Date(expiry) < now) {
+      return false;
+    }
+
+    if (plan === 'diamond' || plan === 'premium') return true;
+
+    const currentCount = storeItemTracker[storeId] || 0;
+    if (currentCount < 5) {
+      storeItemTracker[storeId] = currentCount + 1;
+      return true;
+    }
+    
+    return false;
+  });
+
+  const shuffledProducts = shuffleArray(filteredByPlan.slice(0, 60));
 
   const { data: categories } = await supabase
     .from("categories")
@@ -25,7 +48,7 @@ export default async function MarketplacePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
-       
+        
        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
             <LayoutDashboard className="text-emerald-600"/> StoreLink
@@ -50,7 +73,7 @@ export default async function MarketplacePage() {
        <footer className="bg-white border-t border-gray-200 py-8 mt-auto">
           <div className="max-w-6xl mx-auto px-4 text-center">
               <p className="font-extrabold text-gray-300 text-2xl mb-2 flex items-center justify-center gap-2">
-                 <LayoutDashboard className="text-gray-200"/> StoreLink
+                  <LayoutDashboard className="text-gray-200"/> StoreLink
               </p>
               <p className="text-xs text-gray-300 mt-6">© {new Date().getFullYear()} StoreLink. All rights reserved.</p>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link"; 
@@ -15,6 +15,29 @@ interface FullMarketplaceClientProps {
 export default function FullMarketplaceClient({ initialProducts, categories }: FullMarketplaceClientProps) {
   const { addToCart, cartCount, setIsCartOpen } = useCart();
   const PAGE_SIZE = 12;
+
+  const applyDowngradeProtection = useCallback((items: any[]) => {
+    const counts = new Map();
+    const now = new Date();
+
+    return items.filter(p => {
+      const plan = p.stores?.subscription_plan;
+      const expiry = p.stores?.subscription_expiry;
+
+      if (expiry && new Date(expiry) < now) {
+        return false;
+      }
+
+      if (plan === 'premium' || plan === 'diamond') return true;
+      
+      const count = counts.get(p.store_id) || 0;
+      if (count < 5) {
+        counts.set(p.store_id, count + 1);
+        return true;
+      }
+      return false;
+    });
+  }, []);
 
   const [products, setProducts] = useState(initialProducts);
   const [loading, setLoading] = useState(false);
@@ -48,19 +71,21 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
       setLoading(true);
       setPage(1);
 
+      // Fetch a larger range to account for items filtered out by the Hard Lock
       let query = supabase
         .from("storefront_products")
-        .select("*, stores!inner(name, slug, subscription_plan, category, verification_status)") 
+        .select("*, stores!inner(name, slug, subscription_plan, category, verification_status, subscription_expiry)") 
         .order("created_at", { ascending: false })
-        .range(0, PAGE_SIZE - 1);
+        .range(0, 40); 
 
       if (selectedCategory !== "all") {
         query = query.eq("stores.category", selectedCategory);
       }
 
       const { data } = await query;
-      setProducts(data || []);
-      setHasMore(data && data.length === PAGE_SIZE ? true : false);
+      const protectedData = applyDowngradeProtection(data || []);
+      setProducts(protectedData);
+      setHasMore(data && data.length > 0 ? true : false);
       setLoading(false);
     };
 
@@ -69,16 +94,16 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     } else if (page === 1) {
         setProducts(initialProducts); 
     }
-  }, [selectedCategory, initialProducts, page]);
+  }, [selectedCategory, initialProducts, page, applyDowngradeProtection]);
 
   const loadMore = async () => {
     setLoading(true);
     const from = page * PAGE_SIZE;
-    const to = from + PAGE_SIZE - 1;
+    const to = from + 40; 
 
     let query = supabase
       .from("storefront_products")
-      .select("*, stores!inner(name, slug, subscription_plan, category, verification_status)")
+      .select("*, stores!inner(name, slug, subscription_plan, category, verification_status, subscription_expiry)")
       .order("created_at", { ascending: false })
       .range(from, to);
 
@@ -89,7 +114,8 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     const { data: newProducts } = await query;
     
     if (newProducts && newProducts.length > 0) {
-      setProducts([...products, ...newProducts]);
+      const protectedNewData = applyDowngradeProtection(newProducts);
+      setProducts([...products, ...protectedNewData]);
       setPage(page + 1);
     } else {
       setHasMore(false);
@@ -101,7 +127,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
   if (search.length > 0) {
       filteredProducts = filteredProducts.sort((a: any, b: any) => {
-         return getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan);
+          return getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan);
       });
   }
 

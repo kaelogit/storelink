@@ -136,13 +136,12 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
 
         } catch (err: any) {
             console.error(err);
-            setErrorMsg("Background removal failed. Check API limit.");
+            setErrorMsg("Background removal failed. Try another picture");
         } finally {
             setProcessingImages(false);
         }
 
       } else {
-        // Normal Upload (No AI)
         const combinedFiles = [...imageFiles, ...newRawFiles];
         setImageFiles(combinedFiles);
         setPreviews(combinedFiles.map(file => URL.createObjectURL(file)));

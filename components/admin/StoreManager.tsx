@@ -10,7 +10,22 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
   async function updatePlan(newPlan: string) {
     if (!confirm(`Are you sure you want to move this store to ${newPlan}?`)) return;
     setLoading(true);
-    await supabase.from('stores').update({ subscription_plan: newPlan }).eq('id', store.id);
+
+    let expiryDate = null;
+    if (newPlan === 'premium' || newPlan === 'diamond') {
+      const date = new Date();
+      date.setDate(date.getDate() + 30);
+      expiryDate = date.toISOString();
+    }
+
+    await supabase
+      .from('stores')
+      .update({ 
+        subscription_plan: newPlan,
+        subscription_expiry: expiryDate 
+      })
+      .eq('id', store.id);
+
     onUpdate(); 
     setLoading(false);
   }

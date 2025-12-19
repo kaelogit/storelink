@@ -6,7 +6,7 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { 
   Loader2, LayoutDashboard, ShoppingBag, Bell, Settings, LogOut, 
-  Menu, X, Crown, BadgeCheck, AlertTriangle 
+  Menu, X, Crown, BadgeCheck, AlertTriangle, CheckCircle, XCircle // Added icons for the status logic
 } from "lucide-react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -16,6 +16,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const [expiryWarning, setExpiryWarning] = useState<{ type: 'warn' | 'expired', days: number } | null>(null);
+  const [planName, setPlanName] = useState(""); // Track plan for the sidebar badge
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -24,21 +25,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       const { data: store } = await supabase
         .from("stores")
-        .select("subscription_expiry")
+        .select("subscription_expiry, subscription_plan") // Fetch plan name too
         .eq("owner_id", user.id)
         .single();
 
-      if (store?.subscription_expiry) {
-        const expiry = new Date(store.subscription_expiry);
-        const now = new Date();
-        const diffTime = expiry.getTime() - now.getTime();
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      if (store) {
+        setPlanName(store.subscription_plan); // Save plan name
 
-        if (diffTime < 0) {
-           setExpiryWarning({ type: 'expired', days: 0 });
-        } 
-        else if (diffDays <= 3) {
-           setExpiryWarning({ type: 'warn', days: diffDays });
+        if (store.subscription_expiry) {
+          const expiry = new Date(store.subscription_expiry);
+          const now = new Date();
+          const diffTime = expiry.getTime() - now.getTime();
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+          if (diffTime < 0) {
+             setExpiryWarning({ type: 'expired', days: 0 });
+          } 
+          // 👇 UPDATED: Changed from 3 days to 7 days
+          else if (diffDays <= 7) {
+             setExpiryWarning({ type: 'warn', days: diffDays });
+          }
         }
       }
 
@@ -121,6 +127,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           })}
         </nav>
 
+        {!expiryWarning && planName && (
+          <div className="mx-4 mb-2 p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-2">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{planName} Plan Active</span>
+          </div>
+        )}
+
         <div className="p-4 border-t border-gray-100">
           <button onClick={async () => { await supabase.auth.signOut(); router.push("/login"); }} className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-xl transition-all text-sm font-bold">
             <LogOut size={18} /> Logout
@@ -131,22 +144,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <main className="flex-1 md:ml-64 p-4 md:p-8 pt-20 md:pt-8 w-full max-w-full overflow-hidden flex flex-col">
         
         {expiryWarning && (
-          <div className={`mb-6 p-4 rounded-xl flex items-center justify-between gap-4 border ${
-             expiryWarning.type === 'expired' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-amber-50 border-amber-200 text-amber-800'
+          <div className={`mb-6 p-4 rounded-xl flex items-center justify-between gap-4 border animate-in slide-in-from-top duration-300 ${
+              expiryWarning.type === 'expired' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-amber-50 border-amber-200 text-amber-800'
           }`}>
-             <div className="flex items-center gap-3">
-               <AlertTriangle size={20} className={expiryWarning.type === 'expired' ? 'text-red-600' : 'text-amber-600'} />
-               <p className="text-sm font-bold">
-                 {expiryWarning.type === 'expired' 
-                   ? "Your plan has expired. Your store is currently hidden from the public." 
-                   : `Your plan expires in ${expiryWarning.days} days. Renew now to avoid downtime.`}
-               </p>
-             </div>
-             <Link href="/dashboard/subscription" className={`px-4 py-2 rounded-lg text-xs font-bold text-white transition ${
-                expiryWarning.type === 'expired' ? 'bg-red-600 hover:bg-red-700' : 'bg-amber-600 hover:bg-amber-700'
-             }`}>
-               {expiryWarning.type === 'expired' ? "Reactivate Now" : "Renew Plan"}
-             </Link>
+              <div className="flex items-center gap-3">
+                {expiryWarning.type === 'expired' ? <XCircle className="text-red-600" size={20} /> : <AlertTriangle className="text-amber-600" size={20} />}
+                <p className="text-sm font-bold">
+                  {expiryWarning.type === 'expired' 
+                    ? "Your plan has expired. Your store is currently hidden from the public." 
+                    : `Your ${planName} plan expires in ${expiryWarning.days} days. Renew now to avoid downtime.`}
+                </p>
+              </div>
+              <Link href="/dashboard/subscription" className={`px-4 py-2 rounded-lg text-xs font-bold text-white transition shadow-sm whitespace-nowrap ${
+                 expiryWarning.type === 'expired' ? 'bg-red-600 hover:bg-red-700' : 'bg-amber-600 hover:bg-amber-700'
+              }`}>
+                {expiryWarning.type === 'expired' ? "Reactivate Now" : "Renew Plan"}
+              </Link>
           </div>
         )}
 

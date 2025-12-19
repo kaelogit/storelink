@@ -14,8 +14,8 @@ export default function DashboardPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);
   const [stats, setStats] = useState({ revenue: 0, productCount: 0, views: 0 });
-  
-  // 1. We wrap the fetch logic in 'useCallback' so we can re-run it anytime
+  const [isLocked, setIsLocked] = useState(false); 
+
   const loadDashboardData = useCallback(async () => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
@@ -25,7 +25,6 @@ export default function DashboardPage() {
         return;
       }
 
-      // Fetch Store (Using owner_id as verified)
       const { data: storeData } = await supabase
         .from("stores")
         .select("*")
@@ -39,7 +38,12 @@ export default function DashboardPage() {
 
       setStore(storeData);
 
-      // Fetch Products
+      if (storeData.subscription_expiry) {
+        const expiry = new Date(storeData.subscription_expiry);
+        const now = new Date();
+        setIsLocked(expiry < now);
+      }
+
       const { data: productsData } = await supabase
         .from("products")
         .select("*, categories(name)")
@@ -48,7 +52,6 @@ export default function DashboardPage() {
       
       setProducts(productsData || []);
 
-      // Fetch Orders
       const { data: ordersData } = await supabase
         .from("orders")
         .select("*")
@@ -57,7 +60,6 @@ export default function DashboardPage() {
 
       setOrders(ordersData || []);
 
-      // Calculate Stats
       const revenue = ordersData?.reduce((acc, order) => {
             return acc + (['completed', 'paid'].includes(order.status) ? order.total_amount : 0);
       }, 0) || 0;
@@ -78,11 +80,9 @@ export default function DashboardPage() {
     }
   }, [router]);
 
-  // 2. Initial Load + Realtime Listener
   useEffect(() => {
     loadDashboardData();
 
-    // 👇 This is the Magic Part: Listen for changes!
     const channel = supabase
       .channel('dashboard-updates')
       .on(
@@ -90,7 +90,7 @@ export default function DashboardPage() {
         { event: '*', schema: 'public', table: 'orders' },
         (payload) => {
           console.log('Order update!', payload);
-          loadDashboardData(); // Reload data if an order changes
+          loadDashboardData(); 
         }
       )
       .on(
@@ -98,12 +98,11 @@ export default function DashboardPage() {
         { event: '*', schema: 'public', table: 'stores' },
         (payload) => {
           console.log('View count update!', payload);
-          loadDashboardData(); // Reload data if view count changes
+          loadDashboardData();
         }
       )
       .subscribe();
 
-    // Cleanup when leaving page
     return () => {
       supabase.removeChannel(channel);
     };
@@ -126,6 +125,7 @@ export default function DashboardPage() {
       initialProducts={products} 
       initialOrders={orders}
       stats={stats}
+      isLocked={isLocked} 
     />
   );
 }
