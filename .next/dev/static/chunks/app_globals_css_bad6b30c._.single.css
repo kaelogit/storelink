@@ -2566,22 +2566,8 @@
     background-clip: text;
   }
 
-  .fill-amber-50 {
-    fill: var(--color-amber-50);
-  }
-
   .fill-blue-50 {
     fill: var(--color-blue-50);
-  }
-
-  .fill-blue-50\/50 {
-    fill: #eff6ff80;
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .fill-blue-50\/50 {
-      fill: color-mix(in oklab, var(--color-blue-50) 50%, transparent);
-    }
   }
 
   .fill-blue-400 {

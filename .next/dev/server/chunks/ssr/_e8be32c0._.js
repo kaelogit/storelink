@@ -23,7 +23,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 function StoreManager({ store, onClose, onUpdate }) {
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [confirmBan, setConfirmBan] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    // 1. Manually Change Plan
     async function updatePlan(newPlan) {
         if (!confirm(`Are you sure you want to move this store to ${newPlan}?`)) return;
         setLoading(true);
@@ -33,7 +32,6 @@ function StoreManager({ store, onClose, onUpdate }) {
         onUpdate();
         setLoading(false);
     }
-    // 2. Safe Ban Logic
     async function toggleBan() {
         setLoading(true);
         const newStatus = store.status === 'banned' ? 'active' : 'banned';
@@ -44,16 +42,26 @@ function StoreManager({ store, onClose, onUpdate }) {
         setLoading(false);
         onClose();
     }
-    // 3. Verification Logic
     async function toggleVerification() {
         setLoading(true);
-        const newStatus = !store.is_verified;
-        await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from('stores').update({
-            is_verified: newStatus
-        }).eq('id', store.id);
-        onUpdate();
+        const isNowVerified = !store.is_verified;
+        const updateData = isNowVerified ? {
+            is_verified: true,
+            verification_status: 'verified',
+            verification_note: 'Your account has been officially verified by StoreLink.'
+        } : {
+            is_verified: false,
+            verification_status: 'none',
+            verification_note: 'Verification was revoked by an administrator.'
+        };
+        const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from('stores').update(updateData).eq('id', store.id);
+        if (error) {
+            alert("Error updating verification: " + error.message);
+        } else {
+            onUpdate();
+            onClose();
+        }
         setLoading(false);
-        onClose();
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4",
@@ -73,7 +81,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                             children: store.name
                                         }, void 0, false, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 66,
                                             columnNumber: 16
                                         }, this),
                                         store.is_verified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__["CheckCircle"], {
@@ -81,13 +89,13 @@ function StoreManager({ store, onClose, onUpdate }) {
                                             className: "text-blue-500 fill-blue-500/20"
                                         }, void 0, false, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 53,
+                                            lineNumber: 67,
                                             columnNumber: 38
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                    lineNumber: 51,
+                                    lineNumber: 65,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -101,14 +109,14 @@ function StoreManager({ store, onClose, onUpdate }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 56,
+                                            lineNumber: 70,
                                             columnNumber: 16
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "•"
                                         }, void 0, false, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 57,
+                                            lineNumber: 71,
                                             columnNumber: 16
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -121,19 +129,19 @@ function StoreManager({ store, onClose, onUpdate }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 58,
+                                            lineNumber: 72,
                                             columnNumber: 16
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                    lineNumber: 55,
+                                    lineNumber: 69,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/admin/StoreManager.tsx",
-                            lineNumber: 50,
+                            lineNumber: 64,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -143,18 +151,18 @@ function StoreManager({ store, onClose, onUpdate }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/components/admin/StoreManager.tsx",
-                                lineNumber: 64,
+                                lineNumber: 78,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/admin/StoreManager.tsx",
-                            lineNumber: 63,
+                            lineNumber: 77,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/admin/StoreManager.tsx",
-                    lineNumber: 49,
+                    lineNumber: 63,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -171,7 +179,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                             children: "Owner Details"
                                         }, void 0, false, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 72,
+                                            lineNumber: 85,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -182,7 +190,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     size: 18
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 75,
+                                                    lineNumber: 88,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -190,13 +198,13 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     children: store.owner_email || "No Email"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 76,
+                                                    lineNumber: 89,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 74,
+                                            lineNumber: 87,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -207,7 +215,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     size: 18
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 80,
+                                                    lineNumber: 93,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -215,19 +223,19 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     children: store.owner_phone || "No Phone"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 81,
+                                                    lineNumber: 94,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 79,
+                                            lineNumber: 92,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                    lineNumber: 71,
+                                    lineNumber: 84,
                                     columnNumber: 14
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -238,7 +246,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                             children: "Performance"
                                         }, void 0, false, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 86,
+                                            lineNumber: 99,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -249,7 +257,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     children: "Lifetime Revenue"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 89,
+                                                    lineNumber: 102,
                                                     columnNumber: 20
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -260,13 +268,13 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 90,
+                                                    lineNumber: 103,
                                                     columnNumber: 20
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 88,
+                                            lineNumber: 101,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -277,7 +285,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     children: "Currency"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 96,
+                                                    lineNumber: 109,
                                                     columnNumber: 20
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -285,32 +293,32 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     children: "NGN"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 97,
+                                                    lineNumber: 110,
                                                     columnNumber: 20
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 95,
+                                            lineNumber: 108,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                    lineNumber: 85,
+                                    lineNumber: 98,
                                     columnNumber: 14
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/admin/StoreManager.tsx",
-                            lineNumber: 70,
+                            lineNumber: 83,
                             columnNumber: 12
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "h-px bg-gray-800"
                         }, void 0, false, {
                             fileName: "[project]/components/admin/StoreManager.tsx",
-                            lineNumber: 102,
+                            lineNumber: 115,
                             columnNumber: 12
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -323,7 +331,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                             children: "Subscription Plan"
                                         }, void 0, false, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 119,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -339,18 +347,18 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                     children: plan
                                                 }, plan, false, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 111,
+                                                    lineNumber: 122,
                                                     columnNumber: 22
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 109,
+                                            lineNumber: 120,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                    lineNumber: 107,
+                                    lineNumber: 118,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -360,7 +368,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                             children: "Store Actions"
                                         }, void 0, false, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 129,
+                                            lineNumber: 139,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -376,14 +384,14 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                             className: store.is_verified ? "fill-blue-400" : ""
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                                            lineNumber: 142,
+                                                            lineNumber: 151,
                                                             columnNumber: 23
                                                         }, this),
                                                         store.is_verified ? "Revoke Verification" : "Mark as Verified"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 133,
+                                                    lineNumber: 142,
                                                     columnNumber: 20
                                                 }, this),
                                                 !confirmBan ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -394,20 +402,20 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                             size: 18
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                                            lineNumber: 156,
+                                                            lineNumber: 164,
                                                             columnNumber: 55
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ban$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Ban$3e$__["Ban"], {
                                                             size: 18
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                                            lineNumber: 156,
+                                                            lineNumber: 164,
                                                             columnNumber: 82
                                                         }, this),
                                                         store.status === 'banned' ? "Unban Store" : "Ban Store"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 148,
+                                                    lineNumber: 156,
                                                     columnNumber: 23
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "bg-red-900/20 border border-red-900 p-3 rounded-xl animate-in fade-in slide-in-from-bottom-2",
@@ -417,7 +425,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                             children: store.status === 'banned' ? "Re-activate this vendor?" : "Are you sure? This will kill their store."
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                                            lineNumber: 161,
+                                                            lineNumber: 169,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -429,7 +437,7 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                                     children: "Cancel"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                                    lineNumber: 165,
+                                                                    lineNumber: 173,
                                                                     columnNumber: 28
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -439,54 +447,54 @@ function StoreManager({ store, onClose, onUpdate }) {
                                                                     children: "Confirm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                                    lineNumber: 166,
+                                                                    lineNumber: 174,
                                                                     columnNumber: 28
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                                            lineNumber: 164,
+                                                            lineNumber: 172,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                                    lineNumber: 160,
+                                                    lineNumber: 168,
                                                     columnNumber: 22
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/admin/StoreManager.tsx",
-                                            lineNumber: 131,
+                                            lineNumber: 141,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/admin/StoreManager.tsx",
-                                    lineNumber: 128,
+                                    lineNumber: 138,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/admin/StoreManager.tsx",
-                            lineNumber: 105,
+                            lineNumber: 117,
                             columnNumber: 12
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/admin/StoreManager.tsx",
-                    lineNumber: 68,
+                    lineNumber: 82,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/admin/StoreManager.tsx",
-            lineNumber: 46,
+            lineNumber: 61,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/admin/StoreManager.tsx",
-        lineNumber: 45,
+        lineNumber: 60,
         columnNumber: 5
     }, this);
 }

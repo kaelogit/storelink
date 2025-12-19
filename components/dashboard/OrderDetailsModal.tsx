@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
-import { X, Printer, Download, CheckCircle } from "lucide-react";
+import { X, Printer, Download, CheckCircle, Lock } from "lucide-react"; 
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useRouter } from "next/navigation";
 
 interface OrderDetailsModalProps {
   order: any;
-  storeName: string; // <--- NEW PROP
+  storeName: string;
   isOpen: boolean;
   onClose: () => void;
   onUpdate: () => void;
@@ -42,18 +42,18 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
   const downloadReceipt = () => {
     const doc = new jsPDF();
 
-    doc.setFillColor(17, 24, 39); // Gray-900 (StoreLink Brand Color)
-    doc.rect(0, 0, 210, 24, 'F'); // Draw Header Bar
+    doc.setFillColor(17, 24, 39); 
+    doc.rect(0, 0, 210, 24, 'F'); 
 
-    doc.setTextColor(255, 255, 255); // White Text
+    doc.setTextColor(255, 255, 255); 
     doc.setFontSize(10);
     doc.setFont("helvetica", "bold");
     doc.text("VERIFIED BY STORELINK™ SECURE CHECKOUT", 105, 15, { align: "center" });
 
-    doc.setTextColor(0, 0, 0); // Reset to Black Text
+    doc.setTextColor(0, 0, 0); 
     doc.setFontSize(24);
     doc.setFont("helvetica", "bold");
-    doc.text(storeName.toUpperCase(), 105, 45, { align: "center" }); // STORE NAME
+    doc.text(storeName.toUpperCase(), 105, 45, { align: "center" }); 
 
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
@@ -89,8 +89,8 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
       theme: 'grid',
       headStyles: { fillColor: [17, 24, 39], textColor: [255, 255, 255], fontStyle: 'bold' },
       columnStyles: {
-        0: { cellWidth: 80 }, // Item Name
-        3: { fontStyle: 'bold' } // Total Column
+        0: { cellWidth: 80 }, 
+        3: { fontStyle: 'bold' } 
       }
     });
 
@@ -168,17 +168,23 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-           <button onClick={downloadReceipt} className="col-span-2 py-3.5 bg-gray-900 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-800 shadow-lg active:scale-95 transition">
-             <Download size={18} /> Download Official Receipt
-           </button>
+           {order.status === 'completed' ? (
+             <button onClick={downloadReceipt} className="col-span-2 py-3.5 bg-gray-900 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-gray-800 shadow-lg active:scale-95 transition">
+               <Download size={18} /> Download Official Receipt
+             </button>
+           ) : (
+             <button disabled className="col-span-2 py-3.5 bg-gray-100 text-gray-400 rounded-xl font-bold flex items-center justify-center gap-2 border border-gray-200 cursor-not-allowed">
+               <Lock size={18} /> Receipt Locked (Mark as Paid First)
+             </button>
+           )}
            
            {order.status === 'pending' && (
              <>
                <button onClick={() => updateStatus('cancelled')} className="py-3 bg-white border border-red-100 text-red-600 rounded-xl font-bold hover:bg-red-50 text-sm">
-                  Cancel Order
+                 Cancel Order
                </button>
                <button onClick={() => updateStatus('completed')} className="py-3 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 text-sm shadow-md">
-                  Mark Paid
+                 Mark Paid
                </button>
              </>
            )}

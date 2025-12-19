@@ -7,7 +7,6 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
   const [loading, setLoading] = useState(false);
   const [confirmBan, setConfirmBan] = useState(false);
 
-  // 1. Manually Change Plan
   async function updatePlan(newPlan: string) {
     if (!confirm(`Are you sure you want to move this store to ${newPlan}?`)) return;
     setLoading(true);
@@ -16,7 +15,6 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
     setLoading(false);
   }
 
-  // 2. Safe Ban Logic
   async function toggleBan() {
     setLoading(true);
     const newStatus = store.status === 'banned' ? 'active' : 'banned';
@@ -26,26 +24,42 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
     onClose();
   }
 
-  // 3. Verification Logic
   async function toggleVerification() {
     setLoading(true);
-    const newStatus = !store.is_verified;
     
-    await supabase
+    const isNowVerified = !store.is_verified;
+    
+    const updateData = isNowVerified 
+      ? { 
+          is_verified: true, 
+          verification_status: 'verified',
+          verification_note: 'Your account has been officially verified by StoreLink.' 
+        }
+      : { 
+          is_verified: false, 
+          verification_status: 'none', 
+          verification_note: 'Verification was revoked by an administrator.' 
+        };
+
+    const { error } = await supabase
       .from('stores')
-      .update({ is_verified: newStatus })
+      .update(updateData)
       .eq('id', store.id);
       
-    onUpdate(); 
+    if (error) {
+      alert("Error updating verification: " + error.message);
+    } else {
+      onUpdate(); 
+      onClose(); 
+    }
+    
     setLoading(false);
-    onClose(); 
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
       <div className="bg-[#111] border border-gray-800 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
         
-        {/* Header */}
         <div className="p-6 border-b border-gray-800 flex justify-between items-start">
           <div>
             <div className="flex items-center gap-2">
@@ -66,7 +80,6 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
         </div>
 
         <div className="p-8 space-y-8">
-           {/* Info Grid */}
            <div className="grid grid-cols-2 gap-6">
              <div className="space-y-4">
                 <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider">Owner Details</h3>
@@ -101,9 +114,7 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
 
            <div className="h-px bg-gray-800" />
 
-           {/* ACTIONS */}
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Plan Control */}
               <div>
                 <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Subscription Plan</h3>
                 <div className="flex gap-2">
@@ -124,12 +135,10 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                 </div>
               </div>
 
-              {/* Store Actions (Verify & Ban) */}
               <div>
                 <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Store Actions</h3>
                 
                 <div className="space-y-3">
-                   {/* 🔵 VERIFY BUTTON */}
                    <button 
                      onClick={toggleVerification}
                      disabled={loading}
@@ -143,7 +152,6 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                       {store.is_verified ? "Revoke Verification" : "Mark as Verified"}
                    </button>
 
-                   {/* 🔴 BAN BUTTON */}
                    {!confirmBan ? (
                       <button 
                         onClick={() => setConfirmBan(true)}

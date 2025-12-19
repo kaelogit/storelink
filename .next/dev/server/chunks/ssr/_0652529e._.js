@@ -364,7 +364,7 @@ function RevenueChart({ data }) {
                             borderRadius: '8px'
                         },
                         formatter: (value)=>[
-                                `₦${value.toLocaleString()}`,
+                                `₦${Number(value).toLocaleString()}`,
                                 "Revenue"
                             ]
                     }, void 0, false, {
