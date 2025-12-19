@@ -71,7 +71,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
       setLoading(true);
       setPage(1);
 
-      // Fetch a larger range to account for items filtered out by the Hard Lock
       let query = supabase
         .from("storefront_products")
         .select("*, stores!inner(name, slug, subscription_plan, category, verification_status, subscription_expiry)") 
@@ -238,7 +237,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
           className="fixed bottom-8 right-8 bg-gray-900 text-white p-4 rounded-full shadow-2xl z-50 hover:scale-110 transition animate-in zoom-in"
         >
           <ShoppingBag size={24} />
-          <span className="absolute -top-1 -right-1 bg-red-600 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white">
+          <span className="absolute -top-1 -right-1 bg-emerald-500 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white">
             {cartCount} 
           </span>
         </button>

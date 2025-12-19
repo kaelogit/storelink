@@ -2438,7 +2438,7 @@ function LandingPageWrapper({ products, stores }) {
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "absolute -top-1 -right-1 bg-red-500 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white",
+                        className: "absolute -top-1 -right-1 bg-emerald-500 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white",
                         children: cartCount
                     }, void 0, false, {
                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",

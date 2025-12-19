@@ -17,14 +17,21 @@ function ViewTracker({ storeId }) {
     const hasCounted = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ViewTracker.useEffect": ()=>{
-            // Prevent double counting in React Strict Mode or re-renders
-            if (hasCounted.current) return;
+            const sessionKey = `viewed_store_${storeId}`;
+            if (sessionStorage.getItem(sessionKey) || hasCounted.current) {
+                return;
+            }
             const countView = {
                 "ViewTracker.useEffect.countView": async ()=>{
-                    hasCounted.current = true;
-                    await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].rpc('increment_store_views', {
-                        row_id: storeId
-                    });
+                    try {
+                        hasCounted.current = true;
+                        sessionStorage.setItem(sessionKey, "true");
+                        await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].rpc('increment_store_view', {
+                            store_uuid: storeId
+                        });
+                    } catch (error) {
+                        console.error(error);
+                    }
                 }
             }["ViewTracker.useEffect.countView"];
             countView();
@@ -32,7 +39,7 @@ function ViewTracker({ storeId }) {
     }["ViewTracker.useEffect"], [
         storeId
     ]);
-    return null; // It renders nothing visibly
+    return null;
 }
 _s(ViewTracker, "9Z+fsgMExtclPh9jzdjOtBESKAo=");
 _c = ViewTracker;

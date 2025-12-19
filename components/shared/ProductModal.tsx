@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { X, ShoppingBag, Store, ChevronRight, Minus, Plus } from "lucide-react";
+import { X, ShoppingBag, Store, ChevronRight, Zap, ShieldCheck, Package } from "lucide-react";
 import { Product } from "@/types";
 
 interface ProductModalProps {
@@ -23,24 +23,23 @@ export default function ProductModal({ product, isOpen, onClose, onAddToCart }: 
     setActiveImageIndex(index);
   };
 
-  return (
-    <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      
-      <button 
-        onClick={onClose} 
-        className="absolute top-4 right-4 z-50 p-2 bg-white/10 text-white rounded-full hover:bg-white/20 transition backdrop-blur-md"
-      >
-        <X size={24} />
-      </button>
+  const isLowStock = product.stock_quantity > 0 && product.stock_quantity <= 5;
 
-      <div className="bg-white w-full h-[90vh] md:h-[85vh] md:max-w-5xl md:rounded-3xl rounded-t-3xl shadow-2xl flex flex-col md:flex-row relative overflow-hidden animate-in slide-in-from-bottom-10">
+  return (
+    <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+      
+      <div className="absolute inset-0" onClick={onClose} />
+
+      <div className="bg-white w-full h-[92vh] md:h-[85vh] md:max-w-5xl md:rounded-[3rem] rounded-t-[3rem] shadow-2xl flex flex-col md:flex-row relative overflow-hidden animate-in slide-in-from-bottom-20 duration-500">
          
-         <div className="w-full md:w-[55%] h-[45vh] md:h-full bg-gray-100 relative shrink-0">
-           
-           <div 
-             className="flex w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-             onScroll={handleScroll}
-           >
+         {/* Close Button */}
+         <button onClick={onClose} className="absolute top-6 right-6 z-50 p-3 bg-white/20 hover:bg-white/40 text-white rounded-full backdrop-blur-xl border border-white/20 active:scale-90 transition-all">
+           <X size={24} />
+         </button>
+
+         {/* Left: Gallery Section */}
+         <div className="w-full md:w-[50%] h-[40vh] md:h-full bg-gray-50 relative shrink-0">
+           <div className="flex w-full h-full overflow-x-auto snap-x snap-mandatory no-scrollbar" onScroll={handleScroll}>
              {product.image_urls && product.image_urls.length > 0 ? (
                product.image_urls.map((url, idx) => (
                  <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative">
@@ -48,71 +47,72 @@ export default function ProductModal({ product, isOpen, onClose, onAddToCart }: 
                  </div>
                ))
              ) : (
-               <div className="w-full h-full flex items-center justify-center text-gray-300"><ShoppingBag size={64}/></div>
+               <div className="w-full h-full flex items-center justify-center text-gray-200"><Package size={80}/></div>
              )}
            </div>
 
+           {/* Custom Pagination Dots */}
            {product.image_urls && product.image_urls.length > 1 && (
-             <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20 pointer-events-none">
+             <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-1.5 z-20">
                {product.image_urls.map((_, i) => (
-                 <div key={i} className={`h-1.5 rounded-full shadow-sm transition-all duration-300 ${i === activeImageIndex ? 'bg-white w-6' : 'bg-white/60 w-1.5'}`} />
+                 <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${i === activeImageIndex ? 'bg-white w-8 shadow-lg' : 'bg-white/40 w-1.5'}`} />
                ))}
              </div>
            )}
 
-           {product.stores?.subscription_plan === 'premium' && (
-             <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full">
-               Premium Store
-             </div>
+           {isLowStock && (
+              <div className="absolute top-6 left-6 bg-red-600 text-white px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl animate-pulse flex items-center gap-2">
+                 <Zap size={12} fill="currentColor" /> {product.stock_quantity} LEFT
+              </div>
            )}
          </div>
 
+         {/* Right: Info Section */}
          <div className="flex-1 flex flex-col h-full bg-white relative">
-            
-            <div className="flex-1 overflow-y-auto p-6 pb-24">
-               
+            <div className="flex-1 overflow-y-auto p-8 pb-32">
                {product.stores && (
-                 <div className="flex items-center gap-2 text-gray-500 text-sm font-medium mb-2 hover:text-gray-900 transition w-fit cursor-pointer">
-                   <Store size={14} />
+                 <div className="inline-flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-xl text-gray-500 text-[10px] font-black uppercase tracking-widest mb-4">
+                   <Store size={12} />
                    <span>{product.stores.name}</span>
-                   <ChevronRight size={14} />
+                   <ChevronRight size={10} />
                  </div>
                )}
 
-               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight mb-2">{product.name}</h2>
+               <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-[1.1] tracking-tighter mb-4 uppercase">{product.name}</h2>
                
-               <div className="flex items-center gap-3 mb-6">
-                 <p className="text-3xl font-extrabold text-emerald-600">₦{product.price.toLocaleString()}</p>
-                 <div className={`px-2.5 py-1 rounded-lg text-xs font-bold ${product.stock_quantity > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
-                   {product.stock_quantity > 0 ? 'In Stock' : 'Sold Out'}
-                 </div>
+               <div className="flex items-center gap-4 mb-8">
+                 <p className="text-3xl font-black text-emerald-600 tracking-tighter">₦{product.price.toLocaleString()}</p>
+                 <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border ${product.stock_quantity > 0 ? 'bg-emerald-50 text-emerald-700 border-emerald-100' : 'bg-red-50 text-red-600 border-red-100'}`}>
+                   {product.stock_quantity > 0 ? `${product.stock_quantity} IN STOCK` : 'SOLD OUT'}
+                 </span>
                </div>
 
-               <div className="h-px bg-gray-100 w-full mb-6"></div>
+               <div className="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100 relative mb-8">
+                  <div className="absolute -top-3 left-6 bg-white px-3 text-[9px] font-black uppercase tracking-widest text-gray-400 border border-gray-100 rounded-lg">Description</div>
+                  <p className="text-gray-600 text-sm leading-relaxed font-medium">{product.description || "No description provided."}</p>
+               </div>
 
-               <h3 className="text-sm font-bold uppercase text-gray-400 tracking-wider mb-3">Product Description</h3>
-               <div className="text-gray-600 text-base leading-relaxed whitespace-pre-line">
-                 {product.description || "No description provided by the vendor."}
+               <div className="flex items-center gap-6 opacity-40">
+                  <div className="flex items-center gap-2 font-black text-[9px] uppercase tracking-widest"><ShieldCheck size={16}/> Secure</div>
+                  <div className="flex items-center gap-2 font-black text-[9px] uppercase tracking-widest"><Package size={16}/> Verified</div>
                </div>
             </div>
             
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-white border-t border-gray-100 flex items-center gap-4 z-20">
+            {/* CTA Footer */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-gray-100 backdrop-blur-md z-20">
                <button 
                  onClick={() => { onAddToCart(product); onClose(); }} 
                  disabled={product.stock_quantity < 1}
-                 className="flex-1 bg-gray-900 text-white h-14 rounded-2xl font-bold text-lg shadow-xl hover:bg-gray-800 active:scale-95 transition flex items-center justify-center gap-3 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                 className="w-full bg-gray-900 text-white h-16 rounded-[1.5rem] font-black text-sm uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.2)] hover:bg-emerald-600 active:scale-95 transition-all flex items-center justify-center gap-3 disabled:bg-gray-200 disabled:text-gray-400"
                >
                  {product.stock_quantity > 0 ? (
                    <>
-                     <ShoppingBag size={22} />
-                     <span>Add to Cart</span>
+                     <ShoppingBag size={20} />
+                     <span>Add to My Cart</span>
                    </>
-                 ) : (
-                   "Sold Out"
-                 )}
+                 ) : "Currently Sold Out"}
                </button>
             </div>
-
          </div>
       </div>
     </div>

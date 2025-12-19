@@ -116,3 +116,963 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [01:16:15.170] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [01:16:36.656] Server  LOG      ✓ Compiled in 441ms
 [01:16:42.819] Server  LOG      ✓ Compiled in 276ms
+[14:19:53.580] Browser ERROR   {}
+[14:19:53.966] Browser ERROR   {}
+[14:19:54.347] Browser ERROR   {}
+[14:19:55.269] Browser ERROR   {}
+[14:19:57.005] Browser ERROR   {}
+[14:20:00.081] Browser ERROR   {}
+[14:20:12.329] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:20:47.586] Server  LOG      ○ Compiling /dashboard/orders ...
+[14:20:54.872] Browser ERROR   {}
+[14:20:55.235] Browser ERROR   {}
+[14:21:15.692] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:21:30.110] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:21:42.700] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:21:56.681] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:21:57.382] Browser ERROR   {}
+[14:21:58.121] Browser ERROR   {}
+[14:27:15.592] Server  LOG      ✓ Compiled in 398ms
+[14:27:15.847] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:27:24.761] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:27:25.109] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:27:25.109] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:27:25.109] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:27:25.109] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:27:25.109] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:27:25.109] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:28:08.736] Server  LOG      ✓ Compiled in 1510ms
+[14:28:51.242] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:30:23.401] Server  LOG      ✓ Compiled in 766ms
+[14:31:50.412] Server  LOG      ✓ Compiled in 1347ms
+[14:31:50.718] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:31:51.485] Server  LOG      ✓ Compiled in 473ms
+[14:31:51.984] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:32:41.954] Server  LOG      ✓ Compiled in 467ms
+[14:32:42.075] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:32:48.959] Server  LOG      ✓ Compiled in 255ms
+[14:32:49.010] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:32:51.205] Server  LOG      ✓ Compiled in 209ms
+[14:32:51.983] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:34:01.604] Server  LOG      ✓ Compiled in 1093ms
+[14:34:04.675] Server  LOG      ✓ Compiled in 334ms
+[14:34:08.237] Server  LOG      ✓ Compiled in 832ms
+[14:34:11.475] Server  LOG      ✓ Compiled in 358ms
+[14:34:13.964] Server  LOG      ✓ Compiled in 477ms
+[14:34:17.525] Server  LOG      ✓ Compiled in 504ms
+[14:34:23.172] Server  LOG      ✓ Compiled in 154ms
+[14:36:22.805] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1766105811748-djppl" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:22.805] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884487383-7n7cmv" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:22.805] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884320488-u51q6" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:22.805] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:23.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:23.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:23.233] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884441023-td75w8h" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:23.234] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884407928-63hus9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:23.234] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884376189-ovwbz" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:31.363] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884487383-7n7cmv"
+[14:36:31.370] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc"
+[14:36:31.381] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp"
+[14:36:31.397] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884441023-td75w8h"
+[14:36:31.402] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884407928-63hus9"
+[14:36:31.406] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884376189-ovwbz"
+[14:36:31.500] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:36:31.548] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:36:31.561] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.564] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.567] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.569] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.572] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[14:36:31.578] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.583] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.592] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.601] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.616] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[14:36:31.621] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.630] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.633] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.634] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.636] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[14:36:31.647] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.650] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.653] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.656] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.663] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[14:36:31.666] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.668] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.671] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.673] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.676] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[14:36:31.695] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.701] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.703] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.706] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:36:31.709] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[14:36:33.875] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927"
+[14:36:33.996] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/45044b2e-1f4c-4d0f-a058-ce8bf2149d93-1765884156127"
+[14:36:34.025] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901"
+[14:36:35.935] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:36:37.919] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:38.452] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:39.349] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:40.058] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:40.411] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:40.412] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:40.591] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:40.967] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:41.157] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:41.679] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:36:41.830] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:41:12.782] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:12.868] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:12.919] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:12.936] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:12.951] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:12.971] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:12.991] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:13.003] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:13.017] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:14.286] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901"
+[14:41:14.320] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/covers/a63dbddb-7497-422e-a89d-000e9a32d618-1766153342075"
+[14:41:14.407] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft"
+[14:41:14.435] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd"
+[14:41:14.445] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria"
+[14:41:14.508] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7"
+[14:41:15.829] Server  LOG      ○ Compiling /_error ...
+[14:41:21.623] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e"
+[14:41:21.752] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:41:21.813] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg"
+[14:41:21.898] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o"
+[14:41:21.903] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje"
+[14:41:39.663] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:41:39.923] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:41:53.999] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/covers/a63dbddb-7497-422e-a89d-000e9a32d618-1766153342075"
+[14:41:54.009] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901"
+[14:41:54.024] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg"
+[14:41:54.027] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa"
+[14:41:54.034] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e"
+[14:41:54.042] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd"
+[14:41:54.241] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[14:41:54.241] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[14:42:01.109] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7"
+[14:42:01.121] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o"
+[14:42:01.198] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft"
+[14:42:01.205] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje"
+[14:42:01.219] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria"
+[14:42:21.557] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.557] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.557] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.557] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.557] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.837] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.837] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.837] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.837] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:21.837] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:42:35.941] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901"
+[14:42:35.969] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/covers/a63dbddb-7497-422e-a89d-000e9a32d618-1766153342075"
+[14:42:47.082] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg"
+[14:42:47.090] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa"
+[14:42:58.234] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e"
+[14:42:58.260] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd"
+[14:44:01.786] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901"
+[14:44:01.789] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/covers/a63dbddb-7497-422e-a89d-000e9a32d618-1766153342075"
+[14:44:12.910] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg"
+[14:44:12.913] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa"
+[14:44:24.078] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e"
+[14:44:24.082] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7"
+[14:44:35.210] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/covers/a63dbddb-7497-422e-a89d-000e9a32d618-1766153342075"
+[14:44:35.250] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901"
+[14:44:46.370] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd"
+[14:44:46.375] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg"
+[14:44:57.501] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa"
+[14:44:57.508] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e"
+[14:45:08.640] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria"
+[14:45:08.645] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7"
+[14:45:19.786] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft"
+[14:45:19.835] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o"
+[14:45:30.912] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje"
+[14:46:53.160] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:46:54.248] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:54.249] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:54.732] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:54.948] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:54.948] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[14:46:55.714] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:55.918] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:56.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:57.443] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:58.086] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:46:59.521] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:47:00.109] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[14:50:25.605] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:50:26.459] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884320488-u51q6" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.459] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884487383-7n7cmv" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.459] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884407928-63hus9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.459] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884441023-td75w8h" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884376189-ovwbz" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:26.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:50:31.392] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1766105811748-djppl" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:54:01.752] Server  LOG      ✓ Compiled in 809ms
+[14:54:02.228] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:54:04.002] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:04.080] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:04.099] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:04.115] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:06.035] Server  ERROR    ⨯ Failed to generate static paths for /[slug]:
+[14:54:06.245] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__b2742145._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:54:06.329] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:54:06.383] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_a15c7a24._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:54:06.415] Server  ERROR   Error: Cannot find module 'lucide-center'
+[14:54:06.450] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:06.490] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:06.522] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:06.540] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:07.897] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[14:54:07.916] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[14:54:07.917] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[14:54:07.919] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[14:54:09.388] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:09.403] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:09.414] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:09.420] Server  ERROR    ⨯ ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[14:54:09.897] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[14:54:09.898] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[14:54:09.899] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[14:54:09.900] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[14:54:13.066] Server  LOG      ✓ Compiled in 145ms
+[14:54:13.109] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:54:30.791] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:54:30.798] Server  LOG      ✓ Compiled in 228ms
+[14:54:32.750] Server  LOG      ✓ Compiled in 655ms
+[14:54:33.535] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:55:45.527] Server  LOG      ✓ Compiled in 1669ms
+[14:55:48.689] Server  LOG      ✓ Compiled in 1582ms
+[14:55:48.741] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:55:52.899] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `VendorStorePage`.
+[14:56:11.438] Server  LOG      ✓ Compiled in 302ms
+[14:56:11.579] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:56:15.140] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:56:15.146] Server  ERROR    ⨯ Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+[14:56:16.409] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:56:17.907] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `VendorStorePage`.
+[14:56:30.085] Server  LOG      ✓ Compiled in 1245ms
+[14:56:31.394] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[14:56:31.781] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[14:56:32.907] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__c2f0fba8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:56:32.925] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\components_c82ad262._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[14:56:32.928] Server  ERROR    ⨯ Error: useCart must be used within a CartProvider
+[14:56:33.640] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:35.898] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:56:36.910] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[14:57:58.994] Server  LOG      ✓ Compiled in 576ms
+[15:03:04.178] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765843696728-3qar5k" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:03:31.833] Server  LOG      ✓ Compiled in 254ms
+[15:03:34.458] Server  LOG      ✓ Compiled in 259ms
+[15:03:37.015] Server  LOG      ✓ Compiled in 250ms
+[15:06:26.997] Server  LOG      ✓ Compiled in 401ms
+[15:06:29.978] Server  LOG      ✓ Compiled in 244ms
+[15:06:38.966] Server  LOG      ✓ Compiled in 241ms
+[15:06:43.227] Server  LOG      ✓ Compiled in 258ms
+[15:06:56.649] Server  LOG      ✓ Compiled in 274ms
+[15:07:03.704] Server  LOG      ✓ Compiled in 233ms
+[15:07:06.683] Server  LOG      ✓ Compiled in 375ms
+[15:07:13.618] Server  LOG      ✓ Compiled in 243ms
+[15:07:17.699] Server  LOG      ✓ Compiled in 122ms
+[15:07:29.062] Server  LOG      ✓ Compiled in 192ms
+[15:07:31.316] Server  LOG      ✓ Compiled in 514ms
+[15:07:34.160] Server  LOG      ✓ Compiled in 352ms
+[15:09:33.940] Server  LOG      ✓ Compiled in 249ms
+[15:13:54.002] Server  LOG      ✓ Compiled in 385ms
+[15:14:16.127] Server  LOG      ✓ Compiled in 225ms
+[15:21:43.738] Server  LOG      ✓ Compiled in 890ms
+[15:23:40.712] Server  LOG      ✓ Compiled in 616ms
+[15:23:52.911] Server  LOG      ✓ Compiled in 322ms
+[15:26:51.096] Server  LOG      ✓ Compiled in 316ms
+[15:30:30.935] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:32.361] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:30:36.335] Server  LOG      ○ Compiling /product/[id] ...
+[15:32:55.123] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:33:33.680] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758431256-9t2rq" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:36:29.136] Server  LOG      ✓ Compiled in 178ms
+[15:36:29.615] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:36:32.183] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:36:32.187] Server  LOG      ✓ Compiled in 109ms
+[15:36:36.527] Server  LOG      ✓ Compiled in 191ms
+[15:36:36.762] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:36:40.140] Server  LOG      ✓ Compiled in 157ms
+[15:36:40.160] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:36:44.841] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:36:44.857] Server  LOG      ✓ Compiled in 228ms
+[15:36:49.175] Server  LOG      ✓ Compiled in 150ms
+[15:36:49.624] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:36:55.841] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:36:55.872] Server  LOG      ✓ Compiled in 122ms
+[15:37:15.254] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:37:15.256] Server  LOG      ✓ Compiled in 128ms
+[15:38:47.292] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[15:38:47.292] Browser ERROR   ./app/[slug]/page.tsx:7:1
+Module not found: Can't resolve 'lucide-center'
+   5 | import { shuffleArray } from "@/utils/shuffle";
+   6 | import ViewTracker from "@/components/ViewTracker";
+>  7 | import { AlertTriangle, Lock } from "lucide-center"; // 👈 Preserved Icons
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | export const dynamic = 'force-dynamic';
+  10 |
+
+https://nextjs.org/docs/messages/module-not-found
+[15:41:53.903] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:41:53.904] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:41:53.907] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:41:53.908] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:41:57.411] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:41:57.518] Server  LOG      ✓ Compiled in 429ms
+[15:41:58.668] Server  LOG      ✓ Compiled in 291ms
+[15:41:58.811] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:42:03.256] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:42:08.545] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:42:08.859] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:43:30.528] Server  LOG      ✓ Compiled in 126ms
+[15:43:30.570] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:43:33.643] Server  LOG      ✓ Compiled in 181ms
+[15:43:33.726] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:43:35.938] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:43:35.950] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:43:36.061] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:43:36.405] Server  LOG      ✓ Compiled in 250ms
+[15:43:36.422] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:43:37.023] Server  ERROR    ⨯ Failed to generate static paths for /product/[id]:
+[15:43:37.039] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.047] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.115] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_649a8fd0._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.116] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\lib\app-dir-module.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.122] Server  ERROR   Error: Could not parse module '[project]/app/product/[id]/page.tsx'
+
+Unterminated block comment
+[15:43:37.123] Server  ERROR    ⨯ Failed to generate static paths for /product/[id]:
+[15:43:37.124] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.133] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.135] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_649a8fd0._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.136] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\lib\app-dir-module.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.141] Server  ERROR   Error: Could not parse module '[project]/app/product/[id]/page.tsx'
+
+Unterminated block comment
+[15:43:37.143] Server  ERROR    ⨯ Failed to generate static paths for /product/[id]:
+[15:43:37.148] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[root-of-the-server]__d43678a3._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.149] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.151] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_649a8fd0._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.155] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\lib\app-dir-module.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[15:43:37.160] Server  ERROR   Error: Could not parse module '[project]/app/product/[id]/page.tsx'
+
+Unterminated block comment
+[15:43:37.163] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:43:39.279] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:43:45.048] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:43:45.064] Server  LOG      ✓ Compiled in 150ms
+[15:43:47.799] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:43:49.426] Server  LOG      ✓ Compiled in 244ms
+[15:43:49.689] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:43:53.203] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:43:53.209] Server  LOG      ✓ Compiled in 154ms
+[15:44:12.979] Browser ERROR   ./app/product/[id]/page.tsx:145:2
+Parsing ecmascript source code failed
+  143 |     </div>
+  144 |   );
+> 145 | }
+      |  ^
+
+Unterminated block comment
+[15:44:25.123] Server  LOG      ✓ Compiled in 236ms
+[15:44:25.207] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:44:43.343] Server  LOG      ✓ Compiled in 151ms
+[15:44:43.366] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:44:44.551] Server  LOG      ✓ Compiled in 216ms
+[15:44:44.563] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:44:47.417] Server  LOG      ✓ Compiled in 204ms
+[15:44:47.981] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:44:50.075] Server  LOG      ✓ Compiled in 558ms
+[15:44:52.138] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:45:08.706] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:46:04.948] Server  LOG      ✓ Compiled in 146ms
+[15:46:04.964] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:46:24.468] Server  LOG      ✓ Compiled in 227ms
+[15:46:25.440] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:46:38.982] Server  LOG      ✓ Compiled in 150ms
+[15:46:39.719] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:46:40.718] Server  LOG      ✓ Compiled in 491ms
+[15:46:41.522] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:46:45.516] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:46:46.900] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:46:46.900] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758431256-9t2rq" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:46:58.411] Server  LOG      ✓ Compiled in 188ms
+[15:46:59.054] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:47:12.231] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[15:49:36.122] Server  LOG      ✓ Compiled in 289ms
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:41.975] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:49:55.609] Server  LOG      ✓ Compiled in 410ms
+[15:50:28.678] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[15:50:33.334] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:33.334] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:33.334] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:33.334] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:33.334] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:53.773] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:53.773] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:53.773] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1766105811748-djppl" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:53.773] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:53.773] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884487383-7n7cmv" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:53.773] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884376189-ovwbz" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:53.773] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884320488-u51q6" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:50:53.773] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884407928-63hus9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:53:50.040] Server  LOG      ✓ Compiled in 366ms
+[15:54:01.330] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:54:01.927] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:01.927] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:01.927] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:01.927] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:02.133] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:02.133] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:19.834] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:54:23.619] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.619] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.619] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.619] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.619] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884407928-63hus9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.619] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884441023-td75w8h" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.868] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1766105811748-djppl" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.868] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.868] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884487383-7n7cmv" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.868] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.868] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884320488-u51q6" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:23.868] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:48.403] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:48.403] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152947588-fuealg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:48.403] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152308317-59z3jje" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:48.403] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152667210-podria" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:48.403] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884376189-ovwbz" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:48.403] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152901157-8g6e5e" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:54:55.921] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642709738-yarwyj" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:55:13.777] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:55:14.197] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152555157-hxpxft" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:55:14.679] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152835633-pigmqa" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:55:15.058] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152737799-2i4scd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:55:15.326] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152210975-9c61r7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:55:15.326] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:55:35.124] Server  LOG      ✓ Compiled in 145ms
+[15:55:39.278] Server  LOG      ✓ Compiled in 117ms
+[15:55:50.746] Server  LOG      ✓ Compiled in 108ms
+[15:56:22.045] Server  LOG      ✓ Compiled in 906ms
+[15:56:33.338] Server  LOG      ✓ Compiled in 140ms
+[15:59:08.214] Server  LOG      ✓ Compiled in 433ms
+[15:59:10.997] Server  LOG      ✓ Compiled in 110ms
+[15:59:12.653] Server  LOG      ✓ Compiled in 197ms
+[15:59:16.895] Server  LOG      ✓ Compiled in 390ms
+[15:59:25.261] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765843696728-3qar5k" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:59:34.847] Server  LOG      ✓ Compiled in 105ms
+[16:00:20.846] Server  LOG      ✓ Compiled in 112ms
+[16:02:05.667] Server  LOG      ✓ Compiled in 397ms
+[16:02:11.641] Server  LOG      ✓ Compiled in 199ms
+[16:02:14.496] Server  LOG      ✓ Compiled in 132ms
+[16:02:16.269] Server  LOG      ✓ Compiled in 198ms
+[16:02:19.357] Server  LOG      ✓ Compiled in 117ms
+[16:02:21.199] Server  LOG      ✓ Compiled in 132ms
+[16:02:24.164] Server  LOG      ✓ Compiled in 339ms
+[16:08:43.918] Server  LOG      ✓ Compiled in 327ms
+[16:08:46.757] Server  LOG      ✓ Compiled in 185ms
+[16:08:49.871] Server  LOG      ✓ Compiled in 140ms
+[16:08:51.718] Server  LOG      ✓ Compiled in 224ms
+[16:08:53.214] Server  LOG      ✓ Compiled in 125ms
+[16:08:54.858] Server  LOG      ✓ Compiled in 182ms
+[16:08:57.579] Server  LOG      ✓ Compiled in 263ms
+[16:09:10.306] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[16:11:03.282] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:03.282] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758430043-fy06nf" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:03.282] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758816659-gfw2l" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:03.282] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758852587-wwvkg9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:03.282] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758885243-3aw0ag" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:03.282] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335/1765758771145-dobgx" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:06.238] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:08.260] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:08.260] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884441023-td75w8h" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:08.260] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884407928-63hus9" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:08.527] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884487383-7n7cmv" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:08.527] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1765884320488-u51q6" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:08.527] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/45044b2e-1f4c-4d0f-a058-ce8bf2149d93/1766105811748-djppl" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:10.736] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/a63dbddb-7497-422e-a89d-000e9a32d618-1766153225901" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:12.177] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/45044b2e-1f4c-4d0f-a058-ce8bf2149d93-1765884156127" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:12.572] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[16:11:46.785] Server  LOG      ✓ Compiled in 287ms
+[16:12:53.195] Server  LOG      ✓ Compiled in 102ms
+[16:13:01.386] Server  LOG      ✓ Compiled in 165ms
+[16:13:50.431] Server  LOG      ✓ Compiled in 223ms
+[16:14:07.343] Server  LOG      ✓ Compiled in 123ms
+[16:14:21.602] Server  LOG      ✓ Compiled in 117ms
+[16:14:55.440] Server  LOG      ✓ Compiled in 143ms
+[16:14:57.348] Server  LOG      ✓ Compiled in 428ms
+[16:14:58.553] Server  LOG      ✓ Compiled in 104ms
+[16:15:02.404] Server  LOG      ✓ Compiled in 109ms
+[16:15:40.744] Server  LOG      ✓ Compiled in 116ms
+[16:15:42.391] Server  LOG      ✓ Compiled in 143ms
+[16:15:43.780] Server  LOG      ✓ Compiled in 179ms
+[16:15:44.913] Server  LOG      ✓ Compiled in 120ms
+[16:15:44.917] Browser ERROR   ./components/shared/ProductHeader.tsx:35:9
+Parsing ecmascript source code failed
+  33 |           className="active:scale-90 transition-transform flex items-center justify-center hover:opacity-80"
+  34 |           title="Go to Home"
+> 35 |         >
+     |         ^
+  36 |           <LayoutDashboard size={26} className="text-emerald-600" />
+  37 |         </Link>
+  38 |
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/shared/ProductHeader.tsx
+    ./app/product/[id]/page.tsx
+[16:15:44.928] Browser ERROR   ./components/shared/ProductHeader.tsx:35:9
+Parsing ecmascript source code failed
+  33 |           className="active:scale-90 transition-transform flex items-center justify-center hover:opacity-80"
+  34 |           title="Go to Home"
+> 35 |         >
+     |         ^
+  36 |           <LayoutDashboard size={26} className="text-emerald-600" />
+  37 |         </Link>
+  38 |
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/shared/ProductHeader.tsx
+    ./app/product/[id]/page.tsx
+[16:15:44.934] Browser ERROR   ./components/shared/ProductHeader.tsx:35:9
+Parsing ecmascript source code failed
+  33 |           className="active:scale-90 transition-transform flex items-center justify-center hover:opacity-80"
+  34 |           title="Go to Home"
+> 35 |         >
+     |         ^
+  36 |           <LayoutDashboard size={26} className="text-emerald-600" />
+  37 |         </Link>
+  38 |
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/shared/ProductHeader.tsx
+    ./app/product/[id]/page.tsx
+[16:15:44.956] Browser ERROR   ./components/shared/ProductHeader.tsx:35:9
+Parsing ecmascript source code failed
+  33 |           className="active:scale-90 transition-transform flex items-center justify-center hover:opacity-80"
+  34 |           title="Go to Home"
+> 35 |         >
+     |         ^
+  36 |           <LayoutDashboard size={26} className="text-emerald-600" />
+  37 |         </Link>
+  38 |
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/shared/ProductHeader.tsx
+    ./app/product/[id]/page.tsx
+[16:15:44.970] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[16:15:44.974] Browser ERROR   ./components/shared/ProductHeader.tsx:35:9
+Parsing ecmascript source code failed
+  33 |           className="active:scale-90 transition-transform flex items-center justify-center hover:opacity-80"
+  34 |           title="Go to Home"
+> 35 |         >
+     |         ^
+  36 |           <LayoutDashboard size={26} className="text-emerald-600" />
+  37 |         </Link>
+  38 |
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/shared/ProductHeader.tsx
+    ./app/product/[id]/page.tsx
+[16:15:47.923] Server  LOG      ✓ Compiled in 278ms
+[16:15:50.235] Server  LOG      ✓ Compiled in 108ms
+[16:15:53.917] Server  LOG      ✓ Compiled in 152ms
+[16:18:01.993] Server  LOG      ✓ Compiled in 149ms
+[16:18:02.045] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[16:18:21.422] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[16:18:21.460] Server  LOG      ✓ Compiled in 133ms
+[16:18:23.169] Server  LOG      ✓ Compiled in 276ms
+[16:18:23.832] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[16:20:52.196] Server  LOG      ✓ Compiled in 142ms
+[16:20:52.295] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.

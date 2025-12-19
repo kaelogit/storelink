@@ -4,7 +4,7 @@ import StoreFront from "@/components/StoreFront";
 import type { Metadata } from "next"; 
 import { shuffleArray } from "@/utils/shuffle";
 import ViewTracker from "@/components/ViewTracker";
-import { AlertTriangle, Lock } from "lucide-react"; // 👈 Preserved Icons
+import { AlertTriangle, Lock } from "lucide-react"; 
 
 export const dynamic = 'force-dynamic';
 
@@ -21,11 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     .eq("slug", resolvedParams.slug)
     .single();
 
-  if (!store) {
-    return {
-      title: "Store Not Found",
-    };
-  }
+  if (!store) return { title: "Store Not Found" };
 
   const shareImage = store.cover_image_url || store.logo_url || "/og-image.png";
 
@@ -50,6 +46,7 @@ export default async function VendorStorePage({ params }: PageProps) {
 
   if (!store) return notFound();
 
+  // --- 100% PRESERVED EXPIRED LOCK LOGIC ---
   if (store.subscription_expiry && new Date(store.subscription_expiry) < new Date()) {
      return (
         <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 text-center">
@@ -81,6 +78,7 @@ export default async function VendorStorePage({ params }: PageProps) {
     .eq("is_active", true)
     .order("created_at", { ascending: false });
 
+  // --- 100% PRESERVED FREE PLAN LIMIT ---
   if (store.subscription_plan !== 'premium' && store.subscription_plan !== 'diamond') {
     productsQuery = productsQuery.limit(5);
   }
@@ -97,7 +95,6 @@ export default async function VendorStorePage({ params }: PageProps) {
   return (
     <>
       <ViewTracker storeId={store.id} />
-
       <StoreFront 
         store={store} 
         products={shuffledProducts}

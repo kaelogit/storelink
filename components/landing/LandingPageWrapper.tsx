@@ -57,7 +57,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       {cartCount > 0 && !isCartOpen && (
         <button onClick={() => setIsCartOpen(true)} className="fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-full shadow-2xl z-40 hover:scale-105 transition animate-in zoom-in">
           <ShoppingBag size={24} />
-          <span className="absolute -top-1 -right-1 bg-red-500 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white">
+          <span className="absolute -top-1 -right-1 bg-emerald-500 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white">
               {cartCount} 
           </span>
         </button>
