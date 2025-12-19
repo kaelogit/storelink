@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { 
   Package, ShoppingBag, Settings, Plus, ExternalLink, 
   Crown, AlertTriangle, Eye, TrendingUp, Tags, Edit, Trash2,
-  Lock, Sparkles, X, BarChart3, Calendar
+  Lock, Sparkles, X, BarChart3, Calendar, Zap,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AddProductModal from "@/components/store/AddProductModal";
@@ -14,6 +14,7 @@ import CategoryManager from "@/components/store/CategoryManager";
 import OrderDetailsModal from "@/components/dashboard/OrderDetailsModal";
 import StoreSettings from "@/components/dashboard/StoreSettings";
 import ShareStore from "./ShareStore";
+import FlashDropModal from "@/components/dashboard/FlashDropModal";
 
 interface DashboardClientProps {
   store: any;
@@ -55,6 +56,8 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
     setIsAddModalOpen(false);
     setProductToEdit(null); 
   };
+
+  const [selectedFlashProduct, setSelectedFlashProduct] = useState<any>(null);
 
   return (
     <div className="space-y-6 px-1 md:px-0">
@@ -308,9 +311,44 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                            }
                          </td>
                          <td className="px-6 py-4 text-right flex justify-end gap-1 md:gap-2">
-                            <button onClick={() => openEditModal(p)} className="p-2 text-gray-400 hover:text-blue-600 transition"><Edit size={16}/></button>
-                            <button onClick={() => deleteProduct(p.id)} className="p-2 text-gray-400 hover:text-red-600 transition"><Trash2 size={16}/></button>
-                         </td>
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation(); 
+                                setSelectedFlashProduct(p);
+                              }} 
+                              className={`p-2 transition active:scale-75 ${
+                                p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() 
+                                  ? 'text-amber-500' 
+                                  : 'text-gray-300 hover:text-amber-500'
+                              }`}
+                            >
+                              <Zap 
+                                size={16} 
+                                fill={p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? "currentColor" : "none"} 
+                              />
+                            </button>
+                            
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                openEditModal(p);
+                              }} 
+                              className="p-2 text-gray-400 hover:text-blue-600 transition"
+                            >
+                              <Edit size={16}/>
+                            </button>
+
+                            {/* DELETE BUTTON */}
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                deleteProduct(p.id);
+                              }} 
+                              className="p-2 text-gray-400 hover:text-red-600 transition"
+                            >
+                              <Trash2 size={16}/>
+                            </button>
+                          </td>
                        </tr>
                      ))}
                    </tbody>
@@ -378,6 +416,12 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
       <CategoryManager storeId={store.id} isOpen={isCatModalOpen} onClose={() => setIsCatModalOpen(false)} onSuccess={() => router.refresh()} />
       <OrderDetailsModal order={selectedOrder} storeName={store.name} isOpen={!!selectedOrder} onClose={() => setSelectedOrder(null)} onUpdate={() => router.refresh()} />
 
+      <FlashDropModal 
+        product={selectedFlashProduct} 
+        isOpen={!!selectedFlashProduct} 
+        onClose={() => setSelectedFlashProduct(null)} 
+        onSuccess={() => router.refresh()} 
+      />
     </div>
   );
 }

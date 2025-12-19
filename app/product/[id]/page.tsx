@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import AddToCartButton from "@/components/shared/AddToCartButton";
 import ProductHeader from "@/components/shared/ProductHeader";
 import ProductGallery from "@/components/shared/ProductGallery";
+import FlashTimer from "@/components/shared/FlashTimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { 
@@ -28,13 +29,16 @@ export async function generateMetadata({ params }: PageProps) {
 
   const p: any = product; 
   const storeName = Array.isArray(p.stores) ? p.stores[0]?.name : p.stores?.name;
+  
+  const isFlashActive = p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date();
+  const displayPrice = isFlashActive ? p.flash_drop_price : p.price;
 
   return {
-    title: `${p.name} - ₦${p.price.toLocaleString()}`,
+    title: `${p.name} - ₦${displayPrice.toLocaleString()}`,
     description: p.description || `Buy ${p.name} from ${storeName}`,
     openGraph: {
       title: `${p.name} | ${storeName}`,
-      description: `Price: ₦${p.price.toLocaleString()}. Order via WhatsApp.`,
+      description: `Price: ₦${displayPrice.toLocaleString()}. Order via WhatsApp.`,
       images: p.image_urls || [],
     },
   };
@@ -52,7 +56,8 @@ export default async function ProductPage({ params }: PageProps) {
 
   const store = product.stores;
   const isStockAvailable = product.stock_quantity > 0;
-  const isLowStock = product.stock_quantity > 0 && product.stock_quantity <= 5;
+  
+  const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
 
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col">
@@ -73,11 +78,33 @@ export default async function ProductPage({ params }: PageProps) {
 
           <div className="flex flex-col justify-center">
              <div className="mb-8">
+                
+                {isFlashActive && (
+                  <div className="mb-6">
+                    <FlashTimer expiry={product.flash_drop_expiry} />
+                  </div>
+                )}
+
                 <h1 className="text-1xl md:text-3xl font-black text-gray-900 mb-4 leading-[1.1] tracking-tight uppercase">
                   {product.name}
                 </h1>
+                
                 <div className="flex flex-wrap items-center gap-4">
-                  <p className="text-2xl font-black text-emerald-600 tracking-tighter">₦ {product.price.toLocaleString()}</p>
+                  {isFlashActive ? (
+                    <div className="flex items-center gap-3">
+                      <p className="text-2xl font-black text-emerald-600 tracking-tighter">
+                        ₦ {product.flash_drop_price.toLocaleString()}
+                      </p>
+                      <p className="text-sm font-bold text-gray-400 line-through tracking-tighter decoration-red-500/50">
+                        ₦ {product.price.toLocaleString()}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-2xl font-black text-emerald-600 tracking-tighter">
+                      ₦ {product.price.toLocaleString()}
+                    </p>
+                  )}
+
                   <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border ${
                     isStockAvailable ? 'bg-emerald-50 text-emerald-700 border-emerald-100' : 'bg-red-50 text-red-700 border-red-100'
                   }`}>
@@ -86,7 +113,6 @@ export default async function ProductPage({ params }: PageProps) {
                 </div>
              </div>
              
-             {/* 1. DESCRIPTION BOX */}
              <div className="bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100 mb-6 relative">
                 <div className="absolute -top-3 left-8 bg-white px-3 text-[10px] font-black uppercase tracking-widest text-gray-400 border border-gray-100 rounded-lg">Product Details</div>
                 <div className="prose prose-sm text-gray-600 leading-relaxed font-medium">

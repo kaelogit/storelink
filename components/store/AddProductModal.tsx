@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { X, Loader2, Trash2, Plus, Lock, Crown, Sparkles } from "lucide-react"; // 👈 Added Sparkles
+import { X, Loader2, Trash2, Plus, Lock, Crown, Sparkles } from "lucide-react";
 import { compressImage } from "@/utils/imageCompressor";
-import { removeBackground } from "@/utils/removeBackground"; // 👈 Added AI Import
+import { removeBackground } from "@/utils/removeBackground"; 
 
 interface AddProductModalProps {
   storeId: string;
@@ -24,7 +24,6 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
   const [isExpired, setIsExpired] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   
-  // 👇 NEW: AI States
   const [removeBg, setRemoveBg] = useState(false);
   const [processingImages, setProcessingImages] = useState(false);
   
@@ -42,7 +41,6 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
 
   useEffect(() => {
     if (isOpen) {
-      // Reset AI Toggle on open
       setRemoveBg(false);
       
       if (productToEdit) {
@@ -104,7 +102,6 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
 
   if (!isOpen) return null;
 
-  // 👇 UPDATED: Handle Image Selection with AI Logic
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newRawFiles = Array.from(e.target.files);
@@ -122,14 +119,11 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
 
         try {
             for (const file of newRawFiles) {
-                // 1. Send to remove.bg
                 const blob = await removeBackground(file);
-                // 2. Convert Blob back to File (ensure it's PNG to keep transparency)
                 const newFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".png", { type: "image/png" });
                 processedFiles.push(newFile);
             }
             
-            // 3. Update State with processed images
             const combinedFiles = [...imageFiles, ...processedFiles];
             setImageFiles(combinedFiles);
             setPreviews(combinedFiles.map(file => URL.createObjectURL(file)));
@@ -169,7 +163,6 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
       const uploadedUrls: string[] = [];
       
       for (const file of imageFiles) {
-        // We compress all files to ensure optimization
         const compressedFile = await compressImage(file);
 
         const fileName = `${storeId}/${Date.now()}-${Math.random().toString(36).substring(7)}`;
@@ -209,6 +202,7 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
           if (error) throw error;
       }
 
+      router.refresh(); 
       onSuccess();
       onClose();
 
@@ -258,7 +252,6 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
                 <div className="flex items-center justify-between mb-2">
                     <label className="block text-sm font-bold text-gray-700">Images (Max 4)</label>
                     
-                    {/* 👇 AI TOGGLE SWITCH */}
                     <button 
                         type="button" 
                         onClick={() => setRemoveBg(!removeBg)}
@@ -290,7 +283,6 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
                     </div>
                   ))}
 
-                  {/* 👇 Show Spinner if AI is processing */}
                   {processingImages && (
                     <div className="aspect-square rounded-xl border border-gray-200 flex flex-col items-center justify-center bg-purple-50">
                         <Loader2 className="animate-spin text-purple-600 mb-1" size={20} />
@@ -316,14 +308,14 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                 <div>
+                  <div>
                     <label className="block text-sm font-bold text-gray-700 mb-1">Price (₦)</label>
                     <input required type="number" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900" placeholder="50000" value={formData.price} onChange={e => setFormData({...formData, price: e.target.value})} />
-                 </div>
-                 <div>
+                  </div>
+                  <div>
                     <label className="block text-sm font-bold text-gray-700 mb-1">Stock Qty</label>
                     <input required type="number" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900" placeholder="10" value={formData.stock} onChange={e => setFormData({...formData, stock: e.target.value})} />
-                 </div>
+                  </div>
               </div>
 
               <div>
@@ -342,8 +334,8 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
 
               <div>
                 <div className="flex justify-between items-center mb-1">
-                   <label className="block text-sm font-bold text-gray-700">Description</label>
-                   <span className={`text-xs ${formData.description.length > 450 ? 'text-red-500' : 'text-gray-400'}`}>{formData.description.length}/500</span>
+                    <label className="block text-sm font-bold text-gray-700">Description</label>
+                    <span className={`text-xs ${formData.description.length > 450 ? 'text-red-500' : 'text-gray-400'}`}>{formData.description.length}/500</span>
                 </div>
                 <textarea maxLength={500} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl h-24 resize-none focus:outline-none focus:ring-2 focus:ring-gray-900" placeholder="Describe the item..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
               </div>

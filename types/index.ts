@@ -40,9 +40,11 @@ export interface Product {
   stock_quantity: number;
   image_urls: string[];
   is_active: boolean;
+  flash_drop_price?: number; 
+  flash_drop_expiry?: string;
   
   stores?: Store; 
-  categories?: { name: string }; // <--- ADDED THIS (Needed for Dashboard & Marketplace)
+  categories?: { name: string };
 }
 
 export interface Order {
