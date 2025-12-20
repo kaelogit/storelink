@@ -3631,6 +3631,11 @@
     letter-spacing: .15em;
   }
 
+  .tracking-\[0\.25em\] {
+    --tw-tracking: .25em;
+    letter-spacing: .25em;
+  }
+
   .tracking-tight {
     --tw-tracking: var(--tracking-tight);
     letter-spacing: var(--tracking-tight);
@@ -3662,6 +3667,10 @@
 
   .whitespace-pre-line {
     white-space: pre-line;
+  }
+
+  .text-amber-400 {
+    color: var(--color-amber-400);
   }
 
   .text-amber-500 {

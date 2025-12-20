@@ -7,7 +7,7 @@ import Link from "next/link";
 import { 
   Loader2, LayoutDashboard, ShoppingBag, Bell, Settings, LogOut, 
   Menu, X, Crown, BadgeCheck, AlertTriangle, CheckCircle, XCircle,
-  Coins // ✨ NEW ICON IMPORT
+  Coins 
 } from "lucide-react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const [expiryWarning, setExpiryWarning] = useState<{ type: 'warn' | 'expired', days: number } | null>(null);
-  const [planName, setPlanName] = useState(""); // Track plan for the sidebar badge
+  const [planName, setPlanName] = useState(""); 
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -26,12 +26,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       const { data: store } = await supabase
         .from("stores")
-        .select("subscription_expiry, subscription_plan") // Fetch plan name too
+        .select("subscription_expiry, subscription_plan") 
         .eq("owner_id", user.id)
         .single();
 
       if (store) {
-        setPlanName(store.subscription_plan); // Save plan name
+        setPlanName(store.subscription_plan); 
 
         if (store.subscription_expiry) {
           const expiry = new Date(store.subscription_expiry);
@@ -42,7 +42,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           if (diffTime < 0) {
              setExpiryWarning({ type: 'expired', days: 0 });
           } 
-          // 👇 UPDATED: Changed from 3 days to 7 days
           else if (diffDays <= 7) {
              setExpiryWarning({ type: 'warn', days: diffDays });
           }
@@ -54,6 +53,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     checkAuth();
   }, [router]);
 
+  // Premium Logout Function for both Desktop and Mobile
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.refresh(); // Triggers middleware check
+    router.push("/logout"); // Points to your new success page
+  };
+
   const links = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
     { name: "Orders", href: "/dashboard/orders", icon: ShoppingBag },
@@ -62,8 +68,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       name: "Empire Loyalty", 
       href: "/dashboard/loyalty", 
       icon: Coins, 
-      isNew: true, // Marker for the pulse badge
-      color: "text-amber-500" // Special color for the icon
+      isNew: true, 
+      color: "text-amber-500" 
     },
     { name: "Subscription", href: "/dashboard/subscription", icon: Crown },
     { name: "Verification", href: "/dashboard/verification", icon: BadgeCheck },
@@ -81,6 +87,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex min-h-screen bg-gray-50">
       
+      {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center z-30">
         <Link href="/" className="font-extrabold text-lg text-gray-900 flex items-center gap-2">
             <LayoutDashboard className="text-emerald-600" size={20}/> StoreLink
@@ -90,46 +97,49 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </button>
       </div>
 
+      {/* Mobile Sidebar */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
-           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileMenuOpen(false)} />
-           <div className="absolute inset-y-0 left-0 w-64 bg-white border-r border-gray-200 flex flex-col shadow-2xl animate-in slide-in-from-left duration-200">
-              <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-                 <span className="font-black text-xl text-gray-900">Menu</span>
-                 <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg"><X size={24} /></button>
-              </div>
-              <nav className="flex-1 p-4 space-y-2">
-                {links.map((link) => {
-                  const isActive = pathname === link.href;
-                  const Icon = link.icon;
-                  return (
-                    <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-bold text-sm ${isActive ? "bg-emerald-50 text-emerald-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"}`}>
-                      <Icon size={18} className={link.color ? link.color : ""} /> 
-                      <span>{link.name}</span>
-                      {link.isNew && !isActive && (
-                        <span className="ml-auto bg-amber-100 text-amber-600 text-[8px] font-black px-1.5 py-0.5 rounded-md animate-pulse">NEW</span>
-                      )}
-                    </Link>
-                  );
-                })}
-              </nav>
-              <div className="p-4 border-t border-gray-100">
-                <button onClick={async () => { await supabase.auth.signOut(); router.push("/login"); }} className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-xl transition-all text-sm font-bold">
-                  <LogOut size={18} /> Logout
-                </button>
-              </div>
-           </div>
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileMenuOpen(false)} />
+            {/* Added overflow-y-auto to mobile sidebar wrapper */}
+            <div className="absolute inset-y-0 left-0 w-64 bg-white border-r border-gray-200 flex flex-col shadow-2xl animate-in slide-in-from-left duration-200 overflow-y-auto">
+               <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+                  <span className="font-black text-xl text-gray-900">Menu</span>
+                  <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg"><X size={24} /></button>
+               </div>
+               <nav className="flex-1 p-4 space-y-2">
+                 {links.map((link) => {
+                   const isActive = pathname === link.href;
+                   const Icon = link.icon;
+                   return (
+                     <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-bold text-sm ${isActive ? "bg-emerald-50 text-emerald-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"}`}>
+                       <Icon size={18} className={link.color ? link.color : ""} /> 
+                       <span>{link.name}</span>
+                       {link.isNew && !isActive && (
+                         <span className="ml-auto bg-amber-100 text-amber-600 text-[8px] font-black px-1.5 py-0.5 rounded-md animate-pulse">NEW</span>
+                       )}
+                     </Link>
+                   );
+                 })}
+               </nav>
+               <div className="p-4 border-t border-gray-100">
+                 <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-xl transition-all text-sm font-bold">
+                   <LogOut size={18} /> Logout
+                 </button>
+               </div>
+            </div>
         </div>
       )}
 
-      <aside className="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col fixed h-full z-20">
-        <div className="p-6 border-b border-gray-100">
+      {/* Desktop Sidebar - UPDATED LINE 115 */}
+      <aside className="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col fixed h-screen top-0 overflow-y-auto z-20 no-scrollbar">
+        <div className="p-6 border-b border-gray-100 shrink-0">
            <Link href="/" className="font-extrabold text-xl text-gray-900 flex items-center gap-2 tracking-tight">
                <LayoutDashboard className="text-emerald-600" size={24}/> StoreLink
            </Link>
         </div>
 
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+        <nav className="flex-1 p-4 space-y-2">
           {links.map((link) => {
             const isActive = pathname === link.href;
             const Icon = link.icon;
@@ -146,21 +156,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         {!expiryWarning && planName && (
-          <div className="mx-4 mb-2 p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-2">
+          <div className="mx-4 mb-2 p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-2 shrink-0">
             <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{planName} Plan Active</span>
           </div>
         )}
 
-        <div className="p-4 border-t border-gray-100">
-          <button onClick={async () => { await supabase.auth.signOut(); router.push("/login"); }} className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-xl transition-all text-sm font-bold">
+        <div className="p-4 border-t border-gray-100 shrink-0">
+          <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-xl transition-all text-sm font-bold">
             <LogOut size={18} /> Logout
           </button>
         </div>
       </aside>
 
+      {/* Main Content Area */}
       <main className="flex-1 md:ml-64 p-4 md:p-8 pt-20 md:pt-8 w-full max-w-full overflow-hidden flex flex-col">
-        
         {expiryWarning && (
           <div className={`mb-6 p-4 rounded-xl flex items-center justify-between gap-4 border animate-in slide-in-from-top duration-300 ${
               expiryWarning.type === 'expired' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-amber-50 border-amber-200 text-amber-800'

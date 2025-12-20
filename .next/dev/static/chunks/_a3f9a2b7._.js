@@ -39,17 +39,16 @@ function DashboardLayout({ children }) {
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [expiryWarning, setExpiryWarning] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [planName, setPlanName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(""); // Track plan for the sidebar badge
+    const [planName, setPlanName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "DashboardLayout.useEffect": ()=>{
             const checkAuth = {
                 "DashboardLayout.useEffect.checkAuth": async ()=>{
                     const { data: { user } } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.getUser();
                     if (!user) return router.push("/login");
-                    const { data: store } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("subscription_expiry, subscription_plan") // Fetch plan name too
-                    .eq("owner_id", user.id).single();
+                    const { data: store } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("subscription_expiry, subscription_plan").eq("owner_id", user.id).single();
                     if (store) {
-                        setPlanName(store.subscription_plan); // Save plan name
+                        setPlanName(store.subscription_plan);
                         if (store.subscription_expiry) {
                             const expiry = new Date(store.subscription_expiry);
                             const now = new Date();
@@ -76,6 +75,12 @@ function DashboardLayout({ children }) {
     }["DashboardLayout.useEffect"], [
         router
     ]);
+    // Premium Logout Function for both Desktop and Mobile
+    const handleLogout = async ()=>{
+        await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
+        router.refresh(); // Triggers middleware check
+        router.push("/logout"); // Points to your new success page
+    };
     const links = [
         {
             name: "Overview",
@@ -97,7 +102,7 @@ function DashboardLayout({ children }) {
             href: "/dashboard/loyalty",
             icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$coins$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Coins$3e$__["Coins"],
             isNew: true,
-            color: "text-amber-500" // Special color for the icon
+            color: "text-amber-500"
         },
         {
             name: "Subscription",
@@ -122,12 +127,12 @@ function DashboardLayout({ children }) {
                 className: "animate-spin text-gray-400"
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/layout.tsx",
-                lineNumber: 76,
+                lineNumber: 82,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/dashboard/layout.tsx",
-            lineNumber: 75,
+            lineNumber: 81,
             columnNumber: 7
         }, this);
     }
@@ -146,14 +151,14 @@ function DashboardLayout({ children }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 86,
+                                lineNumber: 93,
                                 columnNumber: 13
                             }, this),
                             " StoreLink"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 85,
+                        lineNumber: 92,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -163,18 +168,18 @@ function DashboardLayout({ children }) {
                             size: 24
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/layout.tsx",
-                            lineNumber: 89,
+                            lineNumber: 96,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 88,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/layout.tsx",
-                lineNumber: 84,
+                lineNumber: 91,
                 columnNumber: 7
             }, this),
             isMobileMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -185,11 +190,11 @@ function DashboardLayout({ children }) {
                         onClick: ()=>setIsMobileMenuOpen(false)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 95,
-                        columnNumber: 12
+                        lineNumber: 103,
+                        columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute inset-y-0 left-0 w-64 bg-white border-r border-gray-200 flex flex-col shadow-2xl animate-in slide-in-from-left duration-200",
+                        className: "absolute inset-y-0 left-0 w-64 bg-white border-r border-gray-200 flex flex-col shadow-2xl animate-in slide-in-from-left duration-200 overflow-y-auto",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "p-6 border-b border-gray-100 flex justify-between items-center",
@@ -199,8 +204,8 @@ function DashboardLayout({ children }) {
                                         children: "Menu"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 98,
-                                        columnNumber: 18
+                                        lineNumber: 107,
+                                        columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setIsMobileMenuOpen(false),
@@ -209,19 +214,19 @@ function DashboardLayout({ children }) {
                                             size: 24
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/layout.tsx",
-                                            lineNumber: 99,
-                                            columnNumber: 128
+                                            lineNumber: 108,
+                                            columnNumber: 129
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 99,
-                                        columnNumber: 18
+                                        lineNumber: 108,
+                                        columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 97,
-                                columnNumber: 15
+                                lineNumber: 106,
+                                columnNumber: 16
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
                                 className: "flex-1 p-4 space-y-2",
@@ -238,81 +243,78 @@ function DashboardLayout({ children }) {
                                                 className: link.color ? link.color : ""
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                                lineNumber: 107,
-                                                columnNumber: 23
+                                                lineNumber: 116,
+                                                columnNumber: 24
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: link.name
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                                lineNumber: 108,
-                                                columnNumber: 23
+                                                lineNumber: 117,
+                                                columnNumber: 24
                                             }, this),
                                             link.isNew && !isActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "ml-auto bg-amber-100 text-amber-600 text-[8px] font-black px-1.5 py-0.5 rounded-md animate-pulse",
                                                 children: "NEW"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                                lineNumber: 110,
-                                                columnNumber: 25
+                                                lineNumber: 119,
+                                                columnNumber: 26
                                             }, this)
                                         ]
                                     }, link.href, true, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 106,
-                                        columnNumber: 21
+                                        lineNumber: 115,
+                                        columnNumber: 22
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 101,
-                                columnNumber: 15
+                                lineNumber: 110,
+                                columnNumber: 16
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "p-4 border-t border-gray-100",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: async ()=>{
-                                        await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
-                                        router.push("/login");
-                                    },
+                                    onClick: handleLogout,
                                     className: "flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-xl transition-all text-sm font-bold",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__["LogOut"], {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/layout.tsx",
-                                            lineNumber: 118,
-                                            columnNumber: 19
+                                            lineNumber: 127,
+                                            columnNumber: 20
                                         }, this),
                                         " Logout"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/layout.tsx",
-                                    lineNumber: 117,
-                                    columnNumber: 17
+                                    lineNumber: 126,
+                                    columnNumber: 18
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 116,
-                                columnNumber: 15
+                                lineNumber: 125,
+                                columnNumber: 16
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 96,
-                        columnNumber: 12
+                        lineNumber: 105,
+                        columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/layout.tsx",
-                lineNumber: 94,
+                lineNumber: 102,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
-                className: "w-64 bg-white border-r border-gray-200 hidden md:flex flex-col fixed h-full z-20",
+                className: "w-64 bg-white border-r border-gray-200 hidden md:flex flex-col fixed h-screen top-0 overflow-y-auto z-20 no-scrollbar",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-6 border-b border-gray-100",
+                        className: "p-6 border-b border-gray-100 shrink-0",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: "/",
                             className: "font-extrabold text-xl text-gray-900 flex items-center gap-2 tracking-tight",
@@ -322,23 +324,23 @@ function DashboardLayout({ children }) {
                                     size: 24
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/layout.tsx",
-                                    lineNumber: 128,
+                                    lineNumber: 138,
                                     columnNumber: 16
                                 }, this),
                                 " StoreLink"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/layout.tsx",
-                            lineNumber: 127,
+                            lineNumber: 137,
                             columnNumber: 12
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 126,
+                        lineNumber: 136,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-                        className: "flex-1 p-4 space-y-2 overflow-y-auto",
+                        className: "flex-1 p-4 space-y-2",
                         children: links.map((link)=>{
                             const isActive = pathname === link.href;
                             const Icon = link.icon;
@@ -351,14 +353,14 @@ function DashboardLayout({ children }) {
                                         className: link.color ? link.color : ""
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 138,
+                                        lineNumber: 148,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: link.name
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 139,
+                                        lineNumber: 149,
                                         columnNumber: 17
                                     }, this),
                                     link.isNew && !isActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -366,29 +368,29 @@ function DashboardLayout({ children }) {
                                         children: "NEW"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 141,
+                                        lineNumber: 151,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, link.href, true, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 137,
+                                lineNumber: 147,
                                 columnNumber: 15
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 132,
+                        lineNumber: 142,
                         columnNumber: 9
                     }, this),
                     !expiryWarning && planName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mx-4 mb-2 p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-2",
+                        className: "mx-4 mb-2 p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-2 shrink-0",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-2 h-2 bg-emerald-500 rounded-full animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 150,
+                                lineNumber: 160,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -399,47 +401,44 @@ function DashboardLayout({ children }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 151,
+                                lineNumber: 161,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 149,
+                        lineNumber: 159,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-4 border-t border-gray-100",
+                        className: "p-4 border-t border-gray-100 shrink-0",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            onClick: async ()=>{
-                                await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
-                                router.push("/login");
-                            },
+                            onClick: handleLogout,
                             className: "flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-xl transition-all text-sm font-bold",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__["LogOut"], {
                                     size: 18
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/layout.tsx",
-                                    lineNumber: 157,
+                                    lineNumber: 167,
                                     columnNumber: 13
                                 }, this),
                                 " Logout"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/layout.tsx",
-                            lineNumber: 156,
+                            lineNumber: 166,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 155,
+                        lineNumber: 165,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/layout.tsx",
-                lineNumber: 125,
+                lineNumber: 135,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -456,14 +455,14 @@ function DashboardLayout({ children }) {
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 169,
+                                        lineNumber: 179,
                                         columnNumber: 53
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"], {
                                         className: "text-amber-600",
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 169,
+                                        lineNumber: 179,
                                         columnNumber: 102
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -471,13 +470,13 @@ function DashboardLayout({ children }) {
                                         children: expiryWarning.type === 'expired' ? "Your plan has expired. Your store is currently hidden from the public." : `Your ${planName} plan expires in ${expiryWarning.days} days. Renew now to avoid downtime.`
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/layout.tsx",
-                                        lineNumber: 170,
+                                        lineNumber: 180,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 168,
+                                lineNumber: 178,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -486,26 +485,26 @@ function DashboardLayout({ children }) {
                                 children: expiryWarning.type === 'expired' ? "Reactivate Now" : "Renew Plan"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/layout.tsx",
-                                lineNumber: 176,
+                                lineNumber: 186,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/layout.tsx",
-                        lineNumber: 165,
+                        lineNumber: 175,
                         columnNumber: 11
                     }, this),
                     children
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/layout.tsx",
-                lineNumber: 162,
+                lineNumber: 173,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/layout.tsx",
-        lineNumber: 82,
+        lineNumber: 88,
         columnNumber: 5
     }, this);
 }

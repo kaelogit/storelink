@@ -16,3 +16,39 @@
 [00:05:47.697] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152459533-yxfvfg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:05:47.697] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/a63dbddb-7497-422e-a89d-000e9a32d618/1766152083001-asu76o" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
 [00:11:32.074] Server  LOG      ✓ Compiled in 315ms
+[00:15:45.095] Server  LOG      ✓ Compiled in 237ms
+[00:29:11.539] Server  LOG      ○ Compiling /dashboard ...
+[00:41:07.541] Server  LOG      ✓ Compiled in 306ms
+[00:46:07.299] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:46:09.515] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:47:21.741] Server  LOG      ✓ Compiled in 366ms
+[00:47:23.430] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.480] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_1c73213f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.498] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.515] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.519] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.521] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.524] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.533] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.537] Server  ERROR    ⨯ Error: The default export is not a React Component in "/logout/page"
+[00:47:23.548] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.551] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\node_modules_next_dist_1c73213f._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.553] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.564] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.570] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.572] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.573] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.580] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:47:23.585] Server  ERROR    ⨯ Error: The default export is not a React Component in "/logout/page"
+[00:47:26.609] Server  LOG      ○ Compiling /_error ...
+[00:47:29.081] Server  LOG      ✓ Compiled in 946ms
+[00:47:31.318] Server  LOG      ✓ Compiled in 182ms
+[00:47:34.615] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:47:43.635] Server  LOG      ✓ Compiled in 142ms
+[00:47:45.894] Server  LOG      ✓ Compiled in 148ms
+[00:47:48.650] Server  LOG      ✓ Compiled in 225ms
+[00:52:12.221] Server  LOG      ✓ Compiled in 274ms
+[00:53:59.165] Server  LOG      ✓ Compiled in 127ms
+[00:54:27.861] Server  LOG      ✓ Compiled in 141ms
+[00:54:28.864] Server  LOG      ✓ Compiled in 130ms
+[00:54:44.544] Server  LOG      ✓ Compiled in 153ms

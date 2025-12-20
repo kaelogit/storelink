@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { 
   Package, ShoppingBag, Settings, Plus, ExternalLink, 
   Crown, AlertTriangle, Eye, TrendingUp, Tags, Edit, Trash2,
-  Lock, Sparkles, X, BarChart3, Calendar, Zap,
+  Lock, Sparkles, X, BarChart3, Calendar, Zap, LogOut,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AddProductModal from "@/components/store/AddProductModal";
@@ -26,6 +26,12 @@ interface DashboardClientProps {
 
 export default function DashboardClient({ store, initialProducts, initialOrders, stats, isLocked }: DashboardClientProps) {
   const router = useRouter();
+  
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+    router.push("/login");
+  };
   
   const [activeTab, setActiveTab] = useState("products");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -90,6 +96,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                 <ExternalLink size={16} /> View Store
               </a>
             )}
+            
           </div>
         </header>
 
