@@ -139,8 +139,9 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                       {isFlash ? (
                         <div>
                            <p className="text-[9px] font-bold text-gray-300 line-through">₦{product.price.toLocaleString()}</p>
-                           <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">₦{product.flash_drop_price.toLocaleString()}</p>
-                        </div>
+                           <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">
+                              ₦{(product.flash_drop_price || 0).toLocaleString()}
+                           </p>                        </div>
                       ) : (
                         <p className="text-emerald-700 font-black text-sm md:text-base">₦{product.price.toLocaleString()}</p>
                       )}
@@ -156,7 +157,6 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
             })}
           </div>
         ) : (
-          /* VENDOR LIST: Design word-for-word preserved */
           <div className="grid grid-rows-2 grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-3 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0">
             {filteredStores.map(store => (
               <a 

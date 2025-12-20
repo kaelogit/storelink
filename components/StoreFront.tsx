@@ -7,7 +7,7 @@ import Link from "next/link";
 import { 
   MapPin, Info, Copy, Check, ShoppingBag, 
   X, Instagram, Search, Package, Phone, LayoutDashboard, ChevronRight,
-  BadgeCheck, Gem, Share2, Plus, Zap
+  BadgeCheck, Gem, Share2, Plus, Zap, Loader2
 } from "lucide-react";
 import { Store } from "@/types";
 import { useCart } from "@/context/CartContext";
