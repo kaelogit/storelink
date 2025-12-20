@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Search, Settings, Filter, CheckCircle } from "lucide-react"; // Added CheckCircle
+import { Search, Settings, Filter, CheckCircle, ShieldAlert } from "lucide-react"; 
 import StoreManager from "@/components/admin/StoreManager";
 
 export default function ManageStoresPage() {
@@ -14,11 +14,11 @@ export default function ManageStoresPage() {
   }, []);
 
   async function fetchStores() {
+    // Note: Ensure your RPC 'get_admin_stores' now returns the 'status' column
     const { data, error } = await supabase.rpc('get_admin_stores');
     
     if (error) {
       console.error("SQL Error:", error.message);
-      console.error("Details:", error.details);
     }
     
     if (data) setStores(data);
@@ -33,8 +33,8 @@ export default function ManageStoresPage() {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-end gap-4">
         <div>
-          <h2 className="text-3xl font-black text-white">Manage Vendors</h2>
-          <p className="text-gray-400">Deep control over all platform entities.</p>
+          <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Founder Godmode</h2>
+          <p className="text-gray-400 text-sm">Deep control over all platform entities.</p>
         </div>
         
         <div className="flex gap-3 w-full md:w-auto">
@@ -54,67 +54,73 @@ export default function ManageStoresPage() {
         </div>
       </div>
 
-      <div className="bg-gray-800/50 border border-gray-700 rounded-3xl overflow-hidden min-h-[500px]">
+      <div className="bg-gray-800/50 border border-gray-700 rounded-3xl overflow-hidden min-h-[500px] shadow-2xl">
         <table className="w-full text-left">
-          <thead className="bg-gray-900/50 text-gray-400 text-xs uppercase font-bold sticky top-0 backdrop-blur-md">
+          <thead className="bg-gray-900/50 text-gray-400 text-[10px] uppercase font-black tracking-widest sticky top-0 backdrop-blur-md border-b border-gray-700">
             <tr>
-              <th className="px-6 py-4">Store Name</th>
-              <th className="px-6 py-4">Current Plan</th>
-              <th className="px-6 py-4">Status</th>
-              <th className="px-6 py-4 text-right">Control</th>
+              <th className="px-6 py-4">Store Identity</th>
+              <th className="px-6 py-4">Subscription</th>
+              <th className="px-6 py-4">System Status</th>
+              <th className="px-6 py-4 text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-700/50">
             {filteredStores.map((store) => (
-              <tr key={store.id} className={`hover:bg-white/5 transition group ${store.status === 'banned' ? 'opacity-50 grayscale' : ''}`}>
+              <tr 
+                key={store.id} 
+                className={`hover:bg-white/5 transition group ${
+                  store.status === 'banned' ? 'bg-red-500/5' : ''
+                }`}
+              >
                 <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                        {/* Store Avatar Initial */}
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg ${
-                            store.status === 'banned' ? 'bg-red-900 text-red-500' : 'bg-emerald-900 text-emerald-500'
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black text-lg shadow-inner ${
+                            store.status === 'banned' 
+                            ? 'bg-red-900/40 text-red-500 border border-red-500/20' 
+                            : 'bg-emerald-900/40 text-emerald-500 border border-emerald-500/20'
                         }`}>
                             {store.name.charAt(0)}
                         </div>
                         
-                        {/* Store Name & Slug */}
                         <div>
                             <div className="flex items-center gap-1">
-                               <p className="font-bold text-white group-hover:text-emerald-400 transition">{store.name}</p>
-                               {/* 🔵 Verified Badge Logic */}
+                               <p className={`font-bold transition ${store.status === 'banned' ? 'text-red-400' : 'text-white group-hover:text-emerald-400'}`}>
+                                 {store.name}
+                               </p>
                                {store.is_verified && (
                                   <CheckCircle size={14} className="text-blue-400 fill-blue-400/20" />
                                )}
                             </div>
-                            <p className="text-xs text-gray-500">/{store.slug}</p>
+                            <p className="text-[10px] text-gray-500 font-mono">/{store.slug}</p>
                         </div>
                     </div>
                 </td>
                 <td className="px-6 py-4">
-                   <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${
-                     store.subscription_plan === 'diamond' ? 'bg-yellow-500/10 text-yellow-500 border border-yellow-500/20' :
-                     store.subscription_plan === 'premium' ? 'bg-blue-500/10 text-blue-500 border border-blue-500/20' :
-                     'bg-gray-700 text-gray-400 border border-gray-600'
+                   <span className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter border ${
+                     store.subscription_plan === 'diamond' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' :
+                     store.subscription_plan === 'premium' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
+                     'bg-gray-700/30 text-gray-400 border-gray-600/30'
                    }`}>
                      {store.subscription_plan}
                    </span>
                 </td>
                 <td className="px-6 py-4">
                   {store.status === 'banned' ? (
-                    <span className="text-red-500 font-bold text-xs uppercase flex items-center gap-2">
-                        <div className="w-2 h-2 bg-red-500 rounded-full" /> Banned
+                    <span className="text-red-500 font-black text-[10px] uppercase tracking-widest flex items-center gap-2">
+                        <ShieldAlert size={14} /> Banned
                     </span>
                   ) : (
-                    <span className="text-emerald-500 font-bold text-xs uppercase flex items-center gap-2">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" /> Active
+                    <span className="text-emerald-500 font-black text-[10px] uppercase tracking-widest flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" /> Active
                     </span>
                   )}
                 </td>
                 <td className="px-6 py-4 text-right">
                   <button 
                     onClick={() => setSelectedStore(store)}
-                    className="px-4 py-2 bg-gray-900 hover:bg-emerald-600 hover:text-white text-gray-300 rounded-lg text-sm font-bold transition-all border border-gray-700 hover:border-emerald-500 flex items-center gap-2 ml-auto"
+                    className="px-4 py-2 bg-gray-900 hover:bg-emerald-600 hover:text-white text-gray-300 rounded-xl text-xs font-black uppercase tracking-widest transition-all border border-gray-700 hover:border-emerald-500 flex items-center gap-2 ml-auto active:scale-90"
                   >
-                     <Settings size={16} /> Manage
+                     <Settings size={14} /> Manage
                   </button>
                 </td>
               </tr>

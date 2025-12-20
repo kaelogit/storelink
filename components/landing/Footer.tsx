@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Twitter, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+import { Twitter, Instagram, Linkedin, LayoutDashboard, Coins } from "lucide-react";
 
 const TiktokIcon = ({ size = 18 }: { size?: number }) => (
   <svg 
@@ -24,6 +24,7 @@ export default function Footer() {
       
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8 mb-12 text-left">
         
+        {/* BRAND COLUMN */}
         <div className="col-span-2 md:col-span-1 flex flex-col items-start">
            <h3 className="font-extrabold text-2xl tracking-tight mb-4 flex items-center gap-2">
              <LayoutDashboard size={20} className="text-emerald-500"/> StoreLink.
@@ -33,15 +34,23 @@ export default function Footer() {
            </p>
         </div>
 
+        {/* PLATFORM COLUMN */}
         <div className="flex flex-col items-start">
            <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Platform</h4>
            <ul className="space-y-3 text-sm text-gray-400 font-medium">
              <li><Link href="/login" className="hover:text-white transition">Vendor Login</Link></li>
              <li><Link href="/signup" className="hover:text-white transition">Start Selling</Link></li>
              <li><Link href="/marketplace" className="hover:text-white transition">Marketplace</Link></li>
+             {/* ✨ EMPIRE COINS MANUAL LINK */}
+             <li>
+               <Link href="/empire-coins" className="hover:text-amber-500 transition flex items-center gap-2">
+                 <Coins size={14} className="text-amber-500" /> Empire Coins
+               </Link>
+             </li>
            </ul>
         </div>
 
+        {/* SUPPORT COLUMN */}
         <div className="flex flex-col items-start">
            <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Support</h4>
            <ul className="space-y-3 text-sm text-gray-400 font-medium">
@@ -51,6 +60,7 @@ export default function Footer() {
            </ul>
         </div>
 
+        {/* SOCIALS COLUMN */}
         <div className="col-span-2 md:col-span-1 flex flex-col items-start">
           <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Follow Us</h4>
           <div className="flex gap-3">

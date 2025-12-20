@@ -8,9 +8,24 @@ export const dynamic = 'force-dynamic';
 
 export default async function MarketplacePage() {
   
+  // ✨ AUDIT: Added 'loyalty_enabled' and 'loyalty_percentage' to the select query
+  // This allows the product cards to calculate rewards in real-time.
   const { data: rawProducts } = await supabase
     .from("storefront_products") 
-    .select("*, stores!inner(name, whatsapp_number, slug, subscription_plan, category, verification_status, subscription_expiry)") 
+    .select(`
+      *, 
+      stores!inner(
+        name, 
+        whatsapp_number, 
+        slug, 
+        subscription_plan, 
+        category, 
+        verification_status, 
+        subscription_expiry,
+        loyalty_enabled,
+        loyalty_percentage
+      )
+    `) 
     .eq("is_active", true)
     .order("created_at", { ascending: false }) 
     .limit(100);
@@ -23,12 +38,15 @@ export default async function MarketplacePage() {
     const storeId = product.store_id;
     const expiry = product.stores?.subscription_expiry;
 
+    // Filter out expired stores
     if (expiry && new Date(expiry) < now) {
       return false;
     }
 
+    // Diamond and Premium stores get all items shown
     if (plan === 'diamond' || plan === 'premium') return true;
 
+    // Free stores limited to 5 items in marketplace
     const currentCount = storeItemTracker[storeId] || 0;
     if (currentCount < 5) {
       storeItemTracker[storeId] = currentCount + 1;
@@ -38,6 +56,7 @@ export default async function MarketplacePage() {
     return false;
   });
 
+  // Limit and shuffle for discovery
   const shuffledProducts = shuffleArray(filteredByPlan.slice(0, 60));
 
   const { data: categories } = await supabase
@@ -49,6 +68,7 @@ export default async function MarketplacePage() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
         
+       {/* NAVIGATION: Design preserved */}
        <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex items-center justify-between shadow-sm">
          <Link href="/" className="font-extrabold text-xl tracking-tight text-gray-900 flex items-center gap-2">
             <LayoutDashboard className="text-emerald-600"/> StoreLink
@@ -64,6 +84,7 @@ export default async function MarketplacePage() {
        </nav>
 
        <div className="flex-1">
+         {/* initialProducts now includes the loyalty metadata required for rewards */}
          <FullMarketplaceClient 
            initialProducts={shuffledProducts || []} 
            categories={categories || []} 

@@ -117,6 +117,15 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../../app/dashboard/loyalty/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/loyalty">> = Specific
+  const handler = {} as typeof import("../../../app/dashboard/loyalty/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/dashboard/notifications/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/dashboard/notifications">> = Specific
@@ -166,6 +175,15 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 {
   type __IsExpected<Specific extends AppPageConfig<"/dashboard/verification">> = Specific
   const handler = {} as typeof import("../../../app/dashboard/verification/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/empire-coins/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/empire-coins">> = Specific
+  const handler = {} as typeof import("../../../app/empire-coins/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

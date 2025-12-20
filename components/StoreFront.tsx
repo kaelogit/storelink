@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link";
 import { 
@@ -30,18 +31,77 @@ interface StoreFrontProps {
   categories: { id: string; name: string }[];
 }
 
-export default function StoreFront({ store, products, categories }: StoreFrontProps) {
+export default function StoreFront({ store, products: initialProducts, categories }: StoreFrontProps) {
   const { addToCart, cartCount, setIsCartOpen, isCartOpen } = useCart();
   
+  // --- CORE STATES ---
+  const [products, setProducts] = useState(initialProducts);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [loading, setLoading] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  
   const [visibleCount, setVisibleCount] = useState(20);
-
-  // --- NEW: ANIMATION STATE FOR PHYSICAL LEAP ---
   const [isJumping, setIsJumping] = useState(false);
+
+  // --- NEW: SCROLL DIRECTION LOGIC ---
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  // --- ✨ SEARCH DEBOUNCE LOGIC ---
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+    }, 500);
+    return () => clearTimeout(handler);
+  }, [searchTerm]);
+
+  // --- ✨ GLOBAL SERVER-SIDE FILTERING ---
+  useEffect(() => {
+    const fetchStoreProducts = async () => {
+      // If no search/category, reset to initial
+      if (activeCategory === "All" && !debouncedSearch) {
+        setProducts(initialProducts);
+        return;
+      }
+
+      setLoading(true);
+      let query = supabase
+        .from("storefront_products")
+        .select("*")
+        .eq("store_id", store.id)
+        .order("created_at", { ascending: false });
+
+      if (activeCategory !== "All") {
+        query = query.eq("categories.name", activeCategory);
+      }
+
+      if (debouncedSearch) {
+        query = query.ilike("name", `%${debouncedSearch}%`);
+      }
+
+      const { data } = await query;
+      setProducts(data || []);
+      setLoading(false);
+    };
+
+    fetchStoreProducts();
+  }, [activeCategory, debouncedSearch, store.id, initialProducts]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`${window.location.origin}/${store.slug}`);
@@ -49,35 +109,26 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // --- UPDATED: AUDIO + PHYSICAL LEAP LOGIC ---
   const handleAddToCart = (product: any) => {
     const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
     
-    // 1. Play Sound if Flash Drop
     if (isFlashActive) {
       const audio = new Audio('/sounds/empire-drop.mp3');
       audio.volume = 0.5;
-      audio.play().catch(err => console.log("Audio play blocked by browser"));
+      audio.play().catch(err => console.log("Audio play blocked"));
     }
     
-    // 2. Trigger Physical Leap (Bounce)
     setIsJumping(true);
-    setTimeout(() => setIsJumping(false), 600); // Duration of the leap
-    
+    setTimeout(() => setIsJumping(false), 600);
     addToCart(product, store);
   };
 
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === "All" || product.categories?.name === activeCategory;
-    return matchesSearch && matchesCategory;
-  });
-
-  const displayedProducts = filteredProducts.slice(0, visibleCount);
+  const displayedProducts = products.slice(0, visibleCount);
 
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col selection:bg-emerald-100">
       
+      {/* HEADER NAVIGATION */}
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-100 h-16 flex items-center justify-between px-4 md:px-8 shadow-sm">
           <div className="flex items-center gap-3">
              <Link href="/" className="flex items-center gap-1">
@@ -96,6 +147,7 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
           </button>
       </nav>
 
+      {/* HERO SECTION */}
       <div className="relative w-full bg-gray-50 border-b border-gray-100">
           <div className="w-full h-40 md:h-64 relative overflow-hidden bg-gray-200">
              {store.cover_image_url ? (
@@ -116,7 +168,6 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                          <div className="flex items-center justify-center h-full text-2xl font-bold bg-gray-900 text-white">{store.name.charAt(0)}</div>
                       )}
                    </div>
-                   
                    <div className="hidden md:block mb-4">
                       <h2 className="text-2xl font-black text-gray-900 flex items-center gap-2 uppercase tracking-tight">
                         {store.name} <VerificationBadge store={store} />
@@ -144,7 +195,12 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
           </div>
       </div>
 
-      <div className="sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      {/* STICKY SEARCH/FILTER BAR: HIDE ON SCROLL LOGIC */}
+      <div className={`sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300 ease-in-out ${
+          isVisible 
+          ? "translate-y-0 opacity-100" 
+          : "-translate-y-24 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100 md:pointer-events-auto"
+      }`}>
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-3">
              <div className="flex flex-col md:flex-row gap-3">
                 <div className="relative w-full md:max-w-xs">
@@ -178,8 +234,12 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
           </div>
       </div>
 
+      {/* PRODUCT GRID */}
       <div className="flex-1 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
+             {loading ? (
+                <div className="flex justify-center py-20"><Loader2 className="animate-spin text-emerald-600" size={32} /></div>
+             ) : (
              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
                 {displayedProducts.map(product => {
                   const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
@@ -213,17 +273,33 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                        </Link>
 
                        <div className="p-3 md:p-4 flex flex-col flex-1">
-                          <h3 className="font-bold text-gray-900 leading-tight line-clamp-1 text-xs md:text-sm mb-1">{product.name}</h3>
+                          <h3 className="font-bold text-gray-900 leading-tight line-clamp-1 text-xs md:text-sm mb-1 uppercase tracking-tight">{product.name}</h3>
                           
                           <div className="flex items-center justify-between mt-auto">
                              {isFlashActive ? (
-                               <div className="flex flex-col">
+                              <div className="flex flex-col">
                                  <p className="text-[10px] font-bold text-gray-300 line-through tracking-tighter decoration-red-500/30">₦{product.price.toLocaleString()}</p>
-                                 <p className="text-sm md:text-base font-black text-emerald-600 tracking-tighter">₦{product.flash_drop_price.toLocaleString()}</p>
-                               </div>
-                             ) : (
-                               <p className="text-sm md:text-base font-black text-emerald-600 tracking-tighter">₦{product.price.toLocaleString()}</p>
-                             )}
+                                 <div className="flex items-center gap-2">
+                                    <p className="text-sm md:text-base font-black text-emerald-600 tracking-tighter">₦{product.flash_drop_price.toLocaleString()}</p>
+                                    {store.loyalty_enabled && (
+                                    <span className="text-[9px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-md flex items-center gap-1 animate-in zoom-in">
+                                       <Zap size={8} fill="currentColor"/> +₦{(product.flash_drop_price * ((store.loyalty_percentage || 1) / 100)).toLocaleString()}
+                                    </span>
+                                    )}
+                                 </div>
+                              </div>
+                              ) : (
+                              <div className="flex flex-col">
+                                 <div className="flex items-center gap-2">
+                                    <p className="text-sm md:text-base font-black text-emerald-600 tracking-tighter">₦{product.price.toLocaleString()}</p>
+                                    {store.loyalty_enabled && (
+                                    <span className="text-[9px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-md animate-in zoom-in">
+                                       +₦{(product.price * ((store.loyalty_percentage || 1) / 100)).toLocaleString()}
+                                    </span>
+                                    )}
+                                 </div>
+                              </div>
+                              )}
                              
                              <button 
                                disabled={product.stock_quantity === 0}
@@ -238,8 +314,9 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                   );
                 })}
              </div>
+             )}
 
-             {visibleCount < filteredProducts.length && (
+             {visibleCount < products.length && (
                <div className="mt-12 text-center pb-10">
                  <button 
                    onClick={() => setVisibleCount(prev => prev + 20)}
@@ -250,7 +327,7 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
                </div>
              )}
 
-             {filteredProducts.length === 0 && (
+             {!loading && products.length === 0 && (
                 <div className="text-center py-20 flex flex-col items-center">
                    <Package size={40} className="text-gray-100 mb-2"/>
                    <p className="text-gray-400 font-bold uppercase text-[10px] tracking-widest">No products found</p>
@@ -259,10 +336,12 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
           </div>
       </div>
 
+      {/* FOOTER */}
       <footer className="bg-gray-50 border-t border-gray-200 py-10 text-center mt-auto">
           <p className="text-[9px] text-gray-400 font-black uppercase tracking-[0.3em]">StoreLink social engine • 2025</p>
       </footer>
 
+      {/* CART BUTTON */}
       {cartCount > 0 && !isCartOpen && (
         <button 
           onClick={() => setIsCartOpen(true)} 
@@ -275,13 +354,13 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
         </button>
       )}
 
+      {/* INFO SIDEBAR */}
       {isInfoOpen && (
           <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex justify-end animate-in fade-in">
              <div className="absolute inset-0" onClick={() => setIsInfoOpen(false)}></div>
-             
              <div className="relative w-full max-w-sm bg-white h-full shadow-2xl p-8 overflow-y-auto animate-in slide-in-from-right duration-300 flex flex-col rounded-l-[2rem]">
                 <div className="flex justify-between items-center mb-8">
-                   <h2 className="font-black text-xl text-gray-900 uppercase tracking-tighter text-sm">About Business</h2>
+                   <h2 className="font-black text-gray-900 uppercase tracking-tighter text-sm">About Business</h2>
                    <button onClick={() => setIsInfoOpen(false)} className="p-2 bg-gray-100 rounded-full"><X size={20}/></button>
                 </div>
 
@@ -297,7 +376,7 @@ export default function StoreFront({ store, products, categories }: StoreFrontPr
 
                 <div className="bg-gray-50 p-6 rounded-2xl mb-8 border border-gray-100">
                    <p className="text-gray-600 text-sm italic text-center font-medium">
-                      "{store.description || 'Welcome to our store! We sell amazing products.'}"
+                     "{store.description || 'Welcome to our store! We sell amazing products.'}"
                    </p>
                 </div>
 

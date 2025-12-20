@@ -15,12 +15,22 @@ export default async function LandingPage() {
   const premiumStoreIds = premiumStores?.map(s => s.id) || [];
 
   const { data: products } = await supabase
-    .from("storefront_products") 
-    .select("*, stores(name, slug, logo_url, subscription_plan, verification_status)")
-    .in("store_id", premiumStoreIds) 
-    .eq("is_active", true)
-    .limit(100)
-    .order("created_at", { ascending: false });
+  .from("storefront_products")
+  .select(`
+    *, 
+    stores!inner(
+      name, 
+      subscription_plan, 
+      verification_status, 
+      slug,
+      whatsapp_number,
+      loyalty_enabled,   
+      loyalty_percentage 
+    )
+  `)
+  .eq("is_active", true)
+  .order("created_at", { ascending: false })
+  .limit(12);
 
   const { data: stores } = await supabase
     .from("stores")

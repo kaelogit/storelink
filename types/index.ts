@@ -17,11 +17,13 @@ export interface Store {
   verification_doc_url?: string;
   verification_note?: string;
 
-  view_count?: number; // <--- ADDED THIS (Needed for Dashboard Stats)
-  subscription_plan: 'free' | 'premium' | 'diamond'; // <--- ADDED DIAMOND
-  subscription_status?: 'active' | 'inactive' | 'expired'; // <--- ADDED THIS (Good for logic)
-}
+  view_count?: number; 
+  subscription_plan: 'free' | 'premium' | 'diamond';
+  subscription_status?: 'active' | 'inactive' | 'expired';
 
+  loyalty_enabled?: boolean;
+  loyalty_percentage?: number;
+}
 
 export interface Category {
   id: string;
@@ -55,6 +57,7 @@ export interface Order {
   customer_email?: string;
   customer_address: string;
   total_amount: number;
+  coins_redeemed?: number; // ✨ ADDED THIS for the Order Ledger
   status: 'pending' | 'completed' | 'cancelled';
   created_at: string;
   items?: OrderItem[];

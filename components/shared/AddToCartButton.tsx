@@ -16,17 +16,18 @@ export default function AddToCartButton({ product, store }: AddToCartButtonProps
 
   const handleAdd = () => {
     const storeObj: Store = {
-       id: store.id,
-       name: store.name,
-       slug: store.slug,
-       whatsapp_number: store.whatsapp_number,
-       location: store.location,
-       logo_url: store.logo_url,
-       owner_id: store.id, 
-       description: "",
-       cover_image_url: "",
-       subscription_plan: store.subscription_plan,
-       view_count: 0,
+      id: store.id,
+      name: store.name,
+      slug: store.slug,
+      whatsapp_number: store.whatsapp_number,
+      location: store.location,
+      logo_url: store.logo_url,
+      owner_id: store.owner_id,
+      description: store.description || "",
+      cover_image_url: store.cover_image_url || "",
+      subscription_plan: store.subscription_plan,
+      loyalty_enabled: store.loyalty_enabled || false,
+      loyalty_percentage: store.loyalty_percentage || 1,
     };
 
     addToCart(product, storeObj);

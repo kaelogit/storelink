@@ -9,7 +9,7 @@ export default function TermsPage() {
     <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
       
       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
-      <p className="text-sm text-gray-500 mb-8">Last Updated: December 15, 2025</p>
+      <p className="text-sm text-gray-500 mb-8">Last Updated: December 20, 2025</p>
 
       <div className="space-y-8 leading-relaxed">
         <section>
@@ -37,14 +37,20 @@ export default function TermsPage() {
           <p>StoreLink provides the platform "as is". We are not a party to the transactions between buyers and vendors. We are not liable for any disputes, refunds, or damages arising from purchases made on vendor stores.</p>
         </section>
 
+        {/* --- ✨ NEW SECTION: EMPIRE LOYALTY ENGINE --- */}
         <section>
-          <h2 className="text-xl font-bold mb-3 text-gray-900">6. Governing Law</h2>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">6. Empire Loyalty Engine & Coins</h2>
+          <p>The Empire Loyalty Engine is a reward feature exclusive to eligible subscription tiers. StoreLink reserves the absolute right to modify reward percentages, cap coin distributions, or reset loyalty data without prior notice if fraudulent activity, "coin farming," or system abuse is detected. Decisions made via the Founder Godmode regarding store status (Active/Banned) and loyalty eligibility are final.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">7. Governing Law</h2>
           <p>These terms shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-bold mb-3 text-gray-900">7. Contact Us</h2>
-          <p>For any questions regarding these terms, please contact us at ksqkareem@gmail.com.</p>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">8. Contact Us</h2>
+          <p>For any questions regarding these terms, please contact us at support@storelink.ng.</p>
         </section>
       </div>
       

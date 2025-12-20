@@ -6,7 +6,8 @@ import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { 
   Loader2, LayoutDashboard, ShoppingBag, Bell, Settings, LogOut, 
-  Menu, X, Crown, BadgeCheck, AlertTriangle, CheckCircle, XCircle // Added icons for the status logic
+  Menu, X, Crown, BadgeCheck, AlertTriangle, CheckCircle, XCircle,
+  Coins // ✨ NEW ICON IMPORT
 } from "lucide-react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -57,6 +58,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
     { name: "Orders", href: "/dashboard/orders", icon: ShoppingBag },
     { name: "Notifications", href: "/dashboard/notifications", icon: Bell },
+    { 
+      name: "Empire Loyalty", 
+      href: "/dashboard/loyalty", 
+      icon: Coins, 
+      isNew: true, // Marker for the pulse badge
+      color: "text-amber-500" // Special color for the icon
+    },
     { name: "Subscription", href: "/dashboard/subscription", icon: Crown },
     { name: "Verification", href: "/dashboard/verification", icon: BadgeCheck },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
@@ -78,7 +86,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <LayoutDashboard className="text-emerald-600" size={20}/> StoreLink
         </Link>
         <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-           <Menu size={24} />
+            <Menu size={24} />
         </button>
       </div>
 
@@ -93,9 +101,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <nav className="flex-1 p-4 space-y-2">
                 {links.map((link) => {
                   const isActive = pathname === link.href;
+                  const Icon = link.icon;
                   return (
                     <Link key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-bold text-sm ${isActive ? "bg-emerald-50 text-emerald-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"}`}>
-                      <link.icon size={18} /> {link.name}
+                      <Icon size={18} className={link.color ? link.color : ""} /> 
+                      <span>{link.name}</span>
+                      {link.isNew && !isActive && (
+                        <span className="ml-auto bg-amber-100 text-amber-600 text-[8px] font-black px-1.5 py-0.5 rounded-md animate-pulse">NEW</span>
+                      )}
                     </Link>
                   );
                 })}
@@ -119,9 +132,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {links.map((link) => {
             const isActive = pathname === link.href;
+            const Icon = link.icon;
             return (
               <Link key={link.href} href={link.href} className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-bold text-sm ${isActive ? "bg-emerald-50 text-emerald-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"}`}>
-                <link.icon size={18} /> {link.name}
+                <Icon size={18} className={link.color ? link.color : ""} /> 
+                <span>{link.name}</span>
+                {link.isNew && !isActive && (
+                  <span className="ml-auto bg-amber-100 text-amber-600 text-[8px] font-black px-1.5 py-0.5 rounded-md animate-pulse">NEW</span>
+                )}
               </Link>
             );
           })}
@@ -156,7 +174,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </p>
               </div>
               <Link href="/dashboard/subscription" className={`px-4 py-2 rounded-lg text-xs font-bold text-white transition shadow-sm whitespace-nowrap ${
-                 expiryWarning.type === 'expired' ? 'bg-red-600 hover:bg-red-700' : 'bg-amber-600 hover:bg-amber-700'
+                  expiryWarning.type === 'expired' ? 'bg-red-600 hover:bg-red-700' : 'bg-amber-600 hover:bg-amber-700'
               }`}>
                 {expiryWarning.type === 'expired' ? "Reactivate Now" : "Renew Plan"}
               </Link>

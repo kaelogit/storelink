@@ -87,23 +87,19 @@ function StoreFront({ store, products, categories }) {
     const [isInfoOpen, setIsInfoOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [copied, setCopied] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [visibleCount, setVisibleCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(20);
-    // --- NEW: ANIMATION STATE FOR PHYSICAL LEAP ---
     const [isJumping, setIsJumping] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const handleCopyLink = ()=>{
         navigator.clipboard.writeText(`${window.location.origin}/${store.slug}`);
         setCopied(true);
         setTimeout(()=>setCopied(false), 2000);
     };
-    // --- UPDATED: AUDIO + PHYSICAL LEAP LOGIC ---
     const handleAddToCart = (product)=>{
         const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-        // 1. Play Sound if Flash Drop
         if (isFlashActive) {
             const audio = new Audio('/sounds/empire-drop.mp3');
             audio.volume = 0.5;
             audio.play().catch((err)=>console.log("Audio play blocked by browser"));
         }
-        // 2. Trigger Physical Leap (Bounce)
         setIsJumping(true);
         setTimeout(()=>setIsJumping(false), 600); // Duration of the leap
         addToCart(product, store);
@@ -132,7 +128,7 @@ function StoreFront({ store, products, categories }) {
                                         className: "text-emerald-600"
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 84,
+                                        lineNumber: 80,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -140,13 +136,13 @@ function StoreFront({ store, products, categories }) {
                                         children: "StoreLink"
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 85,
+                                        lineNumber: 81,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 83,
+                                lineNumber: 79,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -154,7 +150,7 @@ function StoreFront({ store, products, categories }) {
                                 children: "/"
                             }, void 0, false, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 87,
+                                lineNumber: 83,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -168,24 +164,24 @@ function StoreFront({ store, products, categories }) {
                                             store: store
                                         }, void 0, false, {
                                             fileName: "[project]/components/StoreFront.tsx",
-                                            lineNumber: 90,
+                                            lineNumber: 86,
                                             columnNumber: 32
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/StoreFront.tsx",
-                                    lineNumber: 89,
+                                    lineNumber: 85,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 88,
+                                lineNumber: 84,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 82,
+                        lineNumber: 78,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -195,18 +191,18 @@ function StoreFront({ store, products, categories }) {
                             size: 20
                         }, void 0, false, {
                             fileName: "[project]/components/StoreFront.tsx",
-                            lineNumber: 95,
+                            lineNumber: 91,
                             columnNumber: 14
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 94,
+                        lineNumber: 90,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/StoreFront.tsx",
-                lineNumber: 81,
+                lineNumber: 77,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -223,7 +219,7 @@ function StoreFront({ store, products, categories }) {
                                 priority: true
                             }, void 0, false, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 102,
+                                lineNumber: 98,
                                 columnNumber: 17
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-100",
@@ -232,25 +228,25 @@ function StoreFront({ store, products, categories }) {
                                     className: "opacity-20"
                                 }, void 0, false, {
                                     fileName: "[project]/components/StoreFront.tsx",
-                                    lineNumber: 104,
+                                    lineNumber: 100,
                                     columnNumber: 110
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 104,
+                                lineNumber: 100,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
                             }, void 0, false, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 106,
+                                lineNumber: 102,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 100,
+                        lineNumber: 96,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -271,19 +267,19 @@ function StoreFront({ store, products, categories }) {
                                                     className: "object-cover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 114,
+                                                    lineNumber: 110,
                                                     columnNumber: 26
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex items-center justify-center h-full text-2xl font-bold bg-gray-900 text-white",
                                                     children: store.name.charAt(0)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 116,
+                                                    lineNumber: 112,
                                                     columnNumber: 26
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 112,
+                                                lineNumber: 108,
                                                 columnNumber: 20
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -298,13 +294,13 @@ function StoreFront({ store, products, categories }) {
                                                                 store: store
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                                lineNumber: 122,
+                                                                lineNumber: 118,
                                                                 columnNumber: 38
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/StoreFront.tsx",
-                                                        lineNumber: 121,
+                                                        lineNumber: 117,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -315,7 +311,7 @@ function StoreFront({ store, products, categories }) {
                                                                 className: "text-emerald-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                                lineNumber: 124,
+                                                                lineNumber: 120,
                                                                 columnNumber: 94
                                                             }, this),
                                                             " ",
@@ -323,19 +319,19 @@ function StoreFront({ store, products, categories }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/StoreFront.tsx",
-                                                        lineNumber: 124,
+                                                        lineNumber: 120,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 120,
+                                                lineNumber: 116,
                                                 columnNumber: 20
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 111,
+                                        lineNumber: 107,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -347,7 +343,7 @@ function StoreFront({ store, products, categories }) {
                                                 children: copied ? "COPIED" : "SHARE STORE"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 129,
+                                                lineNumber: 125,
                                                 columnNumber: 20
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -356,19 +352,19 @@ function StoreFront({ store, products, categories }) {
                                                 children: "More Info"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 132,
+                                                lineNumber: 128,
                                                 columnNumber: 20
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 128,
+                                        lineNumber: 124,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 110,
+                                lineNumber: 106,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -383,13 +379,13 @@ function StoreFront({ store, products, categories }) {
                                                 store: store
                                             }, void 0, false, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 140,
+                                                lineNumber: 136,
                                                 columnNumber: 32
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 139,
+                                        lineNumber: 135,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -397,25 +393,25 @@ function StoreFront({ store, products, categories }) {
                                         children: store.location
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 142,
+                                        lineNumber: 138,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 138,
+                                lineNumber: 134,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 109,
+                        lineNumber: 105,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/StoreFront.tsx",
-                lineNumber: 99,
+                lineNumber: 95,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -433,7 +429,7 @@ function StoreFront({ store, products, categories }) {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 147,
                                         columnNumber: 20
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -443,13 +439,13 @@ function StoreFront({ store, products, categories }) {
                                         onChange: (e)=>setSearchTerm(e.target.value)
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 152,
+                                        lineNumber: 148,
                                         columnNumber: 20
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 150,
+                                lineNumber: 146,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -461,7 +457,7 @@ function StoreFront({ store, products, categories }) {
                                         children: "All"
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 161,
+                                        lineNumber: 157,
                                         columnNumber: 20
                                     }, this),
                                     categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -470,29 +466,29 @@ function StoreFront({ store, products, categories }) {
                                             children: cat.name
                                         }, cat.id, false, {
                                             fileName: "[project]/components/StoreFront.tsx",
-                                            lineNumber: 168,
+                                            lineNumber: 164,
                                             columnNumber: 22
                                         }, this))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 160,
+                                lineNumber: 156,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 149,
+                        lineNumber: 145,
                         columnNumber: 14
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/StoreFront.tsx",
-                    lineNumber: 148,
+                    lineNumber: 144,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/StoreFront.tsx",
-                lineNumber: 147,
+                lineNumber: 143,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -518,7 +514,7 @@ function StoreFront({ store, products, categories }) {
                                                     className: "object-cover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 191,
+                                                    lineNumber: 187,
                                                     columnNumber: 29
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex items-center justify-center h-full text-gray-200",
@@ -526,12 +522,12 @@ function StoreFront({ store, products, categories }) {
                                                         size: 32
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/StoreFront.tsx",
-                                                        lineNumber: 198,
+                                                        lineNumber: 194,
                                                         columnNumber: 100
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 194,
                                                     columnNumber: 29
                                                 }, this),
                                                 isFlashActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -542,7 +538,7 @@ function StoreFront({ store, products, categories }) {
                                                             fill: "currentColor"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/StoreFront.tsx",
-                                                            lineNumber: 203,
+                                                            lineNumber: 199,
                                                             columnNumber: 32
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -550,13 +546,13 @@ function StoreFront({ store, products, categories }) {
                                                             children: "Live Drop"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/StoreFront.tsx",
-                                                            lineNumber: 204,
+                                                            lineNumber: 200,
                                                             columnNumber: 32
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 202,
+                                                    lineNumber: 198,
                                                     columnNumber: 29
                                                 }, this),
                                                 product.stock_quantity === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -566,29 +562,29 @@ function StoreFront({ store, products, categories }) {
                                                         children: "Sold Out"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/StoreFront.tsx",
-                                                        lineNumber: 210,
+                                                        lineNumber: 206,
                                                         columnNumber: 33
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 209,
+                                                    lineNumber: 205,
                                                     columnNumber: 30
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/StoreFront.tsx",
-                                            lineNumber: 189,
+                                            lineNumber: 185,
                                             columnNumber: 24
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "p-3 md:p-4 flex flex-col flex-1",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                    className: "font-bold text-gray-900 leading-tight line-clamp-1 text-xs md:text-sm mb-1",
+                                                    className: "font-bold text-gray-900 leading-tight line-clamp-1 text-xs md:text-sm mb-1 uppercase tracking-tight",
                                                     children: product.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 216,
+                                                    lineNumber: 212,
                                                     columnNumber: 27
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -605,35 +601,90 @@ function StoreFront({ store, products, categories }) {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                                    lineNumber: 221,
+                                                                    lineNumber: 217,
                                                                     columnNumber: 34
                                                                 }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-sm md:text-base font-black text-emerald-600 tracking-tighter",
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex items-center gap-2",
                                                                     children: [
-                                                                        "₦",
-                                                                        product.flash_drop_price.toLocaleString()
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-sm md:text-base font-black text-emerald-600 tracking-tighter",
+                                                                            children: [
+                                                                                "₦",
+                                                                                product.flash_drop_price.toLocaleString()
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/components/StoreFront.tsx",
+                                                                            lineNumber: 219,
+                                                                            columnNumber: 37
+                                                                        }, this),
+                                                                        store.loyalty_enabled && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: "text-[9px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-md flex items-center gap-1 animate-in zoom-in",
+                                                                            children: [
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__["Zap"], {
+                                                                                    size: 8,
+                                                                                    fill: "currentColor"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/components/StoreFront.tsx",
+                                                                                    lineNumber: 222,
+                                                                                    columnNumber: 40
+                                                                                }, this),
+                                                                                " +₦",
+                                                                                (product.flash_drop_price * ((store.loyalty_percentage || 1) / 100)).toLocaleString()
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/components/StoreFront.tsx",
+                                                                            lineNumber: 221,
+                                                                            columnNumber: 37
+                                                                        }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                                    lineNumber: 222,
+                                                                    lineNumber: 218,
                                                                     columnNumber: 34
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/StoreFront.tsx",
-                                                            lineNumber: 220,
-                                                            columnNumber: 32
-                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                            className: "text-sm md:text-base font-black text-emerald-600 tracking-tighter",
-                                                            children: [
-                                                                "₦",
-                                                                product.price.toLocaleString()
-                                                            ]
-                                                        }, void 0, true, {
+                                                            lineNumber: 216,
+                                                            columnNumber: 31
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex flex-col",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex items-center gap-2",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                        className: "text-sm md:text-base font-black text-emerald-600 tracking-tighter",
+                                                                        children: [
+                                                                            "₦",
+                                                                            product.price.toLocaleString()
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/components/StoreFront.tsx",
+                                                                        lineNumber: 230,
+                                                                        columnNumber: 37
+                                                                    }, this),
+                                                                    store.loyalty_enabled && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: "text-[9px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-md animate-in zoom-in",
+                                                                        children: [
+                                                                            "+₦",
+                                                                            (product.price * ((store.loyalty_percentage || 1) / 100)).toLocaleString()
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/components/StoreFront.tsx",
+                                                                        lineNumber: 232,
+                                                                        columnNumber: 37
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/StoreFront.tsx",
+                                                                lineNumber: 229,
+                                                                columnNumber: 34
+                                                            }, this)
+                                                        }, void 0, false, {
                                                             fileName: "[project]/components/StoreFront.tsx",
-                                                            lineNumber: 225,
-                                                            columnNumber: 32
+                                                            lineNumber: 228,
+                                                            columnNumber: 31
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                             disabled: product.stock_quantity === 0,
@@ -643,36 +694,36 @@ function StoreFront({ store, products, categories }) {
                                                                 size: 16
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                                lineNumber: 233,
+                                                                lineNumber: 245,
                                                                 columnNumber: 33
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/StoreFront.tsx",
-                                                            lineNumber: 228,
+                                                            lineNumber: 240,
                                                             columnNumber: 30
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 218,
+                                                    lineNumber: 214,
                                                     columnNumber: 27
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/StoreFront.tsx",
-                                            lineNumber: 215,
+                                            lineNumber: 211,
                                             columnNumber: 24
                                         }, this)
                                     ]
                                 }, product.id, true, {
                                     fileName: "[project]/components/StoreFront.tsx",
-                                    lineNumber: 188,
+                                    lineNumber: 184,
                                     columnNumber: 21
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/components/StoreFront.tsx",
-                            lineNumber: 183,
+                            lineNumber: 179,
                             columnNumber: 14
                         }, this),
                         visibleCount < filteredProducts.length && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -683,12 +734,12 @@ function StoreFront({ store, products, categories }) {
                                 children: "Load More Products"
                             }, void 0, false, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 244,
+                                lineNumber: 256,
                                 columnNumber: 18
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/StoreFront.tsx",
-                            lineNumber: 243,
+                            lineNumber: 255,
                             columnNumber: 16
                         }, this),
                         filteredProducts.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -699,7 +750,7 @@ function StoreFront({ store, products, categories }) {
                                     className: "text-gray-100 mb-2"
                                 }, void 0, false, {
                                     fileName: "[project]/components/StoreFront.tsx",
-                                    lineNumber: 255,
+                                    lineNumber: 267,
                                     columnNumber: 20
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -707,24 +758,24 @@ function StoreFront({ store, products, categories }) {
                                     children: "No products found"
                                 }, void 0, false, {
                                     fileName: "[project]/components/StoreFront.tsx",
-                                    lineNumber: 256,
+                                    lineNumber: 268,
                                     columnNumber: 20
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/StoreFront.tsx",
-                            lineNumber: 254,
+                            lineNumber: 266,
                             columnNumber: 17
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/StoreFront.tsx",
-                    lineNumber: 182,
+                    lineNumber: 178,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/StoreFront.tsx",
-                lineNumber: 181,
+                lineNumber: 177,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -734,12 +785,12 @@ function StoreFront({ store, products, categories }) {
                     children: "StoreLink social engine • 2025"
                 }, void 0, false, {
                     fileName: "[project]/components/StoreFront.tsx",
-                    lineNumber: 263,
+                    lineNumber: 275,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/StoreFront.tsx",
-                lineNumber: 262,
+                lineNumber: 274,
                 columnNumber: 7
             }, this),
             cartCount > 0 && !isCartOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -750,7 +801,7 @@ function StoreFront({ store, products, categories }) {
                         size: 24
                     }, void 0, false, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 271,
+                        lineNumber: 283,
                         columnNumber: 12
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -758,13 +809,13 @@ function StoreFront({ store, products, categories }) {
                         children: cartCount
                     }, void 0, false, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 272,
+                        lineNumber: 284,
                         columnNumber: 12
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/StoreFront.tsx",
-                lineNumber: 267,
+                lineNumber: 279,
                 columnNumber: 9
             }, this),
             isInfoOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -775,7 +826,7 @@ function StoreFront({ store, products, categories }) {
                         onClick: ()=>setIsInfoOpen(false)
                     }, void 0, false, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 280,
+                        lineNumber: 292,
                         columnNumber: 14
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -789,7 +840,7 @@ function StoreFront({ store, products, categories }) {
                                         children: "About Business"
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 284,
+                                        lineNumber: 296,
                                         columnNumber: 20
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -799,18 +850,18 @@ function StoreFront({ store, products, categories }) {
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/components/StoreFront.tsx",
-                                            lineNumber: 285,
+                                            lineNumber: 297,
                                             columnNumber: 106
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 285,
+                                        lineNumber: 297,
                                         columnNumber: 20
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 283,
+                                lineNumber: 295,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -825,12 +876,12 @@ function StoreFront({ store, products, categories }) {
                                             className: "object-cover"
                                         }, void 0, false, {
                                             fileName: "[project]/components/StoreFront.tsx",
-                                            lineNumber: 290,
+                                            lineNumber: 302,
                                             columnNumber: 42
                                         }, this) : null
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 289,
+                                        lineNumber: 301,
                                         columnNumber: 20
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -842,13 +893,13 @@ function StoreFront({ store, products, categories }) {
                                                 store: store
                                             }, void 0, false, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 293,
+                                                lineNumber: 305,
                                                 columnNumber: 35
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 292,
+                                        lineNumber: 304,
                                         columnNumber: 20
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -856,13 +907,13 @@ function StoreFront({ store, products, categories }) {
                                         children: store.location
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 295,
+                                        lineNumber: 307,
                                         columnNumber: 20
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 288,
+                                lineNumber: 300,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -876,12 +927,12 @@ function StoreFront({ store, products, categories }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/StoreFront.tsx",
-                                    lineNumber: 299,
+                                    lineNumber: 311,
                                     columnNumber: 20
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 298,
+                                lineNumber: 310,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -892,7 +943,7 @@ function StoreFront({ store, products, categories }) {
                                         children: "Connect"
                                     }, void 0, false, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 305,
+                                        lineNumber: 317,
                                         columnNumber: 21
                                     }, this),
                                     store.whatsapp_number && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -904,12 +955,12 @@ function StoreFront({ store, products, categories }) {
                                                     size: 18
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/StoreFront.tsx",
-                                                    lineNumber: 308,
+                                                    lineNumber: 320,
                                                     columnNumber: 87
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 308,
+                                                lineNumber: 320,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -919,7 +970,7 @@ function StoreFront({ store, products, categories }) {
                                                         children: "WhatsApp"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/StoreFront.tsx",
-                                                        lineNumber: 310,
+                                                        lineNumber: 322,
                                                         columnNumber: 33
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -927,19 +978,19 @@ function StoreFront({ store, products, categories }) {
                                                         children: store.whatsapp_number
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/StoreFront.tsx",
-                                                        lineNumber: 311,
+                                                        lineNumber: 323,
                                                         columnNumber: 33
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 309,
+                                                lineNumber: 321,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 307,
+                                        lineNumber: 319,
                                         columnNumber: 25
                                     }, this),
                                     store.instagram_handle && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -954,33 +1005,33 @@ function StoreFront({ store, products, categories }) {
                                                         size: 18
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/StoreFront.tsx",
-                                                        lineNumber: 317,
+                                                        lineNumber: 329,
                                                         columnNumber: 105
                                                     }, this),
                                                     " Instagram"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 317,
+                                                lineNumber: 329,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                 size: 14
                                             }, void 0, false, {
                                                 fileName: "[project]/components/StoreFront.tsx",
-                                                lineNumber: 318,
+                                                lineNumber: 330,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/StoreFront.tsx",
-                                        lineNumber: 316,
+                                        lineNumber: 328,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 304,
+                                lineNumber: 316,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -991,25 +1042,25 @@ function StoreFront({ store, products, categories }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/StoreFront.tsx",
-                                lineNumber: 322,
+                                lineNumber: 334,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/StoreFront.tsx",
-                        lineNumber: 282,
+                        lineNumber: 294,
                         columnNumber: 14
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/StoreFront.tsx",
-                lineNumber: 279,
+                lineNumber: 291,
                 columnNumber: 11
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/StoreFront.tsx",
-        lineNumber: 79,
+        lineNumber: 75,
         columnNumber: 5
     }, this);
 }
