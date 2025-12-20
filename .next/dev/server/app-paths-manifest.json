@@ -1,10 +1,6 @@
 {
-  "/[slug]/page": "app/[slug]/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/stores/page": "app/admin/stores/page.js",
-  "/dashboard/loyalty/page": "app/dashboard/loyalty/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
-  "/marketplace/page": "app/marketplace/page.js",
-  "/product/[id]/page": "app/product/[id]/page.js"
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/signup/page": "app/signup/page.js"
 }

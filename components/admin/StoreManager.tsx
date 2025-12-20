@@ -144,7 +144,7 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                  
                  <div className="flex items-center gap-3 p-3 bg-gray-900 rounded-xl border border-gray-800">
                    <Phone className="text-emerald-500" size={18} />
-                   <span className="text-gray-300 select-all text-sm font-medium">{store.owner_phone || "No Phone"}</span>
+                   <span className="text-gray-300 select-all text-sm font-medium">{store.whatsapp_number || "No Phone"}</span>
                  </div>
               </div>
 

@@ -1764,13 +1764,14 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                             className: "text-emerald-700 font-black text-sm md:text-base tracking-tighter",
                                                             children: [
                                                                 "₦",
-                                                                product.flash_drop_price.toLocaleString()
+                                                                (product.flash_drop_price || 0).toLocaleString()
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/landing/Marketplace.tsx",
                                                             lineNumber: 142,
                                                             columnNumber: 28
-                                                        }, this)
+                                                        }, this),
+                                                        "                        "
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
@@ -1784,7 +1785,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 145,
+                                                    lineNumber: 146,
                                                     columnNumber: 25
                                                 }, this),
                                                 rewardCoins > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1792,7 +1793,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     children: "Earn Gold"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 149,
+                                                    lineNumber: 150,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
@@ -1811,7 +1812,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     className: "absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-purple-500/10 transition-colors"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 153,
+                                    lineNumber: 154,
                                     columnNumber: 33
                                 }, this)
                             ]
@@ -1825,7 +1826,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                     fileName: "[project]/components/landing/Marketplace.tsx",
                     lineNumber: 74,
                     columnNumber: 11
-                }, this) : /* VENDOR LIST: Design word-for-word preserved */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid grid-rows-2 grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-3 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0",
                     children: filteredStores.map((store)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                             href: `/${store.slug}`,
