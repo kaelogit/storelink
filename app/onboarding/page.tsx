@@ -45,8 +45,10 @@ export default function OnboardingPage() {
     const fourteenDaysFromNow = new Date();
     fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14);
 
+    // --- LINE BY LINE AUDIT FIX INSERTED BELOW ---
     const { error } = await supabase.from("stores").insert({
       owner_id: user.id,
+      owner_email: user.email, // <--- CRITICAL FIX: Added to trigger automated welcome email
       name: formData.name,
       slug: formData.slug,
       category: formData.category,
@@ -56,6 +58,7 @@ export default function OnboardingPage() {
       subscription_plan: 'premium', 
       subscription_expiry: fourteenDaysFromNow.toISOString() 
     });
+    // --- END OF FIX ---
 
     if (error) {
       setErrorMsg(error.message); 
