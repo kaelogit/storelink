@@ -1,0 +1,13 @@
+name: Keep Empire Awake
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping_supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Secure Keep-Alive Route
+        run: |
+          curl -I -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" https://storelink.ng/api/cron/keep-alive
