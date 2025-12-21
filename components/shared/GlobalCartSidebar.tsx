@@ -11,6 +11,7 @@ import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { sendGAEvent } from '@next/third-parties/google'
 
 export default function GlobalCartSidebar() {
   const { 
@@ -35,7 +36,6 @@ export default function GlobalCartSidebar() {
   const [isSyncingWallet, setIsSyncingWallet] = useState(false);
   const [history, setHistory] = useState<any[]>([]);
 
-  // 1. ✨ INITIALIZE BILLING & AUTO-SYNC
   useEffect(() => {
     const saved = localStorage.getItem("storelink_billing");
     if (saved) {
@@ -115,11 +115,11 @@ export default function GlobalCartSidebar() {
     const cleanPhone = formData.phone.replace(/\s+/g, '').trim();
 
     try {
+        // 1. FINANCIAL CALCULATIONS
         const storeTotal = items.reduce((sum: number, i: any) => sum + (i.product.price * i.qty), 0);
         const MAX_DISCOUNT_PERCENT = 0.15;
         const maxAllowedDiscount = Math.floor(storeTotal * MAX_DISCOUNT_PERCENT);
         
-        // Dynamic re-calculation against current local balance
         const coinsToApply = useCoins ? Math.min(actualBalance, maxAllowedDiscount) : 0;
         const finalPayable = storeTotal - coinsToApply;
         
@@ -130,7 +130,7 @@ export default function GlobalCartSidebar() {
             price: item.product.price
         }));
 
-        // A. Database Order Creation
+        // 2. DATABASE TRANSACTION (SUPABASE RPC)
         const { data: newOrderId, error: orderError } = await supabase.rpc('create_new_order', {
             store_uuid: storeId,
             customer_name: formData.name,
@@ -144,7 +144,18 @@ export default function GlobalCartSidebar() {
 
         if (orderError) throw orderError;
 
-        // B. Ledger Deduction & Local State Sync (Fixes Store B discount bug)
+        // 3. GOOGLE ANALYTICS INTELLIGENCE (CONVERSION TRACKING)
+        // We trigger this immediately after the order is secured in the DB
+        sendGAEvent('event', 'conversion_whatsapp_order', {
+            transaction_id: newOrderId, 
+            value: finalPayable,        
+            currency: 'NGN',            
+            store_name: storeData.name, 
+            coins_used: coinsToApply,   
+            items_count: items.length   
+        });
+
+        // 4. EMPIRE COIN DEDUCTION (IF APPLICABLE)
         if (coinsToApply > 0) {
           const { error: walletError } = await supabase.rpc('decrement_wallet', { 
             phone: cleanPhone, 
@@ -159,9 +170,10 @@ export default function GlobalCartSidebar() {
           }
         }
 
-        // C. WhatsApp Prep
+        // 5. WHATSAPP MESSAGE PREPARATION
         let cleanWhatsApp = storeData.whatsapp_number?.replace(/\D/g, '') || "";
         if (cleanWhatsApp.startsWith('0')) cleanWhatsApp = '234' + cleanWhatsApp.substring(1);
+        
         const itemLines = items.map((i: any) => `- ${i.qty}x ${i.product.name}`).join('\n');
         
         const msg = `*New Order #${newOrderId.slice(0,8)}* 📦\n\n` +
@@ -172,9 +184,11 @@ export default function GlobalCartSidebar() {
                     `Deliver to: ${formData.address}\n\n` +
                     `Order sent via StoreLink. Please confirm availability!`;
         
+        // 6. WHATSAPP REDIRECTION (THE HANDOFF)
         window.open(`https://wa.me/${cleanWhatsApp}?text=${encodeURIComponent(msg)}`, "_blank");
         
-        // D. Clear local items for this vendor
+        // 7. CART CLEANUP
+        // Only clear items for THIS specific vendor
         items.forEach((item: any) => removeFromCart(item.product.id));
         if (cart.length === items.length) setIsCartOpen(false);
 
@@ -184,7 +198,7 @@ export default function GlobalCartSidebar() {
     } finally {
         setLoadingStoreId(null); 
     }
-  };
+};
 
   return (
     <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex justify-end animate-in fade-in duration-200">
