@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import GlobalCartSidebar from "@/components/shared/GlobalCartSidebar";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -72,6 +73,7 @@ export default function RootLayout({
           
         </CartProvider>
       </body>
+      <GoogleAnalytics gaId="G-LC8PN9CT62" />
     </html>
   );
 }
