@@ -52,7 +52,7 @@ export default function GlobalCart() {
     try {
       // 1. FINANCIAL CALCULATIONS (With 15% Rule)
       const storeTotal = items.reduce((sum, item) => sum + (item.product.price * item.qty), 0);
-      const MAX_DISCOUNT_PERCENT = 0.15;
+      const MAX_DISCOUNT_PERCENT = 0.05;
       const maxAllowedDiscount = Math.floor(storeTotal * MAX_DISCOUNT_PERCENT);
       
       const coinsToApply = useCoins ? Math.min(walletBalance, maxAllowedDiscount) : 0;
@@ -227,7 +227,7 @@ export default function GlobalCart() {
                 {Object.values(cartByVendor).map(({ store, items }) => {
                   const isSent = completedOrders.includes(store.id);
                   const storeTotal = items.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
-                  const discount = useCoins ? Math.min(walletBalance, Math.floor(storeTotal * 0.15)) : 0;
+                  const discount = useCoins ? Math.min(walletBalance, Math.floor(storeTotal * 0.05)) : 0;
                   const finalAmount = storeTotal - discount;
 
                   return (

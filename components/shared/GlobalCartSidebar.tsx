@@ -204,17 +204,25 @@ export default function GlobalCartSidebar() {
         if (wa.startsWith('0')) wa = '234' + wa.substring(1);
         
         const itemLines = items.map((i: any) => `- ${i.qty}x ${i.product.name}`).join('\n');
-        const msg = `*New Order #${newOrderId.slice(0,8)}* 📦\n\n` +
-                    `Hello *${storeData.name}*, I want to order:\n\n` +
-                    `${itemLines}\n\n` +
-                    `*Subtotal:* ₦${storeTotal.toLocaleString()}\n` +
-                    (coinsToApply > 0 ? `*Empire Coins:* -₦${coinsToApply.toLocaleString()}\n` : "") +
-                    `*Total Payable:* ₦${finalPayable.toLocaleString()}\n\n` +
-                    `📍 *Deliver to:* ${formData.address}\n\n` +
-                    `🚀 _Order sent via StoreLink. Please confirm availability!_`;
+        const msg = `*ORDER INVOICE #${newOrderId.slice(0, 8).toUpperCase()}* 📦\n\n` +
+                      `Hello *${storeData.name}*,\n` +
+                      `I would like to place an order for the following items:\n\n` +
+                      `${itemLines}\n\n` +
+                      `--- *BILLING DETAILS* ---\n` +
+                      `👤 *Name:* ${formData.name}\n` +
+                      `📞 *Phone:* ${formData.phone}\n` +
+                      `📍 *Address:* ${formData.address}\n\n` +
+                      `--- *ORDER SUMMARY* ---\n` +
+                      `*Subtotal:* ₦${storeTotal.toLocaleString()}\n` +
+                      (coinsToApply > 0 ? `*Empire Coins Discount:* -₦${coinsToApply.toLocaleString()}\n` : "") +
+                      `*TOTAL PAYABLE:* ₦${finalPayable.toLocaleString()}\n\n` +
+                      `--- *NEXT STEPS* ---\n` +
+                      `✅ Please confirm item availability.\n` +
+                      `💳 Provide your *account details* for payment.\n` +
+                      `🚚 Please let me know the *estimated delivery time*.\n\n` +
+                      `🚀 _Order generated via StoreLink Ecosystem._`;
 
-        window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, "_blank");
-        
+          window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, "_blank");        
         sendGAEvent('event', 'purchase', { store: storeData.name, value: finalPayable });
 
         items.forEach((item: any) => removeFromCart(item.product.id));
@@ -284,7 +292,7 @@ export default function GlobalCartSidebar() {
               // 🔥 Use Live Settings from DB for the Banner calculation
               const settings = liveStoreSettings[store.id] || store;
               const storeTotal = items.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
-              const discount = useCoins ? Math.min(actualBalance, Math.floor(storeTotal * 0.15)) : 0;
+              const discount = useCoins ? Math.min(actualBalance, Math.floor(storeTotal * 0.05)) : 0;
               const finalTotal = storeTotal - discount;
               const earned = settings.loyalty_enabled ? Math.floor(finalTotal * (settings.loyalty_percentage / 100)) : 0;
 

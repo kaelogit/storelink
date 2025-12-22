@@ -109,8 +109,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
   const cartTotal = cart.reduce((total, item) => total + (item.product.price * item.qty), 0);
 
-  // --- ✨ EMPIRE 15% SAFETY LOGIC ---
-  const MAX_DISCOUNT_PERCENTAGE = 0.15;
+  // --- ✨ EMPIRE 5% SAFETY LOGIC ---
+  const MAX_DISCOUNT_PERCENTAGE = 0.05;
   const maxAllowedDiscount = Math.floor(cartTotal * MAX_DISCOUNT_PERCENTAGE);
 
   // Strict check: Balance must be current

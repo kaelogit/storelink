@@ -4,6 +4,7 @@
   "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
   "/dashboard/orders/page": "app/dashboard/orders/page.js",
   "/dashboard/page": "app/dashboard/page.js",
+  "/empire-coins/page": "app/empire-coins/page.js",
   "/login/page": "app/login/page.js",
   "/logout/page": "app/logout/page.js",
   "/marketplace/page": "app/marketplace/page.js",
