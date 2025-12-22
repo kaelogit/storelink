@@ -616,6 +616,10 @@
     top: calc(var(--spacing) * -1);
   }
 
+  .-top-1\.5 {
+    top: calc(var(--spacing) * -1.5);
+  }
+
   .-top-2 {
     top: calc(var(--spacing) * -2);
   }
@@ -690,6 +694,10 @@
 
   .-right-1 {
     right: calc(var(--spacing) * -1);
+  }
+
+  .-right-1\.5 {
+    right: calc(var(--spacing) * -1.5);
   }
 
   .-right-2 {
@@ -1090,6 +1098,10 @@
     height: calc(var(--spacing) * 2);
   }
 
+  .h-3 {
+    height: calc(var(--spacing) * 3);
+  }
+
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
@@ -1260,6 +1272,10 @@
 
   .w-2 {
     width: calc(var(--spacing) * 2);
+  }
+
+  .w-3 {
+    width: calc(var(--spacing) * 3);
   }
 
   .w-3\/4 {
@@ -2090,6 +2106,16 @@
     border-color: var(--color-emerald-100);
   }
 
+  .border-emerald-100\/50 {
+    border-color: #d0fae580;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-emerald-100\/50 {
+      border-color: color-mix(in oklab, var(--color-emerald-100) 50%, transparent);
+    }
+  }
+
   .border-emerald-500 {
     border-color: var(--color-emerald-500);
   }
@@ -2174,10 +2200,6 @@
 
   .border-gray-900 {
     border-color: var(--color-gray-900);
-  }
-
-  .border-green-100 {
-    border-color: var(--color-green-100);
   }
 
   .border-green-200 {
@@ -2508,6 +2530,16 @@
     background-color: var(--color-emerald-50);
   }
 
+  .bg-emerald-50\/30 {
+    background-color: #ecfdf54d;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-emerald-50\/30 {
+      background-color: color-mix(in oklab, var(--color-emerald-50) 30%, transparent);
+    }
+  }
+
   .bg-emerald-100 {
     background-color: var(--color-emerald-100);
   }
@@ -2806,6 +2838,10 @@
 
   .bg-red-100 {
     background-color: var(--color-red-100);
+  }
+
+  .bg-red-400 {
+    background-color: var(--color-red-400);
   }
 
   .bg-red-500 {
@@ -3806,6 +3842,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .text-emerald-700\/70 {
       color: color-mix(in oklab, var(--color-emerald-700) 70%, transparent);
+    }
+  }
+
+  .text-emerald-800\/50 {
+    color: #005f4680;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-emerald-800\/50 {
+      color: color-mix(in oklab, var(--color-emerald-800) 50%, transparent);
     }
   }
 

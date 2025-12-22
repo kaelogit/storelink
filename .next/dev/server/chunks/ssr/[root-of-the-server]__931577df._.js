@@ -190,7 +190,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$imag
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$next$2f$third$2d$parties$2f$dist$2f$google$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@next/third-parties/dist/google/index.js [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -210,7 +212,6 @@ function GlobalCartSidebar() {
     const [loadingStoreId, setLoadingStoreId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isSyncingWallet, setIsSyncingWallet] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [history, setHistory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
-    // 1. ✨ INITIALIZE BILLING & AUTO-SYNC
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const saved = localStorage.getItem("storelink_billing");
         if (saved) {
@@ -285,10 +286,10 @@ function GlobalCartSidebar() {
         setLoadingStoreId(storeId);
         const cleanPhone = formData.phone.replace(/\s+/g, '').trim();
         try {
+            // 1. FINANCIAL CALCULATIONS
             const storeTotal = items.reduce((sum, i)=>sum + i.product.price * i.qty, 0);
             const MAX_DISCOUNT_PERCENT = 0.15;
             const maxAllowedDiscount = Math.floor(storeTotal * MAX_DISCOUNT_PERCENT);
-            // Dynamic re-calculation against current local balance
             const coinsToApply = useCoins ? Math.min(actualBalance, maxAllowedDiscount) : 0;
             const finalPayable = storeTotal - coinsToApply;
             const orderItemsForRPC = items.map((item)=>({
@@ -297,7 +298,7 @@ function GlobalCartSidebar() {
                     quantity: item.qty,
                     price: item.product.price
                 }));
-            // A. Database Order Creation
+            // 2. DATABASE TRANSACTION (SUPABASE RPC)
             const { data: newOrderId, error: orderError } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].rpc('create_new_order', {
                 store_uuid: storeId,
                 customer_name: formData.name,
@@ -309,7 +310,17 @@ function GlobalCartSidebar() {
                 order_items_array: orderItemsForRPC
             });
             if (orderError) throw orderError;
-            // B. Ledger Deduction & Local State Sync (Fixes Store B discount bug)
+            // 3. GOOGLE ANALYTICS INTELLIGENCE (CONVERSION TRACKING)
+            // We trigger this immediately after the order is secured in the DB
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$next$2f$third$2d$parties$2f$dist$2f$google$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["sendGAEvent"])('event', 'conversion_whatsapp_order', {
+                transaction_id: newOrderId,
+                value: finalPayable,
+                currency: 'NGN',
+                store_name: storeData.name,
+                coins_used: coinsToApply,
+                items_count: items.length
+            });
+            // 4. EMPIRE COIN DEDUCTION (IF APPLICABLE)
             if (coinsToApply > 0) {
                 const { error: walletError } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].rpc('decrement_wallet', {
                     phone: cleanPhone,
@@ -322,13 +333,15 @@ function GlobalCartSidebar() {
                     fetchHistory(cleanPhone); // Refresh history trail
                 }
             }
-            // C. WhatsApp Prep
+            // 5. WHATSAPP MESSAGE PREPARATION
             let cleanWhatsApp = storeData.whatsapp_number?.replace(/\D/g, '') || "";
             if (cleanWhatsApp.startsWith('0')) cleanWhatsApp = '234' + cleanWhatsApp.substring(1);
             const itemLines = items.map((i)=>`- ${i.qty}x ${i.product.name}`).join('\n');
-            const msg = `*New Order #${newOrderId.slice(0, 8)}* 📦\n\n` + `Hello ${storeData.name}, I want to order:\n\n${itemLines}\n\n` + `*Subtotal: ₦${storeTotal.toLocaleString()}*\n` + (coinsToApply > 0 ? `*Empire Coins: -₦${coinsToApply.toLocaleString()}*\n` : "") + `*Total Payable: ₦${finalPayable.toLocaleString()}*\n\n` + `Deliver to: ${formData.address}\n\n` + `Order sent via StoreLink. Please confirm availability!`;
+            const msg = `*New Order #${newOrderId.slice(0, 8)}* 📦\n\n` + `Hello *${storeData.name}*, I've just placed an order via StoreLink:\n\n` + `${itemLines}\n\n` + `--------------------------\n` + `*Subtotal:* ₦${storeTotal.toLocaleString()}\n` + (coinsToApply > 0 ? `*Empire Coins Applied:* -₦${coinsToApply.toLocaleString()} ✨\n` + `_(Loyalty discount processed via StoreLink)_\n` : "") + `*TOTAL PAYABLE:* ₦${finalPayable.toLocaleString()}\n` + `--------------------------\n\n` + `📍 *Deliver to:* ${formData.address}\n` + `👤 *Customer Name:* ${formData.name}\n` + `📞 *Customer Phone:* ${cleanPhone}\n\n` + `🚀 _Order verified via StoreLink. Please confirm item availability and share your account details to finalize payment!_`;
+            // 6. WHATSAPP REDIRECTION (THE HANDOFF)
             window.open(`https://wa.me/${cleanWhatsApp}?text=${encodeURIComponent(msg)}`, "_blank");
-            // D. Clear local items for this vendor
+            // 7. CART CLEANUP
+            // Only clear items for THIS specific vendor
             items.forEach((item)=>removeFromCart(item.product.id));
             if (cart.length === items.length) setIsCartOpen(false);
         } catch (err) {
@@ -346,7 +359,7 @@ function GlobalCartSidebar() {
                 onClick: ()=>setIsCartOpen(false)
             }, void 0, false, {
                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                lineNumber: 191,
+                lineNumber: 213,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -362,7 +375,7 @@ function GlobalCartSidebar() {
                                         className: "text-emerald-600"
                                     }, void 0, false, {
                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                        lineNumber: 198,
+                                        lineNumber: 220,
                                         columnNumber: 14
                                     }, this),
                                     " My Bag (",
@@ -371,7 +384,7 @@ function GlobalCartSidebar() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                lineNumber: 197,
+                                lineNumber: 219,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -381,18 +394,18 @@ function GlobalCartSidebar() {
                                     size: 20
                                 }, void 0, false, {
                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 222,
                                     columnNumber: 126
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                lineNumber: 200,
+                                lineNumber: 222,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                        lineNumber: 196,
+                        lineNumber: 218,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -411,14 +424,14 @@ function GlobalCartSidebar() {
                                                     className: "text-emerald-500"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 209,
+                                                    lineNumber: 231,
                                                     columnNumber: 21
                                                 }, this),
                                                 " Delivery Details"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                            lineNumber: 208,
+                                            lineNumber: 230,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -431,7 +444,7 @@ function GlobalCartSidebar() {
                                                     onChange: (e)=>handleChange("name", e.target.value)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 212,
+                                                    lineNumber: 234,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -444,7 +457,7 @@ function GlobalCartSidebar() {
                                                             onChange: (e)=>handleChange("phone", e.target.value)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 214,
+                                                            lineNumber: 236,
                                                             columnNumber: 23
                                                         }, this),
                                                         isSyncingWallet && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
@@ -452,13 +465,13 @@ function GlobalCartSidebar() {
                                                             className: "absolute right-4 top-4 animate-spin text-amber-500"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 215,
+                                                            lineNumber: 237,
                                                             columnNumber: 43
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 213,
+                                                    lineNumber: 235,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -468,19 +481,19 @@ function GlobalCartSidebar() {
                                                     onChange: (e)=>handleChange("address", e.target.value)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 217,
+                                                    lineNumber: 239,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                            lineNumber: 211,
+                                            lineNumber: 233,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                    lineNumber: 207,
+                                    lineNumber: 229,
                                     columnNumber: 16
                                 }, this),
                                 actualBalance > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -499,12 +512,12 @@ function GlobalCartSidebar() {
                                                                 fill: "currentColor"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                lineNumber: 228,
+                                                                lineNumber: 250,
                                                                 columnNumber: 29
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 227,
+                                                            lineNumber: 249,
                                                             columnNumber: 27
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -514,7 +527,7 @@ function GlobalCartSidebar() {
                                                                     children: "Global Balance"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                    lineNumber: 231,
+                                                                    lineNumber: 253,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -525,19 +538,19 @@ function GlobalCartSidebar() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                    lineNumber: 232,
+                                                                    lineNumber: 254,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 230,
+                                                            lineNumber: 252,
                                                             columnNumber: 27
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 226,
+                                                    lineNumber: 248,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -546,13 +559,13 @@ function GlobalCartSidebar() {
                                                     children: useCoins ? "Applied" : "Apply Coins"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 235,
+                                                    lineNumber: 257,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                            lineNumber: 225,
+                                            lineNumber: 247,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -565,12 +578,12 @@ function GlobalCartSidebar() {
                                                         className: "text-blue-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                        lineNumber: 243,
+                                                        lineNumber: 265,
                                                         columnNumber: 27
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 242,
+                                                    lineNumber: 264,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -580,7 +593,7 @@ function GlobalCartSidebar() {
                                                             children: "What are Empire Coins?"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 246,
+                                                            lineNumber: 268,
                                                             columnNumber: 27
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -592,26 +605,26 @@ function GlobalCartSidebar() {
                                                                     children: "instant discounts"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                    lineNumber: 251,
+                                                                    lineNumber: 273,
                                                                     columnNumber: 42
                                                                 }, this),
                                                                 " anywhere!"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 249,
+                                                            lineNumber: 271,
                                                             columnNumber: 27
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 245,
+                                                    lineNumber: 267,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                            lineNumber: 241,
+                                            lineNumber: 263,
                                             columnNumber: 21
                                         }, this),
                                         history.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -624,14 +637,14 @@ function GlobalCartSidebar() {
                                                             size: 14
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 260,
+                                                            lineNumber: 282,
                                                             columnNumber: 27
                                                         }, this),
                                                         " Your Ledger"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 259,
+                                                    lineNumber: 281,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -648,18 +661,18 @@ function GlobalCartSidebar() {
                                                                                 size: 12
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                                lineNumber: 267,
+                                                                                lineNumber: 289,
                                                                                 columnNumber: 52
                                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$down$2d$left$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowDownLeft$3e$__["ArrowDownLeft"], {
                                                                                 size: 12
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                                lineNumber: 267,
+                                                                                lineNumber: 289,
                                                                                 columnNumber: 80
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                            lineNumber: 266,
+                                                                            lineNumber: 288,
                                                                             columnNumber: 33
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -670,7 +683,7 @@ function GlobalCartSidebar() {
                                                                                     children: tx.transaction_type === 'earn' ? `Earn: ${tx.stores?.name}` : tx.transaction_type === 'refund' ? `Refund: ${tx.stores?.name}` : tx.description
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                                    lineNumber: 270,
+                                                                                    lineNumber: 292,
                                                                                     columnNumber: 35
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -678,19 +691,19 @@ function GlobalCartSidebar() {
                                                                                     children: new Date(tx.created_at).toLocaleDateString()
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                                    lineNumber: 274,
+                                                                                    lineNumber: 296,
                                                                                     columnNumber: 35
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                            lineNumber: 269,
+                                                                            lineNumber: 291,
                                                                             columnNumber: 33
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                    lineNumber: 265,
+                                                                    lineNumber: 287,
                                                                     columnNumber: 31
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -702,18 +715,18 @@ function GlobalCartSidebar() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                    lineNumber: 277,
+                                                                    lineNumber: 299,
                                                                     columnNumber: 31
                                                                 }, this)
                                                             ]
                                                         }, tx.id, true, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 264,
+                                                            lineNumber: 286,
                                                             columnNumber: 29
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 262,
+                                                    lineNumber: 284,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -725,25 +738,25 @@ function GlobalCartSidebar() {
                                                             size: 12
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 284,
+                                                            lineNumber: 306,
                                                             columnNumber: 47
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 283,
+                                                    lineNumber: 305,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                            lineNumber: 258,
+                                            lineNumber: 280,
                                             columnNumber: 23
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                    lineNumber: 223,
+                                    lineNumber: 245,
                                     columnNumber: 18
                                 }, this),
                                 Object.values(cartByVendor).map(({ store, items })=>{
@@ -763,7 +776,7 @@ function GlobalCartSidebar() {
                                                 children: "Self-Earning Disabled for this shop"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                lineNumber: 310,
+                                                lineNumber: 332,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -774,7 +787,7 @@ function GlobalCartSidebar() {
                                                         children: store.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                        lineNumber: 316,
+                                                        lineNumber: 338,
                                                         columnNumber: 26
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -788,7 +801,7 @@ function GlobalCartSidebar() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                lineNumber: 318,
+                                                                lineNumber: 340,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -799,19 +812,19 @@ function GlobalCartSidebar() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                lineNumber: 319,
+                                                                lineNumber: 341,
                                                                 columnNumber: 28
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                        lineNumber: 317,
+                                                        lineNumber: 339,
                                                         columnNumber: 26
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                lineNumber: 315,
+                                                lineNumber: 337,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -828,12 +841,12 @@ function GlobalCartSidebar() {
                                                                     className: "object-cover"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                    lineNumber: 327,
+                                                                    lineNumber: 349,
                                                                     columnNumber: 66
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                lineNumber: 326,
+                                                                lineNumber: 348,
                                                                 columnNumber: 30
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -844,7 +857,7 @@ function GlobalCartSidebar() {
                                                                         children: item.product.name
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                        lineNumber: 330,
+                                                                        lineNumber: 352,
                                                                         columnNumber: 33
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -856,13 +869,13 @@ function GlobalCartSidebar() {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                        lineNumber: 331,
+                                                                        lineNumber: 353,
                                                                         columnNumber: 33
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                lineNumber: 329,
+                                                                lineNumber: 351,
                                                                 columnNumber: 30
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -872,23 +885,23 @@ function GlobalCartSidebar() {
                                                                     size: 16
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                    lineNumber: 333,
+                                                                    lineNumber: 355,
                                                                     columnNumber: 153
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                lineNumber: 333,
+                                                                lineNumber: 355,
                                                                 columnNumber: 30
                                                             }, this)
                                                         ]
                                                     }, item.product.id, true, {
                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                        lineNumber: 325,
+                                                        lineNumber: 347,
                                                         columnNumber: 27
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                lineNumber: 323,
+                                                lineNumber: 345,
                                                 columnNumber: 23
                                             }, this),
                                             discount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -901,14 +914,14 @@ function GlobalCartSidebar() {
                                                                 size: 12
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                                lineNumber: 340,
+                                                                lineNumber: 362,
                                                                 columnNumber: 72
                                                             }, this),
                                                             " Empire Discount Applied"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                        lineNumber: 340,
+                                                        lineNumber: 362,
                                                         columnNumber: 28
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -918,13 +931,13 @@ function GlobalCartSidebar() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                        lineNumber: 341,
+                                                        lineNumber: 363,
                                                         columnNumber: 28
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                lineNumber: 339,
+                                                lineNumber: 361,
                                                 columnNumber: 25
                                             }, this),
                                             earnedFromThis > 0 && !isSelfBuying && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -936,7 +949,7 @@ function GlobalCartSidebar() {
                                                         className: "animate-pulse"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                        lineNumber: 347,
+                                                        lineNumber: 369,
                                                         columnNumber: 28
                                                     }, this),
                                                     " Earn +₦",
@@ -945,7 +958,7 @@ function GlobalCartSidebar() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                lineNumber: 346,
+                                                lineNumber: 368,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -957,7 +970,7 @@ function GlobalCartSidebar() {
                                                     size: 18
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                    lineNumber: 357,
+                                                    lineNumber: 379,
                                                     columnNumber: 28
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                                     children: [
@@ -965,7 +978,7 @@ function GlobalCartSidebar() {
                                                             size: 18
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                            lineNumber: 359,
+                                                            lineNumber: 381,
                                                             columnNumber: 30
                                                         }, this),
                                                         " Complete Checkout"
@@ -973,37 +986,37 @@ function GlobalCartSidebar() {
                                                 }, void 0, true)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                                lineNumber: 351,
+                                                lineNumber: 373,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, store.id, true, {
                                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                                        lineNumber: 307,
+                                        lineNumber: 329,
                                         columnNumber: 20
                                     }, this);
                                 })
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                            lineNumber: 204,
+                            lineNumber: 226,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                        lineNumber: 203,
+                        lineNumber: 225,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-                lineNumber: 193,
+                lineNumber: 215,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/shared/GlobalCartSidebar.tsx",
-        lineNumber: 190,
+        lineNumber: 212,
         columnNumber: 5
     }, this);
 }

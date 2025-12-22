@@ -93,7 +93,9 @@ __turbopack_context__.s([
     "default",
     ()=>MarketplacePage,
     "dynamic",
-    ()=>dynamic
+    ()=>dynamic,
+    "metadata",
+    ()=>metadata
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase.ts [app-rsc] (ecmascript)");
@@ -108,10 +110,20 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$
 ;
 ;
 ;
+const metadata = {
+    title: "Full Marketplace | Shop the StoreLink Empire",
+    description: "Explore thousands of products from verified Nigerian vendors. From perfumes to fashion, find the best deals and order instantly via WhatsApp.",
+    openGraph: {
+        title: "Full Marketplace | Shop the StoreLink Empire",
+        description: "Browse verified vendors, discover new products, and shop the heart of the StoreLink economy.",
+        images: [
+            '/og-image.png'
+        ],
+        url: 'https://storelink.ng/marketplace'
+    }
+};
 const dynamic = 'force-dynamic';
 async function MarketplacePage() {
-    // ✨ AUDIT: Added 'loyalty_enabled' and 'loyalty_percentage' to the select query
-    // This allows the product cards to calculate rewards in real-time.
     const { data: rawProducts } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select(`
       *, 
       stores!inner(
@@ -134,13 +146,10 @@ async function MarketplacePage() {
         const plan = product.stores?.subscription_plan;
         const storeId = product.store_id;
         const expiry = product.stores?.subscription_expiry;
-        // Filter out expired stores
         if (expiry && new Date(expiry) < now) {
             return false;
         }
-        // Diamond and Premium stores get all items shown
         if (plan === 'diamond' || plan === 'premium') return true;
-        // Free stores limited to 5 items in marketplace
         const currentCount = storeItemTracker[storeId] || 0;
         if (currentCount < 5) {
             storeItemTracker[storeId] = currentCount + 1;
@@ -148,7 +157,6 @@ async function MarketplacePage() {
         }
         return false;
     });
-    // Limit and shuffle for discovery
     const shuffledProducts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["shuffleArray"])(filteredByPlan.slice(0, 60));
     const { data: categories } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("categories").select("id, name, slug").is("store_id", null).order("name", {
         ascending: true
@@ -167,14 +175,14 @@ async function MarketplacePage() {
                                 className: "text-emerald-600"
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 74,
+                                lineNumber: 79,
                                 columnNumber: 13
                             }, this),
                             " StoreLink"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/marketplace/page.tsx",
-                        lineNumber: 73,
+                        lineNumber: 78,
                         columnNumber: 10
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -182,7 +190,7 @@ async function MarketplacePage() {
                         children: "Marketplace"
                     }, void 0, false, {
                         fileName: "[project]/app/marketplace/page.tsx",
-                        lineNumber: 77,
+                        lineNumber: 82,
                         columnNumber: 10
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -193,7 +201,7 @@ async function MarketplacePage() {
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 82,
+                                lineNumber: 87,
                                 columnNumber: 12
                             }, this),
                             " ",
@@ -202,19 +210,19 @@ async function MarketplacePage() {
                                 children: "Back to Home"
                             }, void 0, false, {
                                 fileName: "[project]/app/marketplace/page.tsx",
-                                lineNumber: 82,
+                                lineNumber: 87,
                                 columnNumber: 36
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/marketplace/page.tsx",
-                        lineNumber: 81,
+                        lineNumber: 86,
                         columnNumber: 10
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 72,
+                lineNumber: 77,
                 columnNumber: 8
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -224,12 +232,12 @@ async function MarketplacePage() {
                     categories: categories || []
                 }, void 0, false, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 88,
+                    lineNumber: 92,
                     columnNumber: 10
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 86,
+                lineNumber: 91,
                 columnNumber: 8
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -244,14 +252,14 @@ async function MarketplacePage() {
                                     className: "text-gray-200"
                                 }, void 0, false, {
                                     fileName: "[project]/app/marketplace/page.tsx",
-                                    lineNumber: 97,
+                                    lineNumber: 101,
                                     columnNumber: 19
                                 }, this),
                                 " StoreLink"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 96,
+                            lineNumber: 100,
                             columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -263,24 +271,24 @@ async function MarketplacePage() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/marketplace/page.tsx",
-                            lineNumber: 99,
+                            lineNumber: 103,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/marketplace/page.tsx",
-                    lineNumber: 95,
+                    lineNumber: 99,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/marketplace/page.tsx",
-                lineNumber: 94,
+                lineNumber: 98,
                 columnNumber: 8
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/marketplace/page.tsx",
-        lineNumber: 69,
+        lineNumber: 75,
         columnNumber: 5
     }, this);
 }

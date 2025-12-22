@@ -7,7 +7,7 @@ import FlashTimer from "@/components/shared/FlashTimer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { 
-  ChevronLeft, LayoutDashboard, ShieldCheck, 
+  ChevronLeft, LayoutDashboard, ShieldCheck, MapPin,
   Truck, ArrowRight, Zap, Package, ShoppingBag, Coins, TrendingUp 
 } from "lucide-react";
 
@@ -60,7 +60,6 @@ export default async function ProductPage({ params }: PageProps) {
   const isStockAvailable = product.stock_quantity > 0;
   const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
   
-  // ✨ REWARD CALCULATION: Ensures user earns based on the actual price paid (Flash vs Regular)
   const currentPrice = isFlashActive ? product.flash_drop_price : product.price;
   const potentialReward = store.loyalty_enabled 
     ? Math.floor(currentPrice * ((store.loyalty_percentage || 0) / 100)) 
@@ -90,7 +89,7 @@ export default async function ProductPage({ params }: PageProps) {
              <div className="mb-8">
                 
                 {isFlashActive && (
-                  <div className="mb-6">
+                  <div className="mb-6 text-emerald-600">
                     <FlashTimer expiry={product.flash_drop_expiry} />
                   </div>
                 )}
@@ -124,10 +123,28 @@ export default async function ProductPage({ params }: PageProps) {
              </div>
              
              {/* PRODUCT INFO BLOCK */}
-             <div className="bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100 mb-8 relative">
+             <div className="bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100 mb-6 relative">
                 <div className="absolute -top-3 left-8 bg-white px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border border-gray-100 rounded-full shadow-sm">Product Intel</div>
                 <div className="prose prose-sm text-gray-600 leading-relaxed font-bold uppercase text-xs">
                   <p className="whitespace-pre-line">{product.description || "No detailed description provided for this item."}</p>
+                </div>
+             </div>
+
+             {/* 📍 VENDOR LOCATION AUDIT (NEWLY INTEGRATED) */}
+             <div className="mb-6 flex items-center gap-4 p-4 bg-emerald-50/30 rounded-[2rem] border border-emerald-100/50 group transition-all hover:bg-emerald-50">
+                <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm text-emerald-600 border border-emerald-50 group-hover:scale-110 transition-transform">
+                  <MapPin size={20} />
+                </div>
+                <div>
+                   <p className="text-[10px] font-black text-emerald-800/50 uppercase tracking-[0.2em] leading-none mb-1">Ships From</p>
+                   <p className="text-base font-black text-emerald-900 tracking-tight">
+                      {store.location || "Location Verified"}
+                   </p>
+                </div>
+                <div className="ml-auto">
+                   <div className="flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-emerald-100 text-[9px] font-black text-emerald-600 uppercase tracking-tighter">
+                      <Truck size={12}/> Nationwide
+                   </div>
                 </div>
              </div>
 
@@ -136,7 +153,7 @@ export default async function ProductPage({ params }: PageProps) {
                 <AddToCartButton product={product} store={store} />
              </div>
 
-             {/* ✨ EMPIRE REWARD HIGHLIGHT (Enhanced) */}
+             {/* ✨ EMPIRE REWARD HIGHLIGHT */}
              {store.loyalty_enabled && potentialReward > 0 && (
                 <div className="mb-10 bg-amber-500 text-white rounded-[2.5rem] p-6 flex items-center justify-between shadow-2xl shadow-amber-200 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                   <div className="flex items-center gap-5">
@@ -179,7 +196,7 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
       </main>
 
-      {/* FOOTER: Design Synced with Marketplace */}
+      {/* FOOTER */}
       <footer className="bg-gray-50 border-t border-gray-100 py-12 md:py-20 text-center mt-12">
           <div className="flex justify-center items-center gap-8 mb-10">
             <div className="flex flex-col items-center gap-3 opacity-30">
@@ -193,8 +210,8 @@ export default async function ProductPage({ params }: PageProps) {
             </div>
           </div>
           <Link href="/" className="inline-flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity duration-500">
-             <LayoutDashboard size={20} className="text-emerald-600"/>
-             <span className="font-black text-gray-900 uppercase tracking-widest text-sm">StoreLink social engine</span>
+              <LayoutDashboard size={20} className="text-emerald-600"/>
+              <span className="font-black text-gray-900 uppercase tracking-widest text-sm">StoreLink social engine</span>
           </Link>
           <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.4em] mt-6">Secure Cloud Infrastructure • 2025</p>
       </footer>

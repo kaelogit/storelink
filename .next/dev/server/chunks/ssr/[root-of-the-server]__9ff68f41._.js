@@ -195,6 +195,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$shared$2f$Flas
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.react-server.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$dashboard$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutDashboard$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/layout-dashboard.js [app-rsc] (ecmascript) <export default as LayoutDashboard>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield-check.js [app-rsc] (ecmascript) <export default as ShieldCheck>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/map-pin.js [app-rsc] (ecmascript) <export default as MapPin>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$truck$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Truck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/truck.js [app-rsc] (ecmascript) <export default as Truck>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/zap.js [app-rsc] (ecmascript) <export default as Zap>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/package.js [app-rsc] (ecmascript) <export default as Package>");
@@ -236,7 +237,6 @@ async function ProductPage({ params }) {
     const store = product.stores;
     const isStockAvailable = product.stock_quantity > 0;
     const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-    // ✨ REWARD CALCULATION: Ensures user earns based on the actual price paid (Flash vs Regular)
     const currentPrice = isFlashActive ? product.flash_drop_price : product.price;
     const potentialReward = store.loyalty_enabled ? Math.floor(currentPrice * ((store.loyalty_percentage || 0) / 100)) : 0;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -247,7 +247,7 @@ async function ProductPage({ params }) {
                 storeLogo: store.logo_url
             }, void 0, false, {
                 fileName: "[project]/app/product/[id]/page.tsx",
-                lineNumber: 73,
+                lineNumber: 72,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -264,12 +264,12 @@ async function ProductPage({ params }) {
                                 stockCount: product.stock_quantity
                             }, void 0, false, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 82,
+                                lineNumber: 81,
                                 columnNumber: 14
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/product/[id]/page.tsx",
-                            lineNumber: 81,
+                            lineNumber: 80,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -279,17 +279,17 @@ async function ProductPage({ params }) {
                                     className: "mb-8",
                                     children: [
                                         isFlashActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "mb-6",
+                                            className: "mb-6 text-emerald-600",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$shared$2f$FlashTimer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                                 expiry: product.flash_drop_expiry
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 94,
+                                                lineNumber: 93,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 93,
+                                            lineNumber: 92,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -297,7 +297,7 @@ async function ProductPage({ params }) {
                                             children: product.name
                                         }, void 0, false, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 98,
+                                            lineNumber: 97,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -314,7 +314,7 @@ async function ProductPage({ params }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 105,
+                                                            lineNumber: 104,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -325,13 +325,13 @@ async function ProductPage({ params }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 108,
+                                                            lineNumber: 107,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 104,
+                                                    lineNumber: 103,
                                                     columnNumber: 21
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     className: "text-3xl font-black text-emerald-600 tracking-tighter",
@@ -341,7 +341,7 @@ async function ProductPage({ params }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 113,
+                                                    lineNumber: 112,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -349,30 +349,30 @@ async function ProductPage({ params }) {
                                                     children: isStockAvailable ? `${product.stock_quantity} IN STOCK` : 'OUT OF STOCK'
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 118,
+                                                    lineNumber: 117,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 102,
+                                            lineNumber: 101,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 90,
+                                    lineNumber: 89,
                                     columnNumber: 14
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100 mb-8 relative",
+                                    className: "bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100 mb-6 relative",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "absolute -top-3 left-8 bg-white px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border border-gray-100 rounded-full shadow-sm",
                                             children: "Product Intel"
                                         }, void 0, false, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 128,
+                                            lineNumber: 127,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -382,18 +382,89 @@ async function ProductPage({ params }) {
                                                 children: product.description || "No detailed description provided for this item."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 130,
+                                                lineNumber: 129,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 129,
+                                            lineNumber: 128,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 127,
+                                    lineNumber: 126,
+                                    columnNumber: 14
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mb-6 flex items-center gap-4 p-4 bg-emerald-50/30 rounded-[2rem] border border-emerald-100/50 group transition-all hover:bg-emerald-50",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm text-emerald-600 border border-emerald-50 group-hover:scale-110 transition-transform",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__["MapPin"], {
+                                                size: 20
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/product/[id]/page.tsx",
+                                                lineNumber: 136,
+                                                columnNumber: 19
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/product/[id]/page.tsx",
+                                            lineNumber: 135,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-[10px] font-black text-emerald-800/50 uppercase tracking-[0.2em] leading-none mb-1",
+                                                    children: "Ships From"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/product/[id]/page.tsx",
+                                                    lineNumber: 139,
+                                                    columnNumber: 20
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-base font-black text-emerald-900 tracking-tight",
+                                                    children: store.location || "Location Verified"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/product/[id]/page.tsx",
+                                                    lineNumber: 140,
+                                                    columnNumber: 20
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/product/[id]/page.tsx",
+                                            lineNumber: 138,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "ml-auto",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-emerald-100 text-[9px] font-black text-emerald-600 uppercase tracking-tighter",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$truck$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Truck$3e$__["Truck"], {
+                                                        size: 12
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/product/[id]/page.tsx",
+                                                        lineNumber: 146,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    " Nationwide"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/product/[id]/page.tsx",
+                                                lineNumber: 145,
+                                                columnNumber: 20
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/product/[id]/page.tsx",
+                                            lineNumber: 144,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/product/[id]/page.tsx",
+                                    lineNumber: 134,
                                     columnNumber: 14
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -403,12 +474,12 @@ async function ProductPage({ params }) {
                                         store: store
                                     }, void 0, false, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 136,
+                                        lineNumber: 153,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 135,
+                                    lineNumber: 152,
                                     columnNumber: 14
                                 }, this),
                                 store.loyalty_enabled && potentialReward > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -424,12 +495,12 @@ async function ProductPage({ params }) {
                                                         className: "text-white fill-white/20"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 144,
+                                                        lineNumber: 161,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 143,
+                                                    lineNumber: 160,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -439,7 +510,7 @@ async function ProductPage({ params }) {
                                                             children: "Empire Patron Reward"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 147,
+                                                            lineNumber: 164,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -451,19 +522,19 @@ async function ProductPage({ params }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 148,
+                                                            lineNumber: 165,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 146,
+                                                    lineNumber: 163,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 159,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -476,7 +547,7 @@ async function ProductPage({ params }) {
                                                         fill: "currentColor"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 155,
+                                                        lineNumber: 172,
                                                         columnNumber: 23
                                                     }, this),
                                                     " ",
@@ -485,18 +556,18 @@ async function ProductPage({ params }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                                lineNumber: 154,
+                                                lineNumber: 171,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 153,
+                                            lineNumber: 170,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 141,
+                                    lineNumber: 158,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -511,12 +582,12 @@ async function ProductPage({ params }) {
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 164,
+                                                        lineNumber: 181,
                                                         columnNumber: 78
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 164,
+                                                    lineNumber: 181,
                                                     columnNumber: 20
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -526,7 +597,7 @@ async function ProductPage({ params }) {
                                                             children: "Naija Delivery"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 166,
+                                                            lineNumber: 183,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -538,19 +609,19 @@ async function ProductPage({ params }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 167,
+                                                            lineNumber: 184,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 165,
+                                                    lineNumber: 182,
                                                     columnNumber: 20
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 163,
+                                            lineNumber: 180,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -562,12 +633,12 @@ async function ProductPage({ params }) {
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                                        lineNumber: 171,
+                                                        lineNumber: 188,
                                                         columnNumber: 80
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 171,
+                                                    lineNumber: 188,
                                                     columnNumber: 20
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -577,7 +648,7 @@ async function ProductPage({ params }) {
                                                             children: "Verified Vendor"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 173,
+                                                            lineNumber: 190,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -585,42 +656,42 @@ async function ProductPage({ params }) {
                                                             children: "Instant order receipt generated upon vendor confirmation."
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                                            lineNumber: 174,
+                                                            lineNumber: 191,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                                    lineNumber: 172,
+                                                    lineNumber: 189,
                                                     columnNumber: 20
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/product/[id]/page.tsx",
-                                            lineNumber: 170,
+                                            lineNumber: 187,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/product/[id]/page.tsx",
-                                    lineNumber: 162,
+                                    lineNumber: 179,
                                     columnNumber: 14
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/product/[id]/page.tsx",
-                            lineNumber: 89,
+                            lineNumber: 88,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/product/[id]/page.tsx",
-                    lineNumber: 78,
+                    lineNumber: 77,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/product/[id]/page.tsx",
-                lineNumber: 77,
+                lineNumber: 76,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -637,7 +708,7 @@ async function ProductPage({ params }) {
                                         className: "text-gray-900"
                                     }, void 0, false, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 186,
+                                        lineNumber: 203,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -645,20 +716,20 @@ async function ProductPage({ params }) {
                                         children: "Safe Shop"
                                     }, void 0, false, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 187,
+                                        lineNumber: 204,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 185,
+                                lineNumber: 202,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-px h-10 bg-gray-200"
                             }, void 0, false, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 189,
+                                lineNumber: 206,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -669,7 +740,7 @@ async function ProductPage({ params }) {
                                         className: "text-gray-900"
                                     }, void 0, false, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 191,
+                                        lineNumber: 208,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -677,19 +748,19 @@ async function ProductPage({ params }) {
                                         children: "Quality Check"
                                     }, void 0, false, {
                                         fileName: "[project]/app/product/[id]/page.tsx",
-                                        lineNumber: 192,
+                                        lineNumber: 209,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 190,
+                                lineNumber: 207,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/product/[id]/page.tsx",
-                        lineNumber: 184,
+                        lineNumber: 201,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$react$2d$server$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -701,21 +772,21 @@ async function ProductPage({ params }) {
                                 className: "text-emerald-600"
                             }, void 0, false, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 196,
-                                columnNumber: 14
+                                lineNumber: 213,
+                                columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "font-black text-gray-900 uppercase tracking-widest text-sm",
                                 children: "StoreLink social engine"
                             }, void 0, false, {
                                 fileName: "[project]/app/product/[id]/page.tsx",
-                                lineNumber: 197,
-                                columnNumber: 14
+                                lineNumber: 214,
+                                columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/product/[id]/page.tsx",
-                        lineNumber: 195,
+                        lineNumber: 212,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -723,19 +794,19 @@ async function ProductPage({ params }) {
                         children: "Secure Cloud Infrastructure • 2025"
                     }, void 0, false, {
                         fileName: "[project]/app/product/[id]/page.tsx",
-                        lineNumber: 199,
+                        lineNumber: 216,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/product/[id]/page.tsx",
-                lineNumber: 183,
+                lineNumber: 200,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/product/[id]/page.tsx",
-        lineNumber: 70,
+        lineNumber: 69,
         columnNumber: 5
     }, this);
 }

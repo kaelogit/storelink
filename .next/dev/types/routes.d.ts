@@ -102,3 +102,6 @@ declare global {
     params: Promise<ParamMap[AppRouteHandlerRoute]>
   }
 }
+params: Promise<ParamMap[AppRouteHandlerRoute]>
+  }
+}
