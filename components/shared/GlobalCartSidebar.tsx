@@ -177,13 +177,21 @@ export default function GlobalCartSidebar() {
         const itemLines = items.map((i: any) => `- ${i.qty}x ${i.product.name}`).join('\n');
         
         const msg = `*New Order #${newOrderId.slice(0,8)}* 📦\n\n` +
-                    `Hello ${storeData.name}, I want to order:\n\n${itemLines}\n\n` +
-                    `*Subtotal: ₦${storeTotal.toLocaleString()}*\n` +
-                    (coinsToApply > 0 ? `*Empire Coins: -₦${coinsToApply.toLocaleString()}*\n` : "") +
-                    `*Total Payable: ₦${finalPayable.toLocaleString()}*\n\n` +
-                    `Deliver to: ${formData.address}\n\n` +
-                    `Order sent via StoreLink. Please confirm availability!`;
-        
+            `Hello *${storeData.name}*, I've just placed an order via StoreLink:\n\n` +
+            `${itemLines}\n\n` +
+            `--------------------------\n` +
+            `*Subtotal:* ₦${storeTotal.toLocaleString()}\n` +
+            (coinsToApply > 0 
+                ? `*Empire Coins Applied:* -₦${coinsToApply.toLocaleString()} ✨\n` + 
+                  `_(Loyalty discount processed via StoreLink)_\n` 
+                : "") +
+            `*TOTAL PAYABLE:* ₦${finalPayable.toLocaleString()}\n` +
+            `--------------------------\n\n` +
+            `📍 *Deliver to:* ${formData.address}\n` +
+            `👤 *Customer Name:* ${formData.name}\n` +
+            `📞 *Customer Phone:* ${cleanPhone}\n\n` +
+            `🚀 _Order verified via StoreLink. Please confirm item availability and share your account details to finalize payment!_`;
+
         // 6. WHATSAPP REDIRECTION (THE HANDOFF)
         window.open(`https://wa.me/${cleanWhatsApp}?text=${encodeURIComponent(msg)}`, "_blank");
         

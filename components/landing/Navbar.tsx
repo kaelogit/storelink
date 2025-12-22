@@ -4,10 +4,11 @@ import Link from "next/link";
 import { LayoutDashboard, Menu, X, ArrowRight, User, ShoppingBag, Sparkles } from "lucide-react";
 import { useState } from "react";
 
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  const announcement = "🚀 SPECIAL OFFER: GET 2 WEEKS OF PREMIUM FEATURES FOR FREE UPON SIGNUP — LIMITED TIME ONLY! 🚀";
+  const announcement = "STORELINK LAUNCHES IN 7 DAYS";
 
   return (
     <header className="sticky top-0 z-50">
