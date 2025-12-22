@@ -21,7 +21,7 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
   const [localStatus, setLocalStatus] = useState<string | null>(null);
   const router = useRouter();
 
-  // 1. ✨ INITIALIZE DATA & LOCAL STATUS
+  // 1. ✨ INITIALIZE DATA
   useEffect(() => {
     if (isOpen && order) {
       setLocalStatus(order.status);
@@ -34,14 +34,48 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
     }
   }, [isOpen, order]);
 
-  // 2. ✨ UPDATE STATUS (Handles Empire Refund Logic + Instant UI)
+  // 2. ✨ THE ENGINE: DEDUCT STOCK LOGIC
+  const handleStockDeduction = async () => {
+    try {
+      for (const item of items) {
+        // Fetch current stock
+        const { data: product } = await supabase
+          .from("storefront_products")
+          .select("stock_quantity")
+          .eq("id", item.product_id)
+          .single();
+
+        if (product) {
+          const currentStock = product.stock_quantity || 0;
+          const newStock = Math.max(0, currentStock - item.quantity);
+          
+          const updatePayload: any = { stock_quantity: newStock };
+          
+          // If stock hits zero for the first time, mark the timestamp
+          if (newStock === 0 && currentStock > 0) {
+            updatePayload.sold_out_at = new Date().toISOString();
+          }
+
+          await supabase
+            .from("products") // 🔥 FIX: Change from "storefront_products" to "products"
+            .update(updatePayload)
+            .eq("id", item.product_id);
+            
+        }
+      }
+    } catch (err) {
+      console.error("Stock Deduction Error:", err);
+    }
+  };
+
+  // 3. ✨ UPDATE STATUS (Handles Empire Refund + Stock Deduction)
   const updateStatus = async (status: string) => {
     const displayStatus = status === 'completed' ? 'Paid' : status;
     const redeemedAmount = order.coins_redeemed || 0;
     
     const confirmMsg = status === 'cancelled' && (redeemedAmount > 0)
       ? `Cancel order? This will automatically REFUND ₦${redeemedAmount.toLocaleString()} coins to the customer.`
-      : `Mark order as ${displayStatus}?`;
+      : `Mark order as ${displayStatus}? This will deduct purchased items from your stock.`;
 
     if (!confirm(confirmMsg)) return;
     
@@ -50,23 +84,23 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
       let response;
 
       if (status === 'cancelled') {
-        // This RPC triggers a refund. Ensure your cancel_and_refund_order 
-        // function in SQL also uses the RIGHT(phone, 10) logic!
         response = await supabase.rpc('cancel_and_refund_order', { 
           order_id_param: order.id 
         });
       } else {
+        // ⚡ MARK PAID: First Update Order Status
         response = await supabase.from("orders").update({ status }).eq("id", order.id);
+        
+        // ⚡ MARK PAID: Second, Deduct Stock
+        if (!response.error && status === 'completed') {
+          await handleStockDeduction();
+        }
       }
       
       if (response.error) throw response.error;
 
       setLocalStatus(status);
-      
-      // 🔥 THE FIX: Use onUpdate() to tell the parent list to refresh
       if (onUpdate) onUpdate(); 
-      
-      // Close modal after success
       setTimeout(() => onClose(), 800);
 
     } catch (error: any) {
@@ -77,7 +111,7 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
     }
   };
   
-  // 3. ✨ PDF RECEIPT ENGINE (Line-by-line Audited - No Word Changed)
+  // 4. ✨ PDF RECEIPT ENGINE (Line-by-line Audited)
   const downloadReceipt = () => {
     const doc = new jsPDF();
     doc.setFillColor(17, 24, 39); 
@@ -100,7 +134,7 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
     doc.setFont("helvetica", "normal");
     doc.text(order.customer_name, 140, 76);
     doc.text(order.customer_phone, 140, 82);
-    doc.text(doc.splitTextToSize(order.customer_address, 60), 140, 88);
+    doc.text(doc.splitTextToSize(order.customer_address || "", 60), 140, 88);
 
     const tableData = items.map(item => [
       item.product_name, item.quantity, `N${item.price.toLocaleString()}`, `N${(item.price * item.quantity).toLocaleString()}`

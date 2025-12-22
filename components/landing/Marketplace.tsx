@@ -16,32 +16,46 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
   const [view, setView] = useState<'products' | 'vendors'>('products');
   const [search, setSearch] = useState("");
 
-  const isPaidPlan = (plan?: string) => plan === 'premium' || plan === 'diamond';
-
-  const getRank = (plan?: string) => {
-     if (plan === 'diamond') return 3;
-     if (plan === 'premium') return 2;
-     return 1;
+  // --- 🛡️ AUDITED DATA LOOKUP ---
+  // We use this to reliably find the store's plan for every product
+  const getProductStore = (storeId: string) => {
+    return stores.find(s => s.id === storeId);
   };
 
-  const filteredProducts = products
-    .filter(p => {
-       const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
-       const storeData = p.stores as any;
-       const isPremiumStore = isPaidPlan(storeData?.subscription_plan);
-       return matchesSearch && isPremiumStore;
-    })
-    .sort((a, b) => getRank((b.stores as any)?.subscription_plan) - getRank((a.stores as any)?.subscription_plan))
-    .slice(0, 12); 
+  // --- 💎 15 DIAMOND / 5 PREMIUM LOGIC (TOTAL 20) ---
+  
+  // 1. Initial Search Filter
+  const searchMatchedProducts = products.filter(p => 
+    p.name.toLowerCase().includes(search.toLowerCase())
+  );
 
-  const filteredStores = stores
-    .filter(s => {
-       const matchesSearch = s.name.toLowerCase().includes(search.toLowerCase());
-       const isPremiumStore = isPaidPlan(s.subscription_plan);
-       return matchesSearch && isPremiumStore;
-    })
-    .sort((a, b) => getRank(b.subscription_plan) - getRank(a.subscription_plan))
-    .slice(0, 12); 
+  const searchMatchedStores = stores.filter(s => 
+    s.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // 2. PRODUCT BUCKETS
+  const diamondPoolP = searchMatchedProducts.filter(p => {
+    const s = getProductStore(p.store_id);
+    return s?.subscription_plan === 'diamond';
+  });
+
+  const premiumPoolP = searchMatchedProducts.filter(p => {
+    const s = getProductStore(p.store_id);
+    return s?.subscription_plan === 'premium';
+  });
+
+  // Take up to 15 Diamonds, then fill the rest of the 20-slots with Premiums
+  const finalDiamondsP = diamondPoolP.slice(0, 15);
+  const finalPremiumsP = premiumPoolP.slice(0, 20 - finalDiamondsP.length);
+  const filteredProducts = [...finalDiamondsP, ...finalPremiumsP];
+
+  // 3. VENDOR BUCKETS
+  const diamondPoolS = searchMatchedStores.filter(s => s.subscription_plan === 'diamond');
+  const premiumPoolS = searchMatchedStores.filter(s => s.subscription_plan === 'premium');
+
+  const finalDiamondsS = diamondPoolS.slice(0, 15);
+  const finalPremiumsS = premiumPoolS.slice(0, 20 - finalDiamondsS.length);
+  const filteredStores = [...finalDiamondsS, ...finalPremiumsS];
 
   return (
     <section id="marketplace" className="py-16 px-4 bg-gray-50 min-h-screen border-t border-gray-100">
@@ -70,21 +84,16 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
         </div>
 
         {view === 'products' ? (
-          /* ✨ TIGHT GRID CONFIG: Horizonatal rows on mobile, 5-cols on Desktop */
-          <div className="grid grid-rows-2 grid-flow-col auto-cols-[45%] gap-3 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-4 lg:grid-cols-5 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0 md:gap-4">
+          <div className="grid grid-rows-2 grid-flow-col auto-cols-[50%] gap-3 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-4 lg:grid-cols-5 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0 md:gap-4">
             {filteredProducts.map(product => {
-              
-              // 1. FLASH LOGIC (Verified match to Full Marketplace)
               const isFlash = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-              
-              // 2. STORE LOGIC (Verified match to Full Marketplace)
-              const store = product.stores as any;
+              const store = getProductStore(product.store_id);
               const isDiamond = store?.subscription_plan === 'diamond';
               
-              // 3. REWARD LOGIC (Verified match to Full Marketplace)
               const activePrice = isFlash ? (product.flash_drop_price || product.price) : product.price;
+
               const rewardCoins = store?.loyalty_enabled 
-                ? Math.floor(activePrice * (store.loyalty_percentage / 100)) 
+                ? Math.floor(activePrice * ((store?.loyalty_percentage || 0) / 100)) 
                 : 0;
 
               return (
@@ -100,7 +109,6 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                   <div className="aspect-square bg-gray-50 rounded-xl mb-3 relative overflow-hidden">
                     <Image src={product.image_urls?.[0] || ""} alt="" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                     
-                    {/* TOP LEFT BADGE: LIVE DROP vs DIAMOND TOP */}
                     {isFlash ? (
                       <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20 animate-pulse">
                          <Zap size={10} fill="currentColor" /> LIVE DROP
@@ -111,14 +119,12 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                       </span>
                     )}
 
-                    {/* TOP RIGHT BADGE: EMPIRE REWARD COINS */}
                     {rewardCoins > 0 && (
                       <div className="absolute top-2 right-2 bg-emerald-600/90 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20 animate-in zoom-in">
                         <Zap size={10} fill="white" /> +₦{rewardCoins.toLocaleString()}
                       </div>
                     )}
 
-                    {/* PLUS ACTION BUTTON */}
                     <button 
                       onClick={(e) => { e.preventDefault(); e.stopPropagation(); onAddToCart(product); }} 
                       className={`absolute bottom-2 right-2 p-2 rounded-full shadow-lg transition-all z-10 active:scale-75 ${isFlash ? 'bg-amber-500 text-white' : 'bg-white hover:bg-gray-900 hover:text-white'}`}
@@ -140,7 +146,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                         <div>
                            <p className="text-[9px] font-bold text-gray-300 line-through">₦{product.price.toLocaleString()}</p>
                            <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">
-                              ₦{(product.flash_drop_price || 0).toLocaleString()}
+                             ₦{(product.flash_drop_price || 0).toLocaleString()}
                            </p>                        </div>
                       ) : (
                         <p className="text-emerald-700 font-black text-sm md:text-base">₦{product.price.toLocaleString()}</p>
@@ -151,7 +157,6 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                       )}
                     </div>
                   </div>
-                  {isDiamond && <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-purple-500/10 transition-colors" />}
                 </Link>
               );
             })}

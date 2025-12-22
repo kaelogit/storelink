@@ -1563,23 +1563,40 @@ function Marketplace({ products, stores, onAddToCart }) {
     _s();
     const [view, setView] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('products');
     const [search, setSearch] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const isPaidPlan = (plan)=>plan === 'premium' || plan === 'diamond';
-    const getRank = (plan)=>{
-        if (plan === 'diamond') return 3;
-        if (plan === 'premium') return 2;
-        return 1;
+    // --- 🛡️ AUDITED DATA LOOKUP ---
+    // We use this to reliably find the store's plan for every product
+    const getProductStore = (storeId)=>{
+        return stores.find((s)=>s.id === storeId);
     };
-    const filteredProducts = products.filter((p)=>{
-        const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
-        const storeData = p.stores;
-        const isPremiumStore = isPaidPlan(storeData?.subscription_plan);
-        return matchesSearch && isPremiumStore;
-    }).sort((a, b)=>getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan)).slice(0, 12);
-    const filteredStores = stores.filter((s)=>{
-        const matchesSearch = s.name.toLowerCase().includes(search.toLowerCase());
-        const isPremiumStore = isPaidPlan(s.subscription_plan);
-        return matchesSearch && isPremiumStore;
-    }).sort((a, b)=>getRank(b.subscription_plan) - getRank(a.subscription_plan)).slice(0, 12);
+    // --- 💎 15 DIAMOND / 5 PREMIUM LOGIC (TOTAL 20) ---
+    // 1. Initial Search Filter
+    const searchMatchedProducts = products.filter((p)=>p.name.toLowerCase().includes(search.toLowerCase()));
+    const searchMatchedStores = stores.filter((s)=>s.name.toLowerCase().includes(search.toLowerCase()));
+    // 2. PRODUCT BUCKETS
+    const diamondPoolP = searchMatchedProducts.filter((p)=>{
+        const s = getProductStore(p.store_id);
+        return s?.subscription_plan === 'diamond';
+    });
+    const premiumPoolP = searchMatchedProducts.filter((p)=>{
+        const s = getProductStore(p.store_id);
+        return s?.subscription_plan === 'premium';
+    });
+    // Take up to 15 Diamonds, then fill the rest of the 20-slots with Premiums
+    const finalDiamondsP = diamondPoolP.slice(0, 15);
+    const finalPremiumsP = premiumPoolP.slice(0, 20 - finalDiamondsP.length);
+    const filteredProducts = [
+        ...finalDiamondsP,
+        ...finalPremiumsP
+    ];
+    // 3. VENDOR BUCKETS
+    const diamondPoolS = searchMatchedStores.filter((s)=>s.subscription_plan === 'diamond');
+    const premiumPoolS = searchMatchedStores.filter((s)=>s.subscription_plan === 'premium');
+    const finalDiamondsS = diamondPoolS.slice(0, 15);
+    const finalPremiumsS = premiumPoolS.slice(0, 20 - finalDiamondsS.length);
+    const filteredStores = [
+        ...finalDiamondsS,
+        ...finalPremiumsS
+    ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "marketplace",
         className: "py-16 px-4 bg-gray-50 min-h-screen border-t border-gray-100",
@@ -1594,7 +1611,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                             children: "Trending Now"
                         }, void 0, false, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 51,
+                            lineNumber: 65,
                             columnNumber: 12
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1602,13 +1619,13 @@ function Marketplace({ products, stores, onAddToCart }) {
                             children: "Verified drops from premium vendors."
                         }, void 0, false, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 52,
+                            lineNumber: 66,
                             columnNumber: 12
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 50,
+                    lineNumber: 64,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1623,7 +1640,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     children: "Items"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 57,
+                                    lineNumber: 71,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1632,13 +1649,13 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     children: "Stores"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 58,
+                                    lineNumber: 72,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 56,
+                            lineNumber: 70,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1648,7 +1665,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     className: "absolute left-4 top-3.5 text-gray-400 w-4 h-4"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 62,
+                                    lineNumber: 76,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1658,32 +1675,29 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     onChange: (e)=>setSearch(e.target.value)
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 63,
+                                    lineNumber: 77,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 61,
+                            lineNumber: 75,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 55,
+                    lineNumber: 69,
                     columnNumber: 9
                 }, this),
-                view === 'products' ? /* ✨ TIGHT GRID CONFIG: Horizonatal rows on mobile, 5-cols on Desktop */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid grid-rows-2 grid-flow-col auto-cols-[45%] gap-3 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-4 lg:grid-cols-5 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0 md:gap-4",
+                view === 'products' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "grid grid-rows-2 grid-flow-col auto-cols-[50%] gap-3 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-4 lg:grid-cols-5 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0 md:gap-4",
                     children: filteredProducts.map((product)=>{
-                        // 1. FLASH LOGIC (Verified match to Full Marketplace)
                         const isFlash = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-                        // 2. STORE LOGIC (Verified match to Full Marketplace)
-                        const store = product.stores;
+                        const store = getProductStore(product.store_id);
                         const isDiamond = store?.subscription_plan === 'diamond';
-                        // 3. REWARD LOGIC (Verified match to Full Marketplace)
                         const activePrice = isFlash ? product.flash_drop_price || product.price : product.price;
-                        const rewardCoins = store?.loyalty_enabled ? Math.floor(activePrice * (store.loyalty_percentage / 100)) : 0;
+                        const rewardCoins = store?.loyalty_enabled ? Math.floor(activePrice * ((store?.loyalty_percentage || 0) / 100)) : 0;
                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             href: `/product/${product.id}`,
                             className: `snap-start bg-white p-2.5 rounded-2xl border transition-all duration-500 flex flex-col relative h-full group ${isDiamond ? 'border-purple-200 shadow-[0_10px_30px_rgba(147,51,234,0.08)] ring-1 ring-purple-50' : 'border-gray-100 shadow-sm'} hover:shadow-2xl hover:-translate-y-2`,
@@ -1698,7 +1712,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             className: "object-cover group-hover:scale-110 transition-transform duration-700"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 101,
+                                            lineNumber: 110,
                                             columnNumber: 21
                                         }, this),
                                         isFlash ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1709,14 +1723,14 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     fill: "currentColor"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 106,
+                                                    lineNumber: 114,
                                                     columnNumber: 26
                                                 }, this),
                                                 " LIVE DROP"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 105,
+                                            lineNumber: 113,
                                             columnNumber: 23
                                         }, this) : isDiamond && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "absolute top-2 left-2 bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md flex items-center gap-1 z-20 uppercase",
@@ -1726,14 +1740,14 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     className: "fill-white"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 110,
+                                                    lineNumber: 118,
                                                     columnNumber: 26
                                                 }, this),
                                                 " TOP"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 109,
+                                            lineNumber: 117,
                                             columnNumber: 23
                                         }, this),
                                         rewardCoins > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1744,7 +1758,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     fill: "white"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 117,
+                                                    lineNumber: 124,
                                                     columnNumber: 25
                                                 }, this),
                                                 " +₦",
@@ -1752,7 +1766,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 116,
+                                            lineNumber: 123,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1767,18 +1781,18 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                 strokeWidth: 3
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/Marketplace.tsx",
-                                                lineNumber: 126,
+                                                lineNumber: 132,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 128,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 100,
+                                    lineNumber: 109,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1789,7 +1803,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             children: product.name
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 131,
+                                            lineNumber: 137,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1800,7 +1814,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     children: store?.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 134,
+                                                    lineNumber: 140,
                                                     columnNumber: 25
                                                 }, this),
                                                 store?.verification_status === 'verified' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
@@ -1808,13 +1822,13 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     className: "text-blue-500 fill-blue-50"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 135,
+                                                    lineNumber: 141,
                                                     columnNumber: 71
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 133,
+                                            lineNumber: 139,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1830,7 +1844,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                                            lineNumber: 141,
+                                                            lineNumber: 147,
                                                             columnNumber: 28
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1841,14 +1855,14 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                                            lineNumber: 142,
+                                                            lineNumber: 148,
                                                             columnNumber: 28
                                                         }, this),
                                                         "                        "
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 140,
+                                                    lineNumber: 146,
                                                     columnNumber: 25
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     className: "text-emerald-700 font-black text-sm md:text-base",
@@ -1858,7 +1872,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 146,
+                                                    lineNumber: 152,
                                                     columnNumber: 25
                                                 }, this),
                                                 rewardCoins > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1866,38 +1880,31 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     children: "Earn Gold"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 150,
+                                                    lineNumber: 156,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 138,
+                                            lineNumber: 144,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 130,
+                                    lineNumber: 136,
                                     columnNumber: 19
-                                }, this),
-                                isDiamond && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-purple-500/10 transition-colors"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 154,
-                                    columnNumber: 33
                                 }, this)
                             ]
                         }, product.id, true, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 91,
+                            lineNumber: 100,
                             columnNumber: 17
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 74,
+                    lineNumber: 87,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid grid-rows-2 grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-3 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0",
@@ -1914,12 +1921,12 @@ function Marketplace({ products, stores, onAddToCart }) {
                                         className: "object-cover group-hover:scale-110 transition duration-500"
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Marketplace.tsx",
-                                        lineNumber: 168,
+                                        lineNumber: 173,
                                         columnNumber: 37
                                     }, this) : null
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 167,
+                                    lineNumber: 172,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1933,7 +1940,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     children: store.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 172,
+                                                    lineNumber: 177,
                                                     columnNumber: 22
                                                 }, this),
                                                 store.verification_status === 'verified' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
@@ -1941,7 +1948,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     className: "text-blue-500 fill-blue-50 shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 174,
+                                                    lineNumber: 179,
                                                     columnNumber: 24
                                                 }, this),
                                                 store.subscription_plan === 'diamond' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Gem$3e$__["Gem"], {
@@ -1949,13 +1956,13 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     className: "text-purple-600 fill-purple-50 shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 182,
                                                     columnNumber: 24
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 171,
+                                            lineNumber: 176,
                                             columnNumber: 20
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1963,7 +1970,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             children: store.location || "Online Exclusive"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 180,
+                                            lineNumber: 185,
                                             columnNumber: 20
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1974,30 +1981,30 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     size: 12
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 182,
+                                                    lineNumber: 187,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 181,
+                                            lineNumber: 186,
                                             columnNumber: 20
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 170,
+                                    lineNumber: 175,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, store.id, true, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 162,
+                            lineNumber: 167,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 160,
+                    lineNumber: 165,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2011,29 +2018,29 @@ function Marketplace({ products, stores, onAddToCart }) {
                                 size: 18
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Marketplace.tsx",
-                                lineNumber: 192,
+                                lineNumber: 197,
                                 columnNumber: 34
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Marketplace.tsx",
-                        lineNumber: 191,
+                        lineNumber: 196,
                         columnNumber: 12
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 190,
+                    lineNumber: 195,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/landing/Marketplace.tsx",
-            lineNumber: 48,
+            lineNumber: 62,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/landing/Marketplace.tsx",
-        lineNumber: 47,
+        lineNumber: 61,
         columnNumber: 5
     }, this);
 }

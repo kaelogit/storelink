@@ -93,35 +93,42 @@ export default function LoyaltyPage() {
 
       {/* 2. ✨ STATS GRID: Mobile Stacked, Tablet/Desktop Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  
         <div className="bg-white border border-gray-100 p-6 rounded-[2rem] shadow-sm">
           <div className="flex justify-between items-start mb-4">
             <div className="bg-amber-50 p-2 rounded-xl text-amber-600">
-              <Zap size={20} fill="currentColor" />
+              <LineChart size={20} />
             </div>
-            <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg uppercase tracking-widest">Potential</span>
+            <span className="text-[9px] font-black text-amber-600 bg-amber-50 px-2 py-1 rounded-lg uppercase tracking-widest">Retention</span>
           </div>
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Issued</p>
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Empire Reward Volume</p>
           <h4 className="text-2xl font-black text-gray-900 tracking-tight">₦{stats.issued.toLocaleString()}</h4>
+          <p className="text-[9px] font-bold text-gray-400 mt-1">Total discounts created for your fans.</p>
         </div>
 
+        {/* Box 2: Coins Redeemed (The actual cost) */}
         <div className="bg-white border border-gray-100 p-6 rounded-[2rem] shadow-sm">
           <div className="flex justify-between items-start mb-4">
             <div className="bg-emerald-50 p-2 rounded-xl text-emerald-600">
               <ArrowUpRight size={20} />
             </div>
+            <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg uppercase tracking-widest">Active Spend</span>
           </div>
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Coins Redeemed</p>
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Actual Discounts Used</p>
           <h4 className="text-2xl font-black text-gray-900 tracking-tight">₦{stats.redeemed.toLocaleString()}</h4>
+          <p className="text-[9px] font-bold text-gray-400 mt-1">Real impact on your bottom line.</p>
         </div>
 
+        {/* Box 3: Loyal Customers */}
         <div className="bg-white border border-gray-100 p-6 rounded-[2rem] shadow-sm sm:col-span-2 md:col-span-1">
           <div className="flex justify-between items-start mb-4">
             <div className="bg-blue-50 p-2 rounded-xl text-blue-600">
               <Users size={20} />
             </div>
           </div>
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Loyal Customers</p>
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Empire Patrons</p>
           <h4 className="text-2xl font-black text-gray-900 tracking-tight">{stats.customers}</h4>
+          <p className="text-[9px] font-bold text-gray-400 mt-1">Customers tied to your ecosystem.</p>
         </div>
       </div>
 

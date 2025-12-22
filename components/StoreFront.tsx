@@ -5,17 +5,14 @@ import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link";
 import { 
-  MapPin, Info, Copy, Check, ShoppingBag, 
+  MapPin, Info, ShoppingBag, 
   X, Instagram, Search, Package, Phone, LayoutDashboard, ChevronRight,
-  BadgeCheck, Gem, Share2, Plus, Zap, Loader2
+  BadgeCheck, Gem, Plus, Zap, Loader2
 } from "lucide-react";
 import { Store } from "@/types";
 import { useCart } from "@/context/CartContext";
 
-const TiktokIcon = ({ size = 20 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-);
-
+// --- 1. HELPER COMPONENTS (OUTSIDE COMPONENT) ---
 const VerificationBadge = ({ store }: { store: any }) => {
   return (
     <div className="inline-flex items-center gap-1 ml-1 align-middle">
@@ -34,20 +31,29 @@ interface StoreFrontProps {
 export default function StoreFront({ store, products: initialProducts, categories }: StoreFrontProps) {
   const { addToCart, cartCount, setIsCartOpen, isCartOpen } = useCart();
   
-  // --- CORE STATES ---
+  // --- 2. CORE STATES ---
   const [products, setProducts] = useState(initialProducts);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false); // 🔥 FIXED: Moved inside component
   const [visibleCount, setVisibleCount] = useState(20);
   const [isJumping, setIsJumping] = useState(false);
 
-  // --- NEW: SCROLL DIRECTION LOGIC ---
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  // --- 3. LOGIC FUNCTIONS ---
+  
+  // 🔥 FIXED: Moved handleCopyLink inside to access 'store' and 'setCopied'
+  const handleCopyLink = () => {
+    if (!store?.slug) return;
+    navigator.clipboard.writeText(`${window.location.origin}/${store.slug}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +69,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // --- ✨ SEARCH DEBOUNCE LOGIC ---
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(searchTerm);
@@ -71,20 +76,27 @@ export default function StoreFront({ store, products: initialProducts, categorie
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
-  // --- ✨ GLOBAL SERVER-SIDE FILTERING ---
+  // 🔥 AUDITED: Optimized Server-Side Filtering
   useEffect(() => {
     const fetchStoreProducts = async () => {
-      // If no search/category, reset to initial
       if (activeCategory === "All" && !debouncedSearch) {
         setProducts(initialProducts);
         return;
       }
 
       setLoading(true);
+
+      // We join categories to filter by name reliably
       let query = supabase
         .from("storefront_products")
-        .select("*")
+        .select(`
+          *,
+          categories!inner (
+            name
+          )
+        `)
         .eq("store_id", store.id)
+        .eq("is_active", true)
         .order("created_at", { ascending: false });
 
       if (activeCategory !== "All") {
@@ -95,29 +107,28 @@ export default function StoreFront({ store, products: initialProducts, categorie
         query = query.ilike("name", `%${debouncedSearch}%`);
       }
 
-      const { data } = await query;
-      setProducts(data || []);
+      const { data, error } = await query;
+
+      if (error) {
+        console.error("Filter Error:", error);
+        setProducts([]);
+      } else {
+        setProducts(data || []);
+      }
+      
       setLoading(false);
     };
 
     fetchStoreProducts();
   }, [activeCategory, debouncedSearch, store.id, initialProducts]);
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(`${window.location.origin}/${store.slug}`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const handleAddToCart = (product: any) => {
     const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-    
     if (isFlashActive) {
       const audio = new Audio('/sounds/empire-drop.mp3');
       audio.volume = 0.5;
-      audio.play().catch(err => console.log("Audio play blocked"));
+      audio.play().catch(() => {});
     }
-    
     setIsJumping(true);
     setTimeout(() => setIsJumping(false), 600);
     addToCart(product, store);
@@ -143,7 +154,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
              </div>
           </div>
           <button onClick={() => setIsInfoOpen(true)} className="p-2 hover:bg-gray-100 rounded-full transition text-gray-600 active:scale-90">
-             <Info size={20} />
+              <Info size={20} />
           </button>
       </nav>
 
@@ -185,56 +196,30 @@ export default function StoreFront({ store, products: initialProducts, categorie
                    </button>
                 </div>
              </div>
-
-             <div className="mt-3 md:hidden">
-                <h2 className="text-xl font-black text-gray-900 flex items-center gap-1 uppercase tracking-tight">
-                  {store.name} <VerificationBadge store={store} />
-                </h2>
-                <p className="text-gray-500 text-xs font-bold mt-0.5">{store.location}</p>
-             </div>
           </div>
       </div>
 
-      {/* STICKY SEARCH/FILTER BAR: HIDE ON SCROLL LOGIC */}
+      {/* FILTER BAR */}
       <div className={`sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300 ease-in-out ${
-          isVisible 
-          ? "translate-y-0 opacity-100" 
-          : "-translate-y-24 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100 md:pointer-events-auto"
+          isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100"
       }`}>
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-3">
              <div className="flex flex-col md:flex-row gap-3">
                 <div className="relative w-full md:max-w-xs">
                    <Search className="absolute left-3.5 top-2.5 text-gray-400" size={16} />
-                   <input 
-                     className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm outline-none focus:bg-white transition font-medium"
-                     placeholder="Search store..."
-                     value={searchTerm}
-                     onChange={e => setSearchTerm(e.target.value)}
-                   />
+                   <input className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm outline-none focus:bg-white transition font-medium" placeholder="Search store..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)}/>
                 </div>
-                
                 <div className="flex gap-2 overflow-x-auto no-scrollbar items-center pb-1">
-                   <button 
-                     onClick={() => setActiveCategory("All")}
-                     className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition ${activeCategory === "All" ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}
-                   >
-                     All
-                   </button>
+                   <button onClick={() => setActiveCategory("All")} className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition ${activeCategory === "All" ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}>All</button>
                    {categories.map(cat => (
-                     <button 
-                       key={cat.id}
-                       onClick={() => setActiveCategory(cat.name)}
-                       className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition ${activeCategory === cat.name ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}
-                     >
-                       {cat.name}
-                     </button>
+                     <button key={cat.id} onClick={() => setActiveCategory(cat.name)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition ${activeCategory === cat.name ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}>{cat.name}</button>
                    ))}
                 </div>
              </div>
           </div>
       </div>
 
-      {/* PRODUCT GRID */}
+      {/* ⚡ AUDITED PRODUCT GRID */}
       <div className="flex-1 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
              {loading ? (
@@ -242,72 +227,79 @@ export default function StoreFront({ store, products: initialProducts, categorie
              ) : (
              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
                 {displayedProducts.map(product => {
-                  const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
+                  const isFlash = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
+                  const isDiamond = store.subscription_plan === 'diamond';
+                  const activePrice = isFlash ? (product.flash_drop_price || product.price) : product.price;
                   
+                  const rewardCoins = store.loyalty_enabled 
+                    ? Math.floor(activePrice * ((store.loyalty_percentage || 0) / 100)) 
+                    : 0;
+
                   return (
-                    <div key={product.id} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col relative transition-all duration-300 active:scale-[0.98] md:hover:shadow-xl md:hover:-translate-y-1">
-                       <Link href={`/product/${product.id}`} className="block relative aspect-square bg-gray-50 overflow-hidden">
+                    <div 
+                      key={product.id} 
+                      className={`group bg-white p-2.5 rounded-2xl border transition-all duration-500 flex flex-col relative h-full active:scale-[0.98] ${
+                        isDiamond 
+                        ? 'border-purple-200 shadow-[0_10px_30px_rgba(147,51,234,0.08)] ring-1 ring-purple-50' 
+                        : 'border-gray-100 shadow-sm'
+                      } md:hover:shadow-2xl md:hover:-translate-y-1`}
+                    >
+                       <Link href={`/product/${product.id}`} className="block relative aspect-square bg-gray-50 rounded-xl overflow-hidden mb-3">
                           {product.image_urls?.[0] ? (
-                            <Image 
-                              src={product.image_urls[0]} 
-                              alt={product.name} 
-                              fill 
-                              className="object-cover" 
-                            />
+                            <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                           ) : (
                             <div className="flex items-center justify-center h-full text-gray-200"><Package size={32}/></div>
                           )}
 
-                          {isFlashActive && (
-                            <div className="absolute top-2 left-2 bg-amber-500 text-white px-2 py-1 rounded-lg shadow-lg flex items-center gap-1 z-10 animate-pulse">
-                               <Zap size={10} fill="currentColor" />
-                               <span className="text-[8px] font-black uppercase tracking-tighter">Live Drop</span>
+                          {isFlash ? (
+                            <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20 animate-pulse">
+                               <Zap size={10} fill="currentColor" /> LIVE DROP
+                            </div>
+                          ) : isDiamond && (
+                            <span className="absolute top-2 left-2 bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md flex items-center gap-1 z-20 uppercase">
+                               <Gem size={10} className="fill-white"/> TOP
+                            </span>
+                          )}
+
+                          {rewardCoins > 0 && (
+                            <div className="absolute top-2 right-2 bg-emerald-600/90 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20">
+                              <Zap size={10} fill="white" /> +₦{rewardCoins.toLocaleString()}
                             </div>
                           )}
                           
                           {product.stock_quantity === 0 && (
-                             <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-center">
+                             <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-center z-30">
                                 <span className="text-[10px] font-black uppercase tracking-widest text-red-600">Sold Out</span>
                              </div>
                           )}
+
+                          <button 
+                            disabled={product.stock_quantity === 0}
+                            onClick={(e) => { e.preventDefault(); handleAddToCart(product); }}
+                            className={`absolute bottom-2 right-2 p-2 rounded-full shadow-lg transition-all z-40 active:scale-75 ${
+                              isFlash ? 'bg-amber-500 text-white' : 'bg-white hover:bg-gray-900 hover:text-white'
+                            } disabled:bg-gray-100 disabled:text-gray-300`}
+                          >
+                             <Plus size={16} strokeWidth={3} />
+                          </button>
                        </Link>
 
-                       <div className="p-3 md:p-4 flex flex-col flex-1">
-                          <h3 className="font-bold text-gray-900 leading-tight line-clamp-1 text-xs md:text-sm mb-1 uppercase tracking-tight">{product.name}</h3>
+                       <div className="px-1 flex flex-col flex-1">
+                          <h3 className="font-black text-gray-900 text-xs md:text-sm truncate uppercase tracking-tight mb-0.5">{product.name}</h3>
                           
-                          <div className="flex items-center justify-between mt-auto">
-                             {isFlashActive ? (
+                          <div className="mt-auto flex items-center justify-between pt-2">
+                             {isFlash ? (
                               <div className="flex flex-col">
-                                 <p className="text-[10px] font-bold text-gray-300 line-through tracking-tighter decoration-red-500/30">₦{product.price.toLocaleString()}</p>
-                                 <div className="flex items-center gap-2">
-                                    <p className="text-sm md:text-base font-black text-emerald-600 tracking-tighter">₦{product.flash_drop_price.toLocaleString()}</p>
-                                    {store.loyalty_enabled && (
-                                    <span className="text-[9px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-md flex items-center gap-1 animate-in zoom-in">
-                                       <Zap size={8} fill="currentColor"/> +₦{(product.flash_drop_price * ((store.loyalty_percentage || 1) / 100)).toLocaleString()}
-                                    </span>
-                                    )}
-                                 </div>
+                                 <p className="text-[9px] font-bold text-gray-300 line-through">₦{product.price.toLocaleString()}</p>
+                                 <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">₦{product.flash_drop_price.toLocaleString()}</p>
                               </div>
                               ) : (
-                              <div className="flex flex-col">
-                                 <div className="flex items-center gap-2">
-                                    <p className="text-sm md:text-base font-black text-emerald-600 tracking-tighter">₦{product.price.toLocaleString()}</p>
-                                    {store.loyalty_enabled && (
-                                    <span className="text-[9px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-md animate-in zoom-in">
-                                       +₦{(product.price * ((store.loyalty_percentage || 1) / 100)).toLocaleString()}
-                                    </span>
-                                    )}
-                                 </div>
-                              </div>
+                                <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">₦{product.price.toLocaleString()}</p>
                               )}
                              
-                             <button 
-                               disabled={product.stock_quantity === 0}
-                               onClick={() => handleAddToCart(product)}
-                               className={`p-2 rounded-lg shadow-md transition-colors disabled:bg-gray-100 disabled:text-gray-300 ${isFlashActive ? 'bg-amber-500 text-white' : 'bg-gray-900 text-white active:bg-emerald-600'}`}
-                             >
-                                <Plus size={16} />
-                             </button>
+                             {rewardCoins > 0 && (
+                                <span className="text-[8px] font-black text-emerald-500/40 uppercase tracking-widest italic animate-pulse">Earn Gold</span>
+                             )}
                           </div>
                        </div>
                     </div>
@@ -318,39 +310,27 @@ export default function StoreFront({ store, products: initialProducts, categorie
 
              {visibleCount < products.length && (
                <div className="mt-12 text-center pb-10">
-                 <button 
-                   onClick={() => setVisibleCount(prev => prev + 20)}
-                   className="px-10 py-4 bg-white border-2 border-gray-900 text-gray-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-gray-900 hover:text-white transition-all active:scale-95 shadow-lg"
-                 >
-                   Load More Products
-                 </button>
+                 <button onClick={() => setVisibleCount(prev => prev + 20)} className="px-10 py-4 bg-white border-2 border-gray-900 text-gray-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-gray-900 hover:text-white transition-all active:scale-95 shadow-lg">Load More Products</button>
                </div>
              )}
 
              {!loading && products.length === 0 && (
                 <div className="text-center py-20 flex flex-col items-center">
-                   <Package size={40} className="text-gray-100 mb-2"/>
-                   <p className="text-gray-400 font-bold uppercase text-[10px] tracking-widest">No products found</p>
+                   <Package size={40} className="text-gray-100 mb-2"/><p className="text-gray-400 font-bold uppercase text-[10px] tracking-widest">No products found</p>
                 </div>
              )}
           </div>
       </div>
 
-      {/* FOOTER */}
       <footer className="bg-gray-50 border-t border-gray-200 py-10 text-center mt-auto">
           <p className="text-[9px] text-gray-400 font-black uppercase tracking-[0.3em]">StoreLink social engine • 2025</p>
       </footer>
 
       {/* CART BUTTON */}
       {cartCount > 0 && !isCartOpen && (
-        <button 
-          onClick={() => setIsCartOpen(true)} 
-          className={`fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-2xl shadow-2xl z-50 transition-all active:scale-90 ${isJumping ? 'animate-bounce' : 'hover:scale-110 animate-in zoom-in'}`}
-        >
+        <button onClick={() => setIsCartOpen(true)} className={`fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-2xl shadow-2xl z-50 transition-all active:scale-90 ${isJumping ? 'animate-bounce' : 'hover:scale-110 animate-in zoom-in'}`}>
            <ShoppingBag size={24} />
-           <span className="absolute -top-1 -right-1 bg-emerald-500 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black border-2 border-white">
-             {cartCount}
-           </span>
+           <span className="absolute -top-1 -right-1 bg-emerald-500 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black border-2 border-white">{cartCount}</span>
         </button>
       )}
 

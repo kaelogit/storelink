@@ -108,11 +108,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$
 const revalidate = 0;
 const dynamic = 'force-dynamic';
 async function LandingPage() {
-    const { data: premiumStores } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("id").neq("subscription_plan", "free");
-    const premiumStoreIds = premiumStores?.map((s)=>s.id) || [];
+    // Calculate the "Cutoff" time (Current Time minus 24 hours)
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    // 1. ✨ FETCH PRODUCTS WITH 24H VISIBILITY LOGIC
     const { data: products } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("storefront_products").select(`
     *, 
     stores!inner(
+      id,
       name, 
       subscription_plan, 
       verification_status, 
@@ -121,10 +123,13 @@ async function LandingPage() {
       loyalty_enabled,   
       loyalty_percentage 
     )
-  `).eq("is_active", true).order("created_at", {
+  `).eq("is_active", true).neq("stores.subscription_plan", "free")// 🔥 THE LOGIC: (In Stock) OR (Sold out in the last 24 hours)
+    .or(`stock_quantity.gt.0,sold_out_at.gt.${twentyFourHoursAgo}`).order("created_at", {
         ascending: false
-    }).limit(12);
-    const { data: stores } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*, subscription_plan").neq("subscription_plan", "free").limit(50);
+    }).limit(100);
+    // 2. Fetch paid stores ONLY for the vendors view
+    const { data: stores } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["supabase"].from("stores").select("*, subscription_plan").neq("subscription_plan", "free").limit(100);
+    // 3. Shuffle so it feels fresh
     const shuffledProducts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["shuffleArray"])(products || []);
     const shuffledStores = (0, __TURBOPACK__imported__module__$5b$project$5d2f$utils$2f$shuffle$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["shuffleArray"])(stores || []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$landing$2f$LandingPageWrapper$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -132,7 +137,7 @@ async function LandingPage() {
         stores: shuffledStores
     }, void 0, false, {
         fileName: "[project]/app/page.tsx",
-        lineNumber: 45,
+        lineNumber: 48,
         columnNumber: 5
     }, this);
 }
