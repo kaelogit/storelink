@@ -1,0 +1,61 @@
+{
+  "sorted_middleware": [
+    "/api/flyer/[slug]/route"
+  ],
+  "middleware": {},
+  "instrumentation": null,
+  "functions": {
+    "/api/flyer/[slug]/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/server-reference-manifest.js",
+        "server/app/api/flyer/[slug]/route_client-reference-manifest.js",
+        "server/edge/chunks/_next-internal_server_app_api_flyer_[slug]_route_actions_40be9d71.js",
+        "server/edge/chunks/node_modules_next_dist_esm_d6044b63._.js",
+        "server/edge/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_1d71ac1e._.js",
+        "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_16be1ace._.js",
+        "server/edge/chunks/node_modules_next_dist_compiled_1f424be0._.js",
+        "server/edge/chunks/node_modules_next_dist_7bea040f._.js",
+        "server/edge/chunks/edge-wrapper_48cfd489.js",
+        "server/edge/chunks/node_modules_@supabase_realtime-js_dist_module_10692442._.js",
+        "server/edge/chunks/node_modules_@supabase_storage-js_dist_module_b887a666._.js",
+        "server/edge/chunks/node_modules_@supabase_auth-js_dist_module_a9f88f07._.js",
+        "server/edge/chunks/node_modules_e8bf620c._.js",
+        "server/edge/chunks/[root-of-the-server]__3c29984a._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_c81e953d.js"
+      ],
+      "name": "app/api/flyer/[slug]/route",
+      "page": "/api/flyer/[slug]/route",
+      "matchers": [
+        {
+          "regexp": "^/api/flyer/(?P<nxtPslug>[^/]+?)(?:/)?$",
+          "originalSource": "/api/flyer/[slug]"
+        }
+      ],
+      "wasm": [
+        {
+          "name": "wasm_fdb56e4cc5936d29",
+          "filePath": "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_resvg_23ace1ce.wasm"
+        },
+        {
+          "name": "wasm_1ccdc983b1fd9f87",
+          "filePath": "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_yoga_23ace1ce.wasm"
+        }
+      ],
+      "assets": [
+        {
+          "name": "server/edge/assets/noto-sans-v27-latin-regular.bdfa676c.ttf",
+          "filePath": "server/edge/assets/noto-sans-v27-latin-regular.bdfa676c.ttf"
+        }
+      ],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "ja2YC9ukT7rZ8LSM8iC7iiYk2E5lm6Iod8QB0QdnXtk=",
+        "__NEXT_PREVIEW_MODE_ID": "4876b22f37600e92c382012d794a825e",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "ed8734713393d9c72b0c85826889d9fdfcdd1c0f11b724fce3230db1817c5c5b",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "af10d375f43a76c87f5423d6d3b139f440e0ac3e7d9c4431123d7a8c3b4de361"
+      }
+    }
+  }
+}

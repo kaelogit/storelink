@@ -37,8 +37,6 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
   // 2. ✨ UPDATE STATUS (Handles Empire Refund Logic + Instant UI)
   const updateStatus = async (status: string) => {
     const displayStatus = status === 'completed' ? 'Paid' : status;
-    
-    // ✨ STRICT AUDIT: Matches Database column 'coins_redeemed'
     const redeemedAmount = order.coins_redeemed || 0;
     
     const confirmMsg = status === 'cancelled' && (redeemedAmount > 0)
@@ -52,31 +50,33 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
       let response;
 
       if (status === 'cancelled') {
-        // Atomic Refund RPC - Database handles coins_redeemed internally
+        // This RPC triggers a refund. Ensure your cancel_and_refund_order 
+        // function in SQL also uses the RIGHT(phone, 10) logic!
         response = await supabase.rpc('cancel_and_refund_order', { 
           order_id_param: order.id 
         });
       } else {
-        // Standard update for 'completed'
         response = await supabase.from("orders").update({ status }).eq("id", order.id);
       }
       
       if (response.error) throw response.error;
 
-      // ✨ THE FIX: Update local status immediately to flip the UI buttons
       setLocalStatus(status);
       
-      router.refresh();
-      onUpdate();
+      // 🔥 THE FIX: Use onUpdate() to tell the parent list to refresh
+      if (onUpdate) onUpdate(); 
+      
+      // Close modal after success
+      setTimeout(() => onClose(), 800);
+
     } catch (error: any) {
-      console.error("Detailed Error Output:", error);
-      // REVEALS THE EXACT DB ERROR (e.g., column mismatch in trigger)
-      alert(`Update Failed: ${error.message || "Unknown Error. Check Supabase Triggers."}`);
+      console.error("Dashboard Update Error:", error);
+      alert(`Update Failed: ${error.message}`);
     } finally {
       setIsProcessing(false);
     }
   };
-
+  
   // 3. ✨ PDF RECEIPT ENGINE (Line-by-line Audited - No Word Changed)
   const downloadReceipt = () => {
     const doc = new jsPDF();

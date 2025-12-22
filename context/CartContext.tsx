@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from "react";
 import { Product, Store } from "@/types";
 
 export type CartItem = { 
@@ -27,7 +27,7 @@ interface CartContextType {
   setUseCoins: (use: boolean) => void;
   redeemableCoins: number; // Actual amount being deducted (Max 15%)
   actualBalance: number;   // Full user bank balance
-  setActualBalance: (balance: number) => void; // ✨ Added for Sidebar sync
+  setActualBalance: Dispatch<SetStateAction<number>>; 
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -39,29 +39,37 @@ export function CartProvider({ children }: { children: ReactNode }) {
   
   // ✨ EMPIRE STATES
   const [useCoins, setUseCoins] = useState(false);
+  // 🔥 BALANCE ALWAYS STARTS AT 0 (Safety first)
   const [userCoinBalance, setUserCoinBalance] = useState(0);
 
-  // 1. ✨ INITIAL LOAD
+  // 1. ✨ INITIAL LOAD: Only pull the Cart items
   useEffect(() => {
     const savedCart = localStorage.getItem("storelink_cart");
-    const savedBalance = localStorage.getItem("empire_user_balance");
     
     if (savedCart) {
-      try { setCart(JSON.parse(savedCart)); } catch (e) { console.error(e); }
+      try { 
+        const parsed = JSON.parse(savedCart);
+        if (Array.isArray(parsed)) setCart(parsed); 
+      } catch (e) { console.error("Cart parse error", e); }
     }
     
-    if (savedBalance) setUserCoinBalance(Number(savedBalance));
-
+    // 🔥 REMOVED: No longer reading savedBalance from localStorage. 
+    // This kills the "ghost coin" reload bug.
     setIsInitialized(true);
   }, []);
 
-  // 2. PERSISTENCE: Syncs cart and balance to localStorage whenever they change
+  // 2. PERSISTENCE: Only save Cart items
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem("storelink_cart", JSON.stringify(cart));
-      localStorage.setItem("empire_user_balance", userCoinBalance.toString());
+      // 🔥 REMOVED: No longer saving userCoinBalance to localStorage.
     }
-  }, [cart, userCoinBalance, isInitialized]);
+  }, [cart, isInitialized]);
+
+  // 3. ✨ SAFETY: Reset "Apply Coins" toggle on page refresh
+  useEffect(() => {
+    setUseCoins(false);
+  }, []);
 
   const addToCart = (product: Product, store: Store) => {
     setCart((prev) => {
@@ -98,22 +106,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const closeCart = () => setIsCartOpen(false);
 
   // --- CALCULATIONS ---
-
   const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
-
-  const cartTotal = cart.reduce((total, item) => {
-    return total + (item.product.price * item.qty);
-  }, 0);
+  const cartTotal = cart.reduce((total, item) => total + (item.product.price * item.qty), 0);
 
   // --- ✨ EMPIRE 15% SAFETY LOGIC ---
-  
-  // Audit: Calculate the ceiling (Max discount allowed is 15% of cart total)
   const MAX_DISCOUNT_PERCENTAGE = 0.15;
   const maxAllowedDiscount = Math.floor(cartTotal * MAX_DISCOUNT_PERCENTAGE);
 
-  // Audit: Determine how many coins can be applied
-  // It's either their whole balance OR the 15% cap, whichever is smaller.
-  const coinsToRedeem = useCoins 
+  // Strict check: Balance must be current
+  const coinsToRedeem = (useCoins && cart.length > 0) 
     ? Math.min(userCoinBalance, maxAllowedDiscount) 
     : 0;
 
@@ -138,7 +139,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setUseCoins,
         redeemableCoins: coinsToRedeem,
         actualBalance: userCoinBalance,
-        setActualBalance: setUserCoinBalance, // ✨ Allows sidebar to update global balance
+        setActualBalance: setUserCoinBalance, 
       }}
     >
       {children}

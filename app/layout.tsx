@@ -22,7 +22,6 @@ export const metadata: Metadata = {
   },
   description: "Turn your WhatsApp chats into a professional online store in minutes. Accept orders, manage products, and sell faster.",
   keywords: ["StoreLink", "Naija Hustle", "WhatsApp Store", "Ecommerce Nigeria", "Online Shop", "WhatsApp Marketing", "Empire Coin"],
-  
   robots: {
     index: true,
     follow: true,
@@ -34,11 +33,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-
   alternates: {
     canonical: '/',
   },
-
   openGraph: {
     title: "StoreLink | The Engine for Naija Hustle",
     description: "Empowering Nigerian vendors to sell faster on WhatsApp.",
@@ -55,7 +52,6 @@ export const metadata: Metadata = {
     locale: "en_NG",
     type: "website",
   },
-
   twitter: {
     card: 'summary_large_image',
     title: "StoreLink | The Engine for Naija Hustle",
@@ -63,10 +59,9 @@ export const metadata: Metadata = {
     images: ['https://storelink.ng/og-image.png'], 
     creator: '@kaelodev', 
   },
-
   verification: {
-    google: 'R8d8mi7fxJ-XZ0yvJ0brHnx6cZZqo78BI1iGl-sDVcY'},
-
+    google: 'R8d8mi7fxJ-XZ0yvJ0brHnx6cZZqo78BI1iGl-sDVcY'
+  },
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -76,7 +71,6 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png' },
     ],
   },
-
   category: 'business',
 };
 
@@ -88,11 +82,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased selection:bg-emerald-100 selection:text-emerald-900`}>
+        {/* PROVIDER MUST BE AT THE TOP */}
         <CartProvider>
           <main className="min-h-screen">
             {children}
           </main>
-          
           <GlobalCartSidebar />
         </CartProvider>
         

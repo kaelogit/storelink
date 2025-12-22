@@ -1,0 +1,11 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/flyer/[slug]/route.js")
+R.c("server/chunks/[externals]_next_dist_compiled_@vercel_og_index_node_f9472a75.js")
+R.c("server/chunks/node_modules_next_dfc08303._.js")
+R.c("server/chunks/node_modules_@supabase_realtime-js_dist_module_306ac729._.js")
+R.c("server/chunks/node_modules_@supabase_storage-js_dist_module_473cf4b8._.js")
+R.c("server/chunks/node_modules_@supabase_auth-js_dist_module_d4605ced._.js")
+R.c("server/chunks/node_modules_df52b61f._.js")
+R.c("server/chunks/[root-of-the-server]__3ded9a07._.js")
+R.c("server/chunks/_next-internal_server_app_api_flyer_[slug]_route_actions_ab9059a4.js")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/flyer/[slug]/route.tsx [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/flyer/[slug]/route.tsx [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports
