@@ -11,25 +11,26 @@ import {
   Truck, ArrowRight, Zap, Package, ShoppingBag, Coins, TrendingUp 
 } from "lucide-react";
 
-interface PageProps {
+// --- TYPE DEFINITION (Audit: Next.js 16 Promise Compliance) ---
+type PageProps = {
   params: Promise<{ id: string }>;
-}
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 export const dynamic = 'force-dynamic';
 
 // --- 1. METADATA AUDIT (SEO Optimized) ---
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const resolvedParams = await params; 
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const params = await props.params; 
   const { data: product } = await supabase
     .from("storefront_products")
     .select("*, stores(name)")
-    .eq("id", resolvedParams.id) 
+    .eq("id", params.id) 
     .single();
 
   if (!product) return { title: "Product Not Found" };
 
   const p: any = product; 
-  // Safety check for store name mapping
   const storeName = Array.isArray(p.stores) ? p.stores[0]?.name : p.stores?.name;
   
   const isFlashActive = p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date();
@@ -46,13 +47,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// --- 2. MAIN PRODUCT VIEW ---
-export default async function ProductPage({ params }: PageProps) {
-  const resolvedParams = await params; 
+// --- 2. MAIN PRODUCT VIEW (Fully Audited) ---
+export default async function ProductPage(props: PageProps) {
+  const params = await props.params; 
   const { data: product } = await supabase
     .from("storefront_products")
     .select("*, stores(*)")
-    .eq("id", resolvedParams.id) 
+    .eq("id", params.id) 
     .single();
 
   if (!product) return notFound();
@@ -61,7 +62,6 @@ export default async function ProductPage({ params }: PageProps) {
   const isStockAvailable = product.stock_quantity > 0;
   const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
   
-  // ✨ REWARD CALCULATION: Ensures user earns based on the actual price paid
   const currentPrice = isFlashActive ? product.flash_drop_price : product.price;
   const potentialReward = store.loyalty_enabled 
     ? Math.floor(currentPrice * ((store.loyalty_percentage || 0) / 100)) 
@@ -91,7 +91,7 @@ export default async function ProductPage({ params }: PageProps) {
              <div className="mb-8">
                 
                 {isFlashActive && (
-                  <div className="mb-6">
+                  <div className="mb-6 text-emerald-600">
                     <FlashTimer expiry={product.flash_drop_expiry} />
                   </div>
                 )}
@@ -132,7 +132,7 @@ export default async function ProductPage({ params }: PageProps) {
                 </div>
              </div>
 
-             {/* 📍 NEW: VENDOR LOCATION BADGE (Ships From) */}
+             {/* 📍 VENDOR LOCATION BADGE (Ships From) */}
              <div className="mb-6 flex items-center gap-4 p-4 bg-emerald-50/30 rounded-[2rem] border border-emerald-100/50 group transition-all hover:bg-emerald-50">
                 <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm text-emerald-600 border border-emerald-50 group-hover:scale-110 transition-transform">
                   <MapPin size={20} />
@@ -183,14 +183,14 @@ export default async function ProductPage({ params }: PageProps) {
                    <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl"><Truck size={20}/></div>
                    <div>
                       <h3 className="font-black text-xs text-gray-900 mb-1 uppercase tracking-widest">Naija Delivery</h3>
-                      <p className="text-[11px] text-gray-500 font-bold leading-snug uppercase">Chat {store.name} for rates after secure checkout.</p>
+                      <p className="text-[11px] text-gray-500 font-bold leading-snug uppercase tracking-tight">Chat {store.name} for rates after secure checkout.</p>
                    </div>
                 </div>
                 <div className="bg-white p-5 rounded-[2rem] border border-gray-100 shadow-sm flex items-start gap-4 hover:border-amber-200 transition-colors">
                    <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl"><Zap size={20}/></div>
                    <div>
                       <h3 className="font-black text-xs text-gray-900 mb-1 uppercase tracking-widest">Verified Vendor</h3>
-                      <p className="text-[11px] text-gray-500 font-bold leading-snug uppercase">Instant order receipt generated upon vendor confirmation.</p>
+                      <p className="text-[11px] text-gray-500 font-bold leading-snug uppercase tracking-tight">Instant order receipt generated upon vendor confirmation.</p>
                    </div>
                 </div>
              </div>
@@ -198,7 +198,6 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
       </main>
 
-      {/* FOOTER */}
       <footer className="bg-gray-50 border-t border-gray-100 py-12 md:py-20 text-center mt-12">
           <div className="flex justify-center items-center gap-8 mb-10">
             <div className="flex flex-col items-center gap-3 opacity-30">
