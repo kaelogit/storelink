@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!product) return { title: "Product Not Found" };
 
   const p: any = product; 
+  // Safety check for store name mapping
   const storeName = Array.isArray(p.stores) ? p.stores[0]?.name : p.stores?.name;
   
   const isFlashActive = p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date();
@@ -60,6 +61,7 @@ export default async function ProductPage({ params }: PageProps) {
   const isStockAvailable = product.stock_quantity > 0;
   const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
   
+  // ✨ REWARD CALCULATION: Ensures user earns based on the actual price paid
   const currentPrice = isFlashActive ? product.flash_drop_price : product.price;
   const potentialReward = store.loyalty_enabled 
     ? Math.floor(currentPrice * ((store.loyalty_percentage || 0) / 100)) 
@@ -89,7 +91,7 @@ export default async function ProductPage({ params }: PageProps) {
              <div className="mb-8">
                 
                 {isFlashActive && (
-                  <div className="mb-6 text-emerald-600">
+                  <div className="mb-6">
                     <FlashTimer expiry={product.flash_drop_expiry} />
                   </div>
                 )}
@@ -130,7 +132,7 @@ export default async function ProductPage({ params }: PageProps) {
                 </div>
              </div>
 
-             {/* 📍 VENDOR LOCATION AUDIT (NEWLY INTEGRATED) */}
+             {/* 📍 NEW: VENDOR LOCATION BADGE (Ships From) */}
              <div className="mb-6 flex items-center gap-4 p-4 bg-emerald-50/30 rounded-[2rem] border border-emerald-100/50 group transition-all hover:bg-emerald-50">
                 <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm text-emerald-600 border border-emerald-50 group-hover:scale-110 transition-transform">
                   <MapPin size={20} />
@@ -138,7 +140,7 @@ export default async function ProductPage({ params }: PageProps) {
                 <div>
                    <p className="text-[10px] font-black text-emerald-800/50 uppercase tracking-[0.2em] leading-none mb-1">Ships From</p>
                    <p className="text-base font-black text-emerald-900 tracking-tight">
-                      {store.location || "Location Verified"}
+                      {store.location || "Lagos, Nigeria"}
                    </p>
                 </div>
                 <div className="ml-auto">
