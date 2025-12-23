@@ -4,7 +4,7 @@ import StoreFront from "@/components/StoreFront";
 import type { Metadata } from "next"; 
 import { shuffleArray } from "@/utils/shuffle";
 import ViewTracker from "@/components/ViewTracker";
-import { AlertTriangle, Lock, ShieldAlert } from "lucide-react"; 
+import { Lock, ShieldAlert } from "lucide-react"; 
 
 export const dynamic = 'force-dynamic';
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!store) return { title: "Store Not Found" };
 
-  const shareImage = store.cover_image_url || store.logo_url || "/og-image.png";
+  const ogImage = store.cover_image_url || store.logo_url || "https://storelink.ng/og-image.png";
 
   return {
     title: store.name,
@@ -31,7 +31,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: store.name,
       description: store.description || "Order directly via WhatsApp.",
-      images: [shareImage], 
+      url: `https://storelink.ng/${resolvedParams.slug}`,
+      siteName: "StoreLink",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: store.name,
+        },
+      ],
+      locale: "en_NG",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: store.name,
+      description: store.description || "Order directly via WhatsApp.",
+      images: [ogImage],
     },
   };
 }
@@ -54,13 +71,13 @@ export default async function VendorStorePage({ params }: PageProps) {
           <ShieldAlert size={32} className="text-red-600" />
         </div>
         <h1 className="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Store Suspended</h1>
-        <p className="text-gray-500 max-w-md mb-6">
-          This store has been suspended for violating the community guidelines. 
+        <p className="text-gray-500 max-w-md mb-6 font-medium">
+          This store has been suspended for violating community guidelines. 
           Access to this storefront is currently restricted.
         </p>
         <div className="mt-8 pt-8 border-t border-gray-200 w-full max-w-xs">
-          <p className="text-[10px] text-red-400 font-bold uppercase tracking-widest">
-            Status: Restricted by Admin
+          <p className="text-[10px] text-red-400 font-black uppercase tracking-[0.3em]">
+            Admin Action Enforced
           </p>
         </div>
       </div>
@@ -74,11 +91,11 @@ export default async function VendorStorePage({ params }: PageProps) {
               <Lock size={32} className="text-red-600" />
            </div>
            
-           <h1 className="text-2xl font-black text-gray-900 mb-2">Store Locked</h1>
+           <h1 className="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Store Locked</h1>
            
-           <p className="text-gray-500 max-w-md mb-6">
-             This store’s subscription has expired, and it is currently offline. 
-             If you are the **Store Owner**, please log into your dashboard and renew your subscription to restore public access.
+           <p className="text-gray-500 max-w-md mb-6 font-medium">
+             This store’s subscription has expired. 
+             If you are the **Store Owner**, please log into your dashboard and renew to restore public access.
            </p>
 
            <div className="mt-8 pt-8 border-t border-gray-200 w-full max-w-xs">
