@@ -12,7 +12,6 @@ export default function ProductGallery({ images, stockCount }: { images: string[
   const safeImages = images && images.length > 0 ? images : [];
   const isLowStock = stockCount !== undefined && stockCount > 0 && stockCount <= 5;
 
-  // Sync scroll position when thumbnails are clicked
   const handleThumbnailClick = (index: number) => {
     setActiveIndex(index);
     if (scrollRef.current) {
@@ -21,7 +20,6 @@ export default function ProductGallery({ images, stockCount }: { images: string[
     }
   };
 
-  // Update index based on scroll position (for mobile swiping)
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const scrollPosition = e.currentTarget.scrollLeft;
     const itemWidth = e.currentTarget.offsetWidth;
@@ -41,7 +39,6 @@ export default function ProductGallery({ images, stockCount }: { images: string[
 
   return (
     <div className="space-y-5">
-      {/* --- MAIN DISPLAY (Mobile Swipeable) --- */}
       <div className="relative group">
         <div 
           ref={scrollRef}
@@ -64,12 +61,10 @@ export default function ProductGallery({ images, stockCount }: { images: string[
             </div>
           ))}
 
-          {/* Zoom Indicator (Desktop Only) */}
           <div className="absolute bottom-6 right-6 bg-black/20 backdrop-blur-md p-3 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity hidden md:block border border-white/20">
             <Maximize2 size={24} className="text-white" />
           </div>
 
-          {/* Low Stock Badge */}
           {isLowStock && (
             <div className="absolute top-6 left-6 bg-red-600 text-white px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl animate-pulse z-10 flex items-center gap-2">
               <Zap size={12} fill="currentColor" /> Only {stockCount} Left
@@ -77,7 +72,6 @@ export default function ProductGallery({ images, stockCount }: { images: string[
           )}
         </div>
 
-        {/* Mobile Swipe Pagination Dots */}
         {safeImages.length > 1 && (
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 md:hidden">
             {safeImages.map((_, i) => (
@@ -92,7 +86,6 @@ export default function ProductGallery({ images, stockCount }: { images: string[
         )}
       </div>
 
-      {/* --- THUMBNAILS (Desktop Focus) --- */}
       {safeImages.length > 1 && (
         <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar px-1">
           {safeImages.map((img, i) => (
@@ -111,7 +104,6 @@ export default function ProductGallery({ images, stockCount }: { images: string[
         </div>
       )}
 
-      {/* --- ZOOM MODAL --- */}
       {isZoomOpen && (
         <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-lg flex items-center justify-center animate-in fade-in duration-300">
           <button 

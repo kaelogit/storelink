@@ -12,7 +12,6 @@ import {
 import { Store } from "@/types";
 import { useCart } from "@/context/CartContext";
 
-// --- 1. HELPER COMPONENTS (OUTSIDE COMPONENT) ---
 const VerificationBadge = ({ store }: { store: any }) => {
   return (
     <div className="inline-flex items-center gap-1 ml-1 align-middle">
@@ -31,23 +30,20 @@ interface StoreFrontProps {
 export default function StoreFront({ store, products: initialProducts, categories }: StoreFrontProps) {
   const { addToCart, cartCount, setIsCartOpen, isCartOpen } = useCart();
   
-  // --- 2. CORE STATES ---
   const [products, setProducts] = useState(initialProducts);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [copied, setCopied] = useState(false); // 🔥 FIXED: Moved inside component
+  const [copied, setCopied] = useState(false); 
   const [visibleCount, setVisibleCount] = useState(20);
   const [isJumping, setIsJumping] = useState(false);
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // --- 3. LOGIC FUNCTIONS ---
   
-  // 🔥 FIXED: Moved handleCopyLink inside to access 'store' and 'setCopied'
   const handleCopyLink = () => {
     if (!store?.slug) return;
     navigator.clipboard.writeText(`${window.location.origin}/${store.slug}`);
@@ -76,7 +72,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
-  // 🔥 AUDITED: Optimized Server-Side Filtering
   useEffect(() => {
     const fetchStoreProducts = async () => {
       if (activeCategory === "All" && !debouncedSearch) {
@@ -86,7 +81,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
 
       setLoading(true);
 
-      // We join categories to filter by name reliably
       let query = supabase
         .from("storefront_products")
         .select(`
@@ -139,7 +133,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col selection:bg-emerald-100">
       
-      {/* HEADER NAVIGATION */}
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-100 h-16 flex items-center justify-between px-4 md:px-8 shadow-sm">
           <div className="flex items-center gap-3">
              <Link href="/" className="flex items-center gap-1">
@@ -158,7 +151,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
           </button>
       </nav>
 
-      {/* HERO SECTION */}
       <div className="relative w-full bg-gray-50 border-b border-gray-100">
           <div className="w-full h-40 md:h-64 relative overflow-hidden bg-gray-200">
              {store.cover_image_url ? (
@@ -199,7 +191,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
           </div>
       </div>
 
-      {/* FILTER BAR */}
       <div className={`sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300 ease-in-out ${
           isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100"
       }`}>
@@ -219,7 +210,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
           </div>
       </div>
 
-      {/* ⚡ AUDITED PRODUCT GRID */}
       <div className="flex-1 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
              {loading ? (
@@ -326,7 +316,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
           <p className="text-[9px] text-gray-400 font-black uppercase tracking-[0.3em]">StoreLink social engine • 2025</p>
       </footer>
 
-      {/* CART BUTTON */}
       {cartCount > 0 && !isCartOpen && (
         <button onClick={() => setIsCartOpen(true)} className={`fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-2xl shadow-2xl z-50 transition-all active:scale-90 ${isJumping ? 'animate-bounce' : 'hover:scale-110 animate-in zoom-in'}`}>
            <ShoppingBag size={24} />
@@ -334,7 +323,6 @@ export default function StoreFront({ store, products: initialProducts, categorie
         </button>
       )}
 
-      {/* INFO SIDEBAR */}
       {isInfoOpen && (
           <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex justify-end animate-in fade-in">
              <div className="absolute inset-0" onClick={() => setIsInfoOpen(false)}></div>

@@ -37,7 +37,7 @@ export default function EditProductModal({ product, isOpen, onClose, onSuccess }
         price: product.price.toString(),
         stock: product.stock_quantity.toString(),
         description: product.description || "",
-        categoryId: (product as any).category_id || "", // Load Category
+        categoryId: (product as any).category_id || "", 
       });
       setExistingImages(product.image_urls || []);
       setNewFiles([]);

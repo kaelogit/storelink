@@ -23,7 +23,7 @@ export default function FlashTimer({ expiry }: { expiry: string }) {
     };
 
     const timer = setInterval(calculateTime, 1000);
-    calculateTime(); // Initial call
+    calculateTime();
 
     return () => clearInterval(timer);
   }, [expiry]);

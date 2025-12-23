@@ -11,7 +11,6 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* 🚀 ANNOUNCEMENT MARQUEE */}
       <div className="bg-black text-white py-2.5 overflow-hidden border-b border-gray-800 flex relative z-[60]">
         <div className="animate-marquee whitespace-nowrap flex items-center">
           {[...Array(8)].map((_, i) => (
@@ -23,23 +22,19 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* 🛡️ MAIN NAVIGATION */}
       <nav className="border-b border-gray-100 bg-white/80 backdrop-blur-xl transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           
-          {/* LOGO */}
           <Link href="/" className="flex items-center gap-2 group">
              <LayoutDashboard className="text-emerald-600 group-hover:scale-110 transition duration-300" size={24}/>
              <span className="font-extrabold text-xl tracking-tight text-gray-900">StoreLink</span>
           </Link>
 
-          {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-8">
               <Link href="/marketplace" className="text-sm font-bold text-gray-600 hover:text-gray-900 transition flex items-center gap-2">
                 <ShoppingBag size={16} /> Marketplace
               </Link>
 
-              {/* ✨ EMPIRE WALLET LINK (DESKTOP) */}
               <Link href="/wallet" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100">
                 <Wallet size={16} /> My Wallet
               </Link>
@@ -53,7 +48,6 @@ export default function Navbar() {
               </Link>
           </div>
 
-          {/* MOBILE TOGGLE */}
           <div className="flex items-center gap-4 md:hidden">
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)} 
@@ -64,7 +58,6 @@ export default function Navbar() {
           </div>
         </div>
         
-        {/* MOBILE MENU */}
         {isMenuOpen && (
           <div className="md:hidden absolute top-[calc(100%)] left-0 w-full bg-white border-b border-gray-100 shadow-xl animate-in slide-in-from-top-5 z-40">
              <div className="flex flex-col p-4 space-y-2">
@@ -76,7 +69,6 @@ export default function Navbar() {
                   <ShoppingBag size={18} /> Shop Marketplace
                </Link>
 
-               {/* ✨ EMPIRE WALLET LINK (MOBILE) */}
                <Link 
                   href="/wallet" 
                   className="flex items-center gap-3 p-3 rounded-xl bg-emerald-50 text-emerald-700 text-sm font-bold border border-emerald-100"

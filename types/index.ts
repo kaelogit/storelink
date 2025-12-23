@@ -15,6 +15,7 @@ export interface Store {
 
   verification_status?: 'none' | 'pending' | 'verified' | 'rejected';
   verification_doc_url?: string;
+  verification_selfie_url?: string; // 👈 ADDED THIS LINE
   verification_note?: string;
 
   view_count?: number; 

@@ -28,19 +28,16 @@ export default async function LandingPage() {
   `)
   .eq("is_active", true)
   .neq("stores.subscription_plan", "free")
-  // 🔥 THE LOGIC: (In Stock) OR (Sold out in the last 24 hours)
   .or(`stock_quantity.gt.0,sold_out_at.gt.${twentyFourHoursAgo}`)
   .order("created_at", { ascending: false })
   .limit(100);
 
-  // 2. Fetch paid stores ONLY for the vendors view
   const { data: stores } = await supabase
     .from("stores")
     .select("*, subscription_plan") 
     .neq("subscription_plan", "free")
     .limit(100);
 
-  // 3. Shuffle so it feels fresh
   const shuffledProducts = shuffleArray(products || []);
   const shuffledStores = shuffleArray(stores || []);
 

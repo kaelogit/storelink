@@ -86,7 +86,7 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
 
-    doc.setFillColor(33, 33, 33); // Dark Gray Background
+    doc.setFillColor(33, 33, 33); 
     doc.rect(0, 0, pageWidth, 20, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(10);
@@ -147,10 +147,10 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
       headStyles: { fillColor: [33, 33, 33], textColor: 255, fontStyle: 'bold' },
       styles: { fontSize: 10, cellPadding: 3 },
       columnStyles: {
-        0: { cellWidth: 'auto' }, // Item Name
-        1: { cellWidth: 20, halign: 'center' }, // Qty
-        2: { cellWidth: 30, halign: 'right' }, // Price
-        3: { cellWidth: 30, halign: 'right' }  // Total
+        0: { cellWidth: 'auto' }, 
+        1: { cellWidth: 20, halign: 'center' }, 
+        2: { cellWidth: 30, halign: 'right' }, 
+        3: { cellWidth: 30, halign: 'right' } 
       }
     });
 

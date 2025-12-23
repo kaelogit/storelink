@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { ShoppingBag, CheckCircle, Coins, Zap, ArrowRight } from "lucide-react"; // ✨ Added Icons
+import { ShoppingBag, CheckCircle, Coins, Zap, ArrowRight } from "lucide-react"; 
 import { Product, Store } from "@/types";
 import { useCart } from "@/context/CartContext";
-import Link from "next/link"; // ✨ Added Link
+import Link from "next/link";
 
 import Navbar from "./Navbar";
 import Hero from "./Hero";
@@ -43,7 +43,6 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       <ValueProp />
       <HowItWorks />
 
-      {/* ✨ NEW: EMPIRE ECONOMY HOME SECTION */}
       <section className="py-20 px-4 md:px-6">
         <div className="max-w-7xl mx-auto bg-gray-900 overflow-hidden relative rounded-[2.5rem] md:rounded-[4rem] border border-white/5 shadow-2xl">
           <div className="flex flex-col md:flex-row items-center gap-12 p-8 md:p-20 relative z-10">
@@ -65,7 +64,6 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
             </div>
             
             <div className="flex-1 relative w-full">
-              {/* Decorative Glow */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-80 h-64 md:h-80 bg-amber-500/20 blur-[100px] rounded-full" />
               
               <div className="bg-white/5 border border-white/10 p-8 md:p-10 rounded-[2.5rem] backdrop-blur-xl relative z-10 shadow-2xl overflow-hidden">

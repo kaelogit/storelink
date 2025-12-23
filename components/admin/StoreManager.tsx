@@ -1,16 +1,17 @@
 "use client";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { X, Shield, Mail, Phone, AlertTriangle, CheckCircle, Ban, Zap } from "lucide-react";
+import { 
+  X, Shield, Mail, Phone, AlertTriangle, CheckCircle, 
+  Ban, Zap, FileText, Camera, ExternalLink 
+} from "lucide-react";
 
 export default function StoreManager({ store, onClose, onUpdate }: { store: any, onClose: () => void, onUpdate: () => void }) {
   const [loading, setLoading] = useState(false);
   const [confirmBan, setConfirmBan] = useState(false);
   
-  // --- NEW: LOYALTY STATE ---
   const [loyaltyPercent, setLoyaltyPercent] = useState(store.loyalty_percentage || 1);
 
-  // --- PLAN UPDATE LOGIC ---
   async function updatePlan(newPlan: string) {
     if (!confirm(`Are you sure you want to move this store to ${newPlan}?`)) return;
     setLoading(true);
@@ -34,10 +35,8 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
     setLoading(false);
   }
 
-  // --- ✨ GODMODE BAN LOGIC (SERVER-SIDE SYNC) ---
   async function toggleBan() {
     setLoading(true);
-    // The view 'storefront_products' will automatically hide products for 'banned' stores
     const newStatus = store.status === 'banned' ? 'active' : 'banned';
     
     const { error } = await supabase
@@ -49,12 +48,11 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
       alert("Error updating status: " + error.message);
     } else {
       onUpdate();
-      onClose(); // Close to refresh the main table state
+      onClose(); 
     }
     setLoading(false);
   }
 
-  // --- ✨ EMPIRE LOYALTY ENGINE UPDATE ---
   async function updateLoyaltySettings() {
     setLoading(true);
     const { error } = await supabase
@@ -74,7 +72,6 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
     setLoading(false);
   }
 
-  // --- VERIFICATION LOGIC ---
   async function toggleVerification() {
     setLoading(true);
     
@@ -111,7 +108,6 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
       <div className="bg-[#111] border border-gray-800 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
         
-        {/* HEADER SECTION */}
         <div className="p-6 border-b border-gray-800 flex justify-between items-start">
           <div>
             <div className="flex items-center gap-2">
@@ -132,16 +128,14 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
         </div>
 
         <div className="p-8 space-y-8 max-h-[70vh] overflow-y-auto no-scrollbar">
-            {/* OWNER & PERFORMANCE GRID */}
+            
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-4">
                  <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Owner Details</h3>
-                 
                  <div className="flex items-center gap-3 p-3 bg-gray-900 rounded-xl border border-gray-800">
                    <Mail className="text-blue-500" size={18} />
                    <span className="text-gray-300 select-all text-sm truncate font-medium">{store.owner_email || "No Email"}</span>
                  </div>
-                 
                  <div className="flex items-center gap-3 p-3 bg-gray-900 rounded-xl border border-gray-800">
                    <Phone className="text-emerald-500" size={18} />
                    <span className="text-gray-300 select-all text-sm font-medium">{store.whatsapp_number || "No Phone"}</span>
@@ -150,14 +144,12 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
 
               <div className="space-y-4">
                  <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Performance</h3>
-                 
                  <div className="flex items-center justify-between p-3 bg-gray-900 rounded-xl border border-gray-800">
                     <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Revenue</span>
                     <span className="font-black text-white text-lg tracking-tighter">
                       ₦{store.total_revenue?.toLocaleString() || '0'}
                     </span>
                  </div>
-                 
                  <div className="flex items-center justify-between p-3 bg-gray-900 rounded-xl border border-gray-800">
                     <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Region</span>
                     <span className="font-black text-white uppercase text-xs">Nigeria (NGN)</span>
@@ -167,7 +159,45 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
 
             <div className="h-px bg-gray-800" />
 
-            {/* SUBSCRIPTION & ACTIONS */}
+            <div className="space-y-4">
+              <h3 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em] flex items-center gap-2">
+                <Shield size={14} /> Identity Documents
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {store.verification_doc_url ? (
+                  <a href={store.verification_doc_url} target="_blank" className="p-4 bg-gray-900 border border-gray-800 rounded-2xl flex items-center justify-between group hover:border-emerald-500 transition shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <FileText size={20} className="text-gray-500 group-hover:text-emerald-400" />
+                      <span className="text-xs font-bold text-gray-300">View ID Card</span>
+                    </div>
+                    <ExternalLink size={14} className="text-gray-600 group-hover:text-emerald-400" />
+                  </a>
+                ) : (
+                  <div className="p-4 bg-gray-900/30 border border-gray-800/50 rounded-2xl flex items-center gap-3 opacity-40">
+                    <FileText size={20} className="text-gray-700" />
+                    <span className="text-xs font-bold text-gray-600">No ID Uploaded</span>
+                  </div>
+                )}
+
+                {store.verification_selfie_url ? (
+                  <a href={store.verification_selfie_url} target="_blank" className="p-4 bg-gray-900 border border-gray-800 rounded-2xl flex items-center justify-between group hover:border-blue-500 transition shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <Camera size={20} className="text-gray-500 group-hover:text-blue-400" />
+                      <span className="text-xs font-bold text-gray-300">View Selfie</span>
+                    </div>
+                    <ExternalLink size={14} className="text-gray-600 group-hover:text-blue-400" />
+                  </a>
+                ) : (
+                  <div className="p-4 bg-gray-900/30 border border-gray-800/50 rounded-2xl flex items-center gap-3 opacity-40">
+                    <Camera size={20} className="text-gray-700" />
+                    <span className="text-xs font-bold text-gray-600">No Selfie Uploaded</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="h-px bg-gray-800" />
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                <div>
                  <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">Subscription Tier</h3>
@@ -191,9 +221,7 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
 
                <div>
                  <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">Godmode Control</h3>
-                 
                  <div className="space-y-3">
-                    {/* Verification Toggle */}
                     <button 
                       onClick={toggleVerification}
                       disabled={loading}
@@ -207,7 +235,6 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                        {store.is_verified ? "Revoke Verification" : "Verify Vendor"}
                     </button>
 
-                    {/* Ban Logic Toggle */}
                     {!confirmBan ? (
                        <button 
                          onClick={() => setConfirmBan(true)}
@@ -238,7 +265,6 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
 
             <div className="h-px bg-gray-800" />
 
-            {/* ✨ EMPIRE LOYALTY ENGINE SECTION --- */}
             <div className="space-y-4">
               <h3 className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] flex items-center gap-2">
                 <Zap size={14} fill="currentColor" /> Empire Loyalty Engine
@@ -267,8 +293,8 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                     : 'bg-gray-800 text-gray-500 border-gray-700 hover:text-white'
                   }`}
                  >
-                   <Zap size={14} fill={store.loyalty_enabled ? "currentColor" : "none"} />
-                   {store.loyalty_enabled ? "Engine: Running (Update Settings)" : "Engine: Offline (Activate Engine)"}
+                    <Zap size={14} fill={store.loyalty_enabled ? "currentColor" : "none"} />
+                    {store.loyalty_enabled ? "Engine: Running (Update Settings)" : "Engine: Offline (Activate Engine)"}
                  </button>
               </div>
             </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Loader2, CheckCircle, XCircle, FileText, ExternalLink, AlertTriangle } from "lucide-react";
+import { Loader2, CheckCircle, XCircle, FileText, ExternalLink, Camera, UserCircle } from "lucide-react";
 
 export default function AdminVerifications() {
   const [requests, setRequests] = useState<any[]>([]);
@@ -81,7 +81,7 @@ export default function AdminVerifications() {
         <h1 className="text-3xl font-black text-white flex items-center gap-2">
           <CheckCircle className="text-emerald-500" /> Pending Verifications
         </h1>
-        <p className="text-gray-400">Review documents and approve blue badges.</p>
+        <p className="text-gray-400">Review documents and compare selfies to approve blue badges.</p>
       </div>
 
       {requests.length === 0 ? (
@@ -102,14 +102,37 @@ export default function AdminVerifications() {
                     <p className="text-gray-500 text-xs font-mono mt-1">ID: {req.id}</p>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <a 
                       href={req.verification_doc_url} 
                       target="_blank" 
                       rel="noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-emerald-400 rounded-lg text-sm font-bold transition"
+                      className="flex flex-col gap-2 p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 rounded-xl transition group"
                     >
-                      <FileText size={16} /> View Document <ExternalLink size={14}/>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Government ID</span>
+                        <ExternalLink size={12} className="text-gray-500 group-hover:text-emerald-400" />
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <FileText className="text-emerald-400" size={24} />
+                        <span className="text-sm font-bold text-white">View ID Card</span>
+                      </div>
+                    </a>
+
+                    <a 
+                      href={req.verification_selfie_url} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="flex flex-col gap-2 p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 rounded-xl transition group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Live Selfie</span>
+                        <ExternalLink size={12} className="text-gray-500 group-hover:text-emerald-400" />
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Camera className="text-blue-400" size={24} />
+                        <span className="text-sm font-bold text-white">View Selfie</span>
+                      </div>
                     </a>
                   </div>
                </div>
@@ -147,7 +170,7 @@ export default function AdminVerifications() {
                       <button 
                         disabled={processing}
                         onClick={() => handleApprove(req)}
-                        className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl flex items-center justify-center gap-2"
+                        className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95"
                       >
                         <CheckCircle size={18} /> Approve & Verify
                       </button>
@@ -155,7 +178,7 @@ export default function AdminVerifications() {
                       <button 
                         disabled={processing}
                         onClick={() => setRejectingId(req.id)}
-                        className="w-full py-3 bg-gray-800 hover:bg-gray-700 text-red-400 font-bold rounded-xl flex items-center justify-center gap-2"
+                        className="w-full py-3 bg-gray-800 hover:bg-gray-700 text-red-400 font-bold rounded-xl flex items-center justify-center gap-2 transition-all"
                       >
                         <XCircle size={18} /> Reject Request
                       </button>

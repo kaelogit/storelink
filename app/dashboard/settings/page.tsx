@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { Loader2 } from "lucide-react";
-import StoreSettings from "@/components/dashboard/StoreSettings"; // 👈 Importing your existing component
+import StoreSettings from "@/components/dashboard/StoreSettings"; 
 
 export default function SettingsPage() {
   const [store, setStore] = useState<any>(null);

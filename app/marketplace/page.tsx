@@ -37,6 +37,7 @@ export default async function MarketplacePage() {
       )
     `) 
     .eq("is_active", true)
+    .neq("stores.subscription_plan", "free")
     .order("created_at", { ascending: false }) 
     .limit(100);
 
@@ -52,10 +53,12 @@ export default async function MarketplacePage() {
       return false;
     }
 
-    if (plan === 'diamond' || plan === 'premium') return true;
+    if (plan !== 'diamond' && plan !== 'premium') {
+      return false;
+    }
 
     const currentCount = storeItemTracker[storeId] || 0;
-    if (currentCount < 5) {
+    if (currentCount < 10) { 
       storeItemTracker[storeId] = currentCount + 1;
       return true;
     }
@@ -90,8 +93,8 @@ export default async function MarketplacePage() {
 
        <div className="flex-1">
          <FullMarketplaceClient 
-           initialProducts={shuffledProducts || []} 
-           categories={categories || []} 
+            initialProducts={shuffledProducts || []} 
+            categories={categories || []} 
          />
        </div>
 

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "@/components/landing/Navbar"; // Ensure you have this component
-import Footer from "@/components/landing/Footer"; // Ensure you have this component
+import Navbar from "@/components/landing/Navbar"; 
+import Footer from "@/components/landing/Footer"; 
 import { Mail, Send, Loader2, CheckCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 

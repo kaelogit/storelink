@@ -7,33 +7,30 @@ import Link from "next/link";
 import { 
   Loader2, LayoutDashboard, ShoppingBag, Bell, Settings, LogOut, 
   Menu, X, Crown, BadgeCheck, AlertTriangle, CheckCircle, XCircle,
-  Coins 
+  Coins, Clock, ShieldCheck 
 } from "lucide-react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   
-  // -- State Management --
   const [loading, setLoading] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expiryWarning, setExpiryWarning] = useState<{ type: 'warn' | 'expired', days: number } | null>(null);
   const [planName, setPlanName] = useState(""); 
-  const [unreadCount, setUnreadCount] = useState(0); // 🔴 New: Track unread admin messages
+  const [daysRemaining, setDaysRemaining] = useState<number | null>(null);
+  const [unreadCount, setUnreadCount] = useState(0); 
 
   useEffect(() => {
     const checkAuthAndData = async () => {
-      // 1. Auth Check
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return router.push("/login");
 
-      // 2. Parallel Fetch: Store Data & Unread Notifications
       const [storeRes, notifyRes] = await Promise.all([
         supabase.from("stores").select("subscription_expiry, subscription_plan").eq("owner_id", user.id).single(),
         supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('is_read', false)
       ]);
 
-      // 3. Process Store/Subscription Logic
       if (storeRes.data) {
         const store = storeRes.data;
         setPlanName(store.subscription_plan); 
@@ -43,6 +40,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           const now = new Date();
           const diffTime = expiry.getTime() - now.getTime();
           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          
+          setDaysRemaining(diffDays > 0 ? diffDays : 0);
 
           if (diffTime < 0) {
             setExpiryWarning({ type: 'expired', days: 0 });
@@ -52,24 +51,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         }
       }
 
-      // 4. Process Notification Logic
       setUnreadCount(notifyRes.count || 0);
 
-      // 5. 📡 REAL-TIME SUBSCRIPTION (Cyber-Security Ready)
-      // Listen for new notifications sent by Admin in real-time
       const channel = supabase
         .channel(`user-notifications-${user.id}`)
         .on(
           'postgres_changes',
-          { 
-            event: 'INSERT', 
-            schema: 'public', 
-            table: 'notifications', 
-            filter: `user_id=eq.${user.id}` 
-          },
-          () => {
-            setUnreadCount(prev => prev + 1);
-          }
+          { event: 'INSERT', schema: 'public', table: 'notifications', filter: `user_id=eq.${user.id}` },
+          () => { setUnreadCount(prev => prev + 1); }
         )
         .subscribe();
 
@@ -86,23 +75,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     router.push("/logout");
   };
 
-  // Nav Links Definition
+  const isTrial = planName === 'premium' && daysRemaining !== null && daysRemaining <= 14;
+
   const links = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
     { name: "Orders", href: "/dashboard/orders", icon: ShoppingBag },
-    { 
-      name: "Notifications", 
-      href: "/dashboard/notifications", 
-      icon: Bell,
-      badge: unreadCount > 0 ? unreadCount : null // 🔴 Dynamic Badge
-    },
-    { 
-      name: "Empire Loyalty", 
-      href: "/dashboard/loyalty", 
-      icon: Coins, 
-      isNew: true, 
-      color: "text-amber-500" 
-    },
+    { name: "Notifications", href: "/dashboard/notifications", icon: Bell, badge: unreadCount > 0 ? unreadCount : null },
+    { name: "Empire Loyalty", href: "/dashboard/loyalty", icon: Coins, isNew: true, color: "text-amber-500" },
     { name: "Subscription", href: "/dashboard/subscription", icon: Crown },
     { name: "Verification", href: "/dashboard/verification", icon: BadgeCheck },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
@@ -119,13 +98,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex min-h-screen bg-gray-50">
       
-      {/* --- MOBILE TOP BAR --- */}
       <div className="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center z-30">
         <Link href="/" className="font-extrabold text-lg text-gray-900 flex items-center gap-2">
             <LayoutDashboard className="text-emerald-600" size={20}/> StoreLink
         </Link>
         <div className="flex items-center gap-2">
-           {/* Mobile Notification Shortcut */}
            {unreadCount > 0 && (
              <Link href="/dashboard/notifications" className="p-2 bg-red-50 rounded-lg text-red-600 relative">
                 <Bell size={20} />
@@ -138,7 +115,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </div>
 
-      {/* --- MOBILE SIDEBAR --- */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileMenuOpen(false)} />
@@ -163,6 +139,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                    );
                  })}
                </nav>
+
+               {planName && (
+                 <div className="mx-4 mb-4 p-3 bg-gray-50 border border-gray-100 rounded-xl">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{planName} Active</span>
+                      <ShieldCheck size={12} className="text-emerald-500" />
+                    </div>
+                    <p className="text-[10px] font-bold text-gray-700">{daysRemaining} days left</p>
+                    {isTrial && <p className="text-[8px] text-emerald-600 italic font-medium mt-1">* Founder's Gift Active</p>}
+                 </div>
+               )}
+
                <div className="p-4 border-t border-gray-100">
                  <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-xl transition-all text-sm font-bold">
                    <LogOut size={18} /> Logout
@@ -172,7 +160,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       )}
 
-      {/* --- DESKTOP SIDEBAR --- */}
       <aside className="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col fixed h-screen top-0 overflow-y-auto z-20 no-scrollbar">
         <div className="p-6 border-b border-gray-100 shrink-0">
            <Link href="/" className="font-extrabold text-xl text-gray-900 flex items-center gap-2 tracking-tight">
@@ -209,10 +196,26 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           })}
         </nav>
 
-        {!expiryWarning && planName && (
-          <div className="mx-4 mb-2 p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-2 shrink-0">
-            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{planName} Plan Active</span>
+        {planName && (
+          <div className={`mx-4 mb-2 p-3 rounded-xl border transition-all ${expiryWarning?.type === 'expired' ? 'bg-red-50 border-red-100' : 'bg-gray-50 border-gray-100'}`}>
+            <div className="flex items-center gap-2 mb-1">
+              <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${expiryWarning?.type === 'expired' ? 'bg-red-500' : 'bg-emerald-500'}`} />
+              <span className={`text-[10px] font-black uppercase tracking-widest ${expiryWarning?.type === 'expired' ? 'text-red-500' : 'text-gray-400'}`}>
+                {planName} Plan Active
+              </span>
+            </div>
+            
+            <div className="space-y-0.5">
+               <p className={`text-[11px] font-bold flex items-center gap-1.5 ${expiryWarning?.type === 'expired' ? 'text-red-600' : 'text-gray-700'}`}>
+                  <Clock size={12} className="text-gray-400" />
+                  {expiryWarning?.type === 'expired' ? "Empire Locked" : `${daysRemaining} days remaining`}
+               </p>
+               {isTrial && !expiryWarning && (
+                 <p className="text-[9px] text-emerald-600 font-bold italic leading-tight">
+                   * Founder's Welcome Gift Applied
+                 </p>
+               )}
+            </div>
           </div>
         )}
 
@@ -223,9 +226,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </aside>
 
-      {/* --- MAIN CONTENT AREA --- */}
       <main className="flex-1 md:ml-64 p-4 md:p-8 pt-20 md:pt-8 w-full max-w-full overflow-hidden flex flex-col">
-        {/* Subscription Alerts */}
         {expiryWarning && (
           <div className={`mb-6 p-4 rounded-xl flex items-center justify-between gap-4 border animate-in slide-in-from-top duration-300 ${
               expiryWarning.type === 'expired' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-amber-50 border-amber-200 text-amber-800'

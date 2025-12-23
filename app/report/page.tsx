@@ -29,8 +29,8 @@ export default function ReportPage() {
     });
 
     if (error) {
-        console.log("FULL ERROR:", error); // Check Console
-        alert(`Error: ${error.message}`); // 👈 This will pop up the exact reason
+        console.log("FULL ERROR:", error); 
+        alert(`Error: ${error.message}`); 
         setErrorMsg("Could not submit report. Try again later.");
     } else {
         setSuccess(true);

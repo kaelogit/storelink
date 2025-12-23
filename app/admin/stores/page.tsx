@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Search, Settings, Filter, CheckCircle, ShieldAlert } from "lucide-react"; 
+import { Search, Settings, Filter, CheckCircle, ShieldAlert, Clock, AlertCircle } from "lucide-react"; 
 import StoreManager from "@/components/admin/StoreManager";
 
 export default function ManageStoresPage() {
@@ -14,7 +14,6 @@ export default function ManageStoresPage() {
   }, []);
 
   async function fetchStores() {
-    // Note: Ensure your RPC 'get_admin_stores' now returns the 'status' column
     const { data, error } = await supabase.rpc('get_admin_stores');
     
     if (error) {
@@ -84,12 +83,19 @@ export default function ManageStoresPage() {
                         
                         <div>
                             <div className="flex items-center gap-1">
-                               <p className={`font-bold transition ${store.status === 'banned' ? 'text-red-400' : 'text-white group-hover:text-emerald-400'}`}>
-                                 {store.name}
-                               </p>
-                               {store.is_verified && (
-                                  <CheckCircle size={14} className="text-blue-400 fill-blue-400/20" />
-                               )}
+                              <p className={`font-bold transition ${store.status === 'banned' ? 'text-red-400' : 'text-white group-hover:text-emerald-400'}`}>
+                                {store.name}
+                              </p>
+                              
+                              {store.is_verified && (
+                                <CheckCircle size={14} className="text-blue-400 fill-blue-400/20" />
+                              )}
+
+                              {!store.is_verified && store.verification_status === 'pending' && (
+                                <span title="Verification Pending">
+                                  <Clock size={14} className="text-amber-500 animate-pulse" />
+                                </span>
+                              )}
                             </div>
                             <p className="text-[10px] text-gray-500 font-mono">/{store.slug}</p>
                         </div>
@@ -108,6 +114,10 @@ export default function ManageStoresPage() {
                   {store.status === 'banned' ? (
                     <span className="text-red-500 font-black text-[10px] uppercase tracking-widest flex items-center gap-2">
                         <ShieldAlert size={14} /> Banned
+                    </span>
+                  ) : store.verification_status === 'pending' ? (
+                    <span className="text-amber-500 font-black text-[10px] uppercase tracking-widest flex items-center gap-2">
+                        <AlertCircle size={14} /> Review Needed
                     </span>
                   ) : (
                     <span className="text-emerald-500 font-black text-[10px] uppercase tracking-widest flex items-center gap-2">

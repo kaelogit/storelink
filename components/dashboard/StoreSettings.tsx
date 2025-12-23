@@ -5,7 +5,6 @@ import { supabase } from "@/lib/supabase";
 import { Loader2, Save, Upload, Camera, Image as ImageIcon, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
-// Added onUpdate to the props interface
 export default function StoreSettings({ store, onUpdate }: { store: any, onUpdate?: () => void }) {
   const [loading, setLoading] = useState(false);
   
@@ -44,7 +43,7 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setStatus(""); // Clear previous status
+    setStatus(""); 
 
     try {
       let newLogoUrl = store.logo_url;
@@ -86,7 +85,6 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
           setStatus("❌ " + error.message);
       } else {
           setStatus("✅ Settings saved!");
-          // Trigger the refresh in the Dashboard Brain
           if (onUpdate) onUpdate(); 
           
           setTimeout(() => setStatus(""), 3000); 

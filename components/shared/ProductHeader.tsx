@@ -52,7 +52,6 @@ export default function ProductHeader({ storeSlug, storeLogo }: ProductHeaderPro
                 sizes="36px"
               />
             ) : (
-              /* Fallback if no image exists: a sleek dark square with initials */
               <div className="w-full h-full bg-gray-900 flex items-center justify-center">
                  <span className="text-[10px] text-white font-black">{storeSlug.charAt(0).toUpperCase()}</span>
               </div>

@@ -16,7 +16,6 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  // Strength Check Logic for UI Feedback
   const isMinLength = password.length >= 8;
   const hasNumber = /\d/.test(password);
 
@@ -25,7 +24,6 @@ export default function SignupPage() {
     setLoading(true);
     setError(null);
 
-    // --- PASSWORD STRENGTH & MATCH VALIDATION ---
     if (!isMinLength || !hasNumber) {
       setError("Please follow the password security rules.");
       setLoading(false);
@@ -37,7 +35,6 @@ export default function SignupPage() {
       setLoading(false);
       return;
     }
-    // --------------------------------------------
 
     const redirectUrl = `${window.location.origin}/onboarding`;
 
@@ -89,7 +86,6 @@ export default function SignupPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
                 <input required type="password" placeholder="Enter password" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 outline-none transition" value={password} onChange={e => setPassword(e.target.value)} />
                 
-                {/* --- PASSWORD RULES UI --- */}
                 <div className="mt-2 space-y-1">
                   <div className={`text-[10px] flex items-center gap-1.5 font-bold uppercase tracking-wider ${isMinLength ? 'text-emerald-600' : 'text-gray-400'}`}>
                     <div className={`w-1 h-1 rounded-full ${isMinLength ? 'bg-emerald-600' : 'bg-gray-300'}`}></div>

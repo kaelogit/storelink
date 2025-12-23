@@ -14,7 +14,7 @@ import {
   HandCoins,
   History,
   Lock,
-  ArrowRight // Added for the new buttons
+  ArrowRight 
 } from "lucide-react";
 import Link from "next/link";
 
@@ -24,7 +24,6 @@ export default function EmpireManual() {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-amber-100 flex flex-col overflow-x-hidden">
       
-      {/* 1. FIXED NAVIGATION */}
       <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100 px-6 py-4">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <button 
@@ -42,7 +41,6 @@ export default function EmpireManual() {
       </nav>
 
       <main className="flex-1 px-4 sm:px-6">
-        {/* 2. HERO SECTION */}
         <header className="pt-28 pb-16 text-center">
           <div className="max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-amber-500 text-white px-4 py-1.5 rounded-full mb-6 shadow-lg shadow-amber-200 animate-bounce">
@@ -58,7 +56,6 @@ export default function EmpireManual() {
           </div>
         </header>
 
-        {/* 3. CLAIM CARD (NOW LINKED) */}
         <section className="mb-16">
           <div className="max-w-4xl mx-auto bg-gray-900 rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-14 shadow-2xl relative overflow-hidden border border-white/5">
              <div className="absolute top-0 right-0 opacity-10 transform translate-x-12 -translate-y-12">
@@ -94,7 +91,6 @@ export default function EmpireManual() {
           </div>
         </section>
 
-        {/* 4. THE RULES */}
         <section className="py-12 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-amber-50 border border-amber-100 p-8 rounded-[2.5rem] flex flex-col justify-center">
                <ShieldCheck className="text-amber-600 mb-4" size={32} />
@@ -112,7 +108,6 @@ export default function EmpireManual() {
             </div>
         </section>
 
-        {/* 5. 3-STEP PROCESS */}
         <section className="py-20 px-4 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="space-y-4 group">
@@ -147,7 +142,6 @@ export default function EmpireManual() {
           </div>
         </section>
 
-        {/* 6. INTEL & INFO */}
         <section className="py-20 bg-gray-50 rounded-[3rem] md:rounded-[5rem] px-4 mb-20">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-4xl font-black text-gray-900 uppercase tracking-tighter text-center mb-12 italic">Intel & Info</h2>
@@ -169,7 +163,6 @@ export default function EmpireManual() {
           </div>
         </section>
 
-        {/* 7. FINAL CALL TO ACTION */}
         <section className="max-w-4xl mx-auto text-center pb-24 px-6">
            <h2 className="text-4xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter italic mb-6">Ready to <span className="text-amber-500">Rule?</span></h2>
            <p className="text-gray-400 font-bold uppercase text-xs tracking-widest mb-10 max-w-md mx-auto leading-relaxed">
@@ -184,7 +177,6 @@ export default function EmpireManual() {
         </section>
       </main>
 
-      {/* 8. FOOTER */}
       <footer className="py-16 border-t border-gray-100 bg-white text-center">
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex flex-col items-center gap-6">

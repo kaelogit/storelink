@@ -16,15 +16,11 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
   const [view, setView] = useState<'products' | 'vendors'>('products');
   const [search, setSearch] = useState("");
 
-  // --- 🛡️ AUDITED DATA LOOKUP ---
-  // We use this to reliably find the store's plan for every product
   const getProductStore = (storeId: string) => {
     return stores.find(s => s.id === storeId);
   };
 
-  // --- 💎 15 DIAMOND / 5 PREMIUM LOGIC (TOTAL 20) ---
   
-  // 1. Initial Search Filter
   const searchMatchedProducts = products.filter(p => 
     p.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -33,7 +29,6 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
     s.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // 2. PRODUCT BUCKETS
   const diamondPoolP = searchMatchedProducts.filter(p => {
     const s = getProductStore(p.store_id);
     return s?.subscription_plan === 'diamond';
@@ -44,12 +39,10 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
     return s?.subscription_plan === 'premium';
   });
 
-  // Take up to 15 Diamonds, then fill the rest of the 20-slots with Premiums
   const finalDiamondsP = diamondPoolP.slice(0, 15);
   const finalPremiumsP = premiumPoolP.slice(0, 20 - finalDiamondsP.length);
   const filteredProducts = [...finalDiamondsP, ...finalPremiumsP];
 
-  // 3. VENDOR BUCKETS
   const diamondPoolS = searchMatchedStores.filter(s => s.subscription_plan === 'diamond');
   const premiumPoolS = searchMatchedStores.filter(s => s.subscription_plan === 'premium');
 

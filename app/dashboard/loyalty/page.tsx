@@ -41,7 +41,6 @@ export default function LoyaltyPage() {
     if (storeData) {
       setStore(storeData);
       
-      // ✨ AUDIT: Only fetch completed orders for accurate stats
       const { data: orders } = await supabase
         .from("orders")
         .select("total_amount, coins_redeemed, customer_phone")
@@ -50,7 +49,6 @@ export default function LoyaltyPage() {
 
       if (orders) {
         const redeemed = orders.reduce((sum, o) => sum + (Number(o.coins_redeemed) || 0), 0);
-        // Calculation based on current percentage
         const issued = orders.reduce((sum, o) => sum + (o.total_amount * ((storeData.loyalty_percentage || 1) / 100)), 0);
         const uniqueCustomers = new Set(orders.map(o => o.customer_phone)).size;
 
@@ -83,7 +81,6 @@ export default function LoyaltyPage() {
   return (
     <div className="max-w-4xl space-y-6 md:space-y-8 pb-20 px-1 md:px-0">
       
-      {/* 1. ✨ HEADER: Clean & Responsive */}
       <div className="text-center md:text-left">
         <h1 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tighter uppercase flex items-center justify-center md:justify-start gap-3">
           <Coins className="text-amber-500 shrink-0" size={32} fill="currentColor" /> Empire Loyalty
@@ -91,7 +88,6 @@ export default function LoyaltyPage() {
         <p className="text-gray-500 font-medium mt-1 text-sm md:text-base">Grow your business by rewarding your community.</p>
       </div>
 
-      {/* 2. ✨ STATS GRID: Mobile Stacked, Tablet/Desktop Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
   
         <div className="bg-white border border-gray-100 p-6 rounded-[2rem] shadow-sm">
@@ -106,7 +102,6 @@ export default function LoyaltyPage() {
           <p className="text-[9px] font-bold text-gray-400 mt-1">Total discounts created for your fans.</p>
         </div>
 
-        {/* Box 2: Coins Redeemed (The actual cost) */}
         <div className="bg-white border border-gray-100 p-6 rounded-[2rem] shadow-sm">
           <div className="flex justify-between items-start mb-4">
             <div className="bg-emerald-50 p-2 rounded-xl text-emerald-600">
@@ -119,7 +114,6 @@ export default function LoyaltyPage() {
           <p className="text-[9px] font-bold text-gray-400 mt-1">Real impact on your bottom line.</p>
         </div>
 
-        {/* Box 3: Loyal Customers */}
         <div className="bg-white border border-gray-100 p-6 rounded-[2rem] shadow-sm sm:col-span-2 md:col-span-1">
           <div className="flex justify-between items-start mb-4">
             <div className="bg-blue-50 p-2 rounded-xl text-blue-600">
@@ -132,7 +126,6 @@ export default function LoyaltyPage() {
         </div>
       </div>
 
-      {/* 3. ✨ MASTER TOGGLE SECTION */}
       <div className={`p-6 md:p-8 rounded-[2.5rem] md:rounded-[3rem] border-2 transition-all duration-500 ${store.loyalty_enabled ? 'bg-white border-amber-200 shadow-xl shadow-amber-50' : 'bg-gray-50 border-gray-100'}`}>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="max-w-md">
@@ -153,7 +146,6 @@ export default function LoyaltyPage() {
           </button>
         </div>
 
-        {/* 4. ✨ REWARD PERCENTAGE SELECTOR */}
         {store.loyalty_enabled && (
           <div className="mt-8 pt-8 md:mt-10 md:pt-10 border-t border-amber-100 animate-in slide-in-from-top-4 duration-500">
             <h3 className="font-black text-[10px] md:text-xs text-amber-600 uppercase tracking-widest mb-6 flex items-center gap-2">
@@ -188,7 +180,6 @@ export default function LoyaltyPage() {
         )}
       </div>
 
-      {/* 5. ✨ PROTECTION BANNER: Corrected Build Error Here */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <div className="p-5 md:p-6 bg-emerald-50 rounded-[2rem] md:rounded-[2.5rem] border border-emerald-100 flex items-start gap-4">
           <div className="bg-white p-2.5 md:p-3 rounded-2xl text-emerald-600 shadow-sm shrink-0">

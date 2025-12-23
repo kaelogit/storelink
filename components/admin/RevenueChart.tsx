@@ -38,7 +38,7 @@ export default function RevenueChart({ data }: { data: any[] }) {
             {data.map((entry, index) => (
               <Cell 
                 key={`cell-${index}`} 
-                fill={index === data.length - 1 ? '#10B981' : '#3B82F6'} // Last month is Green, others are Blue
+                fill={index === data.length - 1 ? '#10B981' : '#3B82F6'} 
               />
             ))}
           </Bar>

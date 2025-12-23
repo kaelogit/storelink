@@ -29,7 +29,6 @@ export default function GlobalCartSidebar() {
   const [history, setHistory] = useState<any[]>([]);
   const [liveStoreSettings, setLiveStoreSettings] = useState<Record<string, any>>({});
 
-  // 1. Initial Load: Billing info from storage
   useEffect(() => {
     const saved = localStorage.getItem("storelink_billing");
     if (saved) {
@@ -43,7 +42,6 @@ export default function GlobalCartSidebar() {
     }
   }, []);
 
-  // 2. 🔥 THE TRUTH SYNC: Re-sync balance and Store settings every time Bag opens
   useEffect(() => {
     const fetchEverything = async () => {
       const savedBilling = localStorage.getItem("storelink_billing");
@@ -56,7 +54,6 @@ export default function GlobalCartSidebar() {
         } catch (e) { console.error(e); }
       }
 
-      // A. Wallet Truth (Kills the Ghost ₦50)
       if (cleanPhone && cleanPhone.length >= 10) {
         const { data: wallet } = await supabase
           .from('user_wallets')
@@ -68,11 +65,10 @@ export default function GlobalCartSidebar() {
           setActualBalance(wallet.coin_balance);
           fetchHistory(cleanPhone);
         } else {
-          setActualBalance(0); // Explicit reset if no wallet exists
+          setActualBalance(0); 
         }
       }
 
-      // B. Store Settings Truth (🔥 FIX: Why the "You will earn" was missing)
       const storeIds = Array.from(new Set(cart.map(item => item.store.id)));
       if (storeIds.length > 0) {
         const { data: stores } = await supabase
@@ -90,7 +86,6 @@ export default function GlobalCartSidebar() {
     if (isCartOpen) {
       fetchEverything();
 
-      // C. Realtime Listener
       const savedBilling = localStorage.getItem("storelink_billing");
       const parsed = savedBilling ? JSON.parse(savedBilling) : null;
       const cleanPhone = parsed?.phone?.replace(/\D/g, '').slice(-10);
@@ -140,7 +135,6 @@ export default function GlobalCartSidebar() {
       if (error) throw error;
 
       if (data && data.length > 0) {
-        // 🔥 FIX: Match updated RPC column names (coin_balance and customer_name)
         setActualBalance(data[0].coin_balance); 
         fetchHistory(cleanPhone); 
         if (data[0].customer_name && !formData.name) {
@@ -199,30 +193,34 @@ export default function GlobalCartSidebar() {
           setUseCoins(false); 
         }
 
-        // WhatsApp Logic Restored Exactly
         let wa = storeData.whatsapp_number?.replace(/\D/g, '') || "";
         if (wa.startsWith('0')) wa = '234' + wa.substring(1);
         
-        const itemLines = items.map((i: any) => `- ${i.qty}x ${i.product.name}`).join('\n');
-        const msg = `*ORDER INVOICE #${newOrderId.slice(0, 8).toUpperCase()}* 📦\n\n` +
-                      `Hello *${storeData.name}*,\n` +
-                      `I would like to place an order for the following items:\n\n` +
-                      `${itemLines}\n\n` +
-                      `--- *BILLING DETAILS* ---\n` +
-                      `👤 *Name:* ${formData.name}\n` +
-                      `📞 *Phone:* ${formData.phone}\n` +
-                      `📍 *Address:* ${formData.address}\n\n` +
-                      `--- *ORDER SUMMARY* ---\n` +
-                      `*Subtotal:* ₦${storeTotal.toLocaleString()}\n` +
-                      (coinsToApply > 0 ? `*Empire Coins Discount:* -₦${coinsToApply.toLocaleString()}\n` : "") +
-                      `*TOTAL PAYABLE:* ₦${finalPayable.toLocaleString()}\n\n` +
-                      `--- *NEXT STEPS* ---\n` +
-                      `✅ Please confirm item availability.\n` +
-                      `💳 Provide your *account details* for payment.\n` +
-                      `🚚 Please let me know the *estimated delivery time*.\n\n` +
-                      `🚀 _Order generated via StoreLink Ecosystem._`;
+        const itemLines = items.map((i: any) => {
+          const lineTotal = i.qty * i.product.price;
+          return `• *${i.qty}x ${i.product.name}* (₦${i.product.price.toLocaleString()} each) → ₦${lineTotal.toLocaleString()}`;
+        }).join('\n');
 
-          window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, "_blank");        
+        const msg = `*ORDER INVOICE #${newOrderId.slice(0, 8).toUpperCase()}* 📦\n\n` +
+                    `Hello *${storeData.name}*,\n` +
+                    `I would like to place an order for the following items:\n\n` +
+                    `${itemLines}\n\n` +
+                    `--- *BILLING DETAILS* ---\n` +
+                    `👤 *Name:* ${formData.name}\n` +
+                    `📞 *Phone:* ${formData.phone}\n` +
+                    `📍 *Address:* ${formData.address}\n\n` +
+                    `--- *ORDER SUMMARY* ---\n` +
+                    `*Subtotal:* ₦${storeTotal.toLocaleString()}\n` +
+                    (coinsToApply > 0 ? `*Empire Coins Discount:* -₦${coinsToApply.toLocaleString()}\n` : "") +
+                    `*TOTAL PAYABLE:* ₦${finalPayable.toLocaleString()}\n\n` +
+                    `--- *NEXT STEPS* ---\n` +
+                    `✅ Please confirm item availability.\n` +
+                    `💳 Provide your *account details* for payment.\n` +
+                    `🚚 Please let me know the *estimated delivery time*.\n\n` +
+                    `🚀 _Order generated via StoreLink Ecosystem._`;
+
+        window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, "_blank");
+
         sendGAEvent('event', 'purchase', { store: storeData.name, value: finalPayable });
 
         items.forEach((item: any) => removeFromCart(item.product.id));
@@ -312,7 +310,6 @@ export default function GlobalCartSidebar() {
 
                    <div className="space-y-4 mb-6">
                       {items.map(item => (
-                        // 🔥 Added min-w-0 to the container
                         <div key={item.product.id} className="flex gap-4 items-center group text-left min-w-0">
                           
                           <div className="relative w-12 h-12 bg-gray-50 rounded-xl overflow-hidden border shrink-0">
@@ -320,8 +317,6 @@ export default function GlobalCartSidebar() {
                               <Image src={item.product.image_urls[0]} alt="" fill className="object-cover" />
                             )}
                           </div>
-
-                          {/* 🔥 Added min-w-0 here to allow the child 'truncate' to work properly */}
                           <div className="flex-1 min-w-0">
                             <p className="font-bold text-[13px] text-gray-900 uppercase truncate">
                               {item.product.name}
@@ -331,7 +326,6 @@ export default function GlobalCartSidebar() {
                             </p>
                           </div>
 
-                          {/* 🔥 Added shrink-0 to ensure the button never disappears */}
                           <button 
                             onClick={() => removeFromCart(item.product.id)} 
                             className="text-gray-300 hover:text-red-500 p-2 transition-colors shrink-0"
@@ -342,7 +336,6 @@ export default function GlobalCartSidebar() {
                       ))}
                     </div>
 
-                   {/* 🔥 LOYALTY BANNER (Fully Audited) */}
                    {settings.loyalty_enabled && (
                      <div className={`text-[9px] font-black p-4 rounded-2xl mb-6 flex flex-col gap-1 border transition-all ${blockOwner ? 'bg-gray-50 text-gray-400' : 'bg-emerald-50 text-emerald-700 border-emerald-100 animate-in slide-in-from-bottom-2'}`}>
                         <div className="flex items-center justify-between uppercase">

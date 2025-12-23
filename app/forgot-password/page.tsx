@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Navbar from "@/components/landing/Navbar";
-import { Loader2, ArrowLeft, MailCheck } from "lucide-react"; // Added MailCheck for consistency
+import { Loader2, ArrowLeft, MailCheck } from "lucide-react"; 
 import Link from "next/link";
 
 export default function ForgotPasswordPage() {
@@ -18,7 +18,6 @@ export default function ForgotPasswordPage() {
     setError(null);
     setMessage(null);
 
-    // redirectTo ensures the user is sent to your custom Update Password page after clicking the email link
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/update-password`,
     });

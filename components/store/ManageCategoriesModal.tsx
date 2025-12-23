@@ -44,7 +44,7 @@ export default function ManageCategoriesModal({ storeId, isOpen, onClose }: Mana
       setErrorMsg(error.message)
     } else {
       setNewCategoryName("");
-      fetchCategories(); // Refresh list
+      fetchCategories(); 
     }
     setLoading(false);
   };

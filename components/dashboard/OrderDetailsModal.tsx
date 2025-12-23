@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
-import { X, Download, CheckCircle, Lock, Coins, AlertCircle, Loader2 } from "lucide-react"; 
+import { 
+  X, Download, CheckCircle, Lock, Coins, 
+  AlertCircle, Loader2, Phone, MapPin 
+} from "lucide-react"; 
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useRouter } from "next/navigation";
@@ -21,7 +24,6 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
   const [localStatus, setLocalStatus] = useState<string | null>(null);
   const router = useRouter();
 
-  // 1. ✨ INITIALIZE DATA
   useEffect(() => {
     if (isOpen && order) {
       setLocalStatus(order.status);
@@ -34,11 +36,9 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
     }
   }, [isOpen, order]);
 
-  // 2. ✨ THE ENGINE: DEDUCT STOCK LOGIC
   const handleStockDeduction = async () => {
     try {
       for (const item of items) {
-        // Fetch current stock
         const { data: product } = await supabase
           .from("storefront_products")
           .select("stock_quantity")
@@ -51,13 +51,12 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
           
           const updatePayload: any = { stock_quantity: newStock };
           
-          // If stock hits zero for the first time, mark the timestamp
           if (newStock === 0 && currentStock > 0) {
             updatePayload.sold_out_at = new Date().toISOString();
           }
 
           await supabase
-            .from("products") // 🔥 FIX: Change from "storefront_products" to "products"
+            .from("products") 
             .update(updatePayload)
             .eq("id", item.product_id);
             
@@ -68,7 +67,6 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
     }
   };
 
-  // 3. ✨ UPDATE STATUS (Handles Empire Refund + Stock Deduction)
   const updateStatus = async (status: string) => {
     const displayStatus = status === 'completed' ? 'Paid' : status;
     const redeemedAmount = order.coins_redeemed || 0;
@@ -88,10 +86,8 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
           order_id_param: order.id 
         });
       } else {
-        // ⚡ MARK PAID: First Update Order Status
         response = await supabase.from("orders").update({ status }).eq("id", order.id);
         
-        // ⚡ MARK PAID: Second, Deduct Stock
         if (!response.error && status === 'completed') {
           await handleStockDeduction();
         }
@@ -111,7 +107,6 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
     }
   };
   
-  // 4. ✨ PDF RECEIPT ENGINE (Line-by-line Audited)
   const downloadReceipt = () => {
     const doc = new jsPDF();
     doc.setFillColor(17, 24, 39); 
@@ -174,7 +169,6 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
       <div className="absolute inset-0" onClick={onClose}></div>
       <div className="bg-white w-full max-w-lg rounded-t-[2.5rem] md:rounded-[2.5rem] h-[90vh] md:h-auto max-h-[90vh] shadow-2xl relative overflow-hidden flex flex-col">
         
-        {/* STICKY HEADER */}
         <div className="sticky top-0 z-30 bg-white p-6 border-b border-gray-100 flex justify-between items-center">
            <span className="font-black text-gray-900 uppercase tracking-tighter">Order Detail</span>
            <button onClick={onClose} className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition active:scale-90"><X size={20}/></button>
@@ -193,7 +187,21 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
                <div>
                   <h3 className="font-black text-[10px] text-gray-400 uppercase tracking-widest mb-2">Customer</h3>
                   <p className="text-sm font-black text-gray-900 leading-tight">{order.customer_name}</p>
+                  
+                  <div className="mt-3 space-y-1.5 border-t border-gray-200/50 pt-3">
+                     <div className="flex items-center gap-2 text-gray-500">
+                        <Phone size={12} className="text-emerald-600" />
+                        <span className="text-[11px] font-bold">{order.customer_phone}</span>
+                     </div>
+                     <div className="flex items-start gap-2 text-gray-500">
+                        <MapPin size={12} className="text-emerald-600 mt-0.5 shrink-0" />
+                        <span className="text-[11px] font-medium leading-relaxed">
+                           {order.customer_address || "No address provided"}
+                        </span>
+                     </div>
+                  </div>
                </div>
+               
                <div className="text-right">
                   <h3 className="font-black text-[10px] text-gray-400 uppercase tracking-widest mb-2">Status</h3>
                   <span className={`inline-block px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-tighter ${

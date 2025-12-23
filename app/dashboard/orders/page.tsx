@@ -15,7 +15,6 @@ export default function OrdersPage() {
   const [storeName, setStoreName] = useState("Your Store");
   const [search, setSearch] = useState("");
   
-  // ✨ REVENUE & EXPORT STATES
   const [monthlyRevenue, setMonthlyRevenue] = useState(0);
   const [totalCoinsGiven, setTotalCoinsGiven] = useState(0);
 
@@ -49,7 +48,6 @@ export default function OrdersPage() {
     setLoading(false);
   }
 
-  // ✨ REVENUE LOGIC: Calculates Net Cash vs Coins Given for the current month
   const calculateStats = (allOrders: any[]) => {
     const now = new Date();
     const currentMonth = now.getMonth();
@@ -69,15 +67,12 @@ export default function OrdersPage() {
     setTotalCoinsGiven(coins);
   };
 
-  // ✨ EXPORT LOGIC: Generates a CSV for the vendor's bookkeeping
   const downloadStatement = () => {
     const now = new Date();
     const monthName = now.toLocaleString('default', { month: 'long' });
     
-    // Header for the CSV
     let csvContent = "Order ID,Date,Customer,Subtotal,Coins Used,Cash Paid,Status\n";
 
-    // Only export completed orders for the current month
     const currentMonthData = orders.filter(o => {
       const d = new Date(o.created_at);
       return o.status === 'completed' && d.getMonth() === now.getMonth();
@@ -88,7 +83,7 @@ export default function OrdersPage() {
       const row = [
         o.id.slice(0, 8),
         new Date(o.created_at).toLocaleDateString(),
-        o.customer_name.replace(/,/g, ""), // Remove commas to prevent CSV breaking
+        o.customer_name.replace(/,/g, ""), 
         subtotal,
         o.coins_redeemed || 0,
         o.total_amount,
@@ -149,7 +144,6 @@ export default function OrdersPage() {
         </div>
       </div>
 
-      {/* ✨ REVENUE SUMMARY CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-gray-900 p-6 rounded-[2rem] text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10">
@@ -174,7 +168,6 @@ export default function OrdersPage() {
         </div>
       </div>
 
-      {/* ORDERS TABLE */}
       <div className="bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden shadow-sm">
         {filteredOrders.length === 0 ? (
            <div className="p-20 text-center text-gray-400">

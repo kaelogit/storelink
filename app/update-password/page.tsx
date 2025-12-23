@@ -9,12 +9,11 @@ import Navbar from "@/components/landing/Navbar";
 export default function UpdatePasswordPage() {
   const router = useRouter();
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // Added for parity with Signup
+  const [confirmPassword, setConfirmPassword] = useState(""); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  // Strength Check Logic for UI Feedback
   const isMinLength = password.length >= 8;
   const hasNumber = /\d/.test(password);
 
@@ -23,7 +22,6 @@ export default function UpdatePasswordPage() {
     setLoading(true);
     setError(null);
 
-    // --- PASSWORD STRENGTH & MATCH VALIDATION ---
     if (!isMinLength || !hasNumber) {
       setError("Please follow the security rules below.");
       setLoading(false);
@@ -35,7 +33,6 @@ export default function UpdatePasswordPage() {
       setLoading(false);
       return;
     }
-    // --------------------------------------------
 
     const { error } = await supabase.auth.updateUser({ password });
 
@@ -44,7 +41,6 @@ export default function UpdatePasswordPage() {
       setLoading(false);
     } else {
       setSuccess(true);
-      // Brief delay to show success state before moving to dashboard
       setTimeout(() => {
         router.push("/dashboard");
         router.refresh();
@@ -88,7 +84,6 @@ export default function UpdatePasswordPage() {
                   onChange={e => setPassword(e.target.value)} 
                 />
                 
-                {/* --- REAL-TIME PASSWORD RULES --- */}
                 <div className="mt-3 space-y-1.5 px-1">
                   <div className={`text-[10px] flex items-center gap-2 font-black uppercase tracking-widest ${isMinLength ? 'text-emerald-600' : 'text-gray-400'}`}>
                     <div className={`w-1.5 h-1.5 rounded-full ${isMinLength ? 'bg-emerald-500' : 'bg-gray-300'}`}></div>

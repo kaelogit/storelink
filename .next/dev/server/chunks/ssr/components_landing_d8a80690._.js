@@ -42,24 +42,24 @@ function Navbar() {
                                     className: "text-emerald-400"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 19,
+                                    lineNumber: 18,
                                     columnNumber: 15
                                 }, this),
                                 announcement
                             ]
                         }, i, true, {
                             fileName: "[project]/components/landing/Navbar.tsx",
-                            lineNumber: 18,
+                            lineNumber: 17,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/components/landing/Navbar.tsx",
-                    lineNumber: 16,
+                    lineNumber: 15,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/landing/Navbar.tsx",
-                lineNumber: 15,
+                lineNumber: 14,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -77,7 +77,7 @@ function Navbar() {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 32,
+                                        lineNumber: 29,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -85,13 +85,13 @@ function Navbar() {
                                         children: "StoreLink"
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 33,
+                                        lineNumber: 30,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 31,
+                                lineNumber: 28,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -105,14 +105,14 @@ function Navbar() {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                                lineNumber: 39,
+                                                lineNumber: 35,
                                                 columnNumber: 17
                                             }, this),
                                             " Marketplace"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 38,
+                                        lineNumber: 34,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -123,14 +123,14 @@ function Navbar() {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                                lineNumber: 44,
+                                                lineNumber: 39,
                                                 columnNumber: 17
                                             }, this),
                                             " My Wallet"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 43,
+                                        lineNumber: 38,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -141,14 +141,14 @@ function Navbar() {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                                lineNumber: 48,
+                                                lineNumber: 43,
                                                 columnNumber: 17
                                             }, this),
                                             " Login"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 47,
+                                        lineNumber: 42,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -160,19 +160,19 @@ function Navbar() {
                                                 size: 14
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                                lineNumber: 52,
+                                                lineNumber: 47,
                                                 columnNumber: 31
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 51,
+                                        lineNumber: 46,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 37,
+                                lineNumber: 33,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -184,29 +184,29 @@ function Navbar() {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 56,
                                         columnNumber: 29
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Navbar.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 56,
                                         columnNumber: 47
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 58,
+                                    lineNumber: 52,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Navbar.tsx",
-                                lineNumber: 57,
+                                lineNumber: 51,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Navbar.tsx",
-                        lineNumber: 28,
+                        lineNumber: 26,
                         columnNumber: 9
                     }, this),
                     isMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -223,14 +223,14 @@ function Navbar() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Navbar.tsx",
-                                            lineNumber: 76,
+                                            lineNumber: 69,
                                             columnNumber: 19
                                         }, this),
                                         " Shop Marketplace"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 71,
+                                    lineNumber: 64,
                                     columnNumber: 16
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -242,14 +242,14 @@ function Navbar() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Navbar.tsx",
-                                            lineNumber: 85,
+                                            lineNumber: 77,
                                             columnNumber: 19
                                         }, this),
                                         " My Empire Wallet"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 80,
+                                    lineNumber: 72,
                                     columnNumber: 16
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -261,21 +261,21 @@ function Navbar() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Navbar.tsx",
-                                            lineNumber: 93,
+                                            lineNumber: 85,
                                             columnNumber: 19
                                         }, this),
                                         " Vendor Login"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 88,
+                                    lineNumber: 80,
                                     columnNumber: 16
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "h-px bg-gray-100 my-2"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 96,
+                                    lineNumber: 88,
                                     columnNumber: 16
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -285,24 +285,24 @@ function Navbar() {
                                     children: "Create My Store"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Navbar.tsx",
-                                    lineNumber: 98,
+                                    lineNumber: 90,
                                     columnNumber: 16
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/landing/Navbar.tsx",
-                            lineNumber: 70,
+                            lineNumber: 63,
                             columnNumber: 14
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/landing/Navbar.tsx",
-                        lineNumber: 69,
+                        lineNumber: 62,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/landing/Navbar.tsx",
-                lineNumber: 27,
+                lineNumber: 25,
                 columnNumber: 7
             }, this)
         ]
@@ -1528,16 +1528,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 function Marketplace({ products, stores, onAddToCart }) {
     const [view, setView] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('products');
     const [search, setSearch] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
-    // --- 🛡️ AUDITED DATA LOOKUP ---
-    // We use this to reliably find the store's plan for every product
     const getProductStore = (storeId)=>{
         return stores.find((s)=>s.id === storeId);
     };
-    // --- 💎 15 DIAMOND / 5 PREMIUM LOGIC (TOTAL 20) ---
-    // 1. Initial Search Filter
     const searchMatchedProducts = products.filter((p)=>p.name.toLowerCase().includes(search.toLowerCase()));
     const searchMatchedStores = stores.filter((s)=>s.name.toLowerCase().includes(search.toLowerCase()));
-    // 2. PRODUCT BUCKETS
     const diamondPoolP = searchMatchedProducts.filter((p)=>{
         const s = getProductStore(p.store_id);
         return s?.subscription_plan === 'diamond';
@@ -1546,14 +1541,12 @@ function Marketplace({ products, stores, onAddToCart }) {
         const s = getProductStore(p.store_id);
         return s?.subscription_plan === 'premium';
     });
-    // Take up to 15 Diamonds, then fill the rest of the 20-slots with Premiums
     const finalDiamondsP = diamondPoolP.slice(0, 15);
     const finalPremiumsP = premiumPoolP.slice(0, 20 - finalDiamondsP.length);
     const filteredProducts = [
         ...finalDiamondsP,
         ...finalPremiumsP
     ];
-    // 3. VENDOR BUCKETS
     const diamondPoolS = searchMatchedStores.filter((s)=>s.subscription_plan === 'diamond');
     const premiumPoolS = searchMatchedStores.filter((s)=>s.subscription_plan === 'premium');
     const finalDiamondsS = diamondPoolS.slice(0, 15);
@@ -1576,7 +1569,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                             children: "Trending Now"
                         }, void 0, false, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 65,
+                            lineNumber: 58,
                             columnNumber: 12
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1584,13 +1577,13 @@ function Marketplace({ products, stores, onAddToCart }) {
                             children: "Verified drops from premium vendors."
                         }, void 0, false, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 66,
+                            lineNumber: 59,
                             columnNumber: 12
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 64,
+                    lineNumber: 57,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1605,7 +1598,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     children: "Items"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 71,
+                                    lineNumber: 64,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1614,13 +1607,13 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     children: "Stores"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 72,
+                                    lineNumber: 65,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 70,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1630,7 +1623,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     className: "absolute left-4 top-3.5 text-gray-400 w-4 h-4"
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 69,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1640,19 +1633,19 @@ function Marketplace({ products, stores, onAddToCart }) {
                                     onChange: (e)=>setSearch(e.target.value)
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 77,
+                                    lineNumber: 70,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 75,
+                            lineNumber: 68,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 69,
+                    lineNumber: 62,
                     columnNumber: 9
                 }, this),
                 view === 'products' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1677,7 +1670,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             className: "object-cover group-hover:scale-110 transition-transform duration-700"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 110,
+                                            lineNumber: 103,
                                             columnNumber: 21
                                         }, this),
                                         isFlash ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1688,14 +1681,14 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     fill: "currentColor"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 114,
+                                                    lineNumber: 107,
                                                     columnNumber: 26
                                                 }, this),
                                                 " LIVE DROP"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 113,
+                                            lineNumber: 106,
                                             columnNumber: 23
                                         }, this) : isDiamond && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "absolute top-2 left-2 bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md flex items-center gap-1 z-20 uppercase",
@@ -1705,14 +1698,14 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     className: "fill-white"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 118,
+                                                    lineNumber: 111,
                                                     columnNumber: 26
                                                 }, this),
                                                 " TOP"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 117,
+                                            lineNumber: 110,
                                             columnNumber: 23
                                         }, this),
                                         rewardCoins > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1723,7 +1716,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     fill: "white"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 124,
+                                                    lineNumber: 117,
                                                     columnNumber: 25
                                                 }, this),
                                                 " +₦",
@@ -1731,7 +1724,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 123,
+                                            lineNumber: 116,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1746,18 +1739,18 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                 strokeWidth: 3
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/Marketplace.tsx",
-                                                lineNumber: 132,
+                                                lineNumber: 125,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 128,
+                                            lineNumber: 121,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 109,
+                                    lineNumber: 102,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1768,7 +1761,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             children: product.name
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 137,
+                                            lineNumber: 130,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1779,7 +1772,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     children: store?.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 140,
+                                                    lineNumber: 133,
                                                     columnNumber: 25
                                                 }, this),
                                                 store?.verification_status === 'verified' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
@@ -1787,13 +1780,13 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     className: "text-blue-500 fill-blue-50"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 141,
+                                                    lineNumber: 134,
                                                     columnNumber: 71
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 139,
+                                            lineNumber: 132,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1809,7 +1802,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                                            lineNumber: 147,
+                                                            lineNumber: 140,
                                                             columnNumber: 28
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1820,14 +1813,14 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                                            lineNumber: 148,
+                                                            lineNumber: 141,
                                                             columnNumber: 28
                                                         }, this),
                                                         "                        "
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 146,
+                                                    lineNumber: 139,
                                                     columnNumber: 25
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     className: "text-emerald-700 font-black text-sm md:text-base",
@@ -1837,7 +1830,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 152,
+                                                    lineNumber: 145,
                                                     columnNumber: 25
                                                 }, this),
                                                 rewardCoins > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1845,31 +1838,31 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     children: "Earn Gold"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 156,
+                                                    lineNumber: 149,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 144,
+                                            lineNumber: 137,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 136,
+                                    lineNumber: 129,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, product.id, true, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 100,
+                            lineNumber: 93,
                             columnNumber: 17
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 87,
+                    lineNumber: 80,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid grid-rows-2 grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-3 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0",
@@ -1886,12 +1879,12 @@ function Marketplace({ products, stores, onAddToCart }) {
                                         className: "object-cover group-hover:scale-110 transition duration-500"
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Marketplace.tsx",
-                                        lineNumber: 173,
+                                        lineNumber: 166,
                                         columnNumber: 37
                                     }, this) : null
                                 }, void 0, false, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 172,
+                                    lineNumber: 165,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1905,7 +1898,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     children: store.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 170,
                                                     columnNumber: 22
                                                 }, this),
                                                 store.verification_status === 'verified' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$badge$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__BadgeCheck$3e$__["BadgeCheck"], {
@@ -1913,7 +1906,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     className: "text-blue-500 fill-blue-50 shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 179,
+                                                    lineNumber: 172,
                                                     columnNumber: 24
                                                 }, this),
                                                 store.subscription_plan === 'diamond' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gem$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Gem$3e$__["Gem"], {
@@ -1921,13 +1914,13 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     className: "text-purple-600 fill-purple-50 shrink-0"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 182,
+                                                    lineNumber: 175,
                                                     columnNumber: 24
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 176,
+                                            lineNumber: 169,
                                             columnNumber: 20
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1935,7 +1928,7 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             children: store.location || "Online Exclusive"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 185,
+                                            lineNumber: 178,
                                             columnNumber: 20
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1946,30 +1939,30 @@ function Marketplace({ products, stores, onAddToCart }) {
                                                     size: 12
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                                    lineNumber: 187,
+                                                    lineNumber: 180,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Marketplace.tsx",
-                                            lineNumber: 186,
+                                            lineNumber: 179,
                                             columnNumber: 20
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/landing/Marketplace.tsx",
-                                    lineNumber: 175,
+                                    lineNumber: 168,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, store.id, true, {
                             fileName: "[project]/components/landing/Marketplace.tsx",
-                            lineNumber: 167,
+                            lineNumber: 160,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 165,
+                    lineNumber: 158,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1983,29 +1976,29 @@ function Marketplace({ products, stores, onAddToCart }) {
                                 size: 18
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Marketplace.tsx",
-                                lineNumber: 197,
+                                lineNumber: 190,
                                 columnNumber: 34
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Marketplace.tsx",
-                        lineNumber: 196,
+                        lineNumber: 189,
                         columnNumber: 12
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/landing/Marketplace.tsx",
-                    lineNumber: 195,
+                    lineNumber: 188,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/landing/Marketplace.tsx",
-            lineNumber: 62,
+            lineNumber: 55,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/landing/Marketplace.tsx",
-        lineNumber: 61,
+        lineNumber: 54,
         columnNumber: 5
     }, this);
 }
@@ -2067,14 +2060,14 @@ function Footer() {
                                         className: "text-emerald-500"
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 30,
+                                        lineNumber: 29,
                                         columnNumber: 14
                                     }, this),
                                     " StoreLink."
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 29,
+                                lineNumber: 28,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2082,15 +2075,16 @@ function Footer() {
                                 children: "The engine for the Naija Hustle. We help you turn WhatsApp chats into a professional empire."
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 32,
+                                lineNumber: 31,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 28,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, this),
+                    "\\        ",
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex flex-col items-start",
                         children: [
@@ -2099,7 +2093,7 @@ function Footer() {
                                 children: "Platform"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 39,
+                                lineNumber: 37,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2112,12 +2106,12 @@ function Footer() {
                                             children: "Vendor Login"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 41,
+                                            lineNumber: 39,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 41,
+                                        lineNumber: 39,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2127,12 +2121,12 @@ function Footer() {
                                             children: "Start Selling"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 42,
+                                            lineNumber: 40,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 42,
+                                        lineNumber: 40,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2142,12 +2136,12 @@ function Footer() {
                                             children: "Marketplace"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 43,
+                                            lineNumber: 41,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 43,
+                                        lineNumber: 41,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2160,32 +2154,32 @@ function Footer() {
                                                     className: "text-amber-500"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/Footer.tsx",
-                                                    lineNumber: 47,
+                                                    lineNumber: 44,
                                                     columnNumber: 18
                                                 }, this),
                                                 " Empire Coins"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 46,
+                                            lineNumber: 43,
                                             columnNumber: 16
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 45,
+                                        lineNumber: 42,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 40,
+                                lineNumber: 38,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 38,
-                        columnNumber: 9
+                        lineNumber: 36,
+                        columnNumber: 10
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex flex-col items-start",
@@ -2195,7 +2189,7 @@ function Footer() {
                                 children: "Support"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 55,
+                                lineNumber: 51,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2208,12 +2202,12 @@ function Footer() {
                                             children: "Report Vendor"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 57,
+                                            lineNumber: 53,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 57,
+                                        lineNumber: 53,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2223,12 +2217,12 @@ function Footer() {
                                             children: "Safety Tips"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 58,
+                                            lineNumber: 54,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 58,
+                                        lineNumber: 54,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2238,24 +2232,24 @@ function Footer() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 59,
+                                            lineNumber: 55,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 59,
+                                        lineNumber: 55,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 56,
+                                lineNumber: 52,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 54,
+                        lineNumber: 50,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2266,7 +2260,7 @@ function Footer() {
                                 children: "Follow Us"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 65,
+                                lineNumber: 60,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2279,12 +2273,12 @@ function Footer() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 67,
+                                            lineNumber: 62,
                                             columnNumber: 159
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 67,
+                                        lineNumber: 62,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2294,12 +2288,12 @@ function Footer() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 68,
+                                            lineNumber: 63,
                                             columnNumber: 193
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 68,
+                                        lineNumber: 63,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2309,12 +2303,12 @@ function Footer() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 69,
+                                            lineNumber: 64,
                                             columnNumber: 156
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 69,
+                                        lineNumber: 64,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2325,24 +2319,24 @@ function Footer() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/components/landing/Footer.tsx",
-                                            lineNumber: 72,
+                                            lineNumber: 67,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/Footer.tsx",
-                                        lineNumber: 71,
+                                        lineNumber: 66,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 66,
+                                lineNumber: 61,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 64,
+                        lineNumber: 59,
                         columnNumber: 9
                     }, this)
                 ]
@@ -2358,7 +2352,7 @@ function Footer() {
                         children: "© 2025 StoreLink Inc. Lagos, Nigeria."
                     }, void 0, false, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 80,
+                        lineNumber: 75,
                         columnNumber: 10
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2370,7 +2364,7 @@ function Footer() {
                                 children: "About Us"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 82,
+                                lineNumber: 77,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2379,7 +2373,7 @@ function Footer() {
                                 children: "Privacy Policy"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 83,
+                                lineNumber: 78,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2388,19 +2382,19 @@ function Footer() {
                                 children: "Terms of Service"
                             }, void 0, false, {
                                 fileName: "[project]/components/landing/Footer.tsx",
-                                lineNumber: 84,
+                                lineNumber: 79,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/Footer.tsx",
-                        lineNumber: 81,
+                        lineNumber: 76,
                         columnNumber: 10
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/landing/Footer.tsx",
-                lineNumber: 79,
+                lineNumber: 74,
                 columnNumber: 7
             }, this)
         ]
@@ -2420,13 +2414,13 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shopping-bag.js [app-ssr] (ecmascript) <export default as ShoppingBag>"); // ✨ Added Icons
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shopping-bag.js [app-ssr] (ecmascript) <export default as ShoppingBag>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check-big.js [app-ssr] (ecmascript) <export default as CheckCircle>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$coins$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Coins$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/coins.js [app-ssr] (ecmascript) <export default as Coins>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/zap.js [app-ssr] (ecmascript) <export default as Zap>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-ssr] (ecmascript) <export default as ArrowRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$context$2f$CartContext$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/context/CartContext.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)"); // ✨ Added Link
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$landing$2f$Navbar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/landing/Navbar.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$landing$2f$Hero$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/landing/Hero.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$landing$2f$ValueProp$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/landing/ValueProp.tsx [app-ssr] (ecmascript)");
@@ -2507,7 +2501,7 @@ function LandingPageWrapper({ products, stores }) {
                                                 fill: "currentColor"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                lineNumber: 53,
+                                                lineNumber: 52,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2515,13 +2509,13 @@ function LandingPageWrapper({ products, stores }) {
                                                 children: "The StoreLink Economy"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                lineNumber: 54,
+                                                lineNumber: 53,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                        lineNumber: 52,
+                                        lineNumber: 51,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -2530,7 +2524,7 @@ function LandingPageWrapper({ products, stores }) {
                                             "Shop. Earn. ",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                lineNumber: 57,
+                                                lineNumber: 56,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2538,13 +2532,13 @@ function LandingPageWrapper({ products, stores }) {
                                                 children: "Empire."
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                lineNumber: 57,
+                                                lineNumber: 56,
                                                 columnNumber: 35
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                        lineNumber: 56,
+                                        lineNumber: 55,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2552,7 +2546,7 @@ function LandingPageWrapper({ products, stores }) {
                                         children: "Stop just spending money. Start building your Empire. Earn digital gold on every purchase and redeem it as cash discounts across our entire network."
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                        lineNumber: 59,
+                                        lineNumber: 58,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2565,19 +2559,19 @@ function LandingPageWrapper({ products, stores }) {
                                                 className: "group-hover:translate-x-2 transition-transform"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                lineNumber: 63,
+                                                lineNumber: 62,
                                                 columnNumber: 30
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 61,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                lineNumber: 51,
+                                lineNumber: 50,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2587,7 +2581,7 @@ function LandingPageWrapper({ products, stores }) {
                                         className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-80 h-64 md:h-80 bg-amber-500/20 blur-[100px] rounded-full"
                                     }, void 0, false, {
                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                        lineNumber: 69,
+                                        lineNumber: 67,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2600,12 +2594,12 @@ function LandingPageWrapper({ products, stores }) {
                                                     className: "text-white"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                    lineNumber: 73,
+                                                    lineNumber: 71,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                lineNumber: 72,
+                                                lineNumber: 70,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2618,12 +2612,12 @@ function LandingPageWrapper({ products, stores }) {
                                                             fill: "currentColor"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                            lineNumber: 77,
+                                                            lineNumber: 75,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                        lineNumber: 76,
+                                                        lineNumber: 74,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2634,7 +2628,7 @@ function LandingPageWrapper({ products, stores }) {
                                                                 children: "Universal Cashback"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                                lineNumber: 80,
+                                                                lineNumber: 78,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2642,19 +2636,19 @@ function LandingPageWrapper({ products, stores }) {
                                                                 children: "Earn at Store A • Spend at Store B"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                                lineNumber: 81,
+                                                                lineNumber: 79,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                        lineNumber: 79,
+                                                        lineNumber: 77,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                lineNumber: 75,
+                                                lineNumber: 73,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2664,14 +2658,14 @@ function LandingPageWrapper({ products, stores }) {
                                                         className: "h-2 w-full bg-white/5 rounded-full"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                        lineNumber: 85,
+                                                        lineNumber: 83,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "h-2 w-3/4 bg-white/5 rounded-full"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                        lineNumber: 86,
+                                                        lineNumber: 84,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2682,7 +2676,7 @@ function LandingPageWrapper({ products, stores }) {
                                                                 children: "Empire Balance"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                                lineNumber: 88,
+                                                                lineNumber: 86,
                                                                 columnNumber: 22
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2690,47 +2684,47 @@ function LandingPageWrapper({ products, stores }) {
                                                                 children: "₦18,500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                                lineNumber: 89,
+                                                                lineNumber: 87,
                                                                 columnNumber: 22
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                        lineNumber: 87,
+                                                        lineNumber: 85,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                                lineNumber: 84,
+                                                lineNumber: 82,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                        lineNumber: 71,
+                                        lineNumber: 69,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                                lineNumber: 67,
+                                lineNumber: 66,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                        lineNumber: 49,
+                        lineNumber: 48,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                    lineNumber: 48,
+                    lineNumber: 47,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                lineNumber: 47,
+                lineNumber: 46,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$landing$2f$Marketplace$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2739,17 +2733,17 @@ function LandingPageWrapper({ products, stores }) {
                 onAddToCart: handleAddToCart
             }, void 0, false, {
                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                lineNumber: 99,
+                lineNumber: 97,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$landing$2f$TrustCenter$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                lineNumber: 101,
+                lineNumber: 99,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$landing$2f$Footer$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                lineNumber: 102,
+                lineNumber: 100,
                 columnNumber: 7
             }, this),
             toast.show && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2760,7 +2754,7 @@ function LandingPageWrapper({ products, stores }) {
                         className: "text-green-400"
                     }, void 0, false, {
                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                        lineNumber: 106,
+                        lineNumber: 104,
                         columnNumber: 12
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2768,13 +2762,13 @@ function LandingPageWrapper({ products, stores }) {
                         children: toast.msg
                     }, void 0, false, {
                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                        lineNumber: 107,
+                        lineNumber: 105,
                         columnNumber: 12
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                lineNumber: 105,
+                lineNumber: 103,
                 columnNumber: 9
             }, this),
             cartCount > 0 && !isCartOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2785,7 +2779,7 @@ function LandingPageWrapper({ products, stores }) {
                         size: 24
                     }, void 0, false, {
                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                        lineNumber: 113,
+                        lineNumber: 111,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2793,13 +2787,13 @@ function LandingPageWrapper({ products, stores }) {
                         children: cartCount
                     }, void 0, false, {
                         fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                        lineNumber: 114,
+                        lineNumber: 112,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/landing/LandingPageWrapper.tsx",
-                lineNumber: 112,
+                lineNumber: 110,
                 columnNumber: 9
             }, this)
         ]

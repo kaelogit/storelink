@@ -42,13 +42,14 @@ export default function OnboardingPage() {
 
     if (!user) return;
 
+    // ✨ TRIAL CALCULATION
     const fourteenDaysFromNow = new Date();
     fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14);
 
-    // --- LINE BY LINE AUDIT FIX INSERTED BELOW ---
+    // --- LINE BY LINE AUDIT FIX ---
     const { error } = await supabase.from("stores").insert({
       owner_id: user.id,
-      owner_email: user.email, // <--- CRITICAL FIX: Added to trigger automated welcome email
+      owner_email: user.email, // 👈 ADDED THIS: Critical for Godmode Admin View
       name: formData.name,
       slug: formData.slug,
       category: formData.category,
@@ -56,9 +57,9 @@ export default function OnboardingPage() {
       whatsapp_number: formData.whatsapp,
       description: formData.description,
       subscription_plan: 'premium', 
-      subscription_expiry: fourteenDaysFromNow.toISOString() 
+      subscription_expiry: fourteenDaysFromNow.toISOString(), 
+      status: 'active'
     });
-    // --- END OF FIX ---
 
     if (error) {
       setErrorMsg(error.message); 

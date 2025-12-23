@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 import { 
   Check, Crown, Star, Shield, AlertTriangle, Loader2, 
-  ArrowLeft, ExternalLink, Lock, PartyPopper, Trophy, 
-  Sparkles, Download, Receipt, Printer, LayoutDashboard 
+  ArrowLeft, Lock, PartyPopper, Trophy, 
+  Sparkles, Download, LayoutDashboard 
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic"; 
@@ -58,14 +58,27 @@ export default function SubscriptionPage() {
   }, [router]);
 
   const handleSuccess = async (reference: any, plan: 'premium' | 'diamond') => {
-    const nextMonth = new Date();
-    nextMonth.setDate(nextMonth.getDate() + 30);
+    const now = new Date();
+    const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+    let newExpiryDate: Date;
+
+    const getRank = (p: string) => p === 'diamond' ? 3 : p === 'premium' ? 2 : 1;
+    const currentRank = getRank(currentPlan);
+    const newRank = getRank(plan);
+
+    if (newRank > currentRank) {
+      newExpiryDate = new Date(now.getTime() + thirtyDaysInMs);
+    } else if (plan === currentPlan && expiryDate && new Date(expiryDate) > now) {
+      newExpiryDate = new Date(new Date(expiryDate).getTime() + thirtyDaysInMs);
+    } else {
+      newExpiryDate = new Date(now.getTime() + thirtyDaysInMs);
+    }
 
     const { error } = await supabase
       .from("stores")
       .update({ 
         subscription_plan: plan,
-        subscription_expiry: nextMonth.toISOString()
+        subscription_expiry: newExpiryDate.toISOString()
       })
       .eq("owner_id", user.id);
 
@@ -74,6 +87,8 @@ export default function SubscriptionPage() {
     } else {
       setReceiptRef(reference.reference);
       setUpgradedPlan(plan);
+      setExpiryDate(newExpiryDate.toISOString());
+      setCurrentPlan(plan); 
       setShowSuccessModal(true);
     }
   };
@@ -286,6 +301,7 @@ export default function SubscriptionPage() {
         )}
 
         <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {/* STARTER */}
           <div className={`bg-white p-8 rounded-3xl border-2 ${currentPlan === 'free' && !isExpired ? 'border-gray-900 shadow-xl' : 'border-transparent shadow-sm'} flex flex-col`}>
               <div className="mb-4 bg-gray-100 w-12 h-12 rounded-xl flex items-center justify-center"><Shield className="text-gray-600"/></div>
               <h3 className="text-xl font-bold text-gray-900">Starter</h3>
@@ -301,6 +317,7 @@ export default function SubscriptionPage() {
               </button>
           </div>
 
+          {/* PREMIUM */}
           <div className={`bg-white p-8 rounded-3xl border-2 relative overflow-hidden ${currentPlan === 'premium' && !isExpired ? 'border-blue-500 shadow-xl' : 'border-transparent shadow-sm'} flex flex-col`}>
               <div className="mb-4 bg-blue-50 w-12 h-12 rounded-xl flex items-center justify-center"><Crown className="text-blue-600"/></div>
               <h3 className="text-xl font-bold text-gray-900">Premium</h3>
@@ -316,12 +333,13 @@ export default function SubscriptionPage() {
               {(currentRank(currentPlan) > 2 && !isExpired) ? (
                   <button disabled className="w-full py-3 rounded-xl font-bold text-sm bg-gray-100 text-gray-400 cursor-not-allowed">Diamond Active</button>
               ) : (currentRank(currentPlan) === 2 && !isExpired) ? (
-                  <button disabled className="w-full py-3 rounded-xl font-bold text-sm bg-blue-50 text-blue-300">Current Plan</button>
+                  <PaystackButton {...getPaystackConfig(2500, 'premium')} className="w-full py-3 rounded-xl font-bold text-sm bg-blue-600 text-white hover:bg-blue-700 transition shadow-lg shadow-blue-200" />
               ) : (
                   <PaystackButton {...getPaystackConfig(2500, 'premium')} className="w-full py-3 rounded-xl font-bold text-sm bg-blue-600 text-white hover:bg-blue-700 transition shadow-lg shadow-blue-200" />
               )}
           </div>
 
+          {/* DIAMOND */}
           <div className={`bg-gray-900 p-8 rounded-3xl border-2 relative overflow-hidden ${currentPlan === 'diamond' && !isExpired ? 'border-purple-500 shadow-2xl' : 'border-gray-800 shadow-xl'} flex flex-col text-white`}>
               <div className="absolute top-0 right-0 bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-lg">POPULAR</div>
               <div className="mb-4 bg-gray-800 w-12 h-12 rounded-xl flex items-center justify-center"><Star className="text-purple-400 fill-purple-400"/></div>
@@ -336,7 +354,7 @@ export default function SubscriptionPage() {
                 <li className="flex gap-3"><Check size={18} className="text-purple-400 shrink-0"/> <span>Dedicated Account Manager</span></li>
               </ul>
               {(currentRank(currentPlan) === 3 && !isExpired) ? (
-                  <button disabled className="w-full py-3 rounded-xl font-bold text-sm bg-gray-800 text-gray-500 cursor-not-allowed border border-gray-700">Current Plan</button>
+                   <PaystackButton {...getPaystackConfig(4000, 'diamond')} className="w-full py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 transition shadow-lg shadow-purple-900/50" />
               ) : (
                   <PaystackButton {...getPaystackConfig(4000, 'diamond')} className="w-full py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:opacity-90 transition shadow-lg shadow-purple-900/50" />
               )}

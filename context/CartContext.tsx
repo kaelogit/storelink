@@ -12,8 +12,8 @@ export type CartItem = {
 interface CartContextType {
   cart: CartItem[];
   cartCount: number;
-  cartTotal: number; // Raw subtotal
-  finalTotal: number; // Final price customer pays
+  cartTotal: number; 
+  finalTotal: number; 
   addToCart: (product: Product, store: Store) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
@@ -22,11 +22,11 @@ interface CartContextType {
   setIsCartOpen: (isOpen: boolean) => void;
   openCart: () => void;
   closeCart: () => void;
-  // ✨ EMPIRE ECONOMY PROPERTIES
+
   useCoins: boolean;
   setUseCoins: (use: boolean) => void;
-  redeemableCoins: number; // Actual amount being deducted (Max 15%)
-  actualBalance: number;   // Full user bank balance
+  redeemableCoins: number;
+  actualBalance: number;  
   setActualBalance: Dispatch<SetStateAction<number>>; 
 }
 
@@ -37,12 +37,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   
-  // ✨ EMPIRE STATES
   const [useCoins, setUseCoins] = useState(false);
-  // 🔥 BALANCE ALWAYS STARTS AT 0 (Safety first)
   const [userCoinBalance, setUserCoinBalance] = useState(0);
 
-  // 1. ✨ INITIAL LOAD: Only pull the Cart items
   useEffect(() => {
     const savedCart = localStorage.getItem("storelink_cart");
     
@@ -53,20 +50,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
       } catch (e) { console.error("Cart parse error", e); }
     }
     
-    // 🔥 REMOVED: No longer reading savedBalance from localStorage. 
-    // This kills the "ghost coin" reload bug.
     setIsInitialized(true);
   }, []);
 
-  // 2. PERSISTENCE: Only save Cart items
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem("storelink_cart", JSON.stringify(cart));
-      // 🔥 REMOVED: No longer saving userCoinBalance to localStorage.
     }
   }, [cart, isInitialized]);
 
-  // 3. ✨ SAFETY: Reset "Apply Coins" toggle on page refresh
   useEffect(() => {
     setUseCoins(false);
   }, []);
@@ -105,15 +97,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
-  // --- CALCULATIONS ---
   const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
   const cartTotal = cart.reduce((total, item) => total + (item.product.price * item.qty), 0);
 
-  // --- ✨ EMPIRE 5% SAFETY LOGIC ---
   const MAX_DISCOUNT_PERCENTAGE = 0.05;
   const maxAllowedDiscount = Math.floor(cartTotal * MAX_DISCOUNT_PERCENTAGE);
 
-  // Strict check: Balance must be current
   const coinsToRedeem = (useCoins && cart.length > 0) 
     ? Math.min(userCoinBalance, maxAllowedDiscount) 
     : 0;

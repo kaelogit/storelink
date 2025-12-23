@@ -41,14 +41,6 @@ export const metadata: Metadata = {
     description: "Empowering Nigerian vendors to sell faster on WhatsApp.",
     url: 'https://storelink.ng',
     siteName: "StoreLink",
-    images: [
-      {
-        url: 'https://storelink.ng/og-image.png', 
-        width: 1200,
-        height: 630,
-        alt: 'StoreLink Empire - The Engine for Naija Hustle',
-      },
-    ],
     locale: "en_NG",
     type: "website",
   },
@@ -56,20 +48,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "StoreLink | The Engine for Naija Hustle",
     description: "The professional way to manage your WhatsApp orders.",
-    images: ['https://storelink.ng/og-image.png'], 
     creator: '@kaelodev', 
   },
   verification: {
     google: 'R8d8mi7fxJ-XZ0yvJ0brHnx6cZZqo78BI1iGl-sDVcY'
-  },
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/icon.png', type: 'image/png' }, 
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png' },
-    ],
   },
   category: 'business',
 };
@@ -82,7 +64,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased selection:bg-emerald-100 selection:text-emerald-900`}>
-        {/* PROVIDER MUST BE AT THE TOP */}
         <CartProvider>
           <main className="min-h-screen">
             {children}

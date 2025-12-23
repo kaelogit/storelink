@@ -22,7 +22,6 @@ export default function WalletPage() {
   const [pinError, setPinError] = useState("");
   const [showPin, setShowPin] = useState(false);
 
-  // 1. INITIAL LOAD: Pull from localStorage
   useEffect(() => {
     const savedPhone = localStorage.getItem('storelink_user_phone');
     if (savedPhone) {
@@ -34,12 +33,10 @@ export default function WalletPage() {
     }
   }, []);
 
-  // 2. 🔥 IDENTIFY: Normalizes phone to 10 digits to find the one true wallet
   const fetchWalletStatus = async (userPhone: string) => {
     setLoading(true);
     setPinError("");
     
-    // Normalize to last 10 digits
     const cleanPhone = userPhone.replace(/\D/g, '').slice(-10);
 
     if (cleanPhone.length < 10) {
@@ -65,13 +62,11 @@ export default function WalletPage() {
         setWalletState('locked');
       }
     } else {
-      // No wallet found for those 10 digits
       setWalletState('empty');
     }
     setLoading(false);
   };
 
-  // 3. SETUP PIN: Updates using normalized phone
   const handleSetPin = async () => {
     setPinError("");
     if (pin.length !== 4) {
@@ -108,7 +103,6 @@ export default function WalletPage() {
     }
   };
 
-  // 4. UNLOCK: Fetches history using transaction_type column
   const unlockAndFetchHistory = async () => {
     setLoading(true);
     const cleanPhone = phoneNumber.replace(/\D/g, '').slice(-10);
@@ -180,10 +174,10 @@ export default function WalletPage() {
             <p className="text-sm text-gray-500 font-medium leading-relaxed text-center">Create a 4-digit PIN. This is your permanent key to spending Empire Coins. **Don't lose it.**</p>
             <div className="space-y-4">
               <div className="relative">
-                <input type={showPin ? "text" : "password"} maxLength={4} placeholder="Create PIN" className="w-full p-5 bg-gray-50 rounded-3xl border-2 border-transparent focus:border-emerald-500 outline-none text-center text-3xl font-black tracking-[0.5em]" onChange={(e) => setPin(e.target.value)} />
+                <input type={showPin ? "text" : "password"} maxLength={4} placeholder="Create PIN" className="w-full p-5 bg-gray-50 rounded-3xl border-2 border-transparent focus:border-emerald-500 outline-none text-center text-1xl font-black tracking-[0.5em]" onChange={(e) => setPin(e.target.value)} />
                 <button onClick={() => setShowPin(!showPin)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">{showPin ? <EyeOff size={20} /> : <Eye size={20} />}</button>
               </div>
-              <input type="password" maxLength={4} placeholder="Confirm PIN" className="w-full p-5 bg-gray-50 rounded-3xl border-2 border-transparent focus:border-emerald-500 outline-none text-center text-3xl font-black tracking-[0.5em]" onChange={(e) => setConfirmPin(e.target.value)} />
+              <input type="password" maxLength={4} placeholder="Confirm PIN" className="w-full p-5 bg-gray-50 rounded-3xl border-2 border-transparent focus:border-emerald-500 outline-none text-center text-1xl font-black tracking-[0.5em]" onChange={(e) => setConfirmPin(e.target.value)} />
               {pinError && <p className="text-red-500 text-xs font-bold text-center bg-red-50 p-3 rounded-2xl border border-red-100">{pinError}</p>}
               <button onClick={handleSetPin} className="w-full bg-emerald-600 text-white py-5 rounded-3xl font-bold shadow-emerald-200 shadow-xl hover:bg-emerald-700 transition active:scale-95">Lock It In</button>
             </div>
@@ -198,7 +192,7 @@ export default function WalletPage() {
               <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mt-1 text-center">Enter Secret PIN to Continue</p>
             </div>
             <div className="space-y-4">
-              <input type="password" maxLength={4} autoFocus placeholder="••••" className="w-full p-5 bg-gray-50 rounded-3xl border-none text-center text-5xl font-black tracking-[0.5em] outline-none focus:ring-2 ring-emerald-500" value={pin} onChange={(e) => setPin(e.target.value)} />
+              <input type="password" maxLength={4} autoFocus placeholder="••••" className="w-full p-5 bg-gray-50 rounded-3xl border-none text-center text-2xl font-black tracking-[0.5em] outline-none focus:ring-2 ring-emerald-500" value={pin} onChange={(e) => setPin(e.target.value)} />
               {pinError && <p className="text-red-500 text-xs font-bold bg-red-50 p-2 rounded-lg">{pinError}</p>}
               <button onClick={handleVerifyPin} className="w-full bg-gray-900 text-white py-5 rounded-3xl font-bold shadow-lg active:scale-95 transition-all">Authenticate Access</button>
               <button onClick={() => setWalletState('identify')} className="text-[10px] font-black text-gray-400 underline uppercase tracking-widest">Switch Account</button>

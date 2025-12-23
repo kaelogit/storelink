@@ -25,20 +25,18 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(Math.ceil(initialProducts.length / PAGE_SIZE));
   const [search, setSearch] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState(""); // ✨ Fix: For Global Database Search
+  const [debouncedSearch, setDebouncedSearch] = useState(""); 
   const [selectedCategory, setSelectedCategory] = useState("all"); 
   const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
   const [flashOnly, setFlashOnly] = useState(false); 
   const [isJumping, setIsJumping] = useState(false);
 
-  // --- NEW: SCROLL DIRECTION LOGIC (FIXED) ---
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      // Hide bar if scrolling down > 100px, show if scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
       } else {
@@ -50,15 +48,13 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // --- ✨ SEARCH DEBOUNCE LOGIC ---
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-    }, 500); // Wait 500ms before querying Supabase
+    }, 500); 
     return () => clearTimeout(handler);
   }, [search]);
 
-  // --- 2. LOGIC AUDIT: REWARDS & PROTECTION ---
   const trendingDrops = useMemo(() => {
     const now = new Date();
     return products.filter(p => 
@@ -109,10 +105,8 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
      return 1;
   };
 
-  // --- 3. DATA FETCHING (AUDITED FOR SERVER-SIDE SEARCH) ---
   useEffect(() => {
     const fetchFiltered = async () => {
-      // If we are resetting to initial view with no filters, just use initialProducts
       if (selectedCategory === "all" && !debouncedSearch && !flashOnly) {
         setProducts(initialProducts);
         setHasMore(true);
@@ -133,12 +127,10 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
         query = query.eq("stores.category", selectedCategory);
       }
 
-      // ✨ FIX: Real database search across all products
       if (debouncedSearch) {
         query = query.ilike("name", `%${debouncedSearch}%`);
       }
 
-      // ✨ FIX: Real database filter for flash drops
       if (flashOnly) {
         query = query.gt("flash_drop_expiry", new Date().toISOString());
       }
@@ -146,7 +138,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
       const { data } = await query;
       let processed = applyDowngradeProtection(data || []);
       
-      // Sort by rank if searching
       if (debouncedSearch) {
         processed = processed.sort((a, b) => getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan));
       }
@@ -190,7 +181,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
       
-      {/* TRENDING SECTION: PRESERVED DESIGN */}
       {trendingDrops.length > 0 && !search && !flashOnly && (
         <div className="mb-10 animate-in fade-in slide-in-from-top-4 duration-1000">
            <div className="flex items-center gap-2 mb-4 px-1">
@@ -224,7 +214,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
         </div>
       )}
 
-      {/* FILTER BAR: DYNAMIC VISIBILITY ON SCROLL (THE FIX) */}
       <div className={`sticky top-16 z-30 bg-gray-50/95 backdrop-blur-sm py-4 -mx-4 px-4 border-b border-gray-200 mb-6 transition-all duration-300 ease-in-out ${
           isVisible 
           ? "translate-y-0 opacity-100" 
@@ -270,7 +259,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
         </div>
       </div>
 
-      {/* GLOBAL GRID: THE CORE DATA MAPPING */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6">
         {products.map((product: any) => {
           const isFlash = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
@@ -342,7 +330,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
         })}
       </div>
 
-      {/* FOOTER ACTIONS: PAGINATION */}
       {hasMore && products.length >= 12 && (
         <div className="mt-12 flex justify-center">
           <button 

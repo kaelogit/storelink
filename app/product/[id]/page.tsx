@@ -11,7 +11,6 @@ import {
   Truck, ArrowRight, Zap, Package, ShoppingBag, Coins, TrendingUp 
 } from "lucide-react";
 
-// --- TYPE DEFINITION (Audit: Next.js 16 Promise Compliance) ---
 type PageProps = {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -19,7 +18,6 @@ type PageProps = {
 
 export const dynamic = 'force-dynamic';
 
-// --- 1. METADATA AUDIT (SEO Optimized) ---
 export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const params = await props.params; 
   const { data: product } = await supabase
@@ -47,7 +45,6 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
   };
 }
 
-// --- 2. MAIN PRODUCT VIEW (Fully Audited) ---
 export default async function ProductPage(props: PageProps) {
   const params = await props.params; 
   const { data: product } = await supabase
@@ -70,7 +67,6 @@ export default async function ProductPage(props: PageProps) {
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col">
       
-      {/* GLOBAL HEADER */}
       <ProductHeader 
         storeSlug={store.slug}
         storeLogo={store.logo_url} />
@@ -78,7 +74,6 @@ export default async function ProductPage(props: PageProps) {
       <main className="flex-1 max-w-6xl mx-auto w-full p-4 md:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
           
-          {/* LEFT: GALLERY */}
           <div className="relative">
              <ProductGallery 
                 images={product.image_urls || [product.image_url]} 
@@ -86,7 +81,6 @@ export default async function ProductPage(props: PageProps) {
              />
           </div>
 
-          {/* RIGHT: CONTENT */}
           <div className="flex flex-col justify-center">
              <div className="mb-8">
                 
@@ -124,7 +118,6 @@ export default async function ProductPage(props: PageProps) {
                 </div>
              </div>
              
-             {/* PRODUCT INFO BLOCK */}
              <div className="bg-gray-50/50 p-6 rounded-[2.5rem] border border-gray-100 mb-6 relative">
                 <div className="absolute -top-3 left-8 bg-white px-3 py-1 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border border-gray-100 rounded-full shadow-sm">Product Intel</div>
                 <div className="prose prose-sm text-gray-600 leading-relaxed font-bold uppercase text-xs">
@@ -132,7 +125,6 @@ export default async function ProductPage(props: PageProps) {
                 </div>
              </div>
 
-             {/* 📍 VENDOR LOCATION BADGE (Ships From) */}
              <div className="mb-6 flex items-center gap-4 p-4 bg-emerald-50/30 rounded-[2rem] border border-emerald-100/50 group transition-all hover:bg-emerald-50">
                 <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm text-emerald-600 border border-emerald-50 group-hover:scale-110 transition-transform">
                   <MapPin size={20} />
@@ -150,12 +142,10 @@ export default async function ProductPage(props: PageProps) {
                 </div>
              </div>
 
-             {/* ACTIONS */}
              <div className="mb-8">
                 <AddToCartButton product={product} store={store} />
              </div>
 
-             {/* ✨ EMPIRE REWARD HIGHLIGHT */}
              {store.loyalty_enabled && potentialReward > 0 && (
                 <div className="mb-10 bg-amber-500 text-white rounded-[2.5rem] p-6 flex items-center justify-between shadow-2xl shadow-amber-200 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                   <div className="flex items-center gap-5">
@@ -177,7 +167,6 @@ export default async function ProductPage(props: PageProps) {
                 </div>
              )}
 
-             {/* TRUST BADGES */}
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-white p-5 rounded-[2rem] border border-gray-100 shadow-sm flex items-start gap-4 hover:border-blue-200 transition-colors">
                    <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl"><Truck size={20}/></div>

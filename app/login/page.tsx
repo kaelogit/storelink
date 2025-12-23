@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { Loader2, ArrowLeft, ShieldCheck } from "lucide-react"; // Added ShieldCheck
+import { Loader2, ArrowLeft, ShieldCheck } from "lucide-react"; 
 import Link from "next/link";
 import Navbar from "@/components/landing/Navbar";
 
@@ -40,7 +40,7 @@ export default function LoginPage() {
       const has2FA = factors?.all?.some(f => f.status === 'verified');
       
       if (has2FA) {
-        setNeedsMFA(true); // Stop! Show 2FA screen
+        setNeedsMFA(true); 
         setLoading(false);
         return; 
       }
@@ -91,12 +91,10 @@ export default function LoginPage() {
       <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-80px)]">
         <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
           
-          {/* Back Button (Always visible) */}
           <Link href="/" className="flex items-center gap-2 text-sm text-gray-500 mb-6 hover:text-gray-900">
              <ArrowLeft size={16}/> Back to Home
           </Link>
           
-          {/* ----------------- VIEW 1: NORMAL LOGIN ----------------- */}
           {!needsMFA && (
             <>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back!</h1>
@@ -132,7 +130,6 @@ export default function LoginPage() {
             </>
           )}
 
-          {/* ----------------- VIEW 2: 2FA CHALLENGE ----------------- */}
           {needsMFA && (
             <div className="animate-in fade-in zoom-in duration-300">
               <div className="text-center mb-6">

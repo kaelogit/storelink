@@ -32,7 +32,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="flex min-h-screen bg-[#0a0a0a]">
       
-      {/* 📱 MOBILE HEADER (New - Only visible on phone) */}
       <div className="md:hidden fixed top-0 left-0 right-0 bg-[#0a0a0a] border-b border-gray-800 p-4 flex justify-between items-center z-30">
          <div className="flex items-center gap-2 text-emerald-500">
             <ShieldAlert size={24} />
@@ -93,7 +92,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       )}
 
-      {/* 💻 DESKTOP SIDEBAR (Your Exact Original Code) */}
       <aside className="w-64 border-r border-gray-800 bg-gray-900/50 hidden md:flex flex-col fixed h-full z-20">
         <div className="p-6 border-b border-gray-800">
            <div className="flex items-center gap-2 text-emerald-500">

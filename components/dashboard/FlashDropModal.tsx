@@ -14,7 +14,7 @@ interface FlashDropModalProps {
 export default function FlashDropModal({ product, isOpen, onClose, onSuccess }: FlashDropModalProps) {
   const [loading, setLoading] = useState(false);
   const [dropPrice, setDropPrice] = useState("");
-  const [duration, setDuration] = useState("1"); // Default 1 hour
+  const [duration, setDuration] = useState("1"); 
   const [status, setStatus] = useState("");
 
   if (!isOpen || !product) return null;

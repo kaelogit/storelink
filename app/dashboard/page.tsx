@@ -4,7 +4,8 @@ import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import DashboardClient from "@/components/dashboard/DashboardClient";
-import { Loader2 } from "lucide-react";
+import { Loader2, Gift, Zap, ChevronRight, AlertTriangle, ShieldCheck} from "lucide-react";
+import Link from "next/link";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function DashboardPage() {
   const [orders, setOrders] = useState<any[]>([]);
   const [stats, setStats] = useState({ revenue: 0, productCount: 0, views: 0 });
   const [isLocked, setIsLocked] = useState(false); 
+  const [daysLeft, setDaysLeft] = useState<number | null>(null);
 
   const loadDashboardData = useCallback(async () => {
     try {
@@ -41,6 +43,10 @@ export default function DashboardPage() {
       if (storeData.subscription_expiry) {
         const expiry = new Date(storeData.subscription_expiry);
         const now = new Date();
+        const diff = expiry.getTime() - now.getTime();
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        
+        setDaysLeft(days > 0 ? days : 0);
         setIsLocked(expiry < now);
       }
 
@@ -66,7 +72,6 @@ export default function DashboardPage() {
 
       const count = productsData?.length || 0;
       
-      // Set Stats
       setStats({ 
         revenue, 
         productCount: count, 
@@ -85,28 +90,11 @@ export default function DashboardPage() {
 
     const channel = supabase
       .channel('dashboard-updates')
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'orders' },
-        (payload) => {
-          console.log('Order update!', payload);
-          loadDashboardData(); 
-        }
-      )
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'stores' },
-        (payload) => {
-          console.log('View count update!', payload);
-          loadDashboardData();
-        }
-      )
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => loadDashboardData())
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'stores' }, () => loadDashboardData())
       .subscribe();
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
-
+    return () => { supabase.removeChannel(channel); };
   }, [loadDashboardData]);
 
   if (loading) {
@@ -120,12 +108,16 @@ export default function DashboardPage() {
   if (!store) return null;
 
   return (
-    <DashboardClient 
-      store={store} 
-      initialProducts={products} 
-      initialOrders={orders}
-      stats={stats}
-      isLocked={isLocked} 
-    />
+    <div className="min-h-screen bg-gray-50 p-4 md:p-8 space-y-6">
+      
+
+      <DashboardClient 
+        store={store} 
+        initialProducts={products} 
+        initialOrders={orders}
+        stats={stats}
+        isLocked={isLocked} 
+      />
+    </div>
   );
 }

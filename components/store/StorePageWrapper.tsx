@@ -5,14 +5,14 @@ import { ShoppingBag, X, MessageCircle, CheckCircle, Search, ImageIcon } from "l
 import { Product, Store } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import StoreHeader from "./StoreHeader"; // <--- Import the new Header
+import StoreHeader from "./StoreHeader";
 
 interface StorePageWrapperProps {
   store: Store;
-  products: any[]; // Changed to 'any[]' to accommodate categories(name)
+  products: any[]; 
 }
 
-type CartItem = { product: any; qty: number }; // Changed product type to any
+type CartItem = { product: any; qty: number }; 
 
 export default function StorePageWrapper({ store, products }: StorePageWrapperProps) {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -20,7 +20,6 @@ export default function StorePageWrapper({ store, products }: StorePageWrapperPr
   const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
   const [searchTerm, setSearchTerm] = useState("");
 
-  // ... (Keep TOAST and CART LOGIC unchanged) ...
   const showNotification = (msg: string) => {
     setToast({ show: true, msg });
     setTimeout(() => setToast({ show: false, msg: "" }), 3000);
@@ -43,7 +42,7 @@ export default function StorePageWrapper({ store, products }: StorePageWrapperPr
 
   const filteredProducts = products.filter(p => 
     p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    p.categories?.name.toLowerCase().includes(searchTerm.toLowerCase()) // Now searches category name too
+    p.categories?.name.toLowerCase().includes(searchTerm.toLowerCase()) 
   );
 
   const cartTotal = cart.reduce((sum, item) => sum + (item.product.price * item.qty), 0);

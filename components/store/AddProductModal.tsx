@@ -178,12 +178,9 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
             image_urls: finalImageUrls,
           };
 
-          // ✨ PERFECTION: Sync manual stock edits with the 24h visibility logic
-          // If the vendor manually sets stock to 0, start the timer.
           if (newStock === 0 && productToEdit.stock_quantity > 0) {
             updatePayload.sold_out_at = new Date().toISOString();
           } 
-          // If the vendor adds stock to a sold-out item, clear the timer.
           else if (newStock > 0) {
             updatePayload.sold_out_at = null;
           }
@@ -192,7 +189,6 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
           if (error) throw error;
 
       } else {
-          // ✨ PERFECTION: Handle initial "0 stock" entries
           const { error } = await supabase.from("products").insert({
             store_id: storeId,
             name: formData.name,
@@ -224,7 +220,7 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
         
         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
           <h2 className="font-bold text-lg text-gray-900 uppercase tracking-tighter italic">
-            {productToEdit ? "Edit Product" : "New Warehouse Item"}
+            {productToEdit ? "Edit Product" : "5 Products Limit"}
           </h2>
           <button onClick={onClose} className="p-2 bg-white rounded-full shadow-sm text-gray-500 hover:bg-gray-100 transition"><X size={20} /></button>
         </div>

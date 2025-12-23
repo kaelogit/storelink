@@ -37,7 +37,6 @@ export default function TermsPage() {
           <p>StoreLink provides the platform "as is". We are not a party to the transactions between buyers and vendors. We are not liable for any disputes, refunds, or damages arising from purchases made on vendor stores.</p>
         </section>
 
-        {/* --- ✨ NEW SECTION: EMPIRE LOYALTY ENGINE --- */}
         <section>
           <h2 className="text-xl font-bold mb-3 text-gray-900">6. Empire Loyalty Engine & Coins</h2>
           <p>The Empire Loyalty Engine is a reward feature exclusive to eligible subscription tiers. StoreLink reserves the absolute right to modify reward percentages, cap coin distributions, or reset loyalty data without prior notice if fraudulent activity, "coin farming," or system abuse is detected. Decisions made via the Founder Godmode regarding store status (Active/Banned) and loyalty eligibility are final.</p>

@@ -7,7 +7,6 @@ export default function StatsGrid({ stats }: { stats: any }) {
     { label: "Total Products", value: stats?.total_products, icon: ShoppingBag, color: "text-purple-400" },
     { label: "Orders", value: stats?.total_orders, icon: TrendingUp, color: "text-yellow-400" },
     
-    // 👇 FIX: Change 'total_revenue' to 'platform_gmv'
     { 
       label: "Revenue (GMV)", 
       value: `₦${stats?.platform_gmv?.toLocaleString() || '0'}`, 

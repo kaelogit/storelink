@@ -33,12 +33,11 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setCheckoutError(""); // Clear previous errors
+    setCheckoutError(""); 
 
     try {
-      console.log("Attempting to create order..."); // Debug Log
+      console.log("Attempting to create order..."); 
 
-      // 1. Insert Order
       const { data: orderData, error: orderError } = await supabase
         .from("orders")
         .insert({
@@ -54,13 +53,12 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
         .single();
 
       if (orderError) {
-        console.error("Order Insert Error:", orderError); // <--- SEE THIS IN CONSOLE
+        console.error("Order Insert Error:", orderError); 
         throw orderError;
       }
 
-      console.log("Order created:", orderData.id); // Debug Log
+      console.log("Order created:", orderData.id); 
 
-      // 2. Insert Items
       const orderItems = cart.map(item => ({
         order_id: orderData.id,
         product_id: item.product.id,
@@ -72,11 +70,10 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
       const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
       
       if (itemsError) {
-        console.error("Order Items Insert Error:", itemsError); // <--- SEE THIS IN CONSOLE
+        console.error("Order Items Insert Error:", itemsError); 
         throw itemsError;
       }
 
-      // 3. WhatsApp Redirect
       const itemsList = cart
         .map((item) => `- ${item.qty}x ${item.product.name} (₦${(item.product.price * item.qty).toLocaleString()})`)
         .join("\n");
@@ -92,7 +89,7 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
       onClose();
 
     } catch (error: any) {
-      console.error("FULL CHECKOUT ERROR:", error); // <--- GLOBAL ERROR LOG
+      console.error("FULL CHECKOUT ERROR:", error); 
       setCheckoutError(error.message || "Failed to process order.");
     } finally {
       setLoading(false);
