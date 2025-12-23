@@ -33,7 +33,7 @@ export default function Footer() {
            </p>
         </div>
 
-\        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start">
            <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Platform</h4>
            <ul className="space-y-3 text-sm text-gray-400 font-medium">
              <li><Link href="/login" className="hover:text-white transition">Vendor Login</Link></li>
