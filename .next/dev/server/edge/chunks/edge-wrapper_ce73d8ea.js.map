@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/edge-wrapper.js"],"sourcesContent":["self._ENTRIES ||= {};\nconst modProm = import('MODULE');\nmodProm.catch(() => {});\nself._ENTRIES[\"middleware_app/icon/route\"] = new Proxy(modProm, {\n    get(modProm, name) {\n        if (name === \"then\") {\n            return (res, rej) => modProm.then(res, rej);\n        }\n        let result = (...args) => modProm.then((mod) => (0, mod[name])(...args));\n        result.then = (res, rej) => modProm.then((mod) => mod[name]).then(res, rej);\n        return result;\n    },\n});\n"],"names":[],"mappings":"AAAA,KAAK,QAAQ,KAAK,CAAC;AACnB,MAAM;AACN,QAAQ,KAAK,CAAC,KAAO;AACrB,KAAK,QAAQ,CAAC,4BAA4B,GAAG,IAAI,MAAM,SAAS;IAC5D,KAAI,OAAO,EAAE,IAAI;QACb,IAAI,SAAS,QAAQ;YACjB,OAAO,CAAC,KAAK,MAAQ,QAAQ,IAAI,CAAC,KAAK;QAC3C;QACA,IAAI,SAAS,CAAC,GAAG,OAAS,QAAQ,IAAI,CAAC,CAAC,MAAQ,CAAC,GAAG,GAAG,CAAC,KAAK,KAAK;QAClE,OAAO,IAAI,GAAG,CAAC,KAAK,MAAQ,QAAQ,IAAI,CAAC,CAAC,MAAQ,GAAG,CAAC,KAAK,EAAE,IAAI,CAAC,KAAK;QACvE,OAAO;IACX;AACJ"}}]
+}

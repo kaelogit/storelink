@@ -1,16 +1,7 @@
 {
-  "/[slug]/page": "app/[slug]/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/stores/page": "app/admin/stores/page.js",
-  "/admin/verifications/page": "app/admin/verifications/page.js",
-  "/dashboard/loyalty/page": "app/dashboard/loyalty/page.js",
-  "/dashboard/orders/page": "app/dashboard/orders/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/subscription/page": "app/dashboard/subscription/page.js",
-  "/dashboard/verification/page": "app/dashboard/verification/page.js",
-  "/login/page": "app/login/page.js",
-  "/marketplace/page": "app/marketplace/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/icon/route": "app-edge-has-no-entrypoint",
   "/page": "app/page.js",
-  "/product/[id]/page": "app/product/[id]/page.js",
+  "/waitlist/page": "app/waitlist/page.js",
   "/wallet/page": "app/wallet/page.js"
 }

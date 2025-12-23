@@ -1,676 +1,110 @@
-[00:00:04.406] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:05.066] Server  LOG      ✓ Ready in 4.1s
-[00:02:11.859] Server  LOG      ○ Compiling /login ...
-[00:02:18.698] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:05.043] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:03:07.791] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:03:08.072] Server  LOG      ○ Compiling /admin ...
-[00:03:12.418] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:13.444] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:03:13.444] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:03:14.737] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:03:18.339] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:03:18.960] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:03:18.960] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:03:22.097] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:09:50.515] Server  LOG      ✓ Compiled in 678ms
-[00:23:15.716] Server  LOG      ✓ Compiled in 370ms
-[00:26:11.533] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:26:11.926] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:26:11.926] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:26:11.926] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:26:11.926] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:26:11.926] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:27:04.968] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:27:06.273] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:27:06.273] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:27:28.027] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:27:28.880] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:27:30.048] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:27:30.616] Browser ERROR   SQL Error: column s.total_revenue does not exist
-[00:27:30.616] Browser ERROR   SQL Error: column s.total_revenue does not exist
-[00:27:34.432] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:27:35.223] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:27:35.955] Browser ERROR   SQL Error: column s.total_revenue does not exist
-[00:27:45.664] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:29:35.828] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:29:36.281] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:29:37.133] Browser ERROR   SQL Error: permission denied for table users
-[00:29:43.412] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:29:44.358] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:29:44.358] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:29:45.923] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:29:46.483] Browser ERROR   SQL Error: permission denied for table users
-[00:29:46.483] Browser ERROR   SQL Error: permission denied for table users
-[00:29:51.024] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:29:51.581] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:29:52.098] Browser ERROR   SQL Error: permission denied for table users
-[00:31:40.358] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:31:40.848] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:31:41.997] Browser ERROR   SQL Error: structure of query does not match function result type
-[00:31:51.938] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:31:52.465] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:31:53.096] Browser ERROR   SQL Error: structure of query does not match function result type
-[00:31:54.273] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:31:55.030] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:31:55.030] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:31:56.543] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:31:57.143] Browser ERROR   SQL Error: structure of query does not match function result type
-[00:31:57.143] Browser ERROR   SQL Error: structure of query does not match function result type
-[00:31:59.941] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:32:00.618] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:32:00.618] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:32:01.470] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:32:02.045] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:32:03.033] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:32:03.033] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:32:05.096] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:32:05.631] Browser ERROR   SQL Error: structure of query does not match function result type
-[00:32:05.631] Browser ERROR   SQL Error: structure of query does not match function result type
-[00:35:45.951] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:35:46.601] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:35:48.096] Browser ERROR   SQL Error: structure of query does not match function result type
-[00:35:53.279] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:35:53.787] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:35:54.372] Browser ERROR   SQL Error: structure of query does not match function result type
-[00:37:21.395] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:37:22.027] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:37:57.720] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:39:08.786] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:39:09.113] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:09.113] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:09.113] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:09.113] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:09.113] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:39:46.732] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:40:17.116] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:42:06.537] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:42:38.780] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:42:58.299] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:42:58.936] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:43:11.601] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:43:38.012] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:43:38.338] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:43:38.338] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:43:38.338] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:43:38.338] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:43:38.338] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:43:45.957] Server  LOG      ○ Compiling /dashboard/subscription ...
-[00:44:21.409] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:44:21.979] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:44:42.049] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:44:42.331] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:44:42.331] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:44:42.331] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:44:42.331] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:44:42.331] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:50:13.789] Server  LOG      ✓ Compiled in 263ms
-[00:50:13.869] Browser ERROR   ./components/store/AddProductModal.tsx:227:20
-Parsing ecmascript source code failed
-  225 |         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-  226 |           <h2 className="font-bold text-lg text-gray-900 uppercase tracking-tighter italic">
-> 227 |             {proew Warehouse ItemductToEdit ? "Edit Product" : "N"}
-      |                    ^^^^^^^^^
-  228 |           </h2>
-  229 |           <button onClick={onClose} className="p-2 bg-white rounded-full shadow-sm text-gray-500 hover:bg-gray-100 transition"><X size={20} /></button>
-  230 |         </div>
-
-Expected '</', got 'Warehouse'
-
-Import traces:
-  Client Component Browser:
-    ./components/store/AddProductModal.tsx [Client Component Browser]
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/store/AddProductModal.tsx [Client Component SSR]
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[00:50:16.087] Server  LOG      ✓ Compiled in 584ms
-[00:50:16.373] Browser ERROR   ./components/store/AddProductModal.tsx:227:20
-Parsing ecmascript source code failed
-  225 |         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-  226 |           <h2 className="font-bold text-lg text-gray-900 uppercase tracking-tighter italic">
-> 227 |             {proew Warehouse ItemductToEdit ? "Edit Product" : "N"}
-      |                    ^^^^^^^^^
-  228 |           </h2>
-  229 |           <button onClick={onClose} className="p-2 bg-white rounded-full shadow-sm text-gray-500 hover:bg-gray-100 transition"><X size={20} /></button>
-  230 |         </div>
-
-Expected '</', got 'Warehouse'
-
-Import traces:
-  Client Component Browser:
-    ./components/store/AddProductModal.tsx [Client Component Browser]
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/store/AddProductModal.tsx [Client Component SSR]
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[00:50:16.374] Browser ERROR   ./components/store/AddProductModal.tsx:227:20
-Parsing ecmascript source code failed
-  225 |         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-  226 |           <h2 className="font-bold text-lg text-gray-900 uppercase tracking-tighter italic">
-> 227 |             {proew Warehouse ItemductToEdit ? "Edit Product" : "N"}
-      |                    ^^^^^^^^^
-  228 |           </h2>
-  229 |           <button onClick={onClose} className="p-2 bg-white rounded-full shadow-sm text-gray-500 hover:bg-gray-100 transition"><X size={20} /></button>
-  230 |         </div>
-
-Expected '</', got 'Warehouse'
-
-Import traces:
-  Client Component Browser:
-    ./components/store/AddProductModal.tsx [Client Component Browser]
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/store/AddProductModal.tsx [Client Component SSR]
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[00:50:16.509] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:50:23.375] Server  LOG      ✓ Compiled in 161ms
-[00:50:31.051] Server  LOG      ✓ Compiled in 146ms
-[00:50:34.366] Server  LOG      ✓ Compiled in 156ms
-[00:50:35.980] Server  LOG      ✓ Compiled in 153ms
-[00:50:53.440] Server  LOG      ✓ Compiled in 719ms
-[00:50:55.792] Server  LOG      ✓ Compiled in 786ms
-[00:50:56.910] Server  LOG      ✓ Compiled in 787ms
-[00:54:09.031] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:20.346] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:20.665] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:54:20.665] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:54:20.665] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:54:20.665] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:54:20.665] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:54:21.738] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:55:17.373] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:57:43.868] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:57:54.704] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:57:55.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:57:55.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:57:55.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:57:55.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:57:55.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:57:55.228] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:57:56.152] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:03.629] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498901602-9e710p" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:43.342] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:58:43.684] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:43.684] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:43.684] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:43.684] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:43.684] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:43.684] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:55.398] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:58:55.661] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:55.661] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:55.661] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:55.661] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:55.661] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:58:55.661] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:59:00.988] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:59:01.232] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:59:01.232] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:59:01.232] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:59:01.232] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:59:01.232] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:59:01.232] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:59:14.404] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:59:52.689] Server  LOG      ✓ Compiled in 197ms
-[00:59:57.587] Server  LOG      ✓ Compiled in 184ms
-[01:00:01.266] Server  LOG      ✓ Compiled in 387ms
-[01:00:21.116] Server  LOG      ✓ Compiled in 188ms
-[01:03:46.376] Browser ERROR   %s is an async Client Component. Only Server Components can be async at the moment. This error is often caused by accidentally adding `'use client'` to a module that was originally written for the server. <MarketplacePage>
-[01:03:56.563] Server  LOG      ✓ Compiled in 586ms
-[01:03:57.432] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[01:05:32.166] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[01:07:32.953] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:02.371] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:08:02.702] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:08:02.702] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:08:02.702] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:08:02.702] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:08:02.702] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:08:02.702] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:09:01.979] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:09:02.104] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[01:11:21.298] Server  LOG      ✓ Compiled in 756ms
-[01:11:38.535] Server  LOG      ✓ Compiled in 298ms
-[01:24:04.566] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:30:19.924] Server  LOG      ✓ Compiled in 973ms
-[01:31:59.070] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:46:47.753] Server  LOG      ✓ Compiled in 449ms
-[01:46:53.772] Server  LOG      ✓ Compiled in 349ms
-[01:50:14.740] Server  LOG      ✓ Compiled in 375ms
-[01:52:09.042] Server  LOG      ✓ Compiled in 864ms
-[01:52:11.424] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:52:11.424] Browser ERROR   uncaughtError: ReferenceError: ShieldCheck is not defined
-[01:52:11.431] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:52:11.433] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:52:11.488] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:52:11.492] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[01:52:12.733] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:34:39.824] Server  LOG      ✓ Compiled in 727ms
-[02:34:42.594] Server  LOG      ✓ Compiled in 221ms
-[02:34:52.756] Server  LOG      ✓ Compiled in 399ms
-[02:34:55.769] Server  LOG      ✓ Compiled in 241ms
-[02:36:42.321] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:36:42.324] Browser ERROR   uncaughtError: ReferenceError: ShieldCheck is not defined
-[02:36:42.353] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:36:42.357] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:36:47.171] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:52:59.262] Server  LOG      ✓ Compiled in 1754ms
-[02:53:00.332] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:53:10.894] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:02:22.980] Server  LOG      ✓ Compiled in 347ms
-[03:02:33.609] Server  LOG      ✓ Compiled in 142ms
-[03:02:35.360] Server  LOG      ✓ Compiled in 406ms
-[03:04:55.152] Server  LOG      ✓ Compiled in 184ms
-[03:06:25.780] Server  LOG      ✓ Compiled in 1278ms
-[03:06:26.225] Server  LOG      ✓ Compiled in 381ms
-[03:06:27.913] Server  LOG      ✓ Compiled in 309ms
-[03:06:42.901] Browser ERROR   In HTML, whitespace text nodes cannot be a child of <%s>. Make sure you don't have any extra whitespace between tags on each line of your source code.
-This will cause a hydration error.%s table 
-
-  ...
-    <LoadingBoundary name="dashboard/" loading={null}>
-      <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-        <RedirectBoundary>
-          <RedirectErrorBoundary router={{...}}>
-            <InnerLayoutRouter url="/dashboard" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
-              <SegmentViewNode type="page" pagePath="dashboard/...">
-                <SegmentTrieNode>
-                <ClientPageRoot Component={function DashboardPage} serverProvidedParams={{...}}>
-                  <DashboardPage params={Promise} searchParams={Promise}>
-                    <div className="min-h-scre...">
-                      <DashboardClient store={{id:"7c78fc...", ...}} initialProducts={[...]} initialOrders={[...]} ...>
-                        <div className="space-y-6 ...">
-                          <header>
-                          <div>
-                          <ShareStore>
-                          <div className="animate-in...">
-                            <div>
-                            <div>
-                            <div className="bg-white b...">
->                             <table className="w-full text-left min-w-[750px]">
->                               {" "}
-                                ...
-                          ...
-              ...
-            ...
-
-[03:07:41.176] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:07:44.125] Browser ERROR   In HTML, whitespace text nodes cannot be a child of <%s>. Make sure you don't have any extra whitespace between tags on each line of your source code.
-This will cause a hydration error.%s table 
-
-  ...
-    <LoadingBoundary name="dashboard/" loading={null}>
-      <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-        <RedirectBoundary>
-          <RedirectErrorBoundary router={{...}}>
-            <InnerLayoutRouter url="/dashboard" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
-              <SegmentViewNode type="page" pagePath="dashboard/...">
-                <SegmentTrieNode>
-                <ClientPageRoot Component={function DashboardPage} serverProvidedParams={{...}}>
-                  <DashboardPage params={Promise} searchParams={Promise}>
-                    <div className="min-h-scre...">
-                      <DashboardClient store={{id:"7c78fc...", ...}} initialProducts={[...]} initialOrders={[...]} ...>
-                        <div className="space-y-6 ...">
-                          <header>
-                          <div>
-                          <ShareStore>
-                          <div className="animate-in...">
-                            <div>
-                            <div>
-                            <div className="bg-white b...">
->                             <table className="w-full text-left min-w-[750px]">
->                               {" "}
-                                ...
-                          ...
-              ...
-            ...
-
-[03:09:17.835] Server  LOG      ✓ Compiled in 248ms
-[03:09:18.417] Browser ERROR   ./components/dashboard/DashboardClient.tsx:206:15
-Parsing ecmascript source code failed
-  204 |   </table>
-  205 | )}
-> 206 |              )}
-      |               ^
-  207 |           </div>
-  208 |         </div>
-  209 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[03:09:18.417] Browser ERROR   ./components/dashboard/DashboardClient.tsx:206:15
-Parsing ecmascript source code failed
-  204 |   </table>
-  205 | )}
-> 206 |              )}
-      |               ^
-  207 |           </div>
-  208 |         </div>
-  209 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[03:09:20.457] Server  LOG      ✓ Compiled in 210ms
-[03:09:20.839] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[03:09:29.651] Server  LOG      ✓ Compiled in 245ms
-[03:09:59.089] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:11:00.796] Server  LOG      ○ Compiling /dashboard/loyalty ...
-[03:11:27.422] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:11:27.901] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:11:27.901] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:11:27.901] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:11:27.901] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:11:27.901] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:11:27.901] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:12:54.231] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439065577-717os4" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:13:29.399] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:14:12.876] Server  LOG      ✓ Compiled in 217ms
-[03:14:17.873] Server  LOG      ✓ Compiled in 249ms
-[03:15:11.416] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:15:22.780] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[03:17:10.277] Server  LOG      ✓ Compiled in 140ms
-[03:28:09.643] Server  LOG      ✓ Compiled in 666ms
-[03:59:52.811] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[03:59:55.134] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[03:59:56.468] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[03:59:56.468] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[04:02:46.354] Server  LOG      ✓ Compiled in 278ms
-[04:02:46.788] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:05:39.363] Server  LOG      ✓ Compiled in 648ms
-[04:05:39.453] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:05:51.945] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/25c8a9c6-436b-4e2b-9336-cc8d2cdfa335-1765758651468" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:05:51.945] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:05:57.002] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:05:57.320] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:05:57.320] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:05:57.320] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:05:57.320] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:05:57.320] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:05:57.320] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:05:57.320] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:06:27.537] Server  LOG      ✓ Compiled in 427ms
-[04:06:28.405] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:06:41.259] Server  LOG      ✓ Compiled in 206ms
-[04:06:41.278] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:10:25.449] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:10:25.469] Server  LOG      ✓ Compiled in 311ms
-[04:10:53.292] Server  LOG      ✓ Compiled in 186ms
-[04:10:53.403] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:10:57.080] Server  LOG      ✓ Compiled in 228ms
-[04:10:57.335] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:11:02.545] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:11:02.551] Server  LOG      ✓ Compiled in 368ms
-[04:11:04.251] Server  LOG      ✓ Compiled in 377ms
-[04:11:04.412] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:11:07.129] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:11:07.137] Server  LOG      ✓ Compiled in 145ms
-[04:11:08.486] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:11:08.541] Server  LOG      ✓ Compiled in 205ms
-[04:11:12.096] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:11:12.149] Server  LOG      ✓ Compiled in 224ms
-[04:12:00.521] Server  LOG      ✓ Compiled in 178ms
-[04:12:02.436] Server  LOG      ✓ Compiled in 382ms
-[04:12:08.584] Server  LOG      ✓ Compiled in 238ms
-[04:12:16.776] Server  LOG      ✓ Compiled in 230ms
-[04:12:18.330] Server  LOG      ✓ Compiled in 246ms
-[04:12:23.686] Server  LOG      ✓ Compiled in 182ms
-[04:12:25.825] Server  LOG      ✓ Compiled in 382ms
-[04:12:28.470] Server  LOG      ✓ Compiled in 328ms
-[04:12:31.481] Server  LOG      ✓ Compiled in 294ms
-[04:12:40.512] Server  LOG      ✓ Compiled in 581ms
-[04:12:44.959] Server  LOG      ✓ Compiled in 278ms
-[04:13:26.521] Server  LOG      ✓ Compiled in 236ms
-[04:13:28.725] Server  LOG      ✓ Compiled in 407ms
-[04:13:32.265] Server  LOG      ✓ Compiled in 145ms
-[04:13:34.579] Server  LOG      ✓ Compiled in 216ms
-[04:13:36.753] Server  LOG      ✓ Compiled in 140ms
-[04:13:39.983] Server  LOG      ✓ Compiled in 190ms
-[04:13:42.905] Server  LOG      ✓ Compiled in 470ms
-[04:13:45.589] Server  LOG      ✓ Compiled in 458ms
-[04:13:49.688] Server  LOG      ✓ Compiled in 260ms
-[04:14:04.184] Server  LOG      ✓ Compiled in 335ms
-[04:14:07.037] Server  LOG      ✓ Compiled in 323ms
-[04:14:09.665] Server  LOG      ✓ Compiled in 166ms
-[04:14:11.965] Server  LOG      ✓ Compiled in 208ms
-[04:14:13.546] Server  LOG      ✓ Compiled in 177ms
-[04:14:27.911] Server  LOG      ✓ Compiled in 187ms
-[04:14:31.805] Server  LOG      ✓ Compiled in 389ms
-[04:15:04.288] Server  LOG      ✓ Compiled in 244ms
-[04:15:07.102] Server  LOG      ✓ Compiled in 178ms
-[04:15:08.746] Server  LOG      ✓ Compiled in 332ms
-[04:15:10.661] Server  LOG      ✓ Compiled in 521ms
-[04:15:14.801] Server  LOG      ✓ Compiled in 171ms
-[04:15:17.677] Server  LOG      ✓ Compiled in 254ms
-[04:15:24.325] Server  LOG      ✓ Compiled in 414ms
-[04:15:28.680] Server  LOG      ✓ Compiled in 422ms
-[04:15:33.799] Server  LOG      ✓ Compiled in 440ms
-[04:16:14.856] Server  LOG      ✓ Compiled in 370ms
-[04:16:18.710] Server  LOG      ✓ Compiled in 211ms
-[04:16:21.282] Server  LOG      ✓ Compiled in 182ms
-[04:16:23.270] Server  LOG      ✓ Compiled in 183ms
-[04:16:25.371] Server  LOG      ✓ Compiled in 175ms
-[04:16:28.450] Server  LOG      ✓ Compiled in 256ms
-[04:16:30.678] Server  LOG      ✓ Compiled in 418ms
-[04:16:33.142] Server  LOG      ✓ Compiled in 269ms
-[04:16:35.799] Server  LOG      ✓ Compiled in 420ms
-[04:16:38.759] Server  LOG      ✓ Compiled in 168ms
-[04:16:41.240] Server  LOG      ✓ Compiled in 241ms
-[04:16:44.022] Server  LOG      ✓ Compiled in 275ms
-[04:16:48.793] Server  LOG      ✓ Compiled in 343ms
-[04:16:53.890] Server  LOG      ✓ Compiled in 338ms
-[04:16:55.538] Server  LOG      ✓ Compiled in 157ms
-[04:17:00.403] Server  LOG      ✓ Compiled in 288ms
-[04:17:05.965] Server  LOG      ✓ Compiled in 235ms
-[04:18:56.829] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:18:56.832] Server  LOG      ✓ Compiled in 180ms
-[04:18:59.196] Server  LOG      ✓ Compiled in 307ms
-[04:18:59.212] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:01.278] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:01.281] Server  LOG      ✓ Compiled in 150ms
-[04:19:03.649] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:03.721] Server  LOG      ✓ Compiled in 189ms
-[04:19:05.461] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:05.466] Server  LOG      ✓ Compiled in 168ms
-[04:19:19.017] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:19.021] Server  LOG      ✓ Compiled in 271ms
-[04:19:21.697] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:21.699] Server  LOG      ✓ Compiled in 369ms
-[04:19:24.458] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:24.462] Server  LOG      ✓ Compiled in 154ms
-[04:19:53.364] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:53.369] Server  LOG      ✓ Compiled in 207ms
-[04:19:56.140] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:56.215] Server  LOG      ✓ Compiled in 248ms
-[04:19:58.721] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:19:58.779] Server  LOG      ✓ Compiled in 259ms
-[04:20:02.847] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:20:02.852] Server  LOG      ✓ Compiled in 237ms
-[04:20:06.075] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:20:06.082] Server  LOG      ✓ Compiled in 166ms
-[04:20:08.761] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:20:08.764] Server  LOG      ✓ Compiled in 300ms
-[04:20:14.280] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:20:14.335] Server  LOG      ✓ Compiled in 140ms
-[04:20:17.260] Server  LOG      ✓ Compiled in 267ms
-[04:20:17.338] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:20:20.870] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:20:20.877] Server  LOG      ✓ Compiled in 207ms
-[04:20:23.135] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:20:23.139] Server  LOG      ✓ Compiled in 279ms
-[04:20:25.700] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:20:25.703] Server  LOG      ✓ Compiled in 323ms
-[04:22:19.182] Server  LOG      ✓ Compiled in 290ms
-[04:22:22.660] Server  LOG      ✓ Compiled in 157ms
-[04:22:26.809] Server  LOG      ✓ Compiled in 301ms
-[04:22:29.533] Server  LOG      ✓ Compiled in 185ms
-[04:22:33.080] Server  LOG      ✓ Compiled in 304ms
-[04:22:37.197] Server  LOG      ✓ Compiled in 461ms
-[04:23:02.198] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:23:02.292] Server  LOG      ✓ Compiled in 170ms
-[04:23:04.202] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:23:04.206] Server  LOG      ✓ Compiled in 278ms
-[04:23:06.860] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[04:23:06.866] Server  LOG      ✓ Compiled in 215ms
-[04:23:31.218] Server  LOG      ✓ Compiled in 367ms
-[04:23:37.728] Server  LOG      ✓ Compiled in 222ms
-[04:23:42.558] Server  LOG      ✓ Compiled in 266ms
-[04:23:47.970] Server  LOG      ✓ Compiled in 261ms
-[04:23:53.230] Server  LOG      ✓ Compiled in 190ms
-[04:23:56.810] Server  LOG      ✓ Compiled in 318ms
-[04:24:00.771] Server  LOG      ✓ Compiled in 220ms
-[04:24:04.882] Server  LOG      ✓ Compiled in 317ms
-[04:24:11.307] Server  LOG      ✓ Compiled in 212ms
-[04:24:14.091] Server  LOG      ✓ Compiled in 220ms
-[04:24:17.245] Server  LOG      ✓ Compiled in 368ms
-[04:24:37.782] Server  LOG      ✓ Compiled in 162ms
-[04:24:40.274] Server  LOG      ✓ Compiled in 371ms
-[04:24:44.754] Server  LOG      ✓ Compiled in 275ms
-[04:24:47.376] Server  LOG      ✓ Compiled in 244ms
-[04:24:51.271] Server  LOG      ✓ Compiled in 305ms
-[04:24:56.659] Server  LOG      ✓ Compiled in 210ms
-[04:24:59.310] Server  LOG      ✓ Compiled in 606ms
-[04:25:02.939] Server  LOG      ✓ Compiled in 213ms
-[04:25:10.494] Server  LOG      ✓ Compiled in 245ms
-[04:25:24.057] Server  LOG      ✓ Compiled in 166ms
-[04:25:26.640] Server  LOG      ✓ Compiled in 215ms
-[04:25:28.314] Server  LOG      ✓ Compiled in 203ms
-[04:25:31.461] Server  LOG      ✓ Compiled in 179ms
-[04:25:34.186] Server  LOG      ✓ Compiled in 518ms
-[04:25:37.266] Server  LOG      ✓ Compiled in 179ms
-[04:25:38.926] Server  LOG      ✓ Compiled in 235ms
-[04:25:41.423] Server  LOG      ✓ Compiled in 293ms
-[04:25:46.874] Server  LOG      ✓ Compiled in 143ms
-[04:25:49.551] Server  LOG      ✓ Compiled in 313ms
-[04:26:27.091] Server  LOG      ✓ Compiled in 185ms
-[04:26:29.602] Server  LOG      ✓ Compiled in 373ms
-[04:26:31.431] Server  LOG      ✓ Compiled in 170ms
-[04:26:34.122] Server  LOG      ✓ Compiled in 261ms
-[04:26:37.713] Server  LOG      ✓ Compiled in 364ms
-[04:26:57.299] Server  LOG      ✓ Compiled in 334ms
-[04:27:03.353] Server  LOG      ✓ Compiled in 176ms
-[04:27:08.628] Server  LOG      ✓ Compiled in 340ms
-[04:27:13.157] Server  LOG      ✓ Compiled in 223ms
-[04:27:22.373] Server  LOG      ✓ Compiled in 211ms
-[04:27:24.074] Server  LOG      ✓ Compiled in 278ms
-[04:27:25.673] Server  LOG      ✓ Compiled in 151ms
-[04:27:27.541] Server  LOG      ✓ Compiled in 224ms
-[04:27:40.644] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[04:27:41.991] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae-1766019200927" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:27:41.991] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:27:41.991] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:27:41.991] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:27:41.991] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:27:41.991] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:27:41.991] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[04:27:47.890] Server  LOG      ✓ Compiled in 269ms
-[04:27:49.927] Server  LOG      ✓ Compiled in 335ms
-[04:27:52.647] Server  LOG      ✓ Compiled in 299ms
-[04:28:20.863] Server  LOG      ✓ Compiled in 375ms
-[04:28:24.555] Server  LOG      ✓ Compiled in 202ms
-[04:28:26.959] Server  LOG      ✓ Compiled in 223ms
-[04:28:28.870] Server  LOG      ✓ Compiled in 256ms
-[04:28:31.893] Server  LOG      ✓ Compiled in 160ms
-[04:28:35.523] Server  LOG      ✓ Compiled in 173ms
-[04:28:37.926] Server  LOG      ✓ Compiled in 177ms
-[04:28:40.038] Server  LOG      ✓ Compiled in 160ms
-[04:41:02.479] Server  LOG      ✓ Compiled in 452ms
-[04:41:13.817] Server  LOG      ✓ Compiled in 301ms
-[04:41:42.571] Server  LOG      ✓ Compiled in 219ms
-[04:41:44.473] Server  LOG      ✓ Compiled in 218ms
-[04:41:47.132] Server  LOG      ✓ Compiled in 196ms
-[04:41:51.247] Server  LOG      ✓ Compiled in 192ms
-[04:41:55.768] Server  LOG      ✓ Compiled in 309ms
-[04:41:59.717] Server  LOG      ✓ Compiled in 197ms
-[04:42:04.292] Server  LOG      ✓ Compiled in 341ms
-[04:42:09.876] Server  LOG      ✓ Compiled in 191ms
-[04:42:11.752] Server  LOG      ✓ Compiled in 280ms
-[04:42:14.519] Server  LOG      ✓ Compiled in 342ms
-[04:42:18.092] Server  LOG      ✓ Compiled in 298ms
-[04:42:25.611] Server  LOG      ✓ Compiled in 154ms
-[04:42:28.178] Server  LOG      ✓ Compiled in 397ms
-[04:42:33.220] Server  LOG      ✓ Compiled in 341ms
-[04:42:35.682] Server  LOG      ✓ Compiled in 263ms
+[00:00:04.767] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:05.641] Server  LOG      ✓ Ready in 4.6s
+[00:00:12.491] Server  LOG      ○ Compiling /wallet ...
+[00:00:19.644] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:32.173] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:34.726] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:24.842] Server  LOG      ✓ Compiled in 319ms
+[00:05:26.775] Server  LOG      ✓ Compiled in 204ms
+[00:07:00.863] Server  LOG      ✓ Compiled in 159ms
+[00:07:01.286] Browser ERROR   uncaughtError: ReferenceError: phone is not defined
+[00:07:34.168] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:07:34.202] Server  LOG      ✓ Compiled in 165ms
+[00:07:34.606] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\app_waitlist_page_tsx_4f1554af._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:34.611] Server  ERROR    ⨯ ReferenceError: phone is not defined
+[00:07:35.066] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:36.293] Browser ERROR   uncaughtError: ReferenceError: phone is not defined
+[00:07:41.377] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:07:41.405] Server  LOG      ✓ Compiled in 136ms
+[00:07:42.012] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\app_waitlist_page_tsx_4f1554af._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:42.014] Server  ERROR    ⨯ ReferenceError: phone is not defined
+[00:07:42.761] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:43.287] Browser ERROR   uncaughtError: ReferenceError: phone is not defined
+[00:08:18.067] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:18.091] Server  LOG      ✓ Compiled in 166ms
+[00:08:18.439] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\app_waitlist_page_tsx_4f1554af._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:08:18.441] Server  ERROR    ⨯ ReferenceError: phone is not defined
+[00:08:18.794] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:19.288] Browser ERROR   uncaughtError: ReferenceError: phone is not defined
+[00:08:23.094] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:23.105] Server  LOG      ✓ Compiled in 479ms
+[00:08:23.557] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\app_waitlist_page_tsx_4f1554af._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:08:23.559] Server  ERROR    ⨯ ReferenceError: phone is not defined
+[00:08:24.210] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:25.299] Browser ERROR   uncaughtError: ReferenceError: phone is not defined
+[00:08:29.833] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:29.847] Server  LOG      ✓ Compiled in 156ms
+[00:08:30.139] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\app_waitlist_page_tsx_4f1554af._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:08:30.140] Server  ERROR    ⨯ ReferenceError: phone is not defined
+[00:08:30.689] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:31.294] Browser ERROR   uncaughtError: ReferenceError: phone is not defined
+[00:08:39.429] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:39.490] Server  LOG      ✓ Compiled in 282ms
+[00:08:39.768] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\app_waitlist_page_tsx_4f1554af._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:08:39.770] Server  ERROR    ⨯ ReferenceError: phone is not defined
+[00:08:40.249] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:41.286] Browser ERROR   uncaughtError: ReferenceError: phone is not defined
+[00:08:44.570] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:44.871] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\app_waitlist_page_tsx_4f1554af._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:08:44.872] Server  ERROR    ⨯ ReferenceError: phone is not defined
+[00:08:44.908] Server  LOG      ✓ Compiled in 154ms
+[00:08:45.303] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:46.078] Server  LOG      ✓ Compiled in 491ms
+[00:08:46.223] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:46.224] Browser ERROR   uncaughtError: ReferenceError: phone is not defined
+[00:08:47.124] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:34.070] Server  LOG      ✓ Compiled in 655ms
+[00:11:34.316] Browser ERROR   uncaughtError: ReferenceError: Rocket is not defined
+[00:12:36.026] Server  LOG      ✓ Compiled in 217ms
+[00:12:36.035] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:12:37.967] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:42.197] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:22.843] Server  LOG      ✓ Compiled in 262ms
+[00:13:27.680] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:09.186] Server  LOG      ✓ Compiled in 341ms
+[00:14:10.287] Browser ERROR   uncaughtError: ReferenceError: Rocket is not defined
+[00:14:11.971] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:14:12.007] Server  LOG      ✓ Compiled in 176ms
+[00:14:14.341] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:32.722] Server  LOG      ✓ Compiled in 174ms
+[00:14:38.295] Server  LOG      ✓ Compiled in 175ms
+[00:14:39.295] Browser ERROR   uncaughtError: ReferenceError: Rocket is not defined
+[00:14:40.313] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:14:40.336] Server  LOG      ✓ Compiled in 203ms
+[00:14:42.281] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:25.243] Server  LOG      ✓ Compiled in 248ms
+[00:16:09.424] Server  LOG      ✓ Compiled in 373ms
+[00:16:47.306] Server  LOG      ✓ Compiled in 229ms
+[00:17:19.373] Server  LOG      ✓ Compiled in 237ms
+[00:17:20.676] Server  LOG      ✓ Compiled in 252ms
+[00:17:31.004] Server  LOG      ✓ Compiled in 245ms
+[00:17:59.745] Server  LOG      ✓ Compiled in 296ms
+[00:18:15.504] Server  LOG      ✓ Compiled in 139ms
+[00:19:03.103] Server  LOG      ✓ Compiled in 314ms
+[00:19:06.067] Server  LOG      ✓ Compiled in 567ms
+[00:19:14.508] Server  LOG      ✓ Compiled in 288ms
+[00:20:03.108] Server  LOG      ✓ Compiled in 150ms
+[00:20:07.368] Server  LOG      ✓ Compiled in 162ms
+[00:20:10.339] Server  LOG      ✓ Compiled in 156ms
+[00:20:12.618] Server  LOG      ✓ Compiled in 154ms
+[00:20:19.187] Server  LOG      ✓ Compiled in 245ms
+[00:20:26.549] Server  LOG      ✓ Compiled in 210ms
+[00:20:39.441] Server  LOG      ✓ Compiled in 163ms
+[00:20:43.484] Server  LOG      ✓ Compiled in 221ms
+[00:20:50.573] Server  LOG      ✓ Compiled in 205ms
+[00:22:00.477] Server  LOG      ✓ Compiled in 162ms
+[00:22:05.138] Server  LOG      ✓ Compiled in 151ms
+[00:22:44.947] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:47.029] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:23:15.037] Server  LOG      ✓ Compiled in 243ms
+[00:24:54.177] Server  LOG      ✓ Compiled in 598ms
+[00:24:58.412] Server  LOG      ✓ Compiled in 390ms
+[00:25:00.927] Server  LOG      ✓ Compiled in 229ms
+[00:25:24.762] Server  LOG      ✓ Compiled in 306ms
+[00:25:30.671] Server  LOG      ✓ Compiled in 260ms
+[00:25:33.801] Server  LOG      ✓ Compiled in 315ms
+[00:25:35.070] Server  LOG      ✓ Compiled in 174ms
+[00:25:56.676] Server  LOG      ✓ Compiled in 137ms
+[00:26:03.213] Server  LOG      ✓ Compiled in 136ms
+[00:26:05.895] Server  LOG      ✓ Compiled in 542ms
+[00:26:46.684] Server  LOG      ✓ Compiled in 216ms

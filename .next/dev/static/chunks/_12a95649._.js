@@ -20,11 +20,8 @@ function CartProvider({ children }) {
     const [cart, setCart] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isCartOpen, setIsCartOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isInitialized, setIsInitialized] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // ✨ EMPIRE STATES
     const [useCoins, setUseCoins] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // 🔥 BALANCE ALWAYS STARTS AT 0 (Safety first)
     const [userCoinBalance, setUserCoinBalance] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
-    // 1. ✨ INITIAL LOAD: Only pull the Cart items
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CartProvider.useEffect": ()=>{
             const savedCart = localStorage.getItem("storelink_cart");
@@ -36,24 +33,19 @@ function CartProvider({ children }) {
                     console.error("Cart parse error", e);
                 }
             }
-            // 🔥 REMOVED: No longer reading savedBalance from localStorage. 
-            // This kills the "ghost coin" reload bug.
             setIsInitialized(true);
         }
     }["CartProvider.useEffect"], []);
-    // 2. PERSISTENCE: Only save Cart items
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CartProvider.useEffect": ()=>{
             if (isInitialized) {
                 localStorage.setItem("storelink_cart", JSON.stringify(cart));
-            // 🔥 REMOVED: No longer saving userCoinBalance to localStorage.
             }
         }
     }["CartProvider.useEffect"], [
         cart,
         isInitialized
     ]);
-    // 3. ✨ SAFETY: Reset "Apply Coins" toggle on page refresh
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CartProvider.useEffect": ()=>{
             setUseCoins(false);
@@ -93,13 +85,10 @@ function CartProvider({ children }) {
     };
     const openCart = ()=>setIsCartOpen(true);
     const closeCart = ()=>setIsCartOpen(false);
-    // --- CALCULATIONS ---
     const cartCount = cart.reduce((acc, item)=>acc + item.qty, 0);
     const cartTotal = cart.reduce((total, item)=>total + item.product.price * item.qty, 0);
-    // --- ✨ EMPIRE 5% SAFETY LOGIC ---
     const MAX_DISCOUNT_PERCENTAGE = 0.05;
     const maxAllowedDiscount = Math.floor(cartTotal * MAX_DISCOUNT_PERCENTAGE);
-    // Strict check: Balance must be current
     const coinsToRedeem = useCoins && cart.length > 0 ? Math.min(userCoinBalance, maxAllowedDiscount) : 0;
     const finalTotal = cartTotal - coinsToRedeem;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CartContext.Provider, {
@@ -125,7 +114,7 @@ function CartProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/context/CartContext.tsx",
-        lineNumber: 124,
+        lineNumber: 113,
         columnNumber: 5
     }, this);
 }

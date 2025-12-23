@@ -171,14 +171,6 @@ const metadata = {
         description: "Empowering Nigerian vendors to sell faster on WhatsApp.",
         url: 'https://storelink.ng',
         siteName: "StoreLink",
-        images: [
-            {
-                url: 'https://storelink.ng/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'StoreLink Empire - The Engine for Naija Hustle'
-            }
-        ],
         locale: "en_NG",
         type: "website"
     },
@@ -186,29 +178,10 @@ const metadata = {
         card: 'summary_large_image',
         title: "StoreLink | The Engine for Naija Hustle",
         description: "The professional way to manage your WhatsApp orders.",
-        images: [
-            'https://storelink.ng/og-image.png'
-        ],
         creator: '@kaelodev'
     },
     verification: {
         google: 'R8d8mi7fxJ-XZ0yvJ0brHnx6cZZqo78BI1iGl-sDVcY'
-    },
-    icons: {
-        icon: [
-            {
-                url: '/favicon.ico'
-            },
-            {
-                url: '/icon.png',
-                type: 'image/png'
-            }
-        ],
-        apple: [
-            {
-                url: '/apple-touch-icon.png'
-            }
-        ]
     },
     category: 'business'
 };
@@ -225,36 +198,36 @@ function RootLayout({ children }) {
                             children: children
                         }, void 0, false, {
                             fileName: "[project]/app/layout.tsx",
-                            lineNumber: 87,
+                            lineNumber: 68,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$shared$2f$GlobalCartSidebar$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                             fileName: "[project]/app/layout.tsx",
-                            lineNumber: 90,
+                            lineNumber: 71,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/layout.tsx",
-                    lineNumber: 86,
+                    lineNumber: 67,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$next$2f$third$2d$parties$2f$dist$2f$google$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["GoogleAnalytics"], {
                     gaId: "G-LC8PN9CT62"
                 }, void 0, false, {
                     fileName: "[project]/app/layout.tsx",
-                    lineNumber: 93,
+                    lineNumber: 74,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/layout.tsx",
-            lineNumber: 84,
+            lineNumber: 66,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/layout.tsx",
-        lineNumber: 83,
+        lineNumber: 65,
         columnNumber: 5
     }, this);
 }
