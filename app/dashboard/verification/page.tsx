@@ -62,7 +62,6 @@ export default function VerificationPage() {
         .from('products')
         .getPublicUrl(fileName);
 
-      // Update local state only
       if (type === 'id') setDocUrl(publicUrl);
       if (type === 'selfie') setSelfieUrl(publicUrl);
 
@@ -109,55 +108,59 @@ export default function VerificationPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto pb-12 px-4">
+    <div className="max-w-5xl mx-auto pb-12 px-4 sm:px-6">
       
-      <div className="mb-8">
-         <h1 className="text-3xl font-black text-gray-900 flex items-center gap-3">
+      <div className="mb-10 text-center sm:text-left">
+         <h1 className="text-3xl sm:text-4xl font-black text-gray-900 flex flex-wrap items-center justify-center sm:justify-start gap-3">
             Verification
-            {status === 'verified' && <BadgeCheck className="text-blue-500" size={32} />}
+            {status === 'verified' && <BadgeCheck className="text-blue-500 animate-in zoom-in" size={36} />}
          </h1>
-         <p className="text-gray-500 mt-2">
+         <p className="text-gray-500 mt-3 text-sm sm:text-base max-w-xl">
             Build authority and show your customers that your brand is verified.
          </p>
       </div>
 
       {(status === 'none' || status === 'rejected') && (
-        <div className="space-y-6">
-           
+        <div className="space-y-8">
+            
            {status === 'rejected' && (
-             <div className="bg-red-50 border border-red-100 p-4 rounded-xl flex items-start gap-3 animate-in fade-in">
-                <XCircle className="text-red-600 shrink-0 mt-0.5" size={20} />
+             <div className="bg-red-50 border border-red-100 p-5 rounded-2xl flex items-start gap-4 animate-in fade-in slide-in-from-top-2">
+                <XCircle className="text-red-600 shrink-0 mt-0.5" size={24} />
                 <div>
-                   <h4 className="font-bold text-red-900 text-sm">Application Rejected</h4>
-                   <p className="text-red-700 text-xs mt-1">
+                   <h4 className="font-bold text-red-900 text-sm uppercase tracking-tight">Application Rejected</h4>
+                   <p className="text-red-700 text-xs mt-1 leading-relaxed">
                      {note || "Reason: The document provided was unclear or mismatched."}
                    </p>
                 </div>
              </div>
            )}
 
-           <div className="grid md:grid-cols-2 gap-6">
-              <div className={`bg-white p-6 rounded-3xl border transition-all ${docUrl ? 'border-emerald-500 shadow-md' : 'border-gray-100'}`}>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">1. Identity Document</h3>
-                  {docUrl && <CheckCircle className="text-emerald-500" size={18} />}
+           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-8">
+              
+              <div className={`bg-white p-5 sm:p-8 rounded-[2rem] border transition-all duration-300 ${docUrl ? 'border-emerald-500 ring-4 ring-emerald-50 shadow-sm' : 'border-gray-100'}`}>
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">1. Identity Document</h3>
+                  {docUrl && <CheckCircle className="text-emerald-500" size={20} />}
                 </div>
                 
                 <label className={`
-                  flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-2xl cursor-pointer transition-all
-                  ${uploading ? 'bg-gray-50 border-gray-300' : docUrl ? 'bg-emerald-50/30 border-emerald-200' : 'bg-white border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/30'}
+                  flex flex-col items-center justify-center w-full min-h-[160px] sm:min-h-[200px] border-2 border-dashed rounded-3xl cursor-pointer transition-all
+                  ${uploading ? 'bg-gray-50 border-gray-300' : docUrl ? 'bg-emerald-50/40 border-emerald-200' : 'bg-white border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/30'}
                 `}>
-                  <div className="flex flex-col items-center justify-center text-center px-4">
+                  <div className="flex flex-col items-center justify-center text-center px-6">
                     {docUrl ? (
                       <>
-                        <FileText className="text-emerald-600 mb-2" size={24} />
-                        <p className="text-xs font-bold text-emerald-700">ID Uploaded Successfully</p>
-                        <p className="text-[10px] text-emerald-600 mt-1 opacity-60">Tap to change</p>
+                        <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-3">
+                            <FileText size={28} />
+                        </div>
+                        <p className="text-xs font-black text-emerald-800 uppercase">ID Uploaded</p>
+                        <p className="text-[10px] text-emerald-600 mt-2 font-bold opacity-60 bg-emerald-100/50 px-3 py-1 rounded-full">Tap to change</p>
                       </>
                     ) : (
                       <>
-                        <Upload className="text-gray-400 mb-2" size={24} />
+                        <Upload className="text-gray-300 mb-3" size={32} />
                         <p className="text-xs font-bold text-gray-700">Upload NIN, Voter's Card, or Passport</p>
+                        <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">JPG, PNG or PDF</p>
                       </>
                     )}
                   </div>
@@ -165,27 +168,30 @@ export default function VerificationPage() {
                 </label>
               </div>
 
-              <div className={`bg-white p-6 rounded-3xl border transition-all ${selfieUrl ? 'border-blue-500 shadow-md' : 'border-gray-100'}`}>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">2. Live Selfie</h3>
-                  {selfieUrl && <CheckCircle className="text-blue-500" size={18} />}
+              <div className={`bg-white p-5 sm:p-8 rounded-[2rem] border transition-all duration-300 ${selfieUrl ? 'border-blue-500 ring-4 ring-blue-50 shadow-sm' : 'border-gray-100'}`}>
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">2. Live Selfie</h3>
+                  {selfieUrl && <CheckCircle className="text-blue-500" size={20} />}
                 </div>
                 
                 <label className={`
-                  flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-2xl cursor-pointer transition-all
-                  ${uploading ? 'bg-gray-50 border-gray-300' : selfieUrl ? 'bg-blue-50/30 border-blue-200' : 'bg-white border-gray-200 hover:border-blue-500 hover:bg-blue-50/30'}
+                  flex flex-col items-center justify-center w-full min-h-[160px] sm:min-h-[200px] border-2 border-dashed rounded-3xl cursor-pointer transition-all
+                  ${uploading ? 'bg-gray-50 border-gray-300' : selfieUrl ? 'bg-blue-50/40 border-blue-200' : 'bg-white border-gray-200 hover:border-blue-500 hover:bg-blue-50/30'}
                 `}>
-                  <div className="flex flex-col items-center justify-center text-center px-4">
+                  <div className="flex flex-col items-center justify-center text-center px-6">
                     {selfieUrl ? (
                       <>
-                        <UserCircle className="text-blue-600 mb-2" size={24} />
-                        <p className="text-xs font-bold text-blue-700">Selfie Captured</p>
-                        <p className="text-[10px] text-blue-600 mt-1 opacity-60">Tap to change</p>
+                        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-3">
+                            <UserCircle size={28} />
+                        </div>
+                        <p className="text-xs font-black text-blue-800 uppercase">Selfie Captured</p>
+                        <p className="text-[10px] text-blue-600 mt-2 font-bold opacity-60 bg-blue-100/50 px-3 py-1 rounded-full">Tap to change</p>
                       </>
                     ) : (
                       <>
-                        <Camera className="text-gray-400 mb-2" size={24} />
+                        <Camera className="text-gray-300 mb-3" size={32} />
                         <p className="text-xs font-bold text-gray-700">Upload Selfie holding your ID</p>
+                        <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Ensure face is clear</p>
                       </>
                     )}
                   </div>
@@ -194,63 +200,68 @@ export default function VerificationPage() {
               </div>
            </div>
 
-           <button 
-            onClick={handleSubmitVerification}
-            disabled={uploading || !docUrl || !selfieUrl}
-            className={`
-              w-full py-5 rounded-2xl font-black text-sm shadow-xl transition-all active:scale-95
-              ${(!docUrl || !selfieUrl) ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-gray-900 text-white hover:bg-black'}
-            `}
-           >
-            {uploading ? (
-              <span className="flex items-center justify-center gap-2">
-                <Loader2 className="animate-spin" size={18} /> Processing...
-              </span>
-            ) : "Submit Verification Request"}
-           </button>
+           <div className="max-w-2xl mx-auto w-full pt-4">
+               <button 
+                onClick={handleSubmitVerification}
+                disabled={uploading || !docUrl || !selfieUrl}
+                className={`
+                  w-full py-6 rounded-3xl font-black text-sm uppercase tracking-widest shadow-xl transition-all active:scale-[0.98]
+                  ${(!docUrl || !selfieUrl) ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-gray-900 text-white hover:bg-black hover:shadow-2xl'}
+                `}
+               >
+                {uploading ? (
+                  <span className="flex items-center justify-center gap-3">
+                    <Loader2 className="animate-spin" size={20} /> Processing Application...
+                  </span>
+                ) : "Submit Verification Request"}
+               </button>
+           </div>
 
-           <div className="flex items-center gap-3 bg-blue-50 p-4 rounded-2xl border border-blue-100">
-              <ShieldAlert className="text-blue-600 shrink-0" size={20} />
-              <p className="text-xs text-blue-700 leading-tight">
-                <b>Privacy Note:</b> Your documents are stored in a secure, encrypted vault. They are only used for manual verification and are never shared with third parties.
+           <div className="flex flex-col sm:flex-row items-center gap-4 bg-gray-50 p-6 rounded-[2rem] border border-gray-100 max-w-2xl mx-auto">
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm shrink-0">
+                <ShieldAlert className="text-emerald-600" size={24} />
+              </div>
+              <p className="text-[11px] text-gray-500 leading-relaxed text-center sm:text-left">
+                <b className="text-gray-900 uppercase tracking-tighter mr-1 font-black">Security Note:</b> 
+                Your documents are stored in a secure, encrypted vault. They are only used for manual verification and are never shared with third parties.
               </p>
            </div>
         </div>
       )}
 
       {status === 'pending' && (
-        <div className="bg-white p-12 rounded-3xl border border-gray-100 shadow-sm text-center">
-           <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Clock className="text-amber-600" size={32} />
+        <div className="bg-white p-8 sm:p-16 rounded-[3rem] border border-gray-100 shadow-sm text-center max-w-3xl mx-auto animate-in zoom-in-95 duration-500">
+           <div className="w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+              <Clock className="text-amber-600" size={40} />
            </div>
-           <h2 className="text-2xl font-black text-gray-900 mb-2">Verification Pending</h2>
-           <p className="text-gray-500 max-w-md mx-auto mb-8">
-              We’ve received your ID and Selfie. Our team is currently matching them to verify your identity. This usually takes 24-48 hours.
+           <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-3 uppercase tracking-tighter">Verification Pending</h2>
+           <p className="text-gray-500 max-w-md mx-auto mb-10 text-sm sm:text-base leading-relaxed">
+              We’ve received your ID and Selfie. Our team is currently matching them to verify your identity. This usually takes **24-48 hours**.
            </p>
-           <div className="inline-flex items-center gap-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-lg text-[10px] font-black text-emerald-700 uppercase">
-                <CheckCircle size={12} /> ID Uploaded
+           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex items-center gap-2 px-6 py-3 bg-emerald-50 rounded-2xl text-[10px] font-black text-emerald-700 uppercase tracking-widest border border-emerald-100">
+                <CheckCircle size={14} /> ID Uploaded
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg text-[10px] font-black text-blue-700 uppercase">
-                <CheckCircle size={12} /> Selfie Uploaded
+              <div className="flex items-center gap-2 px-6 py-3 bg-blue-50 rounded-2xl text-[10px] font-black text-blue-700 uppercase tracking-widest border border-blue-100">
+                <CheckCircle size={14} /> Selfie Uploaded
               </div>
            </div>
         </div>
       )}
 
       {status === 'verified' && (
-        <div className="bg-white p-12 rounded-3xl border border-blue-100 shadow-xl shadow-blue-900/5 text-center relative overflow-hidden">
-           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-emerald-400" />
-           <div className="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <BadgeCheck className="text-blue-600" size={48} />
+        <div className="bg-white p-8 sm:p-20 rounded-[3rem] border border-blue-100 shadow-2xl shadow-blue-900/5 text-center relative overflow-hidden max-w-3xl mx-auto animate-in fade-in zoom-in duration-700">
+           <div className="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-blue-400 via-indigo-500 to-emerald-400" />
+           <div className="w-28 h-28 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-blue-100">
+              <BadgeCheck className="text-blue-600" size={56} />
            </div>
-           <h2 className="text-3xl font-black text-gray-900 mb-2">Verification Complete!</h2>
-           <p className="text-gray-500 max-w-md mx-auto mb-8">
-              Congratulations, **{storeName}**. Your store is officially verified. You now have full access to the Marketplace and Trending features.
+           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 tracking-tighter uppercase">Verification Complete!</h2>
+           <p className="text-gray-500 max-w-md mx-auto mb-10 text-sm sm:text-base leading-relaxed">
+              Congratulations, <span className="text-gray-900 font-black">{storeName}</span>. Your store is officially verified. You now have full access to the Marketplace and Trending features.
            </p>
            <div className="flex justify-center">
-             <div className="bg-gray-900 text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2">
-               <ShieldAlert size={16} /> Verified Store Profile
+             <div className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center gap-3 shadow-2xl shadow-gray-200 active:scale-95 transition-transform cursor-default">
+               <ShieldAlert size={18} className="text-emerald-400" /> Verified Store Profile
              </div>
            </div>
         </div>

@@ -4,13 +4,11 @@ import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import { 
   X, ShoppingBag, MessageCircle, User, Trash2, Loader2, 
-  Coins, Zap, CheckCircle2, Info, HelpCircle, History,
-  ArrowUpRight, ArrowDownLeft, ChevronRight, RefreshCw
+  Coins, Zap, CheckCircle2, RefreshCw, Send, Check
 } from "lucide-react";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 import { sendGAEvent } from '@next/third-parties/google';
 
 export default function GlobalCartSidebar() {
@@ -26,8 +24,12 @@ export default function GlobalCartSidebar() {
   const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
   const [loadingStoreId, setLoadingStoreId] = useState<string | null>(null);
   const [isSyncingWallet, setIsSyncingWallet] = useState(false);
-  const [history, setHistory] = useState<any[]>([]);
   const [liveStoreSettings, setLiveStoreSettings] = useState<Record<string, any>>({});
+  
+  // --- NEW BRIDGE STATES ---
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [pendingWaUrl, setPendingWaUrl] = useState("");
+  const [pendingStoreName, setPendingStoreName] = useState("");
 
   useEffect(() => {
     const saved = localStorage.getItem("storelink_billing");
@@ -63,7 +65,6 @@ export default function GlobalCartSidebar() {
         
         if (wallet) {
           setActualBalance(wallet.coin_balance);
-          fetchHistory(cleanPhone);
         } else {
           setActualBalance(0); 
         }
@@ -85,42 +86,8 @@ export default function GlobalCartSidebar() {
 
     if (isCartOpen) {
       fetchEverything();
-
-      const savedBilling = localStorage.getItem("storelink_billing");
-      const parsed = savedBilling ? JSON.parse(savedBilling) : null;
-      const cleanPhone = parsed?.phone?.replace(/\D/g, '').slice(-10);
-
-      if (cleanPhone) {
-        const channel = supabase
-          .channel(`wallet-sync-${cleanPhone}`)
-          .on('postgres_changes', { 
-            event: 'UPDATE', 
-            schema: 'public', 
-            table: 'user_wallets', 
-            filter: `phone_number=eq.${cleanPhone}` 
-          }, (payload) => {
-            setActualBalance(payload.new.coin_balance);
-          })
-          .subscribe();
-
-        return () => { supabase.removeChannel(channel); };
-      }
     }
   }, [isCartOpen, cart.length, setActualBalance]);
-
-  const fetchHistory = async (phone: string) => {
-    const cleanPhone = phone.replace(/\D/g, '').slice(-10);
-    if (cleanPhone.length < 10) return;
-
-    const { data } = await supabase
-      .from('coin_transactions')
-      .select('*, stores(name)')
-      .eq('phone_number', cleanPhone)
-      .order('created_at', { ascending: false })
-      .limit(5);
-
-    setHistory(data || []);
-  };
 
   const syncEmpireWallet = async (phone: string) => {
     const cleanPhone = phone.replace(/\D/g, '').slice(-10); 
@@ -136,7 +103,6 @@ export default function GlobalCartSidebar() {
 
       if (data && data.length > 0) {
         setActualBalance(data[0].coin_balance); 
-        fetchHistory(cleanPhone); 
         if (data[0].customer_name && !formData.name) {
           setFormData(prev => ({ ...prev, name: data[0].customer_name }));
         }
@@ -219,12 +185,15 @@ export default function GlobalCartSidebar() {
                     `🚚 Please let me know the *estimated delivery time*.\n\n` +
                     `🚀 _Order generated via StoreLink Ecosystem._`;
 
-        window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, "_blank");
+        // Instead of window.open, prepare the success bridge
+        setPendingWaUrl(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`);
+        setPendingStoreName(storeData.name);
+        setShowSuccessModal(true);
 
         sendGAEvent('event', 'purchase', { store: storeData.name, value: finalPayable });
 
+        // Clean up cart
         items.forEach((item: any) => removeFromCart(item.product.id));
-        if (cart.length === items.length) setIsCartOpen(false);
 
     } catch (err: any) {
         alert(`Order Failed: ${err.message}`);
@@ -248,13 +217,50 @@ export default function GlobalCartSidebar() {
       <div className="absolute inset-0" onClick={() => setIsCartOpen(false)}></div>
 
       <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+        
+        {/* --- SUCCESS BRIDGE MODAL --- */}
+        {showSuccessModal && (
+          <div className="absolute inset-0 z-[110] bg-white flex flex-col items-center justify-center p-8 text-center animate-in zoom-in-95 duration-300">
+             <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
+                <Check size={40} strokeWidth={3} />
+             </div>
+             <h2 className="font-black text-2xl uppercase tracking-tighter mb-2 text-gray-900">Order Generated!</h2>
+             <p className="text-gray-500 text-sm font-medium mb-8">Your order for <span className="text-gray-900 font-bold">{pendingStoreName}</span> is ready. Click below to send it on WhatsApp.</p>
+             
+             <a 
+              href={pendingWaUrl}
+              onClick={() => {
+                setShowSuccessModal(false);
+                if (cart.length === 0) setIsCartOpen(false);
+              }}
+              className="w-full bg-emerald-600 text-white py-5 rounded-[2rem] font-black text-[13px] uppercase tracking-widest hover:bg-emerald-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-emerald-200"
+             >
+               <MessageCircle size={20} fill="currentColor" /> Open WhatsApp to Send
+             </a>
+
+             <button 
+              onClick={() => {
+                setShowSuccessModal(false);
+                if (cart.length === 0) setIsCartOpen(false);
+              }}
+              className="mt-6 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors"
+             >
+               Return to Cart
+             </button>
+          </div>
+        )}
+
+        {/* HEADER */}
         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-white z-10 shadow-sm">
            <h2 className="font-black text-xl flex items-center gap-2 uppercase tracking-tighter"><ShoppingBag className="text-emerald-600" /> My Bag ({cart.length})</h2>
            <button onClick={() => setIsCartOpen(false)} className="p-2 bg-gray-50 rounded-full hover:bg-gray-100 transition"><X size={20} /></button>
         </div>
 
+        {/* CONTENT */}
         <div className="flex-1 overflow-y-auto p-5 bg-gray-50 no-scrollbar pb-24">
           <div className="space-y-6">
+            
+            {/* BILLING */}
             <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100">
               <h3 className="font-black text-gray-900 mb-4 text-[10px] uppercase tracking-widest flex items-center gap-2"><User size={14} className="text-emerald-500" /> Delivery Details</h3>
               <div className="space-y-3">
@@ -264,6 +270,7 @@ export default function GlobalCartSidebar() {
               </div>
             </div>
 
+            {/* COINS */}
             {actualBalance > 0 && (
               <div className="space-y-3 animate-in zoom-in duration-300">
                 <div className={`p-5 rounded-[2.5rem] border-2 transition-all duration-500 flex items-center justify-between ${useCoins ? 'bg-amber-500 border-amber-400 shadow-xl' : 'bg-white border-gray-100'}`}>
@@ -281,22 +288,16 @@ export default function GlobalCartSidebar() {
                       {useCoins ? "Applied" : "Apply Coins"}
                     </button>
                 </div>
-                
-              
               </div>
             )}
 
+            {/* VENDOR CARDS */}
             {Object.values(cartByVendor).map(({ store, items }) => {
-              // 🔥 Use Live Settings from DB for the Banner calculation
               const settings = liveStoreSettings[store.id] || store;
               const storeTotal = items.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
               const discount = useCoins ? Math.min(actualBalance, Math.floor(storeTotal * 0.05)) : 0;
               const finalTotal = storeTotal - discount;
               const earned = settings.loyalty_enabled ? Math.floor(finalTotal * (settings.loyalty_percentage / 100)) : 0;
-
-              const cPhone = (formData.phone || "").replace(/\D/g, '').slice(-10);
-              const vPhone = (settings.whatsapp_number || "").replace(/\D/g, '').slice(-10);
-              const blockOwner = cPhone.length >= 10 && vPhone.length >= 10 && cPhone === vPhone && settings.self_earning === false;
 
               return (
                 <div key={store.id} className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden relative mb-4">
@@ -308,51 +309,48 @@ export default function GlobalCartSidebar() {
                       </div>
                    </div>
 
+                   {/* ITEM LIST */}
                    <div className="space-y-4 mb-6">
                       {items.map(item => (
                         <div key={item.product.id} className="flex gap-4 items-center group text-left min-w-0">
-                          
                           <div className="relative w-12 h-12 bg-gray-50 rounded-xl overflow-hidden border shrink-0">
                             {item.product.image_urls?.[0] && (
                               <Image src={item.product.image_urls[0]} alt="" fill className="object-cover" />
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="font-bold text-[13px] text-gray-900 uppercase truncate">
-                              {item.product.name}
-                            </p>
-                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                              {item.qty} x ₦{item.product.price.toLocaleString()}
-                            </p>
+                            <p className="font-bold text-[13px] text-gray-900 uppercase truncate">{item.product.name}</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{item.qty} x ₦{item.product.price.toLocaleString()}</p>
                           </div>
-
-                          <button 
-                            onClick={() => removeFromCart(item.product.id)} 
-                            className="text-gray-300 hover:text-red-500 p-2 transition-colors shrink-0"
-                          >
+                          <button onClick={() => removeFromCart(item.product.id)} className="text-gray-300 hover:text-red-500 p-2 transition-colors shrink-0">
                             <Trash2 size={16} />
                           </button>
                         </div>
                       ))}
                     </div>
 
+                   {/* LOYALTY INFO */}
                    {settings.loyalty_enabled && (
-                     <div className={`text-[9px] font-black p-4 rounded-2xl mb-6 flex flex-col gap-1 border transition-all ${blockOwner ? 'bg-gray-50 text-gray-400' : 'bg-emerald-50 text-emerald-700 border-emerald-100 animate-in slide-in-from-bottom-2'}`}>
+                     <div className={`text-[9px] font-black p-4 rounded-2xl mb-6 flex flex-col gap-1 border bg-emerald-50 text-emerald-700 border-emerald-100`}>
                         <div className="flex items-center justify-between uppercase">
-                           <span className="flex items-center gap-2">
-                             <Zap size={14} fill={blockOwner ? "none" : "currentColor"} /> 
-                             {blockOwner ? "Earning Blocked (Owner)" : "You are earning"}
-                           </span>
-                           <span className="text-xs">{blockOwner ? "₦0" : `+₦${earned.toLocaleString()}`}</span>
+                            <span className="flex items-center gap-2"><Zap size={14} fill="currentColor" /> You are earning</span>
+                            <span className="text-xs">+₦{earned.toLocaleString()}</span>
                         </div>
-                        <p className="text-[7px] opacity-60 uppercase tracking-widest text-left">
-                          {blockOwner ? "Owner cannot earn from self-orders" : `Calculated as ${settings.loyalty_percentage}% of your ₦${finalTotal.toLocaleString()} total`}
-                        </p>
+                        <p className="text-[7px] opacity-60 uppercase tracking-widest text-left">Calculated as {settings.loyalty_percentage}% of your ₦{finalTotal.toLocaleString()} total</p>
                      </div>
                    )}
 
-                   <button onClick={() => handleCheckout(store.id, store, items)} disabled={!formData.name || !formData.phone || !formData.address || loadingStoreId === store.id} className="w-full bg-gray-900 text-white py-5 rounded-[2rem] font-black text-[11px] uppercase tracking-widest hover:bg-emerald-600 transition-all disabled:bg-gray-100 disabled:text-gray-300 flex items-center justify-center gap-2">
-                     {loadingStoreId === store.id ? <Loader2 className="animate-spin" size={18} /> : <><MessageCircle size={18} /> Complete Checkout</>}
+                   {/* DYNAMIC CHECKOUT BUTTON */}
+                   <button 
+                     onClick={() => handleCheckout(store.id, store, items)} 
+                     disabled={!formData.name || !formData.phone || !formData.address || loadingStoreId === store.id} 
+                     className="w-full bg-gray-900 text-white py-5 rounded-[2rem] font-black text-[11px] uppercase tracking-widest hover:bg-emerald-600 transition-all disabled:bg-gray-100 disabled:text-gray-300 flex items-center justify-center gap-2"
+                   >
+                     {loadingStoreId === store.id ? (
+                       <Loader2 className="animate-spin" size={18} />
+                     ) : (
+                       <><Send size={16} /> Send order to {store.name}</>
+                     )}
                    </button>
                 </div>
               );

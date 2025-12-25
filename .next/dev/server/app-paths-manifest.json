@@ -1,7 +1,6 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
+  "/api/remove-bg/route": "app/api/remove-bg/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
-  "/page": "app/page.js",
-  "/waitlist/page": "app/waitlist/page.js",
-  "/wallet/page": "app/wallet/page.js"
+  "/page": "app/page.js"
 }

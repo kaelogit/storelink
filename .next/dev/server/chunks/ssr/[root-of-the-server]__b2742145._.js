@@ -156,15 +156,32 @@ async function generateMetadata({ params }) {
     if (!store) return {
         title: "Store Not Found"
     };
-    const shareImage = store.cover_image_url || store.logo_url || "/og-image.png";
+    const ogImage = store.cover_image_url || store.logo_url || "https://storelink.ng/og-image.png";
     return {
         title: store.name,
         description: store.description || `Check out ${store.name} on StoreLink.`,
         openGraph: {
             title: store.name,
             description: store.description || "Order directly via WhatsApp.",
+            url: `https://storelink.ng/${resolvedParams.slug}`,
+            siteName: "StoreLink",
             images: [
-                shareImage
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: store.name
+                }
+            ],
+            locale: "en_NG",
+            type: "website"
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: store.name,
+            description: store.description || "Order directly via WhatsApp.",
+            images: [
+                ogImage
             ]
         }
     };
@@ -184,12 +201,12 @@ async function VendorStorePage({ params }) {
                         className: "text-red-600"
                     }, void 0, false, {
                         fileName: "[project]/app/[slug]/page.tsx",
-                        lineNumber: 54,
+                        lineNumber: 71,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/[slug]/page.tsx",
-                    lineNumber: 53,
+                    lineNumber: 70,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -197,36 +214,36 @@ async function VendorStorePage({ params }) {
                     children: "Store Suspended"
                 }, void 0, false, {
                     fileName: "[project]/app/[slug]/page.tsx",
-                    lineNumber: 56,
+                    lineNumber: 73,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-gray-500 max-w-md mb-6",
-                    children: "This store has been suspended for violating the community guidelines. Access to this storefront is currently restricted."
+                    className: "text-gray-500 max-w-md mb-6 font-medium",
+                    children: "This store has been suspended for violating community guidelines. Access to this storefront is currently restricted."
                 }, void 0, false, {
                     fileName: "[project]/app/[slug]/page.tsx",
-                    lineNumber: 57,
+                    lineNumber: 74,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "mt-8 pt-8 border-t border-gray-200 w-full max-w-xs",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-[10px] text-red-400 font-bold uppercase tracking-widest",
-                        children: "Status: Restricted by Admin"
+                        className: "text-[10px] text-red-400 font-black uppercase tracking-[0.3em]",
+                        children: "Admin Action Enforced"
                     }, void 0, false, {
                         fileName: "[project]/app/[slug]/page.tsx",
-                        lineNumber: 62,
+                        lineNumber: 79,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/[slug]/page.tsx",
-                    lineNumber: 61,
+                    lineNumber: 78,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/[slug]/page.tsx",
-            lineNumber: 52,
+            lineNumber: 69,
             columnNumber: 7
         }, this);
     }
@@ -241,28 +258,28 @@ async function VendorStorePage({ params }) {
                         className: "text-red-600"
                     }, void 0, false, {
                         fileName: "[project]/app/[slug]/page.tsx",
-                        lineNumber: 74,
+                        lineNumber: 91,
                         columnNumber: 15
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/[slug]/page.tsx",
-                    lineNumber: 73,
+                    lineNumber: 90,
                     columnNumber: 12
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                    className: "text-2xl font-black text-gray-900 mb-2",
+                    className: "text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight",
                     children: "Store Locked"
                 }, void 0, false, {
                     fileName: "[project]/app/[slug]/page.tsx",
-                    lineNumber: 77,
+                    lineNumber: 94,
                     columnNumber: 12
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-gray-500 max-w-md mb-6",
-                    children: "This store’s subscription has expired, and it is currently offline. If you are the **Store Owner**, please log into your dashboard and renew your subscription to restore public access."
+                    className: "text-gray-500 max-w-md mb-6 font-medium",
+                    children: "This store’s subscription has expired. If you are the **Store Owner**, please log into your dashboard and renew to restore public access."
                 }, void 0, false, {
                     fileName: "[project]/app/[slug]/page.tsx",
-                    lineNumber: 79,
+                    lineNumber: 96,
                     columnNumber: 12
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -272,18 +289,18 @@ async function VendorStorePage({ params }) {
                         children: "Status: Subscription Expired"
                     }, void 0, false, {
                         fileName: "[project]/app/[slug]/page.tsx",
-                        lineNumber: 85,
+                        lineNumber: 102,
                         columnNumber: 15
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/[slug]/page.tsx",
-                    lineNumber: 84,
+                    lineNumber: 101,
                     columnNumber: 12
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/[slug]/page.tsx",
-            lineNumber: 72,
+            lineNumber: 89,
             columnNumber: 9
         }, this);
     }
@@ -302,7 +319,7 @@ async function VendorStorePage({ params }) {
                 storeId: store.id
             }, void 0, false, {
                 fileName: "[project]/app/[slug]/page.tsx",
-                lineNumber: 115,
+                lineNumber: 132,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$StoreFront$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -311,7 +328,7 @@ async function VendorStorePage({ params }) {
                 categories: categories || []
             }, void 0, false, {
                 fileName: "[project]/app/[slug]/page.tsx",
-                lineNumber: 116,
+                lineNumber: 133,
                 columnNumber: 7
             }, this)
         ]
