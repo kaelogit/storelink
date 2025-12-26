@@ -3,22 +3,34 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { Loader2, Store, MapPin, Phone, LayoutDashboard, ShieldCheck, Zap } from "lucide-react";
+import { 
+  Loader2, Store, MapPin, Phone, LayoutDashboard, 
+  ShieldCheck, Zap, Camera, Image as ImageIcon, 
+  Instagram, Music2, ArrowRight, CheckCircle2 
+} from "lucide-react";
 
 export default function OnboardingPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState("");
+  const [step, setStep] = useState(1); // 1: Basics, 2: Visuals, 3: Socials
   
   const [formData, setFormData] = useState({
     name: "",
     slug: "",
-    category: "fashion", // Default
+    category: "fashion",
     location: "Lagos",
     whatsapp: "",
-    description: ""
+    description: "",
+    instagram: "",
+    tiktok: ""
   });
+
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState("");
+  const [coverPreview, setCoverPreview] = useState("");
 
   useEffect(() => {
     const checkUser = async () => {
@@ -35,6 +47,19 @@ export default function OnboardingPage() {
     setFormData({ ...formData, name, slug });
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'logo' | 'cover') => {
+    if (e.target.files?.[0]) {
+      const file = e.target.files[0];
+      if (type === 'logo') {
+        setLogoFile(file);
+        setLogoPreview(URL.createObjectURL(file));
+      } else {
+        setCoverFile(file);
+        setCoverPreview(URL.createObjectURL(file));
+      }
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -42,31 +67,57 @@ export default function OnboardingPage() {
 
     if (!user) return;
 
-    // ✨ TRIAL CALCULATION
-    const fourteenDaysFromNow = new Date();
-    fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14);
+    try {
+      let logoUrl = "";
+      let coverUrl = "";
 
-    // --- LINE BY LINE AUDIT FIX ---
-    const { error } = await supabase.from("stores").insert({
-      owner_id: user.id,
-      owner_email: user.email, // 👈 ADDED THIS: Critical for Godmode Admin View
-      name: formData.name,
-      slug: formData.slug,
-      category: formData.category,
-      location: formData.location,
-      whatsapp_number: formData.whatsapp,
-      description: formData.description,
-      subscription_plan: 'premium', 
-      subscription_expiry: fourteenDaysFromNow.toISOString(), 
-      status: 'active'
-    });
+      // 1. Upload Logo if exists
+      if (logoFile) {
+        const logoName = `logos/${user.id}-${Date.now()}`;
+        const { error: logoErr } = await supabase.storage.from("products").upload(logoName, logoFile);
+        if (logoErr) throw logoErr;
+        const { data: logoData } = supabase.storage.from("products").getPublicUrl(logoName);
+        logoUrl = logoData.publicUrl;
+      }
 
-    if (error) {
-      setErrorMsg(error.message); 
-      setLoading(false);
-    } else {
+      // 2. Upload Cover if exists
+      if (coverFile) {
+        const coverName = `covers/${user.id}-${Date.now()}`;
+        const { error: coverErr } = await supabase.storage.from("products").upload(coverName, coverFile);
+        if (coverErr) throw coverErr;
+        const { data: coverData } = supabase.storage.from("products").getPublicUrl(coverName);
+        coverUrl = coverData.publicUrl;
+      }
+
+      const fourteenDaysFromNow = new Date();
+      fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14);
+
+      // 3. Create the Store with EVERYTHING
+      const { error } = await supabase.from("stores").insert({
+        owner_id: user.id,
+        owner_email: user.email,
+        name: formData.name,
+        slug: formData.slug,
+        category: formData.category,
+        location: formData.location,
+        whatsapp_number: formData.whatsapp,
+        description: formData.description,
+        instagram_handle: formData.instagram,
+        tiktok_url: formData.tiktok,
+        logo_url: logoUrl,
+        cover_image_url: coverUrl,
+        subscription_plan: 'premium', 
+        subscription_expiry: fourteenDaysFromNow.toISOString(), 
+        status: 'active'
+      });
+
+      if (error) throw error;
+
       router.push("/dashboard");
       router.refresh();
+    } catch (err: any) {
+      setErrorMsg(err.message);
+      setLoading(false);
     }
   };
 
@@ -74,7 +125,6 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-      
       <nav className="p-6 flex justify-center md:justify-start max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-2">
            <LayoutDashboard className="text-emerald-600" size={28}/>
@@ -83,117 +133,135 @@ export default function OnboardingPage() {
       </nav>
 
       <main className="flex-1 flex items-center justify-center p-4">
-        <div className="w-full max-w-lg bg-white rounded-[40px] shadow-2xl shadow-gray-200/50 overflow-hidden border border-gray-100 animate-in fade-in zoom-in-95 duration-500">
+        <div className="w-full max-w-lg bg-white rounded-[40px] shadow-2xl shadow-gray-200/50 overflow-hidden border border-gray-100">
           
-          <div className="bg-gray-900 p-8 text-white text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-            
+          {/* HEADER WITH PROGRESS BAR */}
+          <div className="bg-gray-900 p-8 text-white text-center relative">
             <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-md">
               <Store className="w-8 h-8 text-emerald-400" />
             </div>
-            <h1 className="text-3xl font-black tracking-tight">Setup Your Store</h1>
-            <p className="text-gray-400 text-sm mt-1">One last step to start selling.</p>
-            
-            <div className="mt-4 inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-500/30">
-              <Zap size={12} fill="currentColor"/> 2 Weeks Premium Gift Active
+            <h1 className="text-3xl font-black tracking-tight uppercase italic">Setup Empire</h1>
+            <div className="mt-4 flex items-center justify-center gap-2">
+                {[1, 2, 3].map((s) => (
+                    <div key={s} className={`h-1.5 rounded-full transition-all duration-500 ${step >= s ? 'w-8 bg-emerald-500' : 'w-2 bg-gray-700'}`} />
+                ))}
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-5">
+          <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6">
             
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">Store Name</label>
-              <input 
-                required
-                className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 transition-all font-medium"
-                placeholder="e.g. Mira's Perfume"
-                value={formData.name}
-                onChange={handleNameChange}
-              />
-              <p className="text-[11px] text-gray-400 mt-2 flex items-center gap-1">
-                Your professional link: <span className="text-emerald-600 font-bold">storelink.ng/{formData.slug || "your-store"}</span>
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-               <div>
-                 <label className="block text-sm font-bold text-gray-700 mb-1">Category</label>
-                 <select 
-                    required
-                    className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 font-medium appearance-none"
-                    value={formData.category}
-                    onChange={e => setFormData({...formData, category: e.target.value})}
-                  >
-                    <option value="" disabled>Select a Category</option>
-                    <optgroup label="Main Categories">
-                      <option value="fashion">Fashion & Apparel</option>
-                      <option value="beauty">Beauty & Personal Care</option>
-                      <option value="electronics">Electronics & Gadgets</option>
-                      <option value="home-kitchen">Home & Kitchen</option>
-                      <option value="groceries">Groceries & Food</option>
-                    </optgroup>
-                    <optgroup label="Specialty">
-                      <option value="real-estate">Real Estate</option>
-                      <option value="automotive">Automotive</option>
-                      <option value="services">Services</option>
-                    </optgroup>
-                  </select>
-               </div>
-               
-               <div>
-                 <label className="block text-sm font-bold text-gray-700 mb-1">Location</label>
-                 <div className="relative">
-                   <MapPin className="absolute left-4 top-4.5 text-gray-400 w-4 h-4" />
-                   <input 
-                     required
-                     className="w-full p-4 pl-10 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 font-medium"
-                     placeholder="Lagos"
-                     value={formData.location}
-                     onChange={e => setFormData({...formData, location: e.target.value})}
-                   />
-                 </div>
-               </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">WhatsApp Number</label>
-              <div className="relative">
-                <Phone className="absolute left-4 top-4.5 text-gray-400 w-4 h-4" />
-                <input 
-                  required
-                  type="tel"
-                  className="w-full p-4 pl-10 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 font-medium"
-                  placeholder="08012345678"
-                  value={formData.whatsapp}
-                  onChange={e => setFormData({...formData, whatsapp: e.target.value})}
-                />
-              </div>
-              <p className="text-[10px] text-gray-400 mt-2 font-medium italic">Orders will be automatically sent to this number.</p>
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1">Short Bio</label>
-              <textarea 
-                className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 h-24 resize-none font-medium"
-                placeholder="Tell customers about your store..."
-                value={formData.description}
-                onChange={e => setFormData({...formData, description: e.target.value})}
-              />
-            </div>
-
-            {errorMsg && (
-              <div className="p-4 bg-red-50 text-red-600 text-xs font-black rounded-xl text-center border border-red-100">
-                ⚠️ ERROR: {errorMsg}
+            {/* STEP 1: BASICS */}
+            {step === 1 && (
+              <div className="space-y-5 animate-in slide-in-from-right-5 duration-300">
+                <div className="flex items-center gap-2 text-emerald-600 font-black text-[10px] uppercase tracking-widest mb-2">
+                    <CheckCircle2 size={14}/> Step 1: Core Details
+                </div>
+                <div>
+                  <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Store Name</label>
+                  <input required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold" placeholder="e.g. Mira's Perfume" value={formData.name} onChange={handleNameChange} />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Category</label>
+                        <select required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold appearance-none" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
+                            <option value="fashion">Fashion</option>
+                            <option value="beauty">Beauty</option>
+                            <option value="electronics">Tech</option>
+                            <option value="food">Food</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Location</label>
+                        <input required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} />
+                    </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">WhatsApp Number</label>
+                  <input required type="tel" className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold" placeholder="08012345678" value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})} />
+                </div>
+                <button type="button" onClick={() => step < 3 && setStep(2)} className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2">
+                    Next: Brand Visuals <ArrowRight size={18}/>
+                </button>
               </div>
             )}
 
-            <button 
-              type="submit" 
-              disabled={loading}
-              className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-sm shadow-xl shadow-gray-200 hover:bg-gray-800 active:scale-95 transition-all flex items-center justify-center gap-2 uppercase tracking-widest"
-            >
-              {loading ? <Loader2 className="animate-spin" /> : "Launch Empire 🚀"}
-            </button>
+            {/* STEP 2: VISUALS (THE MOST IMPORTANT STEP) */}
+            {step === 2 && (
+              <div className="space-y-5 animate-in slide-in-from-right-5 duration-300">
+                <div className="flex items-center gap-2 text-emerald-600 font-black text-[10px] uppercase tracking-widest mb-2">
+                    <CheckCircle2 size={14}/> Step 2: Identity
+                </div>
+                
+                {/* COVER UPLOAD */}
+                <div>
+                  <label className="block text-xs font-black uppercase text-gray-400 mb-2 ml-1">Store Cover</label>
+                  <div className="relative h-32 bg-gray-100 rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 group">
+                    {coverPreview ? <img src={coverPreview} className="w-full h-full object-cover" /> : 
+                      <div className="flex flex-col items-center justify-center h-full text-gray-400">
+                        <ImageIcon size={24} />
+                        <span className="text-[10px] font-black uppercase mt-2">Upload Cover</span>
+                      </div>
+                    }
+                    <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileChange(e, 'cover')} />
+                  </div>
+                </div>
+
+                {/* LOGO UPLOAD */}
+                <div className="flex items-center gap-6">
+                    <div>
+                        <label className="block text-xs font-black uppercase text-gray-400 mb-2 ml-1">Logo</label>
+                        <div className="relative w-20 h-20 bg-gray-100 rounded-full overflow-hidden border-2 border-dashed border-gray-200">
+                            {logoPreview ? <img src={logoPreview} className="w-full h-full object-cover" /> : 
+                                <div className="flex items-center justify-center h-full text-gray-400"><Camera size={20}/></div>
+                            }
+                            <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileChange(e, 'logo')} />
+                        </div>
+                    </div>
+                    <p className="text-[11px] font-medium text-gray-500 leading-relaxed">
+                        A professional logo and cover make customers trust you instantly. <span className="text-emerald-600 font-bold">Don't skip this!</span>
+                    </p>
+                </div>
+
+                <div className="flex gap-3">
+                    <button type="button" onClick={() => setStep(1)} className="w-1/3 bg-gray-100 text-gray-500 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px]">Back</button>
+                    <button type="button" onClick={() => setStep(3)} className="w-2/3 bg-gray-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2">
+                        Next: Bio & Socials <ArrowRight size={18}/>
+                    </button>
+                </div>
+              </div>
+            )}
+
+            {/* STEP 3: SOCIALS & BIO */}
+            {step === 3 && (
+              <div className="space-y-5 animate-in slide-in-from-right-5 duration-300">
+                <div className="flex items-center gap-2 text-emerald-600 font-black text-[10px] uppercase tracking-widest mb-2">
+                    <CheckCircle2 size={14}/> Step 3: Connection
+                </div>
+                <div>
+                  <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Store Bio</label>
+                  <textarea className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none h-24 resize-none font-bold" placeholder="Quality luxury items for your home..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="relative">
+                        <Instagram className="absolute left-4 top-4 text-gray-400" size={18}/>
+                        <input className="w-full p-4 pl-11 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-sm" placeholder="Instagram" value={formData.instagram} onChange={e => setFormData({...formData, instagram: e.target.value})} />
+                    </div>
+                    <div className="relative">
+                        <Music2 className="absolute left-4 top-4 text-gray-400" size={18}/>
+                        <input className="w-full p-4 pl-11 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-sm" placeholder="TikTok URL" value={formData.tiktok} onChange={e => setFormData({...formData, tiktok: e.target.value})} />
+                    </div>
+                </div>
+
+                <div className="flex gap-3">
+                    <button type="button" onClick={() => setStep(2)} className="w-1/3 bg-gray-100 text-gray-500 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px]">Back</button>
+                    <button type="submit" disabled={loading} className="w-2/3 bg-emerald-600 text-white py-5 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl shadow-emerald-100 active:scale-95 transition-all flex items-center justify-center gap-2">
+                        {loading ? <Loader2 className="animate-spin" /> : "Launch Empire 🚀"}
+                    </button>
+                </div>
+              </div>
+            )}
+
+            {errorMsg && <div className="p-4 bg-red-50 text-red-600 text-[10px] font-black rounded-xl text-center border border-red-100 uppercase tracking-widest">⚠️ ERROR: {errorMsg}</div>}
 
           </form>
         </div>
@@ -208,7 +276,7 @@ export default function OnboardingPage() {
              <Zap size={14} className="text-amber-500" /> Instant Setup
            </div>
         </div>
-        <p className="text-[10px] text-gray-300 font-medium">© 2025 StoreLink Social Commerce Engine. All rights reserved.</p>
+        <p className="text-[10px] text-gray-300 font-black uppercase tracking-widest">© 2025 StoreLink Engine</p>
       </footer>
     </div>
   );

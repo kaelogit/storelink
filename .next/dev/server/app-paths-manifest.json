@@ -6,5 +6,7 @@
   "/dashboard/orders/page": "app/dashboard/orders/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/product/[id]/page": "app/product/[id]/page.js",
+  "/wallet/page": "app/wallet/page.js"
 }

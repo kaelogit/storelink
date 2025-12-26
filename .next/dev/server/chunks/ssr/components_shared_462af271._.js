@@ -205,19 +205,19 @@ function ProductHeader({ storeSlug, storeLogo }) {
                                 fileName: "[project]/components/shared/ProductHeader.tsx",
                                 lineNumber: 47,
                                 columnNumber: 15
-                            }, this) : /* Fallback if no image exists: a sleek dark square with initials */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-full h-full bg-gray-900 flex items-center justify-center",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-[10px] text-white font-black",
                                     children: storeSlug.charAt(0).toUpperCase()
                                 }, void 0, false, {
                                     fileName: "[project]/components/shared/ProductHeader.tsx",
-                                    lineNumber: 57,
+                                    lineNumber: 56,
                                     columnNumber: 18
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/shared/ProductHeader.tsx",
-                                lineNumber: 56,
+                                lineNumber: 55,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
@@ -245,7 +245,7 @@ function ProductHeader({ storeSlug, storeLogo }) {
                         strokeWidth: 2.5
                     }, void 0, false, {
                         fileName: "[project]/components/shared/ProductHeader.tsx",
-                        lineNumber: 69,
+                        lineNumber: 68,
                         columnNumber: 9
                     }, this),
                     cartCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -253,13 +253,13 @@ function ProductHeader({ storeSlug, storeLogo }) {
                         children: cartCount
                     }, void 0, false, {
                         fileName: "[project]/components/shared/ProductHeader.tsx",
-                        lineNumber: 71,
+                        lineNumber: 70,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/shared/ProductHeader.tsx",
-                lineNumber: 65,
+                lineNumber: 64,
                 columnNumber: 7
             }, this)
         ]
@@ -296,7 +296,6 @@ function ProductGallery({ images, stockCount }) {
     const scrollRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const safeImages = images && images.length > 0 ? images : [];
     const isLowStock = stockCount !== undefined && stockCount > 0 && stockCount <= 5;
-    // Sync scroll position when thumbnails are clicked
     const handleThumbnailClick = (index)=>{
         setActiveIndex(index);
         if (scrollRef.current) {
@@ -307,7 +306,6 @@ function ProductGallery({ images, stockCount }) {
             });
         }
     };
-    // Update index based on scroll position (for mobile swiping)
     const handleScroll = (e)=>{
         const scrollPosition = e.currentTarget.scrollLeft;
         const itemWidth = e.currentTarget.offsetWidth;
@@ -323,12 +321,12 @@ function ProductGallery({ images, stockCount }) {
                 size: 64
             }, void 0, false, {
                 fileName: "[project]/components/shared/ProductGallery.tsx",
-                lineNumber: 37,
+                lineNumber: 35,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/shared/ProductGallery.tsx",
-            lineNumber: 36,
+            lineNumber: 34,
             columnNumber: 7
         }, this);
     }
@@ -354,12 +352,12 @@ function ProductGallery({ images, stockCount }) {
                                         priority: i === 0
                                     }, void 0, false, {
                                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                                        lineNumber: 57,
+                                        lineNumber: 54,
                                         columnNumber: 15
                                     }, this)
                                 }, i, false, {
                                     fileName: "[project]/components/shared/ProductGallery.tsx",
-                                    lineNumber: 52,
+                                    lineNumber: 49,
                                     columnNumber: 13
                                 }, this)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -369,12 +367,12 @@ function ProductGallery({ images, stockCount }) {
                                     className: "text-white"
                                 }, void 0, false, {
                                     fileName: "[project]/components/shared/ProductGallery.tsx",
-                                    lineNumber: 69,
+                                    lineNumber: 65,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/shared/ProductGallery.tsx",
-                                lineNumber: 68,
+                                lineNumber: 64,
                                 columnNumber: 11
                             }, this),
                             isLowStock && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -385,7 +383,7 @@ function ProductGallery({ images, stockCount }) {
                                         fill: "currentColor"
                                     }, void 0, false, {
                                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                                        lineNumber: 75,
+                                        lineNumber: 70,
                                         columnNumber: 15
                                     }, this),
                                     " Only ",
@@ -394,13 +392,13 @@ function ProductGallery({ images, stockCount }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/shared/ProductGallery.tsx",
-                                lineNumber: 74,
+                                lineNumber: 69,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                        lineNumber: 46,
+                        lineNumber: 43,
                         columnNumber: 9
                     }, this),
                     safeImages.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -409,18 +407,18 @@ function ProductGallery({ images, stockCount }) {
                                 className: `w-1.5 h-1.5 rounded-full transition-all duration-300 ${activeIndex === i ? "bg-emerald-500 w-4" : "bg-gray-300"}`
                             }, i, false, {
                                 fileName: "[project]/components/shared/ProductGallery.tsx",
-                                lineNumber: 84,
+                                lineNumber: 78,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                        lineNumber: 82,
+                        lineNumber: 76,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/shared/ProductGallery.tsx",
-                lineNumber: 45,
+                lineNumber: 42,
                 columnNumber: 7
             }, this),
             safeImages.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -435,17 +433,17 @@ function ProductGallery({ images, stockCount }) {
                             className: "object-cover"
                         }, void 0, false, {
                             fileName: "[project]/components/shared/ProductGallery.tsx",
-                            lineNumber: 108,
+                            lineNumber: 101,
                             columnNumber: 15
                         }, this)
                     }, i, false, {
                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                        lineNumber: 99,
+                        lineNumber: 92,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/shared/ProductGallery.tsx",
-                lineNumber: 97,
+                lineNumber: 90,
                 columnNumber: 9
             }, this),
             isZoomOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -458,12 +456,12 @@ function ProductGallery({ images, stockCount }) {
                             size: 32
                         }, void 0, false, {
                             fileName: "[project]/components/shared/ProductGallery.tsx",
-                            lineNumber: 121,
+                            lineNumber: 113,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                        lineNumber: 117,
+                        lineNumber: 109,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -476,12 +474,12 @@ function ProductGallery({ images, stockCount }) {
                             className: "max-w-full max-h-full object-contain rounded-2xl shadow-2xl animate-in zoom-in-95 duration-500"
                         }, void 0, false, {
                             fileName: "[project]/components/shared/ProductGallery.tsx",
-                            lineNumber: 125,
+                            lineNumber: 117,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                        lineNumber: 124,
+                        lineNumber: 116,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -493,19 +491,19 @@ function ProductGallery({ images, stockCount }) {
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/components/shared/ProductGallery.tsx",
-                                    lineNumber: 136,
+                                    lineNumber: 128,
                                     columnNumber: 15
                                 }, this),
                                 " Tap anywhere to close"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/shared/ProductGallery.tsx",
-                            lineNumber: 135,
+                            lineNumber: 127,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                        lineNumber: 134,
+                        lineNumber: 126,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -513,19 +511,19 @@ function ProductGallery({ images, stockCount }) {
                         onClick: ()=>setIsZoomOpen(false)
                     }, void 0, false, {
                         fileName: "[project]/components/shared/ProductGallery.tsx",
-                        lineNumber: 140,
+                        lineNumber: 132,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/shared/ProductGallery.tsx",
-                lineNumber: 116,
+                lineNumber: 108,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/shared/ProductGallery.tsx",
-        lineNumber: 43,
+        lineNumber: 41,
         columnNumber: 5
     }, this);
 }
@@ -560,7 +558,7 @@ function FlashTimer({ expiry }) {
             });
         };
         const timer = setInterval(calculateTime, 1000);
-        calculateTime(); // Initial call
+        calculateTime();
         return ()=>clearInterval(timer);
     }, [
         expiry
