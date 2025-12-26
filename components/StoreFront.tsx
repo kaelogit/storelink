@@ -7,7 +7,7 @@ import Link from "next/link";
 import { 
   MapPin, Info, ShoppingBag, 
   X, Instagram, Search, Package, Phone, LayoutDashboard, ChevronRight,
-  BadgeCheck, Gem, Plus, Zap, Loader2
+  BadgeCheck, Gem, Plus, Zap, Loader2, Music2
 } from "lucide-react";
 import { Store } from "@/types";
 import { useCart } from "@/context/CartContext";
@@ -349,23 +349,37 @@ export default function StoreFront({ store, products: initialProducts, categorie
                 </div>
 
                 <div className="space-y-3 mt-auto">
-                    <h4 className="font-black text-gray-400 text-[10px] uppercase tracking-widest mb-2">Connect</h4>
-                    {store.whatsapp_number && (
-                        <div className="flex items-center gap-4 p-4 rounded-xl border border-gray-100">
-                            <div className="bg-emerald-500 p-2 rounded-lg text-white"><Phone size={18}/></div>
-                            <div>
-                                <p className="text-[9px] text-emerald-600 font-black uppercase tracking-widest">WhatsApp</p>
-                                <p className="text-sm font-bold text-gray-900">{store.whatsapp_number}</p>
-                            </div>
-                        </div>
-                    )}
-                    {store.instagram_handle && (
-                        <a href={`https://instagram.com/${store.instagram_handle}`} target="_blank" className="flex items-center justify-between p-4 bg-gray-50 rounded-xl font-bold">
-                            <span className="flex items-center gap-3 text-xs uppercase tracking-widest"><Instagram size={18} /> Instagram</span>
-                            <ChevronRight size={14}/>
-                        </a>
-                    )}
-                </div>
+                  <h4 className="font-black text-gray-400 text-[10px] uppercase tracking-widest mb-2">Connect</h4>
+                  
+                  {/* WHATSAPP */}
+                  {store.whatsapp_number && (
+                      <div className="flex items-center gap-4 p-4 rounded-xl border border-gray-100">
+                          <div className="bg-emerald-500 p-2 rounded-lg text-white"><Phone size={18}/></div>
+                          <div>
+                              <p className="text-[9px] text-emerald-600 font-black uppercase tracking-widest">WhatsApp</p>
+                              <p className="text-sm font-bold text-gray-900">{store.whatsapp_number}</p>
+                          </div>
+                      </div>
+                  )}
+
+                  {store.instagram_handle && (
+                      <a href={`https://instagram.com/${store.instagram_handle.replace('@', '')}`} target="_blank" className="flex items-center justify-between p-4 bg-gray-50 rounded-xl font-bold active:scale-95 transition-all">
+                          <span className="flex items-center gap-3 text-xs uppercase tracking-widest"><Instagram size={18} className="text-pink-600" /> Instagram</span>
+                          <ChevronRight size={14} className="text-gray-400"/>
+                      </a>
+                  )}
+
+                  {store.tiktok_url && (
+                      <a 
+                          href={store.tiktok_url.startsWith('http') ? store.tiktok_url : `https://tiktok.com/@${store.tiktok_url.replace('@', '')}`} 
+                          target="_blank" 
+                          className="flex items-center justify-between p-4 bg-gray-50 rounded-xl font-bold active:scale-95 transition-all"
+                      >
+                          <span className="flex items-center gap-3 text-xs uppercase tracking-widest"><Music2 size={18} className="text-black" /> TikTok</span>
+                          <ChevronRight size={14} className="text-gray-400"/>
+                      </a>
+                  )}
+              </div>
                 <p className="text-center text-[9px] font-black text-gray-300 mt-8">Store ID: {store.slug}</p>
              </div>
           </div>

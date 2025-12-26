@@ -1,4 +1,5 @@
 {
+  "/[slug]/page": "app/[slug]/page.js",
   "/admin/broadcast/page": "app/admin/broadcast/page.js",
   "/admin/page": "app/admin/page.js",
   "/api/remove-bg/route": "app/api/remove-bg/route.js",
