@@ -1,5 +1,9 @@
 {
+  "/admin/broadcast/page": "app/admin/broadcast/page.js",
+  "/admin/page": "app/admin/page.js",
   "/api/remove-bg/route": "app/api/remove-bg/route.js",
+  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
+  "/dashboard/orders/page": "app/dashboard/orders/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
   "/page": "app/page.js"

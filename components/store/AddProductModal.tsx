@@ -182,6 +182,13 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
     e.preventDefault();
     if ((isLimitReached && !productToEdit) || isExpired) return; 
 
+    // 🔒 COMPULSORY IMAGE CHECK
+    if (existingImages.length === 0 && imageFiles.length === 0) {
+      setErrorMsg("Please add at least one product image");
+      setTimeout(() => setErrorMsg(""), 4000);
+      return;
+    }
+
     setLoading(true);
     try {
       const uploadedUrls: string[] = [];

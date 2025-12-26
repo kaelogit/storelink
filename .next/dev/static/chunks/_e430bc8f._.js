@@ -225,6 +225,12 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
     const handleSubmit = async (e)=>{
         e.preventDefault();
         if (isLimitReached && !productToEdit || isExpired) return;
+        // 🔒 COMPULSORY IMAGE CHECK
+        if (existingImages.length === 0 && imageFiles.length === 0) {
+            setErrorMsg("Please add at least one product image");
+            setTimeout(()=>setErrorMsg(""), 4000);
+            return;
+        }
         setLoading(true);
         try {
             const uploadedUrls = [];
@@ -282,7 +288,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                             children: productToEdit ? "Update Product" : "Save to Warehouse"
                         }, void 0, false, {
                             fileName: "[project]/components/store/AddProductModal.tsx",
-                            lineNumber: 238,
+                            lineNumber: 245,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -292,18 +298,18 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 241,
+                                lineNumber: 248,
                                 columnNumber: 128
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/store/AddProductModal.tsx",
-                            lineNumber: 241,
+                            lineNumber: 248,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/store/AddProductModal.tsx",
-                    lineNumber: 237,
+                    lineNumber: 244,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -316,7 +322,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 className: "text-red-400 mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 247,
+                                lineNumber: 254,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -324,7 +330,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 children: "Subscription Expired"
                             }, void 0, false, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 248,
+                                lineNumber: 255,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -333,13 +339,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 children: "Renew Subscription"
                             }, void 0, false, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 249,
+                                lineNumber: 256,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/store/AddProductModal.tsx",
-                        lineNumber: 246,
+                        lineNumber: 253,
                         columnNumber: 14
                     }, this) : isLimitReached && !productToEdit ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "py-8 text-center flex flex-col items-center justify-center h-full",
@@ -349,7 +355,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 className: "text-amber-500 mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 253,
+                                lineNumber: 260,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -357,7 +363,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 children: "Starter Limit Reached"
                             }, void 0, false, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 254,
+                                lineNumber: 261,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -369,20 +375,20 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                         className: "text-amber-400"
                                     }, void 0, false, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 256,
+                                        lineNumber: 263,
                                         columnNumber: 19
                                     }, this),
                                     " Upgrade Plan"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 255,
+                                lineNumber: 262,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/store/AddProductModal.tsx",
-                        lineNumber: 252,
+                        lineNumber: 259,
                         columnNumber: 13
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                         onSubmit: handleSubmit,
@@ -398,7 +404,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Images (Max 4)"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 265,
+                                                lineNumber: 272,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -411,7 +417,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         className: removeBg ? "animate-pulse" : ""
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 268,
+                                                        lineNumber: 275,
                                                         columnNumber: 25
                                                     }, this),
                                                     " ",
@@ -419,13 +425,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 266,
+                                                lineNumber: 273,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 264,
+                                        lineNumber: 271,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -440,7 +446,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             className: "w-full h-full object-cover"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/store/AddProductModal.tsx",
-                                                            lineNumber: 275,
+                                                            lineNumber: 282,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -451,18 +457,18 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                                 size: 10
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                                lineNumber: 276,
+                                                                lineNumber: 283,
                                                                 columnNumber: 172
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/store/AddProductModal.tsx",
-                                                            lineNumber: 276,
+                                                            lineNumber: 283,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, `existing-${index}`, true, {
                                                     fileName: "[project]/components/store/AddProductModal.tsx",
-                                                    lineNumber: 274,
+                                                    lineNumber: 281,
                                                     columnNumber: 21
                                                 }, this)),
                                             previews.map((src, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -474,7 +480,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             className: "w-full h-full object-cover"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/store/AddProductModal.tsx",
-                                                            lineNumber: 281,
+                                                            lineNumber: 288,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -485,18 +491,18 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                                 size: 10
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                                lineNumber: 282,
+                                                                lineNumber: 289,
                                                                 columnNumber: 167
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/store/AddProductModal.tsx",
-                                                            lineNumber: 282,
+                                                            lineNumber: 289,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, `new-${index}`, true, {
                                                     fileName: "[project]/components/store/AddProductModal.tsx",
-                                                    lineNumber: 280,
+                                                    lineNumber: 287,
                                                     columnNumber: 21
                                                 }, this)),
                                             processingImages && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -507,7 +513,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 287,
+                                                        lineNumber: 294,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -515,13 +521,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "AI Cleaning..."
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 288,
+                                                        lineNumber: 295,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 286,
+                                                lineNumber: 293,
                                                 columnNumber: 21
                                             }, this),
                                             existingImages.length + previews.length < 4 && !processingImages && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -531,13 +537,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         size: 24
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 293,
+                                                        lineNumber: 300,
                                                         columnNumber: 35
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
                                                         size: 24
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 293,
+                                                        lineNumber: 300,
                                                         columnNumber: 59
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -548,19 +554,19 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         className: "hidden"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 294,
+                                                        lineNumber: 301,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 292,
+                                                lineNumber: 299,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 272,
+                                        lineNumber: 279,
                                         columnNumber: 17
                                     }, this),
                                     aiStatus === "diamond_gate" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -574,7 +580,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         className: "text-purple-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 303,
+                                                        lineNumber: 310,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -582,13 +588,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "Diamond Feature Only"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 304,
+                                                        lineNumber: 311,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 302,
+                                                lineNumber: 309,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -596,7 +602,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "One-click AI cleaning is reserved for Diamond users due to API costs. But you can do it manually for free!"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 306,
+                                                lineNumber: 313,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -613,31 +619,31 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                                 size: 10
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                                lineNumber: 308,
+                                                                lineNumber: 315,
                                                                 columnNumber: 169
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 308,
+                                                        lineNumber: 315,
                                                         columnNumber: 35
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 308,
+                                                        lineNumber: 315,
                                                         columnNumber: 198
                                                     }, this),
                                                     "2. Upload your photo & set background to white",
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 309,
+                                                        lineNumber: 316,
                                                         columnNumber: 72
                                                     }, this),
                                                     "3. Download it, then upload the result here!"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 307,
+                                                lineNumber: 314,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -647,13 +653,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Got it, thanks!"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 312,
+                                                lineNumber: 319,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 301,
+                                        lineNumber: 308,
                                         columnNumber: 20
                                     }, this),
                                     aiStatus === "limit_gate" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -667,7 +673,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         className: "text-amber-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 319,
+                                                        lineNumber: 326,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -675,13 +681,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "Community Limit Reached"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 320,
+                                                        lineNumber: 327,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 318,
+                                                lineNumber: 325,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -689,7 +695,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Our Diamond credits are exhausted for today. We are working on unlimited AI access!"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 322,
+                                                lineNumber: 329,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -703,14 +709,14 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "remove.bg"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 323,
+                                                        lineNumber: 330,
                                                         columnNumber: 93
                                                     }, this),
                                                     " manually to clean your photo, then upload the result here."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 323,
+                                                lineNumber: 330,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -720,19 +726,19 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Understood"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 324,
+                                                lineNumber: 331,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 317,
+                                        lineNumber: 324,
                                         columnNumber: 20
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 263,
+                                lineNumber: 270,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -745,7 +751,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Product Name"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 332,
+                                                lineNumber: 339,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -759,13 +765,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                     })
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 333,
+                                                lineNumber: 340,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 331,
+                                        lineNumber: 338,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -778,7 +784,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "Price (₦)"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 338,
+                                                        lineNumber: 345,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -793,13 +799,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             })
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 339,
+                                                        lineNumber: 346,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 337,
+                                                lineNumber: 344,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -809,7 +815,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "In Stock"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 342,
+                                                        lineNumber: 349,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -824,19 +830,19 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             })
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 343,
+                                                        lineNumber: 350,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 341,
+                                                lineNumber: 348,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 336,
+                                        lineNumber: 343,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -846,7 +852,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Category"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 348,
+                                                lineNumber: 355,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -862,7 +868,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "Uncategorized"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                                        lineNumber: 350,
+                                                        lineNumber: 357,
                                                         columnNumber: 21
                                                     }, this),
                                                     categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -870,19 +876,19 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             children: cat.name
                                                         }, cat.id, false, {
                                                             fileName: "[project]/components/store/AddProductModal.tsx",
-                                                            lineNumber: 351,
+                                                            lineNumber: 358,
                                                             columnNumber: 44
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 349,
+                                                lineNumber: 356,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 347,
+                                        lineNumber: 354,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -892,7 +898,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Description (Optional)"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 356,
+                                                lineNumber: 363,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -906,19 +912,19 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                     })
                                             }, void 0, false, {
                                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                                lineNumber: 357,
+                                                lineNumber: 364,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/store/AddProductModal.tsx",
-                                        lineNumber: 355,
+                                        lineNumber: 362,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 330,
+                                lineNumber: 337,
                                 columnNumber: 15
                             }, this),
                             errorMsg && ![
@@ -932,7 +938,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 362,
+                                lineNumber: 369,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -943,34 +949,34 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                     className: "animate-spin mx-auto"
                                 }, void 0, false, {
                                     fileName: "[project]/components/store/AddProductModal.tsx",
-                                    lineNumber: 366,
+                                    lineNumber: 373,
                                     columnNumber: 28
                                 }, this) : productToEdit ? "Update Product" : "Save to Warehouse"
                             }, void 0, false, {
                                 fileName: "[project]/components/store/AddProductModal.tsx",
-                                lineNumber: 365,
+                                lineNumber: 372,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/store/AddProductModal.tsx",
-                        lineNumber: 260,
+                        lineNumber: 267,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/store/AddProductModal.tsx",
-                    lineNumber: 244,
+                    lineNumber: 251,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/store/AddProductModal.tsx",
-            lineNumber: 234,
+            lineNumber: 241,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/store/AddProductModal.tsx",
-        lineNumber: 233,
+        lineNumber: 240,
         columnNumber: 5
     }, this);
 }

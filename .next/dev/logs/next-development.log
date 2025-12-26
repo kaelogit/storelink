@@ -2686,3 +2686,45 @@ Import traces:
 [19:59:10.270] Server  LOG        Reload env: .env.local
 [19:59:14.669] Server  LOG        Reload env: .env.local
 [19:59:29.872] Server  LOG        Reload env: .env.local
+[35:17:11.761] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[35:17:14.771] Server  LOG      ○ Compiling /admin ...
+[35:17:29.194] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:17:31.757] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[35:17:31.757] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[35:17:33.303] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[35:23:02.594] Server  LOG      ✓ Compiled in 338ms
+[35:23:41.125] Server  LOG      ○ Compiling /dashboard/orders ...
+[35:23:45.304] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:26:02.025] Server  LOG      ✓ Compiled in 645ms
+[35:26:08.897] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:34:15.814] Server  LOG      ✓ Compiled in 834ms
+[35:35:41.721] Server  LOG      ✓ Compiled in 185ms
+[35:35:57.121] Server  LOG      ✓ Compiled in 217ms
+[35:35:59.366] Server  LOG      ✓ Compiled in 250ms
+[35:36:03.298] Server  LOG      ✓ Compiled in 239ms
+[35:36:20.066] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+[35:36:21.330] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:36:48.912] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:47:29.381] Server  LOG      ✓ Compiled in 338ms
+[35:51:08.004] Server  LOG      ✓ Compiled in 493ms
+[35:56:59.802] Server  LOG      ✓ Compiled in 597ms
+[35:58:14.927] Server  LOG      ✓ Compiled in 1123ms
+[35:58:37.640] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:58:42.898] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[35:58:43.017] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[35:58:43.038] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[35:59:27.920] Server  LOG      ✓ Compiled in 360ms
+[36:00:11.440] Server  LOG      ✓ Compiled in 193ms
+[36:00:13.889] Server  LOG      ✓ Compiled in 231ms
+[36:00:33.140] Server  LOG      ✓ Compiled in 156ms
+[36:00:38.578] Server  LOG      ✓ Compiled in 406ms
+[36:00:57.522] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:04:56.038] Server  LOG      ✓ Compiled in 317ms
+[36:05:55.964] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:06:07.277] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
