@@ -3,7 +3,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { 
   X, Shield, Mail, Phone, AlertTriangle, CheckCircle, 
-  Ban, Zap, FileText, Camera, ExternalLink 
+  Ban, Zap, FileText, Camera, ExternalLink, Calendar 
 } from "lucide-react";
 
 export default function StoreManager({ store, onClose, onUpdate }: { store: any, onClose: () => void, onUpdate: () => void }) {
@@ -12,22 +12,40 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
   
   const [loyaltyPercent, setLoyaltyPercent] = useState(store.loyalty_percentage || 1);
 
+  // ✨ DAYS REMAINING CALCULATION
+  const getDaysLeft = (expiryDate: string) => {
+    if (!expiryDate) return null;
+    const now = new Date();
+    const expiry = new Date(expiryDate);
+    const diffTime = expiry.getTime() - now.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  };
+
+  const daysLeft = getDaysLeft(store.subscription_expiry);
+
   async function updatePlan(newPlan: string) {
     if (!confirm(`Are you sure you want to move this store to ${newPlan}?`)) return;
     setLoading(true);
 
     let expiryDate = null;
+    let trialStatus = store.is_trial; // Default to current status
+
     if (newPlan === 'premium' || newPlan === 'diamond') {
       const date = new Date();
       date.setDate(date.getDate() + 30);
       expiryDate = date.toISOString();
+      trialStatus = false; // 🔥 IS_TRIAL FIX: Manual upgrade ends the trial period immediately
+    } else if (newPlan === 'free') {
+      trialStatus = false; // Reset trial if moved to free
     }
 
     await supabase
       .from('stores')
       .update({ 
         subscription_plan: newPlan,
-        subscription_expiry: expiryDate 
+        subscription_expiry: expiryDate,
+        is_trial: trialStatus // 🔥 Syncing the trial flag
       })
       .eq('id', store.id);
 
@@ -143,7 +161,7 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
               </div>
 
               <div className="space-y-4">
-                 <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Performance</h3>
+                 <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Performance</h3>
                  <div className="flex items-center justify-between p-3 bg-gray-900 rounded-xl border border-gray-800">
                     <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Revenue</span>
                     <span className="font-black text-white text-lg tracking-tighter">
@@ -241,7 +259,7 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                          disabled={loading}
                          className={`w-full py-3 rounded-xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all border ${
                             store.status === 'banned' 
-                            ? 'bg-emerald-900/20 text-emerald-500 border-emerald-900'
+                            ? 'bg-emerald-900/20 text-emerald-500 border-emerald-900' 
                             : 'bg-red-900/20 text-red-500 border-red-900 hover:bg-red-900/30'
                          }`}
                        >
@@ -279,8 +297,8 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                       type="range" 
                       min="1" 
                       max="15" 
-                      value={loyaltyPercent}
-                      onChange={(e) => setLoyaltyPercent(parseInt(e.target.value))}
+                      value={loyaltyPercent} 
+                      onChange={(e) => setLoyaltyPercent(parseInt(e.target.value))} 
                       className="w-32 accent-amber-500 h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer"
                     />
                  </div>
@@ -303,9 +321,16 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
         <div className="px-8 py-4 bg-gray-900/50 border-t border-gray-800 flex justify-between items-center">
            <p className="text-[9px] font-black text-gray-600 uppercase tracking-[0.3em]">Administrator Session Active</p>
            {store.subscription_expiry && (
-             <p className="text-[9px] font-black text-amber-500/50 uppercase tracking-widest">
-               Expires: {new Date(store.subscription_expiry).toLocaleDateString()}
-             </p>
+             <div className="text-right">
+                <p className={`text-[9px] font-black uppercase tracking-widest ${daysLeft !== null && daysLeft <= 3 ? 'text-red-500 animate-pulse' : 'text-amber-500/50'}`}>
+                  Expires: {new Date(store.subscription_expiry).toLocaleDateString()} 
+                  {daysLeft !== null && (
+                    <span className="ml-1">
+                      ({daysLeft <= 0 ? 'Expired' : `${daysLeft} Days Left`})
+                    </span>
+                  )}
+                </p>
+             </div>
            )}
         </div>
 

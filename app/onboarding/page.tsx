@@ -71,15 +71,13 @@ export default function OnboardingPage() {
       let logoUrl = "";
       let coverUrl = "";
 
-      // 1. CLEAN WHATSAPP NUMBER (Naija Standard)
-      let cleanWhatsApp = formData.whatsapp.replace(/\D/g, ''); // Remove non-numbers
+      let cleanWhatsApp = formData.whatsapp.replace(/\D/g, ''); 
       if (cleanWhatsApp.startsWith('0')) {
         cleanWhatsApp = '234' + cleanWhatsApp.substring(1);
       } else if (!cleanWhatsApp.startsWith('234')) {
         cleanWhatsApp = '234' + cleanWhatsApp;
       }
 
-      // 2. Upload Logo
       if (logoFile) {
         const logoName = `logos/${user.id}-${Date.now()}`;
         const { error: logoErr } = await supabase.storage.from("products").upload(logoName, logoFile);
@@ -88,7 +86,6 @@ export default function OnboardingPage() {
         logoUrl = logoData.publicUrl;
       }
 
-      // 3. Upload Cover
       if (coverFile) {
         const coverName = `covers/${user.id}-${Date.now()}`;
         const { error: coverErr } = await supabase.storage.from("products").upload(coverName, coverFile);
@@ -100,7 +97,6 @@ export default function OnboardingPage() {
       const fourteenDaysFromNow = new Date();
       fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14);
 
-      // 4. Create Store Record
       const { error } = await supabase.from("stores").insert({
         owner_id: user.id,
         owner_email: user.email,
@@ -108,13 +104,14 @@ export default function OnboardingPage() {
         slug: formData.slug,
         category: formData.category,
         location: formData.location,
-        whatsapp_number: cleanWhatsApp, // Cleaned version
+        whatsapp_number: cleanWhatsApp, 
         description: formData.description,
         instagram_handle: formData.instagram,
         tiktok_url: formData.tiktok,
         logo_url: logoUrl,
         cover_image_url: coverUrl,
-        subscription_plan: 'premium', 
+        subscription_plan: 'premium',
+        is_trial: true, 
         subscription_expiry: fourteenDaysFromNow.toISOString(), 
         status: 'active'
       });

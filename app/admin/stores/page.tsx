@@ -102,13 +102,19 @@ export default function ManageStoresPage() {
                     </div>
                 </td>
                 <td className="px-6 py-4">
-                   <span className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter border ${
-                     store.subscription_plan === 'diamond' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' :
-                     store.subscription_plan === 'premium' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
-                     'bg-gray-700/30 text-gray-400 border-gray-600/30'
-                   }`}>
-                     {store.subscription_plan}
-                   </span>
+                   <div className="flex flex-col gap-1">
+                      <span className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter border w-fit ${
+                        store.subscription_plan === 'diamond' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' :
+                        store.subscription_plan === 'premium' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
+                        'bg-gray-700/30 text-gray-400 border-gray-600/30'
+                      }`}>
+                        {store.subscription_plan}
+                        {store.is_trial && store.subscription_plan !== 'free' && " (Trial)"}
+                      </span>
+                      {store.is_trial && store.subscription_plan !== 'free' && (
+                        <span className="text-[8px] font-bold text-amber-500/60 uppercase tracking-widest ml-1">Gifted Access</span>
+                      )}
+                   </div>
                 </td>
                 <td className="px-6 py-4">
                   {store.status === 'banned' ? (

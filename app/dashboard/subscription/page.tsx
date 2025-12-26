@@ -25,6 +25,7 @@ export default function SubscriptionPage() {
   const [user, setUser] = useState<any>(null);
   const [storeName, setStoreName] = useState(""); 
   const [storeSlug, setStoreSlug] = useState(""); 
+  const [storeId, setStoreId] = useState(""); // 🔥 Fix: Added to track for transactions
   const [statusMsg, setStatusMsg] = useState<{type: 'success' | 'error', text: string} | null>(null);
   
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -42,11 +43,12 @@ export default function SubscriptionPage() {
 
       const { data: store } = await supabase
         .from("stores")
-        .select("name, slug, subscription_plan, subscription_expiry")
+        .select("id, name, slug, subscription_plan, subscription_expiry") // 🔥 Audit: Added id
         .eq("owner_id", user.id)
         .single();
       
       if (store) {
+        setStoreId(store.id); // 🔥 Syncing storeId
         setStoreName(store.name);
         setStoreSlug(store.slug);
         setCurrentPlan(store.subscription_plan);
@@ -57,7 +59,7 @@ export default function SubscriptionPage() {
     loadData();
   }, [router]);
 
-  const handleSuccess = async (reference: any, plan: 'premium' | 'diamond') => {
+  const handleSuccess = async (reference: any, plan: 'premium' | 'diamond', amountPaid: number) => {
     const now = new Date();
     const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
     let newExpiryDate: Date;
@@ -74,13 +76,24 @@ export default function SubscriptionPage() {
       newExpiryDate = new Date(now.getTime() + thirtyDaysInMs);
     }
 
+    // 🔥 IS_TRIAL FIX: Set is_trial to false upon successful payment
     const { error } = await supabase
       .from("stores")
       .update({ 
         subscription_plan: plan,
-        subscription_expiry: newExpiryDate.toISOString()
+        subscription_expiry: newExpiryDate.toISOString(),
+        is_trial: false 
       })
       .eq("owner_id", user.id);
+
+    // 🔥 LOG TRANSACTION: Record for Admin Stats
+    await supabase.from("transactions").insert({
+        store_id: storeId,
+        owner_id: user.id,
+        amount: amountPaid,
+        plan_type: plan,
+        status: 'success'
+    });
 
     if (error) {
       setStatusMsg({ type: 'error', text: "Payment received but update failed. Contact Support." });
@@ -127,7 +140,7 @@ export default function SubscriptionPage() {
       amount: amount * 100, 
       publicKey: process.env.NEXT_PUBLIC_PAYSTACK_KEY || "", 
       text: currentPlan === plan ? "Renew Plan" : "Upgrade Now",
-      onSuccess: (ref: any) => handleSuccess(ref, plan),
+      onSuccess: (ref: any) => handleSuccess(ref, plan, amount), // 🔥 Passing amount
       onClose: () => {
         setStatusMsg({ type: 'error', text: "Payment cancelled." });
         setTimeout(() => setStatusMsg(null), 3000);
@@ -365,7 +378,7 @@ export default function SubscriptionPage() {
            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Need a custom plan for your brand?</p>
            <h4 className="text-lg font-black text-gray-900 mb-4">Chat with the StoreLink Support Team</h4>
            <a href="mailto:support@storelink.ng" className="inline-flex items-center gap-2 text-emerald-600 font-black text-xs uppercase tracking-tighter hover:underline">
-              Contact Support <ArrowLeft className="rotate-180" size={14} />
+             Contact Support <ArrowLeft className="rotate-180" size={14} />
            </a>
         </div>
 
