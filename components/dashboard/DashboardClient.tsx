@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import { 
   Package, ExternalLink, 
   Crown, AlertTriangle, Eye, TrendingUp, Tags, Edit, Trash2,
-  Lock, Sparkles, X, BarChart3, Zap, Search, Plus
+  Lock, Sparkles, X, BarChart3, Zap, Search, Plus,
+  Users, Copy, CheckCircle2, Gift
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AddProductModal from "@/components/store/AddProductModal";
@@ -33,6 +34,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
   const [selectedFlashProduct, setSelectedFlashProduct] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showReferralCopy, setShowReferralCopy] = useState(false);
 
   const filteredProducts = useMemo(() => {
     return initialProducts.filter(p => 
@@ -43,6 +45,9 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
   const isFree = store.subscription_plan === 'free';
   const isFreeLimitReached = isFree && stats.productCount >= 5;
+
+  // 🔥 AUDIT: Updated link to /signup for active vendor invitations
+  const referralLink = `https://storelink.ng/signup?ref=${store.referral_code}`;
 
   const deleteProduct = async (id: string) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
@@ -68,6 +73,12 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
     return hoursDiff < 24;
   };
 
+  const copyReferral = () => {
+    navigator.clipboard.writeText(referralLink);
+    setShowReferralCopy(true);
+    setTimeout(() => setShowReferralCopy(false), 2000);
+  };
+
   return (
     <div className="space-y-6 px-1 md:px-0 pb-20">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -88,6 +99,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
           </div>
         </header>
 
+        {/* --- STATS GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
              <div className="flex items-center gap-3 mb-2">
@@ -116,10 +128,45 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
         <ShareStore slug={store.slug} />
 
+        {/* --- 🚀 EMPIRE REFERRAL WIDGET (RELOCATED BEFORE INVENTORY) --- */}
+        <div className="bg-gradient-to-br from-gray-900 to-emerald-900 p-6 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group border border-emerald-500/20">
+          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
+            <Crown size={120} />
+          </div>
+          
+          <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="space-y-2 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-500/20">
+                <Gift size={12} /> Empire Builder
+              </div>
+              <h2 className="text-2xl font-black tracking-tighter uppercase italic">Invite Vendors, Earn Diamond.</h2>
+              <p className="text-gray-300 text-xs font-medium max-w-md">
+                Refer <span className="text-white font-bold italic">5 Vendors</span> to sign up and start selling on StoreLink to unlock <span className="text-emerald-400 font-bold">1 Month of Diamond Access</span> for FREE.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-3 w-full md:w-auto">
+              <div className="flex items-center gap-2 bg-black/40 p-2 pl-4 rounded-2xl border border-white/10 w-full md:w-64">
+                <code className="text-[10px] font-mono text-emerald-400 truncate flex-1">{referralLink}</code>
+                <button 
+                  onClick={copyReferral}
+                  className="p-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-400 transition-all active:scale-90"
+                >
+                  {showReferralCopy ? <CheckCircle2 size={16} /> : <Copy size={16} />}
+                </button>
+              </div>
+              <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">
+                Active Referrals: <span className="text-emerald-500 font-black">{store.referral_count || 0} / 5</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* --- INVENTORY SECTION --- */}
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
           
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-            <h3 className="font-bold text-lg text-gray-900">Inventory</h3>
+            <h3 className="font-bold text-lg text-gray-900 italic uppercase tracking-tight">Inventory</h3>
             <div className="flex gap-2 w-full md:w-auto">
                 <button onClick={() => setIsCatModalOpen(true)} className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50 transition">
                    <Tags size={16}/> <span className="md:inline">Categories</span>
@@ -195,8 +242,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                     })}
                   </tbody>
                 </table>
-              )}
-             
+             )}
           </div>
         </div>
 

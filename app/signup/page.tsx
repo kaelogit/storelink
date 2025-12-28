@@ -1,20 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react"; // Added useEffect & Suspense
 import { supabase } from "@/lib/supabase";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation"; // Added useSearchParams
 import { Loader2, CheckCircle, ArrowLeft, ShieldAlert } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/landing/Navbar";
 
-export default function SignupPage() {
+function SignupContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+
+  // 🔥 AUDIT: Capture referral code and save to localStorage
+  useEffect(() => {
+    const ref = searchParams.get("ref");
+    if (ref) {
+      localStorage.setItem("storelink_ref", ref);
+    }
+  }, [searchParams]);
 
   const isMinLength = password.length >= 8;
   const hasNumber = /\d/.test(password);
@@ -117,5 +126,13 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin text-emerald-600"/></div>}>
+      <SignupContent />
+    </Suspense>
   );
 }

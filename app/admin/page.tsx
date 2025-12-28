@@ -6,18 +6,38 @@ import StatsGrid from "@/components/admin/StatsGrid";
 import SubscriptionBreakdown from "@/components/admin/SubscriptionBreakdown";
 import RevenueChart from "@/components/admin/RevenueChart"; 
 import RecentStoresTable from "@/components/admin/RecentStoresTable";
-import { Loader2, RefreshCcw, Activity, Globe, ShieldCheck, TrendingUp } from "lucide-react";
+import { 
+  Loader2, 
+  RefreshCcw, 
+  Activity, 
+  Globe, 
+  ShieldCheck, 
+  TrendingUp,
+  ClipboardList,
+  Users,
+  Trophy
+} from "lucide-react";
+import Link from "next/link";
 
 export default function AdminDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<any>(null);
+  const [waitlistCount, setWaitlistCount] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   async function loadStats() {
     setIsRefreshing(true);
-    // This now pulls the HONEST data from our updated RPC
-    const { data, error } = await supabase.rpc('get_platform_stats');
-    if (!error) setStats(data);
+    
+    // 1. Pull Platform Stats
+    const { data: platformStats, error } = await supabase.rpc('get_platform_stats');
+    if (!error) setStats(platformStats);
+
+    // 2. Pull Waitlist Count 🔥 (New Audit Step)
+    const { count } = await supabase
+      .from('waitlist')
+      .select('*', { count: 'exact', head: true });
+    setWaitlistCount(count || 0);
+
     setLoading(false);
     setIsRefreshing(false);
   }
@@ -37,6 +57,7 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700 pb-20">
+      {/* --- HEADER --- */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-800 pb-8">
         <div>
           <div className="flex items-center gap-2 text-emerald-500 mb-1">
@@ -58,6 +79,26 @@ export default function AdminDashboardPage() {
           </button>
         </div>
       </div>
+
+      {/* --- QUICK ACTION BANNER: WAITLIST VELOCITY --- */}
+      <Link href="/admin/waitlist" className="block group">
+        <div className="bg-gradient-to-r from-emerald-600/20 to-blue-600/10 border border-emerald-500/20 p-6 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-4 hover:border-emerald-500/40 transition-all shadow-2xl">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 bg-emerald-500 rounded-3xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+              <ClipboardList className="text-white" size={32} />
+            </div>
+            <div>
+              <p className="text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-1">Waitlist Growth</p>
+              <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">
+                {waitlistCount} Vendors <span className="text-gray-500 text-sm">on standby</span>
+              </h3>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-[10px] font-black text-white uppercase bg-emerald-500 px-4 py-2 rounded-full tracking-widest group-hover:translate-x-2 transition-transform">
+            Manage Recruiters <Trophy size={12} />
+          </div>
+        </div>
+      </Link>
 
       {/* SYSTEM STATUS BANNERS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

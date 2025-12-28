@@ -38,17 +38,28 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "StoreLink | The Engine for Naija Hustle",
-    description: "Empowering Nigerian vendors to sell faster on WhatsApp.",
+    description: "Empowering Nigerian vendors to sell faster on WhatsApp. Join the ecosystem and grow your business.",
     url: 'https://storelink.ng',
     siteName: "StoreLink",
     locale: "en_NG",
     type: "website",
+    // 🔥 Empire Audit: Added OG Image for WhatsApp/Facebook
+    images: [
+      {
+        url: '/og-image.jpg', // Put this file in your /public folder
+        width: 1200,
+        height: 630,
+        alt: "StoreLink - The WhatsApp Commerce Engine",
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: "StoreLink | The Engine for Naija Hustle",
     description: "The professional way to manage your WhatsApp orders.",
     creator: '@kaelodev', 
+    // 🔥 Empire Audit: Added Twitter Image
+    images: ['/og-image.jpg'],
   },
   verification: {
     google: 'R8d8mi7fxJ-XZ0yvJ0brHnx6cZZqo78BI1iGl-sDVcY'

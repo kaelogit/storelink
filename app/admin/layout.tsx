@@ -13,16 +13,19 @@ import {
   Megaphone,
   Menu,
   X,
-  BadgeCheck  
+  BadgeCheck,
+  ClipboardList // 🔥 Added for Waitlist
 } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // 🔥 Audit: Added "Waitlist" to the navigation array
   const links = [
     { name: "Overview", href: "/admin", icon: LayoutDashboard },
     { name: "Manage Stores", href: "/admin/stores", icon: Store },
+    { name: "Waitlist", href: "/admin/waitlist", icon: ClipboardList }, // New Tab
     { name: "Verifications", href: "/admin/verifications", icon: BadgeCheck },
     { name: "Inbox / Support", href: "/admin/messages", icon: Mail },
     { name: "Broadcast", href: "/admin/broadcast", icon: Megaphone },
@@ -32,6 +35,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="flex min-h-screen bg-[#0a0a0a]">
       
+      {/* --- MOBILE HEADER --- */}
       <div className="md:hidden fixed top-0 left-0 right-0 bg-[#0a0a0a] border-b border-gray-800 p-4 flex justify-between items-center z-30">
          <div className="flex items-center gap-2 text-emerald-500">
             <ShieldAlert size={24} />
@@ -42,6 +46,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
          </button>
       </div>
 
+      {/* --- MOBILE OVERLAY & MENU --- */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
            <div 
@@ -92,6 +97,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       )}
 
+      {/* --- DESKTOP SIDEBAR --- */}
       <aside className="w-64 border-r border-gray-800 bg-gray-900/50 hidden md:flex flex-col fixed h-full z-20">
         <div className="p-6 border-b border-gray-800">
            <div className="flex items-center gap-2 text-emerald-500">
@@ -128,6 +134,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </aside>
 
+      {/* --- MAIN CONTENT AREA --- */}
       <main className="flex-1 md:ml-64 p-8 pt-20 md:pt-8 overflow-y-auto">
         {children}
       </main>

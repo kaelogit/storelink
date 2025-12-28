@@ -33,33 +33,37 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const { data: { session } } = await supabase.auth.getSession();
+  // 🔥 SECURE AUDIT: Using getUser() instead of getSession()
+  // This contacts the Supabase Auth server to verify the user is authentic.
+  const { data: { user } } = await supabase.auth.getUser();
   const path = request.nextUrl.pathname;
 
-  // 1. ADMIN LOCK (Godmode)
+  // 1. ADMIN LOCK (The "Founder" Check)
   const ADMIN_EMAIL = "ksqkareem@gmail.com";
+  
   if (path.startsWith('/admin')) {
-    if (!session || session.user.email !== ADMIN_EMAIL) {
+    // If no user or email doesn't match the Founder email
+    if (!user || user.email !== ADMIN_EMAIL) {
       const url = request.nextUrl.clone();
-      url.pathname = session ? '/dashboard' : '/login';
+      // If they are logged in but NOT admin, send to dashboard. Else send to login.
+      url.pathname = user ? '/dashboard' : '/login';
       return NextResponse.redirect(url);
     }
   }
 
   // 2. VENDOR PROTECTION (Dashboard & Onboarding)
-  // If no session and trying to access private pages, redirect to login
   if (path.startsWith('/dashboard') || path.startsWith('/onboarding')) {
-    if (!session) {
+    if (!user) {
       const url = request.nextUrl.clone();
       url.pathname = '/login';
       return NextResponse.redirect(url);
     }
   }
 
-  // 3. AUTH AUTH PAGE PROTECTION (Login/Signup)
-  // If user is ALREADY logged in, don't let them see login/signup pages
+  // 3. AUTH PAGE PROTECTION (Login/Signup)
+  // If user is ALREADY verified, don't let them see login/signup pages
   if (path === '/login' || path === '/signup') {
-    if (session) {
+    if (user) {
       const url = request.nextUrl.clone();
       url.pathname = '/dashboard';
       return NextResponse.redirect(url);
@@ -72,11 +76,12 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
+     * Match all request paths except for:
+     * - api routes
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public files (images, etc)
+     * - all images (svg, png, jpg, etc)
      */
     '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],

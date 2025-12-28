@@ -1818,6 +1818,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/package.js [app-client] (ecmascript) <export default as Package>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/external-link.js [app-client] (ecmascript) <export default as ExternalLink>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/crown.js [app-client] (ecmascript) <export default as Crown>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/eye.js [app-client] (ecmascript) <export default as Eye>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-up.js [app-client] (ecmascript) <export default as TrendingUp>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tags$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tags$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/tags.js [app-client] (ecmascript) <export default as Tags>");
@@ -1826,6 +1827,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/zap.js [app-client] (ecmascript) <export default as Zap>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.js [app-client] (ecmascript) <export default as Search>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-client] (ecmascript) <export default as Plus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/copy.js [app-client] (ecmascript) <export default as Copy>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check.js [app-client] (ecmascript) <export default as CheckCircle2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gift$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Gift$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/gift.js [app-client] (ecmascript) <export default as Gift>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/supabase.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$store$2f$AddProductModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/store/AddProductModal.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$store$2f$CategoryManager$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/store/CategoryManager.tsx [app-client] (ecmascript)");
@@ -1852,6 +1856,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
     const [isAnalyticsOpen, setIsAnalyticsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedFlashProduct, setSelectedFlashProduct] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [searchTerm, setSearchTerm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [showReferralCopy, setShowReferralCopy] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const filteredProducts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "DashboardClient.useMemo[filteredProducts]": ()=>{
             return initialProducts.filter({
@@ -1864,6 +1869,8 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
     ]);
     const isFree = store.subscription_plan === 'free';
     const isFreeLimitReached = isFree && stats.productCount >= 5;
+    // 🔥 AUDIT: Updated link to /signup for active vendor invitations
+    const referralLink = `https://storelink.ng/signup?ref=${store.referral_code}`;
     const deleteProduct = async (id)=>{
         if (!confirm("Are you sure you want to delete this product?")) return;
         const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("products").delete().eq("id", id);
@@ -1884,6 +1891,11 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
         const hoursDiff = (new Date().getTime() - soldOutDate.getTime()) / (1000 * 60 * 60);
         return hoursDiff < 24;
     };
+    const copyReferral = ()=>{
+        navigator.clipboard.writeText(referralLink);
+        setShowReferralCopy(true);
+        setTimeout(()=>setShowReferralCopy(false), 2000);
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "space-y-6 px-1 md:px-0 pb-20",
         children: [
@@ -1901,13 +1913,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: "OFFLINE"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 77,
+                                        lineNumber: 88,
                                         columnNumber: 28
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 75,
+                                lineNumber: 86,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1919,19 +1931,19 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: store.name
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 79,
+                                        lineNumber: 90,
                                         columnNumber: 69
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 79,
+                                lineNumber: 90,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 74,
+                        lineNumber: 85,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1945,25 +1957,25 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 85,
+                                    lineNumber: 96,
                                     columnNumber: 17
                                 }, this),
                                 " View Store"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 84,
+                            lineNumber: 95,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 82,
+                        lineNumber: 93,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 73,
+                lineNumber: 84,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1981,12 +1993,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 94,
+                                            lineNumber: 106,
                                             columnNumber: 79
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 94,
+                                        lineNumber: 106,
                                         columnNumber: 16
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1994,13 +2006,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: "Revenue"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 95,
+                                        lineNumber: 107,
                                         columnNumber: 16
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 93,
+                                lineNumber: 105,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2011,13 +2023,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 97,
+                                lineNumber: 109,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 92,
+                        lineNumber: 104,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2032,12 +2044,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 102,
+                                            lineNumber: 114,
                                             columnNumber: 73
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 102,
+                                        lineNumber: 114,
                                         columnNumber: 16
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2045,13 +2057,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: "Products"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 103,
+                                        lineNumber: 115,
                                         columnNumber: 16
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 101,
+                                lineNumber: 113,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2059,13 +2071,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 children: stats.productCount
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 105,
+                                lineNumber: 117,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 100,
+                        lineNumber: 112,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2080,12 +2092,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 110,
+                                            lineNumber: 122,
                                             columnNumber: 77
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 122,
                                         columnNumber: 16
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2093,13 +2105,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: "Views"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 111,
+                                        lineNumber: 123,
                                         columnNumber: 16
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 109,
+                                lineNumber: 121,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2107,26 +2119,188 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 children: stats.views.toLocaleString()
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 113,
+                                lineNumber: 125,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 108,
+                        lineNumber: 120,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 91,
+                lineNumber: 103,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2f$ShareStore$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 slug: store.slug
             }, void 0, false, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 117,
+                lineNumber: 129,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "bg-gradient-to-br from-gray-900 to-emerald-900 p-6 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group border border-emerald-500/20",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$crown$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Crown$3e$__["Crown"], {
+                            size: 120
+                        }, void 0, false, {
+                            fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                            lineNumber: 134,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 133,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "relative z-10 flex flex-col md:flex-row justify-between items-center gap-6",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "space-y-2 text-center md:text-left",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-500/20",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$gift$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Gift$3e$__["Gift"], {
+                                                size: 12
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 140,
+                                                columnNumber: 17
+                                            }, this),
+                                            " Empire Builder"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 139,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                        className: "text-2xl font-black tracking-tighter uppercase italic",
+                                        children: "Invite Vendors, Earn Diamond."
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 142,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-gray-300 text-xs font-medium max-w-md",
+                                        children: [
+                                            "Refer ",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-white font-bold italic",
+                                                children: "5 Vendors"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 144,
+                                                columnNumber: 23
+                                            }, this),
+                                            " to sign up and start selling on StoreLink to unlock ",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-emerald-400 font-bold",
+                                                children: "1 Month of Diamond Access"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 144,
+                                                columnNumber: 138
+                                            }, this),
+                                            " for FREE."
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 143,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 138,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-col items-center gap-3 w-full md:w-auto",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-2 bg-black/40 p-2 pl-4 rounded-2xl border border-white/10 w-full md:w-64",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("code", {
+                                                className: "text-[10px] font-mono text-emerald-400 truncate flex-1",
+                                                children: referralLink
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 150,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: copyReferral,
+                                                className: "p-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-400 transition-all active:scale-90",
+                                                children: showReferralCopy ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
+                                                    size: 16
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 155,
+                                                    columnNumber: 39
+                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
+                                                    size: 16
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                    lineNumber: 155,
+                                                    columnNumber: 68
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 151,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 149,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-[9px] font-black text-gray-500 uppercase tracking-widest",
+                                        children: [
+                                            "Active Referrals: ",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-emerald-500 font-black",
+                                                children: [
+                                                    store.referral_count || 0,
+                                                    " / 5"
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                                lineNumber: 159,
+                                                columnNumber: 35
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                        lineNumber: 158,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                                lineNumber: 148,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                        lineNumber: 137,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/dashboard/DashboardClient.tsx",
+                lineNumber: 132,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2136,11 +2310,11 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                         className: "flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "font-bold text-lg text-gray-900",
+                                className: "font-bold text-lg text-gray-900 italic uppercase tracking-tight",
                                 children: "Inventory"
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 122,
+                                lineNumber: 169,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2154,7 +2328,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 125,
+                                                lineNumber: 172,
                                                 columnNumber: 20
                                             }, this),
                                             " ",
@@ -2163,13 +2337,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Categories"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 125,
+                                                lineNumber: 172,
                                                 columnNumber: 38
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 124,
+                                        lineNumber: 171,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2180,7 +2354,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 175,
                                                 columnNumber: 20
                                             }, this),
                                             " ",
@@ -2189,25 +2363,25 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Add Product"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 175,
                                                 columnNumber: 38
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 127,
+                                        lineNumber: 174,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 123,
+                                lineNumber: 170,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 121,
+                        lineNumber: 168,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2218,7 +2392,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 size: 18
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 134,
+                                lineNumber: 181,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2229,13 +2403,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 onChange: (e)=>setSearchTerm(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 135,
+                                lineNumber: 182,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 133,
+                        lineNumber: 180,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2248,20 +2422,20 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                     className: "mx-auto mb-4 opacity-20"
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 147,
+                                    lineNumber: 194,
                                     columnNumber: 18
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: searchTerm ? "No products match your search." : "No products yet."
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 148,
+                                    lineNumber: 195,
                                     columnNumber: 18
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 146,
+                            lineNumber: 193,
                             columnNumber: 16
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
                             className: "w-full text-left min-w-[750px]",
@@ -2275,7 +2449,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Product"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 154,
+                                                lineNumber: 201,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2283,7 +2457,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Category"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 155,
+                                                lineNumber: 202,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2291,7 +2465,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Price"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 156,
+                                                lineNumber: 203,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2299,7 +2473,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Stock"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 157,
+                                                lineNumber: 204,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2307,18 +2481,18 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Actions"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 158,
+                                                lineNumber: 205,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 153,
+                                        lineNumber: 200,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 152,
+                                    lineNumber: 199,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -2337,13 +2511,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                             children: "Recent Sale"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 168,
+                                                            lineNumber: 215,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 213,
                                                     columnNumber: 27
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2353,12 +2527,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                         children: p.categories?.name || 'General'
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 171,
+                                                        lineNumber: 218,
                                                         columnNumber: 29
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 170,
+                                                    lineNumber: 217,
                                                     columnNumber: 27
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2369,7 +2543,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 175,
+                                                    lineNumber: 222,
                                                     columnNumber: 27
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2379,19 +2553,19 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                         children: "Sold Out"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 180,
+                                                        lineNumber: 227,
                                                         columnNumber: 33
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "text-gray-600",
                                                         children: p.stock_quantity
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 181,
+                                                        lineNumber: 228,
                                                         columnNumber: 33
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 178,
+                                                    lineNumber: 225,
                                                     columnNumber: 27
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2407,12 +2581,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                                     fill: p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? "currentColor" : "none"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 187,
+                                                                    lineNumber: 234,
                                                                     columnNumber: 33
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 186,
+                                                                lineNumber: 233,
                                                                 columnNumber: 31
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2422,12 +2596,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                                     size: 16
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 189,
+                                                                    lineNumber: 236,
                                                                     columnNumber: 133
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 189,
+                                                                lineNumber: 236,
                                                                 columnNumber: 31
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2437,52 +2611,52 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                                     size: 16
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 190,
+                                                                    lineNumber: 237,
                                                                     columnNumber: 135
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 190,
+                                                                lineNumber: 237,
                                                                 columnNumber: 31
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 185,
+                                                        lineNumber: 232,
                                                         columnNumber: 29
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 184,
+                                                    lineNumber: 231,
                                                     columnNumber: 27
                                                 }, this)
                                             ]
                                         }, p.id, true, {
                                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 165,
+                                            lineNumber: 212,
                                             columnNumber: 25
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 161,
+                                    lineNumber: 208,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 151,
+                            lineNumber: 198,
                             columnNumber: 16
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 144,
+                        lineNumber: 191,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 119,
+                lineNumber: 166,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$store$2f$AddProductModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2496,7 +2670,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                 productToEdit: productToEdit
             }, void 0, false, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 203,
+                lineNumber: 249,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$store$2f$CategoryManager$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2506,7 +2680,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                 onSuccess: ()=>router.refresh()
             }, void 0, false, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 204,
+                lineNumber: 250,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dashboard$2f$FlashDropModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2516,17 +2690,17 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                 onSuccess: ()=>router.refresh()
             }, void 0, false, {
                 fileName: "[project]/components/dashboard/DashboardClient.tsx",
-                lineNumber: 205,
+                lineNumber: 251,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/dashboard/DashboardClient.tsx",
-        lineNumber: 72,
+        lineNumber: 83,
         columnNumber: 5
     }, this);
 }
-_s(DashboardClient, "/asdhX/WqxF+tbkREr8GwbhxKtE=", false, function() {
+_s(DashboardClient, "NgCnz1Bs9PJrYdPUJXZcVoS/0DI=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
