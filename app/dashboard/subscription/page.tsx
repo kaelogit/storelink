@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { 
   Check, Crown, Star, Shield, AlertTriangle, Loader2, 
   ArrowLeft, Lock, PartyPopper, Trophy, 
-  Sparkles, Download, LayoutDashboard, X 
+  Sparkles, Download, LayoutDashboard, X
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic"; 
@@ -375,11 +375,16 @@ export default function SubscriptionPage() {
         </div>
 
         <div className="bg-white border border-gray-100 rounded-[2rem] p-8 text-center mb-20 max-w-2xl mx-auto shadow-sm">
-           <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Need a custom plan for your brand?</p>
-           <h4 className="text-lg font-black text-gray-900 mb-4">Chat with the StoreLink Support Team</h4>
-           <a href="mailto:support@storelink.ng" className="inline-flex items-center gap-2 text-emerald-600 font-black text-xs uppercase tracking-tighter hover:underline">
-             Contact Support <ArrowLeft className="rotate-180" size={14} />
-           </a>
+          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Need a custom plan for your brand?</p>
+          <h4 className="text-lg font-black text-gray-900 mb-4">Chat with the StoreLink Support Team</h4>
+          <a 
+            href="https://wa.me/2349125951202?text=Hi%20StoreLink%20Team!%20I%20am%20a%20vendor%20interested%20in%20a%20custom%20plan%20for%20my%20brand.%20Can%20we%20talk?" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-emerald-600 font-black text-xs uppercase tracking-tighter hover:underline"
+          >
+            Contact Support <ArrowLeft className="rotate-180" size={14} />
+          </a>
         </div>
 
       </div>

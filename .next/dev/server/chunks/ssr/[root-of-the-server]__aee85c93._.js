@@ -1562,7 +1562,7 @@ function SubscriptionPage() {
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/subscription/page.tsx",
                                 lineNumber: 378,
-                                columnNumber: 12
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                                 className: "text-lg font-black text-gray-900 mb-4",
@@ -1570,10 +1570,12 @@ function SubscriptionPage() {
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/subscription/page.tsx",
                                 lineNumber: 379,
-                                columnNumber: 12
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                href: "mailto:support@storelink.ng",
+                                href: "https://wa.me/2349125951202?text=Hi%20StoreLink%20Team!%20I%20am%20a%20vendor%20interested%20in%20a%20custom%20plan%20for%20my%20brand.%20Can%20we%20talk?",
+                                target: "_blank",
+                                rel: "noopener noreferrer",
                                 className: "inline-flex items-center gap-2 text-emerald-600 font-black text-xs uppercase tracking-tighter hover:underline",
                                 children: [
                                     "Contact Support ",
@@ -1582,14 +1584,14 @@ function SubscriptionPage() {
                                         size: 14
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/subscription/page.tsx",
-                                        lineNumber: 381,
-                                        columnNumber: 30
+                                        lineNumber: 386,
+                                        columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/subscription/page.tsx",
                                 lineNumber: 380,
-                                columnNumber: 12
+                                columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {

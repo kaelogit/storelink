@@ -134,3 +134,15 @@ Check the render method of `WaitlistIntelligencePage`.
 [00:45:04.663] Server  LOG      ✓ Compiled in 333ms
 [00:46:54.532] Server  LOG      ✓ Compiled in 556ms
 [00:50:52.449] Server  LOG      ✓ Compiled in 972ms
+[42:55:04.611] Server  LOG      ○ Compiling /[slug] ...
+[42:55:18.813] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:55:19.292] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/98bad318-6ac0-4ee2-a71d-739e4b12ff98-1766767471515" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[45:48:15.797] Server  LOG      ○ Compiling /login ...
+[45:48:16.687] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:49:05.021] Server  LOG      ○ Compiling /dashboard/subscription ...
+[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[45:49:46.061] Server  ERROR   TimeoutError: The operation was aborted due to timeout

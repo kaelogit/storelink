@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  const announcement = "STORELINK LAUNCHES IN 7 DAYS";
+  const announcement = "STORELINK: THE FUTURE OF ECOMMERCE IN NIGERIA - LAUNCHING SOON";
 
   return (
     <header className="sticky top-0 z-50">
