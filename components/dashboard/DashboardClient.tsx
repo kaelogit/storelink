@@ -5,14 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { 
   Package, ExternalLink, 
-  Crown, AlertTriangle, Eye, TrendingUp, Tags, Edit, Trash2,
-  Lock, Sparkles, X, BarChart3, Zap, Search, Plus,
-  Users, Copy, CheckCircle2, Gift
+  Eye, TrendingUp, Tags, Edit, Trash2,
+  Lock, Sparkles, Zap, Search, Plus,
+  ArrowRight, Palette
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AddProductModal from "@/components/store/AddProductModal";
 import CategoryManager from "@/components/store/CategoryManager";
-import StoreSettings from "@/components/dashboard/StoreSettings";
 import ShareStore from "./ShareStore";
 import FlashDropModal from "@/components/dashboard/FlashDropModal";
 
@@ -31,10 +30,13 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isCatModalOpen, setIsCatModalOpen] = useState(false);
   const [productToEdit, setProductToEdit] = useState<any>(null);
-  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
   const [selectedFlashProduct, setSelectedFlashProduct] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showReferralCopy, setShowReferralCopy] = useState(false);
+
+  // --- 🎨 FLYER STUDIO LOGIC ---
+  const productRequirement = 10;
+  const hasUnlockedStudio = stats.productCount >= productRequirement;
+  const progressPercentage = Math.min((stats.productCount / productRequirement) * 100, 100);
 
   const filteredProducts = useMemo(() => {
     return initialProducts.filter(p => 
@@ -42,12 +44,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
       p.categories?.name?.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [searchTerm, initialProducts]);
-
-  const isFree = store.subscription_plan === 'free';
-  const isFreeLimitReached = isFree && stats.productCount >= 5;
-
-  // 🔥 AUDIT: Updated link to /signup for active vendor invitations
-  const referralLink = `https://storelink.ng/signup?ref=${store.referral_code}`;
 
   const deleteProduct = async (id: string) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
@@ -71,12 +67,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
     const soldOutDate = new Date(product.sold_out_at);
     const hoursDiff = (new Date().getTime() - soldOutDate.getTime()) / (1000 * 60 * 60);
     return hoursDiff < 24;
-  };
-
-  const copyReferral = () => {
-    navigator.clipboard.writeText(referralLink);
-    setShowReferralCopy(true);
-    setTimeout(() => setShowReferralCopy(false), 2000);
   };
 
   return (
@@ -128,43 +118,55 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
         <ShareStore slug={store.slug} />
 
-        {/* --- 🚀 EMPIRE REFERRAL WIDGET (RELOCATED BEFORE INVENTORY) --- */}
-        <div className="bg-gradient-to-br from-gray-900 to-emerald-900 p-6 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group border border-emerald-500/20">
-          <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
-            <Crown size={120} />
-          </div>
-          
-          <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="space-y-2 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-[10px] font-black uppercase tracking-widest border border-emerald-500/20">
-                <Gift size={12} /> Empire Builder
+        {/* --- 🚀 FLYER STUDIO WIDGET (PROMINENT) --- */}
+        <div className={`relative overflow-hidden rounded-[2.5rem] border transition-all duration-500 ${
+          hasUnlockedStudio 
+          ? 'bg-white border-emerald-100 shadow-xl shadow-emerald-500/5' 
+          : 'bg-gray-50 border-gray-200 opacity-90'
+        }`}>
+          <div className="p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-5">
+              <div className={`p-4 rounded-2xl ${hasUnlockedStudio ? 'bg-emerald-600 text-white animate-pulse' : 'bg-gray-200 text-gray-400'}`}>
+                {hasUnlockedStudio ? <Palette size={32} /> : <Lock size={32} />}
               </div>
-              <h2 className="text-2xl font-black tracking-tighter uppercase italic">Invite Vendors, Earn Diamond.</h2>
-              <p className="text-gray-300 text-xs font-medium max-w-md">
-                Refer <span className="text-white font-bold italic">5 Vendors</span> to sign up and start selling on StoreLink to unlock <span className="text-emerald-400 font-bold">1 Month of Diamond Access</span> for FREE.
-              </p>
+              <div>
+                <h3 className="text-xl font-black text-gray-900 uppercase tracking-tighter italic flex items-center gap-2">
+                  Flyer Studio
+                  {hasUnlockedStudio && <span className="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full not-italic tracking-normal">Unlocked</span>}
+                </h3>
+                <p className="text-gray-500 text-xs font-medium max-w-sm">
+                  {hasUnlockedStudio 
+                    ? "Your automated marketing suite is ready. Generate custom flyers for your brands instantly."
+                    : `Complete your storefront with ${productRequirement - stats.productCount} more products to unlock the Studio.`
+                  }
+                </p>
+                {!hasUnlockedStudio && (
+                  <div className="mt-3 w-48 bg-gray-200 rounded-full h-2 overflow-hidden">
+                    <div 
+                      className="bg-gray-900 h-full transition-all duration-1000" 
+                      style={{ width: `${progressPercentage}%` }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
 
-            <div className="flex flex-col items-center gap-3 w-full md:w-auto">
-              <div className="flex items-center gap-2 bg-black/40 p-2 pl-4 rounded-2xl border border-white/10 w-full md:w-64">
-                <code className="text-[10px] font-mono text-emerald-400 truncate flex-1">{referralLink}</code>
-                <button 
-                  onClick={copyReferral}
-                  className="p-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-400 transition-all active:scale-90"
-                >
-                  {showReferralCopy ? <CheckCircle2 size={16} /> : <Copy size={16} />}
-                </button>
-              </div>
-              <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">
-                Active Referrals: <span className="text-emerald-500 font-black">{store.referral_count || 0} / 5</span>
-              </p>
-            </div>
+            <Link 
+              href={hasUnlockedStudio ? "/dashboard/flyers" : "#"}
+              className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all ${
+                hasUnlockedStudio 
+                ? 'bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-200' 
+                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              }`}
+            >
+              {hasUnlockedStudio ? "Open Studio" : "Locked"}
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
 
         {/* --- INVENTORY SECTION --- */}
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-          
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
             <h3 className="font-bold text-lg text-gray-900 italic uppercase tracking-tight">Inventory</h3>
             <div className="flex gap-2 w-full md:w-auto">

@@ -1,13 +1,5 @@
 {
-  "/[slug]/page": "app/[slug]/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/admin/stores/page": "app/admin/stores/page.js",
-  "/admin/waitlist/page": "app/admin/waitlist/page.js",
+  "/dashboard/flyers/page": "app/dashboard/flyers/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/subscription/page": "app/dashboard/subscription/page.js",
-  "/icon/route": "app-edge-has-no-entrypoint",
-  "/login/page": "app/login/page.js",
-  "/page": "app/page.js",
-  "/waitlist/page": "app/waitlist/page.js"
+  "/icon/route": "app-edge-has-no-entrypoint"
 }

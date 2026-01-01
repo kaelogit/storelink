@@ -1,148 +1,571 @@
-[00:00:04.082] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:04.576] Server  LOG      ✓ Ready in 3.2s
-[00:00:04.903] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:00:07.941] Server  LOG      ○ Compiling /admin ...
-[00:00:20.876] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:41.216] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:00:42.855] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:00:43.664] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:03.312] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:03.870] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:08.982] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:09.126] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:09.574] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:11.226] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:11.813] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:58.760] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:59.267] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:59.366] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:59.468] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:59.580] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:59.731] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:01:59.885] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:00.011] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:00.367] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:00.530] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:00.616] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:00.917] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:01.082] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:01.226] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:01.362] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:01.508] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:01.761] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:01.962] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:02.266] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:02.422] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:02.511] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:02.594] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:02.644] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:02.810] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:02.979] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:03.187] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:03.323] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:03.456] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:03.564] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:03.663] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:03.798] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:03.906] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:04.314] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:04.347] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:04.722] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:04.740] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:04.951] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:04.966] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.150] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.172] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.308] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.325] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.471] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.491] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.671] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.689] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.842] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:05.853] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.069] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.102] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.346] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.372] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.604] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.625] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.774] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.784] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.907] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:06.918] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.064] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.076] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.202] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.214] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.345] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.360] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.494] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.507] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.631] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.643] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.763] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:07.780] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.121] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.173] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.342] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.360] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.484] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.492] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.614] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.630] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.738] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.750] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.880] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:08.894] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:09.019] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:28.333] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:02:29.505] Server  ERROR   Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
-[00:03:00.184] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:20.206] Server  LOG      ✓ Compiled in 326ms
-[00:08:27.675] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:09:35.669] Server  LOG      ✓ Compiled in 539ms
-[00:13:29.110] Server  LOG      ✓ Compiled in 609ms
-[00:20:18.713] Server  LOG      ✓ Compiled in 1047ms
-[00:20:19.230] Server  LOG      ✓ Compiled in 298ms
-[00:21:42.804] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:24:35.319] Server  LOG      ✓ Compiled in 344ms
-[00:24:36.280] Browser ERROR   uncaughtError: ReferenceError: RefreshCcw is not defined
-[00:24:36.789] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:24:36.826] Server  LOG      ✓ Compiled in 200ms
-[00:24:37.992] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:24:49.684] Server  LOG      ✓ Compiled in 303ms
-[00:24:50.290] Browser ERROR   uncaughtError: ReferenceError: RefreshCcw is not defined
-[00:24:55.929] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:24:57.400] Browser ERROR   uncaughtError: ReferenceError: RefreshCcw is not defined
-[00:25:06.279] Server  LOG      ✓ Compiled in 286ms
-[00:25:06.315] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:25:08.199] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:26:57.387] Server  LOG      ✓ Compiled in 415ms
-[00:27:03.451] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:27:05.807] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. null
-[00:30:26.455] Server  LOG      ✓ Compiled in 770ms
-[00:32:57.655] Server  LOG      ✓ Compiled in 707ms
-[00:32:59.328] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. null
-[00:35:48.690] Server  LOG      ✓ Compiled in 364ms
-[00:35:49.284] Browser ERROR   Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+[00:00:04.228] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:04.745] Server  LOG      ✓ Ready in 3.3s
+[00:00:08.770] Server  LOG      ○ Compiling /dashboard ...
+[00:00:13.396] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:42.720] Server  LOG      ✓ Compiled in 203ms
+[00:01:44.388] Server  LOG      ✓ Compiled in 284ms
+[00:01:50.713] Server  LOG      ✓ Compiled in 187ms
+[00:02:36.001] Server  LOG      ✓ Compiled in 304ms
+[00:02:49.481] Server  LOG      ✓ Compiled in 146ms
+[00:06:11.249] Server  LOG      ✓ Compiled in 1226ms
+[00:06:11.970] Server  LOG      ✓ Compiled in 493ms
+[00:06:12.789] Browser ERROR   ./app/dashboard/flyers/page.tsx:128:58
+Parsing ecmascript source code failed
+  126 |
+  127 | // --- 🏰 DESIGN 2: THE MODERN RETAIL (A4 Portrait) ---
+> 128 | const ModernRetail = ({ store, products, qrCode }: any) => (
+      |                                                          ^
+  129 |   <div className="w-[794px] h-[1123px] bg-slate-50 relative overflow-hidden flex flex-col p-12">
+  130 |     <div className="bg-[#043927] p-10 rounded-[3rem] text-white flex justify-between items-center mb-10">
+  131 |       <div>
 
-Check the render method of `WaitlistIntelligencePage`. 
-[00:41:58.514] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:43:30.689] Server  LOG      ✓ Compiled in 808ms
-[00:45:04.119] Server  LOG      ✓ Compiled in 879ms
-[00:45:04.663] Server  LOG      ✓ Compiled in 333ms
-[00:46:54.532] Server  LOG      ✓ Compiled in 556ms
-[00:50:52.449] Server  LOG      ✓ Compiled in 972ms
-[42:55:04.611] Server  LOG      ○ Compiling /[slug] ...
-[42:55:18.813] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[42:55:19.292] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/98bad318-6ac0-4ee2-a71d-739e4b12ff98-1766767471515" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[45:48:15.797] Server  LOG      ○ Compiling /login ...
-[45:48:16.687] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[45:49:05.021] Server  LOG      ○ Compiling /dashboard/subscription ...
-[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[45:49:38.998] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[45:49:46.061] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[00:06:42.656] Server  LOG      ✓ Compiled in 475ms
+[00:06:43.534] Browser ERROR   uncaughtError: ReferenceError: ShoppingBag is not defined
+[00:08:06.558] Server  LOG      ✓ Compiled in 418ms
+[00:08:06.564] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:08:08.536] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:19.038] Server  LOG      ✓ Compiled in 267ms
+[00:08:43.485] Server  LOG      ✓ Compiled in 174ms
+[00:19:37.472] Server  LOG      ✓ Compiled in 627ms
+[00:19:59.608] Server  LOG      ✓ Compiled in 310ms
+[20:01:45.077] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:09:39.338] Server  LOG      ✓ Compiled in 1761ms
+[33:11:16.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:13:05.638] Server  LOG      ✓ Compiled in 761ms
+[33:13:20.263] Server  LOG      ✓ Compiled in 446ms
+[33:13:39.945] Server  LOG      ✓ Compiled in 322ms
+[33:13:43.673] Server  LOG      ✓ Compiled in 188ms
+[33:14:26.752] Server  LOG      ✓ Compiled in 204ms
+[33:14:32.136] Server  LOG      ✓ Compiled in 237ms
+[33:14:33.784] Browser ERROR   uncaughtError: ReferenceError: PrestigeA4 is not defined
+[33:14:46.409] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[33:14:46.411] Server  LOG      ✓ Compiled in 458ms
+[33:14:48.830] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:15:48.056] Server  LOG      ✓ Compiled in 247ms
+[33:15:50.418] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:15:53.783] Browser ERROR   uncaughtError: ReferenceError: ModernRetail is not defined
+[33:15:58.110] Server  LOG      ✓ Compiled in 309ms
+[33:15:58.148] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[33:15:58.149] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/dashboard/flyers/page.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[33:15:58.158] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[33:16:00.122] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:16:12.337] Server  LOG      ✓ Compiled in 447ms
+[33:17:55.053] Server  LOG      ✓ Compiled in 260ms
+[33:20:57.259] Server  LOG      ✓ Compiled in 354ms
+[33:20:58.290] Server  LOG      ✓ Compiled in 461ms
+[33:23:11.002] Server  LOG      ✓ Compiled in 266ms
+[33:23:11.780] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:23:25.781] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <Lu store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:23:28.774] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <Luxeblack store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:23:32.778] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:23:53.342] Server  LOG      ✓ Compiled in 253ms
+[33:23:53.782] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:204
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                                                                                                                                                                                                            ^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Expected '</', got 'store'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:23:55.136] Server  LOG      ✓ Compiled in 202ms
+[33:23:57.401] Server  LOG      ✓ Compiled in 184ms
+[33:23:57.780] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />:<LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:23:59.263] Server  LOG      ✓ Compiled in 212ms
+[33:23:59.781] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:190
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />;<LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                                                                                                                                                                                              ^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Expected '</', got ';'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:24:01.788] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:190
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />; <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                                                                                                                                                                                              ^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Expected '</', got ';'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:24:03.752] Server  LOG      ✓ Compiled in 131ms
+[33:24:04.784] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />:<LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:24:05.783] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />: <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:24:06.779] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:27:08.661] Server  LOG      ✓ Compiled in 401ms
+[33:27:15.257] Server  LOG      ✓ Compiled in 264ms
+[33:27:15.792] Browser ERROR   uncaughtError: ReferenceError: renderFlyer is not defined
+[33:27:17.974] Server  LOG      ✓ Compiled in 281ms
+[33:27:17.981] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[33:27:20.004] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:27:43.278] Server  LOG      ✓ Compiled in 280ms
+[33:27:48.021] Server  LOG      ✓ Compiled in 206ms
+[33:27:50.547] Server  LOG      ✓ Compiled in 542ms
+[33:27:56.788] Server  LOG      ✓ Compiled in 699ms
+[33:27:57.732] Server  LOG      ✓ Compiled in 353ms
+[33:28:01.816] Server  LOG      ✓ Compiled in 258ms
+[33:28:02.785] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:28:09.781] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+Parsing ecmascript source code failed
+  523 |                   <div ref={exportRef}>
+  524 |                     {selectedIds.length === 3 ? (
+> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <Lu store={store} products={selectedProducts} qrCode={qrUrl} />
+      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  526 |                     ) : (
+  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
+  528 |                         <Store size={200} strokeWidth={0.5} />
+
+Not a pattern
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:28:13.025] Server  LOG      ✓ Compiled in 193ms
+[33:29:43.657] Server  LOG      ✓ Compiled in 342ms
+[33:35:10.507] Server  LOG      ✓ Compiled in 468ms
+[33:35:11.853] Server  LOG      ✓ Compiled in 402ms
+[33:35:15.369] Server  LOG      ✓ Compiled in 345ms
+[33:38:13.493] Server  LOG      ✓ Compiled in 297ms
+[33:38:21.871] Server  LOG      ✓ Compiled in 268ms
+[33:39:08.364] Browser ERROR   ./app/dashboard/flyers/page.tsx:8:10
+Parsing ecmascript source code failed
+   6 |   ArrowLeft, Download, Share2, CheckCircle2, 
+   7 |   Sparkles, Layout, RotateCw, Image as ImageIcon,
+>  8 |   Check, , Loader2, Crown, ChevronRight, Store, X
+     |          ^
+   9 | } from "lucide-react";
+  10 | import { toPng } from "html-to-image";
+  11 | import { supabase } from "@/lib/supabase";
+
+Unexpected token `,`. Expected identifier or string
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:39:08.364] Browser ERROR   ./app/dashboard/flyers/page.tsx:565:3
+Parsing ecmascript source code failed
+  563 | <button
+  564 |   onClick={() => setDesignIndex((prev) => (prev + 1) % TOTAL_DESIGNS)}
+> 565 |   ...
+      |   ^^^
+  566 | > className="bg-white/5 border border-white/10 px-6 py-3 rounded-2xl font-black text-[10px] tracking-[0.2em] uppercase hover:bg-white/10 transition-all flex items-center gap-2">
+  567 |              <RotateCw size={14} /> Switch Design
+  568 |            </button>
+
+Expected '</', got '...'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:41:50.615] Server  LOG      ✓ Compiled in 1252ms
+[33:42:15.543] Server  LOG      ✓ Compiled in 765ms
+[33:42:16.804] Browser ERROR   ./app/dashboard/flyers/page.tsx:413:80
+Parsing ecmascript source code failed
+  411 |   <div className="w-[794px] h-[1123px] bg-white relative overflow-hidden flex flex-col font-serif">
+  412 |     {/* Luxury Texture Background */}
+> 413 |     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%239C92AC" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E')" />
+      |                                                                                ^^^
+  414 |     
+  415 |     {/* Gold Accent Borders */}
+  416 |     <div className="absolute inset-0 border-[40px] border-transparent">
+
+Expected '</', got 'numeric literal (100, 100)'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:42:16.815] Server  LOG      ✓ Compiled in 332ms
+[33:42:20.011] Server  LOG      ✓ Compiled in 707ms
+[33:42:20.793] Browser ERROR   ./app/dashboard/flyers/page.tsx:413:80
+Parsing ecmascript source code failed
+  411 |   <div className="w-[794px] h-[1123px] bg-white relative overflow-hidden flex flex-col font-serif">
+  412 |     {/* Luxury Texture Background */}
+> 413 |     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%239C92AC" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E')" />
+      |                                                                                ^^^
+  414 |     
+  415 |     {/* Gold Accent Borders */}
+  416 |     <div className="absolute inset-0 border-[40px] border-transparent">
+
+Expected '</', got 'numeric literal (100, 100)'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:42:34.783] Browser ERROR   ./app/dashboard/flyers/page.tsx:413:80
+Parsing ecmascript source code failed
+  411 |   <div className="w-[794px] h-[1123px] bg-white relative overflow-hidden flex flex-col font-serif">
+  412 |     {/* Luxury Texture Background */}
+> 413 |     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%239C92AC" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E')" />
+      |                                                                                ^^^
+  414 |     
+  415 |     {/* Gold Accent Borders */}
+  416 |     <div className="absolute inset-0 border-[40px] border-transparent">
+
+Expected '</', got 'numeric literal (100, 100)'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[33:51:09.653] Server  LOG      ✓ Compiled in 1013ms
+[33:51:25.640] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:53:16.703] Server  LOG      ✓ Compiled in 1243ms
+[33:53:26.312] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:53:55.490] Server  LOG      ✓ Compiled in 852ms
+[33:54:22.282] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[33:55:29.929] Server  LOG      ✓ Compiled in 478ms
+[33:55:53.282] Server  LOG      ✓ Compiled in 571ms
+[33:56:04.150] Server  LOG      ✓ Compiled in 220ms
+[34:04:55.539] Server  LOG      ✓ Compiled in 320ms
+[34:04:57.792] Server  LOG      ✓ Compiled in 415ms
+[34:04:58.973] Server  LOG      ✓ Compiled in 442ms
+[34:08:02.078] Server  LOG      ✓ Compiled in 360ms
+[34:08:02.786] Browser ERROR   ./app/dashboard/flyers/page.tsx:1126:12
+Parsing ecmascript source code failed
+  1124 |       )}
+  1125 |     </div>
+> 1126 |     <style jsx>{`
+       |            ^^^
+  1127 |   @media (max-width: 1024px) {
+  1128 |     div > div > div > div:first-child { transform: scale(0.38) !important; margin-bottom: -500px !important; }
+  1129 |   }
+
+Expected ',', got 'jsx'
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[34:08:04.249] Server  LOG      ✓ Compiled in 316ms
+[34:08:07.861] Server  LOG      ✓ Compiled in 397ms
+[34:08:12.207] Server  LOG      ✓ Compiled in 248ms
+[34:08:13.878] Server  LOG      ✓ Compiled in 294ms
+[34:08:29.539] Server  LOG      ✓ Compiled in 431ms
+[34:08:35.796] Server  LOG      ✓ Compiled in 388ms
+[34:08:36.775] Browser ERROR   uncaughtError: ReferenceError: div is not defined
+[34:08:37.677] Server  LOG      ✓ Compiled in 203ms
+[34:08:38.788] Browser ERROR   ./app/dashboard/flyers/page.tsx:1128:5
+Parsing ecmascript source code failed
+  1126 |     <div>
+  1127 |       
+> 1128 |     </div>
+       |     ^
+  1129 |     
+  1130 |   );
+  1131 | }
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[34:08:38.788] Browser ERROR   ./app/dashboard/flyers/page.tsx:1128:6
+Parsing ecmascript source code failed
+  1126 |     <div>
+  1127 |       
+> 1128 |     </div>
+       |      ^^^^^
+  1129 |     
+  1130 |   );
+  1131 | }
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./app/dashboard/flyers/page.tsx [Client Component Browser]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/dashboard/flyers/page.tsx [Client Component SSR]
+    ./app/dashboard/flyers/page.tsx [Server Component]
+[34:08:40.853] Server  LOG      ✓ Compiled in 310ms
+[34:08:40.940] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[34:08:44.348] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:08:50.544] Server  LOG      ✓ Compiled in 293ms
+[34:08:51.727] Server  LOG      ✓ Compiled in 439ms
+[34:09:19.333] Server  LOG      ✓ Compiled in 586ms
+[34:09:21.185] Server  LOG      ✓ Compiled in 352ms
+[34:10:58.336] Server  LOG      ✓ Compiled in 321ms
+[34:11:33.374] Server  LOG      ✓ Compiled in 496ms
+[34:21:25.687] Server  LOG      ✓ Compiled in 578ms
+[34:21:42.021] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:24:25.001] Server  LOG      ✓ Compiled in 1063ms
+[34:25:01.676] Server  LOG      ✓ Compiled in 645ms
+[34:29:30.152] Server  LOG      ✓ Compiled in 475ms
+[34:29:30.825] Browser ERROR   uncaughtError: ReferenceError: ModernRetail is not defined
+[34:29:58.409] Server  LOG      ✓ Compiled in 313ms
+[34:29:58.496] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[34:30:02.802] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[34:31:15.014] Server  LOG      ✓ Compiled in 1089ms
+[34:31:15.615] Server  LOG      ✓ Compiled in 308ms
+[34:31:17.350] Server  LOG      ✓ Compiled in 341ms
+[34:33:10.657] Server  LOG      ✓ Compiled in 297ms
+[34:33:32.522] Server  LOG      ✓ Compiled in 288ms
+[34:33:34.771] Server  LOG      ✓ Compiled in 303ms
+[34:59:52.819] Server  LOG      ✓ Compiled in 1982ms
+[35:04:54.878] Server  LOG      ✓ Compiled in 868ms
+[35:05:26.745] Server  LOG      ✓ Compiled in 701ms
+[35:05:30.400] Server  LOG      ✓ Compiled in 303ms
+[35:05:53.078] Server  LOG      ✓ Compiled in 245ms
+[35:45:33.756] Server  LOG      ✓ Compiled in 363ms
+[35:45:34.797] Browser ERROR   uncaughtError: ReferenceError: LuxuryPremiumFlyer is not defined
+[35:45:44.455] Server  LOG      ✓ Compiled in 305ms
+[35:45:44.490] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[35:45:52.246] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[35:56:06.748] Server  LOG      ✓ Compiled in 697ms
+[35:56:23.251] Server  LOG      ✓ Compiled in 234ms
