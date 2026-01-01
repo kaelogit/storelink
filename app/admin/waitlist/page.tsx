@@ -10,10 +10,8 @@ import {
 
 export default function WaitlistIntelligencePage() {
   const [waitlistRegistry, setWaitlistRegistry] = useState<any[]>([]);
-  const [vendorAmbassadors, setVendorAmbassadors] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [waitlistSearch, setWaitlistSearch] = useState("");
-  const [vendorSearch, setVendorSearch] = useState("");
 
   useEffect(() => {
     fetchEmpireData();
@@ -22,22 +20,15 @@ export default function WaitlistIntelligencePage() {
   async function fetchEmpireData() {
     setLoading(true);
     try {
-      // 1. Fetch EVERYTHING from the waitlist table (Registry)
+      // 1. Fetch EVERYTHING from the waitlist table (Keeping waitlist referrals)
       const { data: waitlistData, error: wError } = await supabase
         .from('waitlist')
         .select('id, business_name, email, phone, referral_count, created_at')
         .order('created_at', { ascending: false });
 
-      // 2. Fetch EVERYTHING from the stores table (Ambassadors)
-      const { data: vendorData, error: vError } = await supabase
-        .from('stores')
-        .select('id, name, owner_email, whatsapp_number, referral_count, subscription_plan, created_at')
-        .order('referral_count', { ascending: false });
-
       if (waitlistData) setWaitlistRegistry(waitlistData);
-      if (vendorData) setVendorAmbassadors(vendorData);
       
-      if (wError || vError) console.error("Database Error:", wError || vError);
+      if (wError) console.error("Database Error:", wError);
     } catch (err) {
       console.error("System Error:", err);
     } finally {
@@ -49,11 +40,6 @@ export default function WaitlistIntelligencePage() {
     (entry.business_name?.toLowerCase() || "").includes(waitlistSearch.toLowerCase()) ||
     (entry.email?.toLowerCase() || "").includes(waitlistSearch.toLowerCase()) ||
     (entry.phone || "").includes(waitlistSearch)
-  );
-
-  const filteredVendors = vendorAmbassadors.filter(entry => 
-    (entry.name?.toLowerCase() || "").includes(vendorSearch.toLowerCase()) ||
-    (entry.owner_email?.toLowerCase() || "").includes(vendorSearch.toLowerCase())
   );
 
   if (loading) return (
@@ -70,7 +56,7 @@ export default function WaitlistIntelligencePage() {
       <div className="flex flex-col md:flex-row justify-between items-end gap-4 border-b border-gray-800 pb-6">
         <div>
           <h2 className="text-3xl font-black text-white uppercase tracking-tighter italic">Growth Intelligence</h2>
-          <p className="text-gray-400 text-sm font-medium">Tracking waitlist merchants and active vendor recruiters.</p>
+          <p className="text-gray-400 text-sm font-medium">Tracking waitlist merchants and pre-launch engagement.</p>
         </div>
         <button 
           onClick={fetchEmpireData}
@@ -80,66 +66,7 @@ export default function WaitlistIntelligencePage() {
         </button>
       </div>
 
-      {/* --- SECTION 1: VENDOR REFERRAL TRACKER --- */}
-      <div className="space-y-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-2">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-amber-500/10 text-amber-500 rounded-xl border border-amber-500/20"><Crown size={20} /></div>
-            <div>
-              <h3 className="font-black text-xl text-white uppercase tracking-tighter italic">Active Vendor Ambassadors</h3>
-              <p className="text-[9px] text-gray-500 font-black uppercase tracking-widest">Existing Stores referring others</p>
-            </div>
-          </div>
-          <div className="relative w-full md:w-80">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
-            <input 
-              type="text" 
-              placeholder="Search vendors..." 
-              value={vendorSearch} 
-              onChange={(e) => setVendorSearch(e.target.value)} 
-              className="w-full bg-gray-900 border border-gray-800 rounded-2xl py-2.5 pl-11 pr-4 text-xs text-white outline-none focus:ring-1 focus:ring-amber-500" 
-            />
-          </div>
-        </div>
-
-        <div className="bg-gray-900/40 border border-gray-800 rounded-[2.5rem] overflow-hidden backdrop-blur-sm shadow-2xl">
-          <div className="max-h-[400px] overflow-y-auto no-scrollbar">
-            <table className="w-full text-left border-collapse">
-              <thead className="bg-black/60 sticky top-0 z-10 border-b border-gray-800">
-                <tr>
-                  <th className="px-6 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest italic">Vendor</th>
-                  <th className="px-6 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest italic text-center">Score</th>
-                  <th className="px-6 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest italic text-right">Reward Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-800/50">
-                {filteredVendors.map((vendor) => (
-                  <tr key={vendor.id} className="group hover:bg-amber-500/5 transition-colors">
-                    <td className="px-6 py-5">
-                      <p className="text-sm font-black text-white uppercase tracking-tight italic">{vendor.name}</p>
-                      <p className="text-[10px] text-gray-500">{vendor.owner_email}</p>
-                    </td>
-                    <td className="px-6 py-5 text-center">
-                      <div className="text-lg font-black text-amber-500 italic">{vendor.referral_count || 0}</div>
-                    </td>
-                    <td className="px-6 py-5 text-right">
-                      {vendor.referral_count >= 5 ? (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full text-[9px] font-black uppercase border border-emerald-500/20">
-                          <Award size={10} /> Diamond Qualified
-                        </span>
-                      ) : (
-                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest">{5 - (vendor.referral_count || 0)} more to go</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      {/* --- SECTION 2: THE MASTER WAITLIST REGISTRY --- */}
+      {/* --- MASTER WAITLIST REGISTRY --- */}
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-2">
           <div className="flex items-center gap-3">
@@ -162,7 +89,7 @@ export default function WaitlistIntelligencePage() {
         </div>
 
         <div className="bg-gray-900/40 border border-gray-800 rounded-[2.5rem] overflow-hidden backdrop-blur-sm shadow-2xl">
-          <div className="max-h-[500px] overflow-y-auto no-scrollbar">
+          <div className="max-h-[600px] overflow-y-auto no-scrollbar">
             <table className="w-full text-left border-collapse">
               <thead className="bg-black/60 sticky top-0 z-10 border-b border-gray-800">
                 <tr>
@@ -225,11 +152,11 @@ export default function WaitlistIntelligencePage() {
           </div>
           <div>
             <h4 className="text-white font-black uppercase italic tracking-tight">Growth Command Center</h4>
-            <p className="text-gray-400 text-xs">Direct founder-to-merchant outreach enabled for the Waitlist Registry.</p>
+            <p className="text-gray-400 text-xs">Founder-to-merchant outreach enabled for the Master Registry.</p>
           </div>
         </div>
         <div className="text-[9px] font-black text-gray-600 uppercase tracking-widest italic">
-          Data Integrity Verified &copy; 2025
+          Waitlist Data Integrity Verified &copy; 2025
         </div>
       </div>
 

@@ -590,3 +590,172 @@ Check the render method of `DashboardClient`.
 [45:55:01.129] Server  LOG      ✓ Compiled in 272ms
 [45:55:04.493] Server  LOG      ✓ Compiled in 162ms
 [45:55:16.440] Server  LOG      ✓ Compiled in 577ms
+[45:57:21.834] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.010] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.035] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.092] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.118] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.145] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.177] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.202] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.235] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:17:8
+Ecmascript file had an error
+  15 | import ShareStore from "./ShareStore";
+  16 | import FlashDropModal from "@/components/dashboard/FlashDropModal";
+> 17 | import Link from "next/link";
+     |        ^^^^
+  18 |
+  19 | interface DashboardClientProps {
+  20 |   store: any;
+
+the name `Link` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:17:8
+Ecmascript file had an error
+  15 | import ShareStore from "./ShareStore";
+  16 | import FlashDropModal from "@/components/dashboard/FlashDropModal";
+> 17 | import Link from "next/link";
+     |        ^^^^
+  18 | interface DashboardClientProps {
+  19 |   store: any;
+  20 |   initialProducts: any[];
+
+the name `Link` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:17:8
+Ecmascript file had an error
+  15 | import ShareStore from "./ShareStore";
+  16 | import FlashDropModal from "@/components/dashboard/FlashDropModal";
+> 17 | import Link from "next/link";
+     |        ^^^^
+  18 | interface DashboardClientProps {
+  19 |   store: any;
+  20 |   initialProducts: any[];
+
+the name `Link` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:17:8
+Ecmascript file had an error
+  15 | import ShareStore from "./ShareStore";
+  16 | import FlashDropModal from "@/components/dashboard/FlashDropModal";
+> 17 | import Link from "next/link";
+     |        ^^^^
+  18 | interface DashboardClientProps {
+  19 |   store: any;
+  20 |   initialProducts: any[];
+
+the name `Link` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:4:36
+Parsing ecmascript source code failed
+  2 |
+  3 | import { useState, useMemo } from "react";
+> 4 | import Link from "next/navigation" "";
+    |                                    ^^
+  5 | import { useRouter } from "next/navigation";
+  6 | import { 
+  7 |   Package, ExternalLink, 
+
+Expected ';', got 'string literal (, "")'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:4:36
+Parsing ecmascript source code failed
+  2 |
+  3 | import { useState, useMemo } from "react";
+> 4 | import Link from "next/navigation" "next.";
+    |                                    ^^^^^^^
+  5 | import { useRouter } from "next/navigation";
+  6 | import { 
+  7 |   Package, ExternalLink, 
+
+Expected ';', got 'string literal (next., "next.")'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:4:36
+Parsing ecmascript source code failed
+  2 |
+  3 | import { useState, useMemo } from "react";
+> 4 | import Link from "next/navigation" "next.";
+    |                                    ^^^^^^^
+  5 | import { useRouter } from "next/navigation";
+  6 | import { 
+  7 |   Package, ExternalLink, 
+
+Expected ';', got 'string literal (next., "next.")'
+
+Import traces:
+  Client Component Browser:
+    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Client Component Browser]
+    ./app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Client Component SSR]
+    ./app/dashboard/page.tsx [Server Component]
+[45:57:22.717] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.962] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.976] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[45:57:22.989] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[46:11:05.710] Server  LOG      ○ Compiling /admin ...
+[46:11:10.713] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

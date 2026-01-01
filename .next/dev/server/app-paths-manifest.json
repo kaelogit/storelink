@@ -1,4 +1,6 @@
 {
+  "/admin/page": "app/admin/page.js",
+  "/admin/waitlist/page": "app/admin/waitlist/page.js",
   "/dashboard/flyers/page": "app/dashboard/flyers/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/icon/route": "app-edge-has-no-entrypoint"
