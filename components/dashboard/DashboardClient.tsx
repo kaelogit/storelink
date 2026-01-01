@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; 
 import { 
   Package, ExternalLink, 
   Eye, TrendingUp, Tags, Edit, Trash2,
@@ -14,7 +14,6 @@ import AddProductModal from "@/components/store/AddProductModal";
 import CategoryManager from "@/components/store/CategoryManager";
 import ShareStore from "./ShareStore";
 import FlashDropModal from "@/components/dashboard/FlashDropModal";
-
 interface DashboardClientProps {
   store: any;
   initialProducts: any[];
@@ -118,7 +117,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
         <ShareStore slug={store.slug} />
 
-        {/* --- 🚀 FLYER STUDIO WIDGET (PROMINENT) --- */}
+        {/* --- 🚀 FLYER STUDIO WIDGET --- */}
         <div className={`relative overflow-hidden rounded-[2.5rem] border transition-all duration-500 ${
           hasUnlockedStudio 
           ? 'bg-white border-emerald-100 shadow-xl shadow-emerald-500/5' 
@@ -151,17 +150,21 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
               </div>
             </div>
 
-            <Link 
-              href={hasUnlockedStudio ? "/dashboard/flyers" : "#"}
-              className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all ${
-                hasUnlockedStudio 
-                ? 'bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-200' 
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-              }`}
-            >
-              {hasUnlockedStudio ? "Open Studio" : "Locked"}
-              <ArrowRight size={16} />
-            </Link>
+            {hasUnlockedStudio ? (
+              <Link 
+                href="/dashboard/flyers"
+                className="flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-200"
+              >
+                Open Studio <ArrowRight size={16} />
+              </Link>
+            ) : (
+              <button 
+                disabled
+                className="flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all bg-gray-200 text-gray-400 cursor-not-allowed"
+              >
+                Locked <ArrowRight size={16} />
+              </button>
+            )}
           </div>
         </div>
 
@@ -190,60 +193,63 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
             />
           </div>
 
-          <div className="bg-white border border-gray-100 rounded-3xl shadow-sm overflow-x-auto no-scrollbar">
+          {/* 🔥 EMPIRE FIX: SCROLLABLE INVENTORY CONTAINER */}
+          <div className="bg-white border border-gray-100 rounded-3xl shadow-sm overflow-hidden flex flex-col max-h-[600px]">
              {filteredProducts.length === 0 ? (
                <div className="p-12 text-center text-gray-400">
                  <Package size={48} className="mx-auto mb-4 opacity-20"/>
                  <p>{searchTerm ? "No products match your search." : "No products yet."}</p>
                </div>
              ) : (
-               <table className="w-full text-left min-w-[750px]">
-                  <thead className="bg-gray-50/50 border-b border-gray-100 text-[10px] uppercase text-gray-500 font-black">
-                    <tr>
-                      <th className="px-6 py-4">Product</th>
-                      <th className="px-6 py-4">Category</th>
-                      <th className="px-6 py-4">Price</th>
-                      <th className="px-6 py-4">Stock</th>
-                      <th className="px-6 py-4 text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {filteredProducts.map((p) => {
-                      const soldOut = isRecentlySoldOut(p);
-                      return (
-                        <tr key={p.id} className="hover:bg-gray-50/80 transition group">
-                          <td className="px-6 py-4 font-bold text-gray-900 text-sm whitespace-nowrap">
-                            {p.name}
-                            {soldOut && <span className="block text-[8px] text-amber-600 font-black uppercase tracking-tighter">Recent Sale</span>}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="inline-flex items-center px-2 py-1 bg-gray-100 rounded-lg font-black text-[10px] text-gray-500 uppercase tracking-tight">
-                              {p.categories?.name || 'General'}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 text-emerald-600 font-black text-sm whitespace-nowrap">
-                            ₦{p.price.toLocaleString()}
-                          </td>
-                          <td className="px-6 py-4 text-xs font-bold whitespace-nowrap">
-                            {p.stock_quantity === 0 
-                              ? <span className="text-red-500 bg-red-50 px-2 py-1 rounded-lg uppercase text-[10px]">Sold Out</span> 
-                              : <span className="text-gray-600">{p.stock_quantity}</span>
-                            }
-                          </td>
-                          <td className="px-6 py-4 text-right whitespace-nowrap">
-                            <div className="flex justify-end gap-1">
-                              <button onClick={() => setSelectedFlashProduct(p)} className={`p-2 rounded-lg transition-all ${p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? 'text-amber-500 bg-amber-50' : 'text-gray-300 hover:text-amber-500'}`}>
-                                <Zap size={18} fill={p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? "currentColor" : "none"} />
-                              </button>
-                              <button onClick={() => openEditModal(p)} className="p-2 text-gray-400 hover:text-blue-600 transition"><Edit size={16}/></button>
-                              <button onClick={() => deleteProduct(p.id)} className="p-2 text-gray-400 hover:text-red-600 transition"><Trash2 size={16}/></button>
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+               <div className="overflow-auto no-scrollbar">
+                <table className="w-full text-left min-w-[750px]">
+                    <thead className="bg-gray-50/50 border-b border-gray-100 text-[10px] uppercase text-gray-500 font-black sticky top-0 z-10 backdrop-blur-md">
+                      <tr>
+                        <th className="px-6 py-4">Product</th>
+                        <th className="px-6 py-4">Category</th>
+                        <th className="px-6 py-4">Price</th>
+                        <th className="px-6 py-4">Stock</th>
+                        <th className="px-6 py-4 text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {filteredProducts.map((p) => {
+                        const soldOut = isRecentlySoldOut(p);
+                        return (
+                          <tr key={p.id} className="hover:bg-gray-50/80 transition group">
+                            <td className="px-6 py-4 font-bold text-gray-900 text-sm whitespace-nowrap">
+                              {p.name}
+                              {soldOut && <span className="block text-[8px] text-amber-600 font-black uppercase tracking-tighter">Recent Sale</span>}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span className="inline-flex items-center px-2 py-1 bg-gray-100 rounded-lg font-black text-[10px] text-gray-500 uppercase tracking-tight">
+                                {p.categories?.name || 'General'}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 text-emerald-600 font-black text-sm whitespace-nowrap">
+                              ₦{p.price.toLocaleString()}
+                            </td>
+                            <td className="px-6 py-4 text-xs font-bold whitespace-nowrap">
+                              {p.stock_quantity === 0 
+                                ? <span className="text-red-500 bg-red-50 px-2 py-1 rounded-lg uppercase text-[10px]">Sold Out</span> 
+                                : <span className="text-gray-600">{p.stock_quantity}</span>
+                              }
+                            </td>
+                            <td className="px-6 py-4 text-right whitespace-nowrap">
+                              <div className="flex justify-end gap-1">
+                                <button onClick={() => setSelectedFlashProduct(p)} className={`p-2 rounded-lg transition-all ${p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? 'text-amber-500 bg-amber-50' : 'text-gray-300 hover:text-amber-500'}`}>
+                                  <Zap size={18} fill={p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? "currentColor" : "none"} />
+                                </button>
+                                <button onClick={() => openEditModal(p)} className="p-2 text-gray-400 hover:text-blue-600 transition"><Edit size={16}/></button>
+                                <button onClick={() => deleteProduct(p.id)} className="p-2 text-gray-400 hover:text-red-600 transition"><Trash2 size={16}/></button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+               </div>
              )}
           </div>
         </div>

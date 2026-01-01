@@ -34,7 +34,6 @@ export default function OnboardingPage() {
 
   useEffect(() => {
     const checkUser = async () => {
-      // SECURE AUDIT: Using getUser() for empire-grade security
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) router.push("/login");
       setUser(user);
@@ -72,7 +71,7 @@ export default function OnboardingPage() {
       let logoUrl = "";
       let coverUrl = "";
 
-      // NAIJA LOGIC: Formatting WhatsApp number to international 234 format
+      // NAIJA LOGIC: Formatting WhatsApp number
       let cleanWhatsApp = formData.whatsapp.replace(/\D/g, ''); 
       if (cleanWhatsApp.startsWith('0')) {
         cleanWhatsApp = '234' + cleanWhatsApp.substring(1);
@@ -80,7 +79,7 @@ export default function OnboardingPage() {
         cleanWhatsApp = '234' + cleanWhatsApp;
       }
 
-      // STORAGE AUDIT: Uploading Brand Assets
+      // STORAGE: Uploading Brand Assets
       if (logoFile) {
         const logoName = `logos/${user.id}-${Date.now()}`;
         const { error: logoErr } = await supabase.storage.from("products").upload(logoName, logoFile);
@@ -100,9 +99,7 @@ export default function OnboardingPage() {
       const fourteenDaysFromNow = new Date();
       fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14);
 
-      // 🔥 EMPIRE AUDIT: Retrieve referral code from localStorage
-      const refCode = localStorage.getItem("storelink_ref");
-
+      // 🔥 AUDIT COMPLETE: All referral/referred_by/localStorage logic removed
       const { error } = await supabase.from("stores").insert({
         owner_id: user.id,
         owner_email: user.email,
@@ -119,14 +116,10 @@ export default function OnboardingPage() {
         subscription_plan: 'premium',
         is_trial: true, 
         subscription_expiry: fourteenDaysFromNow.toISOString(), 
-        status: 'active',
-        referred_by: refCode // 🔥 Successfully saving the referrer
+        status: 'active'
       });
 
       if (error) throw error;
-
-      // 🔥 EMPIRE AUDIT: Clear referral memory after successful creation
-      localStorage.removeItem("storelink_ref");
 
       router.push("/dashboard");
       router.refresh();

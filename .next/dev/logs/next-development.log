@@ -569,3 +569,24 @@ Import traces:
 [35:45:52.246] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [35:56:06.748] Server  LOG      ✓ Compiled in 697ms
 [35:56:23.251] Server  LOG      ✓ Compiled in 234ms
+[45:50:37.876] Server  LOG      ✓ Compiled in 2.2s
+[45:50:39.787] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object.
+
+Check the render method of `DashboardClient`.
+[45:52:36.916] Server  LOG      ✓ Compiled in 338ms
+[45:52:42.443] Server  LOG      ✓ Compiled in 168ms
+[45:52:45.305] Server  LOG      ✓ Compiled in 193ms
+[45:52:47.096] Server  LOG      ✓ Compiled in 255ms
+[45:52:48.071] Server  LOG      ✓ Compiled in 184ms
+[45:52:52.618] Server  LOG      ✓ Compiled in 361ms
+[45:52:54.702] Server  LOG      ✓ Compiled in 265ms
+[45:52:59.013] Server  LOG      ✓ Compiled in 257ms
+[45:53:04.271] Server  LOG      ✓ Compiled in 145ms
+[45:53:23.096] Server  LOG      ✓ Compiled in 246ms
+[45:53:26.608] Server  LOG      ✓ Compiled in 190ms
+[45:53:37.452] Server  LOG      ✓ Compiled in 135ms
+[45:53:41.152] Server  LOG      ✓ Compiled in 188ms
+[45:53:48.258] Server  LOG      ✓ Compiled in 303ms
+[45:55:01.129] Server  LOG      ✓ Compiled in 272ms
+[45:55:04.493] Server  LOG      ✓ Compiled in 162ms
+[45:55:16.440] Server  LOG      ✓ Compiled in 577ms
