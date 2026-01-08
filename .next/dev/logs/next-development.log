@@ -1,761 +1,385 @@
-[00:00:04.228] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:04.745] Server  LOG      ✓ Ready in 3.3s
-[00:00:08.770] Server  LOG      ○ Compiling /dashboard ...
-[00:00:13.396] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:42.720] Server  LOG      ✓ Compiled in 203ms
-[00:01:44.388] Server  LOG      ✓ Compiled in 284ms
-[00:01:50.713] Server  LOG      ✓ Compiled in 187ms
-[00:02:36.001] Server  LOG      ✓ Compiled in 304ms
-[00:02:49.481] Server  LOG      ✓ Compiled in 146ms
-[00:06:11.249] Server  LOG      ✓ Compiled in 1226ms
-[00:06:11.970] Server  LOG      ✓ Compiled in 493ms
-[00:06:12.789] Browser ERROR   ./app/dashboard/flyers/page.tsx:128:58
+[00:00:04.339] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:04.947] Server  LOG      ✓ Ready in 3.8s
+[00:00:18.194] Server  LOG      ○ Compiling / ...
+[00:00:31.953] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:33.668] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:33.668] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:33.669] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:33.669] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:33.669] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:55.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:55.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767379493-c4r0ab" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:55.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767240587-w29es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:55.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767432617-051sbe" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:55.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2fbaffa-3a36-48bc-bcaa-9c52c96c7983/1766731857715-7kj9es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:55.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767569338-gi91s" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:55.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/3a7cfef9-c592-4591-ab0f-a956d5a78f89/1766701122638-txxfrb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:55.128] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767316951-8nh4o7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:00.834] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:01:02.052] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:02.134] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:02.212] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:02.392] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:02.502] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:02.648] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:02.733] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:02.814] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:02.850] Server  ERROR   TimeoutError: The operation was aborted due to timeout
+[00:01:05.083] Server  LOG      ○ Compiling /_error ...
+[00:13:13.467] Server  LOG      ✓ Compiled in 717ms
+[00:13:14.553] Server  LOG      ✓ Compiled in 396ms
+[00:13:15.683] Server  LOG      ✓ Compiled in 537ms
+[03:57:40.044] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:01:21.727] Server  LOG      ✓ Compiled in 484ms
+[04:01:30.498] Server  LOG      ○ Compiling /faq ...
+[04:07:55.811] Server  LOG      ✓ Compiled in 1217ms
+[04:12:42.498] Server  LOG      ✓ Compiled in 542ms
+[04:14:00.104] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:00.104] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:00.105] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:00.105] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:00.529] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:00.529] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:01.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2fbaffa-3a36-48bc-bcaa-9c52c96c7983/1766731857715-7kj9es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:01.606] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767432617-051sbe" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:01.782] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:01.783] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767569338-gi91s" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:01.917] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767379493-c4r0ab" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:02.032] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/35950b07-89ee-49f9-a4d4-26ca7ae8db5a/1766787424518-dqtltb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:02.193] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767316951-8nh4o7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:02.369] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767240587-w29es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:14:02.369] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/3a7cfef9-c592-4591-ab0f-a956d5a78f89/1766701122638-txxfrb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[04:21:23.808] Server  LOG      ✓ Compiled in 1228ms
+[04:21:26.089] Server  LOG      ✓ Compiled in 599ms
+[04:24:24.180] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda"
+[04:24:24.182] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi"
+[04:24:24.216] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:24.240] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:24.242] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:24.243] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:24.250] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:24:24.252] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:24.257] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:24.259] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:24.260] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:24.274] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:24:36.204] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw"
+[04:24:36.206] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606"
+[04:24:36.213] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:36.229] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:36.231] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:36.232] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:36.233] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:24:36.242] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:36.244] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:36.245] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:36.246] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:36.248] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:24:48.261] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c"
+[04:24:48.262] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc"
+[04:24:48.272] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:48.274] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:48.284] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:48.285] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:48.286] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:24:48.288] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:48.289] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:48.299] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:48.300] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:24:48.301] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:25:00.302] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp"
+[04:25:00.304] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767316951-8nh4o7"
+[04:25:00.312] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:00.314] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:00.319] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:00.320] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:00.324] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:25:00.325] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:00.328] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:00.329] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:00.330] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:00.380] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:25:02.329] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/3a7cfef9-c592-4591-ab0f-a956d5a78f89/1766701122638-txxfrb"
+[04:25:02.331] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767569338-gi91s"
+[04:25:02.334] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/35950b07-89ee-49f9-a4d4-26ca7ae8db5a/1766787424518-dqtltb"
+[04:25:02.337] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767379493-c4r0ab"
+[04:25:02.343] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767240587-w29es"
+[04:25:02.346] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2fbaffa-3a36-48bc-bcaa-9c52c96c7983/1766731857715-7kj9es"
+[04:25:02.349] Server  ERROR    ⨯ "upstream image response timed out for" "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767432617-051sbe"
+[04:25:02.375] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.377] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.378] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.388] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.389] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:25:02.391] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.392] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.394] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.395] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.396] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:25:02.403] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.407] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.408] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.410] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.411] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:25:02.418] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.419] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.420] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.421] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.422] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:25:02.424] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.426] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.428] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.434] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.436] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:25:02.438] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\image-optimizer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.439] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.440] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\server\response-cache\index.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.441] Server  ERROR   C:\Users\Kaelo\store-link\node_modules\next\dist\lib\batcher.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:25:02.442] Server  ERROR   Error: "url" parameter is valid but upstream response timed out
+[04:26:33.297] Server  LOG      ✓ Compiled in 1126ms
+[04:27:48.748] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:32:30.363] Server  LOG      ✓ Compiled in 285ms
+[04:33:08.966] Server  LOG      ✓ Compiled in 249ms
+[04:33:10.900] Server  LOG      ✓ Compiled in 212ms
+[04:34:28.843] Server  LOG      ✓ Compiled in 334ms
+[04:34:30.111] Server  LOG      ✓ Compiled in 198ms
+[04:34:32.283] Server  LOG      ✓ Compiled in 229ms
+[04:34:33.634] Server  LOG      ✓ Compiled in 196ms
+[04:34:38.649] Server  LOG      ✓ Compiled in 188ms
+[04:34:41.820] Server  LOG      ✓ Compiled in 162ms
+[04:34:43.533] Server  LOG      ✓ Compiled in 193ms
+[04:34:47.793] Server  LOG      ✓ Compiled in 338ms
+[04:34:57.932] Server  LOG      ✓ Compiled in 226ms
+[04:35:04.425] Server  LOG      ✓ Compiled in 210ms
+[04:35:12.994] Server  LOG      ✓ Compiled in 221ms
+[04:35:17.238] Server  LOG      ✓ Compiled in 240ms
+[04:39:07.652] Server  LOG      ✓ Compiled in 636ms
+[04:39:08.304] Browser ERROR   uncaughtError: ReferenceError: ShieldCheck is not defined
+[04:39:15.999] Server  ERROR   C:\Users\Kaelo\store-link\.next\dev\server\chunks\ssr\store-link_84132b62._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[04:39:16.002] Server  ERROR    ⨯ ReferenceError: ShieldCheck is not defined
+[04:39:16.457] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:39:16.715] Browser ERROR   uncaughtError: ReferenceError: ShieldCheck is not defined
+[04:40:20.085] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[04:40:20.105] Server  LOG      ✓ Compiled in 251ms
+[04:40:22.641] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:42:15.348] Server  LOG      ✓ Compiled in 254ms
+[04:42:27.992] Server  LOG      ✓ Compiled in 232ms
+[04:42:43.143] Server  LOG      ✓ Compiled in 312ms
+[04:43:25.807] Server  LOG      ✓ Compiled in 223ms
+[04:43:47.201] Server  LOG      ✓ Compiled in 222ms
+[04:47:05.207] Server  LOG      ✓ Compiled in 219ms
+[04:47:06.590] Server  LOG      ✓ Compiled in 452ms
+[04:47:54.014] Server  LOG      ✓ Compiled in 300ms
+[04:48:07.113] Server  LOG      ✓ Compiled in 252ms
+[04:48:09.186] Server  LOG      ✓ Compiled in 228ms
+[04:48:21.827] Server  LOG      ✓ Compiled in 228ms
+[04:48:25.135] Server  LOG      ✓ Compiled in 532ms
+[04:48:32.676] Server  LOG      ✓ Compiled in 199ms
+[04:48:37.010] Server  LOG      ✓ Compiled in 280ms
+[04:48:43.040] Server  LOG      ✓ Compiled in 158ms
+[04:48:49.187] Server  LOG      ✓ Compiled in 472ms
+[04:48:52.539] Server  LOG      ✓ Compiled in 354ms
+[04:49:00.264] Server  LOG      ✓ Compiled in 213ms
+[04:49:39.764] Server  LOG      ✓ Compiled in 272ms
+[04:49:45.956] Server  LOG      ✓ Compiled in 354ms
+[04:54:43.084] Server  LOG      ✓ Compiled in 425ms
+[04:54:59.646] Server  LOG      ✓ Compiled in 186ms
+[04:55:01.367] Server  LOG      ✓ Compiled in 352ms
+[04:55:29.628] Server  LOG      ✓ Compiled in 180ms
+[04:55:31.958] Server  LOG      ✓ Compiled in 305ms
+[04:55:32.364] Browser ERROR   ./store-link/app/pricing/page.tsx:51:7
 Parsing ecmascript source code failed
-  126 |
-  127 | // --- 🏰 DESIGN 2: THE MODERN RETAIL (A4 Portrait) ---
-> 128 | const ModernRetail = ({ store, products, qrCode }: any) => (
-      |                                                          ^
-  129 |   <div className="w-[794px] h-[1123px] bg-slate-50 relative overflow-hidden flex flex-col p-12">
-  130 |     <div className="bg-[#043927] p-10 rounded-[3rem] text-white flex justify-between items-center mb-10">
-  131 |       <div>
+  49 |       "Everything in Premium",
+  50 |       ""
+> 51 |       "Homepage 'Trending' Spot",
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 |       "Top-of-Search Priority",
+  53 |       "AI Background Removal",
+  54 |       "Flashdrop Hype Engine",
 
-Unexpected token. Did you mean `{'>'}` or `&gt;`?
+Expected ',', got 'string literal (Homepage 'Trending' Spot, "Homepage 'Trending' Spot")'
 
 Import traces:
   Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
+    ./store-link/app/pricing/page.tsx [Client Component Browser]
+    ./store-link/app/pricing/page.tsx [Server Component]
 
   Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[00:06:42.656] Server  LOG      ✓ Compiled in 475ms
-[00:06:43.534] Browser ERROR   uncaughtError: ReferenceError: ShoppingBag is not defined
-[00:08:06.558] Server  LOG      ✓ Compiled in 418ms
-[00:08:06.564] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:08:08.536] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:08:19.038] Server  LOG      ✓ Compiled in 267ms
-[00:08:43.485] Server  LOG      ✓ Compiled in 174ms
-[00:19:37.472] Server  LOG      ✓ Compiled in 627ms
-[00:19:59.608] Server  LOG      ✓ Compiled in 310ms
-[20:01:45.077] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:09:39.338] Server  LOG      ✓ Compiled in 1761ms
-[33:11:16.111] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:13:05.638] Server  LOG      ✓ Compiled in 761ms
-[33:13:20.263] Server  LOG      ✓ Compiled in 446ms
-[33:13:39.945] Server  LOG      ✓ Compiled in 322ms
-[33:13:43.673] Server  LOG      ✓ Compiled in 188ms
-[33:14:26.752] Server  LOG      ✓ Compiled in 204ms
-[33:14:32.136] Server  LOG      ✓ Compiled in 237ms
-[33:14:33.784] Browser ERROR   uncaughtError: ReferenceError: PrestigeA4 is not defined
-[33:14:46.409] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[33:14:46.411] Server  LOG      ✓ Compiled in 458ms
-[33:14:48.830] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:15:48.056] Server  LOG      ✓ Compiled in 247ms
-[33:15:50.418] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:15:53.783] Browser ERROR   uncaughtError: ReferenceError: ModernRetail is not defined
-[33:15:58.110] Server  LOG      ✓ Compiled in 309ms
-[33:15:58.148] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[33:15:58.149] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/dashboard/flyers/page.tsx changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[33:15:58.158] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[33:16:00.122] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:16:12.337] Server  LOG      ✓ Compiled in 447ms
-[33:17:55.053] Server  LOG      ✓ Compiled in 260ms
-[33:20:57.259] Server  LOG      ✓ Compiled in 354ms
-[33:20:58.290] Server  LOG      ✓ Compiled in 461ms
-[33:23:11.002] Server  LOG      ✓ Compiled in 266ms
-[33:23:11.780] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+    ./store-link/app/pricing/page.tsx [Client Component SSR]
+    ./store-link/app/pricing/page.tsx [Server Component]
+[04:55:36.425] Browser ERROR   ./store-link/app/pricing/page.tsx:51:7
 Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
+  49 |       "Everything in Premium",
+  50 |       "Diamond "
+> 51 |       "Homepage 'Trending' Spot",
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 |       "Top-of-Search Priority",
+  53 |       "AI Background Removal",
+  54 |       "Flashdrop Hype Engine",
 
-Not a pattern
+Expected ',', got 'string literal (Homepage 'Trending' Spot, "Homepage 'Trending' Spot")'
 
 Import traces:
   Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
+    ./store-link/app/pricing/page.tsx [Client Component Browser]
+    ./store-link/app/pricing/page.tsx [Server Component]
 
   Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:23:25.781] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+    ./store-link/app/pricing/page.tsx [Client Component SSR]
+    ./store-link/app/pricing/page.tsx [Server Component]
+[04:55:44.317] Browser ERROR   ./store-link/app/pricing/page.tsx:51:7
 Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <Lu store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
+  49 |       "Everything in Premium",
+  50 |       "Diamond Badge "
+> 51 |       "Homepage 'Trending' Spot",
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 |       "Top-of-Search Priority",
+  53 |       "AI Background Removal",
+  54 |       "Flashdrop Hype Engine",
 
-Not a pattern
+Expected ',', got 'string literal (Homepage 'Trending' Spot, "Homepage 'Trending' Spot")'
 
 Import traces:
   Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
+    ./store-link/app/pricing/page.tsx [Client Component Browser]
+    ./store-link/app/pricing/page.tsx [Server Component]
 
   Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:23:28.774] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+    ./store-link/app/pricing/page.tsx [Client Component SSR]
+    ./store-link/app/pricing/page.tsx [Server Component]
+[04:55:49.317] Browser ERROR   ./store-link/app/pricing/page.tsx:51:7
 Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <Luxeblack store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
+  49 |       "Everything in Premium",
+  50 |       "Diamond Badg"
+> 51 |       "Homepage 'Trending' Spot",
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 |       "Top-of-Search Priority",
+  53 |       "AI Background Removal",
+  54 |       "Flashdrop Hype Engine",
 
-Not a pattern
+Expected ',', got 'string literal (Homepage 'Trending' Spot, "Homepage 'Trending' Spot")'
 
 Import traces:
   Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
+    ./store-link/app/pricing/page.tsx [Client Component Browser]
+    ./store-link/app/pricing/page.tsx [Server Component]
 
   Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:23:32.778] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
+    ./store-link/app/pricing/page.tsx [Client Component SSR]
+    ./store-link/app/pricing/page.tsx [Server Component]
+[04:55:51.311] Browser ERROR   ./store-link/app/pricing/page.tsx:51:7
 Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
+  49 |       "Everything in Premium",
+  50 |       "Diamond Badge"
+> 51 |       "Homepage 'Trending' Spot",
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  52 |       "Top-of-Search Priority",
+  53 |       "AI Background Removal",
+  54 |       "Flashdrop Hype Engine",
 
-Not a pattern
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:23:53.342] Server  LOG      ✓ Compiled in 253ms
-[33:23:53.782] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:204
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                                                                                                                                                                                                            ^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Expected '</', got 'store'
+Expected ',', got 'string literal (Homepage 'Trending' Spot, "Homepage 'Trending' Spot")'
 
 Import traces:
   Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
+    ./store-link/app/pricing/page.tsx [Client Component Browser]
+    ./store-link/app/pricing/page.tsx [Server Component]
 
   Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:23:55.136] Server  LOG      ✓ Compiled in 202ms
-[33:23:57.401] Server  LOG      ✓ Compiled in 184ms
-[33:23:57.780] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />:<LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Not a pattern
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:23:59.263] Server  LOG      ✓ Compiled in 212ms
-[33:23:59.781] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:190
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />;<LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                                                                                                                                                                                              ^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Expected '</', got ';'
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:24:01.788] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:190
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />; <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                                                                                                                                                                                              ^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Expected '</', got ';'
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:24:03.752] Server  LOG      ✓ Compiled in 131ms
-[33:24:04.784] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />:<LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Not a pattern
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:24:05.783] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} />: <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Not a pattern
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:24:06.779] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Not a pattern
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:27:08.661] Server  LOG      ✓ Compiled in 401ms
-[33:27:15.257] Server  LOG      ✓ Compiled in 264ms
-[33:27:15.792] Browser ERROR   uncaughtError: ReferenceError: renderFlyer is not defined
-[33:27:17.974] Server  LOG      ✓ Compiled in 281ms
-[33:27:17.981] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[33:27:20.004] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:27:43.278] Server  LOG      ✓ Compiled in 280ms
-[33:27:48.021] Server  LOG      ✓ Compiled in 206ms
-[33:27:50.547] Server  LOG      ✓ Compiled in 542ms
-[33:27:56.788] Server  LOG      ✓ Compiled in 699ms
-[33:27:57.732] Server  LOG      ✓ Compiled in 353ms
-[33:28:01.816] Server  LOG      ✓ Compiled in 258ms
-[33:28:02.785] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <LuxeblackA4 store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Not a pattern
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:28:09.781] Browser ERROR   ./app/dashboard/flyers/page.tsx:525:23
-Parsing ecmascript source code failed
-  523 |                   <div ref={exportRef}>
-  524 |                     {selectedIds.length === 3 ? (
-> 525 |                       designIndex === 0 ? <PrestigeA4 store={store} products={selectedProducts} qrCode={qrUrl} /> : <ModernRetail store={store} products={selectedProducts} qrCode={qrUrl} /> : <Lu store={store} products={selectedProducts} qrCode={qrUrl} />
-      |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  526 |                     ) : (
-  527 |                       <div className="w-[794px] h-[1123px] bg-white flex flex-col items-center justify-center text-gray-200">
-  528 |                         <Store size={200} strokeWidth={0.5} />
-
-Not a pattern
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:28:13.025] Server  LOG      ✓ Compiled in 193ms
-[33:29:43.657] Server  LOG      ✓ Compiled in 342ms
-[33:35:10.507] Server  LOG      ✓ Compiled in 468ms
-[33:35:11.853] Server  LOG      ✓ Compiled in 402ms
-[33:35:15.369] Server  LOG      ✓ Compiled in 345ms
-[33:38:13.493] Server  LOG      ✓ Compiled in 297ms
-[33:38:21.871] Server  LOG      ✓ Compiled in 268ms
-[33:39:08.364] Browser ERROR   ./app/dashboard/flyers/page.tsx:8:10
-Parsing ecmascript source code failed
-   6 |   ArrowLeft, Download, Share2, CheckCircle2, 
-   7 |   Sparkles, Layout, RotateCw, Image as ImageIcon,
->  8 |   Check, , Loader2, Crown, ChevronRight, Store, X
-     |          ^
-   9 | } from "lucide-react";
-  10 | import { toPng } from "html-to-image";
-  11 | import { supabase } from "@/lib/supabase";
-
-Unexpected token `,`. Expected identifier or string
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:39:08.364] Browser ERROR   ./app/dashboard/flyers/page.tsx:565:3
-Parsing ecmascript source code failed
-  563 | <button
-  564 |   onClick={() => setDesignIndex((prev) => (prev + 1) % TOTAL_DESIGNS)}
-> 565 |   ...
-      |   ^^^
-  566 | > className="bg-white/5 border border-white/10 px-6 py-3 rounded-2xl font-black text-[10px] tracking-[0.2em] uppercase hover:bg-white/10 transition-all flex items-center gap-2">
-  567 |              <RotateCw size={14} /> Switch Design
-  568 |            </button>
-
-Expected '</', got '...'
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:41:50.615] Server  LOG      ✓ Compiled in 1252ms
-[33:42:15.543] Server  LOG      ✓ Compiled in 765ms
-[33:42:16.804] Browser ERROR   ./app/dashboard/flyers/page.tsx:413:80
-Parsing ecmascript source code failed
-  411 |   <div className="w-[794px] h-[1123px] bg-white relative overflow-hidden flex flex-col font-serif">
-  412 |     {/* Luxury Texture Background */}
-> 413 |     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%239C92AC" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E')" />
-      |                                                                                ^^^
-  414 |     
-  415 |     {/* Gold Accent Borders */}
-  416 |     <div className="absolute inset-0 border-[40px] border-transparent">
-
-Expected '</', got 'numeric literal (100, 100)'
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:42:16.815] Server  LOG      ✓ Compiled in 332ms
-[33:42:20.011] Server  LOG      ✓ Compiled in 707ms
-[33:42:20.793] Browser ERROR   ./app/dashboard/flyers/page.tsx:413:80
-Parsing ecmascript source code failed
-  411 |   <div className="w-[794px] h-[1123px] bg-white relative overflow-hidden flex flex-col font-serif">
-  412 |     {/* Luxury Texture Background */}
-> 413 |     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%239C92AC" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E')" />
-      |                                                                                ^^^
-  414 |     
-  415 |     {/* Gold Accent Borders */}
-  416 |     <div className="absolute inset-0 border-[40px] border-transparent">
-
-Expected '</', got 'numeric literal (100, 100)'
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:42:34.783] Browser ERROR   ./app/dashboard/flyers/page.tsx:413:80
-Parsing ecmascript source code failed
-  411 |   <div className="w-[794px] h-[1123px] bg-white relative overflow-hidden flex flex-col font-serif">
-  412 |     {/* Luxury Texture Background */}
-> 413 |     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%239C92AC" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E')" />
-      |                                                                                ^^^
-  414 |     
-  415 |     {/* Gold Accent Borders */}
-  416 |     <div className="absolute inset-0 border-[40px] border-transparent">
-
-Expected '</', got 'numeric literal (100, 100)'
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[33:51:09.653] Server  LOG      ✓ Compiled in 1013ms
-[33:51:25.640] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:53:16.703] Server  LOG      ✓ Compiled in 1243ms
-[33:53:26.312] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:53:55.490] Server  LOG      ✓ Compiled in 852ms
-[33:54:22.282] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[33:55:29.929] Server  LOG      ✓ Compiled in 478ms
-[33:55:53.282] Server  LOG      ✓ Compiled in 571ms
-[33:56:04.150] Server  LOG      ✓ Compiled in 220ms
-[34:04:55.539] Server  LOG      ✓ Compiled in 320ms
-[34:04:57.792] Server  LOG      ✓ Compiled in 415ms
-[34:04:58.973] Server  LOG      ✓ Compiled in 442ms
-[34:08:02.078] Server  LOG      ✓ Compiled in 360ms
-[34:08:02.786] Browser ERROR   ./app/dashboard/flyers/page.tsx:1126:12
-Parsing ecmascript source code failed
-  1124 |       )}
-  1125 |     </div>
-> 1126 |     <style jsx>{`
-       |            ^^^
-  1127 |   @media (max-width: 1024px) {
-  1128 |     div > div > div > div:first-child { transform: scale(0.38) !important; margin-bottom: -500px !important; }
-  1129 |   }
-
-Expected ',', got 'jsx'
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[34:08:04.249] Server  LOG      ✓ Compiled in 316ms
-[34:08:07.861] Server  LOG      ✓ Compiled in 397ms
-[34:08:12.207] Server  LOG      ✓ Compiled in 248ms
-[34:08:13.878] Server  LOG      ✓ Compiled in 294ms
-[34:08:29.539] Server  LOG      ✓ Compiled in 431ms
-[34:08:35.796] Server  LOG      ✓ Compiled in 388ms
-[34:08:36.775] Browser ERROR   uncaughtError: ReferenceError: div is not defined
-[34:08:37.677] Server  LOG      ✓ Compiled in 203ms
-[34:08:38.788] Browser ERROR   ./app/dashboard/flyers/page.tsx:1128:5
-Parsing ecmascript source code failed
-  1126 |     <div>
-  1127 |       
-> 1128 |     </div>
-       |     ^
-  1129 |     
-  1130 |   );
-  1131 | }
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[34:08:38.788] Browser ERROR   ./app/dashboard/flyers/page.tsx:1128:6
-Parsing ecmascript source code failed
-  1126 |     <div>
-  1127 |       
-> 1128 |     </div>
-       |      ^^^^^
-  1129 |     
-  1130 |   );
-  1131 | }
-
-Unterminated regexp literal
-
-Import traces:
-  Client Component Browser:
-    ./app/dashboard/flyers/page.tsx [Client Component Browser]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/dashboard/flyers/page.tsx [Client Component SSR]
-    ./app/dashboard/flyers/page.tsx [Server Component]
-[34:08:40.853] Server  LOG      ✓ Compiled in 310ms
-[34:08:40.940] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[34:08:44.348] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[34:08:50.544] Server  LOG      ✓ Compiled in 293ms
-[34:08:51.727] Server  LOG      ✓ Compiled in 439ms
-[34:09:19.333] Server  LOG      ✓ Compiled in 586ms
-[34:09:21.185] Server  LOG      ✓ Compiled in 352ms
-[34:10:58.336] Server  LOG      ✓ Compiled in 321ms
-[34:11:33.374] Server  LOG      ✓ Compiled in 496ms
-[34:21:25.687] Server  LOG      ✓ Compiled in 578ms
-[34:21:42.021] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[34:24:25.001] Server  LOG      ✓ Compiled in 1063ms
-[34:25:01.676] Server  LOG      ✓ Compiled in 645ms
-[34:29:30.152] Server  LOG      ✓ Compiled in 475ms
-[34:29:30.825] Browser ERROR   uncaughtError: ReferenceError: ModernRetail is not defined
-[34:29:58.409] Server  LOG      ✓ Compiled in 313ms
-[34:29:58.496] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[34:30:02.802] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[34:31:15.014] Server  LOG      ✓ Compiled in 1089ms
-[34:31:15.615] Server  LOG      ✓ Compiled in 308ms
-[34:31:17.350] Server  LOG      ✓ Compiled in 341ms
-[34:33:10.657] Server  LOG      ✓ Compiled in 297ms
-[34:33:32.522] Server  LOG      ✓ Compiled in 288ms
-[34:33:34.771] Server  LOG      ✓ Compiled in 303ms
-[34:59:52.819] Server  LOG      ✓ Compiled in 1982ms
-[35:04:54.878] Server  LOG      ✓ Compiled in 868ms
-[35:05:26.745] Server  LOG      ✓ Compiled in 701ms
-[35:05:30.400] Server  LOG      ✓ Compiled in 303ms
-[35:05:53.078] Server  LOG      ✓ Compiled in 245ms
-[35:45:33.756] Server  LOG      ✓ Compiled in 363ms
-[35:45:34.797] Browser ERROR   uncaughtError: ReferenceError: LuxuryPremiumFlyer is not defined
-[35:45:44.455] Server  LOG      ✓ Compiled in 305ms
-[35:45:44.490] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[35:45:52.246] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[35:56:06.748] Server  LOG      ✓ Compiled in 697ms
-[35:56:23.251] Server  LOG      ✓ Compiled in 234ms
-[45:50:37.876] Server  LOG      ✓ Compiled in 2.2s
-[45:50:39.787] Browser ERROR   uncaughtError: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object.
-
-Check the render method of `DashboardClient`.
-[45:52:36.916] Server  LOG      ✓ Compiled in 338ms
-[45:52:42.443] Server  LOG      ✓ Compiled in 168ms
-[45:52:45.305] Server  LOG      ✓ Compiled in 193ms
-[45:52:47.096] Server  LOG      ✓ Compiled in 255ms
-[45:52:48.071] Server  LOG      ✓ Compiled in 184ms
-[45:52:52.618] Server  LOG      ✓ Compiled in 361ms
-[45:52:54.702] Server  LOG      ✓ Compiled in 265ms
-[45:52:59.013] Server  LOG      ✓ Compiled in 257ms
-[45:53:04.271] Server  LOG      ✓ Compiled in 145ms
-[45:53:23.096] Server  LOG      ✓ Compiled in 246ms
-[45:53:26.608] Server  LOG      ✓ Compiled in 190ms
-[45:53:37.452] Server  LOG      ✓ Compiled in 135ms
-[45:53:41.152] Server  LOG      ✓ Compiled in 188ms
-[45:53:48.258] Server  LOG      ✓ Compiled in 303ms
-[45:55:01.129] Server  LOG      ✓ Compiled in 272ms
-[45:55:04.493] Server  LOG      ✓ Compiled in 162ms
-[45:55:16.440] Server  LOG      ✓ Compiled in 577ms
-[45:57:21.834] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.010] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.035] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.092] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.118] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.145] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.177] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.202] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.235] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:17:8
-Ecmascript file had an error
-  15 | import ShareStore from "./ShareStore";
-  16 | import FlashDropModal from "@/components/dashboard/FlashDropModal";
-> 17 | import Link from "next/link";
-     |        ^^^^
-  18 |
-  19 | interface DashboardClientProps {
-  20 |   store: any;
-
-the name `Link` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:17:8
-Ecmascript file had an error
-  15 | import ShareStore from "./ShareStore";
-  16 | import FlashDropModal from "@/components/dashboard/FlashDropModal";
-> 17 | import Link from "next/link";
-     |        ^^^^
-  18 | interface DashboardClientProps {
-  19 |   store: any;
-  20 |   initialProducts: any[];
-
-the name `Link` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:17:8
-Ecmascript file had an error
-  15 | import ShareStore from "./ShareStore";
-  16 | import FlashDropModal from "@/components/dashboard/FlashDropModal";
-> 17 | import Link from "next/link";
-     |        ^^^^
-  18 | interface DashboardClientProps {
-  19 |   store: any;
-  20 |   initialProducts: any[];
-
-the name `Link` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:17:8
-Ecmascript file had an error
-  15 | import ShareStore from "./ShareStore";
-  16 | import FlashDropModal from "@/components/dashboard/FlashDropModal";
-> 17 | import Link from "next/link";
-     |        ^^^^
-  18 | interface DashboardClientProps {
-  19 |   store: any;
-  20 |   initialProducts: any[];
-
-the name `Link` is defined multiple times
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:4:36
-Parsing ecmascript source code failed
-  2 |
-  3 | import { useState, useMemo } from "react";
-> 4 | import Link from "next/navigation" "";
-    |                                    ^^
-  5 | import { useRouter } from "next/navigation";
-  6 | import { 
-  7 |   Package, ExternalLink, 
-
-Expected ';', got 'string literal (, "")'
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:4:36
-Parsing ecmascript source code failed
-  2 |
-  3 | import { useState, useMemo } from "react";
-> 4 | import Link from "next/navigation" "next.";
-    |                                    ^^^^^^^
-  5 | import { useRouter } from "next/navigation";
-  6 | import { 
-  7 |   Package, ExternalLink, 
-
-Expected ';', got 'string literal (next., "next.")'
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[45:57:22.502] Browser ERROR   ./components/dashboard/DashboardClient.tsx:4:36
-Parsing ecmascript source code failed
-  2 |
-  3 | import { useState, useMemo } from "react";
-> 4 | import Link from "next/navigation" "next.";
-    |                                    ^^^^^^^
-  5 | import { useRouter } from "next/navigation";
-  6 | import { 
-  7 |   Package, ExternalLink, 
-
-Expected ';', got 'string literal (next., "next.")'
-
-Import traces:
-  Client Component Browser:
-    ./components/dashboard/DashboardClient.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Client Component Browser]
-    ./app/dashboard/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/dashboard/DashboardClient.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Client Component SSR]
-    ./app/dashboard/page.tsx [Server Component]
-[45:57:22.717] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.962] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.976] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[45:57:22.989] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[46:11:05.710] Server  LOG      ○ Compiling /admin ...
-[46:11:10.713] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+    ./store-link/app/pricing/page.tsx [Client Component SSR]
+    ./store-link/app/pricing/page.tsx [Server Component]
+[04:56:49.248] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:58:08.915] Server  LOG      ✓ Compiled in 437ms
+[04:58:10.584] Server  LOG      ✓ Compiled in 301ms
+[04:58:22.314] Server  LOG      ✓ Compiled in 338ms
+[04:58:34.516] Server  LOG      ✓ Compiled in 246ms
+[04:59:09.595] Server  LOG      ✓ Compiled in 376ms
+[04:59:23.306] Server  LOG      ✓ Compiled in 355ms
+[05:01:23.288] Server  LOG      ✓ Compiled in 205ms
+[05:01:30.974] Server  LOG      ✓ Compiled in 188ms
+[05:01:32.941] Server  LOG      ✓ Compiled in 577ms
+[05:01:37.591] Server  LOG      ✓ Compiled in 221ms
+[05:03:29.781] Server  LOG      ✓ Compiled in 216ms
+[05:03:49.074] Server  LOG      ✓ Compiled in 199ms
+[05:04:27.705] Server  LOG      ✓ Compiled in 355ms
+[05:04:32.974] Server  LOG      ✓ Compiled in 219ms
+[05:04:47.084] Server  LOG      ✓ Compiled in 189ms
+[05:05:05.429] Server  LOG      ✓ Compiled in 160ms
+[05:05:35.778] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:05:35.778] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:05:35.778] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:05:35.778] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:05:35.778] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:24.953] Server  LOG      ✓ Compiled in 795ms
+[05:07:36.172] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:07:41.294] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:41.294] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:41.294] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:41.294] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:41.294] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.496] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.496] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.496] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767432617-051sbe" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.496] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/3a7cfef9-c592-4591-ab0f-a956d5a78f89/1766701122638-txxfrb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.842] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767316951-8nh4o7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.842] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767240587-w29es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.842] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767569338-gi91s" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.842] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767379493-c4r0ab" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:44.842] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2fbaffa-3a36-48bc-bcaa-9c52c96c7983/1766731857715-7kj9es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:07:45.590] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/35950b07-89ee-49f9-a4d4-26ca7ae8db5a/1766787424518-dqtltb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:09:32.456] Server  LOG      ✓ Compiled in 406ms
+[05:09:33.320] Browser ERROR   uncaughtError: ReferenceError: Link is not defined
+[05:10:37.132] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[05:10:37.917] Server  LOG      ✓ Compiled in 226ms
+[05:10:38.273] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[05:10:38.287] Server  LOG      ✓ Compiled in 193ms
+[05:10:39.783] Browser ERROR   uncaughtError: ReferenceError: Link is not defined
+[05:10:42.154] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:10:43.686] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:43.686] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:43.687] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:43.825] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:44.472] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:44.472] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:44.761] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/3a7cfef9-c592-4591-ab0f-a956d5a78f89/1766701122638-txxfrb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:44.761] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767240587-w29es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:44.761] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:45.293] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767316951-8nh4o7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:45.577] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2fbaffa-3a36-48bc-bcaa-9c52c96c7983/1766731857715-7kj9es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:45.577] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767432617-051sbe" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:45.577] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767379493-c4r0ab" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:46.662] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767569338-gi91s" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:10:47.079] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/35950b07-89ee-49f9-a4d4-26ca7ae8db5a/1766787424518-dqtltb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:11:08.618] Server  LOG      ✓ Compiled in 216ms
+[05:11:13.981] Server  LOG      ✓ Compiled in 145ms
+[05:12:31.057] Server  LOG      ✓ Compiled in 212ms
+[05:12:34.280] Server  LOG      ✓ Compiled in 163ms
+[05:12:49.419] Server  LOG      ✓ Compiled in 205ms
+[05:20:52.144] Server  LOG      ✓ Compiled in 173ms
+[05:21:19.049] Server  LOG      ✓ Compiled in 343ms
+[05:29:20.568] Server  LOG      ✓ Compiled in 1201ms
+[05:29:27.132] Server  LOG      ✓ Compiled in 426ms
+[05:29:38.145] Server  LOG      ✓ Compiled in 311ms
+[05:29:39.321] Server  LOG      ✓ Compiled in 314ms
+[05:29:40.748] Server  LOG      ✓ Compiled in 302ms
+[05:32:08.926] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:35:02.666] Server  LOG      ✓ Compiled in 784ms
+[05:42:24.081] Server  LOG      ✓ Compiled in 953ms
+[05:43:30.792] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:47:02.024] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.024] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.024] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.024] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.024] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.823] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.823] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.823] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767569338-gi91s" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.824] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767379493-c4r0ab" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:02.824] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767316951-8nh4o7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:04.888] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767432617-051sbe" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:04.888] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/35950b07-89ee-49f9-a4d4-26ca7ae8db5a/1766787424518-dqtltb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:04.888] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2fbaffa-3a36-48bc-bcaa-9c52c96c7983/1766731857715-7kj9es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:04.888] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/3a7cfef9-c592-4591-ab0f-a956d5a78f89/1766701122638-txxfrb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:47:04.888] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767240587-w29es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[05:50:02.049] Server  LOG      ✓ Compiled in 264ms
+[05:50:07.088] Server  LOG      ✓ Compiled in 189ms
+[05:50:16.417] Server  LOG      ○ Compiling /marketplace ...

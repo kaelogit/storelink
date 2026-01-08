@@ -12,6 +12,7 @@ import ValueProp from "./ValueProp";
 import HowItWorks from "./HowItWorks";
 import TrustCenter from "./TrustCenter";
 import Marketplace from "./Marketplace";
+import FAQ from "./FAQ"; // Imported the FAQ component
 import Footer from "./Footer";
 
 interface LandingPageWrapperProps {
@@ -96,6 +97,9 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
 
       <Marketplace products={products} stores={stores} onAddToCart={handleAddToCart} />
       
+      {/* FAQ placed below Marketplace as requested */}
+      <FAQ />
+
       <TrustCenter />
       <Footer />
 

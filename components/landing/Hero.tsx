@@ -32,27 +32,23 @@ export default function Hero() {
             </h1>
 
             <p className="text-base md:text-xl text-gray-500 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
-               Stop sending blurry photos on WhatsApp. Create a stunning store link, look professional, and get paid instantly.
+               Stop sending blurry photos on WhatsApp. Create a stunning storefront, look professional, and get paid directly.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
                <Link href="/signup" className="w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-xl font-bold text-lg hover:bg-gray-800 transition shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
-                  <Store className="w-5 h-5" /> Create Your Store
+                  <Store className="w-5 h-5" /> Create My Store
                </Link>
                <Link href="/marketplace" className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold text-lg hover:bg-gray-50 transition flex items-center justify-center gap-2">
-                  <TrendingUp className="w-5 h-5" /> Explore Market
+                  <TrendingUp className="w-5 h-5" /> Explore Marketplace
                </Link>
             </div>
 
             <div className="flex items-center justify-center lg:justify-start gap-4 text-sm font-medium text-gray-500">
-               <div className="flex -space-x-2">
-                  {[1,2,3,4].map((i) => (
-                    <div key={i} className={`w-8 h-8 rounded-full border-2 border-white bg-gray-200 flex items-center justify-center text-[10px] font-bold text-gray-500 bg-cover`} style={{ backgroundImage: `url(https://i.pravatar.cc/100?img=${i + 10})` }}></div>
-                  ))}
-               </div>
+               
                <div className="flex flex-col items-start">
                   <div className="flex text-yellow-400"><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/></div>
-                  <span>Trusted by 500+ Vendors</span>
+                  <span>Trusted by 5000+ Vendors</span>
                </div>
             </div>
           </div>

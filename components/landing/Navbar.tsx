@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutDashboard, Menu, X, ArrowRight, User, ShoppingBag, Sparkles, Wallet } from "lucide-react";
+import { LayoutDashboard, Menu, X, ArrowRight, User, ShoppingBag, Sparkles, Wallet, Tag } from "lucide-react";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -33,6 +33,10 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
               <Link href="/marketplace" className="text-sm font-bold text-gray-600 hover:text-gray-900 transition flex items-center gap-2">
                 <ShoppingBag size={16} /> Marketplace
+              </Link>
+
+              <Link href="/pricing" className="text-sm font-bold text-gray-600 hover:text-gray-900 transition flex items-center gap-2">
+                <Tag size={16} /> Pricing
               </Link>
 
               <Link href="/wallet" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100">
@@ -67,6 +71,14 @@ export default function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                >
                   <ShoppingBag size={18} /> Shop Marketplace
+               </Link>
+
+               <Link 
+                  href="/pricing" 
+                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-sm font-bold text-gray-700"
+                  onClick={() => setIsMenuOpen(false)}
+               >
+                  <Tag size={18} /> Plan Pricing
                </Link>
 
                <Link 
