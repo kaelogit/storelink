@@ -1274,7 +1274,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_module
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$share$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Share2$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/share-2.js [app-client] (ecmascript) <export default as Share2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$zap$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Zap$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/zap.js [app-client] (ecmascript) <export default as Zap>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 "use client";
+;
 ;
 ;
 function HowItWorks() {
@@ -1311,12 +1313,12 @@ function HowItWorks() {
                     }
                 }, void 0, false, {
                     fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                    lineNumber: 31,
+                    lineNumber: 32,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                lineNumber: 30,
+                lineNumber: 31,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1333,7 +1335,7 @@ function HowItWorks() {
                                         fill: "currentColor"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                        lineNumber: 37,
+                                        lineNumber: 38,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1341,13 +1343,13 @@ function HowItWorks() {
                                         children: "Speed to Market"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                        lineNumber: 38,
+                                        lineNumber: 39,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                lineNumber: 36,
+                                lineNumber: 37,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1356,7 +1358,7 @@ function HowItWorks() {
                                     "Start Selling ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                        lineNumber: 41,
+                                        lineNumber: 42,
                                         columnNumber: 27
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1364,19 +1366,19 @@ function HowItWorks() {
                                         children: "In Minutes."
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                        lineNumber: 41,
+                                        lineNumber: 42,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                lineNumber: 40,
+                                lineNumber: 41,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                        lineNumber: 35,
+                        lineNumber: 36,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1386,7 +1388,7 @@ function HowItWorks() {
                                 className: "hidden md:block absolute top-1/2 left-0 w-full h-0.5 border-t-2 border-dashed border-gray-100 -translate-y-24 z-0"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                lineNumber: 47,
+                                lineNumber: 48,
                                 columnNumber: 11
                             }, this),
                             steps.map((step, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1400,7 +1402,7 @@ function HowItWorks() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                            lineNumber: 55,
+                                            lineNumber: 56,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1410,12 +1412,12 @@ function HowItWorks() {
                                                 strokeWidth: 2.5
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                                lineNumber: 60,
+                                                lineNumber: 61,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                            lineNumber: 59,
+                                            lineNumber: 60,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1423,7 +1425,7 @@ function HowItWorks() {
                                             children: step.title
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                            lineNumber: 63,
+                                            lineNumber: 64,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1431,7 +1433,7 @@ function HowItWorks() {
                                             children: step.desc
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                            lineNumber: 67,
+                                            lineNumber: 68,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1440,29 +1442,30 @@ function HowItWorks() {
                                                 className: "rotate-90"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                                lineNumber: 73,
+                                                lineNumber: 74,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                            lineNumber: 72,
+                                            lineNumber: 73,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, i, true, {
                                     fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                    lineNumber: 50,
+                                    lineNumber: 51,
                                     columnNumber: 13
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                        lineNumber: 45,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "mt-20 text-center",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                            href: "/signup",
                             className: "inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-emerald-600 transition-all shadow-xl active:scale-95 group",
                             children: [
                                 "Create My Store ",
@@ -1471,30 +1474,30 @@ function HowItWorks() {
                                     className: "group-hover:translate-x-2 transition-transform"
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                                    lineNumber: 82,
+                                    lineNumber: 83,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                            lineNumber: 81,
+                            lineNumber: 82,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                        lineNumber: 80,
+                        lineNumber: 81,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-                lineNumber: 34,
+                lineNumber: 35,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/store-link/components/landing/HowItWorks.tsx",
-        lineNumber: 28,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }

@@ -1,10 +1,4 @@
 {
-  "/contact/page": "app/contact/page.js",
-  "/faq/page": "app/faq/page.js",
-  "/icon/route": "app-edge-has-no-entrypoint",
-  "/login/page": "app/login/page.js",
-  "/marketplace/page": "app/marketplace/page.js",
   "/page": "app/page.js",
-  "/pricing/page": "app/pricing/page.js",
   "/signup/page": "app/signup/page.js"
 }

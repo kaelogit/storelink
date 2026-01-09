@@ -24,63 +24,14 @@
       "env": {
         "__NEXT_BUILD_ID": "development",
         "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "ja2YC9ukT7rZ8LSM8iC7iiYk2E5lm6Iod8QB0QdnXtk=",
-        "__NEXT_PREVIEW_MODE_ID": "e004d9b5b3b324d9a32f40bbb2e9c0ca",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "44a0110e66933362f6dc3f958cd041bdbc57ab3869aa6f7b5a230e100cfad510",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "4958b65bd4ac2e3310d69e5634093a6962f3dbcb2b44715e2713a30cd25a3f15"
+        "__NEXT_PREVIEW_MODE_ID": "a0544fa8caa86267e880d528affc8b75",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "e4fe23cadb3260538b98cc0c135c49bffa5a9d2e5022707032b33d4cb8e1f624",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "bf80473b5bbb223038734ced5147016ee952004f8829f4e8d170bd5444d2799b"
       }
     }
   },
   "sortedMiddleware": [
     "/"
   ],
-  "functions": {
-    "/icon/route": {
-      "files": [
-        "server/middleware-build-manifest.js",
-        "server/interception-route-rewrite-manifest.js",
-        "server/server-reference-manifest.js",
-        "server/app/icon/route_client-reference-manifest.js",
-        "server/edge/chunks/store-link__next-internal_server_app_icon_route_actions_6d45d070.js",
-        "server/edge/chunks/86e94_next_dist_esm_488caca2._.js",
-        "server/edge/chunks/86e94_next_dist_compiled_react-server-dom-turbopack_327934d3._.js",
-        "server/edge/chunks/86e94_next_dist_compiled_@vercel_og_cb50ae1e._.js",
-        "server/edge/chunks/86e94_next_dist_compiled_a4bdf509._.js",
-        "server/edge/chunks/86e94_next_dist_ec6a7f28._.js",
-        "server/edge/chunks/store-link_edge-wrapper_89f6ec94.js",
-        "server/edge/chunks/[root-of-the-server]__c184c805._.js",
-        "server/edge/chunks/turbopack-store-link_edge-wrapper_f20e416d.js"
-      ],
-      "name": "app/icon/route",
-      "page": "/icon/route",
-      "matchers": [
-        {
-          "regexp": "^/icon(?:/)?$",
-          "originalSource": "/icon"
-        }
-      ],
-      "wasm": [
-        {
-          "name": "wasm_fdb56e4cc5936d29",
-          "filePath": "server/edge/chunks/86e94_next_dist_compiled_@vercel_og_resvg_23ace1ce.wasm"
-        },
-        {
-          "name": "wasm_1ccdc983b1fd9f87",
-          "filePath": "server/edge/chunks/86e94_next_dist_compiled_@vercel_og_yoga_23ace1ce.wasm"
-        }
-      ],
-      "assets": [
-        {
-          "name": "server/edge/assets/noto-sans-v27-latin-regular.bdfa676c.ttf",
-          "filePath": "server/edge/assets/noto-sans-v27-latin-regular.bdfa676c.ttf"
-        }
-      ],
-      "env": {
-        "__NEXT_BUILD_ID": "development",
-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "ja2YC9ukT7rZ8LSM8iC7iiYk2E5lm6Iod8QB0QdnXtk=",
-        "__NEXT_PREVIEW_MODE_ID": "e004d9b5b3b324d9a32f40bbb2e9c0ca",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "44a0110e66933362f6dc3f958cd041bdbc57ab3869aa6f7b5a230e100cfad510",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "4958b65bd4ac2e3310d69e5634093a6962f3dbcb2b44715e2713a30cd25a3f15"
-      }
-    }
-  }
+  "functions": {}
 }
