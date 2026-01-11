@@ -1,6 +1,9 @@
 {
+  "/dashboard/page": "app/dashboard/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
   "/login/page": "app/login/page.js",
+  "/logout/page": "app/logout/page.js",
+  "/onboarding/page": "app/onboarding/page.js",
   "/page": "app/page.js",
   "/signup/page": "app/signup/page.js"
 }
