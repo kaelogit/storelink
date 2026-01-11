@@ -62,6 +62,13 @@ export default function OnboardingPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // 🔥 COMPULSORY CHECK: Ensure Logo and Cover are present before upload
+    if (!logoFile || !coverFile) {
+      setErrorMsg("Please upload both a Logo and a Cover Image to continue.");
+      return;
+    }
+
     setLoading(true);
     setErrorMsg(""); 
 
@@ -132,7 +139,7 @@ export default function OnboardingPage() {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-gray-50 font-sans selection:bg-emerald-100">
       <nav className="p-6 flex justify-center md:justify-start max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-2">
            <LayoutDashboard className="text-emerald-600" size={28}/>
@@ -172,12 +179,12 @@ export default function OnboardingPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Store Name</label>
-                  <input required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold" placeholder="e.g. Mira's Perfume" value={formData.name} onChange={handleNameChange} />
+                  <input required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-gray-900" placeholder="e.g. Mira's Perfume" value={formData.name} onChange={handleNameChange} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Category</label>
-                        <select required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold appearance-none" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
+                        <select required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold appearance-none text-gray-900" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
                             <optgroup label="Main Categories">
                               <option value="fashion">Fashion & Apparel</option>
                               <option value="beauty">Beauty & Personal Care</option>
@@ -188,20 +195,30 @@ export default function OnboardingPage() {
                             <optgroup label="Specialty">
                               <option value="real-estate">Real Estate</option>
                               <option value="automotive">Automotive</option>
-                              <option value="services">Services</option>
                             </optgroup>
                         </select>
                     </div>
                     <div>
                         <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">City/State</label>
-                        <input required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold" placeholder="Lagos" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} />
+                        <input required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-gray-900" placeholder="Lagos" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} />
                     </div>
                 </div>
                 <div>
                   <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">WhatsApp Number</label>
-                  <input required type="tel" className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold" placeholder="08012345678" value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})} />
+                  <input required type="tel" className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-gray-900" placeholder="08012345678" value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})} />
                 </div>
-                <button type="button" onClick={() => setStep(2)} className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg active:scale-95 transition">
+                <button 
+                  type="button" 
+                  onClick={() => {
+                    if(!formData.name || !formData.whatsapp) {
+                      setErrorMsg("Store Name and WhatsApp are required!");
+                      return;
+                    }
+                    setErrorMsg("");
+                    setStep(2);
+                  }} 
+                  className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg active:scale-95 transition"
+                >
                     Next: Brand Identity <ArrowRight size={18}/>
                 </button>
               </div>
@@ -214,26 +231,26 @@ export default function OnboardingPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-xs font-black uppercase text-gray-400 mb-2 ml-1">Store Cover Image</label>
-                  <div className="relative h-32 bg-gray-100 rounded-2xl overflow-hidden border-2 border-dashed border-gray-200 group">
+                  <label className="block text-xs font-black uppercase text-gray-400 mb-2 ml-1">Store Cover Image (Compulsory)</label>
+                  <div className={`relative h-32 bg-gray-100 rounded-2xl overflow-hidden border-2 border-dashed group transition-all ${coverPreview ? 'border-emerald-500' : 'border-gray-200'}`}>
                     {coverPreview ? <img src={coverPreview} className="w-full h-full object-cover" alt="Cover Preview" /> : 
                       <div className="flex flex-col items-center justify-center h-full text-gray-400">
                         <ImageIcon size={24} />
-                        <span className="text-[10px] font-black uppercase mt-2">Tap to Upload Cover</span>
+                        <span className="text-[10px] font-black uppercase mt-2 text-center px-4">Tap to Upload Cover Photo</span>
                       </div>
                     }
-                    <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileChange(e, 'cover')} />
+                    <input type="file" required accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileChange(e, 'cover')} />
                   </div>
                 </div>
 
                 <div className="flex items-center gap-6">
                     <div>
                         <label className="block text-xs font-black uppercase text-gray-400 mb-2 ml-1">Logo</label>
-                        <div className="relative w-20 h-20 bg-gray-100 rounded-full overflow-hidden border-2 border-dashed border-gray-200">
+                        <div className={`relative w-20 h-20 bg-gray-100 rounded-full overflow-hidden border-2 border-dashed transition-all ${logoPreview ? 'border-emerald-500' : 'border-gray-200'}`}>
                             {logoPreview ? <img src={logoPreview} className="w-full h-full object-cover" alt="Logo Preview" /> : 
                                 <div className="flex items-center justify-center h-full text-gray-400"><Camera size={20}/></div>
                             }
-                            <input type="file" accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileChange(e, 'logo')} />
+                            <input type="file" required accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileChange(e, 'logo')} />
                         </div>
                     </div>
                     <div className="flex-1">
@@ -246,7 +263,18 @@ export default function OnboardingPage() {
 
                 <div className="flex gap-3">
                     <button type="button" onClick={() => setStep(1)} className="w-1/3 bg-gray-100 text-gray-500 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] active:scale-95 transition">Back</button>
-                    <button type="button" onClick={() => setStep(3)} className="w-2/3 bg-gray-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg active:scale-95 transition">
+                    <button 
+                      type="button" 
+                      onClick={() => {
+                        if(!logoFile || !coverFile) {
+                          setErrorMsg("Logo and Cover image are compulsory!");
+                          return;
+                        }
+                        setErrorMsg("");
+                        setStep(3);
+                      }} 
+                      className="w-2/3 bg-gray-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg active:scale-95 transition"
+                    >
                         Next: Final Step <ArrowRight size={18}/>
                     </button>
                 </div>
@@ -260,16 +288,16 @@ export default function OnboardingPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Store Description</label>
-                  <textarea required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none h-24 resize-none font-bold text-sm" placeholder="Tell customers what makes your brand special..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
+                  <textarea required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none h-24 resize-none font-bold text-sm text-gray-900" placeholder="Tell customers what makes your brand special..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="relative">
                         <Instagram className="absolute left-4 top-4 text-gray-400" size={18}/>
-                        <input className="w-full p-4 pl-11 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-sm" placeholder="Instagram" value={formData.instagram} onChange={e => setFormData({...formData, instagram: e.target.value})} />
+                        <input className="w-full p-4 pl-11 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-sm text-gray-900" placeholder="Instagram" value={formData.instagram} onChange={e => setFormData({...formData, instagram: e.target.value})} />
                     </div>
                     <div className="relative">
                         <Music2 className="absolute left-4 top-4 text-gray-400" size={18}/>
-                        <input className="w-full p-4 pl-11 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-sm" placeholder="TikTok Link" value={formData.tiktok} onChange={e => setFormData({...formData, tiktok: e.target.value})} />
+                        <input className="w-full p-4 pl-11 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-sm text-gray-900" placeholder="TikTok Link" value={formData.tiktok} onChange={e => setFormData({...formData, tiktok: e.target.value})} />
                     </div>
                 </div>
 
@@ -282,7 +310,11 @@ export default function OnboardingPage() {
               </div>
             )}
 
-            {errorMsg && <div className="p-4 bg-red-50 text-red-600 text-[10px] font-black rounded-xl text-center border border-red-100 uppercase tracking-widest animate-pulse">⚠️ ERROR: {errorMsg}</div>}
+            {errorMsg && (
+              <div className="p-4 bg-red-50 text-red-600 text-[10px] font-black rounded-xl text-center border border-red-100 uppercase tracking-widest animate-pulse">
+                ⚠️ ERROR: {errorMsg}
+              </div>
+            )}
 
           </form>
         </div>
@@ -297,7 +329,7 @@ export default function OnboardingPage() {
              <Zap size={14} className="text-amber-500" /> Instant Access
            </div>
         </div>
-        <p className="text-[10px] text-gray-300 font-black uppercase tracking-widest">© 2025 StoreLink Engine</p>
+        <p className="text-[10px] text-gray-300 font-black uppercase tracking-widest">© 2026 StoreLink Engine</p>
       </footer>
     </div>
   );

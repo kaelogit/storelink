@@ -1,9 +1,16 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/admin-update-password/route": "app/api/admin-update-password/route.js",
+  "/api/send-email/route": "app/api/send-email/route.js",
+  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
   "/dashboard/page": "app/dashboard/page.js",
+  "/forgot-password/page": "app/forgot-password/page.js",
   "/icon/route": "app-edge-has-no-entrypoint",
   "/login/page": "app/login/page.js",
   "/logout/page": "app/logout/page.js",
   "/onboarding/page": "app/onboarding/page.js",
   "/page": "app/page.js",
-  "/signup/page": "app/signup/page.js"
+  "/signup/page": "app/signup/page.js",
+  "/update-password/page": "app/update-password/page.js",
+  "/verify/page": "app/verify/page.js"
 }

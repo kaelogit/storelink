@@ -4589,6 +4589,16 @@
     letter-spacing: .25em;
   }
 
+  .tracking-\[8px\] {
+    --tw-tracking: 8px;
+    letter-spacing: 8px;
+  }
+
+  .tracking-\[12px\] {
+    --tw-tracking: 12px;
+    letter-spacing: 12px;
+  }
+
   .tracking-normal {
     --tw-tracking: var(--tracking-normal);
     letter-spacing: var(--tracking-normal);
@@ -4621,6 +4631,10 @@
 
   .break-words {
     overflow-wrap: break-word;
+  }
+
+  .break-all {
+    word-break: break-all;
   }
 
   .whitespace-nowrap {
@@ -5795,6 +5809,10 @@
     --tw-enter-translate-y: -100%;
   }
 
+  .slide-in-from-top-1 {
+    --tw-enter-translate-y: -.25rem;
+  }
+
   .slide-in-from-top-2 {
     --tw-enter-translate-y: -.5rem;
   }
@@ -6032,6 +6050,10 @@
 
   .file\:text-foreground::file-selector-button {
     color: var(--foreground);
+  }
+
+  .placeholder\:text-gray-200::placeholder {
+    color: var(--color-gray-200);
   }
 
   .placeholder\:text-gray-500::placeholder {
@@ -6693,8 +6715,16 @@
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
 
+  .focus\:ring-amber-500:focus {
+    --tw-ring-color: var(--color-amber-500);
+  }
+
   .focus\:ring-blue-500:focus {
     --tw-ring-color: var(--color-blue-500);
+  }
+
+  .focus\:ring-emerald-50:focus {
+    --tw-ring-color: var(--color-emerald-50);
   }
 
   .focus\:ring-emerald-100:focus {
@@ -7652,6 +7682,12 @@
   }
 
   @media (min-width: 48rem) {
+    .md\:h-16 {
+      height: calc(var(--spacing) * 16);
+    }
+  }
+
+  @media (min-width: 48rem) {
     .md\:h-36 {
       height: calc(var(--spacing) * 36);
     }
@@ -7708,6 +7744,12 @@
   @media (min-width: 48rem) {
     .md\:w-8 {
       width: calc(var(--spacing) * 8);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:w-16 {
+      width: calc(var(--spacing) * 16);
     }
   }
 
@@ -8031,6 +8073,12 @@
   }
 
   @media (min-width: 48rem) {
+    .md\:p-5 {
+      padding: calc(var(--spacing) * 5);
+    }
+  }
+
+  @media (min-width: 48rem) {
     .md\:p-6 {
       padding: calc(var(--spacing) * 6);
     }
@@ -8099,6 +8147,12 @@
   @media (min-width: 48rem) {
     .md\:px-16 {
       padding-inline: calc(var(--spacing) * 16);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:py-5 {
+      padding-block: calc(var(--spacing) * 5);
     }
   }
 
@@ -8297,6 +8351,13 @@
     .md\:leading-none {
       --tw-leading: 1;
       line-height: 1;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:tracking-\[12px\] {
+      --tw-tracking: 12px;
+      letter-spacing: 12px;
     }
   }
 

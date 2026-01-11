@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { useRouter } from "next/navigation";
-import { Loader2, CheckCircle2, ShieldCheck } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation"; // Added useSearchParams
+import { Loader2, CheckCircle2, ShieldCheck, Lock } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 
 export default function UpdatePasswordPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email"); // Get the email from URL
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState(""); 
   const [loading, setLoading] = useState(false);
@@ -34,88 +37,111 @@ export default function UpdatePasswordPage() {
       return;
     }
 
-    const { error } = await supabase.auth.updateUser({ password });
+    try {
+      // 🔥 AUDIT FIX: We now call our Admin API instead of supabase.auth
+      const response = await fetch("/api/admin-update-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, newPassword: password }),
+      });
 
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else {
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to update password.");
+      }
+
+      // SUCCESS FLOW
       setSuccess(true);
       setTimeout(() => {
-        router.push("/dashboard");
-        router.refresh();
-      }, 2000);
+        router.push("/login"); // Send to login so they can use new pass
+      }, 2500);
+
+    } catch (err: any) {
+      setError(err.message);
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-gray-50 font-sans selection:bg-amber-100">
       <Navbar />
       <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-80px)]">
-        <div className="w-full max-w-md bg-white rounded-[32px] shadow-xl p-8 border border-gray-100 transition-all">
+        <div className="w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-10 border border-gray-100 transition-all">
           
-          <div className="flex items-center gap-2 mb-6 text-gray-900">
-             <ShieldCheck className="text-emerald-600" size={24}/>
-             <h1 className="text-2xl font-black tracking-tight">Set New Password</h1>
-          </div>
-
           {success ? (
-            <div className="text-center py-10 animate-in fade-in zoom-in duration-300">
-              <CheckCircle2 size={56} className="text-emerald-500 mx-auto mb-4" />
-              <h2 className="text-xl font-black text-gray-900 mb-2">Password Secured</h2>
-              <p className="text-gray-500 text-sm">Your new credentials are live. Entering dashboard...</p>
+            <div className="text-center py-6 animate-in fade-in zoom-in duration-500">
+              <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner">
+                <CheckCircle2 size={40} strokeWidth={2.5} />
+              </div>
+              <h2 className="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Security Updated</h2>
+              <p className="text-gray-500 text-sm font-medium leading-relaxed">
+                Your new password is live. <br />
+                Redirecting to your <span className="text-gray-900 font-bold">Empire Dashboard...</span>
+              </p>
             </div>
           ) : (
-            <form onSubmit={handleUpdate} className="space-y-5">
-              {error && (
-                <div className="p-3 bg-red-50 text-red-600 text-xs rounded-xl text-center font-bold border border-red-100 animate-shake">
-                  {error}
-                </div>
-              )}
-
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1">New Password</label>
-                <input 
-                  required 
-                  type="password" 
-                  placeholder="Enter password"
-                  className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none transition-all font-medium" 
-                  value={password} 
-                  onChange={e => setPassword(e.target.value)} 
-                />
-                
-                <div className="mt-3 space-y-1.5 px-1">
-                  <div className={`text-[10px] flex items-center gap-2 font-black uppercase tracking-widest ${isMinLength ? 'text-emerald-600' : 'text-gray-400'}`}>
-                    <div className={`w-1.5 h-1.5 rounded-full ${isMinLength ? 'bg-emerald-500' : 'bg-gray-300'}`}></div>
-                    Minimum 8 Characters
-                  </div>
-                  <div className={`text-[10px] flex items-center gap-2 font-black uppercase tracking-widest ${hasNumber ? 'text-emerald-600' : 'text-gray-400'}`}>
-                    <div className={`w-1.5 h-1.5 rounded-full ${hasNumber ? 'bg-emerald-500' : 'bg-gray-300'}`}></div>
-                    Include at least 1 number
-                  </div>
-                </div>
+            <>
+              <div className="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                <Lock size={28} strokeWidth={2.5} />
               </div>
 
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1">Confirm Password</label>
-                <input 
-                  required 
-                  type="password" 
-                  placeholder="Re-Enter password"
-                  className="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none transition-all font-medium" 
-                  value={confirmPassword} 
-                  onChange={e => setConfirmPassword(e.target.value)} 
-                />
-              </div>
+              <h1 className="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tighter leading-none">
+                New <span className="text-amber-500 italic">Credentials</span>
+              </h1>
+              <p className="text-gray-500 text-sm font-medium mb-8">Secure your account with a strong password.</p>
 
-              <button 
-                type="submit" 
-                disabled={loading} 
-                className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-gray-800 active:scale-95 transition-all flex items-center justify-center gap-2 uppercase tracking-widest"
-              >
-                {loading ? <Loader2 className="animate-spin" /> : "Secure My Account"}
-              </button>
-            </form>
+              <form onSubmit={handleUpdate} className="space-y-5">
+                {error && (
+                  <div className="p-4 bg-red-50 text-red-600 text-[10px] rounded-2xl text-center font-black uppercase tracking-widest border border-red-100 animate-in fade-in slide-in-from-top-1">
+                    {error}
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 px-1">New Password</label>
+                  <input 
+                    required 
+                    type="password" 
+                    placeholder="••••••••"
+                    className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all font-bold text-gray-900" 
+                    value={password} 
+                    onChange={e => setPassword(e.target.value)} 
+                  />
+                  
+                  <div className="mt-4 space-y-2 px-1">
+                    <div className={`text-[9px] flex items-center gap-2 font-black uppercase tracking-widest ${isMinLength ? 'text-emerald-600' : 'text-gray-300'}`}>
+                      <div className={`w-1.5 h-1.5 rounded-full ${isMinLength ? 'bg-emerald-500' : 'bg-gray-200'}`}></div>
+                      8+ Characters
+                    </div>
+                    <div className={`text-[9px] flex items-center gap-2 font-black uppercase tracking-widest ${hasNumber ? 'text-emerald-600' : 'text-gray-300'}`}>
+                      <div className={`w-1.5 h-1.5 rounded-full ${hasNumber ? 'bg-emerald-500' : 'bg-gray-200'}`}></div>
+                      At least 1 Number
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 px-1">Confirm New Password</label>
+                  <input 
+                    required 
+                    type="password" 
+                    placeholder="••••••••"
+                    className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all font-bold text-gray-900" 
+                    value={confirmPassword} 
+                    onChange={e => setConfirmPassword(e.target.value)} 
+                  />
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={loading} 
+                  className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-xs shadow-xl hover:bg-amber-600 active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-[0.2em] disabled:opacity-50"
+                >
+                  {loading ? <Loader2 className="animate-spin text-amber-400" /> : "Verify & Secure Account"}
+                </button>
+              </form>
+            </>
           )}
         </div>
       </div>

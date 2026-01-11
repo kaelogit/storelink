@@ -449,3 +449,37 @@ Import traces:
 [01:44:02.247] Server  LOG      ✓ Compiled in 177ms
 [01:44:06.195] Server  LOG      ✓ Compiled in 121ms
 [01:44:23.609] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:08:59.331] Server  LOG        Reload env: .env.local
+[03:09:03.224] Server  LOG        Reload env: .env.local
+[03:09:07.713] Server  LOG        Reload env: .env.local
+[03:09:17.170] Server  LOG        Reload env: .env.local
+[03:09:24.451] Server  LOG        Reload env: .env.local
+[03:09:26.411] Server  LOG        Reload env: .env.local
+[03:14:20.299] Server  LOG      ✓ Compiled in 1275ms
+[03:22:28.185] Server  LOG      ✓ Compiled in 657ms
+[03:22:29.481] Server  LOG      ✓ Compiled in 513ms
+[03:22:30.809] Server  LOG      ✓ Compiled in 543ms
+[03:23:24.032] Server  LOG      ✓ Compiled in 827ms
+[03:26:37.514] Server  LOG      ✓ Compiled in 1369ms
+[03:27:16.150] Server  LOG      ✓ Compiled in 1653ms
+[03:27:39.467] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:29:01.136] Server  LOG      ✓ Compiled in 212ms
+[03:29:03.186] Server  LOG      ✓ Compiled in 328ms
+[03:29:06.913] Server  LOG      ✓ Compiled in 153ms
+[03:32:17.005] Browser ERROR   Signup Error: {"code":"42P10","details":null,"hint":null,"message":"there is no unique or exclusion constraint matching the ON CONFLICT specification"}
+[03:36:44.008] Browser ERROR   Signup Error: {"__isAuthError":true,"code":"user_already_exists","name":"AuthApiError","status":422}
+[03:37:25.295] Server  LOG      ○ Compiling /api/send-email ...
+[03:44:33.510] Server  LOG      ✓ Compiled in 855ms
+[04:12:34.483] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:13:16.086] Server  LOG      ○ Compiling /forgot-password ...
+[04:15:32.939] Server  LOG      ✓ Compiled in 2.3s
+[04:15:39.002] Server  LOG      ✓ Compiled in 463ms
+[04:20:16.408] Server  LOG      ✓ Compiled in 194ms
+[04:24:48.764] Server  LOG        Reload env: .env.local
+[04:24:54.332] Server  LOG        Reload env: .env.local
+[04:24:56.986] Server  LOG        Reload env: .env.local
+[04:26:00.383] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:27:37.923] Server  LOG      ✓ Compiled in 722ms
+[04:29:24.065] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[04:32:38.483] Server  LOG      ✓ Compiled in 620ms
+[04:33:07.305] Server  LOG      ✓ Compiled in 354ms

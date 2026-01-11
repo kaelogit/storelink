@@ -362,7 +362,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_module
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/lib/supabase.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/navigation.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/loader-circle.js [app-ssr] (ecmascript) <export default as Loader2>"); // Removed CheckCircle since we're auto-redirecting
+var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/loader-circle.js [app-ssr] (ecmascript) <export default as Loader2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$left$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowLeft$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/arrow-left.js [app-ssr] (ecmascript) <export default as ArrowLeft>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$components$2f$landing$2f$Navbar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/components/landing/Navbar.tsx [app-ssr] (ecmascript)");
@@ -382,7 +382,7 @@ function SignupContent() {
     const [confirmPassword, setConfirmPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
-    // Capture referral code
+    // Capture referral code if present
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const ref = searchParams.get("ref");
         if (ref) {
@@ -398,28 +398,50 @@ function SignupContent() {
         setLoading(true);
         setError(null);
         try {
+            // 1. Basic Security Checks
             if (!isMinLength || !hasNumber) {
-                throw new Error("Please follow the password security rules.");
+                throw new Error("Password must be 8+ characters with at least 1 number.");
             }
             if (password !== confirmPassword) {
                 throw new Error("Passwords do not match.");
             }
-            // Supabase Signup Call
-            const { data, error: signupError } = await __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.signUp({
+            // 2. Create the User in Supabase
+            // Note: Make sure 'Confirm Email' is OFF in your Supabase Dashboard
+            const { data: authData, error: authError } = await __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.signUp({
                 email,
                 password
             });
-            if (signupError) throw signupError;
-            // 🔥 INSTANT REDIRECT: Since email confirmation is OFF, 
-            // Supabase returns a session immediately. We send them to onboarding now.
-            if (data?.user) {
-                router.push("/onboarding");
-                router.refresh(); // Ensures the middleware recognizes the new session
-            }
+            if (authError) throw authError;
+            // 3. Generate a 6-digit Verification Code
+            const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+            // 4. Save Code to your Database (The Memory Table)
+            const { error: dbError } = await __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$lib$2f$supabase$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("otp_verifications").upsert({
+                email,
+                code: otpCode
+            }, {
+                onConflict: 'email'
+            });
+            if (dbError) throw dbError;
+            // 5. Send the Verification Email via Resend SDK
+            // This calls the "Empire" template we just built
+            const emailResponse = await fetch("/api/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    code: otpCode,
+                    type: 'VERIFY_SIGNUP'
+                })
+            });
+            if (!emailResponse.ok) throw new Error("Failed to send verification email.");
+            // 6. Move to the Verification Screen
+            router.push(`/verify?email=${encodeURIComponent(email)}`);
         } catch (err) {
-            console.error("Signup process failed:", err);
-            setError(err.message || "Signup failed. Please try again.");
-            setLoading(false); // Only stop loading if there is an error
+            console.error("Signup Error:", err);
+            setError(err.message || "An unexpected error occurred.");
+            setLoading(false);
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -427,7 +449,7 @@ function SignupContent() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$components$2f$landing$2f$Navbar$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/store-link/app/signup/page.tsx",
-                lineNumber: 67,
+                lineNumber: 90,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -443,14 +465,14 @@ function SignupContent() {
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                    lineNumber: 72,
+                                    lineNumber: 95,
                                     columnNumber: 14
                                 }, this),
                                 " Back to Login"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/app/signup/page.tsx",
-                            lineNumber: 71,
+                            lineNumber: 94,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -462,21 +484,21 @@ function SignupContent() {
                                     children: "Empire"
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 99,
                                     columnNumber: 24
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/app/signup/page.tsx",
-                            lineNumber: 75,
+                            lineNumber: 98,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "text-gray-500 text-sm font-medium mb-8",
-                            children: "Launch your store now."
+                            children: "Create your account and launch in seconds."
                         }, void 0, false, {
                             fileName: "[project]/store-link/app/signup/page.tsx",
-                            lineNumber: 78,
+                            lineNumber: 101,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -484,49 +506,49 @@ function SignupContent() {
                             className: "space-y-5",
                             children: [
                                 error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-4 bg-red-50 text-red-600 text-[11px] rounded-2xl text-center font-black uppercase tracking-widest border border-red-100 animate-pulse",
+                                    className: "p-4 bg-red-50 text-red-600 text-[10px] rounded-2xl text-center font-black uppercase tracking-widest border border-red-100",
                                     children: error
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                    lineNumber: 82,
+                                    lineNumber: 105,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             className: "block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 px-1",
-                                            children: "Business Email"
+                                            children: "Email Address"
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                            lineNumber: 88,
+                                            lineNumber: 111,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                             required: true,
                                             type: "email",
-                                            placeholder: "ceo@yourbrand.com",
+                                            placeholder: "you@example.com",
                                             className: "w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:bg-white outline-none transition-all font-bold text-gray-900",
                                             value: email,
                                             onChange: (e)=>setEmail(e.target.value)
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                            lineNumber: 89,
+                                            lineNumber: 112,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                    lineNumber: 87,
+                                    lineNumber: 110,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             className: "block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 px-1",
-                                            children: "Security Password"
+                                            children: "Create Password"
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                            lineNumber: 100,
+                                            lineNumber: 123,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -538,7 +560,7 @@ function SignupContent() {
                                             onChange: (e)=>setPassword(e.target.value)
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                            lineNumber: 101,
+                                            lineNumber: 124,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -551,14 +573,14 @@ function SignupContent() {
                                                             className: `w-1.5 h-1.5 rounded-full ${isMinLength ? 'bg-emerald-600' : 'bg-gray-200'}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                                            lineNumber: 112,
+                                                            lineNumber: 135,
                                                             columnNumber: 19
                                                         }, this),
                                                         "8+ Characters"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                                    lineNumber: 111,
+                                                    lineNumber: 134,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -568,36 +590,36 @@ function SignupContent() {
                                                             className: `w-1.5 h-1.5 rounded-full ${hasNumber ? 'bg-emerald-600' : 'bg-gray-200'}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                                            lineNumber: 116,
+                                                            lineNumber: 139,
                                                             columnNumber: 19
                                                         }, this),
                                                         "1+ Number"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                                    lineNumber: 115,
+                                                    lineNumber: 138,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                            lineNumber: 110,
+                                            lineNumber: 133,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                    lineNumber: 99,
+                                    lineNumber: 122,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             className: "block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 px-1",
-                                            children: "Verify Password"
+                                            children: "Repeat Password"
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                            lineNumber: 123,
+                                            lineNumber: 146,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -609,109 +631,98 @@ function SignupContent() {
                                             onChange: (e)=>setConfirmPassword(e.target.value)
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/app/signup/page.tsx",
-                                            lineNumber: 124,
+                                            lineNumber: 147,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                    lineNumber: 122,
+                                    lineNumber: 145,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     type: "submit",
                                     disabled: loading,
-                                    className: "w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-xs shadow-xl hover:bg-emerald-600 active:scale-95 transition-all uppercase tracking-[0.2em] flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed",
+                                    className: "w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-xs shadow-xl hover:bg-emerald-600 active:scale-95 transition-all uppercase tracking-[0.2em] flex items-center justify-center disabled:opacity-50",
                                     children: loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
                                         className: "animate-spin text-emerald-400"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/app/signup/page.tsx",
-                                        lineNumber: 139,
+                                        lineNumber: 162,
                                         columnNumber: 26
-                                    }, this) : "Sign up & Get started"
+                                    }, this) : "Sign Up & Get Started"
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                    lineNumber: 134,
+                                    lineNumber: 157,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/app/signup/page.tsx",
-                            lineNumber: 80,
+                            lineNumber: 103,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "mt-8 text-[11px] font-bold text-gray-400 text-center uppercase tracking-widest",
                             children: [
-                                "Already own a store? ",
+                                "Have an account? ",
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/login",
                                     className: "text-gray-900 hover:text-emerald-600 underline decoration-2 underline-offset-4 transition-colors",
                                     children: "Login here"
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/app/signup/page.tsx",
-                                    lineNumber: 144,
-                                    columnNumber: 34
+                                    lineNumber: 167,
+                                    columnNumber: 30
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/app/signup/page.tsx",
-                            lineNumber: 143,
+                            lineNumber: 166,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/store-link/app/signup/page.tsx",
-                    lineNumber: 69,
+                    lineNumber: 92,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/store-link/app/signup/page.tsx",
-                lineNumber: 68,
+                lineNumber: 91,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/store-link/app/signup/page.tsx",
-        lineNumber: 66,
+        lineNumber: 89,
         columnNumber: 5
     }, this);
 }
 function SignupPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Suspense"], {
         fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "h-screen flex flex-col items-center justify-center bg-white gap-4",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
-                    className: "animate-spin text-emerald-600",
-                    size: 40
-                }, void 0, false, {
-                    fileName: "[project]/store-link/app/signup/page.tsx",
-                    lineNumber: 156,
-                    columnNumber: 9
-                }, void 0),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-[10px] font-black uppercase tracking-[0.3em] text-gray-400",
-                    children: "Initializing Engine..."
-                }, void 0, false, {
-                    fileName: "[project]/store-link/app/signup/page.tsx",
-                    lineNumber: 157,
-                    columnNumber: 9
-                }, void 0)
-            ]
-        }, void 0, true, {
+            className: "h-screen flex items-center justify-center",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
+                className: "animate-spin text-emerald-600"
+            }, void 0, false, {
+                fileName: "[project]/store-link/app/signup/page.tsx",
+                lineNumber: 177,
+                columnNumber: 84
+            }, void 0)
+        }, void 0, false, {
             fileName: "[project]/store-link/app/signup/page.tsx",
-            lineNumber: 155,
-            columnNumber: 7
+            lineNumber: 177,
+            columnNumber: 25
         }, void 0),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SignupContent, {}, void 0, false, {
             fileName: "[project]/store-link/app/signup/page.tsx",
-            lineNumber: 160,
+            lineNumber: 178,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/store-link/app/signup/page.tsx",
-        lineNumber: 154,
+        lineNumber: 177,
         columnNumber: 5
     }, this);
 }
