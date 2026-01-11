@@ -1,7 +1,26 @@
-User-agent: *
-Allow: /
-Disallow: /dashboard/
-Disallow: /admin/
-Disallow: /api/
+import { MetadataRoute } from 'next'
 
-Sitemap: https://storelink.ng/sitemap.xml
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: [
+          '/dashboard/', // Protects user private data
+          '/admin/',     // Protects your internal tools
+          '/api/',       // Prevents bots from hitting your backend logic
+          '/onboarding/', // Prevents half-finished profiles from showing up
+          '/update-password', // Security best practice
+        ],
+      },
+      {
+        // 🔥 EMPIRE MOVE: Allow social bots to see previews
+        // This ensures WhatsApp and Instagram link previews work 100%
+        userAgent: ['Twitterbot', 'facebookexternalhit', 'WhatsApp'],
+        allow: '/',
+      }
+    ],
+    sitemap: 'https://storelink.ng/sitemap.xml',
+  }
+}
