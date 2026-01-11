@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react"; // Added Suspense
 import { supabase } from "@/lib/supabase";
-import { useRouter, useSearchParams } from "next/navigation"; // Added useSearchParams
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, CheckCircle2, ShieldCheck, Lock } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 
-export default function UpdatePasswordPage() {
+// 🔥 FIX: Extracted logic into a Content component
+function UpdatePasswordContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const email = searchParams.get("email"); // Get the email from URL
+  const email = searchParams.get("email");
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState(""); 
@@ -38,7 +39,6 @@ export default function UpdatePasswordPage() {
     }
 
     try {
-      // 🔥 AUDIT FIX: We now call our Admin API instead of supabase.auth
       const response = await fetch("/api/admin-update-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -51,10 +51,9 @@ export default function UpdatePasswordPage() {
         throw new Error(result.error || "Failed to update password.");
       }
 
-      // SUCCESS FLOW
       setSuccess(true);
       setTimeout(() => {
-        router.push("/login"); // Send to login so they can use new pass
+        router.push("/login");
       }, 2500);
 
     } catch (err: any) {
@@ -146,5 +145,18 @@ export default function UpdatePasswordPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// 🔥 FIX: Main export wrapped in Suspense for Vercel Build
+export default function UpdatePasswordPage() {
+  return (
+    <Suspense fallback={
+      <div className="h-screen flex items-center justify-center bg-white">
+        <Loader2 className="animate-spin text-amber-600" size={40} />
+      </div>
+    }>
+      <UpdatePasswordContent />
+    </Suspense>
   );
 }
