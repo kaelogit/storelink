@@ -22,6 +22,18 @@ export const metadata: Metadata = {
   },
   description: "Turn your WhatsApp chats into a professional online store in minutes. Accept orders, manage products, and sell faster.",
   keywords: ["StoreLink", "Naija Hustle", "WhatsApp Store", "Ecommerce Nigeria", "Online Shop", "WhatsApp Marketing", "Empire Coin"],
+  
+  // 🔥 AUDIT FIX: Explicitly declaring icons for Google Search Crawler
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" }
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" }
+    ],
+  },
+
   robots: {
     index: true,
     follow: true,
@@ -43,10 +55,9 @@ export const metadata: Metadata = {
     siteName: "StoreLink",
     locale: "en_NG",
     type: "website",
-    // 🔥 Empire Audit: Added OG Image for WhatsApp/Facebook
     images: [
       {
-        url: '/og-image.jpg', // Put this file in your /public folder
+        url: '/og-image.jpg', 
         width: 1200,
         height: 630,
         alt: "StoreLink - The WhatsApp Commerce Engine",
@@ -58,7 +69,6 @@ export const metadata: Metadata = {
     title: "StoreLink | The Engine for Naija Hustle",
     description: "The professional way to manage your WhatsApp orders.",
     creator: '@kaelodev', 
-    // 🔥 Empire Audit: Added Twitter Image
     images: ['/og-image.jpg'],
   },
   verification: {
@@ -72,8 +82,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 🔥 EMPIRE SCHEMA: This tells Google Search exactly who you are and what your logo is
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StoreLink",
+    "url": "https://storelink.ng",
+    "logo": "https://storelink.ng/icon.png",
+    "description": "The WhatsApp Commerce Engine for Nigerian Vendors.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "hello@storelink.ng"
+    }
+  };
+
   return (
     <html lang="en">
+      <head>
+        {/* 🔥 Injecting the Schema into the head */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.className} antialiased selection:bg-emerald-100 selection:text-emerald-900`}>
         <CartProvider>
           <main className="min-h-screen">
