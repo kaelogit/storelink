@@ -1,4 +1,6 @@
 {
+  "/icon/route": "app-edge-has-no-entrypoint",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
   "/signup/page": "app/signup/page.js"
 }

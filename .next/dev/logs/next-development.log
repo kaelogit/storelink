@@ -1,17 +1,31 @@
-[00:00:03.373] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:03.854] Server  LOG      ✓ Ready in 2.9s
-[00:00:12.161] Server  LOG      ○ Compiling / ...
-[00:00:24.083] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:36.594] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.595] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.595] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.595] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.595] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.766] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.766] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767240587-w29es" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.766] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.766] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767316951-8nh4o7" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:36.766] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767432617-051sbe" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:37.680] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767379493-c4r0ab" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:37.680] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/f57e4907-94c8-4650-b63a-424b80f69f0b/1766767569338-gi91s" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
-[00:00:37.680] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/35950b07-89ee-49f9-a4d4-26ca7ae8db5a/1766787424518-dqtltb" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:13.147] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:13.661] Server  LOG      ✓ Ready in 11s
+[00:00:16.974] Server  LOG      ○ Compiling / ...
+[00:00:24.175] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:27.949] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:31.033] Server  LOG      ○ Compiling /icon ...
+[00:01:19.476] Browser ERROR   uncaughtError: Error: br is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`.
+[00:01:57.389] Server  LOG      ✓ Compiled in 270ms
+[00:01:58.159] Browser ERROR   ./store-link/app/signup/page.tsx:82:15
+Parsing ecmascript source code failed
+  80 |               <CheckCircle size={48} className="text-emerald-500 mx-auto mb-4" />
+  81 |               <h2 className="text-xl font-bold text-gray-900 mb-2">Check Your Email Inbox.If it's not there, Check Spam!</br></h2>
+> 82 |               <p className="text-gray-500 mb-4">We sent a confirmation link to <b>{email}</b>.</p>
+     |               ^
+  83 |               <p className="text-sm text-gray-400 bg-gray-50 p-4 rounded-xl">Click the link in the email to automatically verify your account and start setting up your store.</p>
+  84 |             </div>
+  85 |           ) : (
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./store-link/app/signup/page.tsx [Client Component Browser]
+    ./store-link/app/signup/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./store-link/app/signup/page.tsx [Client Component SSR]
+    ./store-link/app/signup/page.tsx [Server Component]
+[00:02:02.813] Server  LOG      ✓ Compiled in 1393ms
+[00:02:04.905] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:43.684] Server  LOG      ✓ Compiled in 157ms

@@ -78,7 +78,7 @@ function SignupContent() {
           {success ? (
             <div className="text-center py-10">
               <CheckCircle size={48} className="text-emerald-500 mx-auto mb-4" />
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Check Your Email!</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Check Your Email Inbox. If it's not there, Check Spam!</h2>
               <p className="text-gray-500 mb-4">We sent a confirmation link to <b>{email}</b>.</p>
               <p className="text-sm text-gray-400 bg-gray-50 p-4 rounded-xl">Click the link in the email to automatically verify your account and start setting up your store.</p>
             </div>
