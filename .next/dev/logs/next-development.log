@@ -504,3 +504,56 @@ Import traces:
 [15:25:08.052] Server  LOG      ✓ Compiled in 5s
 [15:27:19.579] Server  LOG      ✓ Compiled in 201ms
 [15:31:31.048] Server  LOG      ✓ Compiled in 226ms
+[18:12:57.581] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\store-link\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:577:23
+    at _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:931:24)
+    at _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:918:24)
+    at C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:4156:242
+    at SupabaseAuthClient._useSession (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:4025:26)
+    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:4141:20)
+    at async C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:4125:20
+    at async C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:3973:28 {
+  
+}
+[18:13:26.114] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:14:17.787] Server  LOG      ○ Compiling /admin ...
+[18:14:43.592] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:15:24.049] Server  LOG      ○ Compiling /admin/stores ...
+[18:15:41.611] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:15:55.443] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:21:41.158] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:26:19.449] Server  LOG      ✓ Compiled in 869ms
+[18:26:27.366] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:27:24.685] Browser LOG     Triggering Plan Update to: diamond
+[18:27:35.063] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:27:49.565] Browser LOG     Triggering Verification Toggle
+[18:28:01.514] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:36:00.789] Server  LOG      ✓ Compiled in 326ms
+[18:36:33.930] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:36:35.603] Browser LOG     Empire Sync: Re-fetching platform entities...
+[18:36:46.695] Browser LOG     Triggering Plan Update to: diamond
+[18:36:48.872] Browser LOG     Empire Sync: Re-fetching platform entities...
+[18:36:55.479] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:36:56.167] Browser LOG     Empire Sync: Re-fetching platform entities...
+[18:37:04.416] Browser LOG     Triggering Verification Toggle
+[18:37:06.306] Browser LOG     Empire Sync: Re-fetching platform entities...
+[18:37:11.298] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:37:11.832] Browser LOG     Empire Sync: Re-fetching platform entities...
+[18:48:12.192] Server  LOG      ✓ Compiled in 1390ms
+[18:50:04.377] Server  LOG      ✓ Compiled in 795ms
+[18:50:11.611] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:50:11.925] Browser LOG     Empire Sync: Re-fetching platform entities...
+[18:50:25.511] Browser LOG     Empire Sync: Re-fetching platform entities...
+[18:50:35.268] Browser LOG     Empire Sync: Re-fetching platform entities...
+[18:52:15.144] Server  LOG      ○ Compiling /[slug] ...
+[18:52:25.809] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:52:27.689] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/600ff166-5cc6-4555-a861-053c2ec65407-1768196241988" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:52:27.689] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2bd1a73-3319-4a29-bc46-9a27e2291add/1768196667337-lkr54f" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:58:27.019] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:58:27.474] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/logos/600ff166-5cc6-4555-a861-053c2ec65407-1768196241988" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:58:27.474] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2bd1a73-3319-4a29-bc46-9a27e2291add/1768196667337-lkr54f" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:58:45.614] Server  LOG      ○ Compiling /product/[id] ...
+[18:58:54.672] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2bd1a73-3319-4a29-bc46-9a27e2291add/1768196670444-h5akjc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:58:54.673] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2bd1a73-3319-4a29-bc46-9a27e2291add/1768196669416-40kywq" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[18:58:54.673] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2bd1a73-3319-4a29-bc46-9a27e2291add/1768196671398-d9yox" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes

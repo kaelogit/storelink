@@ -25,32 +25,51 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
   const daysLeft = getDaysLeft(store.subscription_expiry);
 
   async function updatePlan(newPlan: string) {
+    if (!store?.id) {
+      alert("Empire Error: Missing Store ID reference.");
+      return;
+    }
+
     if (!confirm(`Are you sure you want to move this store to ${newPlan}?`)) return;
     setLoading(true);
 
     let expiryDate = null;
-    let trialStatus = store.is_trial; // Default to current status
+    let trialStatus = store.is_trial; 
 
     if (newPlan === 'premium' || newPlan === 'diamond') {
       const date = new Date();
       date.setDate(date.getDate() + 30);
       expiryDate = date.toISOString();
-      trialStatus = false; // 🔥 IS_TRIAL FIX: Manual upgrade ends the trial period immediately
+      trialStatus = false; // Manual upgrade ends the trial period immediately
     } else if (newPlan === 'free') {
-      trialStatus = false; // Reset trial if moved to free
+      trialStatus = false; 
     }
 
-    await supabase
-      .from('stores')
-      .update({ 
-        subscription_plan: newPlan,
-        subscription_expiry: expiryDate,
-        is_trial: trialStatus // 🔥 Syncing the trial flag
-      })
-      .eq('id', store.id);
+    try {
+      // 🔥 FIX: Added .select() to verify the row was actually affected
+      const { data, error } = await supabase
+        .from('stores')
+        .update({ 
+          subscription_plan: newPlan,
+          subscription_expiry: expiryDate,
+          is_trial: trialStatus 
+        })
+        .eq('id', store.id)
+        .select();
 
-    onUpdate(); 
-    setLoading(false);
+      if (error) {
+        alert("Sync Error: " + error.message);
+      } else if (data && data.length === 0) {
+        alert("Ghost Update: Database accepted request but 0 rows were changed. Check RLS policies.");
+      } else {
+        alert(`Success: ${store.name} is now ${newPlan.toUpperCase()}`);
+        onUpdate(); 
+      }
+    } catch (err: any) {
+      alert("Fatal System Error: " + err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   async function toggleBan() {
@@ -107,19 +126,27 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
           verification_note: 'Verification was revoked by an administrator.' 
         };
 
-    const { error } = await supabase
-      .from('stores')
-      .update(updateData)
-      .eq('id', store.id);
-      
-    if (error) {
-      alert("Error updating verification: " + error.message);
-    } else {
-      onUpdate(); 
-      onClose(); 
+    try {
+      // 🔥 FIX: Added .select() to verify verification status change
+      const { data, error } = await supabase
+        .from('stores')
+        .update(updateData)
+        .eq('id', store.id)
+        .select();
+        
+      if (error) {
+        alert("Error updating verification: " + error.message);
+      } else if (data && data.length === 0) {
+        alert("Sync Error: No rows matched ID for verification update.");
+      } else {
+        alert(`Verification ${isNowVerified ? 'Granted' : 'Revoked'}`);
+        onUpdate(); 
+      }
+    } catch (err: any) {
+      alert("Execution Error: " + err.message);
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   }
 
   return (
@@ -318,19 +345,13 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
             </div>
         </div>
 
-        <div className="px-8 py-4 bg-gray-900/50 border-t border-gray-800 flex justify-between items-center">
-           <p className="text-[9px] font-black text-gray-600 uppercase tracking-[0.3em]">Administrator Session Active</p>
+        <div className="px-8 py-4 bg-gray-900/50 border-t border-gray-800 flex justify-between items-center text-[9px] font-black text-gray-600 uppercase tracking-[0.3em]">
+           Administrator Session Active
            {store.subscription_expiry && (
-             <div className="text-right">
-                <p className={`text-[9px] font-black uppercase tracking-widest ${daysLeft !== null && daysLeft <= 3 ? 'text-red-500 animate-pulse' : 'text-amber-500/50'}`}>
-                  Expires: {new Date(store.subscription_expiry).toLocaleDateString()} 
-                  {daysLeft !== null && (
-                    <span className="ml-1">
-                      ({daysLeft <= 0 ? 'Expired' : `${daysLeft} Days Left`})
-                    </span>
-                  )}
-                </p>
-             </div>
+             <span className={`tracking-widest ${daysLeft !== null && daysLeft <= 3 ? 'text-red-500 animate-pulse' : 'text-amber-500/50'}`}>
+               Expires: {new Date(store.subscription_expiry).toLocaleDateString()} 
+               {daysLeft !== null && ` (${daysLeft <= 0 ? 'Expired' : `${daysLeft} Days Left`})`}
+             </span>
            )}
         </div>
 

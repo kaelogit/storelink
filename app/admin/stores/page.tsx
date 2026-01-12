@@ -14,13 +14,21 @@ export default function ManageStoresPage() {
   }, []);
 
   async function fetchStores() {
+    console.log("Empire Sync: Re-fetching platform entities...");
+    
+    // 🔥 EMPIRE AUDIT: Fetching via RPC to bypass RLS or complex joins
     const { data, error } = await supabase.rpc('get_admin_stores');
     
     if (error) {
       console.error("SQL Error:", error.message);
+      return; // Exit if there's an error to avoid clearing existing data
     }
     
-    if (data) setStores(data);
+    if (data) {
+      // 🔥 FIX: Use the spread operator [...data] to force React to update the state reference
+      // This ensures that when Diamond status changes, the UI updates instantly.
+      setStores([...data]);
+    }
   }
 
   const filteredStores = stores.filter(s => 
@@ -47,7 +55,7 @@ export default function ManageStoresPage() {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <button className="p-2 bg-gray-800 border border-gray-700 rounded-xl text-gray-400 hover:text-white">
+          <button onClick={() => fetchStores()} className="p-2 bg-gray-800 border border-gray-700 rounded-xl text-gray-400 hover:text-white transition-all active:scale-95">
             <Filter size={20} />
           </button>
         </div>
@@ -149,7 +157,11 @@ export default function ManageStoresPage() {
         <StoreManager 
             store={selectedStore} 
             onClose={() => setSelectedStore(null)} 
-            onUpdate={fetchStores} 
+            onUpdate={() => {
+              // 🔥 FIX: Re-fetch stores after any change in StoreManager
+              fetchStores();
+              setSelectedStore(null); // Close modal on success
+            }} 
         />
       )}
     </div>
