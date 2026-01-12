@@ -1,3 +1,4 @@
 {
+  "/dashboard/page": "app/dashboard/page.js",
   "/sitemap.xml/route": "app/sitemap.xml/route.js"
 }

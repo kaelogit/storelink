@@ -13,7 +13,7 @@ interface AddProductModalProps {
   onSuccess: () => void;
   productToEdit?: any;
   onAddCategory?: () => void;
-  categories?: any[] // 🔥 FIX: Interface now matches DashboardClient
+  categories?: any[]; // 🔥 THE BRIDGE PROP
 }
 
 export default function AddProductModal({ 
@@ -22,12 +22,15 @@ export default function AddProductModal({
   onClose, 
   onSuccess, 
   productToEdit,
-  onAddCategory // 🔥 FIX: Destructured the category bridge
+  onAddCategory,
+  categories = [] // 🔥 FIX: Default to empty array to prevent map errors
 }: AddProductModalProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
   
+  // 🗑️ REMOVED: const [categories, setCategories] = useState([]); 
+  // (We now use the prop directly to ensure instant updates)
+
   const [isLimitReached, setIsLimitReached] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
   const [userPlan, setUserPlan] = useState('free');
@@ -74,8 +77,7 @@ export default function AddProductModal({
       }
 
       const loadData = async () => {
-        const { data: cats } = await supabase.from("categories").select("*").eq("store_id", storeId);
-        setCategories(cats || []);
+        // 🗑️ REMOVED: local category fetch. DashboardClient handles this now.
 
         const { data: store } = await supabase
           .from("stores")
@@ -123,7 +125,6 @@ export default function AddProductModal({
           return;
       }
 
-      // 🔒 DIAMOND GATEKEEPER
       if (removeBg && userPlan !== 'diamond') {
         setAiStatus("diamond_gate");
         return;
@@ -191,7 +192,6 @@ export default function AddProductModal({
     e.preventDefault();
     if ((isLimitReached && !productToEdit) || isExpired) return; 
 
-    // 🔥 EMPIRE GUARD: COMPULSORY FIELD ENFORCEMENT
     if (!formData.name || !formData.price || !formData.stock || !formData.description || !formData.categoryId) {
       setErrorMsg("All fields are compulsory for a professional listing");
       setTimeout(() => setErrorMsg(""), 4000);
@@ -225,7 +225,7 @@ export default function AddProductModal({
         price: parseFloat(formData.price),
         stock_quantity: newStock,
         description: formData.description,
-        category_id: formData.categoryId, // Verified compulsory above
+        category_id: formData.categoryId,
         image_urls: finalImageUrls,
         is_active: true,
       };
@@ -255,7 +255,6 @@ export default function AddProductModal({
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in">
       <div className="bg-white w-full max-w-md rounded-[2.5rem] overflow-hidden shadow-2xl animate-in slide-in-from-bottom-10 flex flex-col max-h-[90vh]">
         
-        {/* WAREHOUSE HEADER */}
         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
           <h2 className="font-black text-lg text-gray-900 uppercase tracking-tighter italic">
             {productToEdit ? "Update Product" : "Add Product"}
@@ -281,7 +280,6 @@ export default function AddProductModal({
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5 pb-4">
               
-              {/* IMAGE MANAGER */}
               <div>
                 <div className="flex items-center justify-between mb-3">
                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Images (Max 4)</label>
@@ -318,7 +316,6 @@ export default function AddProductModal({
                   )}
                 </div>
 
-                {/* HELP CARDS FOR VENDORS */}
                 {aiStatus === "diamond_gate" && (
                    <div className="bg-purple-50 border border-purple-100 p-4 rounded-3xl mb-4 animate-in zoom-in-95 duration-300">
                       <div className="flex items-center gap-2 mb-2">
@@ -348,7 +345,6 @@ export default function AddProductModal({
                 )}
               </div>
 
-              {/* INPUT FIELDS */}
               <div className="space-y-4">
                 <div>
                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Product Name</label>
@@ -369,11 +365,11 @@ export default function AddProductModal({
                 <div>
                   <div className="flex items-center justify-between mb-1.5 ml-1">
                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">Category</label>
-                    {/* 🔥 THE BRIDGE BUTTON: Triggers Category Manager from Dashboard */}
                     <button type="button" onClick={onAddCategory} className="text-[9px] font-black text-emerald-600 uppercase tracking-widest flex items-center gap-1">
                         <Plus size={10} strokeWidth={3} /> Create New
                     </button>
                   </div>
+                  {/* 🔥 THE FIX: Using the prop categories instead of local state */}
                   <select required className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none appearance-none shadow-sm text-gray-900" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
                     <option value="">Select Category</option>
                     {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
