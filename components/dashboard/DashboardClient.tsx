@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react"; // Added useEffect
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; 
 import { 
@@ -26,30 +26,47 @@ interface DashboardClientProps {
 export default function DashboardClient({ store, initialProducts, initialOrders, stats, isLocked }: DashboardClientProps) {
   const router = useRouter();
   
-  // --- 🛡️ STATE MANAGEMENT ---
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isCatModalOpen, setIsCatModalOpen] = useState(false);
   const [productToEdit, setProductToEdit] = useState<any>(null);
   const [selectedFlashProduct, setSelectedFlashProduct] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  
+  // 🔥 EMPIRE SYNC: State to hold live categories
+  const [liveCategories, setLiveCategories] = useState<any[]>([]);
+
+  // Function to fetch fresh categories
+  const fetchCategories = async () => {
+    const { data } = await supabase
+      .from('categories')
+      .select('*')
+      .eq('store_id', store.id)
+      .order('name');
+    if (data) setLiveCategories(data);
+  };
+
+  // Initial fetch on mount
+  useEffect(() => {
+    fetchCategories();
+  }, [store.id]);
 
   // --- 🔥 EMPIRE REAL-TIME LISTENER ---
   useEffect(() => {
-    // This channel listens for ANY changes (INSERT, UPDATE, DELETE) to your products or categories
     const dashboardSync = supabase
       .channel('dashboard-realtime')
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'products', filter: `store_id=eq.${store.id}` },
         () => {
-          router.refresh(); // Triggers a seamless data refresh
+          router.refresh(); 
         }
       )
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'categories', filter: `store_id=eq.${store.id}` },
         () => {
-          router.refresh(); // Ensures category names in the product table stay current
+          fetchCategories(); // Instantly update the categories state
+          router.refresh(); 
         }
       )
       .subscribe();
@@ -59,7 +76,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
     };
   }, [store.id, router]);
 
-  // --- 🎨 FLYER STUDIO LOGIC ---
+  // Rest of your logic (Studio, filtering, delete, edit) stays the same...
   const productRequirement = 10;
   const hasUnlockedStudio = stats.productCount >= productRequirement;
   const progressPercentage = Math.min((stats.productCount / productRequirement) * 100, 100);
@@ -74,13 +91,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
   const deleteProduct = async (id: string) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
     const { error } = await supabase.from("products").delete().eq("id", id);
-    
-    if (error) { 
-      console.error(error); 
-      alert("Could not delete product."); 
-    } else { 
-      router.refresh(); 
-    }
+    if (error) { alert("Could not delete product."); } else { router.refresh(); }
   };
 
   const openEditModal = (product: any) => {
@@ -97,6 +108,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
   return (
     <div className="space-y-6 px-1 md:px-0 pb-20">
+        {/* ... Header and Stats remain exactly as they were ... */}
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-black text-gray-900 flex items-center gap-2 tracking-tight uppercase italic">
@@ -115,7 +127,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
           </div>
         </header>
 
-        {/* --- STATS GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
              <div className="flex items-center gap-3 mb-2">
@@ -144,7 +155,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
         <ShareStore slug={store.slug} />
 
-        {/* --- 🚀 FLYER STUDIO WIDGET --- */}
+        {/* Studio Widget */}
         <div className={`relative overflow-hidden rounded-[2.5rem] border transition-all duration-500 ${
           hasUnlockedStudio 
           ? 'bg-white border-emerald-100 shadow-xl shadow-emerald-500/5' 
@@ -195,7 +206,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
           </div>
         </div>
 
-        {/* --- INVENTORY SECTION --- */}
+        {/* Inventory Section */}
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
             <h3 className="font-bold text-lg text-gray-900 italic uppercase tracking-tight">Inventory</h3>
@@ -280,20 +291,28 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
           </div>
         </div>
 
+      {/* --- MODALS --- */}
       <AddProductModal 
         storeId={store.id} 
         isOpen={isAddModalOpen} 
         onClose={() => { setIsAddModalOpen(false); setProductToEdit(null); }} 
         onSuccess={() => router.refresh()} 
         productToEdit={productToEdit} 
-        onAddCategory={() => setIsCatModalOpen(true)} 
+        onAddCategory={() => setIsCatModalOpen(true)}
+        // 🔥 CRITICAL: Pass the live categories here
+        categories={liveCategories}
       />
+      
       <CategoryManager 
         storeId={store.id} 
         isOpen={isCatModalOpen} 
         onClose={() => setIsCatModalOpen(false)} 
-        onSuccess={() => router.refresh()} 
+        onSuccess={() => {
+          fetchCategories(); // Update locally
+          router.refresh();  // Update server
+        }} 
       />
+      
       <FlashDropModal 
         product={selectedFlashProduct} 
         isOpen={!!selectedFlashProduct} 

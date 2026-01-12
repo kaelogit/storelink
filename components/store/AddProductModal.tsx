@@ -12,7 +12,8 @@ interface AddProductModalProps {
   onClose: () => void;
   onSuccess: () => void;
   productToEdit?: any;
-  onAddCategory?: () => void; // 🔥 FIX: Interface now matches DashboardClient
+  onAddCategory?: () => void;
+  categories?: any[] // 🔥 FIX: Interface now matches DashboardClient
 }
 
 export default function AddProductModal({ 
