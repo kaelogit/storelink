@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react"; // 🔥 Audit: Added useEffect for Real-time Check
 import { supabase } from "@/lib/supabase";
 import { Loader2, Save, Upload, Camera, Image as ImageIcon, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
@@ -8,8 +8,12 @@ import Image from "next/image";
 export default function StoreSettings({ store, onUpdate }: { store: any, onUpdate?: () => void }) {
   const [loading, setLoading] = useState(false);
   
+  // 🔥 Empire Slug State
+  const [slugStatus, setSlugStatus] = useState<'idle' | 'checking' | 'available' | 'taken'>('idle');
+
   const [formData, setFormData] = useState({
     name: store.name,
+    slug: store.slug, // 🔥 Audit: Added slug to form state
     description: store.description || "",
     whatsapp: store.whatsapp_number,
     location: store.location,
@@ -23,6 +27,39 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
   const [logoPreview, setLogoPreview] = useState<string>(store.logo_url || "");
   const [coverPreview, setCoverPreview] = useState<string>(store.cover_image_url || "");
   const [status, setStatus] = useState("");
+
+  // 🔥 THE EMPIRE REGISTRY CHECK (Settings Version)
+  // It checks availability while ignoring the store's CURRENT slug
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      if (!formData.slug || formData.slug === store.slug) {
+        setSlugStatus('idle');
+        return;
+      }
+
+      setSlugStatus('checking');
+      const { data } = await supabase
+        .from("stores")
+        .select("slug")
+        .eq("slug", formData.slug)
+        .neq("id", store.id) // 🛡️ CRITICAL: Don't flag your own name as taken
+        .single();
+
+      if (data) {
+        setSlugStatus('taken');
+      } else {
+        setSlugStatus('available');
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [formData.slug, store.slug, store.id]);
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.value;
+    const slug = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    setFormData({ ...formData, name, slug });
+  };
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
@@ -42,6 +79,13 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // 🛡️ Guard: Prevent saving if the name is taken
+    if (slugStatus === 'taken') {
+      setStatus("❌ This store link is already taken.");
+      return;
+    }
+
     setLoading(true);
     setStatus(""); 
 
@@ -53,7 +97,6 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
         const fileName = `logos/${store.id}-${Date.now()}`;
         const { error: uploadError } = await supabase.storage.from("products").upload(fileName, logoFile);
         if (uploadError) throw uploadError;
-        
         const { data } = supabase.storage.from("products").getPublicUrl(fileName);
         newLogoUrl = data.publicUrl;
       }
@@ -62,7 +105,6 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
         const fileName = `covers/${store.id}-${Date.now()}`;
         const { error: uploadError } = await supabase.storage.from("products").upload(fileName, coverFile);
         if (uploadError) throw uploadError;
-        
         const { data } = supabase.storage.from("products").getPublicUrl(fileName);
         newCoverUrl = data.publicUrl;
       }
@@ -71,6 +113,7 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
         .from("stores")
         .update({
           name: formData.name,
+          slug: formData.slug, // 🔥 Audit: Now updates slug as well
           description: formData.description,
           whatsapp_number: formData.whatsapp,
           location: formData.location,
@@ -86,7 +129,6 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
       } else {
           setStatus("✅ Settings saved!");
           if (onUpdate) onUpdate(); 
-          
           setTimeout(() => setStatus(""), 3000); 
       }
     } catch (error) {
@@ -166,7 +208,16 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
             
             <div>
               <label className="block text-sm font-bold text-gray-700 mb-1">Store Name</label>
-              <input required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+              <input required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 font-bold" value={formData.name} onChange={handleNameChange} />
+              
+              {/* 🔥 Audit: Added Slug Availability Indicator */}
+              {formData.slug !== store.slug && (
+                <div className="mt-2 ml-1">
+                  {slugStatus === 'checking' && <p className="text-[10px] font-bold text-gray-400 uppercase animate-pulse">Checking link availability...</p>}
+                  {slugStatus === 'available' && <p className="text-[10px] font-bold text-emerald-600 uppercase">✅ New link available: storelink.ng/{formData.slug}</p>}
+                  {slugStatus === 'taken' && <p className="text-[10px] font-black text-red-500 uppercase">❌ This link is already claimed by another founder.</p>}
+                </div>
+              )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -201,9 +252,9 @@ export default function StoreSettings({ store, onUpdate }: { store: any, onUpdat
             </div>
         </div>
 
-        {status.includes("❌") && <p className="text-red-600 text-xs font-bold text-center">{status}</p>}
+        {status.includes("❌") && <p className="text-red-600 text-xs font-bold text-center bg-red-50 p-3 rounded-xl uppercase tracking-widest">{status}</p>}
 
-        <button type="submit" disabled={loading} className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition disabled:opacity-50">
+        <button type="submit" disabled={loading || slugStatus === 'taken'} className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 hover:bg-gray-800 transition disabled:opacity-50">
           {loading ? <Loader2 className="animate-spin" /> : <><Save size={18} /> Save Changes</>}
         </button>
 

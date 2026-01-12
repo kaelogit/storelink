@@ -16,6 +16,9 @@ export default function OnboardingPage() {
   const [errorMsg, setErrorMsg] = useState("");
   const [step, setStep] = useState(1); 
   
+  // 🔥 SLUG AVAILABILITY STATE
+  const [slugStatus, setSlugStatus] = useState<'idle' | 'checking' | 'available' | 'taken'>('idle');
+
   const [formData, setFormData] = useState({
     name: "",
     slug: "",
@@ -36,20 +39,16 @@ export default function OnboardingPage() {
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       
-      // Guard 1: Must be logged in
       if (!user) {
         router.push("/login");
         return;
       }
 
-      // Guard 2: 🔥 THE EMPIRE SHIELD
-      // Kicks out users who haven't verified their OTP code
       if (!user.user_metadata?.verified_via_otp) {
         router.push(`/verify?email=${encodeURIComponent(user.email!)}`);
         return;
       }
 
-      // Guard 3: Prevent re-onboarding if store already exists
       const { data: store } = await supabase
         .from("stores")
         .select("id")
@@ -66,8 +65,34 @@ export default function OnboardingPage() {
     checkUser();
   }, [router]);
 
+  // 🔥 THE EMPIRE REGISTRY CHECK (Debounced Logic)
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      if (!formData.slug) {
+        setSlugStatus('idle');
+        return;
+      }
+
+      setSlugStatus('checking');
+      const { data } = await supabase
+        .from("stores")
+        .select("slug")
+        .eq("slug", formData.slug)
+        .single();
+
+      if (data) {
+        setSlugStatus('taken');
+      } else {
+        setSlugStatus('available');
+      }
+    }, 500); // Wait 500ms after typing stops
+
+    return () => clearTimeout(timer);
+  }, [formData.slug]);
+
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value;
+    // Clean formatting for URL preview
     const slug = name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
     setFormData({ ...formData, name, slug });
   };
@@ -88,7 +113,11 @@ export default function OnboardingPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // 🔥 COMPULSORY CHECK: Ensure Logo and Cover are present before upload
+    if (slugStatus === 'taken') {
+      setErrorMsg("This store link is already taken. Please choose another name.");
+      return;
+    }
+
     if (!logoFile || !coverFile) {
       setErrorMsg("Please upload both a Logo and a Cover Image to continue.");
       return;
@@ -103,7 +132,6 @@ export default function OnboardingPage() {
       let logoUrl = "";
       let coverUrl = "";
 
-      // NAIJA LOGIC: Formatting WhatsApp number
       let cleanWhatsApp = formData.whatsapp.replace(/\D/g, ''); 
       if (cleanWhatsApp.startsWith('0')) {
         cleanWhatsApp = '234' + cleanWhatsApp.substring(1);
@@ -111,7 +139,6 @@ export default function OnboardingPage() {
         cleanWhatsApp = '234' + cleanWhatsApp;
       }
 
-      // STORAGE: Uploading Brand Assets
       if (logoFile) {
         const logoName = `logos/${user.id}-${Date.now()}`;
         const { error: logoErr } = await supabase.storage.from("products").upload(logoName, logoFile);
@@ -131,7 +158,6 @@ export default function OnboardingPage() {
       const fourteenDaysFromNow = new Date();
       fourteenDaysFromNow.setDate(fourteenDaysFromNow.getDate() + 14);
 
-      // 🔥 AUDIT COMPLETE: All referral/referred_by/localStorage logic removed
       const { error } = await supabase.from("stores").insert({
         owner_id: user.id,
         owner_email: user.email,
@@ -202,10 +228,21 @@ export default function OnboardingPage() {
                 <div className="flex items-center gap-2 text-emerald-600 font-black text-[10px] uppercase tracking-widest mb-2">
                     <CheckCircle2 size={14}/> Step 1: Core Details
                 </div>
+                
                 <div>
                   <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Store Name</label>
                   <input required className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-gray-900" placeholder="e.g. Mira's Perfume" value={formData.name} onChange={handleNameChange} />
+                  
+                  {/* 🔥 SLUG AVAILABILITY MESSAGE */}
+                  {formData.slug && (
+                    <div className="mt-2 ml-1">
+                      {slugStatus === 'checking' && <p className="text-[9px] font-bold text-gray-400 uppercase animate-pulse">Checking link availability...</p>}
+                      {slugStatus === 'available' && <p className="text-[9px] font-bold text-emerald-600 uppercase">✅ URL Available: storelink.ng/{formData.slug}</p>}
+                      {slugStatus === 'taken' && <p className="text-[9px] font-black text-red-500 uppercase">❌ Name Taken! Add your city or a keyword (e.g. {formData.slug}-hub)</p>}
+                    </div>
+                  )}
                 </div>
+
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Category</label>
@@ -234,6 +271,7 @@ export default function OnboardingPage() {
                 </div>
                 <button 
                   type="button" 
+                  disabled={slugStatus !== 'available'}
                   onClick={() => {
                     if(!formData.name || !formData.whatsapp) {
                       setErrorMsg("Store Name and WhatsApp are required!");
@@ -242,7 +280,7 @@ export default function OnboardingPage() {
                     setErrorMsg("");
                     setStep(2);
                   }} 
-                  className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg active:scale-95 transition"
+                  className={`w-full py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg active:scale-95 transition ${slugStatus === 'available' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
                 >
                     Next: Brand Identity <ArrowRight size={18}/>
                 </button>
