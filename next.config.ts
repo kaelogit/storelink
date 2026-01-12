@@ -2,17 +2,22 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // 🔥 EMERGENCY LOCKDOWN: This stops the Vercel Transformation counter immediately.
+    // It tells Next.js to serve images directly from the source without resizing them.
+    unoptimized: true, 
+
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com', // Allows testing images
+        hostname: 'images.unsplash.com', 
       },
       {
         protocol: 'https',
-        hostname: '**.supabase.co', // Allows your real uploaded images later
+        hostname: '**.supabase.co', 
       },
     ],
   },
+  // You can add other config options here if needed (e.g., experimental features)
 };
 
 export default nextConfig;

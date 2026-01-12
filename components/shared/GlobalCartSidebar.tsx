@@ -334,7 +334,7 @@ export default function GlobalCartSidebar() {
                         <div key={item.product.id} className="flex gap-4 items-center group text-left min-w-0">
                           <div className="relative w-12 h-12 bg-gray-50 rounded-xl overflow-hidden border shrink-0">
                             {item.product.image_urls?.[0] && (
-                              <Image src={item.product.image_urls[0]} alt="" fill className="object-cover" />
+                              <Image src={item.product.image_urls[0]} alt="" fill className="object-cover" unoptimized/>
                             )}
                           </div>
                           <div className="flex-1 min-w-0">

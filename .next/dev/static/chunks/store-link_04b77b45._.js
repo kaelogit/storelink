@@ -776,7 +776,8 @@ function GlobalCartSidebar() {
                                                                     src: item.product.image_urls[0],
                                                                     alt: "",
                                                                     fill: true,
-                                                                    className: "object-cover"
+                                                                    className: "object-cover",
+                                                                    unoptimized: true
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/shared/GlobalCartSidebar.tsx",
                                                                     lineNumber: 337,

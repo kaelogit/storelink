@@ -154,7 +154,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
       <div className="relative w-full bg-gray-50 border-b border-gray-100">
           <div className="w-full h-40 md:h-64 relative overflow-hidden bg-gray-200">
              {store.cover_image_url ? (
-                <Image src={store.cover_image_url} alt="" fill className="object-cover" priority />
+                <Image src={store.cover_image_url} alt="" fill className="object-cover" priority unoptimized/>
              ) : (
                 <div className="absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-100"><Package size={48} className="opacity-20" /></div>
              )}
@@ -166,7 +166,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
                 <div className="flex items-end gap-3 md:gap-5">
                    <div className="w-24 h-24 md:w-36 md:h-36 rounded-3xl border-[4px] border-white shadow-xl bg-white relative overflow-hidden shrink-0">
                       {store.logo_url ? (
-                         <Image src={store.logo_url} alt="Logo" fill className="object-cover" />
+                         <Image src={store.logo_url} alt="Logo" fill className="object-cover" unoptimized/>
                       ) : (
                          <div className="flex items-center justify-center h-full text-2xl font-bold bg-gray-900 text-white">{store.name.charAt(0)}</div>
                       )}
@@ -236,7 +236,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
                     >
                        <Link href={`/product/${product.id}`} className="block relative aspect-square bg-gray-50 rounded-xl overflow-hidden mb-3">
                           {product.image_urls?.[0] ? (
-                            <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized/>
                           ) : (
                             <div className="flex items-center justify-center h-full text-gray-200"><Package size={32}/></div>
                           )}

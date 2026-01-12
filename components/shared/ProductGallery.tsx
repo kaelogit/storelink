@@ -56,6 +56,7 @@ export default function ProductGallery({ images, stockCount }: { images: string[
                 alt={`Product View ${i}`} 
                 fill 
                 className="object-cover" 
+                unoptimized
                 priority={i === 0}
               />
             </div>
@@ -98,7 +99,7 @@ export default function ProductGallery({ images, stockCount }: { images: string[
                 : 'border-transparent grayscale opacity-60'
               }`}
             >
-              <Image src={img} alt={`Thumbnail ${i}`} fill className="object-cover" />
+              <Image src={img} alt={`Thumbnail ${i}`} fill className="object-cover" unoptimized/>
             </button>
           ))}
         </div>

@@ -100,7 +100,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                   } hover:shadow-2xl hover:-translate-y-2`}
                 >
                   <div className="aspect-square bg-gray-50 rounded-xl mb-3 relative overflow-hidden">
-                    <Image src={product.image_urls?.[0] || ""} alt="" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <Image src={product.image_urls?.[0] || ""} alt="" fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
                     
                     {isFlash ? (
                       <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20 animate-pulse">
@@ -163,7 +163,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                 className="snap-start bg-white p-4 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4 h-full group"
               >
                 <div className="w-16 h-16 bg-gray-50 rounded-full overflow-hidden relative border border-gray-100 shrink-0 shadow-inner">
-                  {store.logo_url ? <Image src={store.logo_url} alt="" fill className="object-cover group-hover:scale-110 transition duration-500" /> : null}
+                  {store.logo_url ? <Image src={store.logo_url} alt="" fill className="object-cover group-hover:scale-110 transition duration-500" unoptimized /> : null}
                 </div>
                 <div className="min-w-0">
                    <h3 className="font-black text-gray-900 flex items-center gap-1 text-sm truncate uppercase tracking-tighter">

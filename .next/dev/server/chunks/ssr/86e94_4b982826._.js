@@ -3590,12 +3590,16 @@ const configEnv = ("TURBOPACK compile-time value", {
     "path": ("TURBOPACK compile-time value", "/_next/image"),
     "loader": ("TURBOPACK compile-time value", "default"),
     "dangerouslyAllowSVG": ("TURBOPACK compile-time value", false),
-    "unoptimized": ("TURBOPACK compile-time value", false),
+    "unoptimized": ("TURBOPACK compile-time value", true),
     "domains": ("TURBOPACK compile-time value", []),
     "remotePatterns": ("TURBOPACK compile-time value", [
         ("TURBOPACK compile-time value", {
             "protocol": ("TURBOPACK compile-time value", "https"),
-            "hostname": ("TURBOPACK compile-time value", "**")
+            "hostname": ("TURBOPACK compile-time value", "images.unsplash.com")
+        }),
+        ("TURBOPACK compile-time value", {
+            "protocol": ("TURBOPACK compile-time value", "https"),
+            "hostname": ("TURBOPACK compile-time value", "**.supabase.co")
         })
     ]),
     "localPatterns": ("TURBOPACK compile-time value", [
@@ -3948,12 +3952,16 @@ function getImageProps(imgProps) {
             "path": ("TURBOPACK compile-time value", "/_next/image"),
             "loader": ("TURBOPACK compile-time value", "default"),
             "dangerouslyAllowSVG": ("TURBOPACK compile-time value", false),
-            "unoptimized": ("TURBOPACK compile-time value", false),
+            "unoptimized": ("TURBOPACK compile-time value", true),
             "domains": ("TURBOPACK compile-time value", []),
             "remotePatterns": ("TURBOPACK compile-time value", [
                 ("TURBOPACK compile-time value", {
                     "protocol": ("TURBOPACK compile-time value", "https"),
-                    "hostname": ("TURBOPACK compile-time value", "**")
+                    "hostname": ("TURBOPACK compile-time value", "images.unsplash.com")
+                }),
+                ("TURBOPACK compile-time value", {
+                    "protocol": ("TURBOPACK compile-time value", "https"),
+                    "hostname": ("TURBOPACK compile-time value", "**.supabase.co")
                 })
             ]),
             "localPatterns": ("TURBOPACK compile-time value", [

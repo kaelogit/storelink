@@ -196,7 +196,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
                 return (
                   <Link key={`trending-${product.id}`} href={`/product/${product.id}`} className="min-w-[150px] md:min-w-[190px] bg-white p-2 rounded-2xl border-2 border-amber-100 shadow-sm active:scale-95 transition relative">
                      <div className="aspect-square relative rounded-xl overflow-hidden mb-2">
-                        <Image src={product.image_urls?.[0]} alt="" fill className="object-cover" />
+                        <Image src={product.image_urls?.[0]} alt="" fill className="object-cover" unoptimized />
                         <div className="absolute top-1.5 left-1.5 bg-amber-500 text-white text-[7px] font-black px-1.5 py-0.5 rounded animate-pulse">TRENDING</div>
                         
                         {coins > 0 && (
@@ -278,7 +278,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
               } hover:shadow-2xl hover:-translate-y-2`}
             >
               <div className="aspect-square bg-gray-50 rounded-xl mb-3 relative overflow-hidden">
-                <Image src={product.image_urls?.[0] || ""} alt="" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src={product.image_urls?.[0] || ""} alt="" fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized/>
                 
                 {isFlash ? (
                   <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20">
