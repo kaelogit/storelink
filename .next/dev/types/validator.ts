@@ -398,6 +398,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/cron/merchant-welcome/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/cron/merchant-welcome">> = Specific
+  const handler = {} as typeof import("../../../app/api/cron/merchant-welcome/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/cron/send-automated-emails/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/cron/send-automated-emails">> = Specific
+  const handler = {} as typeof import("../../../app/api/cron/send-automated-emails/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/remove-bg/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/remove-bg">> = Specific

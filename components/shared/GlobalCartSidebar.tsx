@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import { 
   X, ShoppingBag, MessageCircle, User, Trash2, Loader2, 
-  Coins, Zap, CheckCircle2, RefreshCw, Send, Check
+  Coins, Zap, RefreshCw, Send, Check
 } from "lucide-react";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
@@ -26,11 +26,11 @@ export default function GlobalCartSidebar() {
   const [isSyncingWallet, setIsSyncingWallet] = useState(false);
   const [liveStoreSettings, setLiveStoreSettings] = useState<Record<string, any>>({});
   
-  // --- NEW BRIDGE STATES ---
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [pendingWaUrl, setPendingWaUrl] = useState("");
   const [pendingStoreName, setPendingStoreName] = useState("");
 
+  // Load billing data from local storage on mount
   useEffect(() => {
     const saved = localStorage.getItem("storelink_billing");
     if (saved) {
@@ -44,6 +44,7 @@ export default function GlobalCartSidebar() {
     }
   }, []);
 
+  // Sync wallet balance and store-specific settings (like owner_email)
   useEffect(() => {
     const fetchEverything = async () => {
       const savedBilling = localStorage.getItem("storelink_billing");
@@ -74,7 +75,7 @@ export default function GlobalCartSidebar() {
       if (storeIds.length > 0) {
         const { data: stores } = await supabase
           .from('stores')
-          .select('id, name, self_earning, loyalty_enabled, loyalty_percentage, whatsapp_number')
+          .select('id, name, owner_email, self_earning, loyalty_enabled, loyalty_percentage, whatsapp_number')
           .in('id', storeIds);
         
         if (stores) {
@@ -133,6 +134,7 @@ export default function GlobalCartSidebar() {
         const coinsToApply = useCoins ? Math.min(actualBalance, Math.floor(storeTotal * 0.05)) : 0;
         const finalPayable = storeTotal - coinsToApply;
         
+        // 1. Save order to Supabase
         const { data: newOrderId, error: orderError } = await supabase.rpc('create_new_order', {
             store_uuid: storeId,
             customer_name: formData.name,
@@ -150,6 +152,32 @@ export default function GlobalCartSidebar() {
 
         if (orderError) throw orderError;
 
+        // 2. 🔥 EMPIRE TRIGGER: Dispatch Email Alert to Vendor
+        const currentStoreSettings = liveStoreSettings[storeId];
+        const targetEmail = currentStoreSettings?.owner_email;
+
+        if (targetEmail) {
+          try {
+            await fetch("/api/send-email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: targetEmail,
+                type: "CHECKOUT_ALERT",
+                data: {
+                  productName: items.map(i => i.product.name),
+                  storeName: storeData.name,
+                  customerName: formData.name,
+                  orderId: newOrderId.slice(0, 8)
+                }
+              }),
+            });
+          } catch (e) { 
+            console.error("Empire Notification Failed:", e); 
+          }
+        }
+
+        // 3. Handle Wallet decrement if coins were used
         if (coinsToApply > 0) {
           await supabase.rpc('decrement_wallet', { 
             arg_phone: cleanPhone, 
@@ -159,6 +187,7 @@ export default function GlobalCartSidebar() {
           setUseCoins(false); 
         }
 
+        // 4. Construct WhatsApp Manifest
         let wa = storeData.whatsapp_number?.replace(/\D/g, '') || "";
         if (wa.startsWith('0')) wa = '234' + wa.substring(1);
         
@@ -185,14 +214,11 @@ export default function GlobalCartSidebar() {
                     `🚚 Please let me know the *estimated delivery time*.\n\n` +
                     `🚀 _Order generated via StoreLink Ecosystem._`;
 
-        // Instead of window.open, prepare the success bridge
         setPendingWaUrl(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`);
         setPendingStoreName(storeData.name);
         setShowSuccessModal(true);
 
         sendGAEvent('event', 'purchase', { store: storeData.name, value: finalPayable });
-
-        // Clean up cart
         items.forEach((item: any) => removeFromCart(item.product.id));
 
     } catch (err: any) {
@@ -218,7 +244,6 @@ export default function GlobalCartSidebar() {
 
       <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
         
-        {/* --- SUCCESS BRIDGE MODAL --- */}
         {showSuccessModal && (
           <div className="absolute inset-0 z-[110] bg-white flex flex-col items-center justify-center p-8 text-center animate-in zoom-in-95 duration-300">
              <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
@@ -235,7 +260,7 @@ export default function GlobalCartSidebar() {
               }}
               className="w-full bg-emerald-600 text-white py-5 rounded-[2rem] font-black text-[13px] uppercase tracking-widest hover:bg-emerald-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-emerald-200"
              >
-               <MessageCircle size={20} fill="currentColor" /> Open WhatsApp to Send
+                <MessageCircle size={20} fill="currentColor" /> Open WhatsApp to Send
              </a>
 
              <button 
@@ -245,22 +270,19 @@ export default function GlobalCartSidebar() {
               }}
               className="mt-6 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors"
              >
-               Return to Cart
+                Return to Cart
              </button>
           </div>
         )}
 
-        {/* HEADER */}
         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-white z-10 shadow-sm">
            <h2 className="font-black text-xl flex items-center gap-2 uppercase tracking-tighter"><ShoppingBag className="text-emerald-600" /> My Bag ({cart.length})</h2>
            <button onClick={() => setIsCartOpen(false)} className="p-2 bg-gray-50 rounded-full hover:bg-gray-100 transition"><X size={20} /></button>
         </div>
 
-        {/* CONTENT */}
         <div className="flex-1 overflow-y-auto p-5 bg-gray-50 no-scrollbar pb-24">
           <div className="space-y-6">
             
-            {/* BILLING */}
             <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100">
               <h3 className="font-black text-gray-900 mb-4 text-[10px] uppercase tracking-widest flex items-center gap-2"><User size={14} className="text-emerald-500" /> Delivery Details</h3>
               <div className="space-y-3">
@@ -270,7 +292,6 @@ export default function GlobalCartSidebar() {
               </div>
             </div>
 
-            {/* COINS */}
             {actualBalance > 0 && (
               <div className="space-y-3 animate-in zoom-in duration-300">
                 <div className={`p-5 rounded-[2.5rem] border-2 transition-all duration-500 flex items-center justify-between ${useCoins ? 'bg-amber-500 border-amber-400 shadow-xl' : 'bg-white border-gray-100'}`}>
@@ -291,7 +312,6 @@ export default function GlobalCartSidebar() {
               </div>
             )}
 
-            {/* VENDOR CARDS */}
             {Object.values(cartByVendor).map(({ store, items }) => {
               const settings = liveStoreSettings[store.id] || store;
               const storeTotal = items.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
@@ -309,7 +329,6 @@ export default function GlobalCartSidebar() {
                       </div>
                    </div>
 
-                   {/* ITEM LIST */}
                    <div className="space-y-4 mb-6">
                       {items.map(item => (
                         <div key={item.product.id} className="flex gap-4 items-center group text-left min-w-0">
@@ -329,7 +348,6 @@ export default function GlobalCartSidebar() {
                       ))}
                     </div>
 
-                   {/* LOYALTY INFO */}
                    {settings.loyalty_enabled && (
                      <div className={`text-[9px] font-black p-4 rounded-2xl mb-6 flex flex-col gap-1 border bg-emerald-50 text-emerald-700 border-emerald-100`}>
                         <div className="flex items-center justify-between uppercase">
@@ -340,7 +358,6 @@ export default function GlobalCartSidebar() {
                      </div>
                    )}
 
-                   {/* DYNAMIC CHECKOUT BUTTON */}
                    <button 
                      onClick={() => handleCheckout(store.id, store, items)} 
                      disabled={!formData.name || !formData.phone || !formData.address || loadingStoreId === store.id} 

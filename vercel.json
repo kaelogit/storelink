@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/send-automated-emails",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/merchant-welcome",
+      "schedule": "0 9 * * *" 
+    }
+  ]
+}

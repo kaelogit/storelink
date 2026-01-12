@@ -1,20 +1,5 @@
 {
-  "/[slug]/page": "app/[slug]/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
   "/admin/page": "app/admin/page.js",
-  "/admin/stores/page": "app/admin/stores/page.js",
-  "/api/admin-update-password/route": "app/api/admin-update-password/route.js",
-  "/api/send-email/route": "app/api/send-email/route.js",
-  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/forgot-password/page": "app/forgot-password/page.js",
-  "/icon/route": "app-edge-has-no-entrypoint",
-  "/login/page": "app/login/page.js",
-  "/logout/page": "app/logout/page.js",
-  "/onboarding/page": "app/onboarding/page.js",
   "/page": "app/page.js",
-  "/product/[id]/page": "app/product/[id]/page.js",
-  "/signup/page": "app/signup/page.js",
-  "/update-password/page": "app/update-password/page.js",
-  "/verify/page": "app/verify/page.js"
+  "/robots.txt/route": "app/robots.txt/route.js"
 }

@@ -57,10 +57,10 @@ export default async function VendorStorePage({ params }: PageProps) {
   const resolvedParams = await params;
   
   const { data: store } = await supabase
-    .from("stores")
-    .select("*, products(*)") 
-    .eq("slug", resolvedParams.slug)
-    .single();
+  .from("stores")
+  .select("*, owner_email, products(*)") 
+  .eq("slug", resolvedParams.slug)
+  .single();
 
   if (!store) return notFound();
 

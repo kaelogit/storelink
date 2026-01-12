@@ -3,6 +3,7 @@ export interface Store {
   owner_id: string;
   slug: string;
   name: string;
+  owner_email?: string;
   description: string | null;
   location: string;
   whatsapp_number: string;
