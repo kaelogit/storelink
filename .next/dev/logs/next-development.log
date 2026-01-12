@@ -3,3 +3,5 @@
 [00:00:10.226] Server  LOG     ✅ SITEMAP SUCCESS: Generated 32 storefront links.
 [00:22:46.641] Server  LOG      ○ Compiling /dashboard ...
 [00:22:59.627] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:52:29.140] Server  LOG      ✓ Compiled in 832ms
+[00:53:02.132] Server  LOG      ✓ Compiled in 407ms

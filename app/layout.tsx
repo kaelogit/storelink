@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next"; 
+import { Metadata, Viewport } from "next"; 
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
@@ -57,7 +57,8 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: '/og-image.jpg', 
+        // 🔥 EMPIRE FIX: Using absolute URL ensures WhatsApp sees the image on sub-pages like /signup
+        url: 'https://storelink.ng/og-image.jpg', 
         width: 1200,
         height: 630,
         alt: "StoreLink - The WhatsApp Commerce Engine",
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     title: "StoreLink | The Engine for Naija Hustle",
     description: "The professional way to manage your WhatsApp orders.",
     creator: '@kaelodev', 
-    images: ['/og-image.jpg'],
+    images: ['https://storelink.ng/og-image.jpg'], // 🔥 EMPIRE FIX: Absolute URL
   },
   verification: {
     google: 'R8d8mi7fxJ-XZ0yvJ0brHnx6cZZqo78BI1iGl-sDVcY'

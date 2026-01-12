@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!store) return { title: "Store Not Found" };
 
+  // 🔥 EMPIRE FIX: Force Absolute URL. WhatsApp often rejects images without the full https:// prefix
   const ogImage = store.cover_image_url || store.logo_url || "https://storelink.ng/og-image.png";
 
   return {
@@ -64,6 +65,7 @@ export default async function VendorStorePage({ params }: PageProps) {
 
   if (!store) return notFound();
 
+  // 🛡️ SECURITY CHECK: BANNED STATUS
   if (store.status === 'banned') {
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 text-center">
@@ -84,6 +86,7 @@ export default async function VendorStorePage({ params }: PageProps) {
     );
   }
 
+  // 🛡️ SECURITY CHECK: SUBSCRIPTION EXPIRY
   if (store.subscription_expiry && new Date(store.subscription_expiry) < new Date()) {
      return (
         <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 text-center">
@@ -107,6 +110,7 @@ export default async function VendorStorePage({ params }: PageProps) {
      );
   }
 
+  // FETCH PRODUCTS
   let productsQuery = supabase
     .from("storefront_products")
     .select("*")
@@ -114,12 +118,14 @@ export default async function VendorStorePage({ params }: PageProps) {
     .eq("is_active", true)
     .order("created_at", { ascending: false });
 
+  // FREE TIER LIMITATION
   if (store.subscription_plan === 'free') {
     productsQuery = productsQuery.limit(5);
   }
 
   const { data: products } = await productsQuery;
 
+  // FETCH CATEGORIES
   const { data: categories } = await supabase
     .from("categories")
     .select("*")
