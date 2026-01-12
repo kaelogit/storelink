@@ -35,7 +35,32 @@ export default function OnboardingPage() {
   useEffect(() => {
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) router.push("/login");
+      
+      // Guard 1: Must be logged in
+      if (!user) {
+        router.push("/login");
+        return;
+      }
+
+      // Guard 2: 🔥 THE EMPIRE SHIELD
+      // Kicks out users who haven't verified their OTP code
+      if (!user.user_metadata?.verified_via_otp) {
+        router.push(`/verify?email=${encodeURIComponent(user.email!)}`);
+        return;
+      }
+
+      // Guard 3: Prevent re-onboarding if store already exists
+      const { data: store } = await supabase
+        .from("stores")
+        .select("id")
+        .eq("owner_id", user.id)
+        .single();
+
+      if (store) {
+        router.push("/dashboard");
+        return;
+      }
+
       setUser(user);
     };
     checkUser();

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react"; // Added useEffect
 import Link from "next/link";
 import { useRouter } from "next/navigation"; 
 import { 
@@ -14,6 +14,7 @@ import AddProductModal from "@/components/store/AddProductModal";
 import CategoryManager from "@/components/store/CategoryManager";
 import ShareStore from "./ShareStore";
 import FlashDropModal from "@/components/dashboard/FlashDropModal";
+
 interface DashboardClientProps {
   store: any;
   initialProducts: any[];
@@ -31,6 +32,32 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
   const [productToEdit, setProductToEdit] = useState<any>(null);
   const [selectedFlashProduct, setSelectedFlashProduct] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState("");
+
+  // --- 🔥 EMPIRE REAL-TIME LISTENER ---
+  useEffect(() => {
+    // This channel listens for ANY changes (INSERT, UPDATE, DELETE) to your products or categories
+    const dashboardSync = supabase
+      .channel('dashboard-realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'products', filter: `store_id=eq.${store.id}` },
+        () => {
+          router.refresh(); // Triggers a seamless data refresh
+        }
+      )
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'categories', filter: `store_id=eq.${store.id}` },
+        () => {
+          router.refresh(); // Ensures category names in the product table stay current
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(dashboardSync);
+    };
+  }, [store.id, router]);
 
   // --- 🎨 FLYER STUDIO LOGIC ---
   const productRequirement = 10;
@@ -173,7 +200,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
             <h3 className="font-bold text-lg text-gray-900 italic uppercase tracking-tight">Inventory</h3>
             <div className="flex gap-2 w-full md:w-auto">
-                <button onClick={() => setIsCatModalOpen(true)} className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50 transition">
+                <button onClick={() => setIsCatModalOpen(true)} className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-100 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50 transition">
                    <Tags size={16}/> <span className="md:inline">Categories</span>
                 </button>
                 <button onClick={() => setIsAddModalOpen(true)} className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-bold shadow-lg hover:bg-emerald-500 transition">
@@ -187,13 +214,12 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
             <input 
               type="text"
               placeholder="Search products..."
-              className="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-gray-900 transition-all shadow-sm"
+              className="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-gray-900 transition-all shadow-sm"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
 
-          {/* 🔥 EMPIRE FIX: SCROLLABLE INVENTORY CONTAINER */}
           <div className="bg-white border border-gray-100 rounded-3xl shadow-sm overflow-hidden flex flex-col max-h-[600px]">
              {filteredProducts.length === 0 ? (
                <div className="p-12 text-center text-gray-400">
@@ -254,9 +280,26 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
           </div>
         </div>
 
-      <AddProductModal storeId={store.id} isOpen={isAddModalOpen} onClose={() => { setIsAddModalOpen(false); setProductToEdit(null); }} onSuccess={() => router.refresh()} productToEdit={productToEdit} />
-      <CategoryManager storeId={store.id} isOpen={isCatModalOpen} onClose={() => setIsCatModalOpen(false)} onSuccess={() => router.refresh()} />
-      <FlashDropModal product={selectedFlashProduct} isOpen={!!selectedFlashProduct} onClose={() => setSelectedFlashProduct(null)} onSuccess={() => router.refresh()} />
+      <AddProductModal 
+        storeId={store.id} 
+        isOpen={isAddModalOpen} 
+        onClose={() => { setIsAddModalOpen(false); setProductToEdit(null); }} 
+        onSuccess={() => router.refresh()} 
+        productToEdit={productToEdit} 
+        onAddCategory={() => setIsCatModalOpen(true)} 
+      />
+      <CategoryManager 
+        storeId={store.id} 
+        isOpen={isCatModalOpen} 
+        onClose={() => setIsCatModalOpen(false)} 
+        onSuccess={() => router.refresh()} 
+      />
+      <FlashDropModal 
+        product={selectedFlashProduct} 
+        isOpen={!!selectedFlashProduct} 
+        onClose={() => setSelectedFlashProduct(null)} 
+        onSuccess={() => router.refresh()} 
+      />
     </div>
   );
 }

@@ -484,3 +484,23 @@ Import traces:
 [04:32:38.483] Server  LOG      ✓ Compiled in 620ms
 [04:33:07.305] Server  LOG      ✓ Compiled in 354ms
 [04:51:56.104] Server  LOG      ✓ Compiled in 494ms
+[14:46:47.412] Server  LOG      ✓ Compiled in 482ms
+[14:58:12.259] Server  LOG      ✓ Compiled in 669ms
+[14:59:58.195] Server  LOG      ✓ Compiled in 2.7s
+[15:02:21.261] Server  LOG      ✓ Compiled in 380ms
+[15:02:27.326] Server  LOG      ✓ Compiled in 209ms
+[15:06:03.787] Server  LOG      ✓ Compiled in 890ms
+[15:06:41.964] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:06:43.912] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498900081-otn56c" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:43.912] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1767309487398-r46606" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:43.912] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766439063213-zqx9mi" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:43.912] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765642708493-c9mcfw" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:43.912] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1765643819902-npr3fc" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:43.912] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766081347935-4rgkjp" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:43.912] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/7c78fc5c-9bd8-4aac-9e17-464b29ab8eae/1766498378016-jauda" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:46.396] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/d97e879d-3d48-4621-8813-5bcc49a2ce19/1768149456566-b93nmn" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:46.533] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/e2bd1a73-3319-4a29-bc46-9a27e2291add/1768196667337-lkr54f" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:06:46.646] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/70dc7859-47d7-4dc9-8767-563e12ec49af/1768162075756-e5cdbd" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[15:25:08.052] Server  LOG      ✓ Compiled in 5s
+[15:27:19.579] Server  LOG      ✓ Compiled in 201ms
+[15:31:31.048] Server  LOG      ✓ Compiled in 226ms

@@ -29,60 +29,63 @@ function VerifyContent() {
   }, [email, router]);
 
   const handleVerify = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (code.length < 6) return;
+    e.preventDefault();
+    if (code.length < 6) return;
 
-  setLoading(true);
-  setError(null);
+    setLoading(true);
+    setError(null);
 
-  try {
-    // 1. Check our custom table (Our Database Handshake)
-    const { data: internalData, error: dbError } = await supabase
-      .from("otp_verifications")
-      .select("*")
-      .eq("email", email)
-      .eq("code", code)
-      .single();
+    try {
+      // 1. Check our custom table (Our Database Handshake)
+      const { data: internalData, error: dbError } = await supabase
+        .from("otp_verifications")
+        .select("*")
+        .eq("email", email)
+        .eq("code", code)
+        .single();
 
-    if (dbError || !internalData) {
-      throw new Error("Invalid or expired code.");
-    }
+      if (dbError || !internalData) {
+        throw new Error("Invalid or expired code.");
+      }
 
-    // 2. 🔥 THE MISSING PIECE: Establish the Supabase Auth Session
-    // We use type 'signup' or 'recovery' here. 
-    // This creates the session so 'updateUser' doesn't fail.
-    if (type === "recovery") {
-      const { error: authError } = await supabase.auth.verifyOtp({
-        email: email as string,
-        token: code,
-        type: 'recovery',
+      // 2. 🔥 THE SHIELD: Stamp the user's metadata so they can bypass Onboarding guards
+      const { error: metaError } = await supabase.auth.updateUser({
+        data: { verified_via_otp: true }
       });
-      // Note: If this fails, it's usually because Supabase hasn't sent its own OTP.
-      // But don't worry—if our internal check passed, we can proceed.
-    }
 
-    // 3. Cleanup
-    await supabase.from("otp_verifications").delete().eq("email", email);
+      if (metaError) throw metaError;
 
-    // 4. Routing
-    if (type === "recovery") {
-      router.push(`/update-password?email=${encodeURIComponent(email as string)}`);
-    } else {
-      // For signups, we verify them as well so they are logged in immediately
-      await supabase.auth.verifyOtp({
-        email: email as string,
-        token: code,
-        type: 'signup',
-      });
-      router.push("/onboarding");
+      // 3. Establish the Supabase Auth Session
+      if (type === "recovery") {
+        await supabase.auth.verifyOtp({
+          email: email as string,
+          token: code,
+          type: 'recovery',
+        });
+      }
+
+      // 4. Cleanup
+      await supabase.from("otp_verifications").delete().eq("email", email);
+
+      // 5. Routing
+      if (type === "recovery") {
+        router.push(`/update-password?email=${encodeURIComponent(email as string)}`);
+      } else {
+        // For signups, we verify them as well so they are logged in immediately
+        await supabase.auth.verifyOtp({
+          email: email as string,
+          token: code,
+          type: 'signup',
+        });
+        router.push("/onboarding");
+      }
+      
+      router.refresh();
+    } catch (err: any) {
+      setError(err.message || "Verification failed.");
+      setLoading(false);
     }
-    
-    router.refresh();
-  } catch (err: any) {
-    setError(err.message || "Verification failed.");
-    setLoading(false);
-  }
-};
+  };
 
   const handleResend = async () => {
     setResending(true);

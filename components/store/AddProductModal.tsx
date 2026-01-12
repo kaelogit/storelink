@@ -12,9 +12,17 @@ interface AddProductModalProps {
   onClose: () => void;
   onSuccess: () => void;
   productToEdit?: any;
+  onAddCategory?: () => void; // 🔥 FIX: Interface now matches DashboardClient
 }
 
-export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit }: AddProductModalProps) {
+export default function AddProductModal({ 
+  storeId, 
+  isOpen, 
+  onClose, 
+  onSuccess, 
+  productToEdit,
+  onAddCategory // 🔥 FIX: Destructured the category bridge
+}: AddProductModalProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
@@ -182,7 +190,13 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
     e.preventDefault();
     if ((isLimitReached && !productToEdit) || isExpired) return; 
 
-    // 🔒 COMPULSORY IMAGE CHECK
+    // 🔥 EMPIRE GUARD: COMPULSORY FIELD ENFORCEMENT
+    if (!formData.name || !formData.price || !formData.stock || !formData.description || !formData.categoryId) {
+      setErrorMsg("All fields are compulsory for a professional listing");
+      setTimeout(() => setErrorMsg(""), 4000);
+      return;
+    }
+
     if (existingImages.length === 0 && imageFiles.length === 0) {
       setErrorMsg("Please add at least one product image");
       setTimeout(() => setErrorMsg(""), 4000);
@@ -210,7 +224,7 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
         price: parseFloat(formData.price),
         stock_quantity: newStock,
         description: formData.description,
-        category_id: formData.categoryId || null,
+        category_id: formData.categoryId, // Verified compulsory above
         image_urls: finalImageUrls,
         is_active: true,
       };
@@ -243,7 +257,7 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
         {/* WAREHOUSE HEADER */}
         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50">
           <h2 className="font-black text-lg text-gray-900 uppercase tracking-tighter italic">
-            {productToEdit ? "Update Product" : "Save to Warehouse"}
+            {productToEdit ? "Update Product" : "Add Product"}
           </h2>
           <button onClick={onClose} className="p-2 bg-white rounded-full shadow-sm text-gray-500 hover:bg-gray-100 transition"><X size={20} /></button>
         </div>
@@ -337,31 +351,37 @@ export default function AddProductModal({ storeId, isOpen, onClose, onSuccess, p
               <div className="space-y-4">
                 <div>
                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Product Name</label>
-                  <input required className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm" placeholder="Enter name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+                  <input required className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm text-gray-900" placeholder="Enter name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Price (₦)</label>
-                    <input required type="number" className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm" placeholder="0" value={formData.price} onChange={e => setFormData({...formData, price: e.target.value})} />
+                    <input required type="number" className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm text-gray-900" placeholder="0" value={formData.price} onChange={e => setFormData({...formData, price: e.target.value})} />
                   </div>
                   <div>
                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">In Stock</label>
-                    <input required type="number" className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm" placeholder="1" value={formData.stock} onChange={e => setFormData({...formData, stock: e.target.value})} />
+                    <input required type="number" className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm text-gray-900" placeholder="1" value={formData.stock} onChange={e => setFormData({...formData, stock: e.target.value})} />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Category</label>
-                  <select className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none appearance-none font-bold shadow-sm" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
-                    <option value="">Uncategorized</option>
+                  <div className="flex items-center justify-between mb-1.5 ml-1">
+                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">Category</label>
+                    {/* 🔥 THE BRIDGE BUTTON: Triggers Category Manager from Dashboard */}
+                    <button type="button" onClick={onAddCategory} className="text-[9px] font-black text-emerald-600 uppercase tracking-widest flex items-center gap-1">
+                        <Plus size={10} strokeWidth={3} /> Create New
+                    </button>
+                  </div>
+                  <select required className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none appearance-none shadow-sm text-gray-900" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
+                    <option value="">Select Category</option>
                     {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Description (Optional)</label>
-                  <textarea maxLength={500} className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none h-24 resize-none shadow-sm" placeholder="Describe your item..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
+                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Description (Compulsory)</label>
+                  <textarea required maxLength={500} className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none h-24 resize-none shadow-sm text-gray-900" placeholder="Describe your item..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
                 </div>
               </div>
               

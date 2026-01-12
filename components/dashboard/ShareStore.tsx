@@ -91,8 +91,8 @@ export default function ShareStore({ slug }: { slug: string }) {
 
               <div className="flex gap-2">
                  <button onClick={() => setShowQR(false)} className="flex-1 py-3 text-gray-500 font-bold hover:bg-gray-50 rounded-xl">Close</button>
-                 <button onClick={() => window.print()} className="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold shadow-lg hover:bg-emerald-700 flex items-center justify-center gap-2">
-                    <Download size={18} /> Print / Save
+                 <button onClick={downloadQR} className="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold shadow-lg hover:bg-emerald-700 flex items-center justify-center gap-2">
+                    <Download size={18} /> Save QR
                  </button>
               </div>
            </div>

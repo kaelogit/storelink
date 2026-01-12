@@ -54,7 +54,8 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit }) {
+function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit, onAddCategory// 🔥 FIX: Destructured the category bridge
+ }) {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -225,7 +226,12 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
     const handleSubmit = async (e)=>{
         e.preventDefault();
         if (isLimitReached && !productToEdit || isExpired) return;
-        // 🔒 COMPULSORY IMAGE CHECK
+        // 🔥 EMPIRE GUARD: COMPULSORY FIELD ENFORCEMENT
+        if (!formData.name || !formData.price || !formData.stock || !formData.description || !formData.categoryId) {
+            setErrorMsg("All fields are compulsory for a professional listing");
+            setTimeout(()=>setErrorMsg(""), 4000);
+            return;
+        }
         if (existingImages.length === 0 && imageFiles.length === 0) {
             setErrorMsg("Please add at least one product image");
             setTimeout(()=>setErrorMsg(""), 4000);
@@ -253,7 +259,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                 price: parseFloat(formData.price),
                 stock_quantity: newStock,
                 description: formData.description,
-                category_id: formData.categoryId || null,
+                category_id: formData.categoryId,
                 image_urls: finalImageUrls,
                 is_active: true
             };
@@ -285,10 +291,10 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                             className: "font-black text-lg text-gray-900 uppercase tracking-tighter italic",
-                            children: productToEdit ? "Update Product" : "Save to Warehouse"
+                            children: productToEdit ? "Update Product" : "Add Product"
                         }, void 0, false, {
                             fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                            lineNumber: 245,
+                            lineNumber: 259,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -298,18 +304,18 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 248,
+                                lineNumber: 262,
                                 columnNumber: 128
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                            lineNumber: 248,
+                            lineNumber: 262,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                    lineNumber: 244,
+                    lineNumber: 258,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -322,7 +328,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 className: "text-red-400 mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 254,
+                                lineNumber: 268,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -330,7 +336,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 children: "Subscription Expired"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 255,
+                                lineNumber: 269,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -339,13 +345,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 children: "Renew Subscription"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 256,
+                                lineNumber: 270,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                        lineNumber: 253,
+                        lineNumber: 267,
                         columnNumber: 14
                     }, this) : isLimitReached && !productToEdit ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "py-8 text-center flex flex-col items-center justify-center h-full",
@@ -355,7 +361,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 className: "text-amber-500 mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 260,
+                                lineNumber: 274,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -363,7 +369,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 children: "Starter Limit Reached"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 261,
+                                lineNumber: 275,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -375,20 +381,20 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                         className: "text-amber-400"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 263,
+                                        lineNumber: 277,
                                         columnNumber: 19
                                     }, this),
                                     " Upgrade Plan"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 262,
+                                lineNumber: 276,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                        lineNumber: 259,
+                        lineNumber: 273,
                         columnNumber: 13
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                         onSubmit: handleSubmit,
@@ -404,7 +410,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Images (Max 4)"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 272,
+                                                lineNumber: 286,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -417,7 +423,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         className: removeBg ? "animate-pulse" : ""
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 275,
+                                                        lineNumber: 289,
                                                         columnNumber: 25
                                                     }, this),
                                                     " ",
@@ -425,13 +431,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 273,
+                                                lineNumber: 287,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 271,
+                                        lineNumber: 285,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -446,7 +452,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             className: "w-full h-full object-cover"
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                            lineNumber: 282,
+                                                            lineNumber: 296,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -457,18 +463,18 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                                 size: 10
                                                             }, void 0, false, {
                                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                                lineNumber: 283,
+                                                                lineNumber: 297,
                                                                 columnNumber: 172
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                            lineNumber: 283,
+                                                            lineNumber: 297,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, `existing-${index}`, true, {
                                                     fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                    lineNumber: 281,
+                                                    lineNumber: 295,
                                                     columnNumber: 21
                                                 }, this)),
                                             previews.map((src, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -480,7 +486,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             className: "w-full h-full object-cover"
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                            lineNumber: 288,
+                                                            lineNumber: 302,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -491,18 +497,18 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                                 size: 10
                                                             }, void 0, false, {
                                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                                lineNumber: 289,
+                                                                lineNumber: 303,
                                                                 columnNumber: 167
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                            lineNumber: 289,
+                                                            lineNumber: 303,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, `new-${index}`, true, {
                                                     fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                    lineNumber: 287,
+                                                    lineNumber: 301,
                                                     columnNumber: 21
                                                 }, this)),
                                             processingImages && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -513,7 +519,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 294,
+                                                        lineNumber: 308,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -521,13 +527,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "AI Cleaning..."
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 295,
+                                                        lineNumber: 309,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 293,
+                                                lineNumber: 307,
                                                 columnNumber: 21
                                             }, this),
                                             existingImages.length + previews.length < 4 && !processingImages && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -537,13 +543,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         size: 24
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 300,
+                                                        lineNumber: 314,
                                                         columnNumber: 35
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
                                                         size: 24
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 300,
+                                                        lineNumber: 314,
                                                         columnNumber: 59
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -554,19 +560,19 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         className: "hidden"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 301,
+                                                        lineNumber: 315,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 299,
+                                                lineNumber: 313,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 279,
+                                        lineNumber: 293,
                                         columnNumber: 17
                                     }, this),
                                     aiStatus === "diamond_gate" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -580,7 +586,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         className: "text-purple-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 310,
+                                                        lineNumber: 324,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -588,13 +594,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "Diamond Feature Only"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 311,
+                                                        lineNumber: 325,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 309,
+                                                lineNumber: 323,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -602,7 +608,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "One-click AI cleaning is reserved for Diamond users due to API costs. But you can do it manually for free!"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 313,
+                                                lineNumber: 327,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -619,31 +625,31 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                                 size: 10
                                                             }, void 0, false, {
                                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                                lineNumber: 315,
+                                                                lineNumber: 329,
                                                                 columnNumber: 169
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 315,
+                                                        lineNumber: 329,
                                                         columnNumber: 35
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 315,
+                                                        lineNumber: 329,
                                                         columnNumber: 198
                                                     }, this),
                                                     "2. Upload your photo & set background to white",
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 316,
+                                                        lineNumber: 330,
                                                         columnNumber: 72
                                                     }, this),
                                                     "3. Download it, then upload the result here!"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 314,
+                                                lineNumber: 328,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -653,13 +659,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Got it, thanks!"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 319,
+                                                lineNumber: 333,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 308,
+                                        lineNumber: 322,
                                         columnNumber: 20
                                     }, this),
                                     aiStatus === "limit_gate" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -673,7 +679,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         className: "text-amber-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 326,
+                                                        lineNumber: 340,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -681,13 +687,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "Community Limit Reached"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 327,
+                                                        lineNumber: 341,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 325,
+                                                lineNumber: 339,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -695,7 +701,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Our Diamond credits are exhausted for today. We are working on unlimited AI access!"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 329,
+                                                lineNumber: 343,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -709,14 +715,14 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "remove.bg"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 330,
+                                                        lineNumber: 344,
                                                         columnNumber: 93
                                                     }, this),
                                                     " manually to clean your photo, then upload the result here."
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 330,
+                                                lineNumber: 344,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -726,19 +732,19 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Understood"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 331,
+                                                lineNumber: 345,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 324,
+                                        lineNumber: 338,
                                         columnNumber: 20
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 270,
+                                lineNumber: 284,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -751,12 +757,12 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: "Product Name"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 339,
+                                                lineNumber: 353,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                 required: true,
-                                                className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm",
+                                                className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm text-gray-900",
                                                 placeholder: "Enter name",
                                                 value: formData.name,
                                                 onChange: (e)=>setFormData({
@@ -765,13 +771,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                     })
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 340,
+                                                lineNumber: 354,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 338,
+                                        lineNumber: 352,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -784,13 +790,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "Price (₦)"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 345,
+                                                        lineNumber: 359,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                         required: true,
                                                         type: "number",
-                                                        className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm",
+                                                        className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm text-gray-900",
                                                         placeholder: "0",
                                                         value: formData.price,
                                                         onChange: (e)=>setFormData({
@@ -799,13 +805,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             })
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 346,
+                                                        lineNumber: 360,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 344,
+                                                lineNumber: 358,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -815,13 +821,13 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                         children: "In Stock"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 349,
+                                                        lineNumber: 363,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                         required: true,
                                                         type: "number",
-                                                        className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm",
+                                                        className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none shadow-sm text-gray-900",
                                                         placeholder: "1",
                                                         value: formData.stock,
                                                         onChange: (e)=>setFormData({
@@ -830,33 +836,63 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             })
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 350,
+                                                        lineNumber: 364,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 348,
+                                                lineNumber: 362,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 343,
+                                        lineNumber: 357,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                className: "block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1",
-                                                children: "Category"
-                                            }, void 0, false, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center justify-between mb-1.5 ml-1",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                        className: "block text-[10px] font-black text-gray-400 uppercase tracking-widest",
+                                                        children: "Category"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/store-link/components/store/AddProductModal.tsx",
+                                                        lineNumber: 370,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                        type: "button",
+                                                        onClick: onAddCategory,
+                                                        className: "text-[9px] font-black text-emerald-600 uppercase tracking-widest flex items-center gap-1",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                                size: 10,
+                                                                strokeWidth: 3
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/store-link/components/store/AddProductModal.tsx",
+                                                                lineNumber: 373,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            " Create New"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/store-link/components/store/AddProductModal.tsx",
+                                                        lineNumber: 372,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 355,
+                                                lineNumber: 369,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                                                className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none appearance-none font-bold shadow-sm",
+                                                required: true,
+                                                className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none appearance-none shadow-sm text-gray-900",
                                                 value: formData.categoryId,
                                                 onChange: (e)=>setFormData({
                                                         ...formData,
@@ -865,10 +901,10 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                         value: "",
-                                                        children: "Uncategorized"
+                                                        children: "Select Category"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                        lineNumber: 357,
+                                                        lineNumber: 377,
                                                         columnNumber: 21
                                                     }, this),
                                                     categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -876,34 +912,35 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                             children: cat.name
                                                         }, cat.id, false, {
                                                             fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                            lineNumber: 358,
+                                                            lineNumber: 378,
                                                             columnNumber: 44
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 356,
+                                                lineNumber: 376,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 354,
+                                        lineNumber: 368,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                 className: "block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1",
-                                                children: "Description (Optional)"
+                                                children: "Description (Compulsory)"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 363,
+                                                lineNumber: 383,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                                required: true,
                                                 maxLength: 500,
-                                                className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none h-24 resize-none shadow-sm",
+                                                className: "w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none h-24 resize-none shadow-sm text-gray-900",
                                                 placeholder: "Describe your item...",
                                                 value: formData.description,
                                                 onChange: (e)=>setFormData({
@@ -912,19 +949,19 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                                     })
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                                lineNumber: 364,
+                                                lineNumber: 384,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                        lineNumber: 362,
+                                        lineNumber: 382,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 337,
+                                lineNumber: 351,
                                 columnNumber: 15
                             }, this),
                             errorMsg && ![
@@ -938,7 +975,7 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 369,
+                                lineNumber: 389,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -949,34 +986,34 @@ function AddProductModal({ storeId, isOpen, onClose, onSuccess, productToEdit })
                                     className: "animate-spin mx-auto"
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                    lineNumber: 373,
+                                    lineNumber: 393,
                                     columnNumber: 28
                                 }, this) : productToEdit ? "Update Product" : "Save to Warehouse"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                                lineNumber: 372,
+                                lineNumber: 392,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                        lineNumber: 267,
+                        lineNumber: 281,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-                    lineNumber: 251,
+                    lineNumber: 265,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-            lineNumber: 241,
+            lineNumber: 255,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/store-link/components/store/AddProductModal.tsx",
-        lineNumber: 240,
+        lineNumber: 254,
         columnNumber: 5
     }, this);
 }
@@ -1420,7 +1457,7 @@ function ShareStore({ slug }) {
                                     columnNumber: 18
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>window.print(),
+                                    onClick: downloadQR,
                                     className: "flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold shadow-lg hover:bg-emerald-700 flex items-center justify-center gap-2",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
@@ -1430,7 +1467,7 @@ function ShareStore({ slug }) {
                                             lineNumber: 95,
                                             columnNumber: 21
                                         }, this),
-                                        " Print / Save"
+                                        " Save QR"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/store-link/components/dashboard/ShareStore.tsx",
@@ -1814,7 +1851,7 @@ __turbopack_context__.s([
     ()=>DashboardClient
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)"); // Added useEffect
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/package.js [app-client] (ecmascript) <export default as Package>");
@@ -1856,6 +1893,39 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
     const [productToEdit, setProductToEdit] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [selectedFlashProduct, setSelectedFlashProduct] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [searchTerm, setSearchTerm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    // --- 🔥 EMPIRE REAL-TIME LISTENER ---
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "DashboardClient.useEffect": ()=>{
+            // This channel listens for ANY changes (INSERT, UPDATE, DELETE) to your products or categories
+            const dashboardSync = __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].channel('dashboard-realtime').on('postgres_changes', {
+                event: '*',
+                schema: 'public',
+                table: 'products',
+                filter: `store_id=eq.${store.id}`
+            }, {
+                "DashboardClient.useEffect.dashboardSync": ()=>{
+                    router.refresh(); // Triggers a seamless data refresh
+                }
+            }["DashboardClient.useEffect.dashboardSync"]).on('postgres_changes', {
+                event: '*',
+                schema: 'public',
+                table: 'categories',
+                filter: `store_id=eq.${store.id}`
+            }, {
+                "DashboardClient.useEffect.dashboardSync": ()=>{
+                    router.refresh(); // Ensures category names in the product table stay current
+                }
+            }["DashboardClient.useEffect.dashboardSync"]).subscribe();
+            return ({
+                "DashboardClient.useEffect": ()=>{
+                    __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].removeChannel(dashboardSync);
+                }
+            })["DashboardClient.useEffect"];
+        }
+    }["DashboardClient.useEffect"], [
+        store.id,
+        router
+    ]);
     // --- 🎨 FLYER STUDIO LOGIC ---
     const productRequirement = 10;
     const hasUnlockedStudio = stats.productCount >= productRequirement;
@@ -1907,13 +1977,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: "OFFLINE"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 77,
+                                        lineNumber: 104,
                                         columnNumber: 28
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 75,
+                                lineNumber: 102,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1925,19 +1995,19 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: store.name
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 79,
+                                        lineNumber: 106,
                                         columnNumber: 69
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 79,
+                                lineNumber: 106,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 74,
+                        lineNumber: 101,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1951,25 +2021,25 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 85,
+                                    lineNumber: 112,
                                     columnNumber: 17
                                 }, this),
                                 " View Store"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 84,
+                            lineNumber: 111,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 82,
+                        lineNumber: 109,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                lineNumber: 73,
+                lineNumber: 100,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1987,12 +2057,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 95,
+                                            lineNumber: 122,
                                             columnNumber: 79
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 95,
+                                        lineNumber: 122,
                                         columnNumber: 16
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2000,13 +2070,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: "Revenue"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 96,
+                                        lineNumber: 123,
                                         columnNumber: 16
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 94,
+                                lineNumber: 121,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2017,13 +2087,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 98,
+                                lineNumber: 125,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 93,
+                        lineNumber: 120,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2038,12 +2108,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 103,
+                                            lineNumber: 130,
                                             columnNumber: 73
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 103,
+                                        lineNumber: 130,
                                         columnNumber: 16
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2051,13 +2121,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: "Products"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 104,
+                                        lineNumber: 131,
                                         columnNumber: 16
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 102,
+                                lineNumber: 129,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2065,13 +2135,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 children: stats.productCount
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 106,
+                                lineNumber: 133,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 101,
+                        lineNumber: 128,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2086,12 +2156,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                             size: 20
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 111,
+                                            lineNumber: 138,
                                             columnNumber: 77
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 111,
+                                        lineNumber: 138,
                                         columnNumber: 16
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2099,13 +2169,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         children: "Views"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 112,
+                                        lineNumber: 139,
                                         columnNumber: 16
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 110,
+                                lineNumber: 137,
                                 columnNumber: 14
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2113,26 +2183,26 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 children: stats.views.toLocaleString()
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 114,
+                                lineNumber: 141,
                                 columnNumber: 14
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 109,
+                        lineNumber: 136,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                lineNumber: 92,
+                lineNumber: 119,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$components$2f$dashboard$2f$ShareStore$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                 slug: store.slug
             }, void 0, false, {
                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                lineNumber: 118,
+                lineNumber: 145,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2149,18 +2219,18 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                         size: 32
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 129,
+                                        lineNumber: 156,
                                         columnNumber: 38
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
                                         size: 32
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 129,
+                                        lineNumber: 156,
                                         columnNumber: 62
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 128,
+                                    lineNumber: 155,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2174,13 +2244,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                     children: "Unlocked"
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 134,
+                                                    lineNumber: 161,
                                                     columnNumber: 41
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 132,
+                                            lineNumber: 159,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2188,7 +2258,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                             children: hasUnlockedStudio ? "Your automated marketing suite is ready. Generate custom flyers for your brands instantly." : `Complete your storefront with ${productRequirement - stats.productCount} more products to unlock the Studio.`
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 136,
+                                            lineNumber: 163,
                                             columnNumber: 17
                                         }, this),
                                         !hasUnlockedStudio && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2200,24 +2270,24 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 144,
+                                                lineNumber: 171,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 143,
+                                            lineNumber: 170,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 131,
+                                    lineNumber: 158,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 127,
+                            lineNumber: 154,
                             columnNumber: 13
                         }, this),
                         hasUnlockedStudio ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2229,13 +2299,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 158,
+                                    lineNumber: 185,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 154,
+                            lineNumber: 181,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             disabled: true,
@@ -2246,24 +2316,24 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                     size: 16
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 165,
+                                    lineNumber: 192,
                                     columnNumber: 24
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 161,
+                            lineNumber: 188,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                    lineNumber: 126,
+                    lineNumber: 153,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                lineNumber: 121,
+                lineNumber: 148,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2277,7 +2347,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 children: "Inventory"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 174,
+                                lineNumber: 201,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2285,13 +2355,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setIsCatModalOpen(true),
-                                        className: "flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50 transition",
+                                        className: "flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-100 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50 transition",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tags$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Tags$3e$__["Tags"], {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 177,
+                                                lineNumber: 204,
                                                 columnNumber: 20
                                             }, this),
                                             " ",
@@ -2300,13 +2370,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Categories"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 177,
+                                                lineNumber: 204,
                                                 columnNumber: 38
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 176,
+                                        lineNumber: 203,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2317,7 +2387,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 180,
+                                                lineNumber: 207,
                                                 columnNumber: 20
                                             }, this),
                                             " ",
@@ -2326,25 +2396,25 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                 children: "Add Product"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 180,
+                                                lineNumber: 207,
                                                 columnNumber: 38
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 179,
+                                        lineNumber: 206,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 175,
+                                lineNumber: 202,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 173,
+                        lineNumber: 200,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2355,24 +2425,24 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                 size: 18
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 186,
+                                lineNumber: 213,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                 type: "text",
                                 placeholder: "Search products...",
-                                className: "w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-gray-900 transition-all shadow-sm",
+                                className: "w-full pl-12 pr-4 py-3.5 bg-white border border-gray-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-gray-900 transition-all shadow-sm",
                                 value: searchTerm,
                                 onChange: (e)=>setSearchTerm(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 187,
+                                lineNumber: 214,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 185,
+                        lineNumber: 212,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2385,20 +2455,20 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                     className: "mx-auto mb-4 opacity-20"
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 226,
                                     columnNumber: 18
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     children: searchTerm ? "No products match your search." : "No products yet."
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                    lineNumber: 201,
+                                    lineNumber: 227,
                                     columnNumber: 18
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 199,
+                            lineNumber: 225,
                             columnNumber: 16
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "overflow-auto no-scrollbar",
@@ -2414,7 +2484,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                     children: "Product"
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 208,
+                                                    lineNumber: 234,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2422,7 +2492,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                     children: "Category"
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 209,
+                                                    lineNumber: 235,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2430,7 +2500,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                     children: "Price"
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 210,
+                                                    lineNumber: 236,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2438,7 +2508,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                     children: "Stock"
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 211,
+                                                    lineNumber: 237,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -2446,18 +2516,18 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                     children: "Actions"
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                    lineNumber: 212,
+                                                    lineNumber: 238,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                            lineNumber: 207,
+                                            lineNumber: 233,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 206,
+                                        lineNumber: 232,
                                         columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -2476,13 +2546,13 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                                 children: "Recent Sale"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                                lineNumber: 222,
+                                                                lineNumber: 248,
                                                                 columnNumber: 43
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 220,
+                                                        lineNumber: 246,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2492,12 +2562,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                             children: p.categories?.name || 'General'
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 225,
+                                                            lineNumber: 251,
                                                             columnNumber: 31
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 224,
+                                                        lineNumber: 250,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2508,7 +2578,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 229,
+                                                        lineNumber: 255,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2518,19 +2588,19 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                             children: "Sold Out"
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 234,
+                                                            lineNumber: 260,
                                                             columnNumber: 35
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             className: "text-gray-600",
                                                             children: p.stock_quantity
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 235,
+                                                            lineNumber: 261,
                                                             columnNumber: 35
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 232,
+                                                        lineNumber: 258,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -2546,12 +2616,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                                         fill: p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date() ? "currentColor" : "none"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                                        lineNumber: 241,
+                                                                        lineNumber: 267,
                                                                         columnNumber: 35
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 240,
+                                                                    lineNumber: 266,
                                                                     columnNumber: 33
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2561,12 +2631,12 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                                         size: 16
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                                        lineNumber: 243,
+                                                                        lineNumber: 269,
                                                                         columnNumber: 135
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 243,
+                                                                    lineNumber: 269,
                                                                     columnNumber: 33
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2576,57 +2646,57 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                                                                         size: 16
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                                        lineNumber: 244,
+                                                                        lineNumber: 270,
                                                                         columnNumber: 137
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                                    lineNumber: 244,
+                                                                    lineNumber: 270,
                                                                     columnNumber: 33
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                            lineNumber: 239,
+                                                            lineNumber: 265,
                                                             columnNumber: 31
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                        lineNumber: 238,
+                                                        lineNumber: 264,
                                                         columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, p.id, true, {
                                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                                lineNumber: 219,
+                                                lineNumber: 245,
                                                 columnNumber: 27
                                             }, this);
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                        lineNumber: 215,
+                                        lineNumber: 241,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                                lineNumber: 205,
+                                lineNumber: 231,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                            lineNumber: 204,
+                            lineNumber: 230,
                             columnNumber: 16
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                        lineNumber: 197,
+                        lineNumber: 223,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                lineNumber: 172,
+                lineNumber: 199,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$components$2f$store$2f$AddProductModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2637,10 +2707,11 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                     setProductToEdit(null);
                 },
                 onSuccess: ()=>router.refresh(),
-                productToEdit: productToEdit
+                productToEdit: productToEdit,
+                onAddCategory: ()=>setIsCatModalOpen(true)
             }, void 0, false, {
                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                lineNumber: 257,
+                lineNumber: 283,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$components$2f$store$2f$CategoryManager$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2650,7 +2721,7 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                 onSuccess: ()=>router.refresh()
             }, void 0, false, {
                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                lineNumber: 258,
+                lineNumber: 291,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$components$2f$dashboard$2f$FlashDropModal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2660,17 +2731,17 @@ function DashboardClient({ store, initialProducts, initialOrders, stats, isLocke
                 onSuccess: ()=>router.refresh()
             }, void 0, false, {
                 fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-                lineNumber: 259,
+                lineNumber: 297,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/store-link/components/dashboard/DashboardClient.tsx",
-        lineNumber: 72,
+        lineNumber: 99,
         columnNumber: 5
     }, this);
 }
-_s(DashboardClient, "nWVeIM3/mBM89YduvIHMvu00L/U=", false, function() {
+_s(DashboardClient, "fAWV6y2jv3TY6hrwSQkMEngqfgQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
