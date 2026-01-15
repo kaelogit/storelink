@@ -7,8 +7,7 @@ import { useState } from "react";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  const announcement = "STORELINK: THE FUTURE OF ECOMMERCE IN NIGERIA - LAUNCHING SOON";
-
+const announcement = "🚀 WE ARE UPGRADING: STORELINK MOBILE APP IN DEVELOPMENT. YOU MAY EXPERIENCE MINOR GLITCHES. REPORT ERRORS TO SUPPORT@STORELINK.NG";
   return (
     <header className="sticky top-0 z-50">
       <div className="bg-black text-white py-2.5 overflow-hidden border-b border-gray-800 flex relative z-[60]">
