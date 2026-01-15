@@ -135,19 +135,19 @@ export default function GlobalCartSidebar() {
         const finalPayable = storeTotal - coinsToApply;
         
         // 1. Save order to Supabase
-        const { data: newOrderId, error: orderError } = await supabase.rpc('create_new_order', {
-            store_uuid: storeId,
-            customer_name: formData.name,
-            customer_phone: cleanPhone,
-            customer_address: formData.address,
-            total_amount_paid: finalPayable,
-            coins_used: coinsToApply,
-            order_items_array: items.map((item: any) => ({
-                product_id: item.product.id,
-                product_name: item.product.name,
-                quantity: item.qty,
-                price: item.product.price
-            })),
+       const { data: newOrderId, error: orderError } = await supabase.rpc('create_new_order', {
+    store_uuid: storeId,
+    customer_name: formData.name,
+    customer_phone: cleanPhone,
+    customer_address: formData.address,
+    total_amount_paid: finalPayable,
+    coins_used: coinsToApply,
+    order_items_array: items.map((item) => ({
+        product_id: item.product.id,
+        product_name: item.product.name,
+        quantity: item.qty,
+        price: item.product.price
+    })),
         });
 
         if (orderError) throw orderError;
