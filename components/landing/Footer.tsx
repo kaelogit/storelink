@@ -36,14 +36,9 @@ export default function Footer() {
         <div className="flex flex-col items-start">
            <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Platform</h4>
            <ul className="space-y-3 text-sm text-gray-400 font-medium">
-             <li><Link href="/login" className="hover:text-white transition">Vendor Login</Link></li>
-             <li><Link href="/signup" className="hover:text-white transition">Start Selling</Link></li>
+            
              <li><Link href="/marketplace" className="hover:text-white transition">Marketplace</Link></li>
-             <li>
-               <Link href="/empire-coins" className="hover:text-amber-500 transition flex items-center gap-2">
-                 <Coins size={14} className="text-amber-500" /> Empire Coins
-               </Link>
-             </li>
+             
            </ul>
         </div>
 

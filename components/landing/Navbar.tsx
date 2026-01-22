@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-const announcement = "🚀 WE ARE UPGRADING: STORELINK MOBILE APP IN DEVELOPMENT. YOU MAY EXPERIENCE MINOR GLITCHES. REPORT ERRORS TO SUPPORT@STORELINK.NG";
+const announcement = "🚀 WE ARE UPGRADING: STORELINK MOBILE APP IN DEVELOPMENT AND THE REAL GAME CHANGER IS COMING. WE WILL BE BACK SOON";
   return (
     <header className="sticky top-0 z-50">
       <div className="bg-black text-white py-2.5 overflow-hidden border-b border-gray-800 flex relative z-[60]">
@@ -38,17 +38,9 @@ const announcement = "🚀 WE ARE UPGRADING: STORELINK MOBILE APP IN DEVELOPMENT
                 <Tag size={16} /> Pricing
               </Link>
 
-              <Link href="/wallet" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100">
-                <Wallet size={16} /> My Wallet
-              </Link>
-
-              <Link href="/login" className="text-sm font-bold text-gray-600 hover:text-gray-900 transition flex items-center gap-2">
-                <User size={16} /> Login
-              </Link>
               
-              <Link href="/signup" className="flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200">
-                Start Selling <ArrowRight size={14} />
-              </Link>
+
+              
           </div>
 
           <div className="flex items-center gap-4 md:hidden">
@@ -80,31 +72,10 @@ const announcement = "🚀 WE ARE UPGRADING: STORELINK MOBILE APP IN DEVELOPMENT
                   <Tag size={18} /> Plan Pricing
                </Link>
 
-               <Link 
-                  href="/wallet" 
-                  className="flex items-center gap-3 p-3 rounded-xl bg-emerald-50 text-emerald-700 text-sm font-bold border border-emerald-100"
-                  onClick={() => setIsMenuOpen(false)}
-               >
-                  <Wallet size={18} /> My Empire Wallet
-               </Link>
-
-               <Link 
-                  href="/login" 
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-sm font-bold text-gray-700"
-                  onClick={() => setIsMenuOpen(false)}
-               >
-                  <User size={18} /> Vendor Login
-               </Link>
-
-               <div className="h-px bg-gray-100 my-2"></div>
                
-               <Link 
-                  href="/signup" 
-                  className="block w-full py-4 bg-gray-900 text-white rounded-xl text-sm font-bold text-center shadow-md"
-                  onClick={() => setIsMenuOpen(false)}
-               >
-                  Create My Store
-               </Link>
+
+                              
+               
              </div>
           </div>
         )}

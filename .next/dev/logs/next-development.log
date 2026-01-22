@@ -1,5 +1,106 @@
-[00:00:05.878] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:06.758] Server  LOG      ✓ Ready in 4.7s
-[00:00:11.261] Server  LOG      ○ Compiling /dashboard ...
-[00:00:26.053] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:02.160] Server  LOG      ✓ Compiled in 263ms
+[00:00:08.318] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:00:09.032] Server  LOG      ✓ Ready in 5s
+[00:00:18.474] Server  ERROR   AuthApiError: Invalid Refresh Token: Refresh Token Not Found
+    at handleError (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:888:11)
+    at async _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:938:9)
+    at async _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:918:18)
+    at async (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:4803:24)
+    at async (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:647:36) {
+  __isAuthError: true,
+  status: 400,
+  code: 'refresh_token_not_found'
+}
+[00:00:18.478] Server  ERROR   AuthApiError: Invalid Refresh Token: Refresh Token Not Found
+    at handleError (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:888:11)
+    at async _handleRequest (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:938:9)
+    at async _request (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:918:18)
+    at async (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:4803:24)
+    at async (C:\Users\Kaelo\store-link\.next\dev\server\edge\chunks\86e94_@supabase_auth-js_dist_module_cb491a12._.js:647:36) {
+  __isAuthError: true,
+  status: 400,
+  code: 'refresh_token_not_found'
+}
+[00:00:21.510] Server  LOG      ○ Compiling / ...
+[00:00:32.189] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:41.615] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:18.837] Server  LOG      ✓ Compiled in 265ms
+[00:01:22.168] Server  LOG      ✓ Compiled in 427ms
+[00:01:27.088] Server  LOG      ✓ Compiled in 212ms
+[00:01:38.974] Server  LOG      ✓ Compiled in 229ms
+[00:01:42.194] Server  LOG      ✓ Compiled in 182ms
+[00:01:42.916] Browser ERROR   ./store-link/components/landing/Navbar.tsx:83:5
+Parsing ecmascript source code failed
+  81 |         )}
+  82 |       </nav>
+> 83 |     </header>
+     |     ^
+  84 |   );
+  85 | }
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./store-link/components/landing/Navbar.tsx [Client Component Browser]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Server Component]
+    ./store-link/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./store-link/components/landing/Navbar.tsx [Client Component SSR]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Server Component]
+    ./store-link/app/page.tsx [Server Component]
+[00:01:42.916] Browser ERROR   ./store-link/components/landing/Navbar.tsx:81:10
+Parsing ecmascript source code failed
+  79 |               
+  80 |           </div>
+> 81 |         )}
+     |          ^
+  82 |       </nav>
+  83 |     </header>
+  84 |   );
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./store-link/components/landing/Navbar.tsx [Client Component Browser]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Server Component]
+    ./store-link/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./store-link/components/landing/Navbar.tsx [Client Component SSR]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Server Component]
+    ./store-link/app/page.tsx [Server Component]
+[00:01:42.916] Browser ERROR   ./store-link/components/landing/Navbar.tsx:83:6
+Parsing ecmascript source code failed
+  81 |         )}
+  82 |       </nav>
+> 83 |     </header>
+     |      ^^^^^^^^
+  84 |   );
+  85 | }
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./store-link/components/landing/Navbar.tsx [Client Component Browser]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Client Component Browser]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Server Component]
+    ./store-link/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./store-link/components/landing/Navbar.tsx [Client Component SSR]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Client Component SSR]
+    ./store-link/components/landing/LandingPageWrapper.tsx [Server Component]
+    ./store-link/app/page.tsx [Server Component]
+[00:01:43.840] Server  LOG      ✓ Compiled in 184ms
+[00:01:49.103] Server  LOG      ✓ Compiled in 147ms
+[00:01:55.424] Server  LOG      ✓ Compiled in 222ms
+[00:02:15.593] Server  LOG      ✓ Compiled in 339ms
+[00:02:34.910] Server  LOG      ✓ Compiled in 191ms
+[00:02:53.190] Server  LOG      ✓ Compiled in 165ms

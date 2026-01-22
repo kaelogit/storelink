@@ -11,11 +11,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_module
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$dashboard$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutDashboard$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/layout-dashboard.js [app-ssr] (ecmascript) <export default as LayoutDashboard>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/menu.js [app-ssr] (ecmascript) <export default as Menu>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/x.js [app-ssr] (ecmascript) <export default as X>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-ssr] (ecmascript) <export default as ArrowRight>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/user.js [app-ssr] (ecmascript) <export default as User>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/shopping-bag.js [app-ssr] (ecmascript) <export default as ShoppingBag>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/sparkles.js [app-ssr] (ecmascript) <export default as Sparkles>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/wallet.js [app-ssr] (ecmascript) <export default as Wallet>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$tag$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Tag$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/tag.js [app-ssr] (ecmascript) <export default as Tag>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 "use client";
@@ -25,7 +22,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_module
 ;
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const announcement = "STORELINK: THE FUTURE OF ECOMMERCE IN NIGERIA - LAUNCHING SOON";
+    const announcement = "🚀 WE ARE UPGRADING: STORELINK MOBILE APP IN DEVELOPMENT AND THE REAL GAME CHANGER IS COMING. WE WILL BE BACK SOON";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
         className: "sticky top-0 z-50",
         children: [
@@ -43,24 +40,24 @@ function Navbar() {
                                     className: "text-emerald-400"
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                    lineNumber: 18,
+                                    lineNumber: 17,
                                     columnNumber: 15
                                 }, this),
                                 announcement
                             ]
                         }, i, true, {
                             fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                            lineNumber: 17,
+                            lineNumber: 16,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                    lineNumber: 15,
+                    lineNumber: 14,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                lineNumber: 14,
+                lineNumber: 13,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -78,7 +75,7 @@ function Navbar() {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 29,
+                                        lineNumber: 28,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -86,13 +83,13 @@ function Navbar() {
                                         children: "StoreLink"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 30,
+                                        lineNumber: 29,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                lineNumber: 28,
+                                lineNumber: 27,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -106,14 +103,14 @@ function Navbar() {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                                lineNumber: 35,
+                                                lineNumber: 34,
                                                 columnNumber: 17
                                             }, this),
                                             " Marketplace"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 34,
+                                        lineNumber: 33,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -124,74 +121,20 @@ function Navbar() {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                                lineNumber: 39,
+                                                lineNumber: 38,
                                                 columnNumber: 17
                                             }, this),
                                             " Pricing"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 38,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        href: "/wallet",
-                                        className: "text-sm font-bold text-emerald-600 hover:text-emerald-700 transition flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
-                                                size: 16
-                                            }, void 0, false, {
-                                                fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                                lineNumber: 43,
-                                                columnNumber: 17
-                                            }, this),
-                                            " My Wallet"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 42,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        href: "/login",
-                                        className: "text-sm font-bold text-gray-600 hover:text-gray-900 transition flex items-center gap-2",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
-                                                size: 16
-                                            }, void 0, false, {
-                                                fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                                lineNumber: 47,
-                                                columnNumber: 17
-                                            }, this),
-                                            " Login"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 46,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                        href: "/signup",
-                                        className: "flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200",
-                                        children: [
-                                            "Start Selling ",
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
-                                                size: 14
-                                            }, void 0, false, {
-                                                fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                                lineNumber: 51,
-                                                columnNumber: 31
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 50,
+                                        lineNumber: 37,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                lineNumber: 33,
+                                lineNumber: 32,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -203,29 +146,29 @@ function Navbar() {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 60,
+                                        lineNumber: 51,
                                         columnNumber: 29
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                        lineNumber: 60,
+                                        lineNumber: 51,
                                         columnNumber: 47
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                    lineNumber: 56,
+                                    lineNumber: 47,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                lineNumber: 55,
+                                lineNumber: 46,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                        lineNumber: 26,
+                        lineNumber: 25,
                         columnNumber: 9
                     }, this),
                     isMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -242,14 +185,14 @@ function Navbar() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 64,
                                             columnNumber: 19
                                         }, this),
                                         " Shop Marketplace"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                    lineNumber: 68,
+                                    lineNumber: 59,
                                     columnNumber: 16
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -261,92 +204,37 @@ function Navbar() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                            lineNumber: 81,
+                                            lineNumber: 72,
                                             columnNumber: 19
                                         }, this),
                                         " Plan Pricing"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                    lineNumber: 76,
-                                    columnNumber: 16
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "/wallet",
-                                    className: "flex items-center gap-3 p-3 rounded-xl bg-emerald-50 text-emerald-700 text-sm font-bold border border-emerald-100",
-                                    onClick: ()=>setIsMenuOpen(false),
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wallet$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Wallet$3e$__["Wallet"], {
-                                            size: 18
-                                        }, void 0, false, {
-                                            fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                            lineNumber: 89,
-                                            columnNumber: 19
-                                        }, this),
-                                        " My Empire Wallet"
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                    lineNumber: 84,
-                                    columnNumber: 16
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "/login",
-                                    className: "flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-sm font-bold text-gray-700",
-                                    onClick: ()=>setIsMenuOpen(false),
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
-                                            size: 18
-                                        }, void 0, false, {
-                                            fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                            lineNumber: 97,
-                                            columnNumber: 19
-                                        }, this),
-                                        " Vendor Login"
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                    lineNumber: 92,
-                                    columnNumber: 16
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "h-px bg-gray-100 my-2"
-                                }, void 0, false, {
-                                    fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                    lineNumber: 100,
-                                    columnNumber: 16
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "/signup",
-                                    className: "block w-full py-4 bg-gray-900 text-white rounded-xl text-sm font-bold text-center shadow-md",
-                                    onClick: ()=>setIsMenuOpen(false),
-                                    children: "Create My Store"
-                                }, void 0, false, {
-                                    fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                                    lineNumber: 102,
+                                    lineNumber: 67,
                                     columnNumber: 16
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                            lineNumber: 67,
+                            lineNumber: 58,
                             columnNumber: 14
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                        lineNumber: 66,
+                        lineNumber: 57,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/store-link/components/landing/Navbar.tsx",
-                lineNumber: 25,
+                lineNumber: 24,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/store-link/components/landing/Navbar.tsx",
-        lineNumber: 13,
+        lineNumber: 12,
         columnNumber: 5
     }, this);
 }
@@ -361,7 +249,6 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/store-link/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/trending-up.js [app-ssr] (ecmascript) <export default as TrendingUp>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$store$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Store$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/store.js [app-ssr] (ecmascript) <export default as Store>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/search.js [app-ssr] (ecmascript) <export default as Search>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$bag$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingBag$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/shopping-bag.js [app-ssr] (ecmascript) <export default as ShoppingBag>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/circle-check-big.js [app-ssr] (ecmascript) <export default as CheckCircle>");
@@ -480,45 +367,25 @@ function Hero() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/signup",
-                                            className: "w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-xl font-bold text-lg hover:bg-gray-800 transition shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$store$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Store$3e$__["Store"], {
-                                                    className: "w-5 h-5"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                    lineNumber: 40,
-                                                    columnNumber: 19
-                                                }, this),
-                                                " Create My Store"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                            lineNumber: 39,
-                                            columnNumber: 16
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/marketplace",
-                                            className: "w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold text-lg hover:bg-gray-50 transition flex items-center justify-center gap-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
-                                                    className: "w-5 h-5"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                    lineNumber: 43,
-                                                    columnNumber: 19
-                                                }, this),
-                                                " Explore Marketplace"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                            lineNumber: 42,
-                                            columnNumber: 16
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/marketplace",
+                                        className: "w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold text-lg hover:bg-gray-50 transition flex items-center justify-center gap-2",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
+                                                className: "w-5 h-5"
+                                            }, void 0, false, {
+                                                fileName: "[project]/store-link/components/landing/Hero.tsx",
+                                                lineNumber: 41,
+                                                columnNumber: 19
+                                            }, this),
+                                            " Explore Marketplace"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/store-link/components/landing/Hero.tsx",
+                                        lineNumber: 40,
+                                        columnNumber: 16
+                                    }, this)
+                                }, void 0, false, {
                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
                                     lineNumber: 38,
                                     columnNumber: 13
@@ -536,7 +403,7 @@ function Hero() {
                                                         fill: "currentColor"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 50,
+                                                        lineNumber: 48,
                                                         columnNumber: 57
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
@@ -544,7 +411,7 @@ function Hero() {
                                                         fill: "currentColor"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 50,
+                                                        lineNumber: 48,
                                                         columnNumber: 94
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
@@ -552,7 +419,7 @@ function Hero() {
                                                         fill: "currentColor"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 50,
+                                                        lineNumber: 48,
                                                         columnNumber: 131
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
@@ -560,7 +427,7 @@ function Hero() {
                                                         fill: "currentColor"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 50,
+                                                        lineNumber: 48,
                                                         columnNumber: 168
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$star$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Star$3e$__["Star"], {
@@ -568,31 +435,31 @@ function Hero() {
                                                         fill: "currentColor"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 50,
+                                                        lineNumber: 48,
                                                         columnNumber: 205
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                lineNumber: 50,
+                                                lineNumber: 48,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Trusted by 5000+ Vendors"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                lineNumber: 51,
+                                                lineNumber: 49,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                        lineNumber: 49,
+                                        lineNumber: 47,
                                         columnNumber: 16
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                    lineNumber: 47,
+                                    lineNumber: 45,
                                     columnNumber: 13
                                 }, this)
                             ]
@@ -614,12 +481,12 @@ function Hero() {
                                                 children: "storelink.ng/lemar-essential"
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                lineNumber: 61,
+                                                lineNumber: 59,
                                                 columnNumber: 20
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                            lineNumber: 60,
+                                            lineNumber: 58,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -632,7 +499,7 @@ function Hero() {
                                                             size: 14
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                            lineNumber: 67,
+                                                            lineNumber: 65,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -640,13 +507,13 @@ function Hero() {
                                                             children: "Search Your Essentials..."
                                                         }, void 0, false, {
                                                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                            lineNumber: 68,
+                                                            lineNumber: 66,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                    lineNumber: 66,
+                                                    lineNumber: 64,
                                                     columnNumber: 20
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -659,7 +526,7 @@ function Hero() {
                                                                 children: "L"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                lineNumber: 73,
+                                                                lineNumber: 71,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -669,7 +536,7 @@ function Hero() {
                                                                         children: "Lemar Essential"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                        lineNumber: 75,
+                                                                        lineNumber: 73,
                                                                         columnNumber: 28
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -677,24 +544,24 @@ function Hero() {
                                                                         children: "Lagos • Luxury Wears"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                        lineNumber: 76,
+                                                                        lineNumber: 74,
                                                                         columnNumber: 28
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                lineNumber: 74,
+                                                                lineNumber: 72,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 72,
+                                                        lineNumber: 70,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                    lineNumber: 71,
+                                                    lineNumber: 69,
                                                     columnNumber: 20
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -711,12 +578,12 @@ function Hero() {
                                                                         className: "object-cover w-full h-full"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                        lineNumber: 84,
+                                                                        lineNumber: 82,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 83,
+                                                                    lineNumber: 81,
                                                                     columnNumber: 26
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -724,7 +591,7 @@ function Hero() {
                                                                     children: "Nike Air Jordan 1"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 86,
+                                                                    lineNumber: 84,
                                                                     columnNumber: 26
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -732,13 +599,13 @@ function Hero() {
                                                                     children: "₦85,000"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 87,
+                                                                    lineNumber: 85,
                                                                     columnNumber: 26
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                            lineNumber: 82,
+                                                            lineNumber: 80,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -752,12 +619,12 @@ function Hero() {
                                                                         className: "object-cover w-full h-full"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                        lineNumber: 92,
+                                                                        lineNumber: 90,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 91,
+                                                                    lineNumber: 89,
                                                                     columnNumber: 26
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -765,7 +632,7 @@ function Hero() {
                                                                     children: "Gucci"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 94,
+                                                                    lineNumber: 92,
                                                                     columnNumber: 26
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -773,13 +640,13 @@ function Hero() {
                                                                     children: "₦120,000"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 95,
+                                                                    lineNumber: 93,
                                                                     columnNumber: 26
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                            lineNumber: 90,
+                                                            lineNumber: 88,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -793,12 +660,12 @@ function Hero() {
                                                                         className: "object-cover w-full h-full"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                        lineNumber: 100,
+                                                                        lineNumber: 98,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 99,
+                                                                    lineNumber: 97,
                                                                     columnNumber: 26
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -806,7 +673,7 @@ function Hero() {
                                                                     children: "Rayban"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 102,
+                                                                    lineNumber: 100,
                                                                     columnNumber: 26
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -814,13 +681,13 @@ function Hero() {
                                                                     children: "₦95,000"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 103,
+                                                                    lineNumber: 101,
                                                                     columnNumber: 26
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                            lineNumber: 98,
+                                                            lineNumber: 96,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -834,12 +701,12 @@ function Hero() {
                                                                         className: "object-cover w-full h-full"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                        lineNumber: 108,
+                                                                        lineNumber: 106,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 107,
+                                                                    lineNumber: 105,
                                                                     columnNumber: 26
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -847,7 +714,7 @@ function Hero() {
                                                                     children: "Kid wears"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 110,
+                                                                    lineNumber: 108,
                                                                     columnNumber: 26
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -855,19 +722,19 @@ function Hero() {
                                                                     children: "₦60,000"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                                    lineNumber: 111,
+                                                                    lineNumber: 109,
                                                                     columnNumber: 26
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                            lineNumber: 106,
+                                                            lineNumber: 104,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                    lineNumber: 81,
+                                                    lineNumber: 79,
                                                     columnNumber: 20
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -876,24 +743,24 @@ function Hero() {
                                                         size: 18
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 116,
+                                                        lineNumber: 114,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                    lineNumber: 115,
+                                                    lineNumber: 113,
                                                     columnNumber: 20
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                            lineNumber: 64,
+                                            lineNumber: 62,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                    lineNumber: 58,
+                                    lineNumber: 56,
                                     columnNumber: 14
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -907,12 +774,12 @@ function Hero() {
                                                     className: "w-[18px] h-[18px] md:w-5 md:h-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                    lineNumber: 124,
+                                                    lineNumber: 122,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                lineNumber: 123,
+                                                lineNumber: 121,
                                                 columnNumber: 20
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -922,7 +789,7 @@ function Hero() {
                                                         children: "New Order"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 127,
+                                                        lineNumber: 125,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -930,30 +797,30 @@ function Hero() {
                                                         children: "₦25,000.00"
                                                     }, void 0, false, {
                                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                        lineNumber: 128,
+                                                        lineNumber: 126,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                                lineNumber: 126,
+                                                lineNumber: 124,
                                                 columnNumber: 20
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                        lineNumber: 122,
+                                        lineNumber: 120,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/store-link/components/landing/Hero.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 119,
                                     columnNumber: 14
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/store-link/components/landing/Hero.tsx",
-                            lineNumber: 56,
+                            lineNumber: 54,
                             columnNumber: 11
                         }, this)
                     ]
@@ -1819,7 +1686,8 @@ function Marketplace({ products, stores, onAddToCart }) {
                                             src: product.image_urls?.[0] || "",
                                             alt: "",
                                             fill: true,
-                                            className: "object-cover group-hover:scale-110 transition-transform duration-700"
+                                            className: "object-cover group-hover:scale-110 transition-transform duration-700",
+                                            unoptimized: true
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Marketplace.tsx",
                                             lineNumber: 103,
@@ -2028,7 +1896,8 @@ function Marketplace({ products, stores, onAddToCart }) {
                                         src: store.logo_url,
                                         alt: "",
                                         fill: true,
-                                        className: "object-cover group-hover:scale-110 transition duration-500"
+                                        className: "object-cover group-hover:scale-110 transition duration-500",
+                                        unoptimized: true
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Marketplace.tsx",
                                         lineNumber: 166,
@@ -2352,7 +2221,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_module
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$instagram$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Instagram$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/instagram.js [app-ssr] (ecmascript) <export default as Instagram>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$linkedin$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Linkedin$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/linkedin.js [app-ssr] (ecmascript) <export default as Linkedin>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$dashboard$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutDashboard$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/layout-dashboard.js [app-ssr] (ecmascript) <export default as LayoutDashboard>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$coins$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Coins$3e$__ = __turbopack_context__.i("[project]/store-link/node_modules/lucide-react/dist/esm/icons/coins.js [app-ssr] (ecmascript) <export default as Coins>");
 "use client";
 ;
 ;
@@ -2433,79 +2301,22 @@ function Footer() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
                                 className: "space-y-3 text-sm text-gray-400 font-medium",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/login",
-                                            className: "hover:text-white transition",
-                                            children: "Vendor Login"
-                                        }, void 0, false, {
-                                            fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 39,
-                                            columnNumber: 18
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 39,
-                                        columnNumber: 14
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/signup",
-                                            className: "hover:text-white transition",
-                                            children: "Start Selling"
-                                        }, void 0, false, {
-                                            fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 40,
-                                            columnNumber: 18
-                                        }, this)
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "/marketplace",
+                                        className: "hover:text-white transition",
+                                        children: "Marketplace"
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
                                         lineNumber: 40,
-                                        columnNumber: 14
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/marketplace",
-                                            className: "hover:text-white transition",
-                                            children: "Marketplace"
-                                        }, void 0, false, {
-                                            fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 41,
-                                            columnNumber: 18
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 41,
-                                        columnNumber: 14
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/empire-coins",
-                                            className: "hover:text-amber-500 transition flex items-center gap-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$coins$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Coins$3e$__["Coins"], {
-                                                    size: 14,
-                                                    className: "text-amber-500"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                                    lineNumber: 44,
-                                                    columnNumber: 18
-                                                }, this),
-                                                " Empire Coins"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 43,
-                                            columnNumber: 16
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 42,
-                                        columnNumber: 14
+                                        columnNumber: 18
                                     }, this)
-                                ]
-                            }, void 0, true, {
+                                }, void 0, false, {
+                                    fileName: "[project]/store-link/components/landing/Footer.tsx",
+                                    lineNumber: 40,
+                                    columnNumber: 14
+                                }, this)
+                            }, void 0, false, {
                                 fileName: "[project]/store-link/components/landing/Footer.tsx",
                                 lineNumber: 38,
                                 columnNumber: 12
@@ -2524,7 +2335,7 @@ function Footer() {
                                 children: "Support"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                lineNumber: 51,
+                                lineNumber: 46,
                                 columnNumber: 12
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2537,12 +2348,12 @@ function Footer() {
                                             children: "Report Vendor"
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 53,
+                                            lineNumber: 48,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 53,
+                                        lineNumber: 48,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2552,12 +2363,12 @@ function Footer() {
                                             children: "Safety Tips"
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 54,
+                                            lineNumber: 49,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 54,
+                                        lineNumber: 49,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2567,12 +2378,12 @@ function Footer() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 55,
+                                            lineNumber: 50,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 55,
+                                        lineNumber: 50,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2582,24 +2393,24 @@ function Footer() {
                                             children: "FAQ"
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 56,
+                                            lineNumber: 51,
                                             columnNumber: 18
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 56,
+                                        lineNumber: 51,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                lineNumber: 52,
+                                lineNumber: 47,
                                 columnNumber: 12
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                        lineNumber: 50,
+                        lineNumber: 45,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2610,7 +2421,7 @@ function Footer() {
                                 children: "Follow Us"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                lineNumber: 61,
+                                lineNumber: 56,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2623,12 +2434,12 @@ function Footer() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 63,
+                                            lineNumber: 58,
                                             columnNumber: 159
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 63,
+                                        lineNumber: 58,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2638,12 +2449,12 @@ function Footer() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 64,
+                                            lineNumber: 59,
                                             columnNumber: 193
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 64,
+                                        lineNumber: 59,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2653,12 +2464,12 @@ function Footer() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 65,
+                                            lineNumber: 60,
                                             columnNumber: 156
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 65,
+                                        lineNumber: 60,
                                         columnNumber: 14
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2669,24 +2480,24 @@ function Footer() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                            lineNumber: 68,
+                                            lineNumber: 63,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                        lineNumber: 67,
+                                        lineNumber: 62,
                                         columnNumber: 14
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                lineNumber: 62,
+                                lineNumber: 57,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                        lineNumber: 60,
+                        lineNumber: 55,
                         columnNumber: 9
                     }, this)
                 ]
@@ -2702,7 +2513,7 @@ function Footer() {
                         children: "© 2025 StoreLink Inc. Lagos, Nigeria."
                     }, void 0, false, {
                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                        lineNumber: 76,
+                        lineNumber: 71,
                         columnNumber: 10
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2714,7 +2525,7 @@ function Footer() {
                                 children: "About Us"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                lineNumber: 78,
+                                lineNumber: 73,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2723,7 +2534,7 @@ function Footer() {
                                 children: "Privacy Policy"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                lineNumber: 79,
+                                lineNumber: 74,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$store$2d$link$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2732,19 +2543,19 @@ function Footer() {
                                 children: "Terms of Service"
                             }, void 0, false, {
                                 fileName: "[project]/store-link/components/landing/Footer.tsx",
-                                lineNumber: 80,
+                                lineNumber: 75,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/store-link/components/landing/Footer.tsx",
-                        lineNumber: 77,
+                        lineNumber: 72,
                         columnNumber: 10
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/store-link/components/landing/Footer.tsx",
-                lineNumber: 75,
+                lineNumber: 70,
                 columnNumber: 7
             }, this)
         ]

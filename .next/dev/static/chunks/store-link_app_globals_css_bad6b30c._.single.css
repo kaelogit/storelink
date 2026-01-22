@@ -4497,9 +4497,9 @@
     letter-spacing: .25em;
   }
 
-  .tracking-\[8px\] {
-    --tw-tracking: 8px;
-    letter-spacing: 8px;
+  .tracking-\[12px\] {
+    --tw-tracking: 12px;
+    letter-spacing: 12px;
   }
 
   .tracking-normal {
@@ -5969,13 +5969,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:-translate-y-0\.5:hover {
-      --tw-translate-y: calc(var(--spacing) * -.5);
-      translate: var(--tw-translate-x) var(--tw-translate-y);
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:-translate-y-1:hover {
       --tw-translate-y: calc(var(--spacing) * -1);
       translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -6481,12 +6474,6 @@
   @media (hover: hover) {
     .hover\:text-emerald-600:hover {
       color: var(--color-emerald-600);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:text-emerald-700:hover {
-      color: var(--color-emerald-700);
     }
   }
 
@@ -8246,13 +8233,6 @@
     .md\:leading-none {
       --tw-leading: 1;
       line-height: 1;
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .md\:tracking-\[12px\] {
-      --tw-tracking: 12px;
-      letter-spacing: 12px;
     }
   }
 

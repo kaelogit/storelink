@@ -36,9 +36,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
-               <Link href="/signup" className="w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-xl font-bold text-lg hover:bg-gray-800 transition shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
-                  <Store className="w-5 h-5" /> Create My Store
-               </Link>
+            
                <Link href="/marketplace" className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold text-lg hover:bg-gray-50 transition flex items-center justify-center gap-2">
                   <TrendingUp className="w-5 h-5" /> Explore Marketplace
                </Link>
