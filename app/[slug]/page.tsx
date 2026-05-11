@@ -10,6 +10,7 @@ import {
   profileRowToLegacyStoreShape,
   type ProfileStorefrontRow,
 } from "@/lib/profileAsStorefront";
+import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
 
 export const dynamic = "force-dynamic";
 
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     legacyStore?.cover_image_url ||
     legacyStore?.logo_url ||
     profile?.logo_url ||
-    "https://storelink.ng/og-image.png";
+    storefrontAbsolutePath("/og-image.png");
 
   return {
     title: name,
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: name,
       description,
-      url: `https://storelink.ng/${slug}`,
+      url: storefrontAbsolutePath(`/${slug}`),
       siteName: "StoreLink",
       images: [{ url: ogImage, width: 1200, height: 630, alt: name }],
       locale: "en_NG",

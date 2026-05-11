@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
             
             <div style="background: linear-gradient(180deg, #10b981 0%, #0a0a0a 100%); padding: 50px 40px; text-align: left;">
               <h1 style="font-size: 32px; font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: -1px;">${name} is now Live.</h1>
-              <p style="color: rgba(255,255,255,0.7); font-size: 16px; margin-top: 10px;">Your storefront is active at <span style="color: #fff; font-weight: bold;">storelink.ng/${slug}</span></p>
+              <p style="color: rgba(255,255,255,0.7); font-size: 16px; margin-top: 10px;">Your storefront is active at <span style="color: #fff; font-weight: bold;">${storefrontAbsolutePath(`/${slug}`).replace(/^https?:\/\//, "")}</span></p>
             </div>
 
             <div style="padding: 40px; text-align: left;">
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
                 <p style="margin: 5px 0 0; color: #888; font-size: 13px; line-height: 1.5;">Add your StoreLink to your social bios and link-in-bio. Buyers can checkout in-app without you rebuilding a website.</p>
               </div>
 
-              <a href="https://storelink.ng/dashboard" style="display: block; background: #fff; color: #000; text-align: center; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Open Store Dashboard</a>
+              <a href="${storefrontAbsolutePath("/dashboard")}" style="display: block; background: #fff; color: #000; text-align: center; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Open Store Dashboard</a>
             </div>
 
             <div style="padding: 30px; border-top: 1px solid #1a1a1a; background: #070707;">

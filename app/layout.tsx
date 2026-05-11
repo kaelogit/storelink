@@ -1,9 +1,10 @@
-import { Metadata, Viewport } from "next"; 
+import { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import GlobalCartSidebar from "@/components/shared/GlobalCartSidebar";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { storefrontAbsolutePath, storefrontSiteBase } from "@/lib/storefrontPublicUrl";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,8 +15,10 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+const siteBase = storefrontSiteBase();
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://storelink.ng'), 
+  metadataBase: new URL(siteBase),
   title: {
     default: "StoreLink | The Engine for Naija Hustle",
     template: "%s | StoreLink", 
@@ -51,14 +54,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "StoreLink | The Engine for Naija Hustle",
     description: "Empowering Nigerian vendors to own storefronts, sell with confidence, and grow beyond their personal contacts.",
-    url: 'https://storelink.ng',
+    url: siteBase,
     siteName: "StoreLink",
     locale: "en_NG",
     type: "website",
     images: [
       {
         // Absolute URL so social crawlers resolve OG images on all routes
-        url: 'https://storelink.ng/og-image.jpg', 
+        url: storefrontAbsolutePath("/og-image.jpg"),
         width: 1200,
         height: 630,
         alt: "StoreLink - Storefront Growth Infrastructure",
@@ -70,7 +73,7 @@ export const metadata: Metadata = {
     title: "StoreLink | The Engine for Naija Hustle",
     description: "The professional way to own your storefront and scale digitally.",
     creator: '@kaelodev', 
-    images: ['https://storelink.ng/og-image.jpg'],
+    images: [storefrontAbsolutePath("/og-image.jpg")],
   },
   verification: {
     google: 'R8d8mi7fxJ-XZ0yvJ0brHnx6cZZqo78BI1iGl-sDVcY'
@@ -88,8 +91,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "StoreLink",
-    "url": "https://storelink.ng",
-    "logo": "https://storelink.ng/icon.png",
+    "url": siteBase,
+    "logo": storefrontAbsolutePath("/icon.png"),
     "description": "Storefront growth infrastructure for Nigerian vendors.",
     "contactPoint": {
       "@type": "ContactPoint",

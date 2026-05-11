@@ -13,11 +13,11 @@ const faqs = [
   },
   {
     question: "Who can find my store on Storelink?",
-    answer: "Two ways: First, through your unique link (storelink.ng/yourbrand) which you share on your Bio or Status. Second, through our Central Marketplace where thousands of shoppers search for products daily."
+    answer: "Two ways: First, through your unique link (storelink.ng/sell/yourbrand) which you share on your Bio or Status. Second, through our Central Marketplace where thousands of shoppers search for products daily."
   },
   {
     question: "Do I have to pay for a domain name?",
-    answer: "No. Your professional Storelink storefront link is completely free. You get a branded 'storelink.ng/yourbrand' address to share with your customers instantly."
+    answer: "No. Your professional Storelink storefront link is completely free. You get a branded 'storelink.ng/sell/yourbrand' address to share with your customers instantly."
   },
   {
     question: "How do I get paid by customers?",

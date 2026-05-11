@@ -11,6 +11,7 @@ import {
   fetchMergedStoreRowsForSellerIds,
 } from "@/lib/storefrontCatalogMerge";
 import { fetchMarketplaceOnboardingCategories } from "@/lib/marketplaceOnboardingCategories";
+import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
 
 export const metadata: Metadata = {
   title: "Full Marketplace | Shop StoreLink",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: "Full Marketplace | Shop StoreLink",
     description: "Browse verified vendors, discover new products, and shop the heart of the StoreLink economy.",
     images: ["/og-image.png"],
-    url: "https://storelink.ng/marketplace",
+    url: storefrontAbsolutePath("/marketplace"),
   },
 };
 

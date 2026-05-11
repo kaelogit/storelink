@@ -1,18 +1,19 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
+import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/dashboard', '/admin', '/api', '/onboarding', '/update-password'],
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/dashboard", "/admin", "/api", "/onboarding", "/update-password"],
       },
       {
-        userAgent: ['Twitterbot', 'facebookexternalhit', 'WhatsApp'],
-        allow: '/',
-      }
+        userAgent: ["Twitterbot", "facebookexternalhit", "WhatsApp"],
+        allow: "/",
+      },
     ],
-    sitemap: 'https://storelink.ng/sitemap.xml',
-  }
+    sitemap: storefrontAbsolutePath("/sitemap.xml"),
+  };
 }

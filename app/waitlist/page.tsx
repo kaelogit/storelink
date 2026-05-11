@@ -19,6 +19,7 @@ import {
   PartyPopper
 } from "lucide-react";
 import Link from "next/link";
+import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
 
 // Wrapper component to handle search params
 function WaitlistContent() {
@@ -72,7 +73,7 @@ function WaitlistContent() {
   };
 
   if (submitted) {
-    const shareUrl = `https://storelink.ng/waitlist?ref=${myReferralCode}`;
+    const shareUrl = `${storefrontAbsolutePath("/waitlist")}?ref=${encodeURIComponent(myReferralCode)}`;
 
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center animate-in fade-in zoom-in duration-700">

@@ -526,7 +526,7 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                         <p className="text-[9px] font-bold text-gray-400 uppercase animate-pulse">Checking link availability...</p>
                       )}
                       {slugStatus === "available" && (
-                        <p className="text-[9px] font-bold text-emerald-600 uppercase">✅ URL Available: storelink.ng/{formData.slug}</p>
+                        <p className="text-[9px] font-bold text-emerald-600 uppercase">✅ URL Available: storelink.ng/sell/{formData.slug}</p>
                       )}
                       {slugStatus === "taken" && (
                         <p className="text-[9px] font-black text-red-500 uppercase">

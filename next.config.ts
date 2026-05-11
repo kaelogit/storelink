@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /** Mounted at https://storelink.ng/sell via storelink-web edge rewrite (STOREFRONT_ORIGIN). */
+  basePath: "/sell",
   async redirects() {
     return [
       { source: "/empire-coins", destination: "/store-coins", permanent: true },

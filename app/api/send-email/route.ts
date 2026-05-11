@@ -1,5 +1,6 @@
-import { Resend } from 'resend';
-import { NextResponse } from 'next/server';
+import { Resend } from "resend";
+import { NextResponse } from "next/server";
+import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -66,7 +67,7 @@ export async function POST(request: Request) {
       
       customContent = `
         <div style="text-align:center; margin-bottom: 30px;">
-          <a href="https://storelink.ng/dashboard" style="display: inline-block; background:#10b981; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:bold; text-transform:uppercase; font-size:12px;">Enter My Dashboard</a>
+          <a href="${storefrontAbsolutePath("/dashboard")}" style="display: inline-block; background:#10b981; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:bold; text-transform:uppercase; font-size:12px;">Enter My Dashboard</a>
         </div>
         
         <div style="background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 20px; padding: 24px; text-align: left;">
@@ -90,7 +91,7 @@ export async function POST(request: Request) {
       description = `Your warehouse currently has ${data?.count || 0} products. Data shows that founders with <strong>15+ products</strong> generate 3x more revenue. A full store builds instant trust. Stock up today to dominate your niche.`;
       customContent = `
         <div style="text-align: center;">
-          <a href="https://storelink.ng/dashboard" style="display: inline-block; background-color: #10b981; color: #ffffff; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Upload Products</a>
+          <a href="${storefrontAbsolutePath("/dashboard")}" style="display: inline-block; background-color: #10b981; color: #ffffff; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Upload Products</a>
         </div>
       `;
     }
@@ -104,28 +105,7 @@ export async function POST(request: Request) {
       mainColor = isUrgent ? '#ef4444' : '#f59e0b';
       customContent = `
         <div style="text-align: center;">
-          <a href="https://storelink.ng/dashboard/subscription" style="display: inline-block; background-color: ${mainColor}; color: #ffffff; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Renew My Access</a>
-        </div>
-      `;
-    }
-
-    else if (type === 'WELCOME_DAY_1') {
-      subject = `🏰 Welcome to the Inner Circle, Founder!`;
-      title = "YOU ARE LIVE";
-      description = `Your storefront <strong>${data.storeName}</strong> is live on StoreLink. 
-      <br/><br/>
-      <strong>The workflow:</strong> You share your link, buyers checkout in-app, and you fulfill with a clean order record. Simple. Professional. Scalable.`;
-      
-      customContent = `
-        <div style="text-align:center; margin-bottom: 30px;">
-          <a href="https://storelink.ng/dashboard" style="display: inline-block; background:#10b981; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:bold; text-transform:uppercase; font-size:12px;">Enter My Dashboard</a>
-        </div>
-        
-        <div style="background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 20px; padding: 24px; text-align: left;">
-          <p style="margin: 0 0 10px 0; font-size: 10px; font-weight: 800; color: #b45309; text-transform: uppercase; letter-spacing: 0.1em;">🛡️ SECURE YOUR SALE ALERTS</p>
-          <p style="margin: 0; font-size: 13px; color: #92400e; line-height: 1.5; font-weight: 500;">
-            To ensure you receive your <strong>Sale Manifests</strong> and <strong>Growth Tips</strong>, please mark this email as <strong>"Not Spam"</strong> or drag it to your <strong>Primary Inbox</strong>. This tells your email provider that you are a serious Founder.
-          </p>
+          <a href="${storefrontAbsolutePath("/dashboard/subscription")}" style="display: inline-block; background-color: ${mainColor}; color: #ffffff; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;">Renew My Access</a>
         </div>
       `;
     }
@@ -134,28 +114,28 @@ export async function POST(request: Request) {
       subject = "⚡ The Power of the Flash Drop";
       title = "CREATE A SURGE";
       description = `Ever want to clear stock in minutes? The <strong>Flash Drop</strong> feature creates an automated countdown on your store. It forces customers to act NOW. Use it for weekend sales or limited arrivals.`;
-      customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard" style="display: inline-block; background:#ef4444; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Setup My First Drop using the flash icon in dashboard</a></div>`;
+      customContent = `<div style="text-align:center;"><a href="${storefrontAbsolutePath("/dashboard")}" style="display: inline-block; background:#ef4444; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Setup My First Drop using the flash icon in dashboard</a></div>`;
     }
 
     else if (type === 'WELCOME_DAY_7') {
       subject = "🪙 The Store Coin advantage";
       title = "REWARD YOUR LOYALS";
       description = `StoreLink isn't just a link; it's an ecosystem. When customers buy from the marketplace, they earn <strong>Store Coins</strong>. They can spend those coins as discounts in YOUR store—bringing repeat buyers back to you.`;
-      customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard/loyalty" style="display: inline-block; background:#f59e0b; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Check Loyalty Settings</a></div>`;
+      customContent = `<div style="text-align:center;"><a href="${storefrontAbsolutePath("/dashboard/loyalty")}" style="display: inline-block; background:#f59e0b; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Check Loyalty Settings</a></div>`;
     }
 
     else if (type === 'WELCOME_DAY_10') {
       subject = "💎 Why the Greats go Diamond";
       title = "SCALE YOUR STOREFRONT";
       description = `The <strong>Diamond Plan</strong> is designed for the top 1% of vendors. You get priority placement in the Marketplace, access to <strong>AI Background Removal</strong>, and the ability to verify your store with the <strong>"Diamond Badge."</strong> Don't just sell—dominate.`;
-      customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard/subscription" style="display: inline-block; background:#111827; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">See Diamond Benefits</a></div>`;
+      customContent = `<div style="text-align:center;"><a href="${storefrontAbsolutePath("/dashboard/subscription")}" style="display: inline-block; background:#111827; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">See Diamond Benefits</a></div>`;
     }
 
     else if (type === 'WELCOME_DAY_13') {
       subject = "💎 Ready to scale visibility for your storefront?";
       title = "STANDARD IS FREE — DIAMOND BOOSTS YOU";
       description = `Your storefront <strong>${data.storeName}</strong> stays online on Standard at no cost. If you want higher marketplace visibility and Diamond-only tools, you can upgrade anytime—no trial countdown, no forced expiry on your link.`;
-      customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard/subscription" style="display: inline-block; background:#ef4444; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">See Diamond benefits</a></div>`;
+      customContent = `<div style="text-align:center;"><a href="${storefrontAbsolutePath("/dashboard/subscription")}" style="display: inline-block; background:#ef4444; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">See Diamond benefits</a></div>`;
     }
 
     else if (type === 'RESCUE_DAY_14') {
@@ -168,7 +148,7 @@ export async function POST(request: Request) {
       • <strong>Status &amp; Stories:</strong> Share your storefront link where your buyers already scroll.<br/>
       • <strong>TikTok:</strong> Add your link to your profile and mention it in every video.<br/>
       Don't let your storefront sit invisible. Share the link now.`;
-      customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard" style="display: inline-block; background:#111827; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Copy My Link</a></div>`;
+      customContent = `<div style="text-align:center;"><a href="${storefrontAbsolutePath("/dashboard")}" style="display: inline-block; background:#111827; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Copy My Link</a></div>`;
     }
 
     else if (type === 'SUBSCRIBER_PULSE') {
@@ -197,7 +177,7 @@ export async function POST(request: Request) {
       description = randomTip.d;
       customContent = `
         <div style="text-align:center;">
-          <a href="https://storelink.ng/dashboard" style="display: inline-block; background:#111827; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Open My Dashboard</a>
+          <a href="${storefrontAbsolutePath("/dashboard")}" style="display: inline-block; background:#111827; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Open My Dashboard</a>
         </div>
       `;
     }
@@ -228,7 +208,7 @@ export async function POST(request: Request) {
           ${productList}
         </div>
         <div style="text-align: center;">
-           <a href="https://storelink.ng/dashboard/orders" style="display: inline-block; background-color: #111827; color: #ffffff; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">Manage Orders</a>
+           <a href="${storefrontAbsolutePath("/dashboard/orders")}" style="display: inline-block; background-color: #111827; color: #ffffff; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">Manage Orders</a>
         </div>
       `;
     }
