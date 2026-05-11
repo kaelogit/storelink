@@ -60,6 +60,28 @@ export function parseGooglePlace(place: {
   };
 }
 
+/** Set in root `layout` from server env so the key works even when only `GOOGLE_MAPS_API_KEY` is set (not inlined into the client bundle). */
+declare global {
+  interface Window {
+    __STORELINK_GOOGLE_MAPS_KEY__?: string;
+  }
+}
+
+/**
+ * Browser Places key. Prefer runtime value from `layout` (supports `GOOGLE_MAPS_API_KEY` on the server),
+ * then `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` (build-time on client). On the server, `GOOGLE_MAPS_API_KEY` is
+ * also read so SSR matches the client after hydration.
+ */
 export function getGoogleMapsBrowserKey(): string {
-  return (typeof process !== "undefined" && process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY?.trim()) || "";
+  if (typeof window !== "undefined") {
+    const fromWindow = window.__STORELINK_GOOGLE_MAPS_KEY__?.trim();
+    if (fromWindow) return fromWindow;
+  }
+  const nextPublic = typeof process !== "undefined" ? process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY?.trim() : "";
+  if (nextPublic) return nextPublic;
+  if (typeof window === "undefined" && typeof process !== "undefined") {
+    const serverOnly = process.env.GOOGLE_MAPS_API_KEY?.trim();
+    if (serverOnly) return serverOnly;
+  }
+  return "";
 }

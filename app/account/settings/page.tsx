@@ -43,7 +43,6 @@ export default function UnifiedSettingsPage() {
     <div className="space-y-8">
       <div className="rounded-2xl border border-gray-100 bg-white p-5">
         <h1 className="text-2xl font-black text-gray-900 uppercase tracking-tighter">Settings</h1>
-        <p className="text-sm text-gray-500 font-medium mt-2">Edit profile matches the app — cover, Instagram, and TikTok are extra on web.</p>
       </div>
 
       <div className="rounded-2xl border border-gray-100 bg-white p-4">

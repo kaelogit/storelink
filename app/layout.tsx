@@ -17,6 +17,10 @@ export const viewport: Viewport = {
 
 const siteBase = storefrontSiteBase();
 
+/** Same key is fine on both; client bundle only inlines `NEXT_PUBLIC_*`. We also inject from server so `GOOGLE_MAPS_API_KEY` works after redeploy without rebuilding for a new public name. */
+const googleMapsBrowserKey =
+  process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY?.trim() || process.env.GOOGLE_MAPS_API_KEY?.trim() || "";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteBase),
   title: {
@@ -109,6 +113,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {googleMapsBrowserKey ? (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__STORELINK_GOOGLE_MAPS_KEY__=${JSON.stringify(googleMapsBrowserKey)};`,
+            }}
+          />
+        ) : null}
       </head>
       <body className={`${inter.className} antialiased selection:bg-emerald-100 selection:text-emerald-900`}>
         <CartProvider>

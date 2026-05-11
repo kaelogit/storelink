@@ -139,7 +139,7 @@ function LoginContent() {
           {!needsMFA && (
             <>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back!</h1>
-              <p className="text-gray-500 text-sm mb-6">Log in to manage your StoreLink storefront.</p>
+              <p className="text-gray-500 text-sm mb-6">Sign in to shop, track orders, or manage your storefront.</p>
               
               <form onSubmit={handleLogin} className="space-y-4">
                 {error && <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg text-center font-medium">{error}</div>}
@@ -166,7 +166,14 @@ function LoginContent() {
               </form>
 
               <p className="mt-6 text-sm text-gray-500 text-center">
-                New vendor? <Link href={`/signup?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`} className="font-bold text-gray-900 hover:text-emerald-600">Sign up here</Link>
+                New to StoreLink?{" "}
+                <Link
+                  href={`/signup?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`}
+                  className="font-bold text-gray-900 hover:text-emerald-600"
+                >
+                  Sign up
+                </Link>{" "}
+                to shop the marketplace or open a store.
               </p>
             </>
           )}

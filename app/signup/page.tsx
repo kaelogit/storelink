@@ -103,9 +103,11 @@ function SignupContent() {
           </Link>
           
           <h1 className="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tighter leading-none">
-            Start Your <span className="text-emerald-500 italic">Storefront</span>
+            Join <span className="text-emerald-500 italic">StoreLink</span>
           </h1>
-          <p className="text-gray-500 text-sm font-medium mb-8">Create your account and launch in seconds.</p>
+          <p className="text-gray-500 text-sm font-medium mb-8">
+            Create an account to shop and track orders — or tick below to sell from your own storefront.
+          </p>
           
           <form onSubmit={handleSignup} className="space-y-5">
             {error && (
@@ -169,7 +171,7 @@ function SignupContent() {
                 className="h-4 w-4"
               />
               <span className="text-[11px] font-black uppercase tracking-wider text-gray-600">
-                I also want to sell on StoreLink
+                I want to sell from my storefront
               </span>
             </label>
 
