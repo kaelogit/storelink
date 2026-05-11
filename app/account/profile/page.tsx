@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -120,8 +120,18 @@ export default function AccountProfilePage() {
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   const [upgradeBusy, setUpgradeBusy] = useState<string | null>(null);
+  const redirectAfterSaveRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const mapsKey = getGoogleMapsBrowserKey();
+
+  useEffect(() => {
+    return () => {
+      if (redirectAfterSaveRef.current) {
+        clearTimeout(redirectAfterSaveRef.current);
+        redirectAfterSaveRef.current = null;
+      }
+    };
+  }, []);
 
   const effectiveCountryCode = ((profile?.location_country_code ?? "").trim().toUpperCase() || "NG") as string;
   const phonePrefix = getPhonePrefixForCountry(effectiveCountryCode);
@@ -330,6 +340,10 @@ export default function AccountProfilePage() {
     if (!userId) return;
     setSaving(true);
     setMsg(null);
+    if (redirectAfterSaveRef.current) {
+      clearTimeout(redirectAfterSaveRef.current);
+      redirectAfterSaveRef.current = null;
+    }
     try {
       if (!isHandleLocked && normalizeSlug(slug) !== normalizeSlug(profile?.slug || "")) {
         if (slugStatus === "taken") {
@@ -498,7 +512,12 @@ export default function AccountProfilePage() {
             }
           : prev,
       );
-      setMsg("Saved.");
+      setMsg("Changes saved. Redirecting to your dashboard…");
+      if (redirectAfterSaveRef.current) clearTimeout(redirectAfterSaveRef.current);
+      redirectAfterSaveRef.current = setTimeout(() => {
+        redirectAfterSaveRef.current = null;
+        router.push("/dashboard");
+      }, 1600);
     } catch (err: unknown) {
       setMsg(err instanceof Error ? err.message : "Could not save.");
     } finally {
@@ -572,6 +591,19 @@ export default function AccountProfilePage() {
         <h1 className="mt-6 text-2xl font-bold tracking-tight text-gray-900">Account &amp; profile</h1>
         <p className="mt-1 text-sm text-gray-500">Update how you appear on StoreLink and where you operate from.</p>
       </header>
+
+      {msg ? (
+        <div
+          role="status"
+          className={`mb-6 rounded-lg border px-4 py-3 text-center text-sm font-medium ${
+            msg.startsWith("Changes saved") || msg.startsWith("You can now")
+              ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+              : "border-red-200 bg-red-50 text-red-900"
+          }`}
+        >
+          {msg}
+        </div>
+      ) : null}
 
       <form id="account-profile-form" onSubmit={handleSave} className="space-y-8 pt-2">
         {/* Web-only: cover (sellers with storefront row) */}
@@ -1002,8 +1034,6 @@ export default function AccountProfilePage() {
             </p>
           </div>
         ) : null}
-
-        {msg ? <p className="text-center text-xs font-bold text-emerald-700">{msg}</p> : null}
       </form>
     </div>
   );

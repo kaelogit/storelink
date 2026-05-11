@@ -16,7 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
-import { BILLING_DURATIONS, calculateDiamondPrice, majorToPaystackSmallestUnit } from "@/lib/subscriptionPricing";
+import { BILLING_DURATIONS, calculateDiamondPrice, majorToPaystackSmallestUnit, SUBSCRIPTION_PRICES } from "@/lib/subscriptionPricing";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic"; 
 import html2canvas from "html2canvas";
@@ -186,11 +186,13 @@ export default function SubscriptionPage() {
   const displayTier = effective === "diamond" ? "Diamond" : "Standard";
   const boostLapsed = currentPlan === "diamond" && effective === "standard";
 
-  const { finalPrice: checkoutTotal, perMonth: diamondPerMonth } = calculateDiamondPrice(
+  const { finalPrice: checkoutTotal, perMonth: diamondPerMonth, discount: activeDiscount } = calculateDiamondPrice(
     "seller",
     billingMonths,
     billingCurrency
   );
+  const baseRow = SUBSCRIPTION_PRICES[billingCurrency.toUpperCase()] ?? SUBSCRIPTION_PRICES.NGN;
+  const listTotalUndiscounted = baseRow.seller_diamond * billingMonths;
   const currencyPrefix = billingCurrency === "NGN" ? "₦" : `${billingCurrency} `;
   const diamondPriceLabel =
     billingCurrency === "NGN"
@@ -437,25 +439,47 @@ export default function SubscriptionPage() {
               <Star size={28} fill="currentColor" />
             </div>
             <h3 className="text-xl font-black text-white uppercase tracking-tighter">Diamond</h3>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">Billing term (same discounts as the app)</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-3">Billing cycle</p>
+            <p className="text-xs text-gray-500 mt-1 mb-1">
+              Same options as the app: Monthly, Quarterly, Biannual (6 mo), Yearly — with the same term discounts (5%, 8%, 12%).
+            </p>
             <div className="flex flex-wrap gap-2 mt-3 mb-4">
               {BILLING_DURATIONS.map((d) => (
                 <button
                   key={d.months}
                   type="button"
                   onClick={() => setBillingMonths(d.months)}
-                  className={`px-3 py-2 rounded-xl text-[10px] font-black uppercase tracking-tight border transition ${
+                  className={`relative px-3 py-2.5 rounded-xl text-left min-w-[7.5rem] border transition ${
                     billingMonths === d.months
                       ? "bg-purple-500 border-purple-400 text-white"
                       : "bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-500"
                   }`}
                 >
-                  {d.label}
-                  {d.discount > 0 ? ` −${Math.round(d.discount * 100)}%` : ""}
+                  <span className="block text-[10px] font-black uppercase tracking-tight">{d.label}</span>
+                  {d.discount > 0 ? (
+                    <span className="absolute -top-1.5 -right-1.5 rounded-full bg-amber-500 px-1.5 py-0.5 text-[8px] font-black text-gray-900">
+                      −{Math.round(d.discount * 100)}%
+                    </span>
+                  ) : (
+                    <span className="block text-[9px] font-bold text-gray-500 mt-1">List price</span>
+                  )}
                 </button>
               ))}
             </div>
             <div className="mt-1 mb-8">
+              {activeDiscount > 0 ? (
+                <p className="text-gray-500 text-xs font-medium mb-1">
+                  <span className="line-through opacity-70">
+                    {currencyPrefix}
+                    {billingCurrency === "NGN"
+                      ? listTotalUndiscounted.toLocaleString("en-NG")
+                      : listTotalUndiscounted.toLocaleString("en-US", { maximumFractionDigits: 2 })}{" "}
+                  </span>
+                  <span className="text-emerald-400 font-bold">
+                    Save {Math.round(activeDiscount * 100)}%
+                  </span>
+                </p>
+              ) : null}
               <p className="text-3xl md:text-4xl font-black text-white tracking-tight">
                 {currencyPrefix}
                 {diamondPriceLabel}
