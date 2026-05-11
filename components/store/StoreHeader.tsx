@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { MapPin, BadgeCheck, Info } from "lucide-react"; 
+import { MapPin, BadgeCheck, Info, Gem } from "lucide-react";
 import { Store } from "@/types";
+import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
+import { compactSellerRegion } from "@/lib/displayRegion";
 
 interface StoreHeaderProps {
   store: Store;
@@ -10,6 +12,9 @@ interface StoreHeaderProps {
 }
 
 export default function StoreHeader({ store, onOpenInfo }: StoreHeaderProps) {
+  const diamondBoost =
+    effectiveSellerTier(store.subscription_plan, store.subscription_expiry, store.subscription_status) === "diamond";
+
   return (
     <div className="relative bg-white pb-4">
       
@@ -50,14 +55,21 @@ export default function StoreHeader({ store, onOpenInfo }: StoreHeaderProps) {
                <div>
                   <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 flex items-center gap-2">
                     {store.name}
-                    {store.subscription_plan === 'premium' && (
-                      <BadgeCheck className="text-blue-600 fill-blue-50 w-6 h-6" />
+                    {diamondBoost && (
+                      <Gem
+                        className="w-6 h-6 shrink-0"
+                        style={{ color: "#8B5CF6", fill: "#8B5CF6" }}
+                        aria-hidden
+                      />
+                    )}
+                    {store.verification_status === "verified" && (
+                      <BadgeCheck className="text-blue-600 fill-blue-50 w-6 h-6 shrink-0" />
                     )}
                   </h1>
                   
                   <div className="flex items-center gap-3 text-sm text-gray-500 font-medium mt-1">
                     <span className="flex items-center gap-1">
-                      <MapPin size={14}/> {store.location}
+                      <MapPin size={14}/> {compactSellerRegion(store)}
                     </span>
                   </div>
                </div>

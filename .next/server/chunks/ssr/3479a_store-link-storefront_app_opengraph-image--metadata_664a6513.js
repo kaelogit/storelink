@@ -1,0 +1,3 @@
+module.exports=[86937,a=>{"use strict";a.i(17271),a.i(7256);var b=a.i(56708);let c={alt:"StoreLink - The Engine for Naija Hustle",contentType:"image/png",runtime:"edge",size:{width:1200,height:630}};async function d(a){let{__metadata_id__:d,...e}=await a.params,f=(0,b.fillMetadataSegment)("/",e,"opengraph-image");return[function(a,b){let c={alt:a.alt,type:a.contentType||"image/png",url:f+"?bdb1ec2e8da53ecf"},{size:d}=a;return d&&(c.width=d.width,c.height=d.height),c}(c,0)]}a.s(["default",0,d],86937)}];
+
+//# sourceMappingURL=3479a_store-link-storefront_app_opengraph-image--metadata_664a6513.js.map

@@ -1,11 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Bell, CheckCircle, AlertTriangle, Info, Clock, Check, ChevronRight, ArrowLeft, MessageSquare } from "lucide-react";
+import { Bell, CheckCircle, AlertTriangle, Info, Clock, ChevronRight, ArrowLeft } from "lucide-react";
+
+function noteDisplay(note: { body?: string; message?: string }) {
+  return String(note.body ?? note.message ?? "");
+}
 
 export default function VendorNotifications() {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [selectedNote, setSelectedNote] = useState<any | null>(null);
 
   useEffect(() => {
@@ -16,32 +21,35 @@ export default function VendorNotifications() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    const { data } = await supabase
-      .from('notifications')
-      .select('*')
-      .eq('user_id', user.id)
-      .order('created_at', { ascending: false });
-      
-    if (data) setNotifications(data);
+    const { data, error } = await supabase
+      .from("storefront_site_notifications")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      setLoadError(error.message.includes("relation") ? "Announcements are not enabled yet — apply the storefront_site_notifications migration." : error.message);
+      setNotifications([]);
+    } else if (data) {
+      setLoadError(null);
+      setNotifications(
+        data.map((row: Record<string, unknown>) => ({
+          ...row,
+          message: row.body,
+          type: row.msg_type ?? "info",
+        }))
+      );
+    }
     setLoading(false);
   }
 
   async function openNotification(note: any) {
     setSelectedNote(note);
     if (!note.is_read) {
-      // Update UI locally immediately
-      setNotifications(prev => prev.map(n => n.id === note.id ? {...n, is_read: true} : n));
-      // Update Database
-      await supabase.from('notifications').update({ is_read: true }).eq('id', note.id);
+      setNotifications((prev) => prev.map((n) => (n.id === note.id ? { ...n, is_read: true } : n)));
+      await supabase.from("storefront_site_notifications").update({ is_read: true }).eq("id", note.id);
     }
   }
-
-  // 💬 DIRECT SUPPORT LINK
-  const handleSupport = () => {
-      const adminNumber = "234XXXXXXXXXX"; // REPLACEME: Your actual WhatsApp number
-      const text = encodeURIComponent(`Hi StoreLink Admin, I'm reaching out regarding the notification: "${selectedNote.title}"`);
-      window.open(`https://wa.me/${adminNumber}?text=${text}`, "_blank");
-  };
 
   return (
     <div className="max-w-2xl mx-auto pb-24 px-4 overflow-hidden">
@@ -50,8 +58,11 @@ export default function VendorNotifications() {
       {!selectedNote && (
         <div className="flex items-center justify-between py-6">
           <div>
-            <h1 className="text-3xl font-black text-gray-900 tracking-tighter uppercase italic leading-none">Inbox</h1>
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-1">Official Updates</p>
+            <h1 className="text-3xl font-black text-gray-900 tracking-tighter uppercase italic leading-none">Announcements</h1>
+            <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-1">Storefront · From StoreLink admin</p>
+            <p className="text-xs text-gray-500 font-medium mt-2 leading-relaxed max-w-lg">
+              Messages here are for the web dashboard only. Alerts from the StoreLink app stay in the app.
+            </p>
           </div>
           
           <div className="bg-emerald-50 px-4 py-2 rounded-2xl border border-emerald-100 flex items-center gap-2">
@@ -66,10 +77,13 @@ export default function VendorNotifications() {
       {/* LIST VIEW (INBOX) */}
       {!selectedNote ? (
         <div className="space-y-3">
-          {notifications.length === 0 && !loading && (
+          {loadError && (
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs font-medium text-amber-950">{loadError}</div>
+          )}
+          {notifications.length === 0 && !loading && !loadError && (
               <div className="text-center py-20 bg-gray-50 rounded-[2.5rem] border-2 border-dashed border-gray-200">
                   <Bell size={40} className="mx-auto text-gray-200 mb-4" />
-                  <p className="text-gray-400 font-black uppercase text-[10px] tracking-widest">Your warehouse is quiet</p>
+                  <p className="text-gray-400 font-black uppercase text-[10px] tracking-widest">No announcements yet</p>
               </div>
           )}
 
@@ -106,7 +120,7 @@ export default function VendorNotifications() {
                 </div>
                 
                 <p className="text-[11px] text-gray-400 font-bold truncate">
-                  {note.message}
+                  {noteDisplay(note)}
                 </p>
               </div>
 
@@ -153,7 +167,7 @@ export default function VendorNotifications() {
                     {/* CONTENT BODY - PRESERVES WHITESPACE AND TABS */}
                     <div className="bg-gray-50 p-5 sm:p-6 rounded-[2rem] border border-gray-100 min-h-[150px]">
                         <p className="text-gray-800 text-xs sm:text-sm leading-relaxed font-bold whitespace-pre-line break-words">
-                            {selectedNote.message}
+                            {noteDisplay(selectedNote)}
                         </p>
                     </div>
 

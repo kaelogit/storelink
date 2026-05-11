@@ -29,7 +29,7 @@ export default function Footer() {
              <LayoutDashboard size={20} className="text-emerald-500"/> StoreLink.
            </h3>
            <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-             The engine for the Naija Hustle. We help you turn WhatsApp chats into a professional empire.
+             Own a professional storefront without the heavy website cost, then scale beyond your contacts through the StoreLink marketplace.
            </p>
         </div>
 

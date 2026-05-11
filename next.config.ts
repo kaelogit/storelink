@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      { source: "/empire-coins", destination: "/store-coins", permanent: true },
+      { source: "/onboarding/buyer/interests", destination: "/dashboard", permanent: false },
+    ];
+  },
   images: {
     // 🔥 EMERGENCY LOCKDOWN: This stops the Vercel Transformation counter immediately.
     // It tells Next.js to serve images directly from the source without resizing them.

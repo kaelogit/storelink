@@ -4,12 +4,12 @@ import { Plus, Minus } from 'lucide-react';
 
 const faqs = [
   {
-    question: "How does the WhatsApp Handshake work?",
-    answer: "It’s our secret sauce. When a customer checks out, Storelink generates a pre-filled order summary with their name, items, and total price. When they click 'Send', it opens your WhatsApp with the order already typed out. You start the conversation at the finish line."
+    question: "How does StoreLink checkout work?",
+    answer: "Customers now checkout directly in StoreLink using guest or account mode. Payment is handled securely, order status updates in real time, and both buyer and seller get a structured order record."
   },
   {
     question: "Do I need to be a registered business to use Storelink?",
-    answer: "No. Whether you are a registered LLC or a creative selling from your bedroom, you can build an empire here. We empower every level of entrepreneur."
+    answer: "No. Whether you are a registered LLC or a creative selling from your bedroom, you can grow on StoreLink. We empower every level of entrepreneur."
   },
   {
     question: "Who can find my store on Storelink?",
@@ -21,19 +21,19 @@ const faqs = [
   },
   {
     question: "How do I get paid by customers?",
-    answer: "Storelink handles the order structure, but the money goes directly to you. You can share your preferred bank account details or payment links directly within the 'Handshake' message on WhatsApp."
+    answer: "StoreLink handles structured checkout and payment confirmation. Orders are tracked in-platform so you can fulfill, ship, and resolve disputes with a clean audit trail."
   },
   {
-    question: "What exactly are Empire Coins?",
+    question: "What exactly are Store Coins?",
     answer: "They are digital loyalty assets. When customers shop with you, they earn coins. These coins are saved in their private Storelink wallet, giving them a massive financial reason to come back to your store instead of a competitor."
   },
   {
-    question: "How long is the free trial?",
-    answer: "You get 14 days of Premium access for free the moment you sign up. No payment is required to start. You can explore unlimited products, the Flashdrop engine, and the digital ledger before you spend a Kobo."
+    question: "Is there a free plan?",
+    answer: "Yes. Standard is the free default for every seller—your storefront link, catalog, and checkout stay available without a subscription. Diamond is an optional paid boost for extra discovery tools and AI features if you choose to upgrade."
   },
   {
     question: "Do I need technical skills to set this up?",
-    answer: "If you can post a photo on WhatsApp, you can use Storelink. Our dashboard is built for mobile-first users. You can launch your store in under 2 minutes."
+    answer: "If you can post a photo from your phone, you can use StoreLink. Our dashboard is mobile-first and you can launch your store in minutes."
   },
   {
     question: "What is the 'Blue Tick' and how do I get it?",

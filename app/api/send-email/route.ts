@@ -19,11 +19,11 @@ export async function POST(request: Request) {
     let description = '';
     let customContent = '';
 
-    // --- TEMPLATE LOGIC: THE EMPIRE ENGINE ---
+    // --- Email templates ---
     
     if (type === 'VERIFY_SIGNUP') {
       subject = `🏰 ${code} is your Storelink verification code`;
-      previewText = 'Verify your identity to launch your empire.';
+      previewText = 'Verify your identity to launch your storefront.';
       title = 'VERIFY YOUR IDENTITY';
       description = `Welcome to the inner circle. Use the secure code below to activate your storefront and begin your journey.`;
       
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
           <p style="margin: 0; font-size: 13px; color: #92400e; line-height: 1.5; font-weight: 500;">
             To ensure you receive <strong>Instant Sale Alerts</strong> and <strong>Customer Manifests</strong>, please mark this email as <strong>"Not Spam"</strong> or move it to your <strong>Primary Inbox</strong> right now. 
             <br/><br/>
-            This ensures your empire's communication line remains open.
+            This ensures important StoreLink emails reach your inbox.
           </p>
         </div>
       `;
@@ -46,9 +46,9 @@ export async function POST(request: Request) {
     
     else if (type === 'PASSWORD_RESET') {
       subject = `🔒 ${code} is your password reset code`;
-      previewText = 'Secure your empire with a new password.';
+      previewText = 'Secure your account with a new password.';
       title = 'PASSWORD RESET';
-      description = 'Security is the foundation of every empire. Use the secure code below to update your access credentials.';
+      description = 'Security matters. Use the secure code below to update your access credentials.';
       mainColor = '#f59e0b';
       customContent = `
         <div style="background-color: #f9fafb; border-radius: 24px; padding: 32px; border: 2px dashed #e5e7eb; margin-bottom: 32px; text-align: center;">
@@ -60,9 +60,9 @@ export async function POST(request: Request) {
     else if (type === 'WELCOME_DAY_1') {
       subject = `🏰 Welcome to the Inner Circle, Founder!`;
       title = "YOU ARE LIVE";
-      description = `Your storefront <strong>${data.storeName}</strong> is now a part of the StoreLink Empire. 
+      description = `Your storefront <strong>${data.storeName}</strong> is live on StoreLink. 
       <br/><br/>
-      <strong>The Philosophy:</strong> You share the link, we handle the manifest, and you close the deal on WhatsApp. Simple. Professional. Scalable.`;
+      <strong>The workflow:</strong> You share your link, buyers checkout in-app, and you fulfill with a clean order record. Simple. Professional. Scalable.`;
       
       customContent = `
         <div style="text-align:center; margin-bottom: 30px;">
@@ -97,7 +97,7 @@ export async function POST(request: Request) {
 
     else if (type === 'EXPIRY_REMINDER') {
       const isUrgent = data?.daysLeft <= 3;
-      subject = `${isUrgent ? '⚠️ FINAL NOTICE' : '📅 EMPIRE STATUS'}: Subscription expiring`;
+      subject = `${isUrgent ? '⚠️ FINAL NOTICE' : '📅 SUBSCRIPTION STATUS'}: Plan expiring`;
       previewText = `Keep your storefront alive. Only ${data?.daysLeft} days remaining.`;
       title = isUrgent ? 'ACTION REQUIRED: RENEWAL' : 'SUBSCRIPTION STATUS';
       description = `Your access for <strong>${data?.storeName}</strong> expires in ${data?.daysLeft} days. To prevent your link from breaking and losing customers, please go to <strong>Dashboard > Subscription</strong> to renew your plan.`;
@@ -112,9 +112,9 @@ export async function POST(request: Request) {
     else if (type === 'WELCOME_DAY_1') {
       subject = `🏰 Welcome to the Inner Circle, Founder!`;
       title = "YOU ARE LIVE";
-      description = `Your storefront <strong>${data.storeName}</strong> is now a part of the StoreLink Empire. 
+      description = `Your storefront <strong>${data.storeName}</strong> is live on StoreLink. 
       <br/><br/>
-      <strong>The Philosophy:</strong> You share the link, we handle the manifest, and you close the deal on WhatsApp. Simple. Professional. Scalable.`;
+      <strong>The workflow:</strong> You share your link, buyers checkout in-app, and you fulfill with a clean order record. Simple. Professional. Scalable.`;
       
       customContent = `
         <div style="text-align:center; margin-bottom: 30px;">
@@ -138,24 +138,24 @@ export async function POST(request: Request) {
     }
 
     else if (type === 'WELCOME_DAY_7') {
-      subject = "🪙 The Empire Coin Advantage";
+      subject = "🪙 The Store Coin advantage";
       title = "REWARD YOUR LOYALS";
-      description = `StoreLink isn't just a link; it's an ecosystem. Every time customers buy from the marketplace, they earn <strong>Empire Coins</strong>. They can spend these in YOUR store. This keeps them coming back to you instead of a random social media seller.`;
+      description = `StoreLink isn't just a link; it's an ecosystem. When customers buy from the marketplace, they earn <strong>Store Coins</strong>. They can spend those coins as discounts in YOUR store—bringing repeat buyers back to you.`;
       customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard/loyalty" style="display: inline-block; background:#f59e0b; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Check Loyalty Settings</a></div>`;
     }
 
     else if (type === 'WELCOME_DAY_10') {
       subject = "💎 Why the Greats go Diamond";
-      title = "SCALE YOUR EMPIRE";
+      title = "SCALE YOUR STOREFRONT";
       description = `The <strong>Diamond Plan</strong> is designed for the top 1% of vendors. You get priority placement in the Marketplace, access to <strong>AI Background Removal</strong>, and the ability to verify your store with the <strong>"Diamond Badge."</strong> Don't just sell—dominate.`;
       customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard/subscription" style="display: inline-block; background:#111827; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">See Diamond Benefits</a></div>`;
     }
 
     else if (type === 'WELCOME_DAY_13') {
-      subject = "⚠️ 24 Hours Remaining: Keep the Empire Alive";
-      title = "TRIAL ENDING";
-      description = `Your 14-day trial for <strong>${data.storeName}</strong> ends tomorrow. You have items in your warehouse and a professional setup. Don't let your link expire and lose your hard work. Subscribe now to stay live.`;
-      customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard/subscription" style="display: inline-block; background:#ef4444; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Keep My Store Live</a></div>`;
+      subject = "💎 Ready to scale visibility for your storefront?";
+      title = "STANDARD IS FREE — DIAMOND BOOSTS YOU";
+      description = `Your storefront <strong>${data.storeName}</strong> stays online on Standard at no cost. If you want higher marketplace visibility and Diamond-only tools, you can upgrade anytime—no trial countdown, no forced expiry on your link.`;
+      customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard/subscription" style="display: inline-block; background:#ef4444; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">See Diamond benefits</a></div>`;
     }
 
     else if (type === 'RESCUE_DAY_14') {
@@ -165,9 +165,9 @@ export async function POST(request: Request) {
       <br/><br/>
       <strong>The Founder's Checklist:</strong><br/>
       • <strong>Instagram:</strong> Put your link in your Bio.<br/>
-      • <strong>WhatsApp:</strong> Share your link on your Status every morning at 9 AM.<br/>
+      • <strong>Status &amp; Stories:</strong> Share your storefront link where your buyers already scroll.<br/>
       • <strong>TikTok:</strong> Add your link to your profile and mention it in every video.<br/>
-      Don't let your empire sit in silence. Share the link now.`;
+      Don't let your storefront sit invisible. Share the link now.`;
       customContent = `<div style="text-align:center;"><a href="https://storelink.ng/dashboard" style="display: inline-block; background:#111827; color:#fff; padding:18px 36px; border-radius:16px; text-decoration:none; font-weight:900; font-size:12px; text-transform:uppercase; letter-spacing:0.1em;">Copy My Link</a></div>`;
     }
 
@@ -175,7 +175,7 @@ export async function POST(request: Request) {
       const tips = [
         { 
           t: "The Power of Content", 
-          d: "Record a 'Pack an order with me' video for TikTok or IG Reels. Seeing the human side of your empire builds 10x more trust than a static photo." 
+          d: "Record a 'Pack an order with me' video for TikTok or IG Reels. Seeing the human side of your brand builds 10x more trust than a static photo." 
         },
         { 
           t: "Flash Drop Urgency", 
@@ -183,16 +183,16 @@ export async function POST(request: Request) {
         },
         { 
           t: "The Review Loop", 
-          d: "When you mark an order as complete, ask your customer for a shoutout on their WhatsApp Status. It’s free, high-trust marketing that scales your link." 
+          d: "When you mark an order as complete, ask your customer for a public shoutout or review. It’s free, high-trust marketing that scales your link." 
         },
         { 
-          t: "Empire Coin Retention", 
-          d: "Make sure your Loyalty Settings are active. When customers earn <strong>Empire Coins</strong> in your store, they are financially incentivized to never shop anywhere else." 
+          t: "Store Coin retention", 
+          d: "Make sure your Loyalty Settings are active. When customers earn <strong>Store Coins</strong> in your store, they are financially incentivized to come back to you." 
         }
       ];
       
       const randomTip = tips[Math.floor(Math.random() * tips.length)];
-      subject = `💎 Empire Growth: ${randomTip.t}`;
+      subject = `💎 Growth tip: ${randomTip.t}`;
       title = "SCALING YOUR STORE";
       description = randomTip.d;
       customContent = `
@@ -207,13 +207,13 @@ export async function POST(request: Request) {
       const isMultiple = products.length > 1;
 
       subject = `💰 NEW SALE INTENT: ${isMultiple ? products.length + ' Items' : products[0]}!`;
-      previewText = 'A customer is heading to your WhatsApp right now.';
+      previewText = 'A customer just moved forward on an order.';
       title = 'YOU HAVE A LEAD! 🚀';
       description = `A customer has just initiated a checkout for <strong>${isMultiple ? products.length + ' items' : products[0]}</strong>. 
       <br/><br/>
       <strong style="color: #111827;">✅ NEXT STEPS:</strong><br/>
-      1. Close the deal on WhatsApp.<br/>
-      2. Once they pay, go to <strong>Dashboard > Orders</strong>.<br/>
+      1. Confirm payment and availability in <strong>Dashboard &gt; Orders</strong>.<br/>
+      2. Fulfill and update status so your buyer sees progress in-app.<br/>
       3. Mark the order as <strong>"Complete"</strong>. This generates a professional digital receipt for your buyer automatically.`;
       
       const productList = products.map((p: string) => `
@@ -248,7 +248,7 @@ export async function POST(request: Request) {
                   <tr>
                     <td align="center" style="padding: 40px 40px 20px 40px;">
                       <h1 style="margin: 0; font-size: 22px; font-weight: 900; color: #111827; letter-spacing: -0.05em; text-transform: uppercase;">
-                        STORELINK <span style="color: ${mainColor};">EMPIRE</span>
+                        STORELINK
                       </h1>
                     </td>
                   </tr>

@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Navbar from "@/components/landing/Navbar"; 
 import Footer from "@/components/landing/Footer"; 
-import { Mail, Send, Loader2, CheckCircle } from "lucide-react";
+import { Mail, Send, Loader2, CheckCircle, ArrowRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false);
@@ -62,6 +63,14 @@ export default function ContactPage() {
                     <p className="text-gray-500">support@storelink.ng</p>
                  </div>
               </a>
+           </div>
+           <div className="mt-8">
+              <Link
+                href="/signup?next=%2Fpost-login&seller_intent=1"
+                className="inline-flex items-center gap-2 rounded-xl bg-gray-900 px-4 py-3 text-[11px] font-black uppercase tracking-wider text-white hover:bg-emerald-600 transition"
+              >
+                Start selling now <ArrowRight size={14} />
+              </Link>
            </div>
         </div>
 

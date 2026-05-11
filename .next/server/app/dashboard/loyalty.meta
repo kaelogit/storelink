@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/dashboard/layout,_N_T_/dashboard/loyalty/layout,_N_T_/dashboard/loyalty/page,_N_T_/dashboard/loyalty"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/dashboard/loyalty/__PAGE__",
+    "/dashboard/loyalty",
+    "/dashboard",
+    "/_index",
+    "/_head"
+  ]
+}

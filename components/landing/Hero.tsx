@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { TrendingUp, Store, Search, ShoppingBag, CheckCircle, Star } from "lucide-react";
+import { TrendingUp, Search, ShoppingBag, CheckCircle, Star } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -23,22 +23,25 @@ export default function Hero() {
                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                Nigeria's #1 Social Commerce Engine
+                Storefront Growth Infrastructure
             </div>
 
             <h1 className="text-4xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-6 leading-[1.1]">
-               Your business deserves <br className="hidden md:block" />
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">a proper website.</span>
+               Own a storefront that <br className="hidden md:block" />
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">scales your business digitally.</span>
             </h1>
 
             <p className="text-base md:text-xl text-gray-500 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
-               Stop sending blurry photos on WhatsApp. Create a stunning storefront, look professional, and get paid directly.
+               Personal websites are expensive to build and maintain. StoreLink gives you a ready-to-own storefront plus marketplace exposure to generate sales outside your personal contacts.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+               <Link href="/signup?next=%2Fpost-login&seller_intent=1" className="w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-emerald-600 transition flex items-center justify-center gap-2">
+                  Start Selling
+               </Link>
             
-               <Link href="/marketplace" className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold text-lg hover:bg-gray-50 transition flex items-center justify-center gap-2">
-                  <TrendingUp className="w-5 h-5" /> Explore Marketplace
+               <Link href="/#marketplace" className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold text-lg hover:bg-gray-50 transition flex items-center justify-center gap-2">
+                  <TrendingUp className="w-5 h-5" /> Trending on StoreLink
                </Link>
             </div>
 
@@ -122,7 +125,7 @@ export default function Hero() {
                       <CheckCircle className="w-[18px] h-[18px] md:w-5 md:h-5" />
                    </div>
                    <div>
-                      <p className="text-[10px] md:text-xs text-gray-400 font-bold">New Order</p>
+                      <p className="text-[10px] md:text-xs text-gray-400 font-bold">Payment Confirmed</p>
                       <p className="font-bold text-sm md:text-base text-gray-900">₦25,000.00</p>
                    </div>
                 </div>

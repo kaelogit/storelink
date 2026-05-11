@@ -13,15 +13,15 @@ const faqCategories = [
     questions: [
       {
         q: "What exactly is Storelink?",
-        a: "Storelink is a professional sales infrastructure for African entrepreneurs. We provide the tools to turn your social media audience into an automated retail empire using storefronts, inventory tracking, and deep WhatsApp integration."
+        a: "Storelink is professional storefront infrastructure for African entrepreneurs: a branded store link, inventory and orders, secure in-app checkout, and marketplace discovery so you can reach buyers outside your immediate network."
       },
       {
         q: "Are there any hidden transaction fees or commissions?",
         a: "Absolutely not. We believe you should keep 100% of what you earn. We don't take a percentage of your sales. You only pay your monthly subscription fee (Premium or Diamond), and that's it."
       },
       {
-        q: "How does Storelink differ from selling on Instagram or WhatsApp Status?",
-        a: "Social media is for discovery; Storelink is for closing. While Instagram is a 'messy chat,' Storelink is a structured store. We automate the 'How much?' and 'Is it available?' questions, moving the customer directly to payment without you typing a word."
+        q: "How does Storelink differ from selling only on social feeds?",
+        a: "Social feeds are great for attention; Storelink is where the sale becomes real. Your storefront holds prices, stock, and checkout in one place—so customers move from browsing to paying with a clear order trail."
       }
     ]
   },
@@ -311,7 +311,7 @@ export default function FullFAQPage() {
                 <MessageCircle size={18} />
                 Contact Support
               </Link>
-              <Link href="/signup" className="w-full md:w-auto text-white hover:text-emerald-500 font-black uppercase text-xs tracking-[0.2em] flex items-center justify-center gap-2 group transition-all">
+              <Link href="/signup?next=%2Fpost-login&seller_intent=1" className="w-full md:w-auto text-white hover:text-emerald-500 font-black uppercase text-xs tracking-[0.2em] flex items-center justify-center gap-2 group transition-all">
                 Start Selling Now <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>

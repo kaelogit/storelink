@@ -10,7 +10,7 @@ export default function TrustCenter() {
         
         <h2 className="text-3xl font-bold mb-4">Shop with Confidence</h2>
         <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-          We are building a safe community. While vendors manage their own payments and deliveries, we do not tolerate scams, fake products, or bad behavior.
+          StoreLink uses verified profiles, secure payment confirmation, and report tools to keep commerce safer for everyone.
         </p>
 
         <div className="grid md:grid-cols-2 gap-4 text-left bg-gray-800 p-6 rounded-2xl border border-gray-700">
@@ -20,8 +20,8 @@ export default function TrustCenter() {
              </h3>
              <ul className="text-sm text-gray-400 space-y-2">
                <li>• Check the vendor's social media links.</li>
-               <li>• Don't pay large sums before delivery if unsure.</li>
-               <li>• Chat with the vendor on WhatsApp first.</li>
+               <li>• Confirm your order status shows paid before shipment.</li>
+               <li>• Use the in-app checkout flow to keep records unified.</li>
              </ul>
           </div>
           <div className="border-t md:border-t-0 md:border-l border-gray-700 pt-4 md:pt-0 md:pl-6">

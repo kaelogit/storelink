@@ -1,38 +1,27 @@
 "use client";
-import { Zap, Crown, Target, Gift } from "lucide-react";
+import { Crown, Target } from "lucide-react";
+import { SELLER_DIAMOND_PRICE_NGN } from "@/lib/subscriptionPricing";
 
 export default function SubscriptionBreakdown({ stats }: { stats: any }) {
-  const PRICE_PREMIUM = 2500;
-  const PRICE_DIAMOND = 4000;
+  const standardHeadcount =
+    (stats?.free_count || 0) +
+    (stats?.standard_count || 0) +
+    (stats?.paid_premium_count || 0);
 
   const plans = [
-    { 
-      name: "Free Tier", 
-      count: stats?.free_count || 0, 
+    {
+      name: "Standard (free storefront)",
+      count: standardHeadcount,
       price: 0,
       color: "from-gray-500 to-gray-700",
-      icon: <Target className="text-gray-400" size={20}/> 
+      icon: <Target className="text-gray-400" size={20} />,
     },
-    { 
-      name: "Premium (Paid)", 
-      count: stats?.paid_premium_count || 0, 
-      price: PRICE_PREMIUM,
-      color: "from-blue-500 to-indigo-600",
-      icon: <Zap className="text-blue-400" size={20}/> 
-    },
-    { 
-      name: "Diamond (Paid)", 
-      count: stats?.paid_diamond_count || 0, 
-      price: PRICE_DIAMOND,
+    {
+      name: "Diamond (paid boost)",
+      count: stats?.paid_diamond_count || 0,
+      price: SELLER_DIAMOND_PRICE_NGN,
       color: "from-purple-500 to-pink-600",
-      icon: <Crown className="text-yellow-400" size={20}/> 
-    },
-    { 
-      name: "Gifted/Trial", 
-      count: stats?.trial_count || 0, 
-      price: 0,
-      color: "from-amber-400 to-orange-500",
-      icon: <Gift className="text-amber-400" size={20}/> 
+      icon: <Crown className="text-yellow-400" size={20} />,
     },
   ];
 

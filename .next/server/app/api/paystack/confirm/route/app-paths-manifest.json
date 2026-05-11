@@ -1,0 +1,3 @@
+{
+  "/api/paystack/confirm/route": "app/api/paystack/confirm/route.js"
+}

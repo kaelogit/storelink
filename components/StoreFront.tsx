@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import {
   X, Instagram, Search, Package, Phone, LayoutDashboard, ChevronRight,
   BadgeCheck, Gem, Plus, Zap, Loader2, Music2
 } from "lucide-react";
+import { compactSellerRegion } from "@/lib/displayRegion";
 import { Store } from "@/types";
 import { useCart } from "@/context/CartContext";
 
@@ -29,7 +30,9 @@ interface StoreFrontProps {
 
 export default function StoreFront({ store, products: initialProducts, categories }: StoreFrontProps) {
   const { addToCart, cartCount, setIsCartOpen, isCartOpen } = useCart();
-  
+  const initialProductsRef = useRef(initialProducts);
+  initialProductsRef.current = initialProducts;
+
   const [products, setProducts] = useState(initialProducts);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
@@ -75,7 +78,8 @@ export default function StoreFront({ store, products: initialProducts, categorie
   useEffect(() => {
     const fetchStoreProducts = async () => {
       if (activeCategory === "All" && !debouncedSearch) {
-        setProducts(initialProducts);
+        setProducts(initialProductsRef.current);
+        setLoading(false);
         return;
       }
 
@@ -83,18 +87,19 @@ export default function StoreFront({ store, products: initialProducts, categorie
 
       let query = supabase
         .from("storefront_products")
-        .select(`
-          *,
-          categories!inner (
-            name
-          )
-        `)
-        .eq("store_id", store.id)
+        .select("*")
+        .eq("seller_id", store.owner_id)
         .eq("is_active", true)
         .order("created_at", { ascending: false });
 
       if (activeCategory !== "All") {
-        query = query.eq("categories.name", activeCategory);
+        const cat = categories.find((c) => c.name === activeCategory);
+        if (!cat?.id) {
+          setProducts([]);
+          setLoading(false);
+          return;
+        }
+        query = query.eq("category_id", cat.id);
       }
 
       if (debouncedSearch) {
@@ -104,17 +109,17 @@ export default function StoreFront({ store, products: initialProducts, categorie
       const { data, error } = await query;
 
       if (error) {
-        console.error("Filter Error:", error);
+        console.error("Filter Error:", error.message || JSON.stringify(error));
         setProducts([]);
       } else {
         setProducts(data || []);
       }
-      
+
       setLoading(false);
     };
 
-    fetchStoreProducts();
-  }, [activeCategory, debouncedSearch, store.id, initialProducts]);
+    void fetchStoreProducts();
+  }, [activeCategory, debouncedSearch, store.owner_id, categories]);
 
   const handleAddToCart = (product: any) => {
     const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
@@ -175,7 +180,9 @@ export default function StoreFront({ store, products: initialProducts, categorie
                       <h2 className="text-2xl font-black text-gray-900 flex items-center gap-2 uppercase tracking-tight">
                         {store.name} <VerificationBadge store={store} />
                       </h2>
-                      <p className="text-gray-500 text-xs font-bold flex items-center gap-1"><MapPin size={14} className="text-emerald-500"/> {store.location}</p>
+                      <p className="text-gray-500 text-xs font-bold flex items-center gap-1">
+                        <MapPin size={14} className="text-emerald-500"/> {compactSellerRegion(store)}
+                      </p>
                    </div>
                 </div>
 
@@ -288,7 +295,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
                               )}
                              
                              {rewardCoins > 0 && (
-                                <span className="text-[8px] font-black text-emerald-500/40 uppercase tracking-widest italic animate-pulse">Earn Gold</span>
+                                <span className="text-[8px] font-black text-emerald-500/40 uppercase tracking-widest italic animate-pulse">Earn Coin</span>
                              )}
                           </div>
                        </div>
@@ -339,7 +346,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
                    <h3 className="font-black text-2xl text-gray-900 tracking-tighter uppercase flex items-center justify-center gap-1">
                      {store.name} <VerificationBadge store={store} />
                    </h3>
-                   <p className="text-gray-400 text-[10px] font-black uppercase mt-1 tracking-widest">{store.location}</p>
+                   <p className="text-gray-400 text-[10px] font-black uppercase mt-1 tracking-widest">{compactSellerRegion(store)}</p>
                 </div>
 
                 <div className="bg-gray-50 p-6 rounded-2xl mb-8 border border-gray-100">
@@ -356,7 +363,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
                       <div className="flex items-center gap-4 p-4 rounded-xl border border-gray-100">
                           <div className="bg-emerald-500 p-2 rounded-lg text-white"><Phone size={18}/></div>
                           <div>
-                              <p className="text-[9px] text-emerald-600 font-black uppercase tracking-widest">WhatsApp</p>
+                              <p className="text-[9px] text-emerald-600 font-black uppercase tracking-widest">Business chat</p>
                               <p className="text-sm font-bold text-gray-900">{store.whatsapp_number}</p>
                           </div>
                       </div>

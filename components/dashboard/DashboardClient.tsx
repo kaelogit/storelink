@@ -3,27 +3,34 @@
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; 
-import { 
-  Package, ExternalLink, 
-  Eye, TrendingUp, Tags, Edit, Trash2,
-  Lock, Sparkles, Zap, Search, Plus,
-  ArrowRight, Palette
+import {
+  Package,
+  ExternalLink,
+  Eye,
+  TrendingUp,
+  Tags,
+  Edit,
+  Trash2,
+  Zap,
+  Search,
+  Plus,
+  ShoppingBag,
+  AlertTriangle,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import AddProductModal from "@/components/store/AddProductModal";
 import CategoryManager from "@/components/store/CategoryManager";
 import ShareStore from "./ShareStore";
 import FlashDropModal from "@/components/dashboard/FlashDropModal";
-
+import { storefrontOrderPayoutFailed, storefrontOrderPayoutQueued } from "@/lib/sellerOrderPayoutFlow";
 interface DashboardClientProps {
   store: any;
   initialProducts: any[];
   initialOrders: any[];
   stats: { revenue: number; productCount: number; views: number };
-  isLocked: boolean; 
 }
 
-export default function DashboardClient({ store, initialProducts, initialOrders, stats, isLocked }: DashboardClientProps) {
+export default function DashboardClient({ store, initialProducts, initialOrders, stats }: DashboardClientProps) {
   const router = useRouter();
   
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -37,18 +44,34 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
   // Function to fetch fresh categories
   const fetchCategories = async () => {
-    const { data } = await supabase
-      .from('categories')
-      .select('*')
-      .eq('store_id', store.id)
-      .order('name');
-    if (data) setLiveCategories(data);
+    const uid = store.owner_id;
+
+    const primary = await supabase
+      .from("categories")
+      .select("*")
+      .eq("seller_id", uid)
+      .eq("category_scope", "seller")
+      .order("name");
+
+    if (!primary.error && primary.data?.length) {
+      setLiveCategories(primary.data);
+      return;
+    }
+
+    const { data: prodRows } = await supabase.from("products").select("category_id").eq("seller_id", uid);
+    const ids = [...new Set((prodRows || []).map((r: { category_id?: string }) => r.category_id).filter(Boolean))] as string[];
+    if (!ids.length) {
+      setLiveCategories([]);
+      return;
+    }
+    const { data: cats } = await supabase.from("categories").select("*").in("id", ids).order("name");
+    if (cats) setLiveCategories(cats);
   };
 
   // Initial fetch on mount
   useEffect(() => {
     fetchCategories();
-  }, [store.id]);
+  }, [store.owner_id]);
 
   // --- 🔥 EMPIRE REAL-TIME LISTENER ---
   useEffect(() => {
@@ -56,14 +79,19 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
       .channel('dashboard-realtime')
       .on(
         'postgres_changes',
-        { event: '*', schema: 'public', table: 'products', filter: `store_id=eq.${store.id}` },
+        { event: '*', schema: 'public', table: 'products', filter: `seller_id=eq.${store.owner_id}` },
         () => {
           router.refresh(); 
         }
       )
       .on(
         'postgres_changes',
-        { event: '*', schema: 'public', table: 'categories', filter: `store_id=eq.${store.id}` },
+        {
+          event: '*',
+          schema: 'public',
+          table: 'categories',
+          filter: `seller_id=eq.${store.owner_id}`,
+        },
         () => {
           fetchCategories(); // Instantly update the categories state
           router.refresh(); 
@@ -74,12 +102,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
     return () => {
       supabase.removeChannel(dashboardSync);
     };
-  }, [store.id, router]);
-
-  // Rest of your logic (Studio, filtering, delete, edit) stays the same...
-  const productRequirement = 10;
-  const hasUnlockedStudio = stats.productCount >= productRequirement;
-  const progressPercentage = Math.min((stats.productCount / productRequirement) * 100, 100);
+  }, [store.owner_id, router]);
 
   const filteredProducts = useMemo(() => {
     return initialProducts.filter(p => 
@@ -106,6 +129,15 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
     return hoursDiff < 24;
   };
 
+  const storefrontPayoutFailed = useMemo(
+    () => initialOrders.filter((o) => storefrontOrderPayoutFailed(o)).length,
+    [initialOrders],
+  );
+  const storefrontPayoutQueued = useMemo(
+    () => initialOrders.filter((o) => storefrontOrderPayoutQueued(o)).length,
+    [initialOrders],
+  );
+
   return (
     <div className="space-y-6 px-1 md:px-0 pb-20">
         {/* ... Header and Stats remain exactly as they were ... */}
@@ -113,19 +145,59 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
           <div>
             <h1 className="text-2xl md:text-3xl font-black text-gray-900 flex items-center gap-2 tracking-tight uppercase italic">
               Dashboard
-              {isLocked && <span className="bg-red-100 text-red-700 text-[10px] px-2 py-1 rounded-md border border-red-200">OFFLINE</span>}
             </h1>
             <p className="text-gray-500 text-sm mt-1">Welcome Back, <span className="font-bold text-gray-900">{store.name}</span></p>
           </div>
 
-          <div className="flex gap-2 w-full md:w-auto">
-            {!isLocked && (
-              <a href={`/${store.slug}`} target="_blank" className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition shadow-lg">
-                <ExternalLink size={16} /> View Store
-              </a>
-            )}
+          <div className="flex gap-2 w-full md:w-auto flex-wrap">
+            <a href={`/${store.slug}`} target="_blank" rel="noopener noreferrer" className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition shadow-lg">
+              <ExternalLink size={16} /> View Store
+            </a>
+            <Link
+              href="/marketplace"
+              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-900 rounded-xl text-sm font-bold hover:bg-gray-50 transition shadow-sm"
+            >
+              Browse marketplace
+            </Link>
           </div>
         </header>
+
+        {storefrontPayoutFailed > 0 && (
+          <div className="rounded-2xl border border-red-200 bg-red-50 p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+            <AlertTriangle className="text-red-600 shrink-0" size={22} />
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-black uppercase tracking-widest text-red-700">Payout attention</p>
+              <p className="text-sm font-semibold text-red-900 mt-1">
+                {storefrontPayoutFailed} storefront order{storefrontPayoutFailed === 1 ? "" : "s"} had a Paystack transfer failure.
+                Check payout bank details under membership, then contact support if it persists — our team can retry once Paystack balance or recipient details are fixed.
+              </p>
+            </div>
+            <Link
+              href="/dashboard/orders"
+              className="shrink-0 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-red-700 text-white text-xs font-bold hover:bg-red-800 transition"
+            >
+              View orders
+            </Link>
+          </div>
+        )}
+
+        {storefrontPayoutFailed === 0 && storefrontPayoutQueued > 0 && (
+          <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+            <ShoppingBag className="text-emerald-700 shrink-0" size={22} />
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-black uppercase tracking-widest text-emerald-800">Payout queue</p>
+              <p className="text-sm font-semibold text-emerald-950 mt-1">
+                {storefrontPayoutQueued} completed order{storefrontPayoutQueued === 1 ? "" : "s"} in line for automatic Paystack payout.
+              </p>
+            </div>
+            <Link
+              href="/dashboard/orders"
+              className="shrink-0 inline-flex items-center justify-center px-4 py-2 rounded-xl border border-emerald-300 bg-white text-emerald-900 text-xs font-bold hover:bg-emerald-50 transition"
+            >
+              Order detail
+            </Link>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
@@ -155,64 +227,13 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
         <ShareStore slug={store.slug} />
 
-        {/* Studio Widget */}
-        <div className={`relative overflow-hidden rounded-[2.5rem] border transition-all duration-500 ${
-          hasUnlockedStudio 
-          ? 'bg-white border-emerald-100 shadow-xl shadow-emerald-500/5' 
-          : 'bg-gray-50 border-gray-200 opacity-90'
-        }`}>
-          <div className="p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-5">
-              <div className={`p-4 rounded-2xl ${hasUnlockedStudio ? 'bg-emerald-600 text-white animate-pulse' : 'bg-gray-200 text-gray-400'}`}>
-                {hasUnlockedStudio ? <Palette size={32} /> : <Lock size={32} />}
-              </div>
-              <div>
-                <h3 className="text-xl font-black text-gray-900 uppercase tracking-tighter italic flex items-center gap-2">
-                  Flyer Studio
-                  {hasUnlockedStudio && <span className="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full not-italic tracking-normal">Unlocked</span>}
-                </h3>
-                <p className="text-gray-500 text-xs font-medium max-w-sm">
-                  {hasUnlockedStudio 
-                    ? "Your automated marketing suite is ready. Generate custom flyers for your brands instantly."
-                    : `Complete your storefront with ${productRequirement - stats.productCount} more products to unlock the Studio.`
-                  }
-                </p>
-                {!hasUnlockedStudio && (
-                  <div className="mt-3 w-48 bg-gray-200 rounded-full h-2 overflow-hidden">
-                    <div 
-                      className="bg-gray-900 h-full transition-all duration-1000" 
-                      style={{ width: `${progressPercentage}%` }}
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {hasUnlockedStudio ? (
-              <Link 
-                href="/dashboard/flyers"
-                className="flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-200"
-              >
-                Open Studio <ArrowRight size={16} />
-              </Link>
-            ) : (
-              <button 
-                disabled
-                className="flex items-center gap-2 px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest transition-all bg-gray-200 text-gray-400 cursor-not-allowed"
-              >
-                Locked <ArrowRight size={16} />
-              </button>
-            )}
-          </div>
-        </div>
-
         {/* Inventory Section */}
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div id="inventory" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
             <h3 className="font-bold text-lg text-gray-900 italic uppercase tracking-tight">Inventory</h3>
             <div className="flex gap-2 w-full md:w-auto">
                 <button onClick={() => setIsCatModalOpen(true)} className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-100 text-gray-700 rounded-xl text-sm font-bold hover:bg-gray-50 transition">
-                   <Tags size={16}/> <span className="md:inline">Categories</span>
+                   <Tags size={16}/> <span className="md:inline">Subcategories</span>
                 </button>
                 <button onClick={() => setIsAddModalOpen(true)} className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-bold shadow-lg hover:bg-emerald-500 transition">
                    <Plus size={16}/> <span className="md:inline">Add Product</span>
@@ -293,7 +314,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
       {/* --- MODALS --- */}
       <AddProductModal 
-        storeId={store.id} 
+        storeId={store.__legacy_store_id || store.owner_id} 
         isOpen={isAddModalOpen} 
         onClose={() => { setIsAddModalOpen(false); setProductToEdit(null); }} 
         onSuccess={() => router.refresh()} 
@@ -304,7 +325,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
       />
       
       <CategoryManager 
-        storeId={store.id} 
+        sellerId={store.owner_id}
         isOpen={isCatModalOpen} 
         onClose={() => setIsCatModalOpen(false)} 
         onSuccess={() => {

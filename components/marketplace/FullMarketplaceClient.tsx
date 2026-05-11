@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link"; 
@@ -8,7 +8,14 @@ import {
   Search, Package, Filter, Loader2, CheckCircle, 
   Plus, ShoppingBag, BadgeCheck, Gem, Zap, TrendingUp 
 } from "lucide-react"; 
-import { useCart } from "@/context/CartContext"; 
+import { useCart } from "@/context/CartContext";
+import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
+import {
+  attachStoresToProducts,
+  dropProductsWithoutStore,
+  fetchMergedStoreRowsForSellerIds,
+} from "@/lib/storefrontCatalogMerge";
+import { compactSellerRegion } from "@/lib/displayRegion";
 
 interface FullMarketplaceClientProps {
   initialProducts: any[];
@@ -17,13 +24,13 @@ interface FullMarketplaceClientProps {
 
 export default function FullMarketplaceClient({ initialProducts, categories }: FullMarketplaceClientProps) {
   const { addToCart, cartCount, setIsCartOpen } = useCart();
-  const PAGE_SIZE = 12;
+  const BATCH_SIZE = 40;
 
   // --- 1. CORE STATES ---
   const [products, setProducts] = useState(initialProducts);
   const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(Math.ceil(initialProducts.length / PAGE_SIZE));
+  const [hasMore, setHasMore] = useState(initialProducts.length >= BATCH_SIZE);
+  const [page, setPage] = useState(Math.max(1, Math.ceil(initialProducts.length / BATCH_SIZE)));
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(""); 
   const [selectedCategory, setSelectedCategory] = useState("all"); 
@@ -62,23 +69,6 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     ).slice(0, 8);
   }, [products]);
 
-  const applyDowngradeProtection = useCallback((items: any[]) => {
-    const counts = new Map();
-    const now = new Date();
-    return items.filter(p => {
-      const plan = p.stores?.subscription_plan;
-      const expiry = p.stores?.subscription_expiry;
-      if (expiry && new Date(expiry) < now) return false;
-      if (plan === 'premium' || plan === 'diamond') return true;
-      const count = counts.get(p.store_id) || 0;
-      if (count < 5) {
-        counts.set(p.store_id, count + 1);
-        return true;
-      }
-      return false;
-    });
-  }, []);
-
   const handleAddToCart = (product: any) => {
     const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
     if (isFlashActive) {
@@ -89,7 +79,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     setIsJumping(true);
     setTimeout(() => setIsJumping(false), 600);
     const storeData = {
-        id: product.store_id,
+        id: product.stores?.id,
         name: product.stores?.name,
         slug: product.stores?.slug,
         whatsapp_number: product.stores?.whatsapp_number || "", 
@@ -99,79 +89,93 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     setTimeout(() => setToast({ show: false, msg: "" }), 3000);
   };
 
-  const getRank = (plan?: string) => {
-     if (plan === 'diamond') return 3;
-     if (plan === 'premium') return 2;
-     return 1;
+  const rankStore = (stores?: {
+    subscription_plan?: string | null;
+    subscription_expiry?: string | null;
+    subscription_status?: string | null;
+  }) => {
+    return effectiveSellerTier(stores?.subscription_plan, stores?.subscription_expiry, stores?.subscription_status) === "diamond"
+      ? 2
+      : 1;
   };
 
   useEffect(() => {
+    const mergeProductRows = async (rows: any[] | null) => {
+      const list = rows || [];
+      const sellerIds = [...new Set(list.map((p: { seller_id?: string }) => p.seller_id).filter(Boolean))] as string[];
+      if (sellerIds.length === 0) return [];
+      const storeRows = await fetchMergedStoreRowsForSellerIds(supabase, sellerIds);
+      const merged = attachStoresToProducts(list, storeRows);
+      return dropProductsWithoutStore(merged);
+    };
+
     const fetchFiltered = async () => {
       if (selectedCategory === "all" && !debouncedSearch && !flashOnly) {
         setProducts(initialProducts);
-        setHasMore(true);
-        setPage(Math.ceil(initialProducts.length / PAGE_SIZE));
+        setHasMore(initialProducts.length >= BATCH_SIZE);
+        setPage(Math.max(1, Math.ceil(initialProducts.length / BATCH_SIZE)));
         return;
       }
 
       setLoading(true);
       setPage(1);
 
-      let query = supabase
-        .from("storefront_products")
-        .select("*, stores!inner(name, slug, subscription_plan, category, verification_status, subscription_expiry, loyalty_enabled, loyalty_percentage)") 
-        .order("created_at", { ascending: false })
-        .range(0, 40); 
-
-      if (selectedCategory !== "all") {
-        query = query.eq("stores.category", selectedCategory);
+      const categoryName = selectedCategory !== "all" ? categories.find((c) => c.slug === selectedCategory)?.name || null : null;
+      if (selectedCategory !== "all" && !categoryName) {
+        setProducts([]);
+        setHasMore(false);
+        setLoading(false);
+        return;
       }
+
+      const { data } = await supabase.rpc("get_storefront_marketplace_products", {
+        p_limit: BATCH_SIZE,
+        p_offset: 0,
+        p_category: categoryName,
+        p_search: debouncedSearch || null,
+        p_flash_only: flashOnly,
+      });
+      const merged = await mergeProductRows(data);
+      let processed = merged;
 
       if (debouncedSearch) {
-        query = query.ilike("name", `%${debouncedSearch}%`);
-      }
-
-      if (flashOnly) {
-        query = query.gt("flash_drop_expiry", new Date().toISOString());
-      }
-
-      const { data } = await query;
-      let processed = applyDowngradeProtection(data || []);
-      
-      if (debouncedSearch) {
-        processed = processed.sort((a, b) => getRank(b.stores?.subscription_plan) - getRank(a.stores?.subscription_plan));
+        processed = processed.sort((a, b) => rankStore(b.stores) - rankStore(a.stores));
       }
 
       setProducts(processed);
-      setHasMore(data && data.length >= 40 ? true : false);
+      setHasMore(Boolean(data && data.length >= BATCH_SIZE));
       setLoading(false);
     };
 
     fetchFiltered();
-  }, [selectedCategory, debouncedSearch, flashOnly, initialProducts, applyDowngradeProtection]);
+  }, [selectedCategory, debouncedSearch, flashOnly, initialProducts, categories, BATCH_SIZE]);
 
   const loadMore = async () => {
     if (loading || !hasMore) return;
     setLoading(true);
     const from = page * 40;
-    const to = from + 39; 
 
-    let query = supabase
-      .from("storefront_products")
-      .select("*, stores!inner(name, slug, subscription_plan, category, verification_status, subscription_expiry, loyalty_enabled, loyalty_percentage)")
-      .order("created_at", { ascending: false })
-      .range(from, to);
-
-    if (selectedCategory !== "all") query = query.eq("stores.category", selectedCategory);
-    if (debouncedSearch) query = query.ilike("name", `%${debouncedSearch}%`);
-    if (flashOnly) query = query.gt("flash_drop_expiry", new Date().toISOString());
-
-    const { data: newProducts } = await query;
+    const categoryName = selectedCategory !== "all" ? categories.find((c) => c.slug === selectedCategory)?.name || null : null;
+    if (selectedCategory !== "all" && !categoryName) {
+      setHasMore(false);
+      setLoading(false);
+      return;
+    }
+    const { data: newProducts } = await supabase.rpc("get_storefront_marketplace_products", {
+      p_limit: BATCH_SIZE,
+      p_offset: from,
+      p_category: categoryName,
+      p_search: debouncedSearch || null,
+      p_flash_only: flashOnly,
+    });
     if (newProducts && newProducts.length > 0) {
-      const protectedNewData = applyDowngradeProtection(newProducts);
-      setProducts(prev => [...prev, ...protectedNewData]);
-      setPage(prev => prev + 1);
-      setHasMore(newProducts.length >= 40);
+      const sellerIds = [...new Set(newProducts.map((p: { seller_id?: string }) => p.seller_id).filter(Boolean))] as string[];
+      const storeRows = await fetchMergedStoreRowsForSellerIds(supabase, sellerIds);
+      const merged = attachStoresToProducts(newProducts, storeRows);
+      const joined = dropProductsWithoutStore(merged);
+      setProducts((prev) => [...prev, ...joined]);
+      setPage((prev) => prev + 1);
+      setHasMore(newProducts.length >= BATCH_SIZE);
     } else {
       setHasMore(false);
     }
@@ -196,7 +200,13 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
                 return (
                   <Link key={`trending-${product.id}`} href={`/product/${product.id}`} className="min-w-[150px] md:min-w-[190px] bg-white p-2 rounded-2xl border-2 border-amber-100 shadow-sm active:scale-95 transition relative">
                      <div className="aspect-square relative rounded-xl overflow-hidden mb-2">
-                        <Image src={product.image_urls?.[0]} alt="" fill className="object-cover" unoptimized />
+                        {product.image_urls?.[0] ? (
+                          <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover" unoptimized />
+                        ) : (
+                          <div className="h-full w-full flex items-center justify-center text-gray-300 bg-gray-50">
+                            <Package size={24} />
+                          </div>
+                        )}
                         <div className="absolute top-1.5 left-1.5 bg-amber-500 text-white text-[7px] font-black px-1.5 py-0.5 rounded animate-pulse">TRENDING</div>
                         
                         {coins > 0 && (
@@ -266,7 +276,8 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
           const rewardCoins = product.stores?.loyalty_enabled 
             ? Math.floor((isFlash ? product.flash_drop_price : product.price) * (product.stores.loyalty_percentage / 100)) 
             : 0;
-          
+          const regionLabel = product.stores ? compactSellerRegion(product.stores) : "";
+
           return (
             <Link 
               href={`/product/${product.id}`} 
@@ -278,7 +289,13 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
               } hover:shadow-2xl hover:-translate-y-2`}
             >
               <div className="aspect-square bg-gray-50 rounded-xl mb-3 relative overflow-hidden">
-                <Image src={product.image_urls?.[0] || ""} alt="" fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized/>
+                {product.image_urls?.[0] ? (
+                  <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+                ) : (
+                  <div className="h-full w-full flex items-center justify-center text-gray-300">
+                    <Package size={30} />
+                  </div>
+                )}
                 
                 {isFlash ? (
                   <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20">
@@ -306,10 +323,13 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
               <div className="px-1 flex flex-col flex-1">
                 <h3 className="font-bold text-gray-900 text-xs md:text-sm truncate uppercase tracking-tight mb-0.5">{product.name}</h3>
-                <div className="flex items-center gap-1 text-[10px] text-gray-400 mb-3 truncate font-bold">
+                <div className="flex items-center gap-1 text-[10px] text-gray-400 mb-1 truncate font-bold">
                   <span className="truncate">{product.stores?.name}</span>
                   {product.stores?.verification_status === 'verified' && <BadgeCheck size={12} className="text-blue-500 fill-blue-50" />}
                 </div>
+                {regionLabel ? (
+                  <p className="text-[9px] font-bold text-gray-400 mb-2 truncate uppercase tracking-wider">{regionLabel}</p>
+                ) : null}
                 <div className="mt-auto flex items-center justify-between">
                   {isFlash ? (
                     <div>

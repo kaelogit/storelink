@@ -17,15 +17,15 @@ export default function SafetyPage() {
          <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100">
             <ShieldCheck className="text-emerald-600 mb-4 w-10 h-10" />
             <h3 className="font-bold text-xl text-gray-900 mb-2">Verify Before You Pay</h3>
-            <p className="text-gray-500 leading-relaxed">Always chat with the vendor on WhatsApp first. Ask for more pictures or videos of the product if you are unsure.</p>
+            <p className="text-gray-500 leading-relaxed">Use the vendor&apos;s listed contact or in-app messaging when you need clarity. Ask for more photos or a short video if you are unsure before you pay.</p>
          </div>
 
     
 
          <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100">
             <MessageCircle className="text-green-600 mb-4 w-10 h-10" />
-            <h3 className="font-bold text-xl text-gray-900 mb-2">Keep Chats on WhatsApp</h3>
-            <p className="text-gray-500 leading-relaxed">StoreLink connects you to WhatsApp for a reason. It keeps a record of your conversation and negotiation details.</p>
+            <h3 className="font-bold text-xl text-gray-900 mb-2">Keep a written record</h3>
+            <p className="text-gray-500 leading-relaxed">Save agreements, delivery timelines, and payment confirmations in writing. Your StoreLink order page is the source of truth for what was purchased.</p>
          </div>
 
          <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100">

@@ -1,10 +1,20 @@
 "use client";
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
-import { 
-  X, Shield, Mail, Phone, AlertTriangle, CheckCircle, 
-  Ban, Zap, FileText, Camera, ExternalLink, Calendar 
+import {
+  X,
+  Shield,
+  Mail,
+  Phone,
+  AlertTriangle,
+  CheckCircle,
+  Ban,
+  Zap,
+  FileText,
+  Camera,
+  ExternalLink,
+  Calendar,
 } from "lucide-react";
+import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
 
 export default function StoreManager({ store, onClose, onUpdate }: { store: any, onClose: () => void, onUpdate: () => void }) {
   const [loading, setLoading] = useState(false);
@@ -24,49 +34,52 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
 
   const daysLeft = getDaysLeft(store.subscription_expiry);
 
-  async function updatePlan(newPlan: string) {
+  const effectiveTier = effectiveSellerTier(
+    store.subscription_plan,
+    store.subscription_expiry,
+    store.subscription_status
+  );
+  const rawPlan = (store.subscription_plan || "").toLowerCase();
+  const staleDiamondRow = rawPlan === "diamond" && effectiveTier === "standard";
+
+  async function patchSeller(payload: Record<string, unknown>) {
+    const res = await fetch(`/api/admin/sellers/${store.id}`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const j = (await res.json().catch(() => ({}))) as { error?: string };
+    if (!res.ok) throw new Error(j.error || res.statusText);
+  }
+
+  async function updatePlan(newPlan: "standard" | "diamond") {
     if (!store?.id) {
-      alert("Empire Error: Missing Store ID reference.");
+      alert("Error: Missing seller profile id.");
       return;
     }
 
-    if (!confirm(`Are you sure you want to move this store to ${newPlan}?`)) return;
+    if (!confirm(`Set this seller to ${newPlan} plan on their profile?`)) return;
     setLoading(true);
 
-    let expiryDate = null;
-    let trialStatus = store.is_trial; 
+    let expiryDate: string | null = null;
 
-    if (newPlan === 'premium' || newPlan === 'diamond') {
+    if (newPlan === "diamond") {
       const date = new Date();
       date.setDate(date.getDate() + 30);
       expiryDate = date.toISOString();
-      trialStatus = false; // Manual upgrade ends the trial period immediately
-    } else if (newPlan === 'free') {
-      trialStatus = false; 
     }
 
     try {
-      // 🔥 FIX: Added .select() to verify the row was actually affected
-      const { data, error } = await supabase
-        .from('stores')
-        .update({ 
-          subscription_plan: newPlan,
-          subscription_expiry: expiryDate,
-          is_trial: trialStatus 
-        })
-        .eq('id', store.id)
-        .select();
-
-      if (error) {
-        alert("Sync Error: " + error.message);
-      } else if (data && data.length === 0) {
-        alert("Ghost Update: Database accepted request but 0 rows were changed. Check RLS policies.");
-      } else {
-        alert(`Success: ${store.name} is now ${newPlan.toUpperCase()}`);
-        onUpdate(); 
-      }
-    } catch (err: any) {
-      alert("Fatal System Error: " + err.message);
+      await patchSeller({
+        subscription_plan: newPlan,
+        subscription_expiry: expiryDate,
+        subscription_status: "active",
+      });
+      alert(`Success: ${store.name} is now ${newPlan.toUpperCase()}`);
+      onUpdate();
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Update failed");
     } finally {
       setLoading(false);
     }
@@ -74,76 +87,49 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
 
   async function toggleBan() {
     setLoading(true);
-    const newStatus = store.status === 'banned' ? 'active' : 'banned';
-    
-    const { error } = await supabase
-      .from('stores')
-      .update({ status: newStatus })
-      .eq('id', store.id);
+    const lifting = store.status === "banned";
 
-    if (error) {
-      alert("Error updating status: " + error.message);
-    } else {
+    try {
+      await patchSeller({ account_status: lifting ? "active" : "suspended" });
       onUpdate();
-      onClose(); 
+      onClose();
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Update failed");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   async function updateLoyaltySettings() {
     setLoading(true);
-    const { error } = await supabase
-      .from('stores')
-      .update({ 
+    try {
+      await patchSeller({
         loyalty_enabled: !store.loyalty_enabled,
-        loyalty_percentage: loyaltyPercent 
-      })
-      .eq('id', store.id);
-
-    if (error) {
-      alert("Error updating loyalty: " + error.message);
-    } else {
+        loyalty_percentage: loyaltyPercent,
+      });
       onUpdate();
-      alert("Empire Loyalty Engine Updated.");
+      alert("Loyalty settings updated on profile.");
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Update failed");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
 
   async function toggleVerification() {
     setLoading(true);
-    
+
     const isNowVerified = !store.is_verified;
-    
-    const updateData = isNowVerified 
-      ? { 
-          is_verified: true, 
-          verification_status: 'verified',
-          verification_note: 'Your account has been officially verified by StoreLink.' 
-        }
-      : { 
-          is_verified: false, 
-          verification_status: 'none', 
-          verification_note: 'Verification was revoked by an administrator.' 
-        };
 
     try {
-      // 🔥 FIX: Added .select() to verify verification status change
-      const { data, error } = await supabase
-        .from('stores')
-        .update(updateData)
-        .eq('id', store.id)
-        .select();
-        
-      if (error) {
-        alert("Error updating verification: " + error.message);
-      } else if (data && data.length === 0) {
-        alert("Sync Error: No rows matched ID for verification update.");
-      } else {
-        alert(`Verification ${isNowVerified ? 'Granted' : 'Revoked'}`);
-        onUpdate(); 
-      }
-    } catch (err: any) {
-      alert("Execution Error: " + err.message);
+      await patchSeller({
+        is_verified: isNowVerified,
+        verification_status: isNowVerified ? "verified" : "none",
+      });
+      alert(`Verification ${isNowVerified ? "granted" : "revoked"} on profile`);
+      onUpdate();
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : "Update failed");
     } finally {
       setLoading(false);
     }
@@ -163,7 +149,7 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                <span className="font-mono text-xs bg-gray-900 px-2 py-0.5 rounded text-gray-500">{store.id.slice(0, 8)}...</span>
                <span>•</span>
                <a href={`/${store.slug}`} target="_blank" className="text-emerald-500 hover:underline font-bold">
-                 storelink.ng/{store.slug}
+                 /{store.slug}
                </a>
             </div>
           </div>
@@ -247,14 +233,18 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
                <div>
                  <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">Subscription Tier</h3>
                  <div className="flex gap-2">
-                    {['free', 'premium', 'diamond'].map(plan => (
+                    {(["standard", "diamond"] as const).map((plan) => (
                       <button
                         key={plan}
                         onClick={() => updatePlan(plan)}
-                        disabled={store.subscription_plan === plan || loading}
+                        disabled={
+                          loading ||
+                          (plan === "diamond" && effectiveTier === "diamond") ||
+                          (plan === "standard" && effectiveTier === "standard" && !staleDiamondRow)
+                        }
                         className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-                          store.subscription_plan === plan 
-                            ? 'bg-emerald-600 text-white cursor-default shadow-lg shadow-emerald-900/20' 
+                          (plan === "standard" ? effectiveTier === "standard" : effectiveTier === "diamond")
+                            ? 'bg-emerald-600 text-white cursor-default shadow-lg shadow-emerald-900/20'
                             : 'bg-gray-800 text-gray-500 hover:bg-gray-700 hover:text-gray-300'
                         }`}
                       >
@@ -312,7 +302,7 @@ export default function StoreManager({ store, onClose, onUpdate }: { store: any,
 
             <div className="space-y-4">
               <h3 className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] flex items-center gap-2">
-                <Zap size={14} fill="currentColor" /> Empire Loyalty Engine
+                <Zap size={14} fill="currentColor" /> Store Coin loyalty
               </h3>
               <div className="bg-gray-900/50 p-5 rounded-2xl border border-gray-800 space-y-5">
                  <div className="flex items-center justify-between">

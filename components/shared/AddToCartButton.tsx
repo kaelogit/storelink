@@ -72,7 +72,7 @@ export default function AddToCartButton({ product, store }: AddToCartButtonProps
         </button>
 
         <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest text-center">
-          Secure WhatsApp Checkout via StoreLink
+          Add to your bag, then pay securely in StoreLink checkout
         </p>
       </div>
     </div>

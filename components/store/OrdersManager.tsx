@@ -9,6 +9,13 @@ import {
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useRouter } from "next/navigation";
+import { enrichOrderItemsWithProductNames, orderLineLabel } from "@/lib/orderItemDisplay";
+import OrderLineThumb from "@/components/orders/OrderLineThumb";
+
+function lineUnitPrice(item: { unit_price?: unknown; price?: unknown }): number {
+  const u = item?.unit_price ?? item?.price;
+  return Number(u) || 0;
+}
 
 interface Order {
   id: string;
@@ -23,12 +30,11 @@ interface Order {
 }
 
 interface OrdersManagerProps {
-  storeId: string;
-  onUpdate: () => void; 
+  sellerId: string;
+  onUpdate: () => void;
 }
 
-
-export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps) {
+export default function OrdersManager({ sellerId, onUpdate }: OrdersManagerProps) {
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState<Order[]>([]);
   const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
@@ -39,13 +45,26 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
   const fetchOrders = async () => {
     setLoading(true);
     
-    const { data: storeData } = await supabase.from("stores").select("name, location, whatsapp_number").eq("id", storeId).single();
-    setStoreInfo(storeData);
+    const { data: profileRow } = await supabase
+      .from("profiles")
+      .select("display_name, full_name, location, phone_number")
+      .eq("id", sellerId)
+      .maybeSingle();
+
+    setStoreInfo(
+      profileRow
+        ? {
+            name: profileRow.display_name?.trim() || profileRow.full_name?.trim() || "Store",
+            location: profileRow.location,
+            phone: profileRow.phone_number,
+          }
+        : null
+    );
 
     const { data: ordersData, error } = await supabase
       .from("orders")
       .select("*")
-      .eq("store_id", storeId)
+      .eq("seller_id", sellerId)
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -55,10 +74,14 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
 
     const orderIds = ordersData.map(o => o.id);
     const { data: itemsData } = await supabase.from("order_items").select("*").in("order_id", orderIds);
+    const enrichedItems = await enrichOrderItemsWithProductNames(
+      supabase,
+      (itemsData || []) as Record<string, unknown>[]
+    );
 
     const fullOrders = ordersData.map(order => ({
       ...order,
-      items: itemsData?.filter(item => item.order_id === order.id) || []
+      items: enrichedItems.filter((item) => item.order_id === order.id),
     }));
 
     setOrders(fullOrders);
@@ -67,7 +90,7 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
 
   useEffect(() => {
     fetchOrders();
-  }, [storeId]);
+  }, [sellerId]);
 
   const updateStatus = async (orderId: string, newStatus: string) => {
     if (!confirm(`Mark this order as ${newStatus}?`)) return;
@@ -82,12 +105,15 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
     }
   };
 
-  const generateReceipt = (order: Order) => {
+  const generateReceipt = (order: Order & { currency_code?: string | null; payment_reference?: string | null; customer_email?: string | null }) => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const currency = String(order.currency_code || "NGN").toUpperCase();
+    const fmtMoney = (n: number) => `₦${n.toLocaleString()} ${currency}`;
 
-    doc.setFillColor(33, 33, 33); 
-    doc.rect(0, 0, pageWidth, 20, 'F');
+    doc.setFillColor(33, 33, 33);
+    doc.rect(0, 0, pageWidth, 20, "F");
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(10);
     doc.setFont("helvetica", "bold");
@@ -99,79 +125,109 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
     doc.setFontSize(22);
     doc.setFont("helvetica", "bold");
     doc.text(storeInfo?.name || "Store Receipt", 20, 40);
-    
+
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
-    doc.text(storeInfo?.location || "Lagos, Nigeria", 20, 46);
-    doc.text(`WhatsApp: ${storeInfo?.whatsapp_number}`, 20, 51);
+    doc.text(storeInfo?.location || "", 20, 46);
+    doc.text(`Contact: ${storeInfo?.phone ?? ""}`, 20, 51);
 
     doc.setFont("helvetica", "bold");
     doc.text("RECEIPT", pageWidth - 60, 40);
     doc.setFont("helvetica", "normal");
     doc.text(`#${order.id.slice(0, 8).toUpperCase()}`, pageWidth - 60, 46);
-    doc.text(`${new Date(order.created_at).toLocaleDateString()}`, pageWidth - 60, 51);
-    
-    doc.setTextColor(0, 150, 0); // Green
+    doc.text(`${new Date(order.created_at).toLocaleString()}`, pageWidth - 60, 51);
+
+    doc.setTextColor(0, 150, 0);
     doc.setFont("helvetica", "bold");
-    doc.text("PAID", pageWidth - 60, 57);
-    doc.setTextColor(0, 0, 0); // Reset
+    doc.text(String(order.status || "").toUpperCase() || "PAID", pageWidth - 60, 57);
+    doc.setTextColor(0, 0, 0);
 
     doc.setDrawColor(220, 220, 220);
     doc.line(20, 65, pageWidth - 20, 65);
-    
+
+    let metaY = 72;
+    doc.setFontSize(9);
+    doc.setTextColor(80, 80, 80);
+    if (order.payment_reference) {
+      const refLines = doc.splitTextToSize(`Payment ref: ${String(order.payment_reference)}`, pageWidth - 40);
+      doc.text(refLines, 20, metaY);
+      metaY += refLines.length * 4 + 2;
+    }
     doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+
     doc.setTextColor(100, 100, 100);
-    doc.text("BILLED TO:", 20, 75);
-    
+    doc.text("BILLED TO:", 20, metaY + 6);
+
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text(order.customer_name, 20, 82);
+    doc.text(order.customer_name, 20, metaY + 14);
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
-    doc.text(order.customer_phone, 20, 88);
-    doc.text(order.customer_address || "No Address Provided", 20, 93);
+    doc.text(order.customer_phone, 20, metaY + 20);
+    let billY = metaY + 26;
+    if (order.customer_email?.trim()) {
+      doc.text(order.customer_email.trim(), 20, billY);
+      billY += 6;
+    }
+    const addrLines = doc.splitTextToSize(order.customer_address || "No address provided", pageWidth - 40);
+    doc.text(addrLines, 20, billY);
+    billY += addrLines.length * 5;
 
-    const tableBody = order.items?.map(item => [
-      item.product_name,
-      item.quantity.toString(),
-      `N${item.price.toLocaleString()}`,
-      `N${(item.price * item.quantity).toLocaleString()}`
-    ]);
-
-    autoTable(doc, {
-      startY: 105,
-      head: [['ITEM DESCRIPTION', 'QTY', 'PRICE', 'TOTAL']],
-      body: tableBody,
-      theme: 'grid',
-      headStyles: { fillColor: [33, 33, 33], textColor: 255, fontStyle: 'bold' },
-      styles: { fontSize: 10, cellPadding: 3 },
-      columnStyles: {
-        0: { cellWidth: 'auto' }, 
-        1: { cellWidth: 20, halign: 'center' }, 
-        2: { cellWidth: 30, halign: 'right' }, 
-        3: { cellWidth: 30, halign: 'right' } 
-      }
+    const tableBody = order.items?.map((item) => {
+      const up = lineUnitPrice(item);
+      const qty = Number(item.quantity) || 0;
+      return [orderLineLabel(item), String(qty), fmtMoney(up), fmtMoney(up * qty)];
     });
 
-    const finalY = (doc as any).lastAutoTable.finalY + 15;
+    autoTable(doc, {
+      startY: billY + 8,
+      head: [["Item", "Qty", "Unit price", "Line total"]],
+      body: tableBody,
+      theme: "grid",
+      headStyles: { fillColor: [33, 33, 33], textColor: 255, fontStyle: "bold" },
+      styles: { fontSize: 10, cellPadding: 3 },
+      columnStyles: {
+        0: { cellWidth: "auto" },
+        1: { cellWidth: 20, halign: "center" },
+        2: { cellWidth: 35, halign: "right" },
+        3: { cellWidth: 35, halign: "right" },
+      },
+    });
+
+    let finalY = (doc as any).lastAutoTable.finalY + 15;
     doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
-    doc.text(`TOTAL PAID: N${order.total_amount.toLocaleString()}`, pageWidth - 20, finalY, { align: "right" });
+    doc.text(`TOTAL PAID: ${fmtMoney(Number(order.total_amount))}`, pageWidth - 20, finalY, { align: "right" });
 
-    const pageHeight = doc.internal.pageSize.getHeight();
+    finalY += 14;
+    doc.setFontSize(7);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(120, 120, 120);
+    doc.text("Full order ID (support):", 20, finalY);
+    finalY += 4;
+    doc.setFont("courier", "normal");
+    const idLines = doc.splitTextToSize(String(order.id), pageWidth - 40);
+    doc.text(idLines, 20, finalY);
+    finalY += idLines.length * 3.5 + 10;
+
+    if (finalY > pageHeight - 28) {
+      doc.addPage();
+      finalY = 24;
+    }
     doc.setDrawColor(220, 220, 220);
     doc.line(20, pageHeight - 25, pageWidth - 20, pageHeight - 25);
-    
+
+    doc.setFont("helvetica", "normal");
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
-    doc.setFont("helvetica", "normal");
     doc.text("Thank you for your patronage.", 20, pageHeight - 15);
-    
+
     doc.setFont("helvetica", "bold");
     doc.text("Create your own store at www.storelink.com", pageWidth - 20, pageHeight - 15, { align: "right" });
 
-    doc.save(`Receipt-${order.id.slice(0,8)}.pdf`);
+    doc.save(`Receipt-${order.id.slice(0, 8)}.pdf`);
   };
 
   if (loading) return <div className="py-10 text-center"><Loader2 className="animate-spin mx-auto text-gray-400" /></div>;
@@ -232,9 +288,20 @@ export default function OrdersManager({ storeId, onUpdate }: OrdersManagerProps)
 
                <div className="space-y-2 mb-6">
                  {order.items?.map((item: any) => (
-                   <div key={item.id} className="flex justify-between items-center text-sm border-b border-gray-50 pb-2">
-                      <span className="text-gray-700">{item.quantity}x {item.product_name}</span>
-                      <span className="text-gray-900 font-medium">₦{(item.price * item.quantity).toLocaleString()}</span>
+                   <div key={item.id} className="flex justify-between items-center gap-2 text-sm border-b border-gray-50 pb-2">
+                      <div className="flex items-center gap-2 min-w-0 flex-1">
+                        <OrderLineThumb
+                          size="sm"
+                          src={item._resolved_product_image_url}
+                          alt={orderLineLabel(item)}
+                        />
+                        <span className="text-gray-700 truncate">
+                          {item.quantity}x {orderLineLabel(item)}
+                        </span>
+                      </div>
+                      <span className="text-gray-900 font-medium shrink-0">
+                        ₦{(lineUnitPrice(item) * Number(item.quantity)).toLocaleString()}
+                      </span>
                    </div>
                  ))}
                </div>

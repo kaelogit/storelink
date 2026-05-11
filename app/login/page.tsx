@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, ArrowLeft, ShieldCheck } from "lucide-react"; 
 import Link from "next/link";
 import Navbar from "@/components/landing/Navbar";
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextPath = searchParams.get("next") || "/post-login";
+  const sellerIntent = searchParams.get("seller_intent") === "1";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -45,7 +48,25 @@ export default function LoginPage() {
         return; 
       }
 
-      router.push("/dashboard");
+      if (sellerIntent) {
+        localStorage.setItem("storelink_post_auth_seller_intent", "1");
+      }
+
+      const guestIdentityRaw = localStorage.getItem("storelink_guest_identity");
+      if (guestIdentityRaw && data?.user?.id) {
+        try {
+          const guestIdentity = JSON.parse(guestIdentityRaw);
+          await supabase.rpc("claim_guest_orders", {
+            p_user_id: data.user.id,
+            p_email: guestIdentity?.email || null,
+            p_phone: guestIdentity?.phone || null,
+          });
+        } catch {
+          // best-effort merge; do not block login
+        }
+      }
+
+      router.push(nextPath);
 
     } catch (err: any) {
       setError(err.message);
@@ -77,7 +98,27 @@ export default function LoginPage() {
 
       if (verifyError) throw verifyError;
 
-      router.push("/dashboard");
+      if (sellerIntent) {
+        localStorage.setItem("storelink_post_auth_seller_intent", "1");
+      }
+
+      const { data: authData } = await supabase.auth.getUser();
+      const userId = authData?.user?.id;
+      const guestIdentityRaw = localStorage.getItem("storelink_guest_identity");
+      if (guestIdentityRaw && userId) {
+        try {
+          const guestIdentity = JSON.parse(guestIdentityRaw);
+          await supabase.rpc("claim_guest_orders", {
+            p_user_id: userId,
+            p_email: guestIdentity?.email || null,
+            p_phone: guestIdentity?.phone || null,
+          });
+        } catch {
+          // best-effort merge; do not block login
+        }
+      }
+
+      router.push(nextPath);
 
     } catch (err: any) {
       setError("Invalid code. Please try again.");
@@ -98,7 +139,7 @@ export default function LoginPage() {
           {!needsMFA && (
             <>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back!</h1>
-              <p className="text-gray-500 text-sm mb-6">Log in to manage your StoreLink empire.</p>
+              <p className="text-gray-500 text-sm mb-6">Log in to manage your StoreLink storefront.</p>
               
               <form onSubmit={handleLogin} className="space-y-4">
                 {error && <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg text-center font-medium">{error}</div>}
@@ -125,7 +166,7 @@ export default function LoginPage() {
               </form>
 
               <p className="mt-6 text-sm text-gray-500 text-center">
-                New vendor? <Link href="/signup" className="font-bold text-gray-900 hover:text-emerald-600">Sign up here</Link>
+                New vendor? <Link href={`/signup?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`} className="font-bold text-gray-900 hover:text-emerald-600">Sign up here</Link>
               </p>
             </>
           )}
@@ -167,5 +208,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin text-emerald-600" /></div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

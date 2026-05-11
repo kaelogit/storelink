@@ -1,4 +1,8 @@
 export interface Store {
+  /** Present when row is built from `profiles` (profile-as-storefront). */
+  __surface?: "profile" | "merged"; /** merged = legacy `stores` row + profile as display source of truth */
+  /** Real `stores.id` when a legacy row exists; checkout keys off `owner_id` (profile id). */
+  __legacy_store_id?: string | null;
   id: string;
   owner_id: string;
   slug: string;
@@ -6,6 +10,12 @@ export interface Store {
   owner_email?: string;
   description: string | null;
   location: string;
+  /** Structured region for compact UI (cards, pins) — aligned with `profiles.location_*`. */
+  location_city?: string | null;
+  location_state?: string | null;
+  location_country?: string | null;
+  /** ISO 3166-1 alpha-2 — aligned with `profiles.location_country_code`. */
+  location_country_code?: string | null;
   whatsapp_number: string;
   logo_url: string | null;
   cover_image_url: string | null;
@@ -19,24 +29,32 @@ export interface Store {
   verification_selfie_url?: string; // 👈 ADDED THIS LINE
   verification_note?: string;
 
-  view_count?: number; 
-  subscription_plan: 'free' | 'premium' | 'diamond';
-  subscription_status?: 'active' | 'inactive' | 'expired';
+  view_count?: number;
+  /** Canonical: `standard` | `diamond`. Legacy: `free`, `premium`. */
+  subscription_plan: 'standard' | 'free' | 'premium' | 'diamond' | string;
+  subscription_expiry?: string | null;
+  subscription_status?: 'active' | 'inactive' | 'expired' | string | null;
 
   loyalty_enabled?: boolean;
   loyalty_percentage?: number;
+  /** product | service | both — web storefront only surfaces product tools. */
+  seller_type?: string;
 }
 
 export interface Category {
   id: string;
-  store_id: string;
+  /** Merchant catalog: owner profile id. Omitted for global `category_scope=platform` rows. */
+  seller_id?: string | null;
   name: string;
   created_at?: string;
+  parent_id?: string | null;
+  category_scope?: "platform" | "seller";
 }
 
 export interface Product {
   id: string;
-  store_id: string;
+  /** Seller profile id — joins `stores.owner_id`. */
+  seller_id: string;
   category_id?: string | null;
   name: string;
   description: string | null;
@@ -53,7 +71,8 @@ export interface Product {
 
 export interface Order {
   id: string;
-  store_id: string;
+  store_id?: string | null;
+  seller_id?: string;
   customer_name: string;
   customer_phone: string;
   customer_email?: string;

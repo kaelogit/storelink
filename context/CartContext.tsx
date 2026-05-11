@@ -80,13 +80,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
-    setCart((prev) => 
-      prev.map((item) => 
-        item.product.id === productId 
-          ? { ...item, qty: Math.max(1, quantity) } 
-          : item
-      )
-    );
+    setCart((prev) => {
+      if (quantity <= 0) return prev.filter((item) => item.product.id !== productId);
+      return prev.map((item) =>
+        item.product.id === productId ? { ...item, qty: quantity } : item
+      );
+    });
   };
 
   const clearCart = () => {

@@ -38,8 +38,8 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-bold mb-3 text-gray-900">6. Empire Loyalty Engine & Coins</h2>
-          <p>The Empire Loyalty Engine is a reward feature exclusive to eligible subscription tiers. StoreLink reserves the absolute right to modify reward percentages, cap coin distributions, or reset loyalty data without prior notice if fraudulent activity, "coin farming," or system abuse is detected. Decisions made via the Founder Godmode regarding store status (Active/Banned) and loyalty eligibility are final.</p>
+          <h2 className="text-xl font-bold mb-3 text-gray-900">6. Store Coin loyalty</h2>
+          <p>Store Coin loyalty is a reward feature exclusive to eligible subscription tiers. StoreLink reserves the absolute right to modify reward percentages, cap coin distributions, or reset loyalty data without prior notice if fraudulent activity, "coin farming," or system abuse is detected. Decisions made via the Founder Godmode regarding store status (Active/Banned) and loyalty eligibility are final.</p>
         </section>
 
         <section>

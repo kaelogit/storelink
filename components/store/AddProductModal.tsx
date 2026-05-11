@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { X, Loader2, Trash2, Plus, Lock, Crown, Sparkles, ExternalLink } from "lucide-react";
+import { X, Loader2, Trash2, Plus, Gem, Sparkles, ExternalLink } from "lucide-react";
 import { compressImage } from "@/utils/imageCompressor";
+import { effectiveSellerTier, type EffectiveSellerTier } from "@/utils/marketplaceDiscovery";
 
 interface AddProductModalProps {
   storeId: string;
@@ -31,9 +32,8 @@ export default function AddProductModal({
   // 🗑️ REMOVED: const [categories, setCategories] = useState([]); 
   // (We now use the prop directly to ensure instant updates)
 
-  const [isLimitReached, setIsLimitReached] = useState(false);
-  const [isExpired, setIsExpired] = useState(false);
-  const [userPlan, setUserPlan] = useState('free');
+  /** Effective tier for Diamond AI (paid boost while subscription is active). */
+  const [userPlan, setUserPlan] = useState<EffectiveSellerTier>("standard");
   const [errorMsg, setErrorMsg] = useState("");
   
   const [removeBg, setRemoveBg] = useState(false);
@@ -77,40 +77,29 @@ export default function AddProductModal({
       }
 
       const loadData = async () => {
-        // 🗑️ REMOVED: local category fetch. DashboardClient handles this now.
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (!user?.id) return;
 
-        const { data: store } = await supabase
-          .from("stores")
-          .select("subscription_plan, subscription_expiry")
-          .eq("id", storeId)
-          .single();
-        
-        if (store) {
-          const plan = store.subscription_plan || 'free';
-          setUserPlan(plan);
-          
-          if (plan !== 'free' && store.subscription_expiry && new Date(store.subscription_expiry) < new Date()) {
-            setIsExpired(true);
-          } else {
-            setIsExpired(false);
-          }
+        const { data: prof } = await supabase
+          .from("profiles")
+          .select("subscription_plan, subscription_expiry, subscription_status")
+          .eq("id", user.id)
+          .maybeSingle();
 
-          if (!productToEdit && plan === 'free') {
-            const { count } = await supabase
-              .from("products")
-              .select("*", { count: 'exact', head: true }) 
-              .eq("store_id", storeId);
-            
-            setIsLimitReached((count || 0) >= 5);
-          } else {
-            setIsLimitReached(false);
-          }
+        const tierPlan = prof?.subscription_plan as Parameters<typeof effectiveSellerTier>[0] | null | undefined;
+        const tierExpiry = prof?.subscription_expiry ?? undefined;
+        const tierStatus = prof?.subscription_status ?? undefined;
+
+        if (tierPlan != null) {
+          setUserPlan(effectiveSellerTier(tierPlan, tierExpiry, tierStatus));
         }
       };
       
       loadData();
     }
-  }, [isOpen, storeId, productToEdit]);
+  }, [isOpen, productToEdit]);
 
   if (!isOpen) return null;
 
@@ -190,8 +179,6 @@ export default function AddProductModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if ((isLimitReached && !productToEdit) || isExpired) return; 
-
     if (!formData.name || !formData.price || !formData.stock || !formData.description || !formData.categoryId) {
       setErrorMsg("All fields are compulsory for a professional listing");
       setTimeout(() => setErrorMsg(""), 4000);
@@ -206,6 +193,11 @@ export default function AddProductModal({
 
     setLoading(true);
     try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) throw new Error("You must be signed in to list products.");
+
       const uploadedUrls: string[] = [];
       for (const file of imageFiles) {
         const compressedFile = await compressImage(file);
@@ -220,7 +212,7 @@ export default function AddProductModal({
       const newStock = parseInt(formData.stock);
 
       const payload: any = {
-        store_id: storeId,
+        seller_id: user.id,
         name: formData.name,
         price: parseFloat(formData.price),
         stock_quantity: newStock,
@@ -263,21 +255,6 @@ export default function AddProductModal({
         </div>
 
         <div className="p-6 overflow-y-auto no-scrollbar">
-          {isExpired ? (
-             <div className="py-8 text-center flex flex-col items-center justify-center h-full">
-                <Lock size={32} className="text-red-400 mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2 uppercase tracking-tighter">Subscription Expired</h3>
-                <button onClick={() => router.push("/dashboard/subscription")} className="w-full bg-red-600 text-white py-5 rounded-[1.5rem] font-black uppercase tracking-widest text-[10px] shadow-lg">Renew Subscription</button>
-             </div>
-          ) : (isLimitReached && !productToEdit) ? (
-            <div className="py-8 text-center flex flex-col items-center justify-center h-full">
-                <Crown size={32} className="text-amber-500 mb-4" />
-                <h3 className="text-xl font-black text-gray-900 mb-2 uppercase tracking-tighter">Starter Limit Reached</h3>
-                <button onClick={() => router.push("/dashboard/subscription")} className="w-full bg-gray-900 text-white py-4 rounded-[1.5rem] font-black uppercase tracking-widest text-[10px] shadow-lg flex items-center justify-center gap-2">
-                  <Crown size={18} className="text-amber-400" /> Upgrade Plan
-                </button>
-            </div>
-          ) : (
             <form onSubmit={handleSubmit} className="space-y-5 pb-4">
               
               <div>
@@ -319,7 +296,7 @@ export default function AddProductModal({
                 {aiStatus === "diamond_gate" && (
                    <div className="bg-purple-50 border border-purple-100 p-4 rounded-3xl mb-4 animate-in zoom-in-95 duration-300">
                       <div className="flex items-center gap-2 mb-2">
-                        <Crown size={14} className="text-purple-600" />
+                        <Gem size={14} style={{ color: "#8B5CF6", fill: "#8B5CF6" }} />
                         <span className="text-[10px] font-black uppercase text-purple-600 tracking-widest">Diamond Feature Only</span>
                       </div>
                       <p className="text-[11px] font-bold text-purple-950 mb-3 leading-tight">One-click AI cleaning is reserved for Diamond users due to API costs. But you can do it manually for free!</p>
@@ -390,7 +367,6 @@ export default function AddProductModal({
                 {loading ? <Loader2 className="animate-spin mx-auto" /> : (productToEdit ? "Update Product" : "Save to Warehouse")}
               </button>
             </form>
-          )}
         </div>
       </div>
     </div>

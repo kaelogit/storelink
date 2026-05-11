@@ -44,7 +44,12 @@ export default function EditProductModal({ product, isOpen, onClose, onSuccess }
       setNewPreviews([]);
       
       const loadCats = async () => {
-        const { data } = await supabase.from("categories").select("*").eq("store_id", product.store_id);
+        const { data } = await supabase
+          .from("categories")
+          .select("*")
+          .eq("seller_id", product.seller_id)
+          .eq("category_scope", "seller")
+          .order("name");
         setCategories(data || []);
       };
       loadCats();
@@ -77,8 +82,9 @@ export default function EditProductModal({ product, isOpen, onClose, onSuccess }
 
     try {
       const finalImageUrls = [...existingImages];
+      const folder = product.seller_id || "misc";
       for (const file of newFiles) {
-        const fileName = `${product.store_id}/${Date.now()}-${Math.random().toString(36).substring(7)}`;
+        const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).substring(7)}`;
         const { error } = await supabase.storage.from("products").upload(fileName, file);
         if (error) throw error;
         const { data } = supabase.storage.from("products").getPublicUrl(fileName);

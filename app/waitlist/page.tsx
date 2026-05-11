@@ -83,7 +83,7 @@ function WaitlistContent() {
           </div>
         </div>
         
-        <h1 className="text-3xl font-black text-gray-900 mb-2 tracking-tighter uppercase italic">Welcome to the Empire!</h1>
+        <h1 className="text-3xl font-black text-gray-900 mb-2 tracking-tighter uppercase italic">Welcome to StoreLink!</h1>
         <p className="text-gray-500 max-w-sm mb-8 font-medium text-sm leading-relaxed">
           You're officially on the list. But why wait alone?
         </p>
@@ -103,7 +103,7 @@ function WaitlistContent() {
                 "Verified Vendor Badge",
                 "Priority Marketplace Spot",
                 "Advanced Sales Analytics",
-                "Empire Loyalty Engine"
+                "Store Coin loyalty"
               ].map((perk) => (
                 <div key={perk} className="flex items-center gap-2 text-xs font-bold text-gray-500 italic">
                   <CheckCircle2 size={14} className="text-emerald-500" /> {perk}
@@ -161,8 +161,7 @@ function WaitlistContent() {
             <span className="text-emerald-600">Start Selling.</span>
           </h1>
           <p className="text-gray-500 text-base md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
-            The engine for the Naija Hustle is almost ready. Turn your WhatsApp into a 
-            professional sales machine and build your empire.
+            The engine for the Naija Hustle is almost ready. Launch a professional storefront and reach buyers beyond your contacts.
           </p>
         </div>
 
@@ -190,7 +189,7 @@ function WaitlistContent() {
                 <input
                   required
                   type="tel"
-                  placeholder="WhatsApp Phone Number"
+                  placeholder="Business phone number"
                   className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-500 transition-all focus:bg-white"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -235,7 +234,7 @@ function WaitlistContent() {
                    <div className="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center"><Zap size={20} fill="currentColor"/></div>
                    <div>
                       <p className="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Growth Tracked</p>
-                      <p className="text-xl font-black text-gray-900 leading-none">Empire Ready</p>
+                      <p className="text-xl font-black text-gray-900 leading-none">You&apos;re on the list</p>
                    </div>
                 </div>
              </div>
@@ -266,7 +265,7 @@ function WaitlistContent() {
                 <LayoutDashboard size={18} />
                 <span className="font-black text-base tracking-tighter uppercase italic">StoreLink</span>
               </div>
-              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">© 2025 StoreLink Empire</p>
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">© 2025 StoreLink</p>
            </div>
            
            <div className="flex flex-col items-center md:items-end gap-4">

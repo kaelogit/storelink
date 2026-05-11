@@ -1,0 +1,3 @@
+{
+  "/api/cron/merchant-welcome/route": "app/api/cron/merchant-welcome/route.js"
+}

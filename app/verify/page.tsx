@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { supabase } from "@/lib/supabase";
+import { isEmailVerifiedForStorefront } from "@/lib/authVerification";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, ShieldCheck, ArrowLeft, RefreshCw, MailSearch } from "lucide-react";
 import Link from "next/link";
@@ -13,6 +14,8 @@ function VerifyContent() {
   
   const email = searchParams.get("email");
   const type = searchParams.get("type") || "signup"; 
+  const nextPath = searchParams.get("next") || "/post-login";
+  const sellerIntent = searchParams.get("seller_intent") === "1";
   
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,6 +28,26 @@ function VerifyContent() {
       router.push("/signup");
     }
   }, [email, router]);
+
+  /** Skip this screen if the user is already verified (e.g. signed up in another client) — avoids a dead-end when no OTP email is configured. */
+  useEffect(() => {
+    if (!email) return;
+    let cancelled = false;
+    (async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (cancelled || !user) return;
+      if (user.email?.toLowerCase() !== email.toLowerCase()) return;
+      const ok = await isEmailVerifiedForStorefront(supabase, user);
+      if (cancelled || !ok) return;
+      router.replace(nextPath);
+      router.refresh();
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [email, nextPath, router]);
 
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,16 +85,37 @@ function VerifyContent() {
 
       if (otpError) throw otpError;
 
-      // 4. 🏛️ THE SILENT SYNC: Auto-Onboard as Merchant
-      // Since web users are merchants by default, we lock their status to prevent app-reset.
+      // 4. Profile bootstrap — align with app: completion happens in onboarding flows, not here.
       if (type !== "recovery" && authData.user) {
-        await supabase
+        const { data: prof } = await supabase
           .from("profiles")
-          .update({ 
-            is_seller: true, 
-            onboarding_completed: true 
-          })
-          .eq("id", authData.user.id);
+          .select("onboarding_completed")
+          .eq("id", authData.user.id)
+          .maybeSingle();
+
+        if (prof?.onboarding_completed !== true) {
+          await supabase
+            .from("profiles")
+            .update({
+              onboarding_step: "role",
+              updated_at: new Date().toISOString(),
+            })
+            .eq("id", authData.user.id);
+        }
+
+        if (sellerIntent) {
+          localStorage.setItem("storelink_post_auth_seller_intent", "1");
+        }
+
+        try {
+          await supabase.rpc("claim_guest_orders", {
+            p_user_id: authData.user.id,
+            p_email: email,
+            p_phone: null,
+          });
+        } catch {
+          /* best-effort merge */
+        }
       }
 
       // 5. Cleanup OTP
@@ -81,8 +125,8 @@ function VerifyContent() {
       if (type === "recovery") {
         router.push(`/update-password?email=${encodeURIComponent(email as string)}`);
       } else {
-        // Redirect to main onboarding flow/dashboard
-        router.push("/onboarding");
+        // Redirect to requested flow (supports checkout resume)
+        router.push(nextPath);
       }
       
       router.refresh();
@@ -106,15 +150,23 @@ function VerifyContent() {
 
       const emailType = type === "recovery" ? "PASSWORD_RESET" : "VERIFY_SIGNUP";
 
-      await fetch("/api/send-email", {
+      const resendRes = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, code: newOtp, type: emailType }),
       });
 
+      if (!resendRes.ok) {
+        const payload = await resendRes.json().catch(() => ({}));
+        throw new Error(
+          (payload as { error?: string }).error ||
+            `Could not send email (${resendRes.status}). Check RESEND_API_KEY and spam folder.`,
+        );
+      }
+
       setMessage("A new secure code has been sent.");
     } catch (err) {
-      setError("Failed to resend code.");
+      setError(err instanceof Error ? err.message : "Failed to resend code.");
     } finally {
       setResending(false);
     }
@@ -198,7 +250,7 @@ function VerifyContent() {
               {resending ? "Generating..." : "Resend New Code"}
             </button>
 
-            <Link href="/signup" className="flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 hover:text-gray-900">
+            <Link href={`/signup?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`} className="flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 hover:text-gray-900">
               <ArrowLeft size={12} /> Use a different email
             </Link>
           </div>

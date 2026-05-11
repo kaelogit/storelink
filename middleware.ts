@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { isStorefrontAdminEmail } from '@/lib/storefrontAdmin'
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
@@ -38,34 +39,33 @@ export async function middleware(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser();
   const path = request.nextUrl.pathname;
 
-  // 1. ADMIN LOCK (The "Founder" Check)
-  const ADMIN_EMAIL = "ksqkareem@gmail.com";
-  
+  // 1. ADMIN LOCK (The "Founder" Check — see STOREFRONT_ADMIN_EMAIL)
+
   if (path.startsWith('/admin')) {
     // If no user or email doesn't match the Founder email
-    if (!user || user.email !== ADMIN_EMAIL) {
+    if (!user || !isStorefrontAdminEmail(user.email)) {
       const url = request.nextUrl.clone();
       // If they are logged in but NOT admin, send to dashboard. Else send to login.
-      url.pathname = user ? '/dashboard' : '/login';
+      url.pathname = user ? '/post-login' : '/login';
       return NextResponse.redirect(url);
     }
   }
 
-  // 2. VENDOR PROTECTION (Dashboard & Onboarding)
-  if (path.startsWith('/dashboard') || path.startsWith('/onboarding')) {
+  // 2. AUTH-GATED AREAS (dashboard, onboarding, account hub)
+  if (path.startsWith('/dashboard') || path.startsWith('/onboarding') || path.startsWith('/account') || path.startsWith('/post-login')) {
     if (!user) {
       const url = request.nextUrl.clone();
       url.pathname = '/login';
+      url.searchParams.set('next', path);
       return NextResponse.redirect(url);
     }
   }
 
   // 3. AUTH PAGE PROTECTION (Login/Signup)
-  // If user is ALREADY verified, don't let them see login/signup pages
   if (path === '/login' || path === '/signup') {
     if (user) {
       const url = request.nextUrl.clone();
-      url.pathname = '/dashboard';
+      url.pathname = '/post-login';
       return NextResponse.redirect(url);
     }
   }

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     default: "StoreLink | The Engine for Naija Hustle",
     template: "%s | StoreLink", 
   },
-  description: "Turn your WhatsApp chats into a professional online store in minutes. Accept orders, manage products, and sell faster.",
-  keywords: ["StoreLink", "Naija Hustle", "WhatsApp Store", "Ecommerce Nigeria", "Online Shop", "WhatsApp Marketing", "Empire Coin"],
+  description: "Own a professional storefront without building an expensive custom website. Sell via your branded link and scale through the StoreLink marketplace.",
+  keywords: ["StoreLink", "Storefront", "Ecommerce Nigeria", "Online Shop", "Marketplace", "Small Business Website", "Store Coin"],
   
   // 🔥 AUDIT FIX: Explicitly declaring icons for Google Search Crawler
   icons: {
@@ -50,27 +50,27 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "StoreLink | The Engine for Naija Hustle",
-    description: "Empowering Nigerian vendors to sell faster on WhatsApp. Join the ecosystem and grow your business.",
+    description: "Empowering Nigerian vendors to own storefronts, sell with confidence, and grow beyond their personal contacts.",
     url: 'https://storelink.ng',
     siteName: "StoreLink",
     locale: "en_NG",
     type: "website",
     images: [
       {
-        // 🔥 EMPIRE FIX: Using absolute URL ensures WhatsApp sees the image on sub-pages like /signup
+        // Absolute URL so social crawlers resolve OG images on all routes
         url: 'https://storelink.ng/og-image.jpg', 
         width: 1200,
         height: 630,
-        alt: "StoreLink - The WhatsApp Commerce Engine",
+        alt: "StoreLink - Storefront Growth Infrastructure",
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: "StoreLink | The Engine for Naija Hustle",
-    description: "The professional way to manage your WhatsApp orders.",
+    description: "The professional way to own your storefront and scale digitally.",
     creator: '@kaelodev', 
-    images: ['https://storelink.ng/og-image.jpg'], // 🔥 EMPIRE FIX: Absolute URL
+    images: ['https://storelink.ng/og-image.jpg'],
   },
   verification: {
     google: 'R8d8mi7fxJ-XZ0yvJ0brHnx6cZZqo78BI1iGl-sDVcY'
@@ -83,14 +83,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // 🔥 EMPIRE SCHEMA: This tells Google Search exactly who you are and what your logo is
+  // Organization JSON-LD for search
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "StoreLink",
     "url": "https://storelink.ng",
     "logo": "https://storelink.ng/icon.png",
-    "description": "The WhatsApp Commerce Engine for Nigerian Vendors.",
+    "description": "Storefront growth infrastructure for Nigerian vendors.",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer support",

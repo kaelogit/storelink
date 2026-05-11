@@ -147,8 +147,8 @@ export default function StorePageWrapper({ store, products }: StorePageWrapperPr
                     <span className="text-emerald-600">₦{cartTotal.toLocaleString()}</span>
                  </div>
 
-                 <a href={whatsappLink} target="_blank" className="flex items-center justify-center gap-2 w-full bg-green-600 text-white py-4 rounded-xl font-bold hover:bg-green-700 transition shadow-lg">
-                    <MessageCircle size={20} /> Checkout on WhatsApp
+                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full bg-green-600 text-white py-4 rounded-xl font-bold hover:bg-green-700 transition shadow-lg">
+                    <MessageCircle size={20} /> Send order summary to vendor
                  </a>
                </>
             )}

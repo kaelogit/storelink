@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     const { data, error } = await resend.emails.send({
       from: 'StoreLink <founder@storelink.ng>',
       to: [owner_email as string], 
-      subject: `🏰 Empire Established: ${name}`,
+      subject: `🏪 Storefront live: ${name}`,
       html: `
         <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #050505; color: #ffffff; padding: 40px 20px; text-align: center;">
           <div style="max-width: 600px; margin: 0 auto; background-color: #0a0a0a; border: 1px solid #222; border-radius: 24px; overflow: hidden;">
@@ -37,14 +37,14 @@ export async function POST(req: Request) {
 
               <div style="margin-bottom: 35px; border-left: 2px solid #222; padding-left: 20px;">
                 <p style="margin: 0; font-weight: bold; font-size: 15px;">3. Deploy Your Link 🔗</p>
-                <p style="margin: 5px 0 0; color: #888; font-size: 13px; line-height: 1.5;">Add your StoreLink to your Instagram/WhatsApp bio. Our checkout is optimized to ensure you never lose a sale.</p>
+                <p style="margin: 5px 0 0; color: #888; font-size: 13px; line-height: 1.5;">Add your StoreLink to your social bios and link-in-bio. Buyers can checkout in-app without you rebuilding a website.</p>
               </div>
 
               <a href="https://storelink.ng/dashboard" style="display: block; background: #fff; color: #000; text-align: center; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Open Store Dashboard</a>
             </div>
 
             <div style="padding: 30px; border-top: 1px solid #1a1a1a; background: #070707;">
-              <p style="margin: 0; font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold;">StoreLink Nigeria • Social Commerce Engine</p>
+              <p style="margin: 0; font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold;">StoreLink Nigeria • Storefront platform</p>
               <p style="margin: 10px 0 0; font-size: 9px; color: #222;">Confidential Founder Access</p>
             </div>
           </div>
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     });
 
     if (error) return NextResponse.json({ error }, { status: 400 });
-    return NextResponse.json({ message: 'Empire Ready', data });
+    return NextResponse.json({ message: 'Welcome email queued', data });
   } catch (err) {
     return NextResponse.json({ error: 'Internal Error' }, { status: 500 });
   }

@@ -76,7 +76,7 @@ function UpdatePasswordContent() {
               <h2 className="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Security Updated</h2>
               <p className="text-gray-500 text-sm font-medium leading-relaxed">
                 Your new password is live. <br />
-                Redirecting to your <span className="text-gray-900 font-bold">Empire Dashboard...</span>
+                Redirecting to your <span className="text-gray-900 font-bold">dashboard...</span>
               </p>
             </div>
           ) : (

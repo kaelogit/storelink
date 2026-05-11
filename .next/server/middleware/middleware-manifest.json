@@ -1,0 +1,31 @@
+{
+  "sorted_middleware": [],
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/[root-of-the-server]__75569d79._.js",
+        "server/edge/chunks/6171c_00c3bbb8._.js",
+        "server/edge/chunks/turbopack-storelink-app-and-web_store-link-storefront_edge-wrapper_6224d34c.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*){(\\\\.json)}?",
+          "originalSource": "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "XF1LAxxWlS7B0HjZEA3aE",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "LNgsvnNaU8kxE6CBA0qSX+zNN4flm/SQ0bIG3yKEEG0=",
+        "__NEXT_PREVIEW_MODE_ID": "17d63200462cb62147e03b64ba9df66b",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "f2b315d8cf9425914eee731d9edafc65576310361134824ef1d306c92061d001",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "e32e6e2e9e37f5576e7245722ab0c2ba5fe8b94518075c11d8e4697aaadb37a8"
+      }
+    }
+  },
+  "instrumentation": null,
+  "functions": {}
+}

@@ -1,3 +1,16 @@
 {
+  "/account/orders/[id]/page": "app/account/orders/[id]/page.js",
+  "/account/orders/page": "app/account/orders/page.js",
+  "/account/settings/page": "app/account/settings/page.js",
+  "/account/wallet/page": "app/account/wallet/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/api/admin/snapshot/route": "app/api/admin/snapshot/route.js",
+  "/dashboard/loyalty/page": "app/dashboard/loyalty/page.js",
+  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
+  "/dashboard/orders/page": "app/dashboard/orders/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/verification/page": "app/dashboard/verification/page.js",
+  "/login/page": "app/login/page.js",
+  "/marketplace/page": "app/marketplace/page.js",
   "/page": "app/page.js"
 }

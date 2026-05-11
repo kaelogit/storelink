@@ -13,6 +13,7 @@ import HowItWorks from "./HowItWorks";
 import TrustCenter from "./TrustCenter";
 import Marketplace from "./Marketplace";
 import FAQ from "./FAQ"; // Imported the FAQ component
+import ComingSoonCountdown from "./ComingSoonCountdown";
 import Footer from "./Footer";
 
 interface LandingPageWrapperProps {
@@ -26,7 +27,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
   const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
 
   const handleAddToCart = (product: Product) => {
-    const productStore = stores.find(s => s.id === product.store_id);
+    const productStore = stores.find((s) => s.owner_id === product.seller_id);
     if (!productStore) return;
     
     addToCart(product, productStore);
@@ -54,12 +55,12 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">The StoreLink Economy</span>
               </div>
               <h2 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-[0.95] mb-8">
-                Shop. Earn. <br /><span className="text-amber-500">Empire.</span>
+                Shop. Earn. <br /><span className="text-amber-500">Store Coins.</span>
               </h2>
               <p className="text-gray-400 text-base md:text-lg mb-10 max-w-md font-medium leading-relaxed mx-auto md:mx-0">
-                Stop just spending money. Start building your Empire. Earn digital gold on every purchase and redeem it as cash discounts across our entire network.
+                Earn Store Coins on marketplace purchases and redeem them as discounts at verified stores—loyalty that keeps buyers coming back to you.
               </p>
-              <Link href="/empire-coins" className="inline-flex items-center gap-4 bg-white text-black px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-amber-500 transition-all active:scale-95 group shadow-2xl">
+              <Link href="/store-coins" className="inline-flex items-center gap-4 bg-white text-black px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-amber-500 transition-all active:scale-95 group shadow-2xl">
                 How it works <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
@@ -84,7 +85,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
                   <div className="h-2 w-full bg-white/5 rounded-full" />
                   <div className="h-2 w-3/4 bg-white/5 rounded-full" />
                   <div className="mt-8 h-16 w-full bg-amber-500/10 border border-amber-500/20 rounded-2xl flex items-center px-6 justify-between border-dashed animate-pulse">
-                     <span className="text-amber-500 font-black text-[10px] uppercase tracking-widest">Empire Balance</span>
+                     <span className="text-amber-500 font-black text-[10px] uppercase tracking-widest">Store Coin balance</span>
                      <span className="text-white font-black text-xl tracking-tighter">₦18,500</span>
                   </div>
                 </div>
@@ -101,6 +102,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       <FAQ />
 
       <TrustCenter />
+      <ComingSoonCountdown />
       <Footer />
 
       {toast.show && (

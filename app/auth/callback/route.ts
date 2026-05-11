@@ -42,8 +42,8 @@ export async function GET(request: NextRequest) {
         const { data: store } = await supabase
           .from('stores')
           .select('id')
-          .eq('user_id', user.id)
-          .single()
+          .eq('owner_id', user.id)
+          .maybeSingle()
 
         const forwardTo = store ? '/dashboard' : next
         return NextResponse.redirect(`${origin}${forwardTo}`)

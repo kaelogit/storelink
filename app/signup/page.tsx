@@ -10,6 +10,8 @@ import Navbar from "@/components/landing/Navbar";
 function SignupContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const nextPath = searchParams.get("next") || "/post-login";
+  const [wantsToSell, setWantsToSell] = useState(searchParams.get("seller_intent") === "1");
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +49,11 @@ function SignupContent() {
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          data: {
+            wants_to_sell: wantsToSell,
+          },
+        },
       });
 
       if (authError) throw authError;
@@ -62,7 +69,7 @@ function SignupContent() {
       if (dbError) throw dbError;
 
       // 5. Send the Verification Email via Resend SDK
-      // This calls the "Empire" template we just built
+      // Resend verification email template
       const emailResponse = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -76,7 +83,7 @@ function SignupContent() {
       if (!emailResponse.ok) throw new Error("Failed to send verification email.");
 
       // 6. Move to the Verification Screen
-      router.push(`/verify?email=${encodeURIComponent(email)}`);
+      router.push(`/verify?email=${encodeURIComponent(email)}&next=${encodeURIComponent(nextPath)}&seller_intent=${wantsToSell ? "1" : "0"}`);
 
     } catch (err: any) {
       console.error("Signup Error:", err);
@@ -91,12 +98,12 @@ function SignupContent() {
       <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-80px)]">
         <div className="w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-10 border border-gray-100">
           
-          <Link href="/login" className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 mb-8 hover:text-gray-900 transition-colors">
+          <Link href={`/login?next=${encodeURIComponent(nextPath)}${wantsToSell ? "&seller_intent=1" : ""}`} className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 mb-8 hover:text-gray-900 transition-colors">
              <ArrowLeft size={14}/> Back to Login
           </Link>
           
           <h1 className="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tighter leading-none">
-            Start Your <span className="text-emerald-500 italic">Empire</span>
+            Start Your <span className="text-emerald-500 italic">Storefront</span>
           </h1>
           <p className="text-gray-500 text-sm font-medium mb-8">Create your account and launch in seconds.</p>
           
@@ -154,6 +161,18 @@ function SignupContent() {
               />
             </div>
 
+            <label className="flex items-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-100">
+              <input
+                type="checkbox"
+                checked={wantsToSell}
+                onChange={(e) => setWantsToSell(e.target.checked)}
+                className="h-4 w-4"
+              />
+              <span className="text-[11px] font-black uppercase tracking-wider text-gray-600">
+                I also want to sell on StoreLink
+              </span>
+            </label>
+
             <button 
               type="submit" 
               disabled={loading} 
@@ -164,7 +183,7 @@ function SignupContent() {
           </form>
           
           <p className="mt-8 text-[11px] font-bold text-gray-400 text-center uppercase tracking-widest">
-            Have an account? <Link href="/login" className="text-gray-900 hover:text-emerald-600 underline decoration-2 underline-offset-4 transition-colors">Login here</Link>
+            Have an account? <Link href={`/login?next=${encodeURIComponent(nextPath)}${wantsToSell ? "&seller_intent=1" : ""}`} className="text-gray-900 hover:text-emerald-600 underline decoration-2 underline-offset-4 transition-colors">Login here</Link>
           </p>
         </div>
       </div>

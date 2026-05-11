@@ -2,11 +2,21 @@
 
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
-import { 
-  Check, Crown, Star, Shield, AlertTriangle, Loader2, 
-  ArrowLeft, Lock, PartyPopper, Trophy, 
-  Sparkles, Download, LayoutDashboard, X
+import {
+  Check,
+  Star,
+  Shield,
+  AlertTriangle,
+  Loader2,
+  ArrowLeft,
+  Trophy,
+  Sparkles,
+  Download,
+  LayoutDashboard,
+  X,
 } from "lucide-react";
+import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
+import { BILLING_DURATIONS, calculateDiamondPrice, majorToPaystackSmallestUnit } from "@/lib/subscriptionPricing";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic"; 
 import html2canvas from "html2canvas";
@@ -20,13 +30,18 @@ const PaystackButton = dynamic(
 export default function SubscriptionPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [currentPlan, setCurrentPlan] = useState('free');
+  const [currentPlan, setCurrentPlan] = useState("standard");
   const [expiryDate, setExpiryDate] = useState<string | null>(null);
+  const [subscriptionStatus, setSubscriptionStatus] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
-  const [storeName, setStoreName] = useState(""); 
-  const [storeSlug, setStoreSlug] = useState(""); 
-  const [storeId, setStoreId] = useState(""); // 🔥 Fix: Added to track for transactions
+  const [storeName, setStoreName] = useState("");
+  const [storeSlug, setStoreSlug] = useState("");
   const [statusMsg, setStatusMsg] = useState<{type: 'success' | 'error', text: string} | null>(null);
+  const [billingMonths, setBillingMonths] = useState<number>(1);
+  const [billingCurrency, setBillingCurrency] = useState("NGN");
+  const [lastPaidMonths, setLastPaidMonths] = useState(1);
+  const [receiptMajorAmount, setReceiptMajorAmount] = useState<number | null>(null);
+  const [receiptCurrencySnapshot, setReceiptCurrencySnapshot] = useState("NGN");
   
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [upgradedPlan, setUpgradedPlan] = useState("");
@@ -41,69 +56,81 @@ export default function SubscriptionPage() {
       if (!user) return router.push("/login");
       setUser(user);
 
-      const { data: store } = await supabase
-        .from("stores")
-        .select("id, name, slug, subscription_plan, subscription_expiry") // 🔥 Audit: Added id
-        .eq("owner_id", user.id)
-        .single();
-      
-      if (store) {
-        setStoreId(store.id); // 🔥 Syncing storeId
-        setStoreName(store.name);
-        setStoreSlug(store.slug);
-        setCurrentPlan(store.subscription_plan);
-        setExpiryDate(store.subscription_expiry);
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select(
+          "display_name, full_name, slug, subscription_plan, subscription_expiry, subscription_status, currency_code, is_seller"
+        )
+        .eq("id", user.id)
+        .maybeSingle();
+
+      if (profile) {
+        const label =
+          profile.display_name?.trim() || profile.full_name?.trim() || user.email?.split("@")[0] || "My storefront";
+        setStoreName(label);
+        setStoreSlug(profile.slug?.trim() || "");
+        setCurrentPlan(profile.subscription_plan || "standard");
+        setExpiryDate(profile.subscription_expiry ?? null);
+        setSubscriptionStatus(profile.subscription_status ?? null);
+        setBillingCurrency(String(profile.currency_code || "NGN").toUpperCase());
       }
       setLoading(false);
     };
     loadData();
   }, [router]);
 
-  const handleSuccess = async (reference: any, plan: 'premium' | 'diamond', amountPaid: number) => {
-    const now = new Date();
-    const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
-    let newExpiryDate: Date;
+  const formatMajor = (amount: number, code: string) => {
+    const c = code.toUpperCase();
+    const prefix = c === "NGN" ? "₦" : `${c} `;
+    const body =
+      c === "NGN"
+        ? amount.toLocaleString("en-NG")
+        : amount.toLocaleString("en-US", { maximumFractionDigits: 2 });
+    return `${prefix}${body}`;
+  };
 
-    const getRank = (p: string) => p === 'diamond' ? 3 : p === 'premium' ? 2 : 1;
-    const currentRank = getRank(currentPlan);
-    const newRank = getRank(plan);
-
-    if (newRank > currentRank) {
-      newExpiryDate = new Date(now.getTime() + thirtyDaysInMs);
-    } else if (plan === currentPlan && expiryDate && new Date(expiryDate) > now) {
-      newExpiryDate = new Date(new Date(expiryDate).getTime() + thirtyDaysInMs);
-    } else {
-      newExpiryDate = new Date(now.getTime() + thirtyDaysInMs);
+  const handleSuccess = async (reference: any, amountPaid: number, months: number, currencyPaid: string) => {
+    if (!user?.id) {
+      setStatusMsg({ type: "error", text: "Session expired. Log in again and contact support with your Paystack reference." });
+      return;
     }
-
-    // 🔥 IS_TRIAL FIX: Set is_trial to false upon successful payment
-    const { error } = await supabase
-      .from("stores")
-      .update({ 
-        subscription_plan: plan,
-        subscription_expiry: newExpiryDate.toISOString(),
-        is_trial: false 
-      })
-      .eq("owner_id", user.id);
-
-    // 🔥 LOG TRANSACTION: Record for Admin Stats
-    await supabase.from("transactions").insert({
-        store_id: storeId,
-        owner_id: user.id,
-        amount: amountPaid,
-        plan_type: plan,
-        status: 'success'
+    const { error: rpcError } = await supabase.rpc("upgrade_user_subscription", {
+      p_user_id: user.id,
+      p_plan: "diamond",
+      p_months: months,
     });
 
-    if (error) {
-      setStatusMsg({ type: 'error', text: "Payment received but update failed. Contact Support." });
-    } else {
-      setReceiptRef(reference.reference);
-      setUpgradedPlan(plan);
-      setExpiryDate(newExpiryDate.toISOString());
-      setCurrentPlan(plan); 
-      setShowSuccessModal(true);
+    if (rpcError) {
+      setStatusMsg({
+        type: "error",
+        text: `Payment recorded but plan sync failed: ${rpcError.message}. Contact support with your Paystack reference.`,
+      });
+      return;
     }
+
+    await supabase.from("transactions").insert({
+      seller_id: user.id,
+      owner_id: user.id,
+      amount: amountPaid,
+      plan_type: "diamond",
+      status: "success",
+    });
+
+    const { data: refreshed } = await supabase
+      .from("profiles")
+      .select("subscription_expiry, subscription_plan, subscription_status")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    setReceiptRef(reference.reference);
+    setLastPaidMonths(months);
+    setReceiptMajorAmount(amountPaid);
+    setReceiptCurrencySnapshot(String(currencyPaid || "NGN").toUpperCase());
+    setUpgradedPlan("diamond");
+    if (refreshed?.subscription_expiry) setExpiryDate(refreshed.subscription_expiry);
+    setCurrentPlan(refreshed?.subscription_plan || "diamond");
+    setSubscriptionStatus(refreshed?.subscription_status ?? null);
+    setShowSuccessModal(true);
   };
 
   const handleDownloadReceipt = async () => {
@@ -133,16 +160,21 @@ export default function SubscriptionPage() {
     }
   };
 
-  const getPaystackConfig = (amount: number, plan: 'premium' | 'diamond') => {
+  const getPaystackConfig = () => {
+    const { finalPrice } = calculateDiamondPrice("seller", billingMonths, billingCurrency);
+    const activeDiamond =
+      effectiveSellerTier(currentPlan, expiryDate, subscriptionStatus) === "diamond";
+    const renewing =
+      activeDiamond && expiryDate && new Date(expiryDate) > new Date();
     return {
-      reference: (new Date()).getTime().toString(),
+      reference: new Date().getTime().toString(),
       email: user?.email || "customer@storelink.com",
-      amount: amount * 100, 
-      publicKey: process.env.NEXT_PUBLIC_PAYSTACK_KEY || "", 
-      text: currentPlan === plan ? "Renew Plan" : "Upgrade Now",
-      onSuccess: (ref: any) => handleSuccess(ref, plan, amount), // 🔥 Passing amount
+      amount: majorToPaystackSmallestUnit(finalPrice, billingCurrency),
+      publicKey: process.env.NEXT_PUBLIC_PAYSTACK_KEY || "",
+      text: renewing ? `Renew Diamond (${billingMonths} mo)` : `Upgrade Diamond (${billingMonths} mo)`,
+      onSuccess: (ref: any) => handleSuccess(ref, finalPrice, billingMonths, billingCurrency),
       onClose: () => {
-        setStatusMsg({ type: 'error', text: "Payment cancelled." });
+        setStatusMsg({ type: "error", text: "Payment cancelled." });
         setTimeout(() => setStatusMsg(null), 3000);
       },
     };
@@ -150,8 +182,20 @@ export default function SubscriptionPage() {
 
   if (loading) return <div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin text-gray-400"/></div>;
 
-  const isExpired = expiryDate && new Date(expiryDate) < new Date();
-  const currentRank = (plan: string) => plan === 'diamond' ? 3 : plan === 'premium' ? 2 : 1;
+  const effective = effectiveSellerTier(currentPlan, expiryDate, subscriptionStatus);
+  const displayTier = effective === "diamond" ? "Diamond" : "Standard";
+  const boostLapsed = currentPlan === "diamond" && effective === "standard";
+
+  const { finalPrice: checkoutTotal, perMonth: diamondPerMonth } = calculateDiamondPrice(
+    "seller",
+    billingMonths,
+    billingCurrency
+  );
+  const currencyPrefix = billingCurrency === "NGN" ? "₦" : `${billingCurrency} `;
+  const diamondPriceLabel =
+    billingCurrency === "NGN"
+      ? checkoutTotal.toLocaleString("en-NG")
+      : checkoutTotal.toLocaleString("en-US", { maximumFractionDigits: 2 });
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20 font-sans relative print:bg-white overflow-x-hidden">
@@ -164,7 +208,7 @@ export default function SubscriptionPage() {
                  <Sparkles className="absolute -top-1 -right-1 text-amber-500 animate-pulse" />
               </div>
               
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 uppercase tracking-tight">Empire Upgraded!</h2>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 uppercase tracking-tight">Plan upgraded!</h2>
               <p className="text-gray-500 font-medium mb-8 text-sm md:text-base">
                 Congratulations! <span className="text-gray-900 font-bold">{storeName}</span> is now on the <span className="text-emerald-600 font-black">{upgradedPlan.toUpperCase()}</span> plan.
               </p>
@@ -179,7 +223,11 @@ export default function SubscriptionPage() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-500 font-bold uppercase text-[10px] tracking-widest">Amount Paid</span>
-                  <span className="font-black text-gray-900">₦{upgradedPlan === 'premium' ? '2,500' : '4,000'}</span>
+                  <span className="font-black text-gray-900">
+                    {receiptMajorAmount != null
+                      ? formatMajor(receiptMajorAmount, receiptCurrencySnapshot)
+                      : `${currencyPrefix}${diamondPriceLabel}`}
+                  </span>
                 </div>
                 <button 
                   onClick={handleDownloadReceipt}
@@ -213,7 +261,7 @@ export default function SubscriptionPage() {
                     <p className="text-gray-400 font-bold text-xs uppercase tracking-[0.2em]">Official Payment Receipt</p>
                 </div>
                 <div className="text-right">
-                    <p className="font-black text-gray-900 uppercase">Premium Invoice</p>
+                    <p className="font-black text-gray-900 uppercase">Diamond subscription</p>
                     <p className="text-gray-400 text-xs font-mono">{receiptRef}</p>
                 </div>
                 </div>
@@ -242,10 +290,12 @@ export default function SubscriptionPage() {
                     <tr>
                     <td className="py-6">
                         <p className="font-bold text-gray-900">StoreLink {upgradedPlan.toUpperCase()} Subscription</p>
-                        <p className="text-xs text-gray-400">30 Days Unlimited Empire Access</p>
+                        <p className="text-xs text-gray-400">{lastPaidMonths} month{lastPaidMonths === 1 ? "" : "s"} Diamond access</p>
                     </td>
                     <td className="py-6 text-right font-black text-xl text-gray-900">
-                        ₦{upgradedPlan === 'premium' ? '2,500' : '4,000'}
+                        {receiptMajorAmount != null
+                          ? formatMajor(receiptMajorAmount, receiptCurrencySnapshot)
+                          : `${currencyPrefix}${diamondPriceLabel}`}
                     </td>
                     </tr>
                 </tbody>
@@ -258,11 +308,15 @@ export default function SubscriptionPage() {
                 </div>
                 <div className="text-right">
                     <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Total Paid</p>
-                    <p className="font-black text-3xl">₦{upgradedPlan === 'premium' ? '2,500.00' : '4,000.00'}</p>
+                    <p className="font-black text-3xl">
+                      {receiptMajorAmount != null
+                        ? formatMajor(receiptMajorAmount, receiptCurrencySnapshot)
+                        : `${currencyPrefix}${diamondPriceLabel}`}
+                    </p>
                 </div>
                 </div>
 
-                <p className="text-center text-[10px] text-gray-300 font-bold mt-12 uppercase tracking-[0.3em]">Thank you for building your empire with StoreLink</p>
+                <p className="text-center text-[10px] text-gray-300 font-bold mt-12 uppercase tracking-[0.3em]">Thank you for growing with StoreLink</p>
             </div>
         </div>
       </div>
@@ -270,8 +324,8 @@ export default function SubscriptionPage() {
       <div className="bg-white border-b border-gray-200 px-6 py-6 md:py-10 mb-8 print:hidden">
          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
-               <h1 className="text-2xl md:text-3xl font-black text-gray-900 flex items-center gap-3 uppercase tracking-tighter">Subscription</h1>
-               <p className="text-gray-500 text-sm mt-1">Scale your Empire: <span className="font-bold text-gray-900">{storeName}</span></p>
+               <h1 className="text-2xl md:text-3xl font-black text-gray-900 flex items-center gap-3 uppercase tracking-tighter">Visibility &amp; boosts</h1>
+               <p className="text-gray-500 text-sm mt-1">Selling on Standard is free forever. Diamond is the optional paid boost for tools and marketplace visibility for <span className="font-bold text-gray-900">{storeName}</span>—same lineup as the StoreLink app.</p>
             </div>
             <button onClick={() => router.push("/dashboard")} className="flex items-center justify-center gap-2 text-gray-500 hover:text-gray-900 font-black text-[10px] uppercase tracking-widest bg-gray-100 px-6 py-3 rounded-2xl transition-all self-start sm:self-center">
               <ArrowLeft size={16} /> Back to Dashboard
@@ -281,33 +335,39 @@ export default function SubscriptionPage() {
 
       <div className="max-w-6xl mx-auto px-6 print:hidden">
         
-        <div className={`p-6 md:p-8 rounded-[2rem] border shadow-sm mb-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 transition-all ${isExpired ? 'bg-red-50 border-red-200' : 'bg-white border-gray-100'}`}>
-          <div className="space-y-1">
-            <h2 className={`text-[10px] font-black uppercase tracking-[0.2em] ${isExpired ? 'text-red-600' : 'text-gray-400'}`}>
-               {isExpired ? "CRITICAL: Account Status" : "ACTIVE PLAN"}
-            </h2>
-            <div className="flex items-center gap-3">
-              <span className={`text-3xl md:text-4xl font-black uppercase tracking-tighter ${isExpired ? 'text-red-700' : currentPlan === 'diamond' ? 'text-purple-600' : currentPlan === 'premium' ? 'text-emerald-600' : 'text-gray-900'}`}>
-                {isExpired ? "Store Locked" : currentPlan}
+        <div className="p-6 md:p-8 rounded-[2rem] border shadow-sm mb-12 bg-white border-gray-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div className="space-y-2">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Effective tier</h2>
+            <div className="flex flex-wrap items-center gap-3">
+              <span
+                className={`text-3xl md:text-4xl font-black uppercase tracking-tighter ${
+                  effective === "diamond" ? "text-purple-600" : "text-gray-900"
+                }`}
+              >
+                {displayTier}
               </span>
-              {!isExpired && <span className="bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-200">Active</span>}
-              {isExpired && <span className="bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-md animate-pulse uppercase tracking-tighter">Offline</span>}
+              {effective === "diamond" && (
+                <span className="bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-200">
+                  Boost active
+                </span>
+              )}
             </div>
-            {expiryDate && (
-              <p className={`text-xs font-bold ${isExpired ? 'text-red-500' : 'text-gray-400'}`}>
-                {isExpired ? `Access cut off on ${new Date(expiryDate).toLocaleDateString()}` : `Next billing date: ${new Date(expiryDate).toLocaleDateString()}`}
+            <p className="text-xs font-medium text-gray-500 max-w-xl leading-relaxed">
+              Your storefront link stays online on Standard. Diamond only changes tools and discovery priority—it never takes your store offline.
+            </p>
+            {effective === "diamond" && expiryDate && new Date(expiryDate) >= new Date() && (
+              <p className="text-xs font-bold text-gray-400">
+                Paid boost renews on {new Date(expiryDate).toLocaleDateString()}
+              </p>
+            )}
+            {boostLapsed && (
+              <p className="text-xs font-bold text-amber-700 bg-amber-50 border border-amber-100 rounded-xl px-3 py-2 inline-block">
+                {expiryDate
+                  ? `Your Diamond period ended on ${new Date(expiryDate).toLocaleDateString()}. You're on Standard again—renew anytime for extra visibility.`
+                  : "Your Diamond boost has ended. You're on Standard again—renew anytime for extra visibility."}
               </p>
             )}
           </div>
-          {isExpired && (
-            <div className="bg-white p-4 rounded-2xl flex items-center gap-4 text-red-700 font-black border border-red-200 w-full md:w-auto shadow-sm">
-               <div className="p-3 bg-red-100 rounded-xl text-red-600"><Lock size={20}/></div>
-               <div className="flex flex-col">
-                  <span className="text-[11px] uppercase tracking-widest">Store is Offline</span>
-                  <span className="text-[9px] text-red-500 opacity-80">Pay to restore customer access</span>
-               </div>
-            </div>
-          )}
         </div>
 
         {statusMsg && (
@@ -317,74 +377,128 @@ export default function SubscriptionPage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 items-stretch">
-          
-          <div className={`bg-white p-8 rounded-[2.5rem] border-2 flex flex-col transition-all duration-300 ${currentPlan === 'free' && !isExpired ? 'border-gray-900 shadow-xl scale-[1.02]' : 'border-gray-100 shadow-sm opacity-80'}`}>
-              <div className="mb-6 bg-gray-50 w-14 h-14 rounded-2xl flex items-center justify-center text-gray-400 border border-gray-100"><Shield size={28} /></div>
-              <h3 className="text-xl font-black text-gray-900 uppercase tracking-tighter">Starter</h3>
-              <div className="mt-2 mb-8 flex items-baseline gap-1">
-                <span className="text-4xl font-black">Free</span>
-              </div>
-              <ul className="space-y-5 text-xs font-bold text-gray-500 mb-10 flex-1">
-                <li className="flex gap-4 items-center"><div className="bg-emerald-100 text-emerald-600 p-1 rounded-md"><Check size={14} strokeWidth={3}/></div> <span>5 Products Limit</span></li>
-                <li className="flex gap-4 items-center"><div className="bg-emerald-100 text-emerald-600 p-1 rounded-md"><Check size={14} strokeWidth={3}/></div> <span>Basic Digital Storefront</span></li>
-                <li className="flex gap-4 items-center opacity-40 italic"><X size={14} /> <span>No Homepage Feature</span></li>
-                <li className="flex gap-4 items-center opacity-40 italic"><X size={14} /> <span>No Verified Badge</span></li>
-              </ul>
-              <button disabled className="w-full py-5 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest bg-gray-50 text-gray-300 border border-gray-100 cursor-not-allowed">
-                {currentPlan === 'free' && !isExpired ? "Currently Active" : "Starter Level"}
-              </button>
-          </div>
-
-          <div className={`bg-white p-8 rounded-[2.5rem] border-2 relative overflow-hidden flex flex-col transition-all duration-300 ${currentPlan === 'premium' && !isExpired ? 'border-emerald-500 shadow-xl scale-[1.02]' : 'border-gray-100 shadow-sm'}`}>
-              <div className="mb-6 bg-emerald-50 w-14 h-14 rounded-2xl flex items-center justify-center text-emerald-600 border border-emerald-100 shadow-sm"><Crown size={28} /></div>
-              <h3 className="text-xl font-black text-gray-900 uppercase tracking-tighter">Premium</h3>
-              <div className="mt-2 mb-8 flex items-baseline gap-1">
-                <span className="text-4xl font-black tracking-tight text-gray-900">₦2,500</span>
-                <span className="text-gray-400 font-bold text-[10px] uppercase tracking-widest">/ Month</span>
-              </div>
-              <ul className="space-y-5 text-xs font-bold text-gray-600 mb-10 flex-1">
-                <li className="flex gap-4 items-center"><div className="bg-emerald-500 text-white p-1 rounded-md shadow-sm"><Check size={14} strokeWidth={3}/></div> <span className="text-gray-900">Unlimited Products</span></li>
-                <li className="flex gap-4 items-center"><div className="bg-emerald-500 text-white p-1 rounded-md shadow-sm"><Check size={14} strokeWidth={3}/></div> <span className="text-gray-900">Verified Vendor Badge</span></li>
-                <li className="flex gap-4 items-center"><div className="bg-emerald-500 text-white p-1 rounded-md shadow-sm"><Check size={14} strokeWidth={3}/></div> <span className="text-gray-900">Professional PDF Receipts</span></li>
-                <li className="flex gap-4 items-center"><div className="bg-emerald-500 text-white p-1 rounded-md shadow-sm"><Check size={14} strokeWidth={3}/></div> <span>Homepage Feature</span></li>
-              </ul>
-              {(currentRank(currentPlan) > 2 && !isExpired) ? (
-                  <button disabled className="w-full py-5 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest bg-gray-50 text-gray-300 cursor-not-allowed">Diamond Is Active</button>
-              ) : (
-                  <PaystackButton {...getPaystackConfig(2500, 'premium')} className="w-full py-5 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest bg-emerald-600 text-white hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100" />
-              )}
-          </div>
-
-          <div className={`bg-gray-900 p-8 rounded-[2.5rem] border-2 relative overflow-hidden flex flex-col transition-all duration-300 sm:col-span-2 lg:col-span-1 ${currentPlan === 'diamond' && !isExpired ? 'border-purple-500 shadow-2xl scale-[1.02]' : 'border-gray-800 shadow-xl shadow-gray-200'}`}>
-              <div className="absolute top-0 right-0 bg-gradient-to-l from-purple-600 to-indigo-600 text-white text-[9px] font-black px-4 py-2 rounded-bl-2xl uppercase tracking-widest shadow-lg">Ultimate Empire</div>
-              <div className="mb-6 bg-gray-800 w-14 h-14 rounded-2xl flex items-center justify-center text-purple-400 border border-gray-700"><Star size={28} fill="currentColor"/></div>
-              <h3 className="text-xl font-black text-white uppercase tracking-tighter">Diamond</h3>
-              <div className="mt-2 mb-8 flex items-baseline gap-1">
-                <span className="text-4xl font-black text-white tracking-tight">₦4,000</span>
-                <span className="text-gray-500 font-bold text-[10px] uppercase tracking-widest">/ Month</span>
-              </div>
-              <ul className="space-y-5 text-xs font-bold text-gray-300 mb-10 flex-1">
-                <li className="flex gap-4 items-center"><div className="bg-purple-500 text-white p-1 rounded-md"><Check size={14} strokeWidth={3}/></div> <span className="text-white">Everything in Premium</span></li>
-                <li className="flex gap-4 items-center"><div className="bg-purple-500 text-white p-1 rounded-md"><Check size={14} strokeWidth={3}/></div> <span className="text-white">Homepage Trending Spot</span></li>
-                <li className="flex gap-4 items-center"><div className="bg-purple-500 text-white p-1 rounded-md"><Check size={14} strokeWidth={3}/></div> <span className="text-white">Top of Search Results</span></li>
-                <li className="flex gap-4 items-center"><div className="bg-purple-500 text-white p-1 rounded-md"><Check size={14} strokeWidth={3}/></div> <span>Priority Ad Placement</span></li>
-              </ul>
-              <PaystackButton {...getPaystackConfig(4000, 'diamond')} className="w-full py-5 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:opacity-90 transition-all shadow-xl shadow-purple-900/30" />
-          </div>
-        </div>
-
-        <div className="bg-white border border-gray-100 rounded-[2rem] p-8 text-center mb-20 max-w-2xl mx-auto shadow-sm">
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Need a custom plan for your brand?</p>
-          <h4 className="text-lg font-black text-gray-900 mb-4">Chat with the StoreLink Support Team</h4>
-          <a 
-            href="https://wa.me/2349125951202?text=Hi%20StoreLink%20Team!%20I%20am%20a%20vendor%20interested%20in%20a%20custom%20plan%20for%20my%20brand.%20Can%20we%20talk?" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-emerald-600 font-black text-xs uppercase tracking-tighter hover:underline"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 items-stretch max-w-5xl mx-auto">
+          <div
+            className={`bg-white p-8 rounded-[2.5rem] border-2 flex flex-col transition-all duration-300 ${
+              effective === "standard"
+                ? "border-gray-900 shadow-xl scale-[1.02]"
+                : "border-gray-100 shadow-sm opacity-80"
+            }`}
           >
-            Contact Support <ArrowLeft className="rotate-180" size={14} />
-          </a>
+            <div className="mb-6 bg-gray-50 w-14 h-14 rounded-2xl flex items-center justify-center text-gray-400 border border-gray-100">
+              <Shield size={28} />
+            </div>
+            <h3 className="text-xl font-black text-gray-900 uppercase tracking-tighter">Standard</h3>
+            <div className="mt-2 mb-8 flex items-baseline gap-1">
+              <span className="text-4xl font-black">Free</span>
+            </div>
+            <ul className="space-y-5 text-xs font-bold text-gray-500 mb-10 flex-1">
+              <li className="flex gap-4 items-center">
+                <div className="bg-emerald-100 text-emerald-600 p-1 rounded-md">
+                  <Check size={14} strokeWidth={3} />
+                </div>
+                <span>Unlimited products</span>
+              </li>
+              <li className="flex gap-4 items-center">
+                <div className="bg-emerald-100 text-emerald-600 p-1 rounded-md">
+                  <Check size={14} strokeWidth={3} />
+                </div>
+                <span>Full storefront &amp; checkout</span>
+              </li>
+              <li className="flex gap-4 items-center">
+                <div className="bg-emerald-100 text-emerald-600 p-1 rounded-md">
+                  <Check size={14} strokeWidth={3} />
+                </div>
+                <span>Fair marketplace discovery</span>
+              </li>
+              <li className="flex gap-4 items-center opacity-40 italic">
+                <X size={14} /> <span>Diamond-only AI background removal</span>
+              </li>
+            </ul>
+            <button
+              disabled
+              className="w-full py-5 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest bg-gray-50 text-gray-300 border border-gray-100 cursor-not-allowed"
+            >
+              {effective === "standard" ? "Your default plan" : "Included for every seller"}
+            </button>
+          </div>
+
+          <div
+            className={`bg-gray-900 p-8 rounded-[2.5rem] border-2 relative overflow-hidden flex flex-col transition-all duration-300 ${
+              effective === "diamond"
+                ? "border-purple-500 shadow-2xl scale-[1.02]"
+                : "border-gray-800 shadow-xl shadow-gray-200"
+            }`}
+          >
+            <div className="absolute top-0 right-0 bg-gradient-to-l from-purple-600 to-indigo-600 text-white text-[9px] font-black px-4 py-2 rounded-bl-2xl uppercase tracking-widest shadow-lg">
+              Diamond
+            </div>
+            <div className="mb-6 bg-gray-800 w-14 h-14 rounded-2xl flex items-center justify-center text-purple-400 border border-gray-700">
+              <Star size={28} fill="currentColor" />
+            </div>
+            <h3 className="text-xl font-black text-white uppercase tracking-tighter">Diamond</h3>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">Billing term (same discounts as the app)</p>
+            <div className="flex flex-wrap gap-2 mt-3 mb-4">
+              {BILLING_DURATIONS.map((d) => (
+                <button
+                  key={d.months}
+                  type="button"
+                  onClick={() => setBillingMonths(d.months)}
+                  className={`px-3 py-2 rounded-xl text-[10px] font-black uppercase tracking-tight border transition ${
+                    billingMonths === d.months
+                      ? "bg-purple-500 border-purple-400 text-white"
+                      : "bg-gray-800 border-gray-700 text-gray-300 hover:border-gray-500"
+                  }`}
+                >
+                  {d.label}
+                  {d.discount > 0 ? ` −${Math.round(d.discount * 100)}%` : ""}
+                </button>
+              ))}
+            </div>
+            <div className="mt-1 mb-8">
+              <p className="text-3xl md:text-4xl font-black text-white tracking-tight">
+                {currencyPrefix}
+                {diamondPriceLabel}
+              </p>
+              <p className="text-gray-400 text-xs font-medium mt-1">
+                Total for {billingMonths} month{billingMonths === 1 ? "" : "s"} · effective ~{" "}
+                {billingCurrency === "NGN"
+                  ? `₦${diamondPerMonth.toLocaleString("en-NG")}`
+                  : `${billingCurrency} ${diamondPerMonth.toLocaleString("en-US", { maximumFractionDigits: 2 })}`}
+                /mo
+              </p>
+            </div>
+            <ul className="space-y-5 text-xs font-bold text-gray-300 mb-10 flex-1">
+              <li className="flex gap-4 items-center">
+                <div className="bg-purple-500 text-white p-1 rounded-md">
+                  <Check size={14} strokeWidth={3} />
+                </div>
+                <span className="text-white">Higher discovery caps &amp; ranking priority</span>
+              </li>
+              <li className="flex gap-4 items-center">
+                <div className="bg-purple-500 text-white p-1 rounded-md">
+                  <Check size={14} strokeWidth={3} />
+                </div>
+                <span className="text-white">Trending / homepage-style spotlight</span>
+              </li>
+              <li className="flex gap-4 items-center">
+                <div className="bg-purple-500 text-white p-1 rounded-md">
+                  <Check size={14} strokeWidth={3} />
+                </div>
+                <span className="text-white">Stronger marketplace presence vs Standard</span>
+              </li>
+              <li className="flex gap-4 items-center">
+                <div className="bg-purple-500 text-white p-1 rounded-md">
+                  <Check size={14} strokeWidth={3} />
+                </div>
+                <span>One-click AI background cleanup</span>
+              </li>
+            </ul>
+            <PaystackButton
+              {...getPaystackConfig()}
+              className="w-full py-5 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:opacity-90 transition-all shadow-xl shadow-purple-900/30"
+            />
+          </div>
         </div>
 
       </div>

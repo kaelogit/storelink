@@ -4,80 +4,152 @@ import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import DashboardClient from "@/components/dashboard/DashboardClient";
-import { Loader2, Gift, Zap, ChevronRight, AlertTriangle, ShieldCheck} from "lucide-react";
-import Link from "next/link";
+import BuyerDashboardHome from "@/components/dashboard/BuyerDashboardHome";
+import { Loader2 } from "lucide-react";
+import { orderCountsTowardSellerRevenue } from "@/lib/sellerOrderPayoutFlow";
+import { fetchBuyerProductOrders } from "@/lib/buyerOrders";
+import { isProfileOnboardingComplete } from "@/lib/onboardingState";
+import { PROFILE_STOREFRONT_SELECT, profileRowToLegacyStoreShape, type ProfileStorefrontRow } from "@/lib/profileAsStorefront";
+
+type BuyerHomeState = {
+  displayName: string;
+  logoUrl: string | null;
+  productOrders: any[];
+  coinBalance: number;
+  hasStore: boolean;
+  isSeller: boolean;
+  onboardingCompleted: boolean;
+};
 
 export default function DashboardPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  
+
   const [store, setStore] = useState<any>(null);
+  const [buyerHome, setBuyerHome] = useState<BuyerHomeState | null>(null);
+
   const [products, setProducts] = useState<any[]>([]);
   const [orders, setOrders] = useState<any[]>([]);
   const [stats, setStats] = useState({ revenue: 0, productCount: 0, views: 0 });
-  const [isLocked, setIsLocked] = useState(false); 
-  const [daysLeft, setDaysLeft] = useState<number | null>(null);
 
   const loadDashboardData = useCallback(async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
       if (!user) {
         router.push("/login");
         return;
       }
 
-      const { data: storeData } = await supabase
-        .from("stores")
-        .select("*")
-        .eq("owner_id", user.id) 
-        .single();
+      const [{ data: storeData }, { data: prof }] = await Promise.all([
+        supabase.from("stores").select("*").eq("owner_id", user.id).maybeSingle(),
+        supabase
+          .from("profiles")
+          .select(
+            `${PROFILE_STOREFRONT_SELECT}, onboarding_completed, onboarding_step`
+          )
+          .eq("id", user.id)
+          .maybeSingle(),
+      ]);
 
-      if (!storeData) {
-        router.push("/onboarding");
+      if (prof?.is_seller && !isProfileOnboardingComplete(prof)) {
+        router.replace("/account/start-selling");
         return;
       }
 
-      setStore(storeData);
+      /** Seller with completed onboarding: dashboard from profile (+ optional legacy `stores` id for RPCs). */
+      if (prof?.is_seller && isProfileOnboardingComplete(prof)) {
+        setBuyerHome(null);
+        const synthetic = profileRowToLegacyStoreShape(prof as ProfileStorefrontRow, {
+          legacyStoreId: storeData?.id ?? null,
+          ownerEmail: user.email,
+        });
+        const storeForUi = storeData
+          ? {
+              ...synthetic,
+              id: storeData.id,
+              owner_id: user.id,
+              __surface: "merged" as const,
+              __legacy_store_id: storeData.id,
+              seller_type: (prof as ProfileStorefrontRow).seller_type ?? undefined,
+            }
+          : synthetic;
 
-      if (storeData.subscription_expiry) {
-        const expiry = new Date(storeData.subscription_expiry);
-        const now = new Date();
-        const diff = expiry.getTime() - now.getTime();
-        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        
-        setDaysLeft(days > 0 ? days : 0);
-        setIsLocked(expiry < now);
+        setStore(storeForUi);
+
+        const { data: productsData, error: productsError } = await supabase
+          .from("products")
+          .select("*, categories(name)")
+          .eq("seller_id", user.id)
+          .order("created_at", { ascending: false });
+
+        let productRows = productsData || [];
+        if (productsError) {
+          console.warn("Dashboard products query:", productsError.message);
+          const { data: fallback } = await supabase
+            .from("products")
+            .select("*")
+            .eq("seller_id", user.id)
+            .order("created_at", { ascending: false });
+          productRows = fallback || [];
+        }
+
+        setProducts(productRows);
+
+        const { data: ordersData } = await supabase
+          .from("orders")
+          .select("*")
+          .eq("seller_id", user.id)
+          .order("created_at", { ascending: false });
+
+        setOrders(ordersData || []);
+
+        const revenue =
+          ordersData?.reduce((acc, order) => {
+            return acc + (orderCountsTowardSellerRevenue(order.status) ? Number(order.total_amount) || 0 : 0);
+          }, 0) || 0;
+
+        setStats({
+          revenue,
+          productCount: productRows.length,
+          views: Number((prof as ProfileStorefrontRow).view_count ?? storeData?.view_count ?? 0),
+        });
+        return;
       }
 
-      const { data: productsData } = await supabase
-        .from("products")
-        .select("*, categories(name)")
-        .eq("store_id", storeData.id)
-        .order("created_at", { ascending: false });
-      
-      setProducts(productsData || []);
+      /** Pure buyer / shopper hub (not an onboarded seller). */
+      setStore(null);
 
-      const { data: ordersData } = await supabase
-        .from("orders")
-        .select("*")
-        .eq("store_id", storeData.id)
-        .order("created_at", { ascending: false });
+      const p = prof as {
+        display_name?: string | null;
+        full_name?: string | null;
+        logo_url?: string | null;
+        coin_balance?: number | null;
+        is_seller?: boolean | null;
+      } | null;
+      const onboardingDone = isProfileOnboardingComplete(prof);
 
-      setOrders(ordersData || []);
+      const rawOrders = await fetchBuyerProductOrders(supabase, user.id).catch(() => []);
 
-      const revenue = ordersData?.reduce((acc, order) => {
-            return acc + (['completed', 'paid'].includes(order.status) ? order.total_amount : 0);
-      }, 0) || 0;
+      const name =
+        p?.display_name?.trim() || p?.full_name?.trim() || user.email?.split("@")[0] || "there";
 
-      const count = productsData?.length || 0;
-      
-      setStats({ 
-        revenue, 
-        productCount: count, 
-        views: storeData.view_count || 0 
+      setBuyerHome({
+        displayName: name,
+        logoUrl: p?.logo_url?.trim() || null,
+        productOrders: Array.isArray(rawOrders) ? rawOrders : [],
+        coinBalance: Number(p?.coin_balance ?? 0),
+        hasStore: Boolean(storeData?.id),
+        isSeller: Boolean(p?.is_seller),
+        onboardingCompleted: onboardingDone,
       });
 
+      setProducts([]);
+      setOrders([]);
+      setStats({ revenue: 0, productCount: 0, views: 0 });
+      return;
     } catch (error) {
       console.error("Dashboard Load Error:", error);
     } finally {
@@ -87,15 +159,26 @@ export default function DashboardPage() {
 
   useEffect(() => {
     loadDashboardData();
+  }, [loadDashboardData]);
+
+  useEffect(() => {
+    if (!store?.owner_id) return;
 
     const channel = supabase
-      .channel('dashboard-updates')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => loadDashboardData())
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'stores' }, () => loadDashboardData())
+      .channel("dashboard-updates")
+      .on("postgres_changes", { event: "*", schema: "public", table: "orders" }, () => loadDashboardData())
+      .on("postgres_changes", { event: "*", schema: "public", table: "stores" }, () => loadDashboardData())
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "profiles", filter: `id=eq.${store.owner_id}` },
+        () => loadDashboardData()
+      )
       .subscribe();
 
-    return () => { supabase.removeChannel(channel); };
-  }, [loadDashboardData]);
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [store?.owner_id, loadDashboardData]);
 
   if (loading) {
     return (
@@ -105,19 +188,29 @@ export default function DashboardPage() {
     );
   }
 
-  if (!store) return null;
+  if (store) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-4 md:p-8 space-y-6">
+        <DashboardClient store={store} initialProducts={products} initialOrders={orders} stats={stats} />
+      </div>
+    );
+  }
 
-  return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8 space-y-6">
-      
+  if (buyerHome) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-4 md:p-8 space-y-6">
+        <BuyerDashboardHome
+          displayName={buyerHome.displayName}
+          logoUrl={buyerHome.logoUrl}
+          productOrders={buyerHome.productOrders}
+          coinBalance={buyerHome.coinBalance}
+          hasStore={buyerHome.hasStore}
+          isSeller={buyerHome.isSeller}
+          onboardingCompleted={buyerHome.onboardingCompleted}
+        />
+      </div>
+    );
+  }
 
-      <DashboardClient 
-        store={store} 
-        initialProducts={products} 
-        initialOrders={orders}
-        stats={stats}
-        isLocked={isLocked} 
-      />
-    </div>
-  );
+  return null;
 }

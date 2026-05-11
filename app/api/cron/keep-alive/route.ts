@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
   return NextResponse.json({ 
     success: true, 
-    message: "Empire is Awake and Secure!", 
+    message: "Keep-alive OK", 
     timestamp: new Date().toISOString() 
   })
 }

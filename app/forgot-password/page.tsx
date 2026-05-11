@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Navbar from "@/components/landing/Navbar";
 import { Loader2, ArrowLeft, KeyRound } from "lucide-react"; 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function ForgotPasswordPage() {
+function ForgotPasswordContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextPath = searchParams.get("next") || "/dashboard";
+  const sellerIntent = searchParams.get("seller_intent") === "1";
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,7 +51,7 @@ export default function ForgotPasswordPage() {
 
       // 5. Send to a modified Verify Page for Reset
       // We pass a 'type' so the verify page knows where to send them next
-      router.push(`/verify?email=${encodeURIComponent(email)}&type=recovery`);
+      router.push(`/verify?email=${encodeURIComponent(email)}&type=recovery&next=${encodeURIComponent(nextPath)}&seller_intent=${sellerIntent ? "1" : "0"}`);
 
     } catch (err: any) {
       console.error("Reset Error:", err);
@@ -64,7 +67,7 @@ export default function ForgotPasswordPage() {
       <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-80px)]">
         <div className="w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-10 border border-gray-100">
           
-          <Link href="/login" className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 mb-8 hover:text-gray-900 transition-colors">
+          <Link href={`/login?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`} className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 mb-8 hover:text-gray-900 transition-colors">
             <ArrowLeft size={14}/> Back to Login
           </Link>
           
@@ -107,5 +110,13 @@ export default function ForgotPasswordPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ForgotPasswordPage() {
+  return (
+    <Suspense fallback={<div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin text-emerald-600" /></div>}>
+      <ForgotPasswordContent />
+    </Suspense>
   );
 }

@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link"; 
 import { Search, Package, ChevronRight, Plus, ArrowRight, BadgeCheck, Gem, Zap } from "lucide-react";
 import { Product, Store } from "@/types";
+import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
+import { compactSellerRegion } from "@/lib/displayRegion";
 
 interface MarketplaceProps {
   products: Product[];
@@ -16,8 +18,8 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
   const [view, setView] = useState<'products' | 'vendors'>('products');
   const [search, setSearch] = useState("");
 
-  const getProductStore = (storeId: string) => {
-    return stores.find(s => s.id === storeId);
+  const getProductStoreBySeller = (sellerId: string) => {
+    return stores.find((s) => s.owner_id === sellerId);
   };
 
   
@@ -29,34 +31,32 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
     s.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const diamondPoolP = searchMatchedProducts.filter(p => {
-    const s = getProductStore(p.store_id);
-    return s?.subscription_plan === 'diamond';
-  });
+  const tierOfStore = (s?: Store | null) =>
+    effectiveSellerTier(s?.subscription_plan, s?.subscription_expiry, s?.subscription_status);
 
-  const premiumPoolP = searchMatchedProducts.filter(p => {
-    const s = getProductStore(p.store_id);
-    return s?.subscription_plan === 'premium';
-  });
+  const diamondPoolP = searchMatchedProducts.filter((p) => tierOfStore(getProductStoreBySeller(p.seller_id)) === "diamond");
+
+  const standardPoolP = searchMatchedProducts.filter((p) => tierOfStore(getProductStoreBySeller(p.seller_id)) === "standard");
 
   const finalDiamondsP = diamondPoolP.slice(0, 15);
-  const finalPremiumsP = premiumPoolP.slice(0, 20 - finalDiamondsP.length);
-  const filteredProducts = [...finalDiamondsP, ...finalPremiumsP];
+  const standardSlots = Math.max(0, 20 - finalDiamondsP.length);
+  const finalStandardsP = standardPoolP.slice(0, standardSlots);
+  const filteredProducts = [...finalDiamondsP, ...finalStandardsP];
 
-  const diamondPoolS = searchMatchedStores.filter(s => s.subscription_plan === 'diamond');
-  const premiumPoolS = searchMatchedStores.filter(s => s.subscription_plan === 'premium');
+  const diamondPoolS = searchMatchedStores.filter((s) => tierOfStore(s) === "diamond");
+  const standardPoolS = searchMatchedStores.filter((s) => tierOfStore(s) === "standard");
 
   const finalDiamondsS = diamondPoolS.slice(0, 15);
-  const finalPremiumsS = premiumPoolS.slice(0, 20 - finalDiamondsS.length);
-  const filteredStores = [...finalDiamondsS, ...finalPremiumsS];
+  const standardSlotsStores = Math.max(0, 20 - finalDiamondsS.length);
+  const finalStandardsS = standardPoolS.slice(0, standardSlotsStores);
+  const filteredStores = [...finalDiamondsS, ...finalStandardsS];
 
   return (
     <section id="marketplace" className="py-16 px-4 bg-gray-50 min-h-screen border-t border-gray-100">
       <div className="max-w-6xl mx-auto mb-4">
         
-        <div className="text-center mb-10">
+        <div className="text-center mb-10" id="trending">
            <h2 className="text-3xl font-bold text-gray-900 uppercase tracking-tighter italic">Trending Now</h2>
-           <p className="text-gray-500 mt-2 font-medium uppercase text-[10px] tracking-[0.2em] opacity-60">Verified drops from premium vendors.</p>
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-8">
@@ -80,8 +80,9 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
           <div className="grid grid-rows-2 grid-flow-col auto-cols-[50%] gap-3 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-4 lg:grid-cols-5 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0 md:gap-4">
             {filteredProducts.map(product => {
               const isFlash = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-              const store = getProductStore(product.store_id);
-              const isDiamond = store?.subscription_plan === 'diamond';
+              const store = getProductStoreBySeller(product.seller_id);
+              const regionLabel = store ? compactSellerRegion(store) : "";
+              const isDiamond = tierOfStore(store) === "diamond";
               
               const activePrice = isFlash ? (product.flash_drop_price || product.price) : product.price;
 
@@ -100,7 +101,13 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                   } hover:shadow-2xl hover:-translate-y-2`}
                 >
                   <div className="aspect-square bg-gray-50 rounded-xl mb-3 relative overflow-hidden">
-                    <Image src={product.image_urls?.[0] || ""} alt="" fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+                    {product.image_urls?.[0] ? (
+                      <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+                    ) : (
+                      <div className="h-full w-full flex items-center justify-center text-gray-300">
+                        <Package size={26} />
+                      </div>
+                    )}
                     
                     {isFlash ? (
                       <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20 animate-pulse">
@@ -129,10 +136,13 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                   <div className="px-1 flex flex-col flex-1">
                     <h3 className="font-black text-gray-900 text-xs md:text-sm truncate uppercase tracking-tight mb-0.5">{product.name}</h3>
                     
-                    <div className="flex items-center gap-1 text-[10px] text-gray-400 mb-3 truncate font-bold">
+                    <div className="flex items-center gap-1 text-[10px] text-gray-400 mb-1 truncate font-bold">
                         <span className="truncate">{store?.name}</span>
                         {store?.verification_status === 'verified' && <BadgeCheck size={12} className="text-blue-500 fill-blue-50" />}
                     </div>
+                    {regionLabel ? (
+                      <p className="text-[9px] font-bold text-gray-400 mb-2 truncate uppercase tracking-wider">{regionLabel}</p>
+                    ) : null}
 
                     <div className="mt-auto flex items-center justify-between">
                       {isFlash ? (
@@ -146,7 +156,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                       )}
                       
                       {rewardCoins > 0 && (
-                        <span className="text-[8px] font-black text-emerald-500/40 uppercase tracking-widest italic animate-pulse">Earn Gold</span>
+                        <span className="text-[8px] font-black text-emerald-500/40 uppercase tracking-widest italic animate-pulse">Earn Coin</span>
                       )}
                     </div>
                   </div>
@@ -157,13 +167,19 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
         ) : (
           <div className="grid grid-rows-2 grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-3 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0">
             {filteredStores.map(store => (
-              <a 
+              <Link 
                 href={`/${store.slug}`} 
                 key={store.id} 
                 className="snap-start bg-white p-4 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4 h-full group"
               >
                 <div className="w-16 h-16 bg-gray-50 rounded-full overflow-hidden relative border border-gray-100 shrink-0 shadow-inner">
-                  {store.logo_url ? <Image src={store.logo_url} alt="" fill className="object-cover group-hover:scale-110 transition duration-500" unoptimized /> : null}
+                  {store.logo_url ? (
+                    <Image src={store.logo_url} alt={store.name} fill className="object-cover group-hover:scale-110 transition duration-500" unoptimized />
+                  ) : (
+                    <div className="h-full w-full flex items-center justify-center text-gray-300 font-black">
+                      {store.name?.charAt(0) || "S"}
+                    </div>
+                  )}
                 </div>
                 <div className="min-w-0">
                    <h3 className="font-black text-gray-900 flex items-center gap-1 text-sm truncate uppercase tracking-tighter">
@@ -171,16 +187,18 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                      {store.verification_status === 'verified' && (
                        <BadgeCheck size={14} className="text-blue-500 fill-blue-50 shrink-0" />
                      )}
-                     {store.subscription_plan === 'diamond' && (
+                     {tierOfStore(store) === "diamond" && (
                        <Gem size={14} className="text-purple-600 fill-purple-50 shrink-0" />
                      )}
                    </h3>
-                   <p className="text-[9px] font-black text-gray-400 mt-1 truncate uppercase tracking-[0.1em]">{store.location || "Online Exclusive"}</p>
+                   <p className="text-[9px] font-black text-gray-400 mt-1 truncate uppercase tracking-[0.1em]">
+                     {compactSellerRegion(store) || "Online Exclusive"}
+                   </p>
                    <div className="text-[9px] text-emerald-600 font-black mt-2 flex items-center gap-1 uppercase tracking-widest">
                      Enter Shop <ChevronRight size={12} />
                    </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         )}

@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 import { Search, Settings, Filter, CheckCircle, ShieldAlert, Clock, AlertCircle } from "lucide-react"; 
 import StoreManager from "@/components/admin/StoreManager";
+import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
 
 export default function ManageStoresPage() {
   const [stores, setStores] = useState<any[]>([]);
@@ -14,21 +14,13 @@ export default function ManageStoresPage() {
   }, []);
 
   async function fetchStores() {
-    console.log("Empire Sync: Re-fetching platform entities...");
-    
-    // 🔥 EMPIRE AUDIT: Fetching via RPC to bypass RLS or complex joins
-    const { data, error } = await supabase.rpc('get_admin_stores');
-    
-    if (error) {
-      console.error("SQL Error:", error.message);
-      return; // Exit if there's an error to avoid clearing existing data
+    const res = await fetch("/api/admin/sellers", { credentials: "include" });
+    const j = await res.json();
+    if (!res.ok) {
+      console.error("Sellers load error:", j.error || res.statusText);
+      return;
     }
-    
-    if (data) {
-      // 🔥 FIX: Use the spread operator [...data] to force React to update the state reference
-      // This ensures that when Diamond status changes, the UI updates instantly.
-      setStores([...data]);
-    }
+    setStores([...(j.sellers || [])]);
   }
 
   const filteredStores = stores.filter(s => 
@@ -40,8 +32,10 @@ export default function ManageStoresPage() {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-end gap-4">
         <div>
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Founder Godmode</h2>
-          <p className="text-gray-400 text-sm">Deep control over all platform entities.</p>
+          <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Sellers</h2>
+          <p className="text-gray-400 text-sm">
+            Seller profiles (<span className="font-mono text-gray-500">profiles.is_seller</span>) — subscription, verification, and account status. Updates use the service role via admin APIs.
+          </p>
         </div>
         
         <div className="flex gap-3 w-full md:w-auto">
@@ -112,16 +106,30 @@ export default function ManageStoresPage() {
                 <td className="px-6 py-4">
                    <div className="flex flex-col gap-1">
                       <span className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter border w-fit ${
-                        store.subscription_plan === 'diamond' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' :
-                        store.subscription_plan === 'premium' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
-                        'bg-gray-700/30 text-gray-400 border-gray-600/30'
+                        effectiveSellerTier(
+                          store.subscription_plan,
+                          store.subscription_expiry,
+                          store.subscription_status
+                        ) === "diamond"
+                          ? "bg-purple-500/10 text-purple-400 border-purple-500/20"
+                          : "bg-gray-700/30 text-gray-400 border-gray-600/30"
                       }`}>
-                        {store.subscription_plan}
-                        {store.is_trial && store.subscription_plan !== 'free' && " (Trial)"}
+                        {effectiveSellerTier(
+                          store.subscription_plan,
+                          store.subscription_expiry,
+                          store.subscription_status
+                        ) === "diamond"
+                          ? "diamond"
+                          : "standard"}
+                        {store.subscription_plan &&
+                          store.subscription_plan !== "standard" &&
+                          store.subscription_plan !== "diamond" && (
+                            <span className="text-[9px] font-mono normal-case opacity-60">
+                              {" "}
+                              ({store.subscription_plan})
+                            </span>
+                          )}
                       </span>
-                      {store.is_trial && store.subscription_plan !== 'free' && (
-                        <span className="text-[8px] font-bold text-amber-500/60 uppercase tracking-widest ml-1">Gifted Access</span>
-                      )}
                    </div>
                 </td>
                 <td className="px-6 py-4">

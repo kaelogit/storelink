@@ -1,6 +1,7 @@
 "use client";
 import { X, MapPin, Globe, MessageCircle, Clock, CheckCircle } from "lucide-react";
 import { Store } from "@/types";
+import { compactSellerRegion } from "@/lib/displayRegion";
 import Image from "next/image";
 
 interface StoreInfoModalProps {
@@ -29,7 +30,7 @@ export default function StoreInfoModal({ store, isOpen, onClose, productCount }:
               </div>
               <h2 className="text-2xl font-bold text-gray-900">{store.name}</h2>
               <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
-                <MapPin size={14} /> {store.location}
+                <MapPin size={14} /> {compactSellerRegion(store)}
               </p>
            </div>
 
@@ -55,7 +56,7 @@ export default function StoreInfoModal({ store, isOpen, onClose, productCount }:
               <h3 className="text-sm font-bold text-gray-900 uppercase mb-1">Contact & Socials</h3>
               
               <a href={`https://wa.me/${store.whatsapp_number}`} target="_blank" className="flex items-center justify-center gap-3 w-full p-4 bg-green-600 text-white rounded-xl text-sm font-bold shadow-lg hover:bg-green-700 active:scale-95 transition">
-                 <MessageCircle size={20} /> Chat on WhatsApp
+                 <MessageCircle size={20} /> Message the store
                </a>
 
              {store.instagram_url && (
