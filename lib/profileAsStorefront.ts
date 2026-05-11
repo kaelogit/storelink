@@ -9,7 +9,8 @@ import { displayLocationFull } from "@/lib/displayRegion";
  * - display_name / full_name → name
  * - slug → slug (public URL)
  * - bio → description
- * - logo_url → logo_url (cover uses logo until a dedicated cover exists on profile)
+ * - logo_url → logo_url; cover_image_url → header image (falls back to logo)
+ * - shop_address → public shop line when no legacy `stores` row
  * - phone_number → whatsapp_number (normalized digits)
  * - location*, location → location string
  * - subscription_plan, subscription_expiry, subscription_status → visibility tier
@@ -17,7 +18,7 @@ import { displayLocationFull } from "@/lib/displayRegion";
  * - loyalty_*, view_count → loyalty + views
  */
 export const PROFILE_STOREFRONT_SELECT =
-  "id, display_name, full_name, slug, bio, logo_url, phone_number, location, location_state, location_city, location_country, location_country_code, " +
+  "id, display_name, full_name, slug, bio, logo_url, cover_image_url, shop_address, phone_number, location, location_state, location_city, location_country, location_country_code, " +
   "instagram_handle, tiktok_url, " +
   "is_seller, email, subscription_plan, subscription_expiry, subscription_status, " +
   "verification_status, loyalty_enabled, loyalty_percentage, view_count, account_status, " +
@@ -30,6 +31,8 @@ export type ProfileStorefrontRow = {
   slug?: string | null;
   bio?: string | null;
   logo_url?: string | null;
+  cover_image_url?: string | null;
+  shop_address?: string | null;
   phone_number?: string | null;
   location?: string | null;
   location_state?: string | null;
@@ -91,6 +94,18 @@ export function profileRowToLegacyStoreShape(
   const slug = String(p.slug || "").trim() || "store";
   const wa = normalizeWhatsApp(p.phone_number) || "2340000000001";
 
+  const homeLine =
+    displayLocationFull({
+      location: p.location,
+      location_city: p.location_city,
+      location_state: p.location_state,
+      location_country: p.location_country,
+      location_country_code: p.location_country_code,
+    }) ||
+    p.location_country?.trim() ||
+    "Nigeria";
+  const shopLine = p.shop_address?.trim();
+
   return {
     __surface: "profile",
     __legacy_store_id: opts?.legacyStoreId ?? null,
@@ -100,23 +115,14 @@ export function profileRowToLegacyStoreShape(
     name,
     owner_email: opts?.ownerEmail ?? p.email ?? undefined,
     description: p.bio?.trim() ?? null,
-    location:
-      displayLocationFull({
-        location: p.location,
-        location_city: p.location_city,
-        location_state: p.location_state,
-        location_country: p.location_country,
-        location_country_code: p.location_country_code,
-      }) ||
-      p.location_country?.trim() ||
-      "Nigeria",
+    location: shopLine || homeLine,
     location_city: p.location_city?.trim() || null,
     location_state: p.location_state?.trim() || null,
     location_country: p.location_country?.trim() || null,
     location_country_code: p.location_country_code?.trim().toUpperCase() || null,
     whatsapp_number: wa,
     logo_url: p.logo_url?.trim() || null,
-    cover_image_url: p.logo_url?.trim() || null,
+    cover_image_url: p.cover_image_url?.trim() || p.logo_url?.trim() || null,
     instagram_handle: p.instagram_handle?.trim() || undefined,
     tiktok_url: p.tiktok_url?.trim() || undefined,
     verification_status: (p.verification_status as Store["verification_status"]) ?? "none",

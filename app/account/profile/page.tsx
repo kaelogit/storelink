@@ -66,6 +66,8 @@ type ProfileRow = {
   seller_type: string | null;
   instagram_handle: string | null;
   tiktok_url: string | null;
+  shop_address: string | null;
+  cover_image_url: string | null;
 };
 
 function addDays(d: Date, days: number): Date {
@@ -246,8 +248,14 @@ export default function AccountProfilePage() {
 
       if (p?.is_seller && storeData) {
         setLegacyStoreId(storeData.id);
-        setStoreAddress(storeData.location?.trim() ? String(storeData.location) : "");
-        setCoverUrl(storeData.cover_image_url?.trim() ? String(storeData.cover_image_url) : "");
+        const fromStore = storeData.location?.trim() ? String(storeData.location) : "";
+        setStoreAddress(fromStore || (p.shop_address?.trim() ? String(p.shop_address) : ""));
+        const storeCover = storeData.cover_image_url?.trim() ? String(storeData.cover_image_url) : "";
+        setCoverUrl(storeCover || (p.cover_image_url?.trim() ? String(p.cover_image_url) : ""));
+      } else if (p?.is_seller) {
+        setLegacyStoreId(null);
+        setStoreAddress(p.shop_address?.trim() ? String(p.shop_address) : "");
+        setCoverUrl(p.cover_image_url?.trim() ? String(p.cover_image_url) : "");
       } else {
         setLegacyStoreId(null);
         setStoreAddress("");
@@ -390,6 +398,21 @@ export default function AccountProfilePage() {
         listingState = shopState.trim() || locationState.trim();
       }
 
+      let resolvedCover: string | null = coverUrl.trim() || null;
+      if (coverFile && userId) {
+        const path = legacyStoreId ? `covers/${legacyStoreId}-${Date.now()}` : `covers/profile-${userId}-${Date.now()}`;
+        const { error: upErr } = await supabase.storage.from("products").upload(path, coverFile, {
+          upsert: true,
+          contentType: coverFile.type || "image/jpeg",
+        });
+        if (upErr) throw upErr;
+        const { data } = supabase.storage.from("products").getPublicUrl(path);
+        resolvedCover = data.publicUrl;
+        setCoverFile(null);
+        setCoverPreview(null);
+        setCoverUrl(resolvedCover || "");
+      }
+
       const profilePatch: Record<string, unknown> = {
         display_name: fn,
         full_name: fn,
@@ -421,25 +444,12 @@ export default function AccountProfilePage() {
       if (profile?.is_seller) {
         profilePatch.service_latitude = effShopLat;
         profilePatch.service_longitude = effShopLng;
+        profilePatch.shop_address = effStoreLine || null;
+        profilePatch.cover_image_url = resolvedCover;
       }
 
       const { error } = await supabase.from("profiles").update(profilePatch).eq("id", userId);
       if (error) throw error;
-
-      let newCover = coverUrl.trim() || null;
-      if (coverFile && legacyStoreId) {
-        const path = `covers/${legacyStoreId}-${Date.now()}`;
-        const { error: upErr } = await supabase.storage.from("products").upload(path, coverFile, {
-          upsert: true,
-          contentType: coverFile.type || "image/jpeg",
-        });
-        if (upErr) throw upErr;
-        const { data } = supabase.storage.from("products").getPublicUrl(path);
-        newCover = data.publicUrl;
-        setCoverFile(null);
-        setCoverPreview(null);
-        setCoverUrl(newCover || "");
-      }
 
       if (profile?.is_seller && legacyStoreId) {
         const { error: storeError } = await supabase
@@ -447,7 +457,7 @@ export default function AccountProfilePage() {
           .update({
             slug: normalizeSlug(slug) || null,
             location: effStoreLine || null,
-            cover_image_url: newCover,
+            cover_image_url: resolvedCover,
             instagram_handle: instagram.trim() || null,
             tiktok_url: tiktok.trim() || null,
             updated_at: new Date().toISOString(),
@@ -483,6 +493,8 @@ export default function AccountProfilePage() {
               tiktok_url: tiktok.trim() || null,
               service_latitude: prev.is_seller ? effShopLat : prev.service_latitude,
               service_longitude: prev.is_seller ? effShopLng : prev.service_longitude,
+              shop_address: prev.is_seller ? effStoreLine || null : prev.shop_address,
+              cover_image_url: prev.is_seller ? resolvedCover : prev.cover_image_url,
             }
           : prev,
       );
@@ -539,28 +551,31 @@ export default function AccountProfilePage() {
 
   return (
     <div className="max-w-lg mx-auto space-y-0 pb-24" id="personal-information">
-      <header className="sticky top-0 z-20 flex items-center justify-between border-b border-gray-200 bg-white/95 py-3 backdrop-blur supports-[backdrop-filter]:bg-white/80 -mx-4 px-4 sm:mx-0 sm:px-0">
-        <Link
-          href="/dashboard"
-          className="flex h-11 w-11 items-center justify-center rounded-full text-gray-900 hover:bg-gray-100"
-          aria-label="Back"
-        >
-          <ArrowLeft size={22} strokeWidth={2.5} />
-        </Link>
-        <h1 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-900">Personal info</h1>
-        <button
-          type="submit"
-          form="account-profile-form"
-          disabled={saving || uploadingLogo || slugStatus === "taken" || slugStatus === "checking"}
-          className="min-w-[52px] text-sm font-bold text-emerald-600 disabled:opacity-40"
-        >
-          {saving ? <Loader2 className="mx-auto h-5 w-5 animate-spin text-emerald-600" /> : "Save"}
-        </button>
+      <header className="mb-8 border-b border-gray-200 pb-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition hover:text-gray-900"
+          >
+            <ArrowLeft size={18} aria-hidden />
+            Back to dashboard
+          </Link>
+          <button
+            type="submit"
+            form="account-profile-form"
+            disabled={saving || uploadingLogo || slugStatus === "taken" || slugStatus === "checking"}
+            className="inline-flex w-full items-center justify-center rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
+          >
+            {saving ? <Loader2 className="h-5 w-5 animate-spin" aria-label="Saving" /> : "Save changes"}
+          </button>
+        </div>
+        <h1 className="mt-6 text-2xl font-bold tracking-tight text-gray-900">Account &amp; profile</h1>
+        <p className="mt-1 text-sm text-gray-500">Update how you appear on StoreLink and where you operate from.</p>
       </header>
 
-      <form id="account-profile-form" onSubmit={handleSave} className="space-y-8 pt-8">
+      <form id="account-profile-form" onSubmit={handleSave} className="space-y-8 pt-2">
         {/* Web-only: cover (sellers with storefront row) */}
-        {profile?.is_seller && legacyStoreId ? (
+        {profile?.is_seller ? (
           <div className="space-y-2">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-500">Cover image</p>
             <div className="relative h-36 w-full overflow-hidden rounded-[22px] border border-gray-200 bg-gray-100 md:h-44">

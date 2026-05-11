@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const [{ data: profile }, { data: legacyStore }] = await Promise.all([
     supabase
       .from("profiles")
-      .select("display_name, full_name, slug, bio, logo_url")
+      .select("display_name, full_name, slug, bio, logo_url, cover_image_url")
       .eq("slug", slug)
       .eq("is_seller", true)
       .maybeSingle(),
@@ -41,6 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const ogImage =
     legacyStore?.cover_image_url ||
     legacyStore?.logo_url ||
+    profile?.cover_image_url ||
     profile?.logo_url ||
     storefrontAbsolutePath("/og-image.png");
 
@@ -119,11 +120,11 @@ export default async function VendorStorePage({ params }: PageProps) {
       instagram_handle?: string | null;
       tiktok_url?: string | null;
     };
-    const shopLine = leg.location?.trim();
+    const shopLine = leg.location?.trim() || p.shop_address?.trim();
     displayStore = {
       ...displayStore,
       cover_image_url: leg.cover_image_url ?? displayStore.cover_image_url,
-      /** Shop/pickup line lives on `stores`; profile fields are home-oriented — prefer explicit shop string when present. */
+      /** Shop/pickup line: legacy `stores.location`, else profile `shop_address`. */
       location: shopLine || displayStore.location,
       instagram_handle: (p.instagram_handle?.trim() || leg.instagram_handle || displayStore.instagram_handle || "").trim() || undefined,
       tiktok_url: (p.tiktok_url?.trim() || leg.tiktok_url || displayStore.tiktok_url || "").trim() || undefined,

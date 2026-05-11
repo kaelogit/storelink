@@ -15,12 +15,10 @@ import {
   Menu,
   X,
   Crown,
-  BadgeCheck,
   Coins,
   User,
   LifeBuoy,
   Store,
-  Banknote,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
@@ -92,7 +90,7 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
         supabase
           .from("profiles")
           .select(
-            "full_name, phone_number, slug, location_state, location_city, location, display_name, logo_url, is_seller, onboarding_completed, onboarding_step, buyer_interested_categories, subscription_plan, subscription_expiry, subscription_status"
+            "full_name, phone_number, slug, location_state, location_city, location, display_name, logo_url, is_seller, onboarding_completed, onboarding_step, buyer_interested_categories, subscription_plan, subscription_expiry, subscription_status, service_latitude, service_longitude, shop_address"
           )
           .eq("id", user.id)
           .maybeSingle(),
@@ -159,8 +157,6 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
             { name: "Store orders", href: "/dashboard/orders", icon: ShoppingBag },
             { name: "Store Coin loyalty", href: "/dashboard/loyalty", icon: Coins, isNew: true, color: "text-amber-500" },
             { name: "Visibility & plans", href: "/dashboard/subscription", icon: Crown },
-            { name: "Identity verification", href: "/dashboard/verification", icon: BadgeCheck },
-            { name: "Payout & bank details", href: "/dashboard/payout", icon: Banknote },
             { name: "Settings", href: "/account/settings", icon: Settings },
           ]
         : [];

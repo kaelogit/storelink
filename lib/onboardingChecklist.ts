@@ -8,6 +8,8 @@ export type OnboardingProfileLike = {
   /** Shop / service pin (sellers) — aligned with profile `service_latitude` / `service_longitude`. */
   service_latitude?: number | null;
   service_longitude?: number | null;
+  /** Web storefront: saved shop line when no legacy `stores.location` yet. */
+  shop_address?: string | null;
   buyer_interested_categories?: string[] | null;
   onboarding_completed?: boolean | null;
   onboarding_step?: string | null;
@@ -39,7 +41,8 @@ export function getMissingOnboardingFields(
       profile?.service_longitude != null &&
       !Number.isNaN(Number(profile.service_latitude)) &&
       !Number.isNaN(Number(profile.service_longitude));
-    const storeAddressOk = Boolean(store?.location?.trim()) || shopPinOk;
+    const storeAddressOk =
+      Boolean(store?.location?.trim()) || Boolean(profile?.shop_address?.trim()) || shopPinOk;
     if (!storeSlug) missing.push("Store slug");
     if (!storeAddressOk) missing.push("Shop address");
   } else {
