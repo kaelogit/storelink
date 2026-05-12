@@ -7,6 +7,7 @@ import { Search, Package, ChevronRight, Plus, ArrowRight, BadgeCheck, Gem, Zap }
 import { Product, Store } from "@/types";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
 import { compactSellerRegion } from "@/lib/displayRegion";
+import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
 
 interface MarketplaceProps {
   products: Product[];
@@ -52,8 +53,8 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
   const filteredStores = [...finalDiamondsS, ...finalStandardsS];
 
   return (
-    <section id="marketplace" className="py-16 px-4 bg-gray-50 min-h-screen border-t border-gray-100">
-      <div className="max-w-6xl mx-auto mb-4">
+    <section id="marketplace" className={`min-h-dvh border-t border-gray-100 bg-gray-50 py-16 ${STOREFRONT_GUTTER_X}`}>
+      <div className="mx-auto mb-4 max-w-6xl">
         
         <div className="text-center mb-10" id="trending">
            <h2 className="text-3xl font-bold text-gray-900 uppercase tracking-tighter italic">Trending Now</h2>
@@ -61,15 +62,15 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
 
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-8">
           <div className="flex bg-white p-1 rounded-xl border border-gray-200 shadow-sm">
-            <button onClick={() => setView('products')} className={`px-6 py-2 rounded-lg text-sm font-black uppercase tracking-widest transition ${view === 'products' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-900'}`}>Items</button>
-            <button onClick={() => setView('vendors')} className={`px-6 py-2 rounded-lg text-sm font-black uppercase tracking-widest transition ${view === 'vendors' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-900'}`}>Stores</button>
+            <button onClick={() => setView('products')} className={`min-h-[44px] rounded-lg px-6 py-2 text-sm font-black uppercase tracking-widest transition ${view === 'products' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-900'}`}>Items</button>
+            <button onClick={() => setView('vendors')} className={`min-h-[44px] rounded-lg px-6 py-2 text-sm font-black uppercase tracking-widest transition ${view === 'vendors' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-900'}`}>Stores</button>
           </div>
           
           <div className="relative w-full md:w-96">
             <Search className="absolute left-4 top-3.5 text-gray-400 w-4 h-4" />
             <input 
               placeholder={`Search ${view}...`} 
-              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-gray-900 font-bold outline-none shadow-sm text-sm"
+              className="min-h-[48px] w-full rounded-xl border border-gray-200 bg-white py-3 pl-10 pr-4 text-base font-bold shadow-sm outline-none focus:ring-2 focus:ring-gray-900"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
 import { BILLING_DURATIONS, calculateDiamondPrice, majorToPaystackSmallestUnit, SUBSCRIPTION_PRICES } from "@/lib/subscriptionPricing";
+import { STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic"; 
 import html2canvas from "html2canvas";
@@ -180,7 +181,7 @@ export default function SubscriptionPage() {
     };
   };
 
-  if (loading) return <div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin text-gray-400"/></div>;
+  if (loading) return <div className="flex min-h-dvh items-center justify-center"><Loader2 className="animate-spin text-gray-400"/></div>;
 
   const effective = effectiveSellerTier(currentPlan, expiryDate, subscriptionStatus);
   const displayTier = effective === "diamond" ? "Diamond" : "Standard";
@@ -200,7 +201,7 @@ export default function SubscriptionPage() {
       : checkoutTotal.toLocaleString("en-US", { maximumFractionDigits: 2 });
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 font-sans relative print:bg-white overflow-x-hidden">
+    <div className={`min-h-dvh bg-gray-50 pb-20 font-sans relative print:bg-white overflow-x-hidden ${STOREFRONT_SAFE_BOTTOM}`}>
       
       {showSuccessModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/90 backdrop-blur-md animate-in fade-in duration-300 print:hidden">

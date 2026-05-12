@@ -5,6 +5,7 @@ import { LayoutDashboard, Menu, X, ShoppingBag, Sparkles, Tag, User, Store } fro
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import SignOutButton from "@/components/auth/SignOutButton";
+import { STOREFRONT_GUTTER_X, TOUCH_TARGET } from "@/lib/mobileLayout";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function Navbar() {
       </div>
 
       <nav className="border-b border-gray-100 bg-white/80 backdrop-blur-xl transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div className={`mx-auto flex h-16 max-w-7xl items-center justify-between ${STOREFRONT_GUTTER_X}`}>
           
           <Link href="/" className="flex items-center gap-2 group">
              <LayoutDashboard className="text-emerald-600 group-hover:scale-110 transition duration-300" size={24}/>
@@ -80,22 +81,25 @@ export default function Navbar() {
             )}
           </div>
 
-          <div className="flex items-center gap-4 md:hidden">
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              className="p-2 text-gray-900 focus:outline-none bg-gray-50 rounded-lg hover:bg-gray-100 transition"
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`${TOUCH_TARGET} rounded-xl bg-gray-50 text-gray-900 transition hover:bg-gray-100`}
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
         
         {isMenuOpen && (
           <div className="md:hidden absolute top-[calc(100%)] left-0 w-full bg-white border-b border-gray-100 shadow-xl animate-in slide-in-from-top-5 z-40">
-             <div className="flex flex-col p-4 space-y-2">
+             <div className={`flex flex-col space-y-1 py-3 ${STOREFRONT_GUTTER_X}`}>
                <Link 
                   href="/marketplace" 
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-sm font-bold text-gray-700"
+                  className="flex min-h-[44px] items-center gap-3 rounded-xl p-3 text-sm font-bold text-gray-700 hover:bg-gray-50"
                   onClick={() => setIsMenuOpen(false)}
                >
                   <ShoppingBag size={18} /> Shop Marketplace
@@ -103,14 +107,14 @@ export default function Navbar() {
 
                <Link 
                   href="/pricing" 
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-sm font-bold text-gray-700"
+                  className="flex min-h-[44px] items-center gap-3 rounded-xl p-3 text-sm font-bold text-gray-700 hover:bg-gray-50"
                   onClick={() => setIsMenuOpen(false)}
                >
                   <Tag size={18} /> Plan Pricing
                </Link>
                <Link 
                   href="/signup?next=%2Fpost-login&seller_intent=1" 
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 text-sm font-bold text-gray-700"
+                  className="flex min-h-[44px] items-center gap-3 rounded-xl p-3 text-sm font-bold text-gray-700 hover:bg-gray-50"
                   onClick={() => setIsMenuOpen(false)}
                >
                   <Store size={18} /> Sell on StoreLink
@@ -119,13 +123,13 @@ export default function Navbar() {
                 <>
                   <Link
                     href="/post-login"
-                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-900 text-sm font-black text-white"
+                    className="flex min-h-[44px] items-center gap-3 rounded-xl bg-gray-900 p-3 text-sm font-black text-white"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <LayoutDashboard size={18} /> Dashboard
                   </Link>
                   <SignOutButton
-                    className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 text-sm font-black text-gray-700 w-full text-left"
+                    className="flex min-h-[44px] w-full items-center gap-3 rounded-xl border border-gray-200 p-3 text-left text-sm font-black text-gray-700"
                   >
                     <User size={18} /> Log out
                   </SignOutButton>
@@ -134,14 +138,14 @@ export default function Navbar() {
                 <>
                   <Link
                     href="/login"
-                    className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 text-sm font-black text-gray-700"
+                    className="flex min-h-[44px] items-center gap-3 rounded-xl border border-gray-200 p-3 text-sm font-black text-gray-700"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <User size={18} /> Login
                   </Link>
                   <Link
                     href="/signup"
-                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-900 text-sm font-black text-white"
+                    className="flex min-h-[44px] items-center gap-3 rounded-xl bg-gray-900 p-3 text-sm font-black text-white"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <LayoutDashboard size={18} /> Get started

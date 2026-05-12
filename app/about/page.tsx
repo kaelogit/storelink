@@ -2,22 +2,23 @@ import Link from "next/link";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import { Store, ShieldCheck, Users, MapPin, Mail, Phone } from "lucide-react";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 export default function AboutPage() {
   return (
     <>
       <Navbar />
       
-      <div className="bg-white min-h-screen font-sans text-gray-900 pt-20">
+      <div className={`bg-white pt-20 font-sans text-gray-900 ${STOREFRONT_SAFE_BOTTOM} min-h-dvh`}>
         
-        <div className="bg-gray-900 text-white py-20 px-6 text-center">
+        <div className={`bg-gray-900 py-20 text-center text-white ${STOREFRONT_GUTTER_X}`}>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">We are StoreLink.</h1>
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
             The engine for the Naija Hustle. We are on a mission to help 1 million Nigerian vendors move from scattered chats to a professional online storefront—without the cost of a custom website.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 py-16">
+        <div className={`mx-auto max-w-4xl py-16 ${STOREFRONT_GUTTER_X}`}>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold mb-4">Our Story</h2>
@@ -34,7 +35,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="bg-gray-50 py-16 px-6">
+        <div className={`bg-gray-50 py-16 ${STOREFRONT_GUTTER_X}`}>
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <ShieldCheck className="text-emerald-600 mb-4 h-10 w-10" />
@@ -54,7 +55,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 py-20 text-center">
+        <div className={`mx-auto max-w-4xl py-20 text-center ${STOREFRONT_GUTTER_X}`}>
           <h2 className="text-3xl font-bold mb-10">Get in Touch</h2>
           <div className="grid md:grid-cols-3 gap-8 text-left">
             <div className="flex items-start gap-4">
@@ -83,7 +84,7 @@ export default function AboutPage() {
           <div className="mt-12 flex justify-center">
             <Link
               href="/signup?next=%2Fpost-login&seller_intent=1"
-              className="inline-flex items-center gap-2 rounded-2xl bg-gray-900 px-6 py-4 text-xs font-black uppercase tracking-widest text-white hover:bg-emerald-600 transition"
+              className="inline-flex min-h-[48px] items-center gap-2 rounded-2xl bg-gray-900 px-6 py-4 text-xs font-black uppercase tracking-widest text-white transition hover:bg-emerald-600"
             >
               Start Selling on StoreLink
             </Link>

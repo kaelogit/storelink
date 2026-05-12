@@ -15,6 +15,7 @@ import {
   Check,
   Minus,
   Plus,
+  MapPin,
 } from "lucide-react";
 import Image from "next/image";
 import { supabase } from "@/lib/supabase";
@@ -23,6 +24,14 @@ import { sendGAEvent } from '@next/third-parties/google';
 import { PaystackTerminalModal } from "@/components/shared/PaystackTerminalModal";
 import { fetchOnboardingContext, getOnboardingHubRedirect } from "@/lib/onboardingState";
 import { isWalletTableUnavailable } from "@/lib/walletSync";
+import { TOUCH_TARGET, STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
+import {
+  formatShippingAddressForCheckout,
+  parseShippingDetails,
+  pickDefaultSavedAddress,
+  profilePhoneToFormValue,
+  type ShippingAddress,
+} from "@/lib/shippingAddresses";
 
 function isAbortLikeError(err: unknown) {
   const msg = String((err as { message?: string } | null)?.message || err || "").toLowerCase();
@@ -82,6 +91,9 @@ export default function GlobalCartSidebar() {
   const [pendingPayment, setPendingPayment] = useState<PendingPayment | null>(null);
   const [checkoutFollowUp, setCheckoutFollowUp] = useState<"none" | "guest_account" | "profile">("none");
   const [profileContinueHref, setProfileContinueHref] = useState<string | null>(null);
+  const [savedShippingAddresses, setSavedShippingAddresses] = useState<ShippingAddress[]>([]);
+  const [profileLocationLine, setProfileLocationLine] = useState("");
+  const [deliverySelectValue, setDeliverySelectValue] = useState<string>("custom");
 
   // Load billing data from local storage on mount
   useEffect(() => {
@@ -135,6 +147,60 @@ export default function GlobalCartSidebar() {
       setSignupPassword("");
     }
   }, [accountUserId, authGate]);
+
+  useEffect(() => {
+    if (!isCartOpen || !accountUserId) {
+      if (!isCartOpen) {
+        setSavedShippingAddresses([]);
+        setProfileLocationLine("");
+      }
+      return;
+    }
+    let cancelled = false;
+    void (async () => {
+      const [{ data: authData }, { data: profile }] = await Promise.all([
+        supabase.auth.getUser(),
+        supabase
+          .from("profiles")
+          .select("full_name, display_name, phone_number, email, shipping_details, location")
+          .eq("id", accountUserId)
+          .maybeSingle(),
+      ]);
+      if (cancelled) return;
+      const user = authData?.user;
+      const addresses = parseShippingDetails(profile?.shipping_details);
+      const displayName = String(profile?.display_name || profile?.full_name || "").trim();
+      const email = String(user?.email || (profile as { email?: string } | null)?.email || "").trim();
+      const phone = profilePhoneToFormValue(profile?.phone_number as string | null | undefined);
+      const loc = String(profile?.location || "").trim();
+      setSavedShippingAddresses(addresses);
+      setProfileLocationLine(loc);
+      const defaultAddr = pickDefaultSavedAddress(addresses);
+      let nextAddress = "";
+      let selectVal = "custom";
+      if (defaultAddr) {
+        nextAddress = formatShippingAddressForCheckout(defaultAddr);
+        selectVal = defaultAddr.id;
+      } else if (loc) {
+        nextAddress = loc;
+        selectVal = "profile_location";
+      }
+      setFormData((prev) => {
+        const merged = {
+          name: displayName || prev.name,
+          phone: phone || prev.phone,
+          email: email || prev.email,
+          address: nextAddress || prev.address,
+        };
+        localStorage.setItem("storelink_billing", JSON.stringify(merged));
+        return merged;
+      });
+      setDeliverySelectValue(selectVal);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [isCartOpen, accountUserId]);
 
   // Sync wallet balance and store-specific settings (like owner_email)
   useEffect(() => {
@@ -280,10 +346,29 @@ export default function GlobalCartSidebar() {
     }
   };
 
+  const applyDeliverySelect = (value: string) => {
+    setDeliverySelectValue(value);
+    if (value === "custom") return;
+    const addr = savedShippingAddresses.find((a) => a.id === value);
+    let nextAddr = "";
+    if (addr) nextAddr = formatShippingAddressForCheckout(addr);
+    else if (value === "profile_location" && profileLocationLine.trim()) nextAddr = profileLocationLine.trim();
+    if (!nextAddr) return;
+    setFormData((prev) => {
+      const newData = { ...prev, address: nextAddr };
+      localStorage.setItem("storelink_billing", JSON.stringify(newData));
+      return newData;
+    });
+  };
+
   const startVendorCheckout = (sellerId: string, storeData: any, items: any[]) => {
     setCheckoutError("");
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.address.trim()) {
-      setCheckoutError("Add your delivery name, phone, and address before checkout.");
+    if (!formData.address.trim()) {
+      setCheckoutError("Add your delivery address before checkout.");
+      return;
+    }
+    if (!formData.name.trim() || formData.phone.replace(/\D/g, "").length < 10) {
+      setCheckoutError("Add your name and a valid phone number before checkout.");
       return;
     }
     if (accountUserId) {
@@ -622,11 +707,20 @@ export default function GlobalCartSidebar() {
     return acc;
   }, {} as Record<string, { store: any; items: any[] }>);
 
+  const accountContactComplete =
+    !!accountUserId &&
+    formData.name.trim().length > 0 &&
+    formData.phone.replace(/\D/g, "").length >= 10 &&
+    (formData.email || "").includes("@");
+
+  const showSavedAddressPicker =
+    !!accountUserId && (savedShippingAddresses.length > 0 || !!profileLocationLine.trim());
+
   return (
     <div className="fixed inset-0 z-100 bg-black/60 backdrop-blur-sm flex justify-end animate-in fade-in duration-200">
       <div className="absolute inset-0" onClick={() => setIsCartOpen(false)}></div>
 
-      <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+      <div className="relative flex h-dvh max-h-dvh w-full max-w-md flex-col bg-white pt-[env(safe-area-inset-top,0px)] pr-[env(safe-area-inset-right,0px)] shadow-2xl animate-in slide-in-from-right duration-300">
         
         {showSuccessModal && (
           <div className="absolute inset-0 z-110 bg-white flex flex-col items-center justify-center p-8 text-center animate-in zoom-in-95 duration-300">
@@ -705,12 +799,19 @@ export default function GlobalCartSidebar() {
           </div>
         )}
 
-        <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-white z-10 shadow-sm">
+        <div className="z-10 flex shrink-0 items-center justify-between border-b border-gray-100 bg-white p-4 pl-[max(1.25rem,env(safe-area-inset-left,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))] shadow-sm">
            <h2 className="font-black text-xl flex items-center gap-2 uppercase tracking-tighter"><ShoppingBag className="text-emerald-600" /> My Bag ({cart.length})</h2>
-           <button onClick={() => setIsCartOpen(false)} className="p-2 bg-gray-50 rounded-full hover:bg-gray-100 transition"><X size={20} /></button>
+           <button
+             type="button"
+             onClick={() => setIsCartOpen(false)}
+             className={`rounded-full bg-gray-50 text-gray-700 transition hover:bg-gray-100 ${TOUCH_TARGET}`}
+             aria-label="Close cart"
+           >
+             <X size={20} />
+           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-5 bg-gray-50 no-scrollbar pb-24">
+        <div className="no-scrollbar flex-1 overflow-y-auto bg-gray-50 p-4 pl-[max(1.25rem,env(safe-area-inset-left,0px))] pr-[max(1.25rem,env(safe-area-inset-right,0px))] pb-[calc(6rem+env(safe-area-inset-bottom,0px))]">
           <div className="space-y-6">
             
             <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100">
@@ -719,7 +820,7 @@ export default function GlobalCartSidebar() {
               </h3>
               {accountUserId ? (
                 <p className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2 mb-3">
-                  Signed in — checkout uses your StoreLink account. Store Coins apply below when loyalty is on.
+                  Signed in — contact comes from your StoreLink profile. Choose where to deliver below. Store Coins apply when loyalty is on.
                 </p>
               ) : (
                 <p className="text-[10px] text-gray-500 font-medium leading-relaxed mb-3">
@@ -727,16 +828,112 @@ export default function GlobalCartSidebar() {
                 </p>
               )}
               <div className="space-y-3">
-                <input placeholder="Full name" className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-emerald-500 outline-none" value={formData.name} onChange={(e) => handleChange("name", e.target.value)} />
-                <input placeholder="Phone number" className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-emerald-500 outline-none" value={formData.phone} onChange={(e) => handleChange("phone", e.target.value)} />
-                <input
-                  placeholder="Email"
-                  type="email"
-                  className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-emerald-500 outline-none"
-                  value={formData.email}
-                  onChange={(e) => handleChange("email", e.target.value)}
-                />
-                <textarea placeholder="Full delivery address" className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-emerald-500 outline-none h-20 resize-none" value={formData.address} onChange={(e) => handleChange("address", e.target.value)} />
+                {accountUserId && accountContactComplete ? (
+                  <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4">
+                    <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-2">Contact on this order</p>
+                    <p className="text-sm font-black text-gray-900">{formData.name}</p>
+                    <p className="mt-1 text-xs font-bold text-gray-600">{formData.phone}</p>
+                    <p className="mt-1 truncate text-[11px] font-medium text-gray-500">{formData.email}</p>
+                    <button
+                      type="button"
+                      onClick={() => router.push("/account/settings")}
+                      className="mt-3 text-[9px] font-black uppercase tracking-widest text-emerald-600 hover:text-emerald-800"
+                    >
+                      Edit name &amp; phone in account
+                    </button>
+                  </div>
+                ) : null}
+
+                {(!accountUserId || !accountContactComplete) && (
+                  <>
+                    <input
+                      placeholder="Full name"
+                      className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-emerald-500 outline-none"
+                      value={formData.name}
+                      onChange={(e) => handleChange("name", e.target.value)}
+                    />
+                    <input
+                      placeholder="Phone number"
+                      className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-emerald-500 outline-none"
+                      value={formData.phone}
+                      onChange={(e) => handleChange("phone", e.target.value)}
+                    />
+                    <input
+                      placeholder="Email"
+                      type="email"
+                      className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-emerald-500 outline-none"
+                      value={formData.email}
+                      onChange={(e) => handleChange("email", e.target.value)}
+                    />
+                  </>
+                )}
+
+                {accountUserId && showSavedAddressPicker && (
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black uppercase tracking-widest text-gray-400">Saved delivery address</label>
+                    <select
+                      className="w-full appearance-none rounded-2xl border-none bg-gray-50 p-4 text-sm font-bold text-gray-900 outline-none ring-emerald-500 focus:ring-2"
+                      value={deliverySelectValue}
+                      onChange={(e) => applyDeliverySelect(e.target.value)}
+                    >
+                      {savedShippingAddresses.map((a) => (
+                        <option key={a.id} value={a.id}>
+                          {a.label} — {a.city}
+                          {a.is_default ? " (default)" : ""}
+                        </option>
+                      ))}
+                      {profileLocationLine.trim() ? (
+                        <option value="profile_location">Profile location (one line)</option>
+                      ) : null}
+                      <option value="custom">Custom — edit box below</option>
+                    </select>
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsCartOpen(false);
+                          router.push("/dashboard/addresses");
+                        }}
+                        className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-100 bg-emerald-50 px-3 py-2 text-[9px] font-black uppercase tracking-widest text-emerald-800 hover:bg-emerald-100"
+                      >
+                        <MapPin size={12} />
+                        Manage saved addresses
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {accountUserId && !showSavedAddressPicker && (
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsCartOpen(false);
+                        router.push("/dashboard/addresses");
+                      }}
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3 py-2 text-[9px] font-black uppercase tracking-widest text-gray-700 hover:bg-gray-50"
+                    >
+                      <MapPin size={12} />
+                      Add saved addresses
+                    </button>
+                  </div>
+                )}
+
+                <div>
+                  <label className="mb-1 block text-[9px] font-black uppercase tracking-widest text-gray-400">
+                    {accountUserId ? "Delivery address" : "Full delivery address"}
+                  </label>
+                  <textarea
+                    placeholder={accountUserId ? "Street, city, phone for rider…" : "Full delivery address"}
+                    className="w-full min-h-[5.5rem] resize-none rounded-2xl border-none bg-gray-50 p-4 text-sm font-bold outline-none ring-emerald-500 focus:ring-2"
+                    value={formData.address}
+                    onChange={(e) => {
+                      setDeliverySelectValue("custom");
+                      handleChange("address", e.target.value);
+                    }}
+                  />
+                </div>
+
                 {!accountUserId && (
                   <button
                     type="button"
@@ -814,7 +1011,7 @@ export default function GlobalCartSidebar() {
                             <button
                               type="button"
                               aria-label="Decrease quantity"
-                              className="p-2 rounded-xl border border-gray-100 text-gray-600 hover:bg-gray-50"
+                              className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-gray-100 text-gray-600 hover:bg-gray-50`}
                               onClick={() => updateQuantity(item.product.id, item.qty - 1)}
                             >
                               <Minus size={14} />
@@ -823,7 +1020,7 @@ export default function GlobalCartSidebar() {
                             <button
                               type="button"
                               aria-label="Increase quantity"
-                              className="p-2 rounded-xl border border-gray-100 text-gray-600 hover:bg-gray-50"
+                              className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-gray-100 text-gray-600 hover:bg-gray-50`}
                               onClick={() => updateQuantity(item.product.id, item.qty + 1)}
                             >
                               <Plus size={14} />
@@ -832,7 +1029,7 @@ export default function GlobalCartSidebar() {
                           <button
                             type="button"
                             onClick={() => removeFromCart(item.product.id)}
-                            className="text-gray-300 hover:text-red-500 p-2 transition-colors shrink-0"
+                            className={`flex shrink-0 text-gray-300 transition-colors hover:text-red-500 ${TOUCH_TARGET}`}
                             aria-label="Remove line"
                           >
                             <Trash2 size={16} />
@@ -861,9 +1058,9 @@ export default function GlobalCartSidebar() {
                        startVendorCheckout(store.owner_id, store, items);
                      }}
                      disabled={
-                       !formData.name ||
-                       !formData.phone ||
-                       !formData.address ||
+                       !formData.name.trim() ||
+                       formData.phone.replace(/\D/g, "").length < 10 ||
+                       !formData.address.trim() ||
                        loadingStoreId === store.owner_id ||
                        settlingPayment ||
                        (!!pendingPayment && pendingPayment.sellerId !== store.owner_id)
@@ -895,7 +1092,7 @@ export default function GlobalCartSidebar() {
 
         {authGate && (
           <div
-            className="absolute inset-0 z-[95] flex flex-col bg-white p-5 pt-6 overflow-y-auto animate-in fade-in duration-200"
+            className={`absolute inset-0 z-[95] flex animate-in fade-in flex-col overflow-y-auto bg-white duration-200 ${STOREFRONT_GUTTER_X} pt-[max(1.5rem,env(safe-area-inset-top,0px))] ${STOREFRONT_SAFE_BOTTOM}`}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-start gap-3 mb-4">
@@ -909,7 +1106,7 @@ export default function GlobalCartSidebar() {
               </div>
               <button
                 type="button"
-                className="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200"
+                className={`rounded-full bg-gray-100 p-2 text-gray-500 hover:bg-gray-200 ${TOUCH_TARGET}`}
                 onClick={() => {
                   setAuthGate(null);
                   setAuthGateError("");
@@ -933,7 +1130,7 @@ export default function GlobalCartSidebar() {
               type="password"
               autoComplete="new-password"
               placeholder="Choose a password (min 6 characters)"
-              className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-bold mb-4 outline-none focus:ring-2 focus:ring-emerald-500"
+              className="mb-4 w-full min-h-[48px] rounded-2xl border border-gray-100 bg-gray-50 p-4 text-base font-bold outline-none focus:ring-2 focus:ring-emerald-500"
               value={signupPassword}
               onChange={(e) => setSignupPassword(e.target.value)}
             />
@@ -942,7 +1139,7 @@ export default function GlobalCartSidebar() {
               type="button"
               disabled={authGateBusy}
               onClick={() => void runSignupFromGate()}
-              className="w-full py-4 rounded-2xl bg-emerald-600 text-white font-black text-[11px] uppercase tracking-widest hover:bg-emerald-700 transition disabled:opacity-50 mb-3"
+              className="mb-3 flex min-h-[52px] w-full items-center justify-center rounded-2xl bg-emerald-600 py-4 text-[11px] font-black uppercase tracking-widest text-white transition hover:bg-emerald-700 disabled:opacity-50"
             >
               {authGateBusy ? <Loader2 className="animate-spin mx-auto" size={20} /> : "Sign up & continue to payment"}
             </button>
@@ -951,7 +1148,7 @@ export default function GlobalCartSidebar() {
               type="button"
               disabled={authGateBusy}
               onClick={() => router.push(`/login?next=${encodeURIComponent(pathname || "/")}`)}
-              className="w-full py-3 rounded-2xl border border-gray-200 text-gray-800 font-black text-[10px] uppercase tracking-widest hover:bg-gray-50 mb-4"
+              className="mb-4 flex min-h-[48px] w-full items-center justify-center rounded-2xl border border-gray-200 py-3 text-[10px] font-black uppercase tracking-widest text-gray-800 transition hover:bg-gray-50"
             >
               Log in instead
             </button>
@@ -960,7 +1157,7 @@ export default function GlobalCartSidebar() {
               type="button"
               disabled={authGateBusy}
               onClick={() => runGuestFromGate()}
-              className="w-full text-center text-[10px] font-bold text-gray-400 underline uppercase tracking-widest"
+              className="flex min-h-[44px] w-full items-center justify-center text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 underline"
             >
               Order as guest (email required)
             </button>

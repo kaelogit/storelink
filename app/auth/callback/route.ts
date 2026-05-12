@@ -2,7 +2,6 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { STOREFRONT_BASE_PATH } from '@/lib/storefrontPublicUrl'
 
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url)
@@ -48,10 +47,11 @@ export async function GET(request: NextRequest) {
           .maybeSingle()
 
         const forwardTo = store ? '/dashboard' : next
-        return NextResponse.redirect(`${origin}${STOREFRONT_BASE_PATH}${forwardTo.startsWith('/') ? forwardTo : `/${forwardTo}`}`)
+        const target = forwardTo.startsWith('/') ? forwardTo : `/${forwardTo}`
+        return NextResponse.redirect(`${origin}${target}`)
       }
     }
   }
 
-  return NextResponse.redirect(`${origin}${STOREFRONT_BASE_PATH}/login?error=Verification failed.`)
+  return NextResponse.redirect(`${origin}/login?error=Verification failed.`)
 }

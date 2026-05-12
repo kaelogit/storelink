@@ -1,18 +1,19 @@
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { ShieldCheck, MessageCircle, Truck, Lock } from "lucide-react";
+import { ShieldCheck, MessageCircle, Lock } from "lucide-react";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 export default function SafetyPage() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className={`min-h-dvh bg-white font-sans ${STOREFRONT_SAFE_BOTTOM}`}>
       <Navbar />
       
-      <div className="bg-emerald-900 text-white py-20 px-4 text-center">
+      <div className={`bg-emerald-900 py-20 text-center text-white ${STOREFRONT_GUTTER_X}`}>
          <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Safety First.</h1>
          <p className="text-emerald-200 text-lg max-w-2xl mx-auto">StoreLink is built on trust, but it pays to be smart. Here is how to stay safe while hustling.</p>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8">
+      <div className={`mx-auto grid max-w-5xl gap-8 py-16 md:grid-cols-2 ${STOREFRONT_GUTTER_X}`}>
          
          <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100">
             <ShieldCheck className="text-emerald-600 mb-4 w-10 h-10" />

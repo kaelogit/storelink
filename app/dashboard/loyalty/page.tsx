@@ -124,7 +124,7 @@ export default function LoyaltyPage() {
 
   if (!profile) {
     return (
-      <div className="max-w-4xl px-1 pb-20 md:px-0">
+      <div className="max-w-4xl mx-auto w-full pb-20">
         <p className="text-gray-600 text-sm">Sign in as a seller to manage loyalty rewards.</p>
       </div>
     );
@@ -134,7 +134,7 @@ export default function LoyaltyPage() {
   const loyaltyPct = profile.loyalty_percentage ?? 1;
 
   return (
-    <div className="max-w-4xl space-y-6 md:space-y-8 pb-20 px-1 md:px-0">
+    <div className="max-w-4xl mx-auto w-full space-y-6 pb-20 md:space-y-8">
       <div className="text-center md:text-left">
         <h1 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tighter uppercase flex items-center justify-center md:justify-start gap-3">
           <Coins className="text-amber-500 shrink-0" size={32} fill="currentColor" /> Store Coin loyalty

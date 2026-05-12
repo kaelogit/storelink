@@ -37,7 +37,7 @@ export default function PostLoginPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 gap-4">
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-gray-50">
       <Loader2 className="w-10 h-10 text-emerald-600 animate-spin" />
       <p className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">{msg}</p>
     </div>

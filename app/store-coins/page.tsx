@@ -3,17 +3,18 @@
 import { useRouter } from "next/navigation";
 import { Coins, Zap, Gift, ChevronLeft, ShieldCheck, HandCoins, Lock, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 export default function StoreCoinsPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-amber-100 flex flex-col overflow-x-hidden">
-      <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100 px-6 py-4">
-        <div className="max-w-5xl mx-auto flex justify-between items-center">
+    <div className={`flex min-h-dvh flex-col overflow-x-hidden bg-white font-sans selection:bg-amber-100 ${STOREFRONT_SAFE_BOTTOM}`}>
+      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md pt-[max(0.75rem,env(safe-area-inset-top,0px))]">
+        <div className={`mx-auto flex max-w-5xl items-center justify-between py-3 ${STOREFRONT_GUTTER_X}`}>
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-1 text-gray-900 font-black uppercase text-[10px] tracking-tighter hover:text-amber-500 transition-all active:scale-95"
+            className="flex min-h-[44px] items-center gap-1 text-[10px] font-black uppercase tracking-tighter text-gray-900 transition-all hover:text-amber-500 active:scale-95"
           >
             <ChevronLeft size={18} strokeWidth={3} />
             <span>Back</span>
@@ -25,7 +26,7 @@ export default function StoreCoinsPage() {
         </div>
       </nav>
 
-      <main className="flex-1 px-4 sm:px-6">
+      <main className={`flex-1 ${STOREFRONT_GUTTER_X}`}>
         <header className="pt-28 pb-16 text-center">
           <div className="max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-amber-500 text-white px-4 py-1.5 rounded-full mb-6 shadow-lg shadow-amber-200 animate-bounce">
@@ -42,13 +43,13 @@ export default function StoreCoinsPage() {
           </div>
         </header>
 
-        <section className="mb-16">
-          <div className="max-w-4xl mx-auto bg-gray-900 rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-14 shadow-2xl relative overflow-hidden border border-white/5">
-            <div className="absolute top-0 right-0 opacity-10 transform translate-x-12 -translate-y-12">
+        <section className="relative mx-auto mb-16 max-w-4xl">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-gray-900 p-8 shadow-2xl md:rounded-[3.5rem] md:p-14">
+            <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 transform opacity-10">
               <Coins size={300} className="text-amber-500" />
             </div>
 
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
+            <div className="relative z-10 flex flex-col items-center gap-10 md:flex-row">
               <div className="flex-1 text-center md:text-left">
                 <h2 className="text-white font-black text-2xl md:text-4xl uppercase tracking-tighter mb-4 leading-tight">
                   Claim your <span className="text-amber-500 underline decoration-amber-500/30">₦50 Start-Up</span> Capital
@@ -60,7 +61,7 @@ export default function StoreCoinsPage() {
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <Link
                     href="/account/wallet"
-                    className="w-full sm:w-auto bg-amber-500 text-white px-8 py-4 rounded-2xl font-black uppercase text-[11px] tracking-widest flex items-center justify-center gap-2 hover:bg-amber-600 transition-all active:scale-95 shadow-xl shadow-amber-500/20"
+                    className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl bg-amber-500 px-8 py-4 text-[11px] font-black uppercase tracking-widest text-white shadow-xl shadow-amber-500/20 transition-all hover:bg-amber-600 active:scale-95 sm:w-auto"
                   >
                     Enter My Vault <ArrowRight size={16} />
                   </Link>
@@ -95,7 +96,7 @@ export default function StoreCoinsPage() {
           </div>
         </section>
 
-        <section className="py-20 px-4 max-w-5xl mx-auto">
+        <section className="py-20 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="space-y-4 group">
               <div className="w-14 h-14 bg-gray-900 rounded-2xl flex items-center justify-center text-white group-hover:bg-amber-500 transition-colors duration-500 shadow-xl">
@@ -129,7 +130,7 @@ export default function StoreCoinsPage() {
           </div>
         </section>
 
-        <section className="py-20 bg-gray-50 rounded-[3rem] md:rounded-[5rem] px-4 mb-20">
+        <section className={`rounded-[3rem] bg-gray-50 py-20 md:rounded-[5rem] mb-20 ${STOREFRONT_GUTTER_X}`}>
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-4xl font-black text-gray-900 uppercase tracking-tighter text-center mb-12 italic">Intel &amp; Info</h2>
             <div className="space-y-4">
@@ -162,7 +163,7 @@ export default function StoreCoinsPage() {
           </div>
         </section>
 
-        <section className="max-w-4xl mx-auto text-center pb-24 px-6">
+        <section className={`mx-auto max-w-4xl pb-24 pt-8 text-center ${STOREFRONT_GUTTER_X}`}>
           <h2 className="text-4xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter italic mb-6">
             Ready to <span className="text-amber-500">save more?</span>
           </h2>
@@ -171,15 +172,15 @@ export default function StoreCoinsPage() {
           </p>
           <Link
             href="/account/wallet"
-            className="inline-flex items-center gap-4 bg-gray-900 text-white px-12 py-6 rounded-[2rem] font-black uppercase text-xs tracking-[0.3em] hover:bg-amber-500 transition-all active:scale-95 shadow-2xl shadow-gray-200"
+            className="inline-flex min-h-[52px] items-center gap-4 rounded-[2rem] bg-gray-900 px-12 py-6 text-xs font-black uppercase tracking-[0.3em] text-white shadow-2xl shadow-gray-200 transition-all hover:bg-amber-500 active:scale-95"
           >
             Open My Wallet <ArrowRight size={20} />
           </Link>
         </section>
       </main>
 
-      <footer className="py-16 border-t border-gray-100 bg-white text-center">
-        <div className="max-w-5xl mx-auto px-6">
+      <footer className="border-t border-gray-100 bg-white py-16 text-center">
+        <div className={`mx-auto max-w-5xl ${STOREFRONT_GUTTER_X}`}>
           <div className="flex flex-col items-center gap-6">
             <div className="bg-gray-900 text-white p-4 rounded-3xl shadow-xl shadow-gray-200 transform hover:scale-110 transition-transform">
               <Coins size={32} fill="currentColor" className="text-amber-500" />

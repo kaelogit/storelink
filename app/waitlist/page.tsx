@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM, TOUCH_TARGET } from "@/lib/mobileLayout";
 
 // Wrapper component to handle search params
 function WaitlistContent() {
@@ -76,7 +77,7 @@ function WaitlistContent() {
     const shareUrl = `${storefrontAbsolutePath("/waitlist")}?ref=${encodeURIComponent(myReferralCode)}`;
 
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center animate-in fade-in zoom-in duration-700">
+      <div className={`flex min-h-dvh flex-col items-center justify-center bg-white text-center animate-in fade-in zoom-in duration-700 ${STOREFRONT_GUTTER_X} ${STOREFRONT_SAFE_BOTTOM}`}>
         <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-6 relative">
           <PartyPopper size={40} className="animate-bounce" />
           <div className="absolute -top-2 -right-2 bg-amber-500 text-white p-1 rounded-full animate-pulse">
@@ -116,11 +117,12 @@ function WaitlistContent() {
               <div className="bg-white p-4 rounded-2xl border border-gray-200 flex items-center justify-between group">
                 <code className="text-[10px] font-mono font-bold text-emerald-600 truncate">{shareUrl}</code>
                 <button 
+                  type="button"
                   onClick={() => {
                     navigator.clipboard.writeText(shareUrl);
                     alert("Referral Link Copied! 🚀");
                   }}
-                  className="p-2 bg-gray-900 text-white rounded-xl hover:bg-emerald-600 transition-colors"
+                  className={`rounded-xl bg-gray-900 p-2 text-white transition-colors hover:bg-emerald-600 ${TOUCH_TARGET}`}
                 >
                   <Copy size={16} />
                 </button>
@@ -137,12 +139,12 @@ function WaitlistContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-gray-900 font-sans selection:bg-emerald-100 overflow-x-hidden">
+    <div className={`relative min-h-dvh overflow-x-hidden bg-[#fafafa] font-sans text-gray-900 selection:bg-emerald-100 ${STOREFRONT_SAFE_BOTTOM}`}>
       {/* --- BACKGROUND AMBIANCE (PRESERVED) --- */}
       <div className="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-emerald-50/60 via-emerald-50/20 to-transparent -z-10" />
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-200/20 blur-[120px] rounded-full -z-10 animate-pulse" />
 
-      <main className="max-w-5xl mx-auto px-5 pt-10 md:pt-24 pb-20">
+      <main className={`mx-auto max-w-5xl pb-20 pt-10 md:pt-24 ${STOREFRONT_GUTTER_X}`}>
         <div className="flex justify-between items-center mb-14">
           <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-2xl border border-gray-100 shadow-sm">
             <LayoutDashboard className="text-emerald-600" size={20} />
@@ -183,7 +185,7 @@ function WaitlistContent() {
                   required
                   type="text"
                   placeholder="Your Business Name"
-                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-500 transition-all focus:bg-white"
+                  className="min-h-[48px] w-full rounded-2xl border border-gray-100 bg-gray-50 px-6 py-4 text-base font-bold outline-none transition-all focus:bg-white focus:ring-2 focus:ring-emerald-500"
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}
                 />
@@ -191,7 +193,7 @@ function WaitlistContent() {
                   required
                   type="tel"
                   placeholder="Business phone number"
-                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-500 transition-all focus:bg-white"
+                  className="min-h-[48px] w-full rounded-2xl border border-gray-100 bg-gray-50 px-6 py-4 text-base font-bold outline-none transition-all focus:bg-white focus:ring-2 focus:ring-emerald-500"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -199,14 +201,14 @@ function WaitlistContent() {
                   required
                   type="email"
                   placeholder="Email Address"
-                  className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-emerald-500 transition-all focus:bg-white"
+                  className="min-h-[48px] w-full rounded-2xl border border-gray-100 bg-gray-50 px-6 py-4 text-base font-bold outline-none transition-all focus:bg-white focus:ring-2 focus:ring-emerald-500"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 {error && <p className="text-red-500 text-xs font-bold text-center px-2">{error}</p>}
                 <button
                   disabled={loading}
-                  className="w-full py-5 bg-emerald-600 text-white rounded-2xl font-black uppercase text-[10px] tracking-[0.2em] shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 transition-all flex items-center justify-center gap-3 active:scale-[0.98]"
+                  className="flex min-h-[52px] w-full items-center justify-center gap-3 rounded-2xl bg-emerald-600 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-emerald-600/20 transition-all hover:bg-emerald-700 active:scale-[0.98] disabled:opacity-60"
                 >
                   {loading ? <Loader2 className="animate-spin" /> : <>Secure My Founder Perk <ArrowRight size={16}/></>}
                 </button>
@@ -290,7 +292,7 @@ function WaitlistContent() {
 
 export default function WaitlistPage() {
   return (
-    <Suspense fallback={<div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin text-emerald-600"/></div>}>
+    <Suspense fallback={<div className="flex min-h-dvh items-center justify-center"><Loader2 className="animate-spin text-emerald-600"/></div>}>
       <WaitlistContent />
     </Suspense>
   );

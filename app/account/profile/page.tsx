@@ -825,7 +825,6 @@ export default function AccountProfilePage() {
               <GooglePlacesAutocomplete
                 id="profile-home-address"
                 label="SEARCH AND SELECT YOUR HOME ADDRESS"
-                hint="City and region below are filled from the suggestion you pick — not typed separately."
                 value={homeAddress}
                 onChangeText={setHomeAddress}
                 onResolved={(p: ParsedGooglePlace) => {

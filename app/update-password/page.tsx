@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, CheckCircle2, ShieldCheck, Lock } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 // 🔥 FIX: Extracted logic into a Content component
 function UpdatePasswordContent() {
@@ -63,9 +64,9 @@ function UpdatePasswordContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans selection:bg-amber-100">
+    <div className={`min-h-dvh bg-gray-50 font-sans selection:bg-amber-100 ${STOREFRONT_SAFE_BOTTOM}`}>
       <Navbar />
-      <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-80px)]">
+      <div className={`flex min-h-[calc(100dvh-5rem)] flex-col items-center justify-center py-6 ${STOREFRONT_GUTTER_X}`}>
         <div className="w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-10 border border-gray-100 transition-all">
           
           {success ? (
@@ -103,7 +104,7 @@ function UpdatePasswordContent() {
                     required 
                     type="password" 
                     placeholder="••••••••"
-                    className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all font-bold text-gray-900" 
+                    className="w-full min-h-[48px] rounded-2xl border border-gray-100 bg-gray-50 p-4 font-bold text-gray-900 outline-none transition-all focus:bg-white focus:ring-2 focus:ring-amber-500" 
                     value={password} 
                     onChange={e => setPassword(e.target.value)} 
                   />
@@ -126,7 +127,7 @@ function UpdatePasswordContent() {
                     required 
                     type="password" 
                     placeholder="••••••••"
-                    className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-amber-500 focus:bg-white outline-none transition-all font-bold text-gray-900" 
+                    className="w-full min-h-[48px] rounded-2xl border border-gray-100 bg-gray-50 p-4 font-bold text-gray-900 outline-none transition-all focus:bg-white focus:ring-2 focus:ring-amber-500" 
                     value={confirmPassword} 
                     onChange={e => setConfirmPassword(e.target.value)} 
                   />
@@ -135,7 +136,7 @@ function UpdatePasswordContent() {
                 <button 
                   type="submit" 
                   disabled={loading} 
-                  className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-xs shadow-xl hover:bg-amber-600 active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-[0.2em] disabled:opacity-50"
+                  className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl bg-gray-900 py-5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-xl transition-all hover:bg-amber-600 active:scale-[0.98] disabled:opacity-50"
                 >
                   {loading ? <Loader2 className="animate-spin text-amber-400" /> : "Verify & Secure Account"}
                 </button>
@@ -152,7 +153,7 @@ function UpdatePasswordContent() {
 export default function UpdatePasswordPage() {
   return (
     <Suspense fallback={
-      <div className="h-screen flex items-center justify-center bg-white">
+      <div className="flex min-h-dvh items-center justify-center bg-white">
         <Loader2 className="animate-spin text-amber-600" size={40} />
       </div>
     }>

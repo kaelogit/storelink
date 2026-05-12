@@ -52,7 +52,7 @@ export default function VendorNotifications() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto pb-24 px-4 overflow-hidden">
+    <div className="max-w-2xl mx-auto w-full pb-24 overflow-hidden">
       
       {/* HEADER SECTION (HIDDEN WHEN READING) */}
       {!selectedNote && (

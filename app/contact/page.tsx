@@ -6,6 +6,7 @@ import Footer from "@/components/landing/Footer";
 import { Mail, Send, Loader2, CheckCircle, ArrowRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false);
@@ -42,10 +43,10 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+    <div className={`min-h-dvh bg-gray-50 font-sans text-gray-900 ${STOREFRONT_SAFE_BOTTOM}`}>
       <Navbar />
       
-      <div className="max-w-5xl mx-auto px-4 py-12 md:py-20 grid md:grid-cols-2 gap-12 items-start">
+      <div className={`mx-auto grid max-w-5xl items-start gap-12 py-12 md:grid-cols-2 md:py-20 ${STOREFRONT_GUTTER_X}`}>
         
         <div>
            <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Get in touch</h1>
@@ -67,7 +68,7 @@ export default function ContactPage() {
            <div className="mt-8">
               <Link
                 href="/signup?next=%2Fpost-login&seller_intent=1"
-                className="inline-flex items-center gap-2 rounded-xl bg-gray-900 px-4 py-3 text-[11px] font-black uppercase tracking-wider text-white hover:bg-emerald-600 transition"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-gray-900 px-4 py-3 text-[11px] font-black uppercase tracking-wider text-white transition hover:bg-emerald-600"
               >
                 Start selling now <ArrowRight size={14} />
               </Link>
@@ -93,7 +94,7 @@ export default function ContactPage() {
                          <label className="block text-xs font-bold uppercase text-gray-500 mb-2">First Name</label>
                          <input 
                            required 
-                           className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition" 
+                           className="w-full min-h-[48px] rounded-xl border border-gray-200 bg-gray-50 p-3 text-base outline-none transition focus:border-transparent focus:ring-2 focus:ring-emerald-500" 
                            placeholder="John"
                            value={formData.firstName} 
                            onChange={e => setFormData({...formData, firstName: e.target.value})}
@@ -103,7 +104,7 @@ export default function ContactPage() {
                          <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Last Name</label>
                          <input 
                            required 
-                           className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition" 
+                           className="w-full min-h-[48px] rounded-xl border border-gray-200 bg-gray-50 p-3 text-base outline-none transition focus:border-transparent focus:ring-2 focus:ring-emerald-500" 
                            placeholder="Doe"
                            value={formData.lastName} 
                            onChange={e => setFormData({...formData, lastName: e.target.value})}
@@ -116,7 +117,7 @@ export default function ContactPage() {
                       <input 
                         required 
                         type="email" 
-                        className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition" 
+                        className="w-full min-h-[48px] rounded-xl border border-gray-200 bg-gray-50 p-3 text-base outline-none transition focus:border-transparent focus:ring-2 focus:ring-emerald-500" 
                         placeholder="john@example.com"
                         value={formData.email} 
                         onChange={e => setFormData({...formData, email: e.target.value})}
@@ -127,7 +128,7 @@ export default function ContactPage() {
                       <label className="block text-xs font-bold uppercase text-gray-500 mb-2">Message</label>
                       <textarea 
                         required 
-                        className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl h-32 resize-none outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                        className="h-32 min-h-[120px] w-full resize-none rounded-xl border border-gray-200 bg-gray-50 p-3 text-base outline-none transition focus:border-transparent focus:ring-2 focus:ring-emerald-500"
                         placeholder="How can we help you?"
                         value={formData.message} 
                         onChange={e => setFormData({...formData, message: e.target.value})}
@@ -138,7 +139,7 @@ export default function ContactPage() {
                    
                    <button 
                      disabled={loading} 
-                     className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2"
+                     className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-gray-900 py-4 font-bold text-white transition-colors hover:bg-emerald-600 disabled:opacity-60"
                    >
                       {loading ? <Loader2 className="animate-spin"/> : <><Send size={18} /> Send Message</>}
                    </button>

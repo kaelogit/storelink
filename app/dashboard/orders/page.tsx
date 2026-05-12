@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import OrderDetailsModal from "@/components/dashboard/OrderDetailsModal";
 import { formatOrderPayoutEligibleAt, orderCountsTowardSellerRevenue } from "@/lib/sellerOrderPayoutFlow";
+import { TOUCH_TARGET } from "@/lib/mobileLayout";
 
 function orderStatusBadgeClass(status: string | null | undefined) {
   const s = String(status || "").toUpperCase();
@@ -195,15 +196,16 @@ export default function OrdersPage() {
           <div className="relative flex-1 md:w-64">
              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18}/>
              <input 
-               className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl outline-none focus:border-emerald-500 transition font-bold text-sm"
+               className="min-h-[48px] w-full rounded-xl border border-gray-200 py-2.5 pl-10 pr-4 text-sm font-bold outline-none transition focus:border-emerald-500"
                placeholder="Search orders..."
                value={search}
                onChange={e => setSearch(e.target.value)}
              />
           </div>
           <button 
+            type="button"
             onClick={downloadStatement}
-            className="p-3 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition shadow-sm text-gray-600 group"
+            className={`group rounded-xl border border-gray-200 bg-white p-3 text-gray-600 shadow-sm transition hover:bg-gray-50 ${TOUCH_TARGET}`}
             title="Download Statement"
           >
             <FileSpreadsheet size={20} className="group-hover:text-emerald-600" />

@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, ArrowLeft, ShieldCheck } from "lucide-react"; 
 import Link from "next/link";
 import Navbar from "@/components/landing/Navbar";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 function LoginContent() {
   const router = useRouter();
@@ -127,10 +128,10 @@ function LoginContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className={`min-h-dvh bg-gray-50 font-sans ${STOREFRONT_SAFE_BOTTOM}`}>
       <Navbar />
-      <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-80px)]">
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
+      <div className={`flex min-h-[calc(100dvh-5rem)] flex-col items-center justify-center ${STOREFRONT_GUTTER_X} py-6`}>
+        <div className="w-full max-w-md rounded-3xl border border-gray-100 bg-white p-6 shadow-xl sm:p-8">
           
           <Link href="/" className="flex items-center gap-2 text-sm text-gray-500 mb-6 hover:text-gray-900">
              <ArrowLeft size={16}/> Back to Home
@@ -146,12 +147,12 @@ function LoginContent() {
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                  <input required type="email" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-emerald-500 transition" value={email} onChange={e => setEmail(e.target.value)} />
+                  <input required type="email" className="w-full min-h-[48px] rounded-xl border border-gray-200 bg-gray-50 p-3.5 text-base outline-none transition focus:border-emerald-500" value={email} onChange={e => setEmail(e.target.value)} />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                  <input required type="password" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-emerald-500 transition" value={password} onChange={e => setPassword(e.target.value)} />
+                  <input required type="password" className="w-full min-h-[48px] rounded-xl border border-gray-200 bg-gray-50 p-3.5 text-base outline-none transition focus:border-emerald-500" value={password} onChange={e => setPassword(e.target.value)} />
                 </div>
                 
                 <div className="text-right">
@@ -160,7 +161,7 @@ function LoginContent() {
                   </Link>
                 </div>
 
-                <button type="submit" disabled={loading} className="w-full bg-gray-900 text-white py-3.5 rounded-xl font-bold shadow-lg hover:bg-gray-800 transition">
+                <button type="submit" disabled={loading} className="flex min-h-[48px] w-full items-center justify-center rounded-xl bg-gray-900 py-3.5 font-bold text-white shadow-lg transition hover:bg-gray-800 disabled:opacity-60">
                   {loading ? <Loader2 className="animate-spin mx-auto" /> : "Log In"}
                 </button>
               </form>
@@ -196,12 +197,12 @@ function LoginContent() {
                   type="text" 
                   maxLength={6}
                   placeholder="000000"
-                  className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl text-center text-2xl font-mono tracking-[0.5em] outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition" 
+                  className="w-full min-h-[48px] rounded-xl border border-gray-200 bg-gray-50 p-4 text-center font-mono text-2xl tracking-[0.5em] outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100" 
                   value={mfaCode} 
                   onChange={e => setMfaCode(e.target.value)} 
                 />
 
-                <button type="submit" disabled={loading || mfaCode.length !== 6} className="w-full bg-emerald-600 text-white py-3.5 rounded-xl font-bold shadow-lg hover:bg-emerald-700 transition disabled:opacity-50">
+                <button type="submit" disabled={loading || mfaCode.length !== 6} className="flex min-h-[48px] w-full items-center justify-center rounded-xl bg-emerald-600 py-3.5 font-bold text-white shadow-lg transition hover:bg-emerald-700 disabled:opacity-50">
                   {loading ? <Loader2 className="animate-spin mx-auto" /> : "Verify & Login"}
                 </button>
 
@@ -220,7 +221,7 @@ function LoginContent() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin text-emerald-600" /></div>}>
+    <Suspense fallback={<div className="flex min-h-dvh items-center justify-center"><Loader2 className="animate-spin text-emerald-600" /></div>}>
       <LoginContent />
     </Suspense>
   );

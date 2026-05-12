@@ -10,6 +10,7 @@ import { orderCountsTowardSellerRevenue } from "@/lib/sellerOrderPayoutFlow";
 import { fetchBuyerProductOrders } from "@/lib/buyerOrders";
 import { isProfileOnboardingComplete } from "@/lib/onboardingState";
 import { PROFILE_STOREFRONT_SELECT, profileRowToLegacyStoreShape, type ProfileStorefrontRow } from "@/lib/profileAsStorefront";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 type BuyerHomeState = {
   displayName: string;
@@ -182,7 +183,7 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="flex min-h-dvh items-center justify-center bg-gray-50">
         <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
       </div>
     );
@@ -190,7 +191,7 @@ export default function DashboardPage() {
 
   if (store) {
     return (
-      <div className="min-h-screen bg-gray-50 p-4 md:p-8 space-y-6">
+      <div className={`min-h-dvh space-y-6 bg-gray-50 py-4 md:py-8 ${STOREFRONT_GUTTER_X} ${STOREFRONT_SAFE_BOTTOM}`}>
         <DashboardClient store={store} initialProducts={products} initialOrders={orders} stats={stats} />
       </div>
     );
@@ -198,7 +199,7 @@ export default function DashboardPage() {
 
   if (buyerHome) {
     return (
-      <div className="min-h-screen bg-gray-50 p-4 md:p-8 space-y-6">
+      <div className={`min-h-dvh space-y-6 bg-gray-50 py-4 md:py-8 ${STOREFRONT_GUTTER_X} ${STOREFRONT_SAFE_BOTTOM}`}>
         <BuyerDashboardHome
           displayName={buyerHome.displayName}
           logoUrl={buyerHome.logoUrl}

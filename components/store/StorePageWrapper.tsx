@@ -6,6 +6,7 @@ import { Product, Store } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import StoreHeader from "./StoreHeader";
+import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
 
 interface StorePageWrapperProps {
   store: Store;
@@ -55,11 +56,11 @@ export default function StorePageWrapper({ store, products }: StorePageWrapperPr
   const whatsappLink = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`;
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans pb-20">
+    <div className="min-h-dvh bg-gray-50 pb-24 font-sans">
       
       <StoreHeader store={store} onOpenInfo={() => {}} />
 
-      <div className="max-w-6xl mx-auto p-4 md:p-8">
+      <div className={`mx-auto max-w-6xl py-4 md:py-8 ${STOREFRONT_GUTTER_X}`}>
          
          <div className="mb-8 relative">
             <Search className="absolute left-4 top-3.5 text-gray-400" size={20} />

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Loader2, Heart, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 export default function LogoutSuccessPage() {
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function LogoutSuccessPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 text-center font-sans">
+    <div className={`flex min-h-dvh flex-col items-center justify-center bg-white text-center font-sans ${STOREFRONT_GUTTER_X} ${STOREFRONT_SAFE_BOTTOM}`}>
       <div className="relative mb-8">
         <div className="absolute inset-0 bg-emerald-100 rounded-[32px] animate-ping opacity-20" />
 

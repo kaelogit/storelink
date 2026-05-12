@@ -1,12 +1,13 @@
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 export default function TermsPage() {
   return (
     <>
     <Navbar />
     
-    <div className="max-w-4xl mx-auto px-6 py-16 font-sans text-gray-800">
+    <div className={`mx-auto max-w-4xl py-16 font-sans text-gray-800 ${STOREFRONT_GUTTER_X} ${STOREFRONT_SAFE_BOTTOM}`}>
       
       <h1 className="text-4xl font-extrabold mb-8">Terms of Service</h1>
       <p className="text-sm text-gray-500 mb-8">Last Updated: December 20, 2025</p>

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { createClient } from "@supabase/supabase-js";
-import { storefrontAbsolutePath, storefrontSiteBase } from "@/lib/storefrontPublicUrl";
+import { storefrontAbsolutePath, sellerStorefrontPublicUrl, storefrontSiteBase } from "@/lib/storefrontPublicUrl";
 
 export const revalidate = 0;
 
@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const storefrontRoutes: MetadataRoute.Sitemap = (stores || []).map((store) => ({
-      url: storefrontAbsolutePath(`/${store.slug}`),
+      url: sellerStorefrontPublicUrl(String(store.slug || "")),
       lastModified: new Date(store.created_at || new Date()),
       changeFrequency: "weekly",
       priority: 0.7,

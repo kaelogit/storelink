@@ -1,13 +1,21 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { isStorefrontAdminEmail } from "@/lib/storefrontAdmin";
-import { STOREFRONT_BASE_PATH } from "@/lib/storefrontPublicUrl";
+import { resolveStorefrontHost } from "@/lib/storefrontHosts";
 
-/** Path as seen by app routes (without `/sell` prefix). */
-function toLogicalPath(pathname: string): string {
-  if (pathname === STOREFRONT_BASE_PATH || pathname === `${STOREFRONT_BASE_PATH}/`) return "/";
-  if (pathname.startsWith(`${STOREFRONT_BASE_PATH}/`)) {
-    return pathname.slice(STOREFRONT_BASE_PATH.length) || "/";
+/** Strip legacy `/sell` prefix (bookmarks / old proxy paths). */
+function stripLegacySellPrefix(pathname: string): string {
+  if (pathname === "/sell" || pathname === "/sell/") return "/";
+  if (pathname.startsWith("/sell/")) return pathname.slice(5) || "/";
+  return pathname;
+}
+
+/** Path used for auth + routing after host-based tenant rewrite. */
+function logicalPathname(request: NextRequest): string {
+  const pathname = stripLegacySellPrefix(request.nextUrl.pathname);
+  const hostKind = resolveStorefrontHost(request.headers.get("host"));
+  if (hostKind.kind === "seller" && (pathname === "/" || pathname === "")) {
+    return `/${hostKind.slug}`;
   }
   return pathname;
 }
@@ -39,12 +47,12 @@ export async function middleware(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const path = toLogicalPath(request.nextUrl.pathname);
+  const path = logicalPathname(request);
 
   if (path.startsWith("/admin")) {
     if (!user || !isStorefrontAdminEmail(user.email)) {
       const url = request.nextUrl.clone();
-      url.pathname = `${STOREFRONT_BASE_PATH}${user ? "/post-login" : "/login"}`;
+      url.pathname = user ? "/post-login" : "/login";
       return NextResponse.redirect(url);
     }
   }
@@ -52,8 +60,8 @@ export async function middleware(request: NextRequest) {
   if (path.startsWith("/dashboard") || path.startsWith("/onboarding") || path.startsWith("/account") || path.startsWith("/post-login")) {
     if (!user) {
       const url = request.nextUrl.clone();
-      url.pathname = `${STOREFRONT_BASE_PATH}/login`;
-      /** `next` is consumed by `router.push` — must be logical path (basePath is applied by Next). */
+      url.pathname = "/login";
+      /** `next` is consumed by `router.push` — logical path on the same host. */
       url.searchParams.set("next", path);
       return NextResponse.redirect(url);
     }
@@ -62,9 +70,24 @@ export async function middleware(request: NextRequest) {
   if (path === "/login" || path === "/signup") {
     if (user) {
       const url = request.nextUrl.clone();
-      url.pathname = `${STOREFRONT_BASE_PATH}/post-login`;
+      url.pathname = "/post-login";
       return NextResponse.redirect(url);
     }
+  }
+
+  const hostKind = resolveStorefrontHost(request.headers.get("host"));
+  const rawPath = stripLegacySellPrefix(request.nextUrl.pathname);
+  if (hostKind.kind === "seller" && (rawPath === "/" || rawPath === "")) {
+    const rewriteUrl = request.nextUrl.clone();
+    rewriteUrl.pathname = `/${hostKind.slug}`;
+    const rewriteResponse = NextResponse.rewrite(rewriteUrl, {
+      request: { headers: request.headers },
+    });
+    const refreshed = response.headers.getSetCookie?.() ?? [];
+    for (const cookie of refreshed) {
+      rewriteResponse.headers.append("Set-Cookie", cookie);
+    }
+    return rewriteResponse;
   }
 
   return response;

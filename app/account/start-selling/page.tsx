@@ -13,6 +13,7 @@ import {
   Store,
   Wrench,
 } from "lucide-react";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 /**
  * Buyer → seller: same informational beat as the mobile “What is selling?” screen,
@@ -27,7 +28,7 @@ export default function StartSellingPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-8rem)] bg-gray-50 px-4 py-8">
+    <div className={`min-h-[calc(100dvh-8rem)] bg-gray-50 py-8 ${STOREFRONT_GUTTER_X} ${STOREFRONT_SAFE_BOTTOM}`}>
       <div className="mx-auto max-w-lg">
         <div className="mb-6 flex items-center justify-between border-b border-gray-200 pb-4">
           <Link

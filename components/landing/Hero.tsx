@@ -59,7 +59,7 @@ export default function Hero() {
              <div className="relative z-10 bg-white rounded-[2.5rem] border-[6px] md:border-8 border-gray-900 shadow-2xl overflow-hidden aspect-[9/18] max-h-[500px] md:max-h-[600px] mx-auto rotate-[-2deg] hover:rotate-0 transition duration-500 group">
                 
                 <div className="bg-gray-900 text-white p-3 pt-6 text-center relative">
-                   <p className="text-[10px] md:text-xs font-medium opacity-70">storelink.ng/sell/lemar-essential</p>
+                   <p className="text-[10px] md:text-xs font-medium opacity-70">yourbrand.storelink.ng</p>
                 </div>
                 
                 <div className="p-3 space-y-3 bg-gray-50 h-full overflow-hidden relative pb-10">

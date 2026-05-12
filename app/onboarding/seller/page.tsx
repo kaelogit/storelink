@@ -20,7 +20,7 @@ export default function SellerOnboardingPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="min-h-dvh flex items-center justify-center bg-gray-50">
           <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Loading…</span>
         </div>
       }

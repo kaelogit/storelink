@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
+import { storefrontAbsolutePath, sellerStorefrontPublicUrl } from "@/lib/storefrontPublicUrl";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
             
             <div style="background: linear-gradient(180deg, #10b981 0%, #0a0a0a 100%); padding: 50px 40px; text-align: left;">
               <h1 style="font-size: 32px; font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: -1px;">${name} is now Live.</h1>
-              <p style="color: rgba(255,255,255,0.7); font-size: 16px; margin-top: 10px;">Your storefront is active at <span style="color: #fff; font-weight: bold;">${storefrontAbsolutePath(`/${slug}`).replace(/^https?:\/\//, "")}</span></p>
+              <p style="color: rgba(255,255,255,0.7); font-size: 16px; margin-top: 10px;">Your storefront is active at <span style="color: #fff; font-weight: bold;">${sellerStorefrontPublicUrl(String(slug || "")).replace(/^https?:\/\//, "")}</span></p>
             </div>
 
             <div style="padding: 40px; text-align: left;">

@@ -112,14 +112,14 @@ export default function BuyerLocationPage() {
 
   if (booting) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-dvh flex items-center justify-center bg-gray-50">
         <Loader2 className="w-10 h-10 animate-spin text-emerald-600" />
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gray-50 p-6 pb-24">
+    <div className="flex min-h-dvh flex-col items-center bg-gray-50 p-6 pb-24">
       <div className="w-full max-w-xl pt-8">
         <p className="mb-3 text-center text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">StoreLink · Shopper</p>
         <h1 className="mb-2 text-center text-3xl font-black uppercase tracking-tighter text-gray-900">Set your home location</h1>

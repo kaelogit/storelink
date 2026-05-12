@@ -5,6 +5,7 @@ import Footer from "@/components/landing/Footer";
 import { Check, Zap, Star, Shield, ArrowRight, MessageCircle, Sparkles, Wand2, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { SELLER_DIAMOND_PRICE_NGN } from "@/lib/subscriptionPricing";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 const diamondPriceDisplay = SELLER_DIAMOND_PRICE_NGN.toLocaleString("en-NG");
 
@@ -48,10 +49,10 @@ const tiers = [
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-[#F8FAFC] selection:bg-emerald-100">
+    <main className={`min-h-dvh bg-[#F8FAFC] selection:bg-emerald-100 ${STOREFRONT_SAFE_BOTTOM}`}>
       <Navbar />
 
-      <section className="bg-gray-900 pt-32 pb-24 px-6 relative overflow-hidden">
+      <section className={`relative overflow-hidden bg-gray-900 pb-24 pt-32 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full mb-8">
             <Sparkles size={14} className="animate-pulse" />
@@ -70,7 +71,7 @@ export default function PricingPage() {
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] -ml-24 -mb-24"></div>
       </section>
 
-      <section className="py-12 md:py-24 px-4 md:px-6 -mt-16 relative z-20">
+      <section className={`relative z-20 -mt-16 py-12 md:py-24 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           {tiers.map((tier) => (
             <div
@@ -130,7 +131,7 @@ export default function PricingPage() {
 
               <Link
                 href="/signup?next=%2Fpost-login&seller_intent=1"
-                className={`w-full py-6 rounded-[2rem] font-black uppercase text-[11px] tracking-[0.2em] text-center transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2 group/btn ${
+                className={`flex min-h-[52px] w-full items-center justify-center gap-2 rounded-[2rem] py-6 text-center font-black uppercase text-[11px] tracking-[0.2em] shadow-xl transition-all active:scale-95 group/btn ${
                   tier.color === "purple"
                     ? "bg-purple-500 text-white hover:bg-purple-700 shadow-purple-200"
                     : "bg-gray-900 text-white hover:bg-black shadow-gray-200"
@@ -144,7 +145,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="py-24 px-4 md:px-6 bg-white border-y border-gray-100">
+      <section className={`border-y border-gray-100 bg-white py-24 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col items-center text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter mb-6">
@@ -191,7 +192,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="py-24 px-4">
+      <section className={`py-24 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-6xl mx-auto bg-gray-900 rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
           <div className="relative z-10">
             <h2 className="text-4xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-none">
@@ -204,7 +205,7 @@ export default function PricingPage() {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
               <Link
                 href="/signup?next=%2Fpost-login&seller_intent=1"
-                className="w-full md:w-auto bg-emerald-600 text-white px-6 py-6 rounded-2xl font-black uppercase text-xs tracking-[0.2em] hover:bg-emerald-500 transition-all hover:scale-105 shadow-xl"
+                className="flex min-h-[52px] w-full items-center justify-center rounded-2xl bg-emerald-600 px-6 py-6 text-xs font-black uppercase tracking-[0.2em] text-white shadow-xl transition-all hover:scale-105 hover:bg-emerald-500 md:w-auto"
               >
                 Create My Store
               </Link>

@@ -16,6 +16,7 @@ import {
   fetchMergedStoreRowsForSellerIds,
 } from "@/lib/storefrontCatalogMerge";
 import { compactSellerRegion } from "@/lib/displayRegion";
+import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
 
 interface FullMarketplaceClientProps {
   initialProducts: any[];
@@ -224,7 +225,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
         </div>
       )}
 
-      <div className={`sticky top-16 z-30 bg-gray-50/95 backdrop-blur-sm py-4 -mx-4 px-4 border-b border-gray-200 mb-6 transition-all duration-300 ease-in-out ${
+      <div className={`sticky top-16 z-30 mb-6 border-b border-gray-200 bg-gray-50/95 py-4 backdrop-blur-sm transition-all duration-300 ease-in-out ${
           isVisible 
           ? "translate-y-0 opacity-100" 
           : "-translate-y-24 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100 md:pointer-events-auto"

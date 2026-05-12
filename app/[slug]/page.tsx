@@ -10,7 +10,8 @@ import {
   profileRowToLegacyStoreShape,
   type ProfileStorefrontRow,
 } from "@/lib/profileAsStorefront";
-import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
+import { storefrontAbsolutePath, sellerStorefrontPublicUrl } from "@/lib/storefrontPublicUrl";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 export const dynamic = "force-dynamic";
 
@@ -45,13 +46,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     profile?.logo_url ||
     storefrontAbsolutePath("/og-image.png");
 
+  const storeCanonical = sellerStorefrontPublicUrl(slug);
   return {
     title: name,
     description,
     openGraph: {
       title: name,
       description,
-      url: storefrontAbsolutePath(`/${slug}`),
+      url: storeCanonical,
       siteName: "StoreLink",
       images: [{ url: ogImage, width: 1200, height: 630, alt: name }],
       locale: "en_NG",
@@ -63,6 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       images: [ogImage],
     },
+    alternates: { canonical: storeCanonical },
   };
 }
 
@@ -87,7 +90,7 @@ export default async function VendorStorePage({ params }: PageProps) {
 
   if (suspended) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 text-center">
+      <div className={`flex min-h-dvh flex-col items-center justify-center bg-gray-50 text-center ${STOREFRONT_GUTTER_X} ${STOREFRONT_SAFE_BOTTOM}`}>
         <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6 border border-red-200">
           <ShieldAlert size={32} className="text-red-600" />
         </div>

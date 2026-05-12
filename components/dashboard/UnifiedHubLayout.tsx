@@ -19,6 +19,7 @@ import {
   User,
   LifeBuoy,
   Store,
+  MapPin,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
@@ -31,6 +32,7 @@ import {
 import OnboardingProgressCard from "@/components/onboarding/OnboardingProgressCard";
 import { getMissingOnboardingFields } from "@/lib/onboardingChecklist";
 import { claimGuestOrdersForSession } from "@/lib/claimGuestOrders";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM, TOUCH_TARGET } from "@/lib/mobileLayout";
 
 type HubLink = {
   name: string;
@@ -170,6 +172,7 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
         },
         { name: "My orders", href: "/account/orders", icon: ShoppingCart },
         { name: "Wallet", href: "/account/wallet", icon: Coins },
+        { name: "Delivery addresses", href: "/dashboard/addresses", icon: MapPin },
         { name: "Personal information", href: "/account/settings", icon: User },
         { name: "Help & support", href: "/account/support", icon: LifeBuoy },
       ];
@@ -227,7 +230,7 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
         key={link.name + link.href}
         href={link.href}
         onClick={onNavigate}
-        className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-bold text-sm ${
+        className={`flex min-h-[44px] items-center gap-3 px-4 py-2.5 rounded-xl transition-all font-bold text-sm ${
           active ? "bg-emerald-50 text-emerald-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
         }`}
       >
@@ -253,7 +256,7 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-gray-50">
+      <div className="flex min-h-dvh items-center justify-center bg-gray-50">
         <Loader2 className="animate-spin text-gray-400" />
       </div>
     );
@@ -305,7 +308,7 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
         <Link
           href={overviewHref}
           onClick={closeMobile}
-          className={`flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-all ${
+          className={`flex min-h-[44px] items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition-all ${
             pathname === "/dashboard" ? "bg-emerald-50 text-emerald-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
           }`}
         >
@@ -351,20 +354,31 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
   );
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      <div className="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center z-30">
-        <Link href="/" className="font-extrabold text-lg text-gray-900 flex items-center gap-2">
-          <LayoutDashboard className="text-emerald-600" size={20} /> StoreLink
+    <div className="flex min-h-dvh bg-gray-50">
+      <div
+        className={`md:hidden fixed top-0 left-0 right-0 z-30 flex items-center justify-between border-b border-gray-200 bg-white pt-[max(0.5rem,env(safe-area-inset-top,0px))] ${STOREFRONT_GUTTER_X} pb-3`}
+      >
+        <Link href="/" className="font-extrabold text-lg text-gray-900 flex min-h-[44px] items-center gap-2 pr-2">
+          <LayoutDashboard className="text-emerald-600 shrink-0" size={20} /> StoreLink
         </Link>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 shrink-0">
           {unreadCount > 0 && (
-            <Link href="/dashboard/notifications" className="p-2 bg-red-50 rounded-lg text-red-600 relative">
+            <Link
+              href="/dashboard/notifications"
+              className={`${TOUCH_TARGET} rounded-xl bg-red-50 text-red-600 relative`}
+              aria-label="Announcements"
+            >
               <Bell size={20} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border border-white" />
+              <span className="absolute top-2 right-2 h-2 w-2 rounded-full border border-white bg-red-500" />
             </Link>
           )}
-          <button type="button" onClick={() => setIsMobileMenuOpen(true)} className="p-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-            <Menu size={24} />
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(true)}
+            className={`${TOUCH_TARGET} rounded-xl text-gray-700 hover:bg-gray-100`}
+            aria-label="Open menu"
+          >
+            <Menu size={22} />
           </button>
         </div>
       </div>
@@ -372,10 +386,15 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onClick={closeMobile} />
-          <div className="absolute inset-y-0 left-0 w-72 bg-white border-r border-gray-200 flex flex-col shadow-2xl animate-in slide-in-from-left duration-200 overflow-y-auto">
-            <div className="p-4 flex justify-end border-b border-gray-100">
-              <button type="button" onClick={closeMobile} className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg">
-                <X size={24} />
+          <div className="absolute inset-y-0 left-0 flex w-[min(20rem,calc(100vw-2rem))] max-w-[85vw] flex-col overflow-y-auto border-r border-gray-200 bg-white pt-[env(safe-area-inset-top,0px)] shadow-2xl animate-in slide-in-from-left duration-200">
+            <div className="flex justify-end border-b border-gray-100 p-3 pr-[max(0.75rem,env(safe-area-inset-right,0px))]">
+              <button
+                type="button"
+                onClick={closeMobile}
+                className={`${TOUCH_TARGET} rounded-xl text-gray-500 hover:bg-gray-100`}
+                aria-label="Close menu"
+              >
+                <X size={22} />
               </button>
             </div>
             {navInner}
@@ -383,11 +402,13 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
         </div>
       )}
 
-      <aside className="w-72 bg-white border-r border-gray-200 hidden md:flex flex-col fixed h-screen top-0 overflow-hidden z-20 no-scrollbar">
+      <aside className="no-scrollbar fixed top-0 z-20 hidden h-dvh w-72 flex-col overflow-hidden border-r border-gray-200 bg-white md:flex">
         {navInner}
       </aside>
 
-      <main className="flex-1 md:ml-72 p-4 md:p-8 pt-20 md:pt-8 w-full max-w-full overflow-hidden flex flex-col gap-4 min-h-screen">
+      <main
+        className={`flex min-h-dvh flex-1 flex-col gap-4 overflow-x-hidden pt-[calc(3.75rem+env(safe-area-inset-top,0px))] md:ml-72 md:pt-8 ${STOREFRONT_GUTTER_X} py-4 md:py-8 ${STOREFRONT_SAFE_BOTTOM}`}
+      >
         <OnboardingProgressCard continueHref={onboardingPath} missingFields={missingFields} />
         {children}
       </main>

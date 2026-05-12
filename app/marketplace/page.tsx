@@ -12,6 +12,7 @@ import {
 } from "@/lib/storefrontCatalogMerge";
 import { fetchMarketplaceOnboardingCategories } from "@/lib/marketplaceOnboardingCategories";
 import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
+import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
 
 export const metadata: Metadata = {
   title: "Full Marketplace | Shop StoreLink",
@@ -51,12 +52,12 @@ export default async function MarketplacePage() {
   const categories = await fetchMarketplaceOnboardingCategories(supabase);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
+    <div className="flex min-h-dvh flex-col bg-gray-50 font-sans">
       <Navbar />
-      <div className="mx-auto w-full max-w-7xl px-4 py-4">
+      <div className={`mx-auto w-full max-w-7xl py-4 ${STOREFRONT_GUTTER_X}`}>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 font-bold text-gray-500 hover:text-gray-900 transition text-sm bg-white border border-gray-200 px-3 py-2 rounded-xl hover:bg-gray-50"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-bold text-gray-500 transition hover:bg-gray-50 hover:text-gray-900"
         >
           <ArrowLeft size={16} /> <span className="hidden md:inline">Back to Home</span>
         </Link>

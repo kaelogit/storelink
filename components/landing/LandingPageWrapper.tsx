@@ -6,6 +6,8 @@ import { Product, Store } from "@/types";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 
+import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
+
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import ValueProp from "./ValueProp";
@@ -37,7 +39,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-emerald-100">
+    <div className="min-h-dvh bg-white font-sans selection:bg-emerald-100">
       
       <Navbar />
       
@@ -45,7 +47,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       <ValueProp />
       <HowItWorks />
 
-      <section className="py-20 px-4 md:px-6">
+      <section className={`py-20 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-7xl mx-auto bg-gray-900 overflow-hidden relative rounded-[2.5rem] md:rounded-[4rem] border border-white/5 shadow-2xl">
           <div className="flex flex-col md:flex-row items-center gap-12 p-8 md:p-20 relative z-10">
             
@@ -60,7 +62,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
               <p className="text-gray-400 text-base md:text-lg mb-10 max-w-md font-medium leading-relaxed mx-auto md:mx-0">
                 Earn Store Coins on marketplace purchases and redeem them as discounts at verified stores—loyalty that keeps buyers coming back to you.
               </p>
-              <Link href="/store-coins" className="inline-flex items-center gap-4 bg-white text-black px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-amber-500 transition-all active:scale-95 group shadow-2xl">
+              <Link href="/store-coins" className="inline-flex min-h-[48px] items-center gap-4 rounded-2xl bg-white px-8 py-4 text-xs font-black uppercase tracking-widest text-black shadow-2xl transition-all hover:bg-amber-500 active:scale-95 group">
                 How it works <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
@@ -113,7 +115,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       )}
 
       {cartCount > 0 && !isCartOpen && (
-        <button onClick={() => setIsCartOpen(true)} className="fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-full shadow-2xl z-40 hover:scale-105 transition animate-in zoom-in">
+        <button onClick={() => setIsCartOpen(true)} className="fixed z-40 rounded-full bg-gray-900 p-4 text-white shadow-2xl transition hover:scale-105 animate-in zoom-in bottom-[max(1.5rem,env(safe-area-inset-bottom,0px))] right-[max(1.5rem,env(safe-area-inset-right,0px))]">
           <ShoppingBag size={24} />
           <span className="absolute -top-1 -right-1 bg-emerald-500 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white">
               {cartCount} 

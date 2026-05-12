@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, ShieldCheck, ArrowLeft, RefreshCw, MailSearch } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/landing/Navbar";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 function VerifyContent() {
   const router = useRouter();
@@ -173,9 +174,9 @@ function VerifyContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans selection:bg-emerald-100">
+    <div className={`min-h-dvh bg-gray-50 font-sans selection:bg-emerald-100 ${STOREFRONT_SAFE_BOTTOM}`}>
       <Navbar />
-      <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-80px)]">
+      <div className={`flex min-h-[calc(100dvh-5rem)] flex-col items-center justify-center py-6 ${STOREFRONT_GUTTER_X}`}>
         <div className="w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-7 md:p-10 border border-gray-100 text-center">
           
           <div className="w-14 h-14 md:w-16 md:h-16 bg-emerald-50 text-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-inner">
@@ -214,14 +215,14 @@ function VerifyContent() {
                 value={code}
                 autoFocus
                 onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-                className="w-full p-4 md:p-5 bg-gray-50 border-2 border-gray-100 rounded-2xl text-center text-3xl md:text-4xl font-black tracking-[12px] focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-50 outline-none transition-all text-gray-900 placeholder:text-gray-200"
+                className="w-full min-h-[52px] rounded-2xl border-2 border-gray-100 bg-gray-50 p-4 text-center text-3xl font-black tracking-[12px] text-gray-900 outline-none transition-all placeholder:text-gray-200 focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-50 md:p-5 md:text-4xl"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading || code.length < 6}
-              className="w-full bg-gray-900 text-white py-4 md:py-5 rounded-2xl font-black text-[11px] shadow-xl hover:bg-emerald-600 active:scale-[0.98] transition-all uppercase tracking-[0.2em] flex items-center justify-center disabled:opacity-50"
+              className="flex min-h-[52px] w-full items-center justify-center rounded-2xl bg-gray-900 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white shadow-xl transition-all hover:bg-emerald-600 active:scale-[0.98] disabled:opacity-50 md:py-5"
             >
               {loading ? <Loader2 className="animate-spin" /> : "Verify & Launch"}
             </button>
@@ -244,13 +245,13 @@ function VerifyContent() {
               type="button"
               onClick={handleResend}
               disabled={resending}
-              className="flex items-center justify-center gap-2 w-full text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 hover:text-emerald-600 transition-colors"
+              className="flex min-h-[44px] w-full items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 transition-colors hover:text-emerald-600 disabled:opacity-50"
             >
               <RefreshCw size={12} className={resending ? "animate-spin" : ""} />
               {resending ? "Generating..." : "Resend New Code"}
             </button>
 
-            <Link href={`/signup?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`} className="flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 hover:text-gray-900">
+            <Link href={`/signup?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`} className="flex min-h-[44px] items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 transition-colors hover:text-gray-900">
               <ArrowLeft size={12} /> Use a different email
             </Link>
           </div>
@@ -263,7 +264,7 @@ function VerifyContent() {
 export default function VerifyPage() {
   return (
     <Suspense fallback={
-      <div className="h-screen flex items-center justify-center bg-white">
+      <div className="flex min-h-dvh items-center justify-center bg-white">
         <Loader2 className="animate-spin text-emerald-600" size={40} />
       </div>
     }>

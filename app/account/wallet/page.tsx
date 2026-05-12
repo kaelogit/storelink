@@ -68,7 +68,7 @@ export default function AccountWalletPage() {
   }
 
   return (
-    <div className="space-y-8 max-w-2xl">
+    <div className="mx-auto w-full max-w-2xl space-y-8">
       <div>
         <h1 className="text-2xl font-black text-gray-900 uppercase tracking-tighter">Wallet &amp; rewards</h1>
         <p className="text-gray-500 text-sm font-medium mt-1">

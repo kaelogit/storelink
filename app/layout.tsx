@@ -9,10 +9,12 @@ import { storefrontAbsolutePath, storefrontSiteBase } from "@/lib/storefrontPubl
 const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
-  themeColor: "#10b981", 
+  themeColor: "#10b981",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  /** Allow pinch-zoom for accessibility; layout uses responsive tokens + safe-area. */
+  maximumScale: 5,
+  viewportFit: "cover",
 };
 
 const siteBase = storefrontSiteBase();
@@ -121,9 +123,11 @@ export default function RootLayout({
           />
         ) : null}
       </head>
-      <body className={`${inter.className} antialiased selection:bg-emerald-100 selection:text-emerald-900`}>
+      <body
+        className={`${inter.className} antialiased selection:bg-emerald-100 selection:text-emerald-900 text-gray-900 bg-background`}
+      >
         <CartProvider>
-          <main className="min-h-screen">
+          <main className="min-h-dvh">
             {children}
           </main>
           <GlobalCartSidebar />

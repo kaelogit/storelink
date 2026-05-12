@@ -197,7 +197,7 @@ export default function DashboardPayoutPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto pb-12">
+    <div className="max-w-2xl mx-auto w-full pb-12">
       <div className="mb-8">
         <h1 className="text-3xl font-black text-gray-900">Payout bank account</h1>
         <p className="text-gray-500 mt-2 text-sm font-medium">

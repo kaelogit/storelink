@@ -4,6 +4,7 @@ import Navbar from '@/components/landing/Navbar';
 import Footer from '@/components/landing/Footer';
 import { Plus, Minus, Search, MessageCircle, ArrowRight, ShieldCheck, ShoppingBag, CreditCard, HelpCircle, X } from 'lucide-react';
 import Link from 'next/link';
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from '@/lib/mobileLayout';
 
 const faqCategories = [
   {
@@ -147,11 +148,11 @@ export default function FullFAQPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F8FAFC]">
+    <main className={`min-h-dvh bg-[#F8FAFC] ${STOREFRONT_SAFE_BOTTOM}`}>
       <Navbar />
 
       {/* Header Section */}
-      <section className="bg-gray-900 pt-32 pb-20 px-6 relative overflow-hidden">
+      <section className={`relative overflow-hidden bg-gray-900 pb-20 pt-32 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-4 py-2 rounded-full mb-6">
             <span className="text-[10px] font-black uppercase tracking-[0.2em]">Help Center</span>
@@ -167,7 +168,7 @@ export default function FullFAQPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for answers..." 
-              className="w-full pl-14 pr-12 py-5 rounded-2xl border-none bg-white/5 backdrop-blur-xl border border-white/10 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-emerald-500 shadow-2xl transition-all"
+              className="w-full min-h-[52px] rounded-2xl border border-white/10 bg-white/5 py-5 pl-14 pr-12 text-base text-white shadow-2xl backdrop-blur-xl placeholder:text-gray-500 transition-all focus:ring-2 focus:ring-emerald-500"
             />
             {searchQuery && (
               <button 
@@ -184,13 +185,13 @@ export default function FullFAQPage() {
 
       {/* Mobile Sticky Category Bar */}
       {!searchQuery && (
-        <div className="sticky top-[95px] z-30 bg-white/80 backdrop-blur-md border-b border-gray-200 md:hidden overflow-x-auto no-scrollbar">
-          <div className="flex px-4 py-3 gap-2 min-w-max">
+        <div className="sticky top-[95px] z-30 border-b border-gray-200 bg-white/80 backdrop-blur-md md:hidden overflow-x-auto no-scrollbar">
+          <div className={`flex min-w-max gap-2 py-3 ${STOREFRONT_GUTTER_X}`}>
             {faqCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => scrollToSection(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
+                className={`min-h-[40px] rounded-full px-4 py-2 text-xs font-black uppercase tracking-widest transition-all ${
                   activeTab === cat.id ? 'bg-gray-900 text-white shadow-lg' : 'bg-gray-100 text-gray-500'
                 }`}
               >
@@ -202,7 +203,7 @@ export default function FullFAQPage() {
       )}
 
       {/* Main FAQ Content */}
-      <section className="py-12 md:py-24 px-4 md:px-6">
+      <section className={`py-12 md:py-24 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16">
           
           {/* Desktop Sidebar Navigation */}
@@ -294,7 +295,7 @@ export default function FullFAQPage() {
       </section>
 
       {/* Support CTA Section */}
-      <section className="py-12 px-4 md:px-6">
+      <section className={`py-12 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-6xl mx-auto bg-gray-900 rounded-[3rem] md:rounded-[4rem] p-10 md:p-24 text-center relative overflow-hidden shadow-2xl">
           <div className="relative z-10">
             <h2 className="text-3xl md:text-6xl font-black text-white mb-6 tracking-tighter leading-tight">
@@ -306,12 +307,12 @@ export default function FullFAQPage() {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
               <Link 
                 href="/contact" 
-                className="w-full md:w-auto bg-white text-emerald-600 px-10 py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] hover:bg-gray-100 hover:scale-105 transition-all flex items-center justify-center gap-3 shadow-xl"
+                className="flex min-h-[52px] w-full items-center justify-center gap-3 rounded-2xl bg-white px-10 py-5 text-xs font-black uppercase tracking-[0.2em] text-emerald-600 shadow-xl transition-all hover:scale-105 hover:bg-gray-100 md:w-auto"
                 >
                 <MessageCircle size={18} />
                 Contact Support
               </Link>
-              <Link href="/signup?next=%2Fpost-login&seller_intent=1" className="w-full md:w-auto text-white hover:text-emerald-500 font-black uppercase text-xs tracking-[0.2em] flex items-center justify-center gap-2 group transition-all">
+              <Link href="/signup?next=%2Fpost-login&seller_intent=1" className="group flex min-h-[48px] w-full items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-white transition-all hover:text-emerald-500 md:w-auto">
                 Start Selling Now <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>

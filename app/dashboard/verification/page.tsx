@@ -174,7 +174,7 @@ export default function VerificationPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto pb-12 px-4 sm:px-6">
+    <div className="max-w-5xl mx-auto w-full pb-12">
       <div className="mb-10 text-center sm:text-left">
         <h1 className="text-3xl sm:text-4xl font-black text-gray-900 flex flex-wrap items-center justify-center sm:justify-start gap-3">
           MERCHANT VERIFICATION

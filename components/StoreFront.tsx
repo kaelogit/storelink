@@ -10,6 +10,7 @@ import {
   BadgeCheck, Gem, Plus, Zap, Loader2, Music2
 } from "lucide-react";
 import { compactSellerRegion } from "@/lib/displayRegion";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM, TOUCH_TARGET } from "@/lib/mobileLayout";
 import { Store } from "@/types";
 import { useCart } from "@/context/CartContext";
 
@@ -136,9 +137,9 @@ export default function StoreFront({ store, products: initialProducts, categorie
   const displayedProducts = products.slice(0, visibleCount);
 
   return (
-    <div className="min-h-screen bg-white font-sans flex flex-col selection:bg-emerald-100">
+    <div className={`flex min-h-dvh flex-col bg-white font-sans selection:bg-emerald-100 ${STOREFRONT_SAFE_BOTTOM}`}>
       
-      <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-100 h-16 flex items-center justify-between px-4 md:px-8 shadow-sm">
+      <nav className={`sticky top-0 z-40 flex h-16 items-center justify-between border-b border-gray-100 bg-white/80 shadow-sm backdrop-blur-xl ${STOREFRONT_GUTTER_X}`}>
           <div className="flex items-center gap-3">
              <Link href="/" className="flex items-center gap-1">
                 <LayoutDashboard size={18} className="text-emerald-600"/> 
@@ -151,7 +152,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
                 </h1>
              </div>
           </div>
-          <button onClick={() => setIsInfoOpen(true)} className="p-2 hover:bg-gray-100 rounded-full transition text-gray-600 active:scale-90">
+          <button onClick={() => setIsInfoOpen(true)} type="button" className={`rounded-full p-2 text-gray-600 transition hover:bg-gray-100 active:scale-90 ${TOUCH_TARGET}`} aria-label="Store info">
               <Info size={20} />
           </button>
       </nav>
@@ -166,7 +167,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 md:px-8 -mt-10 md:-mt-14 relative z-10 pb-6">
+          <div className={`relative z-10 mx-auto max-w-7xl pb-6 -mt-10 md:-mt-14 ${STOREFRONT_GUTTER_X}`}>
              <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
                 <div className="flex items-end gap-3 md:gap-5">
                    <div className="w-24 h-24 md:w-36 md:h-36 rounded-3xl border-[4px] border-white shadow-xl bg-white relative overflow-hidden shrink-0">
@@ -187,10 +188,10 @@ export default function StoreFront({ store, products: initialProducts, categorie
                 </div>
 
                 <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
-                   <button onClick={handleCopyLink} className="flex-1 md:flex-none py-2.5 px-5 bg-white border border-gray-200 shadow-sm rounded-xl text-xs font-black text-gray-700 active:scale-95 transition">
+                   <button type="button" onClick={handleCopyLink} className="min-h-[44px] flex-1 rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-xs font-black text-gray-700 shadow-sm transition active:scale-95 md:flex-none">
                       {copied ? "COPIED" : "SHARE STORE"}
                    </button>
-                   <button onClick={() => setIsInfoOpen(true)} className="flex-1 md:flex-none py-2.5 px-5 bg-gray-900 shadow-lg rounded-xl text-xs font-black text-white active:scale-95 transition uppercase tracking-wider">
+                   <button type="button" onClick={() => setIsInfoOpen(true)} className="min-h-[44px] flex-1 rounded-xl bg-gray-900 px-5 py-2.5 text-xs font-black uppercase tracking-wider text-white shadow-lg transition active:scale-95 md:flex-none">
                       More Info
                    </button>
                 </div>
@@ -201,16 +202,16 @@ export default function StoreFront({ store, products: initialProducts, categorie
       <div className={`sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300 ease-in-out ${
           isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100"
       }`}>
-          <div className="max-w-7xl mx-auto px-4 md:px-8 py-3">
+          <div className={`mx-auto max-w-7xl py-3 ${STOREFRONT_GUTTER_X}`}>
              <div className="flex flex-col md:flex-row gap-3">
                 <div className="relative w-full md:max-w-xs">
-                   <Search className="absolute left-3.5 top-2.5 text-gray-400" size={16} />
-                   <input className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-xl text-sm outline-none focus:bg-white transition font-medium" placeholder="Search store..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)}/>
+                   <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                   <input className="min-h-[48px] w-full rounded-xl bg-gray-100 py-2 pl-10 pr-4 text-base font-medium outline-none transition focus:bg-white" placeholder="Search store..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)}/>
                 </div>
                 <div className="flex gap-2 overflow-x-auto no-scrollbar items-center pb-1">
-                   <button onClick={() => setActiveCategory("All")} className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition ${activeCategory === "All" ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}>All</button>
+                   <button type="button" onClick={() => setActiveCategory("All")} className={`min-h-[40px] rounded-lg px-4 py-1.5 text-[10px] font-black uppercase tracking-widest transition ${activeCategory === "All" ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}>All</button>
                    {categories.map(cat => (
-                     <button key={cat.id} onClick={() => setActiveCategory(cat.name)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition ${activeCategory === cat.name ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}>{cat.name}</button>
+                     <button type="button" key={cat.id} onClick={() => setActiveCategory(cat.name)} className={`min-h-[40px] shrink-0 rounded-lg px-4 py-1.5 text-[10px] font-black uppercase tracking-widest transition ${activeCategory === cat.name ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}>{cat.name}</button>
                    ))}
                 </div>
              </div>
@@ -218,7 +219,7 @@ export default function StoreFront({ store, products: initialProducts, categorie
       </div>
 
       <div className="flex-1 bg-white">
-          <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
+          <div className={`mx-auto max-w-7xl py-6 ${STOREFRONT_GUTTER_X}`}>
              {loading ? (
                 <div className="flex justify-center py-20"><Loader2 className="animate-spin text-emerald-600" size={32} /></div>
              ) : (

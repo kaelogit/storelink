@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { Copy, Check, Share2, QrCode, X, Download } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
-import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
+import { sellerStorefrontPublicUrl } from "@/lib/storefrontPublicUrl";
 
 export default function ShareStore({ slug }: { slug: string }) {
   const [copied, setCopied] = useState(false);
   const [showQR, setShowQR] = useState(false);
 
-  const storeUrl = storefrontAbsolutePath(`/${slug}`);
+  const storeUrl = sellerStorefrontPublicUrl(slug);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(storeUrl);

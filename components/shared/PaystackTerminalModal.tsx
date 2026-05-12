@@ -44,7 +44,7 @@ export function PaystackTerminalModal({
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <style>body{margin:0;background:#0b0f0c;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;}</style>
+  <style>body{margin:0;background:#0b0f0c;min-height:100dvh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;}</style>
 </head>
 <body>
   <script src="https://js.paystack.co/v1/inline.js"></script>

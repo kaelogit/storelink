@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/landing/Navbar";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 function SignupContent() {
   const router = useRouter();
@@ -93,10 +94,10 @@ function SignupContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className={`min-h-dvh bg-gray-50 font-sans ${STOREFRONT_SAFE_BOTTOM}`}>
       <Navbar />
-      <div className="flex flex-col items-center justify-center p-4 min-h-[calc(100vh-80px)]">
-        <div className="w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-10 border border-gray-100">
+      <div className={`flex min-h-[calc(100dvh-5rem)] flex-col items-center justify-center ${STOREFRONT_GUTTER_X} py-6`}>
+        <div className="w-full max-w-md rounded-[2.5rem] border border-gray-100 bg-white p-6 shadow-2xl sm:p-8 md:p-10">
           
           <Link href={`/login?next=${encodeURIComponent(nextPath)}${wantsToSell ? "&seller_intent=1" : ""}`} className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 mb-8 hover:text-gray-900 transition-colors">
              <ArrowLeft size={14}/> Back to Login
@@ -122,7 +123,7 @@ function SignupContent() {
                 required 
                 type="email" 
                 placeholder="you@example.com" 
-                className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:bg-white outline-none transition-all font-bold text-gray-900" 
+                className="w-full min-h-[48px] rounded-2xl border border-gray-100 bg-gray-50 p-4 text-base font-bold text-gray-900 outline-none transition-all focus:bg-white focus:ring-2 focus:ring-emerald-500" 
                 value={email} 
                 onChange={e => setEmail(e.target.value)} 
               />
@@ -134,7 +135,7 @@ function SignupContent() {
                 required 
                 type="password" 
                 placeholder="••••••••" 
-                className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:bg-white outline-none transition-all font-bold text-gray-900" 
+                className="w-full min-h-[48px] rounded-2xl border border-gray-100 bg-gray-50 p-4 text-base font-bold text-gray-900 outline-none transition-all focus:bg-white focus:ring-2 focus:ring-emerald-500" 
                 value={password} 
                 onChange={e => setPassword(e.target.value)} 
               />
@@ -157,18 +158,18 @@ function SignupContent() {
                 required 
                 type="password" 
                 placeholder="••••••••" 
-                className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-emerald-500 focus:bg-white outline-none transition-all font-bold text-gray-900" 
+                className="w-full min-h-[48px] rounded-2xl border border-gray-100 bg-gray-50 p-4 text-base font-bold text-gray-900 outline-none transition-all focus:bg-white focus:ring-2 focus:ring-emerald-500" 
                 value={confirmPassword} 
                 onChange={e => setConfirmPassword(e.target.value)} 
               />
             </div>
 
-            <label className="flex items-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-100">
+            <label className="flex min-h-[48px] cursor-pointer items-center gap-3 rounded-xl border border-gray-100 bg-gray-50 p-3">
               <input
                 type="checkbox"
                 checked={wantsToSell}
                 onChange={(e) => setWantsToSell(e.target.checked)}
-                className="h-4 w-4"
+                className="h-5 w-5 shrink-0 accent-emerald-600"
               />
               <span className="text-[11px] font-black uppercase tracking-wider text-gray-600">
                 I want to sell from my storefront
@@ -178,7 +179,7 @@ function SignupContent() {
             <button 
               type="submit" 
               disabled={loading} 
-              className="w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-xs shadow-xl hover:bg-emerald-600 active:scale-95 transition-all uppercase tracking-[0.2em] flex items-center justify-center disabled:opacity-50"
+              className="flex min-h-[52px] w-full items-center justify-center rounded-2xl bg-gray-900 py-4 text-xs font-black uppercase tracking-[0.2em] text-white shadow-xl transition-all hover:bg-emerald-600 active:scale-[0.99] disabled:opacity-50"
             >
               {loading ? <Loader2 className="animate-spin text-emerald-400" /> : "Sign Up & Get Started"}
             </button>
@@ -195,7 +196,7 @@ function SignupContent() {
 
 export default function SignupPage() {
   return (
-    <Suspense fallback={<div className="h-screen flex items-center justify-center"><Loader2 className="animate-spin text-emerald-600" /></div>}>
+    <Suspense fallback={<div className="flex min-h-dvh items-center justify-center"><Loader2 className="animate-spin text-emerald-600" /></div>}>
       <SignupContent />
     </Suspense>
   );

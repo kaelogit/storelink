@@ -161,7 +161,7 @@ export default function ComingSoonCountdown() {
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
-                  href="/sell"
+                  href="/"
                   className="inline-flex items-center rounded-xl bg-gray-900 text-white px-5 py-3 text-[11px] font-black uppercase tracking-wider hover:bg-emerald-600 transition shadow-md"
                 >
                   Create Your Storefront

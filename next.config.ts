@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /** Mounted at https://storelink.ng/sell via storelink-web edge rewrite (STOREFRONT_ORIGIN). */
-  basePath: "/sell",
+  /**
+   * Served at origin root. Public entrypoints:
+   * - https://shop.storelink.ng (marketplace index)
+   * - https://{slug}.storelink.ng (seller storefront; middleware rewrites / → /{slug})
+   * Legacy https://storelink.ng/sell/... is rewritten by storelink-web to upstream paths without /sell.
+   */
   async redirects() {
     return [
       { source: "/empire-coins", destination: "/store-coins", permanent: true },

@@ -80,7 +80,7 @@ export default function BroadcastPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 pb-20 px-4 sm:px-0">
+    <div className="max-w-4xl mx-auto w-full space-y-8 pb-20">
       <div className="mt-6 sm:mt-0">
         <h2 className="text-3xl font-black text-white flex items-center gap-3 italic tracking-tighter uppercase leading-none">
           <Megaphone className="text-emerald-500" size={32} />
@@ -108,7 +108,7 @@ export default function BroadcastPage() {
             key={id}
             type="button"
             onClick={() => setAudience(id)}
-            className={`flex-1 min-w-[140px] px-4 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${
+            className={`flex min-h-[44px] min-w-[140px] flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-[10px] font-black uppercase tracking-widest transition-all ${
               audience === id ? "bg-emerald-600 text-white shadow-lg" : "text-gray-500 hover:text-gray-300"
             }`}
           >

@@ -24,7 +24,7 @@ function SellerIdentityInner() {
 
 export default function SellerIdentityPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gray-50" />}>
+    <Suspense fallback={<div className="min-h-dvh bg-gray-50" />}>
       <SellerIdentityInner />
     </Suspense>
   );

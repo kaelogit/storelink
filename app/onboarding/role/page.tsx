@@ -96,14 +96,14 @@ export default function OnboardingRolePage() {
 
   if (checking) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-dvh flex items-center justify-center bg-gray-50">
         <Loader2 className="w-10 h-10 animate-spin text-emerald-600" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6">
+    <div className="min-h-dvh bg-gray-50 flex flex-col items-center justify-center p-6">
       <div className="max-w-lg w-full">
         <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 text-center mb-3">StoreLink · Step 1</p>
         <h1 className="text-3xl font-black text-gray-900 text-center uppercase tracking-tighter mb-2">How will you use StoreLink?</h1>

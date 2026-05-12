@@ -14,6 +14,7 @@ import {
   type ProfileStorefrontRow,
 } from "@/lib/profileAsStorefront";
 import { compactSellerRegion, displayLocationFull } from "@/lib/displayRegion";
+import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -90,10 +91,10 @@ export default async function ProductPage(props: PageProps) {
   const moreFromSeller = moreRows || [];
 
   return (
-    <div className="min-h-screen bg-white font-sans flex flex-col">
+    <div className={`flex min-h-dvh flex-col bg-white font-sans ${STOREFRONT_SAFE_BOTTOM}`}>
       <ProductHeader storeSlug={store.slug} storeLogo={store.logo_url} />
 
-      <main className="flex-1 max-w-6xl mx-auto w-full p-4 md:p-12">
+      <main className={`mx-auto w-full max-w-6xl flex-1 py-4 pb-8 md:py-12 md:pb-12 ${STOREFRONT_GUTTER_X}`}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
           <div className="relative">
             <ProductGallery images={product.image_urls || [product.image_url]} stockCount={product.stock_quantity} />
@@ -215,7 +216,7 @@ export default async function ProductPage(props: PageProps) {
         </div>
 
         {moreFromSeller.length > 0 && (
-          <section className="max-w-6xl mx-auto w-full px-4 md:px-12 mt-16 md:mt-24 pb-8">
+          <section className="mx-auto mt-16 w-full max-w-6xl pb-8 md:mt-24">
             <div className="flex items-end justify-between gap-4 mb-6">
               <div>
                 <h2 className="text-lg md:text-xl font-black text-gray-900 uppercase tracking-tight">More from this seller</h2>

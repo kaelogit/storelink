@@ -24,7 +24,7 @@ function SellerLocationInner() {
 
 export default function SellerLocationPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gray-50" />}>
+    <Suspense fallback={<div className="min-h-dvh bg-gray-50" />}>
       <SellerLocationInner />
     </Suspense>
   );
