@@ -1,93 +1,103 @@
 "use client";
 
 import Link from "next/link";
-import { Twitter, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-const TiktokIcon = ({ size = 18 }: { size?: number }) => (
-  <svg 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-  >
-    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-  </svg>
-);
+const socials = [
+  { label: "Instagram", href: "https://www.instagram.com/storelink.ng" },
+  { label: "TikTok", href: "https://tiktok.com/@storelink.ng" },
+  { label: "LinkedIn", href: "#" },
+  { label: "Twitter", href: "#" },
+];
+
+const links = [
+  { label: "Marketplace", href: "/marketplace" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white pt-10 pb-8 px-6 font-sans border-t border-gray-800">
-      <div className="max-w-6xl mx-auto mb-10 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-6 py-8 md:flex md:items-center md:justify-between md:gap-8">
-        <div className="mb-6 md:mb-0">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-2">Sellers</p>
-          <p className="text-lg md:text-xl font-black text-white tracking-tight leading-snug">
-            Your branded link, checkout, and discovery—<span className="text-emerald-400">start free on Standard.</span>
-          </p>
-        </div>
-        <Link
-          href="/signup?next=%2Fpost-login"
-          className="inline-flex min-h-[48px] w-full md:w-auto shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-xs font-black uppercase tracking-widest text-gray-900 shadow-lg transition hover:bg-emerald-400 hover:text-gray-900 active:scale-[0.98]"
-        >
-          Open your storefront
-        </Link>
+    <footer className="bg-gray-950 text-white border-t border-white/5">
+      
+      {/* Giant brand */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-16 md:pt-24 pb-12 md:pb-16">
+        <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black tracking-tighter leading-none">
+          Store<span className="text-emerald-500">Link</span>
+        </h2>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8 mb-12 text-left">
-        
-        <div className="col-span-2 md:col-span-1 flex flex-col items-start">
-           <h3 className="font-extrabold text-2xl tracking-tight mb-4 flex items-center gap-2">
-             <LayoutDashboard size={20} className="text-emerald-500"/> StoreLink.
-           </h3>
-           <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-             Own a professional storefront without the heavy website cost, then scale beyond your contacts through the StoreLink marketplace.
-           </p>
-        </div>
+      {/* Grid */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-16 md:pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+          
+          {/* About */}
+          <div className="md:col-span-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-6">
+              About
+            </p>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+              Professional storefronts for African sellers. No code, no hassle — just a link that converts.
+            </p>
+          </div>
 
-        <div className="flex flex-col items-start">
-           <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Platform</h4>
-           <ul className="space-y-3 text-sm text-gray-400 font-medium">
-             <li><Link href="/marketplace" className="hover:text-white transition">Marketplace</Link></li>
-             <li><Link href="/pricing" className="hover:text-white transition">Pricing</Link></li>
-           </ul>
-        </div>
+          {/* Links */}
+          <div className="md:col-span-3 md:col-start-6">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-6">
+              Navigate
+            </p>
+            <ul className="space-y-4">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-1 group">
+                    {link.label}
+                    <ArrowUpRight className="w-3 h-3 text-gray-600 group-hover:text-emerald-500 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="flex flex-col items-start">
-           <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Support</h4>
-           <ul className="space-y-3 text-sm text-gray-400 font-medium">
-             <li><Link href="/report" className="hover:text-white transition">Report Vendor</Link></li>
-             <li><Link href="/safety" className="hover:text-white transition">Safety Tips</Link></li>
-             <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
-             <li><Link href="/faq" className="hover:text-white transition">FAQ</Link></li>
-           </ul>
-        </div>
+          {/* CTA */}
+          <div className="md:col-span-4 md:col-start-10">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-6">
+              Start selling
+            </p>
+            <Link
+              href="/signup?next=%2Fpost-login"
+              className="inline-flex items-center gap-2 border-b border-white pb-1 text-sm font-bold uppercase tracking-widest hover:text-emerald-400 hover:border-emerald-400 transition-all"
+            >
+              Open your storefront <ArrowUpRight size={16} />
+            </Link>
+          </div>
 
-        <div className="col-span-2 md:col-span-1 flex flex-col items-start">
-          <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Follow Us</h4>
-          <div className="flex gap-3">
-             <a href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-emerald-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1"><Twitter size={18}/></a>
-             <a href="https://www.instagram.com/storelink.ng" className="p-2 bg-gray-800 rounded-lg hover:bg-pink-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1"><Instagram size={18}/></a>
-             <a href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-blue-600 hover:text-white text-gray-400 transition transform hover:-translate-y-1"><Linkedin size={18}/></a>
-             
-             <a href="https://tiktok.com/@storelink.ng" target="_blank" className="p-2 bg-gray-800 rounded-lg hover:bg-black hover:text-white text-gray-400 transition transform hover:-translate-y-1">
-                <TiktokIcon size={18}/>
-             </a>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[10px] text-gray-600 uppercase tracking-widest">
+            © 2026 StoreLink. Lagos, Nigeria.
+          </p>
+          <div className="flex gap-8">
+            {socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target={social.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="text-xs font-bold uppercase tracking-[0.15em] text-gray-500 hover:text-white transition-colors flex items-center gap-1 group"
+              >
+                {social.label}
+                <ArrowUpRight className="w-3 h-3 text-gray-700 group-hover:text-emerald-500 transition-all" />
+              </a>
+            ))}
           </div>
         </div>
-
       </div>
 
-      <div className="max-w-6xl mx-auto border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-         <p>© 2026 StoreLink Inc. Lagos, Nigeria.</p>
-         <div className="flex gap-6">
-            <Link href="/about" className="hover:text-white transition">About Us</Link>
-            <Link href="/privacy" className="hover:text-gray-300 transition">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-gray-300 transition">Terms of Service</Link>
-         </div>
-      </div>
     </footer>
   );
 }

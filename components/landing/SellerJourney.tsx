@@ -1,74 +1,142 @@
+"use client";
+
 import Link from "next/link";
-import { UserPlus, LayoutGrid, Share2, Radar } from "lucide-react";
+import { UserPlus, LayoutGrid, Share2, Radar, ArrowRight, ChevronRight } from "lucide-react";
+import { useState } from "react";
 import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
+import SectionHeader from "./SectionHeader";
 
 const steps = [
   { 
     step: "01", 
     title: "Create Account", 
-    body: "Launch your seller profile in minutes. Designed for speed, ease, and a professional first impression.", 
-    Icon: UserPlus 
+    body: "Launch your seller profile in minutes. No paperwork, no waiting.", 
+    Icon: UserPlus,
+    color: "from-violet-500 to-purple-600",
+    bg: "bg-purple-50",
+    accent: "text-purple-600",
   },
   { 
     step: "02", 
-    title: "Build Your Catalog", 
-    body: "Upload your products with high-quality photos and pricing. Your storefront goes live as you build.", 
-    Icon: LayoutGrid 
+    title: "Build Catalog", 
+    body: "Upload products, set prices. Your storefront goes live as you build.", 
+    Icon: LayoutGrid,
+    color: "from-blue-500 to-cyan-500",
+    bg: "bg-blue-50",
+    accent: "text-blue-600",
   },
   { 
     step: "03", 
-    title: "Launch Your Link", 
-    body: "One official URL for your brand that handles everything from product display to secure payment.", 
-    Icon: Share2 
+    title: "Share Link", 
+    body: "One URL. Instagram bio, WhatsApp status, Twitter — everywhere.", 
+    Icon: Share2,
+    color: "from-amber-400 to-orange-500",
+    bg: "bg-amber-50",
+    accent: "text-amber-600",
   },
   { 
     step: "04", 
-    title: "Manage & Grow", 
-    body: "Fulfil orders from your dashboard while our marketplace connects your brand with a wider audience.", 
-    Icon: Radar 
+    title: "Sell & Scale", 
+    body: "Fulfil orders from your dashboard. Marketplace discovery kicks in automatically.", 
+    Icon: Radar,
+    color: "from-emerald-500 to-teal-600",
+    bg: "bg-emerald-50",
+    accent: "text-emerald-600",
   },
 ];
 
-/** Compact seller journey for landing (section A). */
 export default function SellerJourney() {
+  const [activeStep, setActiveStep] = useState(0);
+
   return (
-    <section className={`border-y border-gray-100 bg-gray-50 py-16 md:py-20 ${STOREFRONT_GUTTER_X}`} id="seller-journey">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
-          <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-2">The Process</p>
-            <h2 className="text-2xl md:text-4xl font-black text-gray-900 tracking-tight">From setup to successful sales</h2>
-            <p className="mt-3 text-gray-600 text-sm md:text-base max-w-xl font-medium leading-relaxed">
-              Skip the expensive agencies and complex setups. Get a direct path to a professional storefront that your customers can use immediately.
-            </p>
+    <section 
+      className={`relative overflow-hidden bg-white py-24 md:py-32 ${STOREFRONT_GUTTER_X}`}
+      id="seller-journey"
+    >
+      <div className="relative max-w-6xl mx-auto">
+        
+        <SectionHeader
+          eyebrow="The Process"
+          headline={
+            <>
+              From setup to{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
+                sales
+              </span>
+            </>
+          }
+          description="Skip the agencies. Four steps to a storefront that converts."
+          align="center"
+          singleLine
+        />
+
+        {/* Timeline layout */}
+        <div className="relative mt-16">
+          {/* Center line */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 -translate-x-1/2" />
+
+          <div className="space-y-16 md:space-y-24">
+            {steps.map(({ step, title, body, Icon, color, accent }, i) => {
+              const isLeft = i % 2 === 0;
+              const isActive = activeStep === i;
+
+              return (
+                <div 
+                  key={step}
+                  className="relative md:grid md:grid-cols-2 md:gap-16 items-center"
+                  onMouseEnter={() => setActiveStep(i)}
+                >
+                  {/* Content block */}
+                  <div className={`${isLeft ? 'md:text-right md:pr-16' : 'md:order-2 md:pl-16'}`}>
+                    <span className={`text-[11px] font-bold uppercase tracking-[0.2em] ${accent} mb-2 block`}>
+                      Step {step}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                      {title}
+                    </h3>
+                    <p className={`text-base text-gray-500 leading-relaxed max-w-sm ${isLeft ? 'md:ml-auto' : ''}`}>
+                      {body}
+                    </p>
+                    
+                    {/* CTA on last step */}
+                    {i === 3 && (
+                      <Link
+                        href="/signup?next=%2Fpost-login"
+                        className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold uppercase tracking-wider hover:bg-emerald-600 transition-all group"
+                      >
+                        Start selling
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    )}
+                  </div>
+
+                  {/* Orb */}
+                  <div className={`flex justify-center py-6 md:py-0 ${isLeft ? 'md:order-2' : ''}`}>
+                    <div className="relative">
+                      {isActive && (
+                        <div className={`absolute inset-0 rounded-full bg-gradient-to-r ${color} opacity-20 blur-xl animate-pulse`} />
+                      )}
+                      <div className={`relative h-16 w-16 rounded-full bg-gradient-to-br ${color} text-white flex items-center justify-center shadow-xl transition-transform duration-500 ${isActive ? 'scale-110' : 'scale-100'}`}>
+                        <Icon className="h-7 w-7" strokeWidth={1.5} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          <Link
-            href="/signup?next=%2Fpost-login"
-            className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-xl bg-gray-900 px-6 py-3 text-xs font-black uppercase tracking-widest text-white shadow-lg transition hover:bg-emerald-600 active:scale-[0.98]"
-          >
-            Start your journey
-          </Link>
         </div>
 
-        <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-          {steps.map(({ step, title, body, Icon }) => (
-            <li
-              key={step}
-              className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
-            >
-              <span className="absolute right-4 top-4 text-[10px] font-black text-gray-200 tabular-nums">{step}</span>
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
-                <Icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
-              </div>
-              <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 mb-2">{title}</h3>
-              <p className="text-xs text-gray-600 leading-relaxed font-medium">{body}</p>
-            </li>
-          ))}
-        </ol>
-
-        <p className="mt-8 md:mt-10 rounded-2xl border border-emerald-100 bg-emerald-50/60 px-5 py-4 text-sm text-emerald-950/90 leading-relaxed font-medium text-center md:text-left max-w-4xl mx-auto">
-          <span className="font-bold text-emerald-800">Your Brand Legacy:</span> Every quality listing and fulfilled order builds the reputation you carry forward on StoreLink—increasing your visibility as our marketplace grows.
-        </p>
+        {/* Mobile CTA */}
+        <div className="mt-12 text-center md:hidden">
+          <Link
+            href="/signup?next=%2Fpost-login"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold uppercase tracking-wider"
+          >
+            Start your journey
+            <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );

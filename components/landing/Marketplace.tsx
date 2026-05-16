@@ -3,16 +3,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link"; 
-import { Search, Package, ChevronRight, Plus, ArrowRight, BadgeCheck, Gem, Zap } from "lucide-react";
-import { Product, Store } from "@/types";
+import { Search, Package, ChevronRight, Plus, ArrowRight, BadgeCheck, Gem, Zap, TrendingUp, Store } from "lucide-react";
+import { Product, Store as StoreType } from "@/types";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
 import { compactSellerRegion } from "@/lib/displayRegion";
 import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
 import { isProductFlashDropActive, productDisplayPrice, productFlashPriceNumber } from "@/lib/productFlashDrop";
+import SectionHeader from "./SectionHeader";
 
 interface MarketplaceProps {
   products: Product[];
-  stores: Store[];
+  stores: StoreType[];
   onAddToCart: (product: Product) => void;
 }
 
@@ -24,7 +25,6 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
     return stores.find((s) => s.owner_id === sellerId);
   };
 
-  
   const searchMatchedProducts = products.filter(p => 
     p.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -33,11 +33,10 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
     s.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const tierOfStore = (s?: Store | null) =>
+  const tierOfStore = (s?: StoreType | null) =>
     effectiveSellerTier(s?.subscription_plan, s?.subscription_expiry, s?.subscription_status);
 
   const diamondPoolP = searchMatchedProducts.filter((p) => tierOfStore(getProductStoreBySeller(p.seller_id)) === "diamond");
-
   const standardPoolP = searchMatchedProducts.filter((p) => tierOfStore(getProductStoreBySeller(p.seller_id)) === "standard");
 
   const finalDiamondsP = diamondPoolP.slice(0, 15);
@@ -54,25 +53,54 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
   const filteredStores = [...finalDiamondsS, ...finalStandardsS];
 
   return (
-    <section id="marketplace" className={`min-h-dvh border-t border-gray-100 bg-gray-50 py-16 ${STOREFRONT_GUTTER_X}`}>
-      <div className="mx-auto mb-4 max-w-6xl">
-        
-        <div className="text-center mb-10" id="trending">
-           <h2 className="text-3xl font-bold text-gray-900 uppercase tracking-tighter italic">Trending Now</h2>
-           
-        </div>
+    <section id="marketplace" className={`relative overflow-hidden bg-gray-50 py-24 md:py-32 ${STOREFRONT_GUTTER_X}`}>
+      
+      {/* Background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-100/20 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-8">
-          <div className="flex bg-white p-1 rounded-xl border border-gray-200 shadow-sm">
-            <button onClick={() => setView('products')} className={`min-h-[44px] rounded-lg px-6 py-2 text-sm font-black uppercase tracking-widest transition ${view === 'products' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-900'}`}>Items</button>
-            <button onClick={() => setView('vendors')} className={`min-h-[44px] rounded-lg px-6 py-2 text-sm font-black uppercase tracking-widest transition ${view === 'vendors' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-900'}`}>Stores</button>
+      <div className="relative max-w-7xl mx-auto">
+        
+        <SectionHeader
+          eyebrow="Marketplace"
+          headline={
+            <>
+              Trending{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
+                now
+              </span>
+            </>
+          }
+          description="Discover top sellers and products from across the network."
+          align="center"
+          singleLine
+        />
+
+        {/* Controls bar */}
+        <div className="mt-12 flex flex-col md:flex-row gap-4 justify-between items-center mb-10">
+          {/* Segmented tabs */}
+          <div className="flex bg-white p-1.5 rounded-2xl border border-gray-200 shadow-sm">
+            <button 
+              onClick={() => setView('products')} 
+              className={`relative min-h-[48px] rounded-xl px-7 py-2.5 text-sm font-bold uppercase tracking-wider transition-all flex items-center gap-2 ${view === 'products' ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-700'}`}
+            >
+              <Package className="w-4 h-4" />
+              Items
+            </button>
+            <button 
+              onClick={() => setView('vendors')} 
+              className={`relative min-h-[48px] rounded-xl px-7 py-2.5 text-sm font-bold uppercase tracking-wider transition-all flex items-center gap-2 ${view === 'vendors' ? 'bg-gray-900 text-white shadow-lg' : 'text-gray-400 hover:text-gray-700'}`}
+            >
+              <Store className="w-4 h-4" />
+              Stores
+            </button>
           </div>
           
-          <div className="relative w-full md:w-96">
-            <Search className="absolute left-4 top-3.5 text-gray-400 w-4 h-4" />
+          {/* Search */}
+          <div className="relative w-full md:w-80">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input 
               placeholder={`Search ${view}...`} 
-              className="min-h-[48px] w-full rounded-xl border border-gray-200 bg-white py-3 pl-10 pr-4 text-base font-bold shadow-sm outline-none focus:ring-2 focus:ring-gray-900"
+              className="min-h-[48px] w-full rounded-2xl border border-gray-200 bg-white py-3 pl-11 pr-4 text-sm font-semibold shadow-sm outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-300 transition-all"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -103,6 +131,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                     : 'border-gray-100 shadow-sm'
                   } hover:shadow-2xl hover:-translate-y-2`}
                 >
+                  {/* PRODUCT CARD — UNCHANGED */}
                   <div className="aspect-square bg-gray-50 rounded-xl mb-3 relative overflow-hidden">
                     {product.image_urls?.[0] ? (
                       <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
@@ -164,53 +193,67 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                       )}
                     </div>
                   </div>
+                  {/* END PRODUCT CARD */}
                 </Link>
               );
             })}
           </div>
         ) : (
-          <div className="grid grid-rows-2 grid-flow-col auto-cols-[75%] gap-4 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-3 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredStores.map(store => (
               <Link 
                 href={`/${store.slug}`} 
                 key={store.id} 
-                className="snap-start bg-white p-4 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition flex items-center gap-4 h-full group"
+                className="group relative rounded-3xl border border-gray-200 bg-white p-6 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-500"
               >
-                <div className="w-16 h-16 bg-gray-50 rounded-full overflow-hidden relative border border-gray-100 shrink-0 shadow-inner">
-                  {store.logo_url ? (
-                    <Image src={store.logo_url} alt={store.name} fill className="object-cover group-hover:scale-110 transition duration-500" unoptimized />
-                  ) : (
-                    <div className="h-full w-full flex items-center justify-center text-gray-300 font-black">
-                      {store.name?.charAt(0) || "S"}
-                    </div>
-                  )}
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-2xl overflow-hidden relative border border-gray-100 shrink-0 bg-gray-50">
+                    {store.logo_url ? (
+                      <Image src={store.logo_url} alt={store.name} fill className="object-cover group-hover:scale-110 transition duration-500" unoptimized />
+                    ) : (
+                      <div className="h-full w-full flex items-center justify-center text-gray-400 font-black text-xl">
+                        {store.name?.charAt(0) || "S"}
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-bold text-gray-900 text-base truncate flex items-center gap-1.5">
+                      <span className="truncate">{store.name}</span>
+                      {store.verification_status === 'verified' && (
+                        <BadgeCheck size={16} className="text-blue-500 fill-blue-50 shrink-0" />
+                      )}
+                      {tierOfStore(store) === "diamond" && (
+                        <Gem size={16} className="text-purple-600 fill-purple-100 shrink-0" />
+                      )}
+                    </h3>
+                    <p className="text-xs text-gray-400 mt-1 font-medium">
+                      {compactSellerRegion(store) || "Online Exclusive"}
+                    </p>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                   <h3 className="font-black text-gray-900 flex items-center gap-1 text-sm truncate uppercase tracking-tighter">
-                     <span className="truncate">{store.name}</span>
-                     {store.verification_status === 'verified' && (
-                       <BadgeCheck size={14} className="text-blue-500 fill-blue-50 shrink-0" />
-                     )}
-                     {tierOfStore(store) === "diamond" && (
-                       <Gem size={14} className="text-purple-600 fill-purple-50 shrink-0" />
-                     )}
-                   </h3>
-                   <p className="text-[9px] font-black text-gray-400 mt-1 truncate uppercase tracking-[0.1em]">
-                     {compactSellerRegion(store) || "Online Exclusive"}
-                   </p>
-                   <div className="text-[9px] text-emerald-600 font-black mt-2 flex items-center gap-1 uppercase tracking-widest">
-                     Enter Shop <ChevronRight size={12} />
-                   </div>
+
+                <div className="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between group-hover:border-emerald-100 transition-colors">
+                  <span className="text-xs font-semibold text-gray-400 group-hover:text-emerald-600 transition-colors">
+                    {tierOfStore(store) === "diamond" ? "Diamond Seller" : "Standard Seller"}
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 uppercase tracking-wider">
+                    Visit <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
               </Link>
             ))}
           </div>
         )}
 
-        <div className="mt-12 text-center">
-           <Link href="/marketplace" className="inline-flex items-center gap-3 px-10 py-5 bg-gray-900 text-white rounded-[2rem] font-black uppercase text-[10px] tracking-[0.3em] hover:bg-emerald-600 transition-all shadow-2xl active:scale-95">
-             Explore Marketplace <ArrowRight size={18} />
-           </Link>
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <Link 
+            href="/marketplace" 
+            className="group inline-flex items-center gap-3 px-10 py-5 bg-gray-900 text-white rounded-2xl font-bold uppercase text-sm tracking-widest hover:bg-emerald-600 transition-all shadow-xl shadow-gray-900/10 hover:shadow-emerald-500/20"
+          >
+            Explore Marketplace 
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
 
       </div>

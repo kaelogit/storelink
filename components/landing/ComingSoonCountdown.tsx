@@ -1,60 +1,101 @@
-import Link from "next/link";
-import { Sparkles, Rocket, ShieldCheck, Compass } from "lucide-react";
+"use client";
 
-/**
- * Public teaser for the StoreLink evolution.
- * Focuses on long-term value and merchant growth.
- */
+import Link from "next/link";
+import { Sparkles, Rocket, ShieldCheck, ArrowRight } from "lucide-react";
+import SectionHeader from "./SectionHeader";
+
 export default function ComingSoonCountdown() {
   return (
-    <section className="py-20 px-4 md:px-6" aria-labelledby="whats-next-heading">
-      <div className="max-w-7xl mx-auto rounded-[2.5rem] md:rounded-[3rem] border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-slate-50 p-8 md:p-12 shadow-sm">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-start">
-          <div className="flex-1 min-w-0">
-            <div className="inline-flex items-center gap-2 bg-white border border-emerald-200 text-emerald-700 px-4 py-2 rounded-full mb-6 shadow-sm">
-              <Sparkles size={14} className="shrink-0" aria-hidden />
-              <span className="text-[10px] font-black uppercase tracking-[0.25em]">On the horizon</span>
-            </div>
-            <h2 id="whats-next-heading" className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter leading-[0.95]">
-              Storefront today. <br />
-              <span className="text-emerald-600">Richer discovery tomorrow.</span>
-            </h2>
-            <p className="mt-6 text-gray-700 text-sm md:text-base leading-relaxed max-w-2xl font-medium">
-              We’re perfecting the foundation first: your shop link, your catalog, and a checkout trail that actually works. As StoreLink grows, we’re building new ways for serious buyers to find great sellers—without you having to change a thing.
-            </p>
-            <p className="mt-4 text-sm text-gray-500 leading-relaxed max-w-2xl font-medium">
-              If you ship on time and keep your shop looking sharp today, you’re building the reputation that will put you first when the next wave of buyers arrives. Same account. One home base.
+    <section className="relative overflow-hidden bg-gray-50 py-24 md:py-32" aria-labelledby="whats-next-heading">
+      
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-100/30 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+          
+          {/* Left — headline + pitch */}
+          <div>
+            <SectionHeader
+              eyebrow="On the horizon"
+              headline={
+                <>
+                  Storefront today.{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
+                    Richer discovery tomorrow.
+                  </span>
+                </>
+              }
+              description="We're perfecting the foundation: your shop link, your catalog, and a checkout that works. As StoreLink grows, new ways for buyers to find you—without changing a thing."
+              align="left"
+            />
+
+            <p className="mt-6 text-sm text-gray-400 leading-relaxed max-w-md border-l-2 border-emerald-200 pl-4">
+              Ship on time. Keep your shop sharp. Your reputation puts you first when the next wave arrives.
             </p>
           </div>
 
-          <div className="flex-1 min-w-0 flex flex-col gap-4">
-            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:border-emerald-200 transition">
-              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                <Rocket size={14} className="text-emerald-600 shrink-0" aria-hidden /> For Sellers
-              </p>
-              <p className="text-sm text-gray-700 mt-3 leading-relaxed font-medium">
-                Make your StoreLink shop your home base. As we expand, your products will start appearing exactly where people are already scrolling—so make sure your shop is ready for the spotlight.
-              </p>
+          {/* Right — feature cards stacked */}
+          <div className="flex flex-col gap-4">
+            
+            {/* Seller card */}
+            <div className="group relative rounded-3xl border border-gray-200 bg-white p-8 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-500">
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 h-12 w-12 rounded-2xl bg-gray-900 text-white flex items-center justify-center transition-all duration-500 group-hover:bg-emerald-600 group-hover:scale-110 group-hover:rotate-3">
+                  <Rocket className="h-5 w-5" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">For Sellers</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">
+                    Make StoreLink your home base
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    Your products will appear where people already scroll. Keep your shop ready for the spotlight.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm hover:border-sky-200 transition">
-              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
-                <Compass size={14} className="text-sky-600 shrink-0" aria-hidden /> For Buyers
-              </p>
-              <p className="text-sm text-gray-700 mt-3 leading-relaxed font-medium">
-                A secure checkout and clear order history will always be the heart of StoreLink. We’re just adding more ways for you to discover brands you can actually trust.
-              </p>
+            {/* Buyer card */}
+            <div className="group relative rounded-3xl border border-gray-200 bg-white p-8 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-500">
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 h-12 w-12 rounded-2xl bg-gray-900 text-white flex items-center justify-center transition-all duration-500 group-hover:bg-blue-600 group-hover:scale-110 group-hover:rotate-3">
+                  <ShieldCheck className="h-5 w-5" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">For Buyers</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                    Secure checkout + discovery
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    Order history you can trust. More ways to find brands worth buying from.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="rounded-3xl border border-emerald-200 bg-emerald-500 p-8 text-white shadow-xl shadow-emerald-200/50">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-100 flex items-center gap-2 mb-2">
-                <ShieldCheck size={14} className="shrink-0" aria-hidden /> Start building today
-              </p>
-              <p className="text-base md:text-lg font-bold leading-tight">
-                The marketplace is live. Your storefront is ready. We’ll keep shipping the future while you build your brand.
-              </p>
+            {/* CTA card — dark */}
+            <div className="group relative rounded-3xl bg-gray-900 p-8 text-white overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
+              <div className="relative">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-400 mb-3 flex items-center gap-2">
+                  <Sparkles className="w-3 h-3" /> Start building today
+                </p>
+                <p className="text-lg font-bold leading-tight mb-6">
+                  The marketplace is live. Your storefront is ready. We'll keep shipping while you build.
+                </p>
+                <Link
+                  href="/signup"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-xl text-sm font-bold uppercase tracking-wider hover:bg-emerald-50 transition-all group/btn"
+                >
+                  Create your shop
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
+
           </div>
         </div>
       </div>

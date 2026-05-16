@@ -1,64 +1,131 @@
-import { Receipt, CreditCard, ClipboardList, Shield } from "lucide-react";
+"use client";
+
+import { Receipt, CreditCard, ClipboardList, Shield, ArrowUpRight, Lock, FileCheck, Zap } from "lucide-react";
+import { useRef } from "react";
 import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
+import SectionHeader from "./SectionHeader";
 
 const pillars = [
   {
     title: "Structured checkout",
-    body: "Buyers pay through StoreLink checkout—fewer “send proof” loops and a clearer record for both sides.",
+    body: "No more 'send proof' loops. Buyers pay, you ship. Clean record, both sides.",
     Icon: CreditCard,
+    color: "bg-blue-600",
+    light: "bg-blue-50",
+    text: "text-blue-600",
+    glow: "shadow-blue-500/30",
+    tag1: { label: "Instant payout", bg: "bg-blue-50", text: "text-blue-700" },
+    tag2: { label: "SSL secured", bg: "bg-gray-100", text: "text-gray-600" },
   },
   {
-    title: "Orders you can defend",
-    body: "Statuses and history in one place so fulfilment, refunds, and disputes are not buried in chat screenshots.",
+    title: "Defend your orders",
+    body: "One timeline for every order. Refunds, disputes, fulfillment — no screenshot archaeology.",
     Icon: ClipboardList,
+    color: "bg-amber-500",
+    light: "bg-amber-50",
+    text: "text-amber-600",
+    glow: "shadow-amber-500/30",
+    tag1: { label: "Full history", bg: "bg-amber-50", text: "text-amber-700" },
+    tag2: { label: "Dispute ready", bg: "bg-gray-100", text: "text-gray-600" },
   },
   {
-    title: "Receipts, not vibes",
-    body: "Commerce infrastructure for selling—not accounting software, but a paper trail your customers can trust.",
+    title: "Receipts that matter",
+    body: "Auto-generated paper trail. Not accounting software, but enough to keep everyone honest.",
     Icon: Receipt,
+    color: "bg-purple-600",
+    light: "bg-purple-50",
+    text: "text-purple-600",
+    glow: "shadow-purple-500/30",
+    tag1: { label: "Auto-generated", bg: "bg-purple-50", text: "text-purple-700" },
+    tag2: { label: "PDF export", bg: "bg-gray-100", text: "text-gray-600" },
   },
   {
-    title: "Trust you can earn",
-    body: "Verification and safety tooling sit alongside your shop so serious buyers know how you operate.",
+    title: "Earned trust",
+    body: "Verification badge + safety tooling. Serious buyers spot serious sellers instantly.",
     Icon: Shield,
+    color: "bg-emerald-600",
+    light: "bg-emerald-50",
+    text: "text-emerald-600",
+    glow: "shadow-emerald-500/30",
+    tag1: { label: "Verified badge", bg: "bg-emerald-50", text: "text-emerald-700" },
+    tag2: { label: "Buyer protection", bg: "bg-gray-100", text: "text-gray-600" },
   },
 ];
 
-/**
- * Seller-facing trust & safety narrative (complements buyer-focused `TrustCenter`).
- * Aligned with docs/SELLER_POSITIONING_ONE_PAGER.md §What we should never imply (honest scope).
- */
 export default function SellerTrustStack() {
-  return (
-    <section className={`bg-white py-16 md:py-20 ${STOREFRONT_GUTTER_X}`} aria-labelledby="seller-trust-heading">
-      <div className="max-w-6xl mx-auto">
-        <div className="max-w-2xl mb-10 md:mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-600 mb-3">Trust &amp; operations</p>
-          <h2 id="seller-trust-heading" className="text-2xl md:text-4xl font-black text-gray-900 tracking-tight leading-tight">
-            Built for sellers who need receipts,{" "}
-            <span className="text-emerald-600">not excuses.</span>
-          </h2>
-          <p className="mt-4 text-gray-600 text-sm md:text-base leading-relaxed font-medium">
-            StoreLink does not replace your accountant or lawyer—but it does give you a serious checkout and order layer
-            so you look as professional as you already are.
-          </p>
-        </div>
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-          {pillars.map(({ title, body, Icon }) => (
+  return (
+    <section
+      ref={sectionRef}
+      className={`relative overflow-hidden bg-gray-50 py-24 md:py-32 ${STOREFRONT_GUTTER_X}`}
+      aria-labelledby="seller-trust-heading"
+    >
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-100/30 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto">
+        
+        <SectionHeader
+          eyebrow="Trust & operations"
+          headline={
+            <>
+              Get paid.{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
+                Stay protected.
+              </span>
+            </>
+          }
+          description="Serious checkout infrastructure for sellers who outgrew DMs."
+          align="center"
+          singleLine
+        />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {pillars.map(({ title, body, Icon, color, light, text, glow, tag1, tag2 }, i) => (
             <div
               key={title}
-              className="flex gap-4 rounded-2xl border border-gray-100 bg-gray-50/50 p-6 md:p-8 transition hover:border-gray-200 hover:bg-white"
+              className="group relative rounded-3xl border border-gray-200 bg-white p-7 md:p-8 transition-all duration-500 ease-out hover:border-gray-300 hover:shadow-xl hover:-translate-y-2"
             >
-              <div className="shrink-0 flex h-12 w-12 items-center justify-center rounded-2xl bg-gray-900 text-white">
-                <Icon className="h-6 w-6" strokeWidth={2} aria-hidden />
+              <div className="absolute top-6 right-6 text-[10px] font-bold text-gray-200 group-hover:text-gray-300 transition-colors">
+                0{i + 1}
               </div>
-              <div>
-                <h3 className="text-base font-black text-gray-900 tracking-tight mb-2">{title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed font-medium">{body}</p>
+
+              {/* Colorful icon */}
+              <div className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${color} text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-lg shadow-gray-900/10 group-hover:${glow}`}>
+                <Icon className="h-6 w-6" strokeWidth={1.5} />
               </div>
+
+              <h3 className={`text-lg font-bold text-gray-900 mb-3 group-hover:${text} transition-colors`}>
+                {title}
+              </h3>
+              
+              <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                {body}
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                <span className={`text-[10px] font-semibold px-2.5 py-1 ${tag1.bg} ${tag1.text} rounded-full`}>{tag1.label}</span>
+                <span className={`text-[10px] font-semibold px-2.5 py-1 ${tag2.bg} ${tag2.text} rounded-full`}>{tag2.label}</span>
+              </div>
+
+              
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 md:mt-20 flex flex-wrap items-center justify-center gap-8 md:gap-12">
+          <div className="flex items-center gap-2 text-sm text-gray-400">
+            <Lock className="w-4 h-4 text-emerald-500" />
+            <span className="font-medium">Bank-grade encryption</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-gray-400">
+            <FileCheck className="w-4 h-4 text-emerald-500" />
+            <span className="font-medium">PCI compliant</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-gray-400">
+            <Zap className="w-4 h-4 text-emerald-500" />
+            <span className="font-medium">Instant settlement</span>
+          </div>
         </div>
       </div>
     </section>

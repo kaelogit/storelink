@@ -119,6 +119,44 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ───────────────────────────────────────────────
+   PREMIUM HERO ANIMATIONS
+   ─────────────────────────────────────────────── */
+
+/* Gradient text shimmer */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-shift 5s ease infinite;
+}
+
+/* Floating notification cards */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 5s ease-in-out 2.5s infinite;
+}
+
+/* 3D perspective for phone mockup */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* ───────────────────────────────────────────────
+   MARQUEE (existing)
+   ─────────────────────────────────────────────── */
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -130,7 +168,10 @@
   animation: marquee 45s linear infinite;
 }
 
-/* Per-seller storefront theme — `--sf-*` set on `.storefront-root` (see `StoreFront.tsx`) */
+/* ───────────────────────────────────────────────
+   STOREFRONT THEME SYSTEM (existing)
+   ─────────────────────────────────────────────── */
+
 .storefront-root {
   --sf-accent: #059669;
   --sf-accent-soft: color-mix(in srgb, #059669 16%, white);
