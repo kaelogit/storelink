@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
@@ -8,7 +8,18 @@ import { fetchOnboardingContext, getOnboardingHubRedirect } from "@/lib/onboardi
 import { getClientUserSafe } from "@/lib/getClientUserSafe";
 import { buildVerifyRedirectPath, isEmailVerifiedForStorefront } from "@/lib/authVerification";
 
-export default function PostLoginPage() {
+// 1. Extracted UI component that accepts a dynamic message prop
+function PostLoginLoader({ message = "Opening your account…" }: { message?: string }) {
+  return (
+    <div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-gray-50">
+      <Loader2 className="w-10 h-10 text-emerald-600 animate-spin" />
+      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">{message}</p>
+    </div>
+  );
+}
+
+// 2. Inner component isolating useSearchParams and state
+function PostLoginHandler() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [msg, setMsg] = useState("Opening your account…");
@@ -60,10 +71,14 @@ export default function PostLoginPage() {
     };
   }, [router, searchParams]);
 
+  return <PostLoginLoader message={msg} />;
+}
+
+// 3. Clean default export safely wrapped in Suspense
+export default function PostLoginPage() {
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-gray-50">
-      <Loader2 className="w-10 h-10 text-emerald-600 animate-spin" />
-      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">{msg}</p>
-    </div>
+    <Suspense fallback={<PostLoginLoader />}>
+      <PostLoginHandler />
+    </Suspense>
   );
 }
