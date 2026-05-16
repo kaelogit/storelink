@@ -1,3 +1,0 @@
-{
-  "/api/cron/send-automated-emails/route": "app/api/cron/send-automated-emails/route.js"
-}

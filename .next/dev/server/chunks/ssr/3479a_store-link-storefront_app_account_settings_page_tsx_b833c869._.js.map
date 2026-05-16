@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Kaelo/storelink-app-and-web/store-link-storefront/app/account/settings/page.tsx"],"sourcesContent":["\"use client\";\n\nimport { useEffect } from \"react\";\nimport { useRouter } from \"next/navigation\";\n\n/** Legacy route — hub navigation no longer lists a separate account settings page. */\nexport default function AccountSettingsRedirectPage() {\n  const router = useRouter();\n  useEffect(() => {\n    router.replace(\"/account/profile\");\n  }, [router]);\n  return null;\n}\n"],"names":[],"mappings":";;;;AAEA;AACA;AAHA;;;AAMe,SAAS;IACtB,MAAM,SAAS,IAAA,gNAAS;IACxB,IAAA,mRAAS,EAAC;QACR,OAAO,OAAO,CAAC;IACjB,GAAG;QAAC;KAAO;IACX,OAAO;AACT"}}]
-}

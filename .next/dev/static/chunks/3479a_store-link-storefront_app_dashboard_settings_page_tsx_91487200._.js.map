@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Kaelo/storelink-app-and-web/store-link-storefront/app/dashboard/settings/page.tsx"],"sourcesContent":["\"use client\";\r\n\r\nimport { useEffect } from \"react\";\r\nimport { useRouter } from \"next/navigation\";\r\n\r\nexport default function DashboardSettingsLegacyRoute() {\r\n  const router = useRouter();\r\n  useEffect(() => {\r\n    router.replace(\"/account/settings\");\r\n  }, [router]);\r\n  return null;\r\n}\r\n"],"names":[],"mappings":";;;;AAEA;AACA;;AAHA;;;AAKe,SAAS;;IACtB,MAAM,SAAS,IAAA,mNAAS;IACxB,IAAA,2OAAS;kDAAC;YACR,OAAO,OAAO,CAAC;QACjB;iDAAG;QAAC;KAAO;IACX,OAAO;AACT;GANwB;;QACP,mNAAS;;;KADF"}}]
-}

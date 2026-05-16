@@ -1,5 +1,0 @@
-{
-  "/admin/messages/page": "app/admin/messages/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/login/page": "app/login/page.js"
-}

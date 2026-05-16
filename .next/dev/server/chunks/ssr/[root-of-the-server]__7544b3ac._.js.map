@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 26, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Kaelo/storelink-app-and-web/store-link-storefront/app/account/page.tsx"],"sourcesContent":["import { redirect } from \"next/navigation\";\n\nexport default function AccountHomeRedirectPage() {\n  redirect(\"/dashboard\");\n}\n"],"names":[],"mappings":";;;;AAAA;AAAA;;AAEe,SAAS;IACtB,IAAA,kQAAQ,EAAC;AACX"}}]
-}

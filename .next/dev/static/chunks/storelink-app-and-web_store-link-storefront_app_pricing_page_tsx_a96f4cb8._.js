@@ -1,8 +1,0 @@
-(globalThis.TURBOPACK_CHUNK_LISTS || (globalThis.TURBOPACK_CHUNK_LISTS = [])).push({
-    script: typeof document === "object" ? document.currentScript : undefined,
-    chunks: [
-  "static/chunks/storelink-app-and-web_store-link-storefront_d0faa4de._.js",
-  "static/chunks/6171c_7d7ed631._.js"
-],
-    source: "dynamic"
-});
