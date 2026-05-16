@@ -19,7 +19,7 @@ export function formatPayoutErrorForSellerDisplay(raw: string | null | undefined
   const s = (raw ?? "").trim();
   if (!s) return undefined;
 
-  const retriable = s.match(/^Retriable\s*\((\d+)\/(\d+)\):\s*(.*)$/is);
+const retriable = s.match(/^Retriable\s*\((\d+)\/(\d+)\):\s*([\s\S]*)$/i);
   const inner = (retriable?.[3] ?? s).trim();
   if (!isPaystackPlatformInsufficientBalanceMessage(inner)) return s;
 

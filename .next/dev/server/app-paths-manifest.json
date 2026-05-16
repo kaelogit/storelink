@@ -1,13 +1,5 @@
 {
-  "/admin/page": "app/admin/page.js",
-  "/admin/verifications/page": "app/admin/verifications/page.js",
-  "/api/admin/snapshot/route": "app/api/admin/snapshot/route.js",
-  "/api/admin/verifications/route": "app/api/admin/verifications/route.js",
-  "/api/uploads/r2/route": "app/api/uploads/r2/route.js",
-  "/api/verification/submit/route": "app/api/verification/submit/route.js",
+  "/admin/messages/page": "app/admin/messages/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/verification/page": "app/dashboard/verification/page.js",
-  "/login/page": "app/login/page.js",
-  "/post-login/page": "app/post-login/page.js",
-  "/verify/page": "app/verify/page.js"
+  "/login/page": "app/login/page.js"
 }

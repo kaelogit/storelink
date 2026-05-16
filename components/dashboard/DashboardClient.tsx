@@ -35,6 +35,7 @@ import { storefrontOrderPayoutFailed, storefrontOrderPayoutQueued } from "@/lib/
 import { isProductFlashDropActive } from "@/lib/productFlashDrop";
 import { isStorefrontMerchFlagOn } from "@/lib/storefrontMerchFlags";
 import { cn } from "@/lib/utils";
+
 interface DashboardClientProps {
   store: any;
   initialProducts: any[];
@@ -44,10 +45,12 @@ interface DashboardClientProps {
 
 export default function DashboardClient({ store, initialProducts, initialOrders, stats }: DashboardClientProps) {
   const router = useRouter();
+  
   const dashboardAccent = useMemo(() => {
     const raw = String(store?.storefront_theme?.accent || "").trim();
     return /^#([0-9a-f]{6})$/i.test(raw) ? raw : "#059669";
   }, [store?.storefront_theme?.accent]);
+
   const accentVars = useMemo(() => {
     const r = parseInt(dashboardAccent.slice(1, 3), 16);
     const g = parseInt(dashboardAccent.slice(3, 5), 16);
@@ -60,10 +63,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
   }, [dashboardAccent]);
 
   const [productRows, setProductRows] = useState<any[]>(initialProducts);
-  useEffect(() => {
-    setProductRows(initialProducts);
-  }, [initialProducts]);
-  
+  const [liveCategories, setLiveCategories] = useState<any[]>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isCatModalOpen, setIsCatModalOpen] = useState(false);
   const [productToEdit, setProductToEdit] = useState<any>(null);
@@ -77,13 +77,19 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
   } | null>(null);
   const [checkingAddGate, setCheckingAddGate] = useState(false);
 
-  /** Client dashboard keeps products in state; `router.refresh()` alone does not reload them. */
+  // Sync initial server products cleanly to state
+  useEffect(() => {
+    setProductRows(initialProducts);
+  }, [initialProducts]);
+  
+  /** Fetcher to keep products in sync along with their category relational details */
   const refreshProductRows = useCallback(async () => {
     const { data, error } = await supabase
       .from("products")
       .select("*, categories(name)")
       .eq("seller_id", store.owner_id)
       .order("created_at", { ascending: false });
+    
     if (error) {
       console.warn("refreshProductRows:", error.message);
       return;
@@ -91,11 +97,8 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
     setProductRows(data || []);
   }, [store.owner_id]);
   
-  // 🔥 EMPIRE SYNC: State to hold live categories
-  const [liveCategories, setLiveCategories] = useState<any[]>([]);
-
-  // Function to fetch fresh categories
-  const fetchCategories = async () => {
+  /** Fetch fresh categories */
+  const fetchCategories = useCallback(async () => {
     const uid = store.owner_id;
 
     const primary = await supabase
@@ -112,20 +115,21 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
     const { data: prodRows } = await supabase.from("products").select("category_id").eq("seller_id", uid);
     const ids = [...new Set((prodRows || []).map((r: { category_id?: string }) => r.category_id).filter(Boolean))] as string[];
+    
     if (!ids.length) {
       setLiveCategories([]);
       return;
     }
     const { data: cats } = await supabase.from("categories").select("*").in("id", ids).order("name");
     if (cats) setLiveCategories(cats);
-  };
+  }, [store.owner_id]);
 
   // Initial fetch on mount
   useEffect(() => {
     fetchCategories();
-  }, [store.owner_id]);
+  }, [fetchCategories]);
 
-  // --- 🔥 EMPIRE REAL-TIME LISTENER ---
+  // Real-time Engine Listener
   useEffect(() => {
     const dashboardSync = supabase
       .channel('dashboard-realtime')
@@ -138,14 +142,10 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
       )
       .on(
         'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'categories',
-          filter: `seller_id=eq.${store.owner_id}`,
-        },
+        { event: '*', schema: 'public', table: 'categories', filter: `seller_id=eq.${store.owner_id}` },
         () => {
-          fetchCategories(); // Instantly update the categories state
+          void fetchCategories();
+          void refreshProductRows(); // Re-fetch to apply updated category names on current listings
           router.refresh(); 
         }
       )
@@ -154,14 +154,18 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
     return () => {
       supabase.removeChannel(dashboardSync);
     };
-  }, [store.owner_id, refreshProductRows]);
+  }, [store.owner_id, refreshProductRows, fetchCategories, router]);
 
+  // Derived filter state matching safe values
   const filteredProducts = useMemo(() => {
-    return productRows.filter(
-      (p) =>
-        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.categories?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
+    const lowerSearch = searchTerm.toLowerCase().trim();
+    if (!lowerSearch) return productRows;
+
+    return productRows.filter((p) => {
+      const productName = p.name?.toLowerCase() || "";
+      const categoryName = p.categories?.name?.toLowerCase() || "general";
+      return productName.includes(lowerSearch) || categoryName.includes(lowerSearch);
+    });
   }, [searchTerm, productRows]);
 
   const toggleProductPin = async (p: any) => {
@@ -171,10 +175,13 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
       .update({ pinned_at: nextPinned, updated_at: new Date().toISOString() })
       .eq("id", p.id)
       .eq("seller_id", store.owner_id);
+    
     if (error) {
       alert(error.message || "Could not update pin.");
       return;
     }
+    
+    // Instead of dropping data, perform an object spread modification preservation
     setProductRows((prev) =>
       prev.map((row) => (row.id === p.id ? { ...row, pinned_at: nextPinned } : row)),
     );
@@ -298,7 +305,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
 
   return (
     <div className="space-y-6 px-1 md:px-0 pb-20" style={accentVars}>
-        {/* ... Header and Stats remain exactly as they were ... */}
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-black text-gray-900 flex items-center gap-2 tracking-tight uppercase italic">
@@ -332,7 +338,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
               <p className="text-xs font-black uppercase tracking-widest text-red-700">Payout attention</p>
               <p className="text-sm font-semibold text-red-900 mt-1">
                 {storefrontPayoutFailed} storefront order{storefrontPayoutFailed === 1 ? "" : "s"} had a Paystack transfer failure.
-                Check payout bank details under membership, then contact support if it persists — our team can retry once Paystack balance or recipient details are fixed.
+                Check payout bank details under membership, then contact support if it persists.
               </p>
             </div>
             <Link
@@ -370,7 +376,7 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
              </div>
              <p className="text-2xl font-black text-gray-900">₦{stats.revenue.toLocaleString()}</p>
              <p className="mt-2 text-[11px] font-semibold text-gray-500 leading-snug">
-               This week (qualifying orders): <span className="text-gray-900">₦{stats.weekThis.toLocaleString()}</span>
+               This week: <span className="text-gray-900">₦{stats.weekThis.toLocaleString()}</span>
                {" · "}
                Last week: <span className="text-gray-900">₦{stats.weekLast.toLocaleString()}</span>
              </p>
@@ -494,12 +500,8 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                         <th className="px-6 py-4">Price</th>
                         <th className="px-6 py-4">Stock</th>
                         <th className="px-6 py-4 text-center">Pin</th>
-                        <th className="px-6 py-4 text-center" title="Web storefront: New arrivals row">
-                          New
-                        </th>
-                        <th className="px-6 py-4 text-center" title="Web storefront: Best sellers row">
-                          Best
-                        </th>
+                        <th className="px-6 py-4 text-center">New</th>
+                        <th className="px-6 py-4 text-center">Best</th>
                         <th className="px-6 py-4 text-right">Actions</th>
                       </tr>
                     </thead>
@@ -532,7 +534,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                             <td className="px-6 py-4 text-center whitespace-nowrap">
                               <button
                                 type="button"
-                                title={p.pinned_at ? "Unpin from storefront" : "Pin to top of storefront"}
                                 onClick={() => void toggleProductPin(p)}
                                 className={`inline-flex rounded-lg p-2 transition ${
                                   p.pinned_at ? "text-[var(--dash-accent)] bg-[var(--dash-accent-soft)]" : "text-gray-300 hover:text-[var(--dash-accent)] hover:bg-[var(--dash-accent-soft)]"
@@ -544,16 +545,9 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                             <td className="px-6 py-4 text-center whitespace-nowrap">
                               <button
                                 type="button"
-                                title={
-                                  isNewMerch
-                                    ? "Remove from web New arrivals"
-                                    : "Show in web New arrivals"
-                                }
                                 onClick={() => void toggleProductStorefrontFlag(p, "storefront_new_arrival")}
                                 className={`inline-flex rounded-lg p-2 transition ${
-                                  isNewMerch
-                                    ? "text-violet-600 bg-violet-50"
-                                    : "text-gray-300 hover:text-violet-600 hover:bg-violet-50/50"
+                                  isNewMerch ? "text-violet-600 bg-violet-50" : "text-gray-300 hover:text-violet-600 hover:bg-violet-50/50"
                                 }`}
                               >
                                 <Sparkles size={18} fill={isNewMerch ? "currentColor" : "none"} />
@@ -562,16 +556,9 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                             <td className="px-6 py-4 text-center whitespace-nowrap">
                               <button
                                 type="button"
-                                title={
-                                  isBestMerch
-                                    ? "Remove from web Best sellers"
-                                    : "Show in web Best sellers"
-                                }
                                 onClick={() => void toggleProductStorefrontFlag(p, "storefront_best_seller")}
                                 className={`inline-flex rounded-lg p-2 transition ${
-                                  isBestMerch
-                                    ? "text-amber-600 bg-amber-50"
-                                    : "text-gray-300 hover:text-amber-600 hover:bg-amber-50/50"
+                                  isBestMerch ? "text-amber-600 bg-amber-50" : "text-gray-300 hover:text-amber-600 hover:bg-amber-50/50"
                                 }`}
                               >
                                 <Award size={18} fill={isBestMerch ? "currentColor" : "none"} />
@@ -582,17 +569,10 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                                 <button
                                   type="button"
                                   disabled={flashMerchBlocked}
-                                  title={
-                                    flashMerchBlocked
-                                      ? "Turn off New arrivals and Best seller labels before starting a flash drop."
-                                      : "Flash drop"
-                                  }
                                   onClick={() => setSelectedFlashProduct(p)}
                                   className={cn(
                                     "p-2 rounded-lg transition-all",
-                                    isProductFlashDropActive(p)
-                                      ? "text-amber-500 bg-amber-50"
-                                      : "text-gray-300 hover:text-amber-500",
+                                    isProductFlashDropActive(p) ? "text-amber-500 bg-amber-50" : "text-gray-300 hover:text-amber-500",
                                     flashMerchBlocked && "cursor-not-allowed opacity-40 hover:text-gray-300",
                                   )}
                                 >
@@ -606,13 +586,12 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
                         );
                       })}
                     </tbody>
-                  </table>
+                 </table>
                </div>
              )}
           </div>
         </div>
 
-      {/* --- MODALS --- */}
       <AddProductModal 
         storeId={store.owner_id} 
         isOpen={isAddModalOpen} 
@@ -623,7 +602,6 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
         }} 
         productToEdit={productToEdit} 
         onAddCategory={() => setIsCatModalOpen(true)}
-        // 🔥 CRITICAL: Pass the live categories here
         categories={liveCategories}
       />
       
@@ -632,8 +610,9 @@ export default function DashboardClient({ store, initialProducts, initialOrders,
         isOpen={isCatModalOpen} 
         onClose={() => setIsCatModalOpen(false)} 
         onSuccess={() => {
-          fetchCategories(); // Update locally
-          router.refresh();  // Update server
+          fetchCategories();
+          void refreshProductRows();
+          router.refresh();
         }} 
       />
       

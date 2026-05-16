@@ -1,11 +1,12 @@
-[00:01:54.817] Server  LOG      ○ Compiling middleware ...
-[00:02:13.036] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:02:24.804] Server  LOG      ✓ Ready in 120s
-[00:02:39.641] Server  LOG      ○ Compiling /verify ...
-[00:03:59.940] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:08.930] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:27.904] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:42.654] Server  ERROR   Error: fetch failed
+[00:00:56.688] Server  LOG      ○ Compiling middleware ...
+[00:01:09.392] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:01:14.926] Server  LOG      ✓ Ready in 63.3s
+[00:01:28.062] Server  LOG      ○ Compiling /admin/messages ...
+[00:01:47.976] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:48.136] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:51.038] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:34.972] Server  LOG      ○ Compiling /login ...
+[00:10:14.196] Server  ERROR   Error: fetch failed
     at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
     at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
     at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
@@ -17,85 +18,3 @@
     at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
   
 }
-[00:05:53.433] Server  ERROR   Error: fetch failed
-    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
-    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
-    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
-    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
-    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
-  
-}
-[00:05:56.457] Server  LOG      ○ Compiling /login ...
-[00:05:59.174] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:13:14.217] Server  LOG      ○ Compiling /post-login ...
-[00:13:18.115] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:13:31.750] Server  ERROR   C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\chunks\node_modules_@supabase_auth-js_dist_module_02e1b12e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:13:31.917] Server  ERROR   TypeError: fetch failed
-[00:13:38.710] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:13:45.305] Server  ERROR   C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\chunks\node_modules_@supabase_auth-js_dist_module_02e1b12e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[00:13:45.308] Server  ERROR   TypeError: fetch failed
-[00:17:55.388] Server  LOG      ✓ Compiled in 544ms
-[00:18:06.610] Server  LOG      ✓ Compiled in 324ms
-[00:18:08.667] Server  LOG      ✓ Compiled in 1548ms
-[00:18:40.376] Server  LOG      ✓ Compiled in 784ms
-[00:23:31.956] Server  ERROR   Error: fetch failed
-    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
-    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
-    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
-    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
-    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
-  
-}
-[00:23:35.077] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:24:21.736] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:26:34.178] Server  ERROR   Error: fetch failed
-    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
-    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
-    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
-    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
-    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
-  
-}
-[00:26:44.856] Server  ERROR   Error: fetch failed
-    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
-    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
-    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
-    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
-    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
-  
-}
-[00:27:20.584] Server  ERROR   Error: fetch failed
-    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
-    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
-    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
-    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
-    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
-  
-}
-[00:32:32.736] Server  LOG      ✓ Compiled in 512ms
-[00:51:13.336] Browser ERROR   {}
-[00:51:15.556] Browser ERROR   {}
-[00:51:15.967] Browser ERROR   {}
-[01:04:57.340] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:09:12.330] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:09:29.807] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

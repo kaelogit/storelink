@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { buildR2Key, uploadFileToR2 } from "@/lib/mediaUpload";
 import { useRouter } from "next/navigation";
-import { X, Loader2, Trash2, Plus, Gem, Sparkles, ExternalLink } from "lucide-react";
+import { X, Loader2, Trash2, Plus, Gem, Sparkles } from "lucide-react";
 import { compressImage } from "@/utils/imageCompressor";
 import { effectiveSellerTier, type EffectiveSellerTier } from "@/utils/marketplaceDiscovery";
 
@@ -15,8 +15,13 @@ interface AddProductModalProps {
   onSuccess: () => void;
   productToEdit?: any;
   onAddCategory?: () => void;
-  categories?: any[]; // 🔥 THE BRIDGE PROP
+  categories?: any[];
 }
+
+// Helper function to prevent database crashes when cross-platform strings like "general" are passed into UUID columns
+const isValidUUID = (id: string) => {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+};
 
 export default function AddProductModal({ 
   storeId, 
@@ -25,15 +30,11 @@ export default function AddProductModal({
   onSuccess, 
   productToEdit,
   onAddCategory,
-  categories = [] // 🔥 FIX: Default to empty array to prevent map errors
+  categories = [] 
 }: AddProductModalProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   
-  // 🗑️ REMOVED: const [categories, setCategories] = useState([]); 
-  // (We now use the prop directly to ensure instant updates)
-
-  /** Effective tier for Diamond AI (paid boost while subscription is active). */
   const [userPlan, setUserPlan] = useState<EffectiveSellerTier>("standard");
   const [errorMsg, setErrorMsg] = useState("");
   
@@ -62,12 +63,16 @@ export default function AddProductModal({
       setErrorMsg("");
       
       if (productToEdit) {
+        const incomingCategoryId = productToEdit.category_id || "";
+        // Verify if the category exists in the current storefront category collection
+        const categoryExists = categories.some(cat => cat.id === incomingCategoryId);
+
         setFormData({
           name: productToEdit.name,
           price: productToEdit.price.toString(),
           stock: productToEdit.stock_quantity.toString(),
           description: productToEdit.description || "",
-          categoryId: productToEdit.category_id || "",
+          categoryId: categoryExists && isValidUUID(incomingCategoryId) ? incomingCategoryId : "",
           storefrontNewArrival: Boolean(productToEdit.storefront_new_arrival),
           storefrontBestSeller: Boolean(productToEdit.storefront_best_seller),
         });
@@ -104,7 +109,7 @@ export default function AddProductModal({
       
       loadData();
     }
-  }, [isOpen, productToEdit]);
+  }, [isOpen, productToEdit, categories]);
 
   if (!isOpen) return null;
 
@@ -184,7 +189,7 @@ export default function AddProductModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.price || !formData.stock || !formData.description || !formData.categoryId) {
+    if (!formData.name || !formData.price || !formData.stock || !formData.description) {
       setErrorMsg("All fields are compulsory for a professional listing");
       setTimeout(() => setErrorMsg(""), 4000);
       return;
@@ -222,13 +227,16 @@ export default function AddProductModal({
       const na = Boolean(formData.storefrontNewArrival);
       const bs = Boolean(formData.storefrontBestSeller);
 
+      // Sanitize the category identifier to ensure cross-platform database entries don't trigger UUID parsing errors
+      const dynamicCategoryId = isValidUUID(formData.categoryId) ? formData.categoryId : null;
+
       const payload: any = {
         seller_id: user.id,
         name: formData.name,
         price: parseFloat(formData.price),
         stock_quantity: newStock,
         description: formData.description,
-        category_id: formData.categoryId,
+        category_id: dynamicCategoryId,
         image_urls: finalImageUrls,
         is_active: true,
         storefront_new_arrival: na,
@@ -312,13 +320,9 @@ export default function AddProductModal({
                         <Gem size={14} style={{ color: "#8B5CF6", fill: "#8B5CF6" }} />
                         <span className="text-[10px] font-black uppercase text-purple-600 tracking-widest">Diamond Feature Only</span>
                       </div>
-                      <p className="text-[11px] font-bold text-purple-950 mb-3 leading-tight">One-click AI cleaning is reserved for Diamond users due to API costs. But you can do it manually for free!</p>
-                      <div className="bg-white p-3 rounded-2xl border border-purple-100 mb-3 text-[10px] text-gray-600 font-bold leading-relaxed shadow-sm">
-                         1. Visit <a href="https://remove.bg" target="_blank" className="text-purple-600 underline inline-flex items-center gap-1 font-black">remove.bg <ExternalLink size={10}/></a><br/>
-                         2. Upload your photo & set background to white<br/>
-                         3. Download it, then upload the result here!
-                      </div>
-                      <button type="button" onClick={() => setAiStatus("idle")} className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Got it, thanks!</button>
+                      <p className="text-[11px] font-bold text-purple-950 mb-3 leading-tight">One-click AI cleaning is reserved for Diamond users due to API costs.</p>
+                      
+                      <button type="button" onClick={() => setAiStatus("idle")} className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Got it!</button>
                    </div>
                 )}
 
@@ -329,7 +333,7 @@ export default function AddProductModal({
                         <span className="text-[10px] font-black uppercase text-amber-600 tracking-widest">Community Limit Reached</span>
                       </div>
                       <p className="text-[11px] font-bold text-amber-950 mb-3 leading-tight">Our Diamond credits are exhausted for today. We are working on unlimited AI access!</p>
-                      <p className="text-[10px] text-amber-800 font-medium mb-3">Please use <a href="https://remove.bg" target="_blank" className="underline font-black">remove.bg</a> manually to clean your photo, then upload the result here.</p>
+                      <p className="text-[10px] text-amber-800 font-medium mb-3">Please use <a href="https://remove.bg" target="_blank" rel="noopener noreferrer" className="underline font-black">remove.bg</a> manually to clean your photo, then upload the result here.</p>
                       <button type="button" onClick={() => setAiStatus("idle")} className="text-[10px] font-black text-amber-600 uppercase tracking-widest">Understood</button>
                    </div>
                 )}
@@ -359,9 +363,8 @@ export default function AddProductModal({
                         <Plus size={10} strokeWidth={3} /> Create New
                     </button>
                   </div>
-                  {/* 🔥 THE FIX: Using the prop categories instead of local state */}
-                  <select required className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none appearance-none shadow-sm text-gray-900" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
-                    <option value="">Select Category</option>
+                  <select className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none appearance-none shadow-sm text-gray-900" value={formData.categoryId} onChange={e => setFormData({...formData, categoryId: e.target.value})}>
+                    <option value="">General / None</option>
                     {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
                   </select>
                 </div>
