@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { buildR2Key, uploadFileToR2 } from "@/lib/mediaUpload";
 import {
   Loader2,
   Upload,
@@ -17,39 +18,53 @@ import {
   UserCircle,
 } from "lucide-react";
 
+function errorMessage(error: unknown): string {
+  if (error instanceof Error && error.message) return error.message;
+  if (typeof error === "string" && error.trim()) return error;
+  if (error && typeof error === "object") {
+    const maybeMessage = (error as { message?: unknown }).message;
+    if (typeof maybeMessage === "string" && maybeMessage.trim()) return maybeMessage;
+  }
+  return "Something went wrong. Please try again.";
+}
+
+function isImageUrl(url: string): boolean {
+  if (url.startsWith("blob:")) return true;
+  if (url.startsWith("data:image/")) return true;
+  return /\.(png|jpe?g|gif|webp|bmp|svg)(\?|$)/i.test(url);
+}
+
+function normalizeStatusValue(value?: string | null): "none" | "pending" | "rejected" | "verified" | null {
+  const s = String(value || "").trim().toLowerCase();
+  if (!s) return null;
+  if (s === "approved" || s === "verified") return "verified";
+  if (s === "pending" || s === "under_review") return "pending";
+  if (s === "rejected") return "rejected";
+  if (s === "none") return "none";
+  return null;
+}
+
 /** Same source of truth as the mobile app: `profiles.verification_status` + `merchant_verifications` for KYC payloads. */
 export default function VerificationPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [uploading, setUploading] = useState(false);
+  const [uploadingType, setUploadingType] = useState<"id" | "selfie" | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [errorText, setErrorText] = useState("");
 
   const [userId, setUserId] = useState("");
   const [status, setStatus] = useState("none");
   const [docUrl, setDocUrl] = useState("");
   const [selfieUrl, setSelfieUrl] = useState("");
+  const [docFile, setDocFile] = useState<File | null>(null);
+  const [selfieFile, setSelfieFile] = useState<File | null>(null);
+  const [docPreview, setDocPreview] = useState("");
+  const [selfiePreview, setSelfiePreview] = useState("");
   const [note, setNote] = useState("");
   const [displayName, setDisplayName] = useState("");
 
-  useEffect(() => {
-    void fetchStatus();
-  }, []);
-
-  function normalizeVerificationStatus(
-    profileStatus?: string | null,
-    kycStatus?: string | null,
-  ): "none" | "pending" | "rejected" | "verified" {
-    const p = (profileStatus || "").toLowerCase();
-    const k = (kycStatus || "").toLowerCase();
-    const any = [p, k];
-
-    // Treat approved and verified as the same final state.
-    if (any.includes("verified") || any.includes("approved")) return "verified";
-    if (any.includes("pending") || any.includes("under_review")) return "pending";
-    if (any.includes("rejected")) return "rejected";
-    return "none";
-  }
-
-  async function fetchStatus() {
+  const fetchStatus = useCallback(async () => {
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -62,19 +77,20 @@ export default function VerificationPage() {
 
     const { data: profile } = await supabase
       .from("profiles")
-      .select("display_name, full_name, verification_status, verification_note")
+      .select("display_name, full_name, slug, verification_status, verification_note")
       .eq("id", user.id)
       .maybeSingle();
 
     const p = profile as {
       display_name?: string | null;
       full_name?: string | null;
+      slug?: string | null;
       verification_status?: string | null;
       verification_note?: string | null;
     } | null;
 
-    const name =
-      p?.display_name?.trim() || p?.full_name?.trim() || user.email?.split("@")[0] || "Your store";
+    const slugLabel = p?.slug?.trim() ? `@${p.slug.trim()}` : "";
+    const name = p?.full_name?.trim() || p?.display_name?.trim() || slugLabel || "Store";
     setDisplayName(name);
     setNote(p?.verification_note || "");
 
@@ -85,83 +101,105 @@ export default function VerificationPage() {
       .maybeSingle();
 
     const k = kyc as { id_url?: string | null; face_url?: string | null; status?: string | null } | null;
-    if (k?.id_url) setDocUrl(String(k.id_url));
-    if (k?.face_url) setSelfieUrl(String(k.face_url));
-    setStatus(normalizeVerificationStatus(p?.verification_status, k?.status));
+    if (k?.id_url) {
+      const id = String(k.id_url);
+      setDocUrl(id);
+      setDocPreview(id);
+    }
+    if (k?.face_url) {
+      const selfie = String(k.face_url);
+      setSelfieUrl(selfie);
+      setSelfiePreview(selfie);
+    }
+    setStatus(normalizeVerificationStatus(p?.verification_status));
 
     setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    void fetchStatus();
+  }, [fetchStatus]);
+
+  function normalizeVerificationStatus(profileStatus?: string | null): "none" | "pending" | "rejected" | "verified" {
+    return normalizeStatusValue(profileStatus) || "none";
   }
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: "id" | "selfie") => {
-    if (!e.target.files?.[0] || !userId) return;
-
-    setUploading(true);
-    const file = e.target.files[0];
-    const fileExt = file.name.split(".").pop() || "jpg";
-    const fileName = `verification_docs/${userId}_${type}_${Date.now()}.${fileExt}`;
-
-    try {
-      const { error: uploadError } = await supabase.storage.from("products").upload(fileName, file, { upsert: true });
-
-      if (uploadError) throw uploadError;
-
-      const {
-        data: { publicUrl },
-      } = supabase.storage.from("products").getPublicUrl(fileName);
-
-      if (type === "id") setDocUrl(publicUrl);
-      if (type === "selfie") setSelfieUrl(publicUrl);
-    } catch (error: unknown) {
-      alert("Upload failed: " + (error instanceof Error ? error.message : String(error)));
-    } finally {
-      setUploading(false);
+  const handleFilePicked = (e: React.ChangeEvent<HTMLInputElement>, type: "id" | "selfie") => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setErrorText("");
+    if (type === "id") {
+      setDocFile(file);
+      setDocPreview(URL.createObjectURL(file));
+    } else {
+      setSelfieFile(file);
+      setSelfiePreview(URL.createObjectURL(file));
     }
   };
 
+  const uploadToStorage = async (file: File, type: "id" | "selfie"): Promise<string> => {
+    if (!userId) throw new Error("Missing user context");
+    setUploadingType(type);
+    const fileExt = file.name.split(".").pop() || "jpg";
+    const key = buildR2Key("kyc-documents", `${userId}/verification_${type}_${Date.now()}.${fileExt}`);
+    return await uploadFileToR2({
+      bucket: "kyc-documents",
+      key,
+      file,
+    });
+  };
+
   const handleSubmitVerification = async () => {
-    if (!docUrl || !selfieUrl || !userId) {
-      alert("Please upload both your ID and your Selfie before submitting.");
+    if ((!docUrl && !docFile) || (!selfieUrl && !selfieFile) || !userId) {
+      setErrorText("Please upload both your ID and your selfie before submitting.");
       return;
     }
 
-    setUploading(true);
+    setSubmitting(true);
+    setErrorText("");
+    setStatusMessage("Preparing documents...");
     try {
-      const payload = {
-        user_id: userId,
-        id_type: "PASSPORT" as const,
-        id_number: "WEB_DASHBOARD",
-        id_url: docUrl,
-        face_url: selfieUrl,
-        status: "pending" as const,
-      };
-
-      const { data: existingRow } = await supabase
-        .from("merchant_verifications")
-        .select("id")
-        .eq("user_id", userId)
-        .maybeSingle();
-
-      const existingId = (existingRow as { id?: string } | null)?.id;
-      if (existingId) {
-        const { error: updateError } = await supabase.from("merchant_verifications").update(payload).eq("user_id", userId);
-        if (updateError) throw updateError;
-      } else {
-        const { error: insertError } = await supabase.from("merchant_verifications").insert(payload);
-        if (insertError) throw insertError;
+      let resolvedDocUrl = docUrl;
+      let resolvedSelfieUrl = selfieUrl;
+      if (docFile) {
+        setStatusMessage("Uploading identity document...");
+        resolvedDocUrl = await uploadToStorage(docFile, "id");
+      }
+      if (selfieFile) {
+        setStatusMessage("Uploading live selfie...");
+        resolvedSelfieUrl = await uploadToStorage(selfieFile, "selfie");
       }
 
-      const { error: profError } = await supabase
-        .from("profiles")
-        .update({ verification_status: "pending", verification_note: null })
-        .eq("id", userId);
+      if (!resolvedDocUrl || !resolvedSelfieUrl) {
+        throw new Error("Both ID and selfie uploads are required.");
+      }
 
-      if (profError) throw profError;
+      setStatusMessage("Submitting verification...");
+      const res = await fetch("/api/verification/submit", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          idUrl: resolvedDocUrl,
+          selfieUrl: resolvedSelfieUrl,
+        }),
+      });
+      const json = (await res.json().catch(() => ({}))) as { error?: string; warning?: string };
+      if (!res.ok) {
+        throw new Error(json.error || "Could not submit verification.");
+      }
 
+      setDocUrl(resolvedDocUrl);
+      setSelfieUrl(resolvedSelfieUrl);
+      setDocFile(null);
+      setSelfieFile(null);
       setStatus("pending");
+      setStatusMessage(json.warning ? "Submitted. Sync update is still in progress..." : "");
     } catch (error: unknown) {
-      alert("Submission failed: " + (error instanceof Error ? error.message : String(error)));
+      setErrorText(`Submission failed: ${errorMessage(error)}`);
     } finally {
-      setUploading(false);
+      setSubmitting(false);
+      setUploadingType(null);
     }
   };
 
@@ -177,16 +215,27 @@ export default function VerificationPage() {
     <div className="max-w-5xl mx-auto w-full pb-12">
       <div className="mb-10 text-center sm:text-left">
         <h1 className="text-3xl sm:text-4xl font-black text-gray-900 flex flex-wrap items-center justify-center sm:justify-start gap-3">
-          MERCHANT VERIFICATION
+          SELLER VERIFICATION
           {status === "verified" && <BadgeCheck className="text-blue-500 animate-in zoom-in" size={36} />}
         </h1>
         <p className="text-gray-500 mt-3 text-sm sm:text-base max-w-xl">
-          Build authority and show your customers that your brand is verified. Status matches your StoreLink profile (same as the app).
+          Build authority and show your customers that your brand is verified.
         </p>
       </div>
 
       {(status === "none" || status === "rejected") && (
         <div className="space-y-8">
+          {errorText ? (
+            <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+              {errorText}
+            </p>
+          ) : null}
+          {statusMessage ? (
+            <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700">
+              {statusMessage}
+            </p>
+          ) : null}
+
           {status === "rejected" && (
             <div className="bg-red-50 border border-red-100 p-5 rounded-2xl flex items-start gap-4 animate-in fade-in slide-in-from-top-2">
               <XCircle className="text-red-600 shrink-0 mt-0.5" size={24} />
@@ -216,16 +265,21 @@ export default function VerificationPage() {
               <label
                 className={`
                   flex flex-col items-center justify-center w-full min-h-[160px] sm:min-h-[200px] border-2 border-dashed rounded-3xl cursor-pointer transition-all
-                  ${uploading ? "bg-gray-50 border-gray-300" : docUrl ? "bg-emerald-50/40 border-emerald-200" : "bg-white border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/30"}
+                  ${uploadingType === "id" ? "bg-gray-50 border-gray-300" : docPreview ? "bg-emerald-50/40 border-emerald-200" : "bg-white border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/30"}
                 `}
               >
                 <div className="flex flex-col items-center justify-center text-center px-6">
-                  {docUrl ? (
+                  {docPreview ? (
                     <>
-                      <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-3">
-                        <FileText size={28} />
-                      </div>
-                      <p className="text-xs font-black text-emerald-800 uppercase">Document on file</p>
+                      {isImageUrl(docPreview) ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={docPreview} alt="ID preview" className="mb-3 h-24 w-full max-w-[220px] rounded-xl object-cover border border-emerald-200" />
+                      ) : (
+                        <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-3">
+                          <FileText size={28} />
+                        </div>
+                      )}
+                      <p className="text-xs font-black text-emerald-800 uppercase">ID selected</p>
                       <p className="text-[10px] text-emerald-600 mt-2 font-bold opacity-60 bg-emerald-100/50 px-3 py-1 rounded-full">Replace file</p>
                     </>
                   ) : (
@@ -236,7 +290,7 @@ export default function VerificationPage() {
                     </>
                   )}
                 </div>
-                <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => void handleFileUpload(e, "id")} disabled={uploading} />
+                <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => void handleFilePicked(e, "id")} disabled={submitting || uploadingType === "selfie"} />
               </label>
             </div>
 
@@ -253,16 +307,21 @@ export default function VerificationPage() {
               <label
                 className={`
                   flex flex-col items-center justify-center w-full min-h-[160px] sm:min-h-[200px] border-2 border-dashed rounded-3xl cursor-pointer transition-all
-                  ${uploading ? "bg-gray-50 border-gray-300" : selfieUrl ? "bg-blue-50/40 border-blue-200" : "bg-white border-gray-200 hover:border-blue-500 hover:bg-blue-50/30"}
+                  ${uploadingType === "selfie" ? "bg-gray-50 border-gray-300" : selfiePreview ? "bg-blue-50/40 border-blue-200" : "bg-white border-gray-200 hover:border-blue-500 hover:bg-blue-50/30"}
                 `}
               >
                 <div className="flex flex-col items-center justify-center text-center px-6">
-                  {selfieUrl ? (
+                  {selfiePreview ? (
                     <>
-                      <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-3">
-                        <UserCircle size={28} />
-                      </div>
-                      <p className="text-xs font-black text-blue-800 uppercase">Live selfie on file</p>
+                      {isImageUrl(selfiePreview) ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={selfiePreview} alt="Selfie preview" className="mb-3 h-24 w-full max-w-[220px] rounded-xl object-cover border border-blue-200" />
+                      ) : (
+                        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-3">
+                          <UserCircle size={28} />
+                        </div>
+                      )}
+                      <p className="text-xs font-black text-blue-800 uppercase">Selfie selected</p>
                       <p className="text-[10px] text-blue-600 mt-2 font-bold opacity-60 bg-blue-100/50 px-3 py-1 rounded-full">Replace file</p>
                     </>
                   ) : (
@@ -273,7 +332,7 @@ export default function VerificationPage() {
                     </>
                   )}
                 </div>
-                <input type="file" className="hidden" accept="image/*" onChange={(e) => void handleFileUpload(e, "selfie")} disabled={uploading} />
+                <input type="file" className="hidden" accept="image/*" onChange={(e) => void handleFilePicked(e, "selfie")} disabled={submitting || uploadingType === "id"} />
               </label>
             </div>
           </div>
@@ -282,13 +341,13 @@ export default function VerificationPage() {
             <button
               type="button"
               onClick={() => void handleSubmitVerification()}
-              disabled={uploading || !docUrl || !selfieUrl}
+              disabled={submitting || ((!docUrl && !docFile) || (!selfieUrl && !selfieFile))}
               className={`
                   w-full py-6 rounded-3xl font-black text-sm uppercase tracking-widest shadow-xl transition-all active:scale-[0.98]
-                  ${!docUrl || !selfieUrl ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-gray-900 text-white hover:bg-black hover:shadow-2xl"}
+                  ${(!docUrl && !docFile) || (!selfieUrl && !selfieFile) ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-gray-900 text-white hover:bg-black hover:shadow-2xl"}
                 `}
             >
-              {uploading ? (
+              {submitting ? (
                 <span className="flex items-center justify-center gap-3">
                   <Loader2 className="animate-spin" size={20} /> Submitting...
                 </span>

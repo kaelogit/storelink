@@ -19,14 +19,16 @@ export async function checkSlugAvailability(
   const slug = normalizeSlug(slugRaw);
   if (!slug) return "taken";
 
-  const [{ data: profileHit }, { data: storeHit }] = await Promise.all([
+  const [{ data: profileHit }, { data: retiredSlug }] = await Promise.all([
     supabase.from("profiles").select("id").eq("slug", slug).maybeSingle(),
-    supabase.from("stores").select("id").eq("slug", slug).maybeSingle(),
+    supabase.from("storefront_slug_redirects").select("old_slug").eq("old_slug", slug).maybeSingle(),
   ]);
 
   if (profileHit && currentProfileId && (profileHit as { id?: string }).id === currentProfileId) {
     return "available";
   }
 
-  return profileHit || storeHit ? "taken" : "available";
+  if (retiredSlug) return "taken";
+
+  return profileHit ? "taken" : "available";
 }

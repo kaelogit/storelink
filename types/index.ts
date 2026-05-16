@@ -1,7 +1,9 @@
+import type { StorefrontThemeNormalized } from "@/lib/storefrontTheme";
+
 export interface Store {
-  /** Present when row is built from `profiles` (profile-as-storefront). */
-  __surface?: "profile" | "merged"; /** merged = legacy `stores` row + profile as display source of truth */
-  /** Real `stores.id` when a legacy row exists; checkout keys off `owner_id` (profile id). */
+  /** Present when row is built from `profiles` (canonical). */
+  __surface?: "profile" | "merged";
+  /** Deprecated: always null when sourced from `profiles`. */
   __legacy_store_id?: string | null;
   id: string;
   owner_id: string;
@@ -39,6 +41,8 @@ export interface Store {
   loyalty_percentage?: number;
   /** product | service | both — web storefront only surfaces product tools. */
   seller_type?: string;
+  /** Parsed from `profiles.storefront_theme` — always set for profile-backed stores. */
+  storefront_theme?: StorefrontThemeNormalized;
 }
 
 export interface Category {
@@ -53,7 +57,7 @@ export interface Category {
 
 export interface Product {
   id: string;
-  /** Seller profile id — joins `stores.owner_id`. */
+  /** Seller profile id — same as `profiles.id` for storefront joins. */
   seller_id: string;
   category_id?: string | null;
   name: string;
@@ -62,11 +66,25 @@ export interface Product {
   stock_quantity: number;
   image_urls: string[];
   is_active: boolean;
-  flash_drop_price?: number; 
+  /** Canonical on `products` — use with `flash_end_time` / `flash_expiry`. */
+  is_flash_drop?: boolean | null;
+  flash_price?: number | null;
+  flash_end_time?: string | null;
+  flash_expiry?: string | null;
+  /** Aliases from `storefront_products` / RPCs only — not columns on `products`. */
+  flash_drop_price?: number;
   flash_drop_expiry?: string;
+  /** From `storefront_products` / discovery RPCs — `product_effective_checkout_unit_price(...)`. */
+  effective_checkout_unit_price?: number | null;
   
+  /** Joined seller row (from `profiles` via `fetchMergedStoreRowsForSellerIds`). */
   stores?: Store; 
   categories?: { name: string };
+  /** Cart snapshot only: original list price when `price` is the flash amount — not a DB column. */
+  compare_at_price?: number | null;
+  /** Web storefront merchandising; mobile catalog can ignore. */
+  storefront_new_arrival?: boolean | null;
+  storefront_best_seller?: boolean | null;
 }
 
 export interface Order {

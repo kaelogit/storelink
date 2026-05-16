@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { supabase } from "@/lib/supabase";
 import { isEmailVerifiedForStorefront } from "@/lib/authVerification";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -16,13 +16,40 @@ function VerifyContent() {
   const email = searchParams.get("email");
   const type = searchParams.get("type") || "signup"; 
   const nextPath = searchParams.get("next") || "/post-login";
-  const sellerIntent = searchParams.get("seller_intent") === "1";
   
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [otpExpiresAtMs, setOtpExpiresAtMs] = useState<number | null>(null);
+  const [secondsLeft, setSecondsLeft] = useState<number>(0);
+
+  const computeExpiryMs = (row: { expires_at?: string | null; created_at?: string | null } | null): number | null => {
+    if (!row) return null;
+    if (row.expires_at) {
+      const explicit = new Date(row.expires_at).getTime();
+      if (!Number.isNaN(explicit)) return explicit;
+    }
+    if (row.created_at) {
+      const created = new Date(row.created_at).getTime();
+      if (!Number.isNaN(created)) return created + 15 * 60 * 1000;
+    }
+    return null;
+  };
+
+  const refreshOtpWindow = useCallback(async () => {
+    if (!email) return;
+    const { data } = await supabase
+      .from("otp_verifications")
+      .select("created_at, expires_at")
+      .eq("email", email)
+      .maybeSingle();
+    const expiry = computeExpiryMs(
+      (data as { created_at?: string | null; expires_at?: string | null } | null) || null
+    );
+    setOtpExpiresAtMs(expiry);
+  }, [email]);
 
   useEffect(() => {
     if (!email) {
@@ -30,16 +57,34 @@ function VerifyContent() {
     }
   }, [email, router]);
 
-  /** Skip this screen if the user is already verified (e.g. signed up in another client) — avoids a dead-end when no OTP email is configured. */
   useEffect(() => {
-    if (!email) return;
+    void refreshOtpWindow();
+  }, [refreshOtpWindow]);
+
+  useEffect(() => {
+    if (!otpExpiresAtMs) {
+      setSecondsLeft(0);
+      return;
+    }
+    const tick = () => {
+      const secs = Math.max(0, Math.ceil((otpExpiresAtMs - Date.now()) / 1000));
+      setSecondsLeft(secs);
+    };
+    tick();
+    const timer = window.setInterval(tick, 1000);
+    return () => window.clearInterval(timer);
+  }, [otpExpiresAtMs]);
+
+  /** Email already verified (`is_verified === true`) — skip OTP; this is not KYC. */
+  useEffect(() => {
     let cancelled = false;
     (async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
       if (cancelled || !user) return;
-      if (user.email?.toLowerCase() !== email.toLowerCase()) return;
+      const paramEmail = String(email || "").trim().toLowerCase();
+      if (paramEmail && user.email?.toLowerCase() !== paramEmail) return;
       const ok = await isEmailVerifiedForStorefront(supabase, user);
       if (cancelled || !ok) return;
       router.replace(nextPath);
@@ -58,41 +103,73 @@ function VerifyContent() {
     setError(null);
 
     try {
-      // 1. Database Handshake (Custom OTP Table)
-      const { data: internalData, error: dbError } = await supabase
-        .from("otp_verifications")
-        .select("*")
-        .eq("email", email)
-        .eq("code", code)
-        .single();
+      const normalizedEmail = String(email || "").trim().toLowerCase();
+      const normalizedCode = code.trim();
 
-      if (dbError || !internalData) {
-        throw new Error("Invalid or expired code.");
+      // 1) Mobile parity: match by email + code directly.
+      const { data: matchedCode, error: matchError } = await supabase
+        .from("otp_verifications")
+        .select("created_at, expires_at")
+        .eq("email", normalizedEmail)
+        .eq("code", normalizedCode)
+        .maybeSingle();
+
+      if (matchError) {
+        throw new Error("Could not validate code right now. Please try again.");
       }
 
-      // 2. 🔥 THE SHIELD STAMP: Apply metadata for Mobile App Gatekeeper
-      const { error: metaError } = await supabase.auth.updateUser({
-        data: { verified_via_otp: true }
-      });
+      if (!matchedCode) {
+        // 2) If no direct match, determine whether it's expired vs replaced/invalid.
+        const { data: latestRow } = await supabase
+          .from("otp_verifications")
+          .select("code, created_at, expires_at")
+          .eq("email", normalizedEmail)
+          .maybeSingle();
 
-      if (metaError) throw metaError;
+        const latest = latestRow as
+          | {
+              code?: string | null;
+              created_at?: string | null;
+              expires_at?: string | null;
+            }
+          | null;
+        const latestExpiry = computeExpiryMs(latest);
+        if (!latest || !latestExpiry || Date.now() > latestExpiry) {
+          setOtpExpiresAtMs(0);
+          throw new Error("Code expired. Resend a new code.");
+        }
+        throw new Error("Code is invalid or replaced. Resend a new code.");
+      }
 
-      // 3. Establish the Auth Session
-      const { data: authData, error: otpError } = await supabase.auth.verifyOtp({
-        email: email as string,
-        token: code,
-        type: type === 'recovery' ? 'recovery' : 'signup',
-      });
+      const expiryMs = computeExpiryMs(
+        matchedCode as { created_at?: string | null; expires_at?: string | null } | null
+      );
+      if (!expiryMs || Date.now() > expiryMs) {
+        setOtpExpiresAtMs(0);
+        throw new Error("Code expired. Resend a new code.");
+      }
 
-      if (otpError) throw otpError;
-
-      // 4. Profile bootstrap — align with app: completion happens in onboarding flows, not here.
-      if (type !== "recovery" && authData.user) {
+      // 2. Profile bootstrap — align with app/mobile gate.
+      if (type !== "recovery") {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
         const { data: prof } = await supabase
           .from("profiles")
           .select("onboarding_completed")
-          .eq("id", authData.user.id)
+          .eq(user?.id ? "id" : "email", user?.id ?? normalizedEmail)
           .maybeSingle();
+
+        const updateQuery = supabase
+          .from("profiles")
+          .update({
+            is_verified: true,
+            subscription_plan: "none",
+            subscription_status: "none",
+            updated_at: new Date().toISOString(),
+          })
+          .eq(user?.id ? "id" : "email", user?.id ?? normalizedEmail);
+        await updateQuery;
 
         if (prof?.onboarding_completed !== true) {
           await supabase
@@ -101,38 +178,24 @@ function VerifyContent() {
               onboarding_step: "role",
               updated_at: new Date().toISOString(),
             })
-            .eq("id", authData.user.id);
-        }
-
-        if (sellerIntent) {
-          localStorage.setItem("storelink_post_auth_seller_intent", "1");
-        }
-
-        try {
-          await supabase.rpc("claim_guest_orders", {
-            p_user_id: authData.user.id,
-            p_email: email,
-            p_phone: null,
-          });
-        } catch {
-          /* best-effort merge */
+            .eq(user?.id ? "id" : "email", user?.id ?? normalizedEmail);
         }
       }
 
-      // 5. Cleanup OTP
-      await supabase.from("otp_verifications").delete().eq("email", email);
+      // 3. Cleanup OTP
+      await supabase.from("otp_verifications").delete().eq("email", normalizedEmail);
 
-      // 6. Final Routing
+      // 4. Final Routing
       if (type === "recovery") {
-        router.push(`/update-password?email=${encodeURIComponent(email as string)}`);
+        router.push(`/update-password?email=${encodeURIComponent(normalizedEmail)}`);
       } else {
         // Redirect to requested flow (supports checkout resume)
         router.push(nextPath);
       }
       
       router.refresh();
-    } catch (err: any) {
-      setError(err.message || "Verification failed.");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Verification failed.");
       setLoading(false);
     }
   };
@@ -143,18 +206,20 @@ function VerifyContent() {
     setMessage(null);
     
     try {
+      const normalizedEmail = String(email || "").trim().toLowerCase();
       const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
+      const nextExpiry = new Date(Date.now() + 15 * 60 * 1000).toISOString();
       
       await supabase
         .from("otp_verifications")
-        .upsert({ email, code: newOtp }, { onConflict: 'email' });
+        .upsert({ email: normalizedEmail, code: newOtp, expires_at: nextExpiry }, { onConflict: "email" });
 
       const emailType = type === "recovery" ? "PASSWORD_RESET" : "VERIFY_SIGNUP";
 
       const resendRes = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code: newOtp, type: emailType }),
+        body: JSON.stringify({ email: normalizedEmail, code: newOtp, type: emailType }),
       });
 
       if (!resendRes.ok) {
@@ -166,12 +231,16 @@ function VerifyContent() {
       }
 
       setMessage("A new secure code has been sent.");
+      setOtpExpiresAtMs(new Date(nextExpiry).getTime());
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to resend code.");
     } finally {
       setResending(false);
     }
   };
+
+  const hasOtpWindow = otpExpiresAtMs != null;
+  const isCodeExpired = hasOtpWindow && secondsLeft <= 0;
 
   return (
     <div className={`min-h-dvh bg-gray-50 font-sans selection:bg-emerald-100 ${STOREFRONT_SAFE_BOTTOM}`}>
@@ -190,6 +259,21 @@ function VerifyContent() {
             We sent a 6-digit code to <br />
             <span className="text-gray-900 font-bold break-all">{email}</span>
           </p>
+          {hasOtpWindow ? (
+            isCodeExpired ? (
+              <p className="mb-6 text-[11px] font-black uppercase tracking-widest text-red-600">
+                Your code expired. Resend a new code.
+              </p>
+            ) : (
+              <p className="mb-6 text-[11px] font-black uppercase tracking-widest text-amber-600">
+                Code expires in {Math.floor(secondsLeft / 60)}:{String(secondsLeft % 60).padStart(2, "0")}
+              </p>
+            )
+          ) : (
+            <p className="mb-6 text-[11px] font-black uppercase tracking-widest text-amber-600">
+              Code valid for 15 minutes.
+            </p>
+          )}
 
           <form onSubmit={handleVerify} className="space-y-6">
             {error && (
@@ -221,10 +305,10 @@ function VerifyContent() {
 
             <button
               type="submit"
-              disabled={loading || code.length < 6}
+              disabled={loading || code.length < 6 || isCodeExpired}
               className="flex min-h-[52px] w-full items-center justify-center rounded-2xl bg-gray-900 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white shadow-xl transition-all hover:bg-emerald-600 active:scale-[0.98] disabled:opacity-50 md:py-5"
             >
-              {loading ? <Loader2 className="animate-spin" /> : "Verify & Launch"}
+              {loading ? <Loader2 className="animate-spin" /> : "Verify"}
             </button>
           </form>
 
@@ -251,7 +335,7 @@ function VerifyContent() {
               {resending ? "Generating..." : "Resend New Code"}
             </button>
 
-            <Link href={`/signup?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`} className="flex min-h-[44px] items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 transition-colors hover:text-gray-900">
+            <Link href={`/signup?next=${encodeURIComponent(nextPath)}`} className="flex min-h-[44px] items-center justify-center gap-2 text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 transition-colors hover:text-gray-900">
               <ArrowLeft size={12} /> Use a different email
             </Link>
           </div>

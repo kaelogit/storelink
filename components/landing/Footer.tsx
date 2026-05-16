@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Twitter, Instagram, Linkedin, LayoutDashboard, Coins } from "lucide-react";
+import { Twitter, Instagram, Linkedin, LayoutDashboard } from "lucide-react";
 
 const TiktokIcon = ({ size = 18 }: { size?: number }) => (
   <svg 
@@ -21,7 +21,21 @@ const TiktokIcon = ({ size = 18 }: { size?: number }) => (
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white pt-10 pb-8 px-6 font-sans border-t border-gray-800">
-      
+      <div className="max-w-6xl mx-auto mb-10 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-6 py-8 md:flex md:items-center md:justify-between md:gap-8">
+        <div className="mb-6 md:mb-0">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-2">Sellers</p>
+          <p className="text-lg md:text-xl font-black text-white tracking-tight leading-snug">
+            Your branded link, checkout, and discovery—<span className="text-emerald-400">start free on Standard.</span>
+          </p>
+        </div>
+        <Link
+          href="/signup?next=%2Fpost-login"
+          className="inline-flex min-h-[48px] w-full md:w-auto shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3.5 text-xs font-black uppercase tracking-widest text-gray-900 shadow-lg transition hover:bg-emerald-400 hover:text-gray-900 active:scale-[0.98]"
+        >
+          Open your storefront
+        </Link>
+      </div>
+
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8 mb-12 text-left">
         
         <div className="col-span-2 md:col-span-1 flex flex-col items-start">
@@ -36,9 +50,8 @@ export default function Footer() {
         <div className="flex flex-col items-start">
            <h4 className="font-bold text-gray-200 mb-4 text-xs uppercase tracking-wider text-emerald-500">Platform</h4>
            <ul className="space-y-3 text-sm text-gray-400 font-medium">
-            
              <li><Link href="/marketplace" className="hover:text-white transition">Marketplace</Link></li>
-             
+             <li><Link href="/pricing" className="hover:text-white transition">Pricing</Link></li>
            </ul>
         </div>
 
@@ -68,7 +81,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-6xl mx-auto border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-         <p>© 2025 StoreLink Inc. Lagos, Nigeria.</p>
+         <p>© 2026 StoreLink Inc. Lagos, Nigeria.</p>
          <div className="flex gap-6">
             <Link href="/about" className="hover:text-white transition">About Us</Link>
             <Link href="/privacy" className="hover:text-gray-300 transition">Privacy Policy</Link>

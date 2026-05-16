@@ -1,12 +1,9 @@
 import { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import GlobalCartSidebar from "@/components/shared/GlobalCartSidebar";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { storefrontAbsolutePath, storefrontSiteBase } from "@/lib/storefrontPublicUrl";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   themeColor: "#10b981",
@@ -124,7 +121,7 @@ export default function RootLayout({
         ) : null}
       </head>
       <body
-        className={`${inter.className} antialiased selection:bg-emerald-100 selection:text-emerald-900 text-gray-900 bg-background`}
+        className="antialiased selection:bg-emerald-100 selection:text-emerald-900 text-gray-900 bg-background"
       >
         <CartProvider>
           <main className="min-h-dvh">

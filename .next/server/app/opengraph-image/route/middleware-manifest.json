@@ -11,12 +11,12 @@
         "server/interception-route-rewrite-manifest.js",
         "server/server-reference-manifest.js",
         "server/app/opengraph-image/route_client-reference-manifest.js",
-        "server/edge/chunks/56601__next-internal_server_app_opengraph-image_route_actions_2805dbd5.js",
-        "server/edge/chunks/[root-of-the-server]__fa83bed8._.js",
-        "server/edge/chunks/6171c_next_dist_esm_build_templates_edge-app-route_14d5020f.js",
-        "server/edge/chunks/6171c_next_dist_a900589b._.js",
-        "server/edge/chunks/6171c_next_dist_compiled_@vercel_og_98c25921._.js",
-        "server/edge/chunks/turbopack-storelink-app-and-web_store-link-storefront_edge-wrapper_524c74ce.js"
+        "server/edge/chunks/_next-internal_server_app_opengraph-image_route_actions_238d033d.js",
+        "server/edge/chunks/[root-of-the-server]__7e8dcf65._.js",
+        "server/edge/chunks/node_modules_next_dist_esm_build_templates_edge-app-route_da9cc651.js",
+        "server/edge/chunks/node_modules_next_dist_eab99bcf._.js",
+        "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_16be1ace._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_6bf159ee.js"
       ],
       "name": "app/opengraph-image/route",
       "page": "/opengraph-image/route",
@@ -29,11 +29,11 @@
       "wasm": [
         {
           "name": "wasm_fdb56e4cc5936d29",
-          "filePath": "server/edge/chunks/6171c_next_dist_compiled_@vercel_og_resvg_23ace1ce.wasm"
+          "filePath": "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_resvg_23ace1ce.wasm"
         },
         {
           "name": "wasm_1ccdc983b1fd9f87",
-          "filePath": "server/edge/chunks/6171c_next_dist_compiled_@vercel_og_yoga_23ace1ce.wasm"
+          "filePath": "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_yoga_23ace1ce.wasm"
         }
       ],
       "assets": [
@@ -43,7 +43,7 @@
         }
       ],
       "env": {
-        "__NEXT_BUILD_ID": "XF1LAxxWlS7B0HjZEA3aE",
+        "__NEXT_BUILD_ID": "AEPj5PK2e6FsWArvHgK_b",
         "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "LNgsvnNaU8kxE6CBA0qSX+zNN4flm/SQ0bIG3yKEEG0=",
         "__NEXT_PREVIEW_MODE_ID": "17d63200462cb62147e03b64ba9df66b",
         "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "f2b315d8cf9425914eee731d9edafc65576310361134824ef1d306c92061d001",

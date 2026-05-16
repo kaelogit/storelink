@@ -39,14 +39,18 @@ export async function GET(request: NextRequest) {
       const { data: { user } } = await supabase.auth.getUser()
       
       if (user) {
-        // Check if store exists to decide where to send them
-        const { data: store } = await supabase
-          .from('stores')
-          .select('id')
-          .eq('owner_id', user.id)
+        // Onboarding complete → dashboard; otherwise continue to `next` (e.g. /onboarding)
+        const { data: prof } = await supabase
+          .from("profiles")
+          .select("onboarding_completed, onboarding_step")
+          .eq("id", user.id)
           .maybeSingle()
 
-        const forwardTo = store ? '/dashboard' : next
+        const onboardingDone =
+          prof?.onboarding_completed === true ||
+          String(prof?.onboarding_step || "").toLowerCase() === "done"
+
+        const forwardTo = onboardingDone ? "/dashboard" : next
         const target = forwardTo.startsWith('/') ? forwardTo : `/${forwardTo}`
         return NextResponse.redirect(`${origin}${target}`)
       }

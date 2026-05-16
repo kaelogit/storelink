@@ -8,6 +8,7 @@ import { Product, Store } from "@/types";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
 import { compactSellerRegion } from "@/lib/displayRegion";
 import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
+import { isProductFlashDropActive, productDisplayPrice, productFlashPriceNumber } from "@/lib/productFlashDrop";
 
 interface MarketplaceProps {
   products: Product[];
@@ -58,6 +59,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
         
         <div className="text-center mb-10" id="trending">
            <h2 className="text-3xl font-bold text-gray-900 uppercase tracking-tighter italic">Trending Now</h2>
+           
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-8">
@@ -80,12 +82,12 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
         {view === 'products' ? (
           <div className="grid grid-rows-2 grid-flow-col auto-cols-[50%] gap-3 overflow-x-auto snap-x snap-mandatory pb-4 md:grid-cols-4 lg:grid-cols-5 md:grid-rows-none md:grid-flow-row md:auto-cols-auto md:overflow-visible md:pb-0 md:gap-4">
             {filteredProducts.map(product => {
-              const isFlash = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
+              const isFlash = isProductFlashDropActive(product);
               const store = getProductStoreBySeller(product.seller_id);
               const regionLabel = store ? compactSellerRegion(store) : "";
               const isDiamond = tierOfStore(store) === "diamond";
               
-              const activePrice = isFlash ? (product.flash_drop_price || product.price) : product.price;
+              const activePrice = productDisplayPrice({ ...product, price: Number(product.price) });
 
               const rewardCoins = store?.loyalty_enabled 
                 ? Math.floor(activePrice * ((store?.loyalty_percentage || 0) / 100)) 
@@ -112,7 +114,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                     
                     {isFlash ? (
                       <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20 animate-pulse">
-                         <Zap size={10} fill="currentColor" /> LIVE DROP
+                         <Zap size={10} fill="currentColor" /> FLASH SALES
                       </div>
                     ) : isDiamond && (
                       <span className="absolute top-2 left-2 bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md flex items-center gap-1 z-20 uppercase">
@@ -150,8 +152,9 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
                         <div>
                            <p className="text-[9px] font-bold text-gray-300 line-through">₦{product.price.toLocaleString()}</p>
                            <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">
-                             ₦{(product.flash_drop_price || 0).toLocaleString()}
-                           </p>                        </div>
+                             ₦{(productFlashPriceNumber(product) ?? product.price).toLocaleString()}
+                           </p>
+                        </div>
                       ) : (
                         <p className="text-emerald-700 font-black text-sm md:text-base">₦{product.price.toLocaleString()}</p>
                       )}

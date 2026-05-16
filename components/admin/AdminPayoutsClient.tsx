@@ -4,10 +4,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Loader2, RefreshCw, AlertTriangle, Banknote, ArrowLeft } from "lucide-react";
+import { formatPayoutErrorForSellerDisplay } from "@/lib/payoutErrorCopy";
 
 type AdminOrderRow = {
   id: string;
   seller_id?: string | null;
+  user_id?: string | null;
   status?: string | null;
   payout_status?: string | null;
   payout_eligible_at?: string | null;
@@ -17,11 +19,9 @@ type AdminOrderRow = {
   total_amount?: number | null;
   currency_code?: string | null;
   origin_channel?: string | null;
-  guest_name?: string | null;
-  guest_email?: string | null;
-  is_guest_checkout?: boolean | null;
   created_at?: string | null;
   updated_at?: string | null;
+  buyer?: { id?: string; email?: string | null; full_name?: string | null; display_name?: string | null } | null;
   store?: { name: string | null; slug: string | null } | null;
 };
 
@@ -196,7 +196,10 @@ export default function AdminPayoutsClient() {
                     <td className="px-5 py-4 font-mono text-[10px] text-gray-400">
                       #{String(o.id).slice(0, 8)}
                       <span className="block text-gray-600 mt-1 normal-case">
-                        {o.guest_name || o.guest_email || "—"}
+                        {o.buyer?.full_name?.trim() ||
+                          o.buyer?.display_name?.trim() ||
+                          o.buyer?.email?.trim() ||
+                          (o.user_id ? `Buyer ${String(o.user_id).slice(0, 8)}…` : "—")}
                       </span>
                     </td>
                     <td className="px-5 py-4 text-gray-300 font-medium">
@@ -222,7 +225,9 @@ export default function AdminPayoutsClient() {
                     </td>
                     <td className="px-5 py-4 text-[10px] text-gray-500 uppercase font-bold">{o.origin_channel || "—"}</td>
                     <td className="px-5 py-4 text-[11px] text-gray-400 max-w-[280px]">
-                      <span className="line-clamp-4 whitespace-pre-wrap">{o.payout_error_log || "—"}</span>
+                      <span className="line-clamp-4 whitespace-pre-wrap">
+                        {formatPayoutErrorForSellerDisplay(o.payout_error_log) || "—"}
+                      </span>
                     </td>
                     <td className="px-5 py-4 text-right">
                       {canRetry ? (

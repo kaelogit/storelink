@@ -108,7 +108,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\Kaelo",
+    "outputFileTracingRoot": "C:\\Users\\Kaelo\\storelink-app-and-web\\store-link-storefront",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -298,7 +298,7 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "C:\\Users\\Kaelo"
+      "root": "C:\\Users\\Kaelo\\storelink-app-and-web\\store-link-storefront"
     },
     "distDirRoot": ".next",
     "_originalRedirects": [
@@ -315,7 +315,7 @@
     ]
   },
   "appDir": "C:\\Users\\Kaelo\\storelink-app-and-web\\store-link-storefront",
-  "relativeAppDir": "storelink-app-and-web\\store-link-storefront",
+  "relativeAppDir": "",
   "files": [
     ".next\\routes-manifest.json",
     ".next\\server\\pages-manifest.json",

@@ -6,7 +6,7 @@ import ProductGallery from "@/components/shared/ProductGallery";
 import FlashTimer from "@/components/shared/FlashTimer";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import type { Product } from "@/types";
 import { LayoutDashboard, ShieldCheck, MapPin, Truck, Zap, Package, Coins } from "lucide-react";
 import {
   PROFILE_STOREFRONT_SELECT,
@@ -15,6 +15,17 @@ import {
 } from "@/lib/profileAsStorefront";
 import { compactSellerRegion, displayLocationFull } from "@/lib/displayRegion";
 import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
+import { absoluteUrlForOpenGraph, storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
+import { storefrontRootDomain } from "@/lib/storefrontHosts";
+import {
+  isProductFlashDropActive,
+  productDisplayPrice,
+  productFlashEndIso,
+  productFlashPriceNumber,
+} from "@/lib/productFlashDrop";
+import { normalizeStorefrontTheme, themeToCssVars, storefrontFontClass } from "@/lib/storefrontTheme";
+import { cn } from "@/lib/utils";
+import ProductMoreFromSellerGrid from "@/components/storefront/public/ProductMoreFromSellerGrid";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -27,26 +38,52 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const params = await props.params;
   const { data: product } = await supabase.from("storefront_products").select("*").eq("id", params.id).single();
 
-  if (!product) return { title: "Product Not Found" };
+  if (!product) return { title: "Product Not Found", robots: { index: false, follow: true } };
 
-  const p: any = product;
-  const [{ data: profile }, { data: legacyStore }] = await Promise.all([
-    supabase.from("profiles").select("display_name, full_name").eq("id", p.seller_id).maybeSingle(),
-    supabase.from("stores").select("name").eq("owner_id", p.seller_id).maybeSingle(),
-  ]);
-  const storeName =
-    profile?.full_name?.trim() || profile?.display_name?.trim() || legacyStore?.name?.trim() || "Store";
+  const p = product as Product;
 
-  const isFlashActive = p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date();
-  const displayPrice = isFlashActive ? p.flash_drop_price : p.price;
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("display_name, full_name, slug")
+    .eq("id", p.seller_id)
+    .maybeSingle();
+  const storeName = profile?.full_name?.trim() || profile?.display_name?.trim() || "Store";
+  const sellerSlug = String(profile?.slug || "").trim();
+  const root = storefrontRootDomain();
+  const tenantHost = sellerSlug && root ? `${sellerSlug}.${root}` : "";
+
+  const displayPrice = productDisplayPrice(p);
+  const priceLine = `₦${displayPrice.toLocaleString()}`;
+  const productUrl = storefrontAbsolutePath(`/product/${encodeURIComponent(p.id)}`);
+  const desc =
+    (p.description && String(p.description).trim()) ||
+    `${p.name} — ${priceLine}. Sold by ${storeName} on StoreLink.${tenantHost ? ` Shop: ${tenantHost}.` : ""}`;
+
+  const rawImages = Array.isArray(p.image_urls) ? p.image_urls : [];
+  const legacyImg = (p as { image_url?: string | null }).image_url;
+  const first = (rawImages[0] || legacyImg || "").trim();
+  const ogImage = absoluteUrlForOpenGraph(first || null, "/og-image.jpg");
+
+  const ogTitle = tenantHost ? `${p.name} · ${storeName} (${tenantHost})` : `${p.name} · ${storeName}`;
 
   return {
-    title: `${p.name} - ₦${displayPrice.toLocaleString()} | StoreLink`,
-    description: p.description || `Buy ${p.name} from ${storeName} on StoreLink.`,
+    title: `${p.name} — ${priceLine}`,
+    description: desc,
+    alternates: { canonical: productUrl },
     openGraph: {
-      title: `${p.name} | ${storeName}`,
-      description: `Price: ₦${displayPrice.toLocaleString()}. Checkout securely on StoreLink.`,
-      images: p.image_urls || [],
+      title: ogTitle,
+      description: desc,
+      url: productUrl,
+      siteName: "StoreLink",
+      locale: "en_NG",
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: p.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description: desc,
+      images: [ogImage],
     },
   };
 }
@@ -57,31 +94,27 @@ export default async function ProductPage(props: PageProps) {
 
   if (!product) return notFound();
 
-  const [{ data: profile }, { data: legacyStore }] = await Promise.all([
-    supabase.from("profiles").select(`${PROFILE_STOREFRONT_SELECT}, account_status`).eq("id", product.seller_id).maybeSingle(),
-    supabase.from("stores").select("*, owner_email").eq("owner_id", product.seller_id).maybeSingle(),
-  ]);
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select(`${PROFILE_STOREFRONT_SELECT}, account_status`)
+    .eq("id", product.seller_id)
+    .maybeSingle();
 
-  if (!profile && !legacyStore) return notFound();
+  if (!profile) return notFound();
 
-  const store = profile
-    ? profileRowToLegacyStoreShape(profile as ProfileStorefrontRow, {
-        legacyStoreId: legacyStore?.id ?? null,
-        ownerEmail: legacyStore?.owner_email ?? null,
-      })
-    : legacyStore!;
+  const store = profileRowToLegacyStoreShape(profile as ProfileStorefrontRow);
 
   const isStockAvailable = product.stock_quantity > 0;
-  const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
+  const isFlashActive = isProductFlashDropActive(product);
 
-  const currentPrice = isFlashActive ? product.flash_drop_price : product.price;
+  const currentPrice = productDisplayPrice(product);
   const potentialReward = store.loyalty_enabled
     ? Math.floor(currentPrice * ((store.loyalty_percentage || 0) / 100))
     : 0;
 
   const { data: moreRows } = await supabase
     .from("storefront_products")
-    .select("id, name, price, image_urls, stock_quantity, flash_drop_expiry, flash_drop_price")
+    .select("*")
     .eq("seller_id", product.seller_id)
     .eq("is_active", true)
     .neq("id", product.id)
@@ -90,9 +123,19 @@ export default async function ProductPage(props: PageProps) {
 
   const moreFromSeller = moreRows || [];
 
+  const sfTheme = normalizeStorefrontTheme(store.storefront_theme);
+
   return (
-    <div className={`flex min-h-dvh flex-col bg-white font-sans ${STOREFRONT_SAFE_BOTTOM}`}>
-      <ProductHeader storeSlug={store.slug} storeLogo={store.logo_url} />
+    <div
+      className={cn(
+        "storefront-root flex min-h-dvh flex-col bg-white font-sans",
+        sfTheme.font === "sans" ? "font-sans" : storefrontFontClass(sfTheme.font),
+        STOREFRONT_SAFE_BOTTOM,
+      )}
+      style={themeToCssVars(sfTheme)}
+      data-sf-font={sfTheme.font}
+    >
+      <ProductHeader storeSlug={store.slug} storeLogo={store.logo_url ?? undefined} />
 
       <main className={`mx-auto w-full max-w-6xl flex-1 py-4 pb-8 md:py-12 md:pb-12 ${STOREFRONT_GUTTER_X}`}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
@@ -103,33 +146,33 @@ export default async function ProductPage(props: PageProps) {
           <div className="flex flex-col justify-center">
             <div className="mb-8">
               {isFlashActive && (
-                <div className="mb-6 text-emerald-600">
-                  <FlashTimer expiry={product.flash_drop_expiry} />
+                <div className="mb-6 sf-accent-text">
+                  <FlashTimer expiry={productFlashEndIso(product)!} />
                 </div>
               )}
 
-              <h1 className="text-2xl md:text-4xl font-black text-gray-900 mb-4 leading-[1.1] tracking-tight uppercase italic">
+              <h1 className="sf-heading text-2xl md:text-4xl font-black text-gray-900 mb-4 leading-[1.1] tracking-tight uppercase italic">
                 {product.name}
               </h1>
 
               <div className="flex flex-wrap items-center gap-4">
                 {isFlashActive ? (
                   <div className="flex items-center gap-3">
-                    <p className="text-3xl font-black text-emerald-600 tracking-tighter">
-                      ₦ {product.flash_drop_price.toLocaleString()}
+                    <p className="sf-price text-3xl font-black tracking-tighter">
+                      ₦ {(productFlashPriceNumber(product) ?? product.price).toLocaleString()}
                     </p>
                     <p className="text-sm font-bold text-gray-400 line-through tracking-tighter decoration-red-500/50 decoration-2">
                       ₦ {product.price.toLocaleString()}
                     </p>
                   </div>
                 ) : (
-                  <p className="text-3xl font-black text-emerald-600 tracking-tighter">₦ {product.price.toLocaleString()}</p>
+                  <p className="sf-price text-3xl font-black tracking-tighter">₦ {product.price.toLocaleString()}</p>
                 )}
 
                 <span
                   className={`px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border-2 shadow-sm ${
                     isStockAvailable
-                      ? "bg-emerald-50 text-emerald-700 border-emerald-100"
+                      ? "border-[color:var(--sf-accent-soft)] bg-[var(--sf-accent-softer)] sf-accent-text"
                       : "bg-red-50 text-red-700 border-red-100"
                   }`}
                 >
@@ -147,13 +190,13 @@ export default async function ProductPage(props: PageProps) {
               </div>
             </div>
 
-            <div className="mb-6 flex items-center gap-4 p-4 bg-emerald-50/30 rounded-[2rem] border border-emerald-100/50 group transition-all hover:bg-emerald-50">
-              <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm text-emerald-600 border border-emerald-50 group-hover:scale-110 transition-transform">
+            <div className="mb-6 flex items-center gap-4 rounded-[2rem] border border-[color:var(--sf-accent-soft)] bg-[var(--sf-accent-softer)] p-4 transition-colors group hover:bg-[var(--sf-accent-soft)]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/60 bg-white shadow-sm sf-accent-text transition-transform group-hover:scale-110">
                 <MapPin size={20} />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-black text-emerald-800/50 uppercase tracking-[0.2em] leading-none mb-1">Ships From</p>
-                <p className="text-base font-black text-emerald-900 tracking-tight">
+                <p className="mb-1 text-[10px] font-black uppercase leading-none tracking-[0.2em] text-gray-500">Ships From</p>
+                <p className="text-base font-black tracking-tight text-gray-900">
                   {displayLocationFull({
                     location: store.location,
                     location_city: store.location_city,
@@ -220,50 +263,17 @@ export default async function ProductPage(props: PageProps) {
             <div className="flex items-end justify-between gap-4 mb-6">
               <div>
                 <h2 className="text-lg md:text-xl font-black text-gray-900 uppercase tracking-tight">More from this seller</h2>
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Up to 10 recent listings</p>
               </div>
               {store.slug ? (
                 <Link
                   href={`/${store.slug}`}
-                  className="text-[10px] font-black uppercase tracking-widest text-emerald-600 hover:underline shrink-0"
+                  className="text-[10px] font-black uppercase tracking-widest sf-accent-text hover:underline shrink-0"
                 >
                   View store
                 </Link>
               ) : null}
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
-              {moreFromSeller.map((p: { id: string; name: string; price: number; image_urls?: string[]; stock_quantity?: number; flash_drop_expiry?: string | null; flash_drop_price?: number | null }) => {
-                const flash = p.flash_drop_expiry && new Date(p.flash_drop_expiry) > new Date();
-                const showPrice = flash && p.flash_drop_price != null ? p.flash_drop_price : p.price;
-                const img = p.image_urls?.[0];
-                return (
-                  <Link
-                    key={p.id}
-                    href={`/product/${p.id}`}
-                    className="group bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:border-emerald-200 hover:shadow-md transition-all"
-                  >
-                    <div className="relative aspect-square bg-gray-50">
-                      {img ? (
-                        <Image src={img} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-200">
-                          <Package size={28} />
-                        </div>
-                      )}
-                      {p.stock_quantity === 0 && (
-                        <div className="absolute inset-0 bg-white/70 flex items-center justify-center">
-                          <span className="text-[9px] font-black uppercase text-red-600">Sold out</span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-3">
-                      <p className="text-[11px] font-black text-gray-900 uppercase tracking-tight line-clamp-2 min-h-[2.5rem]">{p.name}</p>
-                      <p className="text-sm font-black text-emerald-700 mt-2">₦{Number(showPrice).toLocaleString()}</p>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+            <ProductMoreFromSellerGrid products={moreFromSeller} store={store} />
           </section>
         )}
       </main>
@@ -284,7 +294,7 @@ export default async function ProductPage(props: PageProps) {
           href="/"
           className="inline-flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity duration-500"
         >
-          <LayoutDashboard size={20} className="text-emerald-600" />
+          <LayoutDashboard size={20} className="sf-accent-text" />
           <span className="font-black text-gray-900 uppercase tracking-widest text-sm">StoreLink social engine</span>
         </Link>
         <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.4em] mt-6">Secure Cloud Infrastructure • 2025</p>

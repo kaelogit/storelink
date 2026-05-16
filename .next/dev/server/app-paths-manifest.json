@@ -1,16 +1,13 @@
 {
-  "/account/orders/[id]/page": "app/account/orders/[id]/page.js",
-  "/account/orders/page": "app/account/orders/page.js",
-  "/account/settings/page": "app/account/settings/page.js",
-  "/account/wallet/page": "app/account/wallet/page.js",
   "/admin/page": "app/admin/page.js",
+  "/admin/verifications/page": "app/admin/verifications/page.js",
   "/api/admin/snapshot/route": "app/api/admin/snapshot/route.js",
-  "/dashboard/loyalty/page": "app/dashboard/loyalty/page.js",
-  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
-  "/dashboard/orders/page": "app/dashboard/orders/page.js",
+  "/api/admin/verifications/route": "app/api/admin/verifications/route.js",
+  "/api/uploads/r2/route": "app/api/uploads/r2/route.js",
+  "/api/verification/submit/route": "app/api/verification/submit/route.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/verification/page": "app/dashboard/verification/page.js",
   "/login/page": "app/login/page.js",
-  "/marketplace/page": "app/marketplace/page.js",
-  "/page": "app/page.js"
+  "/post-login/page": "app/post-login/page.js",
+  "/verify/page": "app/verify/page.js"
 }

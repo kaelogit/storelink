@@ -157,13 +157,6 @@ export default function AdminDashboardPage() {
         </p>
       )}
 
-      {overview.guests.unclaimedCheckouts > 0 && (
-        <p className="text-[11px] text-gray-400 font-medium border border-gray-800 bg-gray-900/40 rounded-xl px-3 py-2">
-          Guest storefront checkouts not claimed: <span className="font-black text-gray-200">{overview.guests.unclaimedCheckouts}</span>
-        </p>
-      )}
-
-      <AdminRecentActivity snap={overview} />
 
       <div className="pt-12 text-center">
         <p className="text-gray-600 text-[9px] font-black uppercase tracking-[0.4em] opacity-50">StoreLink storefront admin · 2026</p>

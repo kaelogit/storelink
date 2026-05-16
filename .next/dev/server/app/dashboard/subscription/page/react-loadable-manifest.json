@@ -1,9 +1,9 @@
 {
-  "[project]/storelink-app-and-web/store-link-storefront/node_modules/react-paystack/dist/index.es.js [app-client] (ecmascript, next/dynamic entry)": {
-    "id": "[project]/storelink-app-and-web/store-link-storefront/node_modules/react-paystack/dist/index.es.js [app-client] (ecmascript, next/dynamic entry)",
+  "[project]/node_modules/react-paystack/dist/index.es.js [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/node_modules/react-paystack/dist/index.es.js [app-client] (ecmascript, next/dynamic entry)",
     "files": [
-      "static/chunks/6171c_react-paystack_dist_index_es_aa569dbb.js",
-      "static/chunks/6171c_react-paystack_dist_index_es_f01cfe6e.js"
+      "static/chunks/node_modules_react-paystack_dist_index_es_9e9668e7.js",
+      "static/chunks/node_modules_react-paystack_dist_index_es_dac702c5.js"
     ]
   }
 }

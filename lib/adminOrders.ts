@@ -1,14 +1,12 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 /**
- * `public.orders` columns used by storefront-era checkout (see migrations
- * `20260801000000_storefront_checkout_modes_and_guest_claim.sql`,
- * `20260811160000_create_new_order_p_seller_id.sql`).
- *
- * Not included: legacy `store_id`, `customer_name` (RPC args map to guest_* / profiles).
+ * `public.orders` columns used by storefront admin and payouts (see
+ * `20260811160000_create_new_order_p_seller_id.sql`, `20261010120000_create_new_order_profile_ssot.sql`). Account buyer contact is resolved in
+ * `profiles` via `orders_user_id_fkey` where needed.
  */
 export const ADMIN_ORDERS_CORE_COLUMNS =
-  "id, user_id, seller_id, total_amount, currency_code, status, payout_status, payout_eligible_at, payout_error_log, payout_retry_count, payment_reference, origin_channel, checkout_mode, is_guest_checkout, guest_name, guest_email, guest_phone, shipping_address, coin_redeemed, created_at, updated_at";
+  "id, user_id, seller_id, total_amount, currency_code, status, payout_status, payout_eligible_at, payout_error_log, payout_retry_count, payment_reference, origin_channel, checkout_mode, shipping_address, coin_redeemed, created_at, updated_at";
 
 export type OrderRowWithStore<T extends { seller_id?: string | null }> = T & {
   store: { name: string | null; slug: string | null } | null;

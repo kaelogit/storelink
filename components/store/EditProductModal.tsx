@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
-import { X, Loader2, Save, Trash2, Plus } from "lucide-react";
+import { buildR2Key, uploadFileToR2 } from "@/lib/mediaUpload";
+import { X, Loader2, Save, Trash2, Plus, Sparkles, Award } from "lucide-react";
 import { Product } from "@/types";
 import Image from "next/image";
 
@@ -24,6 +25,8 @@ export default function EditProductModal({ product, isOpen, onClose, onSuccess }
     stock: "",
     description: "",
     categoryId: "",
+    storefrontNewArrival: false,
+    storefrontBestSeller: false,
   });
 
   const [existingImages, setExistingImages] = useState<string[]>([]);
@@ -37,7 +40,9 @@ export default function EditProductModal({ product, isOpen, onClose, onSuccess }
         price: product.price.toString(),
         stock: product.stock_quantity.toString(),
         description: product.description || "",
-        categoryId: (product as any).category_id || "", 
+        categoryId: (product as any).category_id || "",
+        storefrontNewArrival: Boolean(product.storefront_new_arrival),
+        storefrontBestSeller: Boolean(product.storefront_best_seller),
       });
       setExistingImages(product.image_urls || []);
       setNewFiles([]);
@@ -84,12 +89,18 @@ export default function EditProductModal({ product, isOpen, onClose, onSuccess }
       const finalImageUrls = [...existingImages];
       const folder = product.seller_id || "misc";
       for (const file of newFiles) {
-        const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).substring(7)}`;
-        const { error } = await supabase.storage.from("products").upload(fileName, file);
-        if (error) throw error;
-        const { data } = supabase.storage.from("products").getPublicUrl(fileName);
-        finalImageUrls.push(data.publicUrl);
+        const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+        const key = buildR2Key("product-images", `${folder}/${Date.now()}-${Math.random().toString(36).substring(7)}.${ext}`);
+        const publicUrl = await uploadFileToR2({
+          bucket: "product-images",
+          key,
+          file,
+        });
+        finalImageUrls.push(publicUrl);
       }
+
+      const na = Boolean(formData.storefrontNewArrival);
+      const bs = Boolean(formData.storefrontBestSeller);
 
       const { error } = await supabase
         .from("products")
@@ -100,6 +111,8 @@ export default function EditProductModal({ product, isOpen, onClose, onSuccess }
           description: formData.description,
           category_id: formData.categoryId || null,
           image_urls: finalImageUrls,
+          storefront_new_arrival: na,
+          storefront_best_seller: na ? false : bs,
         })
         .eq("id", product.id);
 
@@ -157,6 +170,42 @@ export default function EditProductModal({ product, isOpen, onClose, onSuccess }
                 {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
               </select>
               <textarea maxLength={500} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl h-24 resize-none" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
+              <div className="rounded-xl border border-gray-200 bg-gray-50/80 p-4 space-y-3">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Web storefront only</p>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.storefrontNewArrival}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        storefrontNewArrival: e.target.checked,
+                        storefrontBestSeller: e.target.checked ? false : formData.storefrontBestSeller,
+                      })
+                    }
+                    className="rounded border-gray-300 text-violet-600 focus:ring-violet-500"
+                  />
+                  <Sparkles size={16} className="text-violet-500 shrink-0" />
+                  <span className="text-sm font-semibold text-gray-800">New arrivals strip</span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.storefrontBestSeller}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        storefrontBestSeller: e.target.checked,
+                        storefrontNewArrival: e.target.checked ? false : formData.storefrontNewArrival,
+                      })
+                    }
+                    className="rounded border-gray-300 text-amber-600 focus:ring-amber-500"
+                  />
+                  <Award size={16} className="text-amber-500 shrink-0" />
+                  <span className="text-sm font-semibold text-gray-800">Best sellers strip</span>
+                </label>
+                <p className="text-[10px] font-medium text-gray-500">Only one strip can be on per product.</p>
+              </div>
             </div>
             {errorMsg && (
                 <div className="text-red-600 text-sm font-bold text-center mb-4 bg-red-50 p-2 rounded-lg">

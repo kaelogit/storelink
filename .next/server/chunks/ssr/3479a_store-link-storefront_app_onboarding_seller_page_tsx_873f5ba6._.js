@@ -1,3 +1,0 @@
-module.exports=[97511,a=>{"use strict";var b=a.i(62950),c=a.i(44252),d=a.i(19607);function e(){let a=(0,d.useRouter)(),b="1"===(0,d.useSearchParams)().get("upgrade");return(0,c.useEffect)(()=>{a.replace(b?"/onboarding/seller/identity?upgrade=1":"/onboarding/seller/identity")},[a,b]),null}function f(){return(0,b.jsx)(c.Suspense,{fallback:(0,b.jsx)("div",{className:"min-h-screen flex items-center justify-center bg-gray-50",children:(0,b.jsx)("span",{className:"text-[10px] font-black uppercase tracking-widest text-gray-400",children:"Loading…"})}),children:(0,b.jsx)(e,{})})}a.s(["default",()=>f])}];
-
-//# sourceMappingURL=3479a_store-link-storefront_app_onboarding_seller_page_tsx_873f5ba6._.js.map

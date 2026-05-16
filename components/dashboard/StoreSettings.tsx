@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { buildR2Key, uploadFileToR2 } from "@/lib/mediaUpload";
 import { Loader2, Save, Upload, Camera, Image as ImageIcon, CheckCircle2, Check } from "lucide-react";
 import GooglePlacesAutocomplete from "@/components/address/GooglePlacesAutocomplete";
 import PlaceDerivedLocationReadout from "@/components/address/PlaceDerivedLocationReadout";
@@ -10,6 +11,7 @@ import { getGoogleMapsBrowserKey } from "@/lib/googlePlacesParsed";
 import type { ParsedGooglePlace } from "@/lib/googlePlacesParsed";
 import { ACCOUNT_PROFILE_SELECT } from "@/lib/accountProfileFields";
 import { coordsNearlyEqual } from "@/lib/accountProfileParity";
+import { assertHomeCityStateIfAddressFilled, assertShopCityStateIfAddressFilled, missingCityOrState } from "@/lib/addressCityState";
 
 type ProfileAddressRow = {
   is_seller: boolean | null;
@@ -63,10 +65,7 @@ export default function StoreSettings({ store, onUpdate }: { store: any; onUpdat
   const loadAddresses = useCallback(async () => {
     if (!ownerId) return;
 
-    const [{ data: p }, { data: storeData }] = await Promise.all([
-      supabase.from("profiles").select(ACCOUNT_PROFILE_SELECT).eq("id", ownerId).maybeSingle(),
-      supabase.from("stores").select("id, location").eq("owner_id", ownerId).maybeSingle(),
-    ]);
+    const { data: p } = await supabase.from("profiles").select(ACCOUNT_PROFILE_SELECT).eq("id", ownerId).maybeSingle();
 
     const prof = p as ProfileAddressRow | null;
     setIsSeller(Boolean(prof?.is_seller));
@@ -120,8 +119,8 @@ export default function StoreSettings({ store, onUpdate }: { store: any; onUpdat
     setHomeCountryName((prof?.location_country || "").trim());
     setHomeCountryCode((prof?.location_country_code || "").trim().toUpperCase());
 
-    if (prof?.is_seller && storeData?.location?.trim()) {
-      setStoreAddress(String(storeData.location).trim());
+    if (prof?.is_seller && (prof as { shop_address?: string | null }).shop_address?.trim()) {
+      setStoreAddress(String((prof as { shop_address?: string | null }).shop_address).trim());
     } else {
       setStoreAddress("");
     }
@@ -189,22 +188,25 @@ export default function StoreSettings({ store, onUpdate }: { store: any; onUpdat
         if (!coordsOk(homeLat, homeLng)) {
           throw new Error("Choose your home address from the suggestions list so city, state, and coordinates stay in sync.");
         }
-        if (!locationCity.trim() || !locationState.trim()) {
-          throw new Error("Pick a full address from the list so city and region are filled.");
-        }
       }
+      assertHomeCityStateIfAddressFilled(homeAddress, locationCity, locationState);
 
-      if (sellerFlag && mapsKey && !sellerUseHome && storeAddress.trim()) {
-        if (!coordsOk(shopLat, shopLng)) {
+      if (sellerFlag && !sellerUseHome && storeAddress.trim()) {
+        if (mapsKey && !coordsOk(shopLat, shopLng)) {
           throw new Error("Choose your shop address from the suggestions list.");
         }
-        if (
+        const sameShopCoordsAsHome =
           coordsOk(homeLat, homeLng) &&
           coordsOk(shopLat, shopLng) &&
-          !coordsNearlyEqual(homeLat, homeLng, shopLat, shopLng) &&
-          (!shopCity.trim() || !shopState.trim())
-        ) {
-          throw new Error("Pick a shop address that includes city and region.");
+          coordsNearlyEqual(homeLat, homeLng, shopLat, shopLng);
+        if (sameShopCoordsAsHome) {
+          if (missingCityOrState(locationCity, locationState)) {
+            throw new Error(
+              "City and region are required — pick your home address from the list so they apply to your shop at the same location.",
+            );
+          }
+        } else {
+          assertShopCityStateIfAddressFilled(storeAddress, shopCity, shopState);
         }
       }
 
@@ -222,25 +224,29 @@ export default function StoreSettings({ store, onUpdate }: { store: any; onUpdat
         listingState = shopState.trim() || locationState.trim();
       }
 
-      const uploadKeyBase = String(store.__legacy_store_id || store.owner_id || store.id);
+      const uploadKeyBase = String(store.owner_id || store.id);
 
       let newLogoUrl = store.logo_url;
       let newCoverUrl = store.cover_image_url;
 
       if (logoFile) {
-        const fileName = `logos/${uploadKeyBase}-${Date.now()}`;
-        const { error: uploadError } = await supabase.storage.from("products").upload(fileName, logoFile);
-        if (uploadError) throw uploadError;
-        const { data } = supabase.storage.from("products").getPublicUrl(fileName);
-        newLogoUrl = data.publicUrl;
+        const ext = (logoFile.name.split(".").pop() || "jpg").toLowerCase();
+        const key = buildR2Key("merchant-assets", `${uploadKeyBase}/logos/${Date.now()}.${ext}`);
+        newLogoUrl = await uploadFileToR2({
+          bucket: "merchant-assets",
+          key,
+          file: logoFile,
+        });
       }
 
       if (coverFile) {
-        const fileName = `covers/${uploadKeyBase}-${Date.now()}`;
-        const { error: uploadError } = await supabase.storage.from("products").upload(fileName, coverFile);
-        if (uploadError) throw uploadError;
-        const { data } = supabase.storage.from("products").getPublicUrl(fileName);
-        newCoverUrl = data.publicUrl;
+        const ext = (coverFile.name.split(".").pop() || "jpg").toLowerCase();
+        const key = buildR2Key("merchant-assets", `${uploadKeyBase}/covers/${Date.now()}.${ext}`);
+        newCoverUrl = await uploadFileToR2({
+          bucket: "merchant-assets",
+          key,
+          file: coverFile,
+        });
       }
 
       const profilePatch: Record<string, unknown> = {
@@ -262,26 +268,13 @@ export default function StoreSettings({ store, onUpdate }: { store: any; onUpdat
       if (sellerFlag) {
         profilePatch.service_latitude = effShopLat;
         profilePatch.service_longitude = effShopLng;
+        profilePatch.cover_image_url = newCoverUrl;
+        profilePatch.shop_address = effStoreLine || null;
       }
 
       const { error: profileError } = await supabase.from("profiles").update(profilePatch).eq("id", user.id);
 
       if (profileError) throw profileError;
-
-      if (store.__legacy_store_id) {
-        const legacyPatch: Record<string, unknown> = {
-          instagram_handle: formData.instagram.trim() || null,
-          tiktok_url: formData.tiktok.trim() || null,
-          logo_url: newLogoUrl,
-          cover_image_url: newCoverUrl,
-          location: effStoreLine || null,
-          updated_at: new Date().toISOString(),
-        };
-
-        const { error: legacyError } = await supabase.from("stores").update(legacyPatch).eq("id", store.__legacy_store_id);
-
-        if (legacyError) throw legacyError;
-      }
 
       setStatus("✅ Brand assets saved!");
       await loadAddresses();
@@ -416,7 +409,6 @@ export default function StoreSettings({ store, onUpdate }: { store: any; onUpdat
                 title="CITY & REGION (FROM HOME SELECTION)"
                 city={locationCity}
                 state={locationState}
-                footnote="Not editable separately — pick a different address above to change them."
               />
             ) : null}
           </div>
@@ -459,7 +451,6 @@ export default function StoreSettings({ store, onUpdate }: { store: any; onUpdat
                 <GooglePlacesAutocomplete
                   id="dashboard-store-shop-address"
                   label="SEARCH SHOP, STUDIO, OR PICKUP POINT"
-                  hint="Pick a suggestion — city and region below follow that choice."
                   value={storeAddress}
                   onChangeText={setStoreAddress}
                   disabled={useHomeAsShop}
@@ -502,10 +493,10 @@ export default function StoreSettings({ store, onUpdate }: { store: any; onUpdat
                 }
                 footnote={
                   useHomeAsShop
-                    ? "Mirrors your home address. Turn off “Use home as shop” to pick a separate shop address."
+                    ? 'Mirrors your home address. Turn off "Use home as shop" to pick a separate shop address.'
                     : coordsNearlyEqual(homeLat, homeLng, shopLat, shopLng)
                       ? "Same coordinates as home — city and region match your home selection."
-                      : "From your shop pick — not editable separately."
+                      : undefined
                 }
               />
             </div>

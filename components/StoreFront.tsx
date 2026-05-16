@@ -1,38 +1,68 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  MapPin, Info, ShoppingBag, 
-  X, Instagram, Search, Package, Phone, LayoutDashboard, ChevronRight,
-  BadgeCheck, Gem, Plus, Zap, Loader2, Music2
+import {
+  MapPin,
+  Info,
+  ShoppingBag,
+  X,
+  Instagram,
+  Package,
+  Phone,
+  LayoutDashboard,
+  ChevronRight,
+  BadgeCheck,
+  Gem,
+  Music2,
+  Copy,
 } from "lucide-react";
 import { compactSellerRegion } from "@/lib/displayRegion";
 import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM, TOUCH_TARGET } from "@/lib/mobileLayout";
-import { Store } from "@/types";
+import type { Store } from "@/types";
 import { useCart } from "@/context/CartContext";
+import { isFlashDropCandidate, isProductFlashDropActive, productDisplayPrice } from "@/lib/productFlashDrop";
+import { normalizeStorefrontTheme, themeToCssVars, storefrontFontClass } from "@/lib/storefrontTheme";
+import { prepareStorefrontProductRows } from "@/lib/storefrontCatalogOrder";
+import { isStorefrontMerchFlagOn } from "@/lib/storefrontMerchFlags";
+import type { StorefrontLayoutPreset } from "@/lib/storefrontMiniSite";
+import ProductGridSkeleton from "@/components/storefront/public/ProductGridSkeleton";
+import StorefrontHeroSection, { CATALOG_ANCHOR } from "@/components/storefront/public/sections/StorefrontHeroSection";
+import StorefrontBestSellersSection from "@/components/storefront/public/sections/StorefrontBestSellersSection";
+import StorefrontNewArrivalsSection from "@/components/storefront/public/sections/StorefrontNewArrivalsSection";
+import StorefrontFlashDropsSection from "@/components/storefront/public/sections/StorefrontFlashDropsSection";
+import StorefrontCatalogToolbarSection from "@/components/storefront/public/sections/StorefrontCatalogToolbarSection";
+import StorefrontCatalogProductCard from "@/components/storefront/public/StorefrontCatalogProductCard";
+import type { StorefrontBlockPublic } from "@/components/storefront/public/storefrontPublicTypes";
+import { cn } from "@/lib/utils";
+import { sellerStorefrontTenantUrl } from "@/lib/storefrontPublicUrl";
 
-const VerificationBadge = ({ store }: { store: any }) => {
-  return (
-    <div className="inline-flex items-center gap-1 ml-1 align-middle">
-      {store.verification_status === 'verified' && <BadgeCheck size={16} className="text-blue-500 fill-blue-50" />}
-      {store.subscription_plan === 'diamond' && <Gem size={16} className="text-purple-600 fill-purple-50" />}
-    </div>
-  );
-};
+export type { StorefrontBlockPublic } from "@/components/storefront/public/storefrontPublicTypes";
+
+const VerificationBadge = ({ store }: { store: Store }) => (
+  <span className="inline-flex items-center gap-1 align-middle">
+    {store.verification_status === "verified" && <BadgeCheck size={16} className="fill-blue-50 text-blue-500" />}
+    {store.subscription_plan === "diamond" && <Gem size={16} className="fill-purple-50 text-purple-600" />}
+  </span>
+);
 
 interface StoreFrontProps {
   store: Store;
   products: any[];
   categories: { id: string; name: string }[];
+  storefrontBlocks?: StorefrontBlockPublic[];
 }
 
-export default function StoreFront({ store, products: initialProducts, categories }: StoreFrontProps) {
+export default function StoreFront({
+  store,
+  products: initialProducts,
+  categories,
+  storefrontBlocks = [],
+}: StoreFrontProps) {
   const { addToCart, cartCount, setIsCartOpen, isCartOpen } = useCart();
   const initialProductsRef = useRef(initialProducts);
-  initialProductsRef.current = initialProducts;
 
   const [products, setProducts] = useState(initialProducts);
   const [activeCategory, setActiveCategory] = useState("All");
@@ -40,17 +70,73 @@ export default function StoreFront({ store, products: initialProducts, categorie
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [copied, setCopied] = useState(false); 
+  const [copied, setCopied] = useState(false);
   const [visibleCount, setVisibleCount] = useState(20);
   const [isJumping, setIsJumping] = useState(false);
-
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
 
-  
+  const theme = normalizeStorefrontTheme(store.storefront_theme);
+  const layout: StorefrontLayoutPreset = theme.layout;
+  const isMinimal = layout === "minimal";
+  const isHeroFeaturedLayout = layout === "hero_featured";
+  const isEditorial = layout === "editorial";
+
+  useEffect(() => {
+    initialProductsRef.current = initialProducts;
+    setProducts(initialProducts);
+  }, [initialProducts]);
+
+  const newArrivals = useMemo(() => {
+    return [...products]
+      .filter((p) => isStorefrontMerchFlagOn((p as { storefront_new_arrival?: unknown }).storefront_new_arrival))
+      .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())
+      .slice(0, 12);
+  }, [products]);
+
+  const bestSelling = useMemo(() => {
+    return [...products]
+      .filter((p) =>
+        isStorefrontMerchFlagOn((p as { storefront_best_seller?: unknown }).storefront_best_seller),
+      )
+      .sort((a, b) => {
+        const pa = Boolean(a.pinned_at);
+        const pb = Boolean(b.pinned_at);
+        if (pa !== pb) return pb ? 1 : -1;
+        return new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime();
+      })
+      .slice(0, 12);
+  }, [products]);
+
+  /** Includes expired-but-configured rows so the flash strip can count down and disappear client-side. */
+  const flashDropCandidates = useMemo(
+    () => products.filter((p) => isFlashDropCandidate(p)).slice(0, 12),
+    [products],
+  );
+
+  const [trendingProduct, setTrendingProduct] = useState<(typeof products)[0] | null>(null);
+  const trendingPickedRef = useRef(false);
+  useEffect(() => {
+    if (trendingPickedRef.current) return;
+    trendingPickedRef.current = true;
+    const pool = initialProductsRef.current.filter((p) => Number(p.stock_quantity) > 0);
+    if (!pool.length) {
+      setTrendingProduct(null);
+      return;
+    }
+    const idx = Math.floor(Math.random() * pool.length);
+    setTrendingProduct(pool[idx]);
+  }, []);
+
+  const showNewRow = newArrivals.length > 0;
+  /** Best-sellers strip stays visible on minimal layout (hero/catalog stay tight; merch strip uses `dense`). */
+  const showBestSellingRow = bestSelling.length > 0;
+  /** Flash strip matches best sellers: visible on minimal layout too (`dense` on section). */
+  const showFlashRow = flashDropCandidates.length > 0;
+  const showTrendingRow = Boolean(trendingProduct) && !isMinimal;
   const handleCopyLink = () => {
     if (!store?.slug) return;
-    navigator.clipboard.writeText(`${window.location.origin}/${store.slug}`);
+    navigator.clipboard.writeText(sellerStorefrontTenantUrl(store.slug));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -58,21 +144,17 @@ export default function StoreFront({ store, products: initialProducts, categorie
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      setLastScrollY(currentScrollY);
+      const prev = lastScrollYRef.current;
+      if (currentScrollY > prev && currentScrollY > 100) setIsVisible(false);
+      else setIsVisible(true);
+      lastScrollYRef.current = currentScrollY;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearch(searchTerm);
-    }, 500);
+    const handler = setTimeout(() => setDebouncedSearch(searchTerm), 500);
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
@@ -113,19 +195,23 @@ export default function StoreFront({ store, products: initialProducts, categorie
         console.error("Filter Error:", error.message || JSON.stringify(error));
         setProducts([]);
       } else {
-        setProducts(data || []);
+        setProducts(
+          prepareStorefrontProductRows(data || [], {
+            hideOutOfStock: theme.hide_out_of_stock,
+            shuffleUnpinned: false,
+          }),
+        );
       }
 
       setLoading(false);
     };
 
     void fetchStoreProducts();
-  }, [activeCategory, debouncedSearch, store.owner_id, categories]);
+  }, [activeCategory, debouncedSearch, store.owner_id, categories, theme.hide_out_of_stock]);
 
   const handleAddToCart = (product: any) => {
-    const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-    if (isFlashActive) {
-      const audio = new Audio('/sounds/empire-drop.mp3');
+    if (isProductFlashDropActive(product)) {
+      const audio = new Audio("/sounds/empire-drop.mp3");
       audio.volume = 0.5;
       audio.play().catch(() => {});
     }
@@ -135,262 +221,379 @@ export default function StoreFront({ store, products: initialProducts, categorie
   };
 
   const displayedProducts = products.slice(0, visibleCount);
+  const heroFeaturedEligible = isHeroFeaturedLayout && activeCategory === "All" && !debouncedSearch && displayedProducts.length > 0;
 
   return (
-    <div className={`flex min-h-dvh flex-col bg-white font-sans selection:bg-emerald-100 ${STOREFRONT_SAFE_BOTTOM}`}>
-      
-      <nav className={`sticky top-0 z-40 flex h-16 items-center justify-between border-b border-gray-100 bg-white/80 shadow-sm backdrop-blur-xl ${STOREFRONT_GUTTER_X}`}>
-          <div className="flex items-center gap-3">
-             <Link href="/" className="flex items-center gap-1">
-                <LayoutDashboard size={18} className="text-emerald-600"/> 
-                <span className="font-black text-gray-900 tracking-tighter hidden md:block uppercase text-[10px]">StoreLink</span>
-             </Link>
-             <span className="text-gray-200 font-thin text-xl">/</span>
-             <div className="flex items-center gap-2">
-                <h1 className="font-bold text-gray-900 truncate max-w-[160px] md:max-w-none flex items-center text-sm md:text-base tracking-tight">
-                  {store.name} <VerificationBadge store={store} />
-                </h1>
-             </div>
+    <div
+      id="seller-storefront"
+      className={cn(
+        "storefront-root flex min-h-dvh flex-col bg-white selection:bg-[var(--sf-accent-soft)] selection:text-[var(--sf-accent-foreground)]",
+        theme.font === "sans" ? "font-sans" : storefrontFontClass(theme.font),
+        STOREFRONT_SAFE_BOTTOM,
+      )}
+      style={themeToCssVars(theme)}
+      data-sf-layout={layout}
+      data-sf-font={theme.font}
+    >
+      <nav
+        aria-label="Storefront identity"
+        className={cn(
+          "sticky top-0 z-40 flex items-center justify-between gap-2 border-b border-gray-100 bg-white/90 shadow-sm backdrop-blur-xl",
+          isMinimal ? "h-14" : "h-16",
+          STOREFRONT_GUTTER_X,
+        )}
+      >
+        <div className="flex min-w-0 flex-1 items-center gap-3">
+          <Link href="/" className="flex shrink-0 items-center gap-1">
+            <LayoutDashboard size={18} className="sf-accent-text" />
+            <span className="hidden font-black uppercase tracking-tighter text-gray-900 md:block md:text-[10px]">StoreLink</span>
+          </Link>
+          <span className="shrink-0 text-gray-200 font-thin text-xl">/</span>
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-inner">
+            {store.logo_url ? (
+              <Image src={store.logo_url} alt="" fill className="object-cover" unoptimized />
+            ) : (
+              <div className="flex h-full items-center justify-center bg-gray-900 text-sm font-black text-white">{store.name.charAt(0)}</div>
+            )}
           </div>
-          <button onClick={() => setIsInfoOpen(true)} type="button" className={`rounded-full p-2 text-gray-600 transition hover:bg-gray-100 active:scale-90 ${TOUCH_TARGET}`} aria-label="Store info">
-              <Info size={20} />
+          <h1
+            className={cn(
+              "sf-heading min-w-0 flex-1 truncate text-sm tracking-tight text-gray-900 md:text-base",
+              isEditorial ? "font-semibold normal-case" : "font-bold",
+            )}
+          >
+            {store.name} <VerificationBadge store={store} />
+          </h1>
+        </div>
+        <div className="flex shrink-0 items-center gap-1">
+          <button
+            type="button"
+            onClick={handleCopyLink}
+            className={cn("rounded-full p-2 text-gray-600 transition hover:bg-gray-100 active:scale-90", TOUCH_TARGET)}
+            aria-label={copied ? "Link copied" : "Copy shop link"}
+            title="Copy shop link"
+          >
+            <Copy size={20} className={copied ? "text-emerald-600" : ""} />
           </button>
+          <button
+            onClick={() => setIsInfoOpen(true)}
+            type="button"
+            className={cn("rounded-full p-2 text-gray-600 transition hover:bg-gray-100 active:scale-90", TOUCH_TARGET)}
+            aria-label="About this shop"
+          >
+            <Info size={20} />
+          </button>
+        </div>
       </nav>
 
-      <div className="relative w-full bg-gray-50 border-b border-gray-100">
-          <div className="w-full h-40 md:h-64 relative overflow-hidden bg-gray-200">
-             {store.cover_image_url ? (
-                <Image src={store.cover_image_url} alt="" fill className="object-cover" priority unoptimized/>
-             ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-100"><Package size={48} className="opacity-20" /></div>
-             )}
-             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      {theme.banner_secondary_url ? (
+        <div className="relative h-16 w-full border-b border-gray-100 bg-gray-100 md:h-20">
+          <Image src={theme.banner_secondary_url} alt="" fill className="object-cover" unoptimized />
+        </div>
+      ) : null}
+
+      <StorefrontHeroSection
+        storefrontBlocks={storefrontBlocks}
+        accent={theme.accent}
+        font={theme.font}
+        logoUrl={store.logo_url}
+        storeSlug={store.slug}
+        fallbackStoreName={store.name}
+        fallbackTagline={store.description}
+        dense={isMinimal}
+        editorial={isEditorial}
+      />
+
+      {showNewRow ? (
+        <StorefrontNewArrivalsSection
+          products={newArrivals}
+          store={store}
+          onAddToCart={handleAddToCart}
+          dense={isMinimal}
+          editorial={isEditorial}
+        />
+      ) : null}
+
+      {showBestSellingRow ? (
+        <div className={cn(!showNewRow && "pt-8 md:pt-14")}>
+          <StorefrontBestSellersSection
+            products={bestSelling}
+            store={store}
+            onAddToCart={handleAddToCart}
+            dense={isMinimal}
+            editorial={isEditorial}
+          />
+        </div>
+      ) : null}
+
+      {showFlashRow ? <StorefrontFlashDropsSection products={flashDropCandidates} dense={isMinimal} editorial={isEditorial} /> : null}
+
+      {showTrendingRow && trendingProduct ? (
+        <section aria-label="Trending now" className="border-b border-gray-200 bg-gradient-to-br from-slate-900 via-slate-800 to-zinc-900 py-10 md:py-14">
+          <div className={cn("mx-auto max-w-7xl", STOREFRONT_GUTTER_X)}>
+            <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.35em] text-white/45">Trending now</p>
+                <h2
+                  className={cn(
+                    "sf-heading mt-1 text-xl text-white md:text-2xl",
+                    isEditorial ? "font-semibold normal-case tracking-tight" : "font-black uppercase tracking-tight",
+                  )}
+                >
+                  One pick shoppers see first
+                </h2>
+              </div>
+            </div>
+            <Link
+              href={`/product/${trendingProduct.id}`}
+              className="group mx-auto flex max-w-4xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl ring-1 ring-white/10 backdrop-blur-md transition hover:border-white/20 md:flex-row"
+            >
+              <div className="relative aspect-[4/3] w-full bg-zinc-900 md:aspect-auto md:w-1/2 md:min-h-[280px]">
+                {trendingProduct.image_urls?.[0] ? (
+                  <Image
+                    src={trendingProduct.image_urls[0]}
+                    alt={trendingProduct.name || ""}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                    unoptimized
+                  />
+                ) : (
+                  <div className="flex h-full min-h-[200px] items-center justify-center text-zinc-600">
+                    <Package size={40} />
+                  </div>
+                )}
+                <span className="absolute left-4 top-4 rounded-full bg-white/15 px-3 py-1 text-[9px] font-black uppercase tracking-widest text-white backdrop-blur">
+                  Trending
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col justify-center gap-4 p-6 md:p-10">
+                <h3 className="text-balance text-2xl leading-tight text-white md:text-3xl">
+                  <span
+                    className={cn(
+                      isEditorial ? "font-semibold normal-case tracking-tight" : "font-black uppercase tracking-tight",
+                    )}
+                  >
+                    {trendingProduct.name}
+                  </span>
+                </h3>
+                <p className="sf-price text-3xl font-black text-emerald-300">
+                  ₦{productDisplayPrice({ ...trendingProduct, price: Number(trendingProduct.price) }).toLocaleString()}
+                </p>
+                <span className="inline-flex w-fit items-center gap-2 rounded-xl bg-white px-4 py-2 text-[10px] font-black uppercase tracking-widest text-gray-900">
+                  View product <ChevronRight size={14} />
+                </span>
+              </div>
+            </Link>
           </div>
+        </section>
+      ) : null}
 
-          <div className={`relative z-10 mx-auto max-w-7xl pb-6 -mt-10 md:-mt-14 ${STOREFRONT_GUTTER_X}`}>
-             <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
-                <div className="flex items-end gap-3 md:gap-5">
-                   <div className="w-24 h-24 md:w-36 md:h-36 rounded-3xl border-[4px] border-white shadow-xl bg-white relative overflow-hidden shrink-0">
-                      {store.logo_url ? (
-                         <Image src={store.logo_url} alt="Logo" fill className="object-cover" unoptimized/>
-                      ) : (
-                         <div className="flex items-center justify-center h-full text-2xl font-bold bg-gray-900 text-white">{store.name.charAt(0)}</div>
-                      )}
-                   </div>
-                   <div className="hidden md:block mb-4">
-                      <h2 className="text-2xl font-black text-gray-900 flex items-center gap-2 uppercase tracking-tight">
-                        {store.name} <VerificationBadge store={store} />
-                      </h2>
-                      <p className="text-gray-500 text-xs font-bold flex items-center gap-1">
-                        <MapPin size={14} className="text-emerald-500"/> {compactSellerRegion(store)}
-                      </p>
-                   </div>
-                </div>
+      <StorefrontCatalogToolbarSection
+        catalogAnchorId={CATALOG_ANCHOR}
+        categories={categories}
+        searchTerm={searchTerm}
+        onSearchTermChange={setSearchTerm}
+        activeCategory={activeCategory}
+        onActiveCategoryChange={setActiveCategory}
+        isMinimal={isMinimal}
+        editorial={isEditorial}
+        toolbarVisible={isVisible}
+      />
 
-                <div className="flex gap-2 w-full md:w-auto mt-2 md:mt-0">
-                   <button type="button" onClick={handleCopyLink} className="min-h-[44px] flex-1 rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-xs font-black text-gray-700 shadow-sm transition active:scale-95 md:flex-none">
-                      {copied ? "COPIED" : "SHARE STORE"}
-                   </button>
-                   <button type="button" onClick={() => setIsInfoOpen(true)} className="min-h-[44px] flex-1 rounded-xl bg-gray-900 px-5 py-2.5 text-xs font-black uppercase tracking-wider text-white shadow-lg transition active:scale-95 md:flex-none">
-                      More Info
-                   </button>
-                </div>
-             </div>
+      <main aria-label="Product catalog" className="flex-1 bg-white">
+        <div
+          className={cn(
+            "mx-auto max-w-7xl",
+            isMinimal ? "py-5 md:py-8" : isEditorial ? "py-8 md:py-14" : "py-6 md:py-10",
+            STOREFRONT_GUTTER_X,
+          )}
+        >
+          {loading ? (
+            <ProductGridSkeleton count={8} />
+          ) : (
+            <div
+              className={cn(
+                "grid gap-3 md:gap-6",
+                heroFeaturedEligible ? "grid-cols-2 md:grid-cols-4 lg:grid-cols-4" : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+              )}
+            >
+              {displayedProducts.map((product, index) => {
+                const featured = heroFeaturedEligible && index === 0;
+
+                return (
+                  <StorefrontCatalogProductCard
+                    key={product.id}
+                    product={product}
+                    store={store}
+                    featured={featured}
+                    isMinimal={isMinimal}
+                    editorial={isEditorial}
+                    onAddToCart={handleAddToCart}
+                  />
+                );
+              })}
+            </div>
+          )}
+
+          {visibleCount < products.length && !loading ? (
+            <div className="mt-12 pb-10 text-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((p) => p + 20)}
+                className="sf-load-more rounded-2xl border-2 px-10 py-4 text-xs font-black uppercase tracking-[0.2em] shadow-lg transition-all active:scale-95"
+              >
+                Load more products
+              </button>
+            </div>
+          ) : null}
+
+          {!loading && products.length === 0 ? (
+            <div className="flex flex-col items-center py-20 text-center">
+              <Package size={40} className="mb-2 text-gray-100" />
+              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">No products in this view</p>
+              <p className="mt-2 max-w-sm text-xs font-medium text-gray-500">Try another category or clear your search.</p>
+            </div>
+          ) : null}
+        </div>
+      </main>
+
+      <footer
+        aria-label="Storefront footer"
+        className="mt-auto border-t border-gray-800 bg-gradient-to-b from-gray-950 via-gray-900 to-black py-14 text-center text-white"
+      >
+        <div className={cn("mx-auto max-w-3xl space-y-6", STOREFRONT_GUTTER_X)}>
+          <p className="font-mono text-4xl font-black uppercase tracking-tighter text-white md:text-6xl">{store.slug}</p>
+          {(store.description || "").trim() ? (
+            <p className="mx-auto max-w-xl text-sm font-medium leading-relaxed text-white/70">
+              {(store.description || "").trim().slice(0, 220)}
+              {(store.description || "").trim().length > 220 ? "…" : ""}
+            </p>
+          ) : (
+            <p className="text-sm font-medium text-white/50">StoreLink mini-site</p>
+          )}
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-400/90">
+            {products.length} product{products.length === 1 ? "" : "s"} in this catalog
+          </p>
+          <div className="border-t border-white/10 pt-8">
+            <Link href="/" className="text-[10px] font-black uppercase tracking-[0.25em] text-white/50 transition hover:text-white">
+              Powered by StoreLink
+            </Link>
+            <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.35em] text-white/35">Secure checkout · {new Date().getFullYear()}</p>
           </div>
-      </div>
-
-      <div className={`sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300 ease-in-out ${
-          isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100"
-      }`}>
-          <div className={`mx-auto max-w-7xl py-3 ${STOREFRONT_GUTTER_X}`}>
-             <div className="flex flex-col md:flex-row gap-3">
-                <div className="relative w-full md:max-w-xs">
-                   <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-                   <input className="min-h-[48px] w-full rounded-xl bg-gray-100 py-2 pl-10 pr-4 text-base font-medium outline-none transition focus:bg-white" placeholder="Search store..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)}/>
-                </div>
-                <div className="flex gap-2 overflow-x-auto no-scrollbar items-center pb-1">
-                   <button type="button" onClick={() => setActiveCategory("All")} className={`min-h-[40px] rounded-lg px-4 py-1.5 text-[10px] font-black uppercase tracking-widest transition ${activeCategory === "All" ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}>All</button>
-                   {categories.map(cat => (
-                     <button type="button" key={cat.id} onClick={() => setActiveCategory(cat.name)} className={`min-h-[40px] shrink-0 rounded-lg px-4 py-1.5 text-[10px] font-black uppercase tracking-widest transition ${activeCategory === cat.name ? "bg-black text-white" : "bg-white text-gray-500 border border-gray-200"}`}>{cat.name}</button>
-                   ))}
-                </div>
-             </div>
-          </div>
-      </div>
-
-      <div className="flex-1 bg-white">
-          <div className={`mx-auto max-w-7xl py-6 ${STOREFRONT_GUTTER_X}`}>
-             {loading ? (
-                <div className="flex justify-center py-20"><Loader2 className="animate-spin text-emerald-600" size={32} /></div>
-             ) : (
-             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
-                {displayedProducts.map(product => {
-                  const isFlash = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-                  const isDiamond = store.subscription_plan === 'diamond';
-                  const activePrice = isFlash ? (product.flash_drop_price || product.price) : product.price;
-                  
-                  const rewardCoins = store.loyalty_enabled 
-                    ? Math.floor(activePrice * ((store.loyalty_percentage || 0) / 100)) 
-                    : 0;
-
-                  return (
-                    <div 
-                      key={product.id} 
-                      className={`group bg-white p-2.5 rounded-2xl border transition-all duration-500 flex flex-col relative h-full active:scale-[0.98] ${
-                        isDiamond 
-                        ? 'border-purple-200 shadow-[0_10px_30px_rgba(147,51,234,0.08)] ring-1 ring-purple-50' 
-                        : 'border-gray-100 shadow-sm'
-                      } md:hover:shadow-2xl md:hover:-translate-y-1`}
-                    >
-                       <Link href={`/product/${product.id}`} className="block relative aspect-square bg-gray-50 rounded-xl overflow-hidden mb-3">
-                          {product.image_urls?.[0] ? (
-                            <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized/>
-                          ) : (
-                            <div className="flex items-center justify-center h-full text-gray-200"><Package size={32}/></div>
-                          )}
-
-                          {isFlash ? (
-                            <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20 animate-pulse">
-                               <Zap size={10} fill="currentColor" /> LIVE DROP
-                            </div>
-                          ) : isDiamond && (
-                            <span className="absolute top-2 left-2 bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md flex items-center gap-1 z-20 uppercase">
-                               <Gem size={10} className="fill-white"/> TOP
-                            </span>
-                          )}
-
-                          {rewardCoins > 0 && (
-                            <div className="absolute top-2 right-2 bg-emerald-600/90 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20">
-                              <Zap size={10} fill="white" /> +₦{rewardCoins.toLocaleString()}
-                            </div>
-                          )}
-                          
-                          {product.stock_quantity === 0 && (
-                             <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-center z-30">
-                                <span className="text-[10px] font-black uppercase tracking-widest text-red-600">Sold Out</span>
-                             </div>
-                          )}
-
-                          <button 
-                            disabled={product.stock_quantity === 0}
-                            onClick={(e) => { e.preventDefault(); handleAddToCart(product); }}
-                            className={`absolute bottom-2 right-2 p-2 rounded-full shadow-lg transition-all z-40 active:scale-75 ${
-                              isFlash ? 'bg-amber-500 text-white' : 'bg-white hover:bg-gray-900 hover:text-white'
-                            } disabled:bg-gray-100 disabled:text-gray-300`}
-                          >
-                             <Plus size={16} strokeWidth={3} />
-                          </button>
-                       </Link>
-
-                       <div className="px-1 flex flex-col flex-1">
-                          <h3 className="font-black text-gray-900 text-xs md:text-sm truncate uppercase tracking-tight mb-0.5">{product.name}</h3>
-                          
-                          <div className="mt-auto flex items-center justify-between pt-2">
-                             {isFlash ? (
-                              <div className="flex flex-col">
-                                 <p className="text-[9px] font-bold text-gray-300 line-through">₦{product.price.toLocaleString()}</p>
-                                 <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">₦{product.flash_drop_price.toLocaleString()}</p>
-                              </div>
-                              ) : (
-                                <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">₦{product.price.toLocaleString()}</p>
-                              )}
-                             
-                             {rewardCoins > 0 && (
-                                <span className="text-[8px] font-black text-emerald-500/40 uppercase tracking-widest italic animate-pulse">Earn Coin</span>
-                             )}
-                          </div>
-                       </div>
-                    </div>
-                  );
-                })}
-             </div>
-             )}
-
-             {visibleCount < products.length && (
-               <div className="mt-12 text-center pb-10">
-                 <button onClick={() => setVisibleCount(prev => prev + 20)} className="px-10 py-4 bg-white border-2 border-gray-900 text-gray-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-gray-900 hover:text-white transition-all active:scale-95 shadow-lg">Load More Products</button>
-               </div>
-             )}
-
-             {!loading && products.length === 0 && (
-                <div className="text-center py-20 flex flex-col items-center">
-                   <Package size={40} className="text-gray-100 mb-2"/><p className="text-gray-400 font-bold uppercase text-[10px] tracking-widest">No products found</p>
-                </div>
-             )}
-          </div>
-      </div>
-
-      <footer className="bg-gray-50 border-t border-gray-200 py-10 text-center mt-auto">
-          <p className="text-[9px] text-gray-400 font-black uppercase tracking-[0.3em]">StoreLink social engine • 2025</p>
+        </div>
       </footer>
 
       {cartCount > 0 && !isCartOpen && (
-        <button onClick={() => setIsCartOpen(true)} className={`fixed bottom-6 right-6 bg-gray-900 text-white p-4 rounded-2xl shadow-2xl z-50 transition-all active:scale-90 ${isJumping ? 'animate-bounce' : 'hover:scale-110 animate-in zoom-in'}`}>
-           <ShoppingBag size={24} />
-           <span className="absolute -top-1 -right-1 bg-emerald-500 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black border-2 border-white">{cartCount}</span>
+        <button
+          type="button"
+          onClick={() => setIsCartOpen(true)}
+          className={cn(
+            "sf-btn-accent fixed bottom-6 right-6 z-50 rounded-2xl p-4 text-white shadow-2xl transition-all active:scale-90",
+            isJumping ? "animate-bounce" : "animate-in zoom-in hover:scale-110",
+          )}
+        >
+          <ShoppingBag size={24} />
+          <span className="sf-bg-accent absolute -right-1 -top-1 flex size-6 items-center justify-center rounded-full border-2 border-white text-[10px] font-black text-white shadow-sm">
+            {cartCount}
+          </span>
         </button>
       )}
 
       {isInfoOpen && (
-          <div className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex justify-end animate-in fade-in">
-             <div className="absolute inset-0" onClick={() => setIsInfoOpen(false)}></div>
-             <div className="relative w-full max-w-sm bg-white h-full shadow-2xl p-8 overflow-y-auto animate-in slide-in-from-right duration-300 flex flex-col rounded-l-[2rem]">
-                <div className="flex justify-between items-center mb-8">
-                   <h2 className="font-black text-gray-900 uppercase tracking-tighter text-sm">About Business</h2>
-                   <button onClick={() => setIsInfoOpen(false)} className="p-2 bg-gray-100 rounded-full"><X size={20}/></button>
-                </div>
-
-                <div className="text-center mb-8">
-                   <div className="w-24 h-24 bg-gray-100 rounded-2xl mx-auto mb-4 overflow-hidden border-2 border-gray-100 relative">
-                       {store.logo_url ? <Image src={store.logo_url} alt="" fill className="object-cover" /> : null}
-                   </div>
-                   <h3 className="font-black text-2xl text-gray-900 tracking-tighter uppercase flex items-center justify-center gap-1">
-                     {store.name} <VerificationBadge store={store} />
-                   </h3>
-                   <p className="text-gray-400 text-[10px] font-black uppercase mt-1 tracking-widest">{compactSellerRegion(store)}</p>
-                </div>
-
-                <div className="bg-gray-50 p-6 rounded-2xl mb-8 border border-gray-100">
-                   <p className="text-gray-600 text-sm italic text-center font-medium">
-                     "{store.description || 'Welcome to our store! We sell amazing products.'}"
-                   </p>
-                </div>
-
-                <div className="space-y-3 mt-auto">
-                  <h4 className="font-black text-gray-400 text-[10px] uppercase tracking-widest mb-2">Connect</h4>
-                  
-                  {/* WHATSAPP */}
-                  {store.whatsapp_number && (
-                      <div className="flex items-center gap-4 p-4 rounded-xl border border-gray-100">
-                          <div className="bg-emerald-500 p-2 rounded-lg text-white"><Phone size={18}/></div>
-                          <div>
-                              <p className="text-[9px] text-emerald-600 font-black uppercase tracking-widest">Business chat</p>
-                              <p className="text-sm font-bold text-gray-900">{store.whatsapp_number}</p>
-                          </div>
-                      </div>
+        <div className="fixed inset-0 z-[60] flex justify-end bg-black/60 backdrop-blur-sm animate-in fade-in">
+          <button type="button" className="absolute inset-0" aria-label="Close" onClick={() => setIsInfoOpen(false)} />
+          <div className="relative flex h-full w-full max-w-sm flex-col overflow-y-auto rounded-l-[2rem] bg-white shadow-2xl animate-in slide-in-from-right duration-300">
+            <div className="relative h-36 w-full shrink-0 overflow-hidden bg-gray-900">
+              {store.cover_image_url ? (
+                <Image src={store.cover_image_url} alt="" fill className="object-cover" unoptimized />
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              <div className="absolute bottom-3 left-6 right-6 flex items-end justify-between gap-2">
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border-2 border-white bg-white shadow-lg">
+                  {store.logo_url ? (
+                    <Image src={store.logo_url} alt="" fill className="object-cover" unoptimized />
+                  ) : (
+                    <div className="flex h-full items-center justify-center bg-gray-900 text-lg font-black text-white">
+                      {store.name.charAt(0)}
+                    </div>
                   )}
-
-                  {store.instagram_handle && (
-                      <a href={`https://instagram.com/${store.instagram_handle.replace('@', '')}`} target="_blank" className="flex items-center justify-between p-4 bg-gray-50 rounded-xl font-bold active:scale-95 transition-all">
-                          <span className="flex items-center gap-3 text-xs uppercase tracking-widest"><Instagram size={18} className="text-pink-600" /> Instagram</span>
-                          <ChevronRight size={14} className="text-gray-400"/>
-                      </a>
-                  )}
-
-                  {store.tiktok_url && (
-                      <a 
-                          href={store.tiktok_url.startsWith('http') ? store.tiktok_url : `https://tiktok.com/@${store.tiktok_url.replace('@', '')}`} 
-                          target="_blank" 
-                          className="flex items-center justify-between p-4 bg-gray-50 rounded-xl font-bold active:scale-95 transition-all"
-                      >
-                          <span className="flex items-center gap-3 text-xs uppercase tracking-widest"><Music2 size={18} className="text-black" /> TikTok</span>
-                          <ChevronRight size={14} className="text-gray-400"/>
-                      </a>
-                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsInfoOpen(false)}
+                  className="rounded-full bg-white/90 p-2 shadow-md backdrop-blur"
+                  aria-label="Close"
+                >
+                  <X size={20} />
+                </button>
               </div>
-                <p className="text-center text-[9px] font-black text-gray-300 mt-8">Store ID: {store.slug}</p>
-             </div>
+            </div>
+
+            <div className="flex flex-1 flex-col p-8 pt-6">
+            <div className="mb-6 text-center">
+              <h3 className="sf-heading flex items-center justify-center gap-1 text-xl font-black uppercase tracking-tighter text-gray-900">
+                {store.name} <VerificationBadge store={store} />
+              </h3>
+              <p className="mt-1 flex items-center justify-center gap-1 text-[10px] font-black uppercase tracking-widest text-gray-400">
+                <MapPin size={12} className="sf-accent-text" /> {compactSellerRegion(store)}
+              </p>
+            </div>
+
+            <div className="mb-8 rounded-2xl border border-gray-100 bg-gray-50 p-6">
+              <p className="text-center text-sm font-medium italic text-gray-600">
+                &ldquo;{store.description || "Welcome to our store — thanks for visiting on StoreLink."}&rdquo;
+              </p>
+            </div>
+
+            <div className="mt-auto space-y-3">
+              <h4 className="mb-2 text-[10px] font-black uppercase tracking-widest text-gray-400">Connect</h4>
+
+              {store.whatsapp_number ? (
+                <div className="flex items-center gap-4 rounded-xl border border-gray-100 p-4">
+                  <div className="sf-bg-accent rounded-lg p-2 text-white">
+                    <Phone size={18} />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest sf-accent-text">Business chat</p>
+                    <p className="text-sm font-bold text-gray-900">{store.whatsapp_number}</p>
+                  </div>
+                </div>
+              ) : null}
+
+              {store.instagram_handle ? (
+                <a
+                  href={`https://instagram.com/${store.instagram_handle.replace("@", "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between rounded-xl bg-gray-50 p-4 text-xs font-bold uppercase tracking-widest transition active:scale-95"
+                >
+                  <span className="flex items-center gap-3">
+                    <Instagram size={18} className="text-pink-600" /> Instagram
+                  </span>
+                  <ChevronRight size={14} className="text-gray-400" />
+                </a>
+              ) : null}
+
+              {store.tiktok_url ? (
+                <a
+                  href={store.tiktok_url.startsWith("http") ? store.tiktok_url : `https://tiktok.com/@${store.tiktok_url.replace("@", "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between rounded-xl bg-gray-50 p-4 text-xs font-bold uppercase tracking-widest transition active:scale-95"
+                >
+                  <span className="flex items-center gap-3">
+                    <Music2 size={18} className="text-black" /> TikTok
+                  </span>
+                  <ChevronRight size={14} className="text-gray-400" />
+                </a>
+              ) : null}
+            </div>
+            <p className="mt-8 text-center text-[9px] font-black text-gray-300">Shop link: {store.slug}</p>
+            </div>
           </div>
+        </div>
       )}
     </div>
   );

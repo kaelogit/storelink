@@ -1,363 +1,101 @@
-[00:00:07.279] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
-[00:00:08.242] Server  LOG      ✓ Ready in 7.3s
-[00:02:28.498] Server  LOG      ○ Compiling / ...
-[00:02:42.953] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:45.015] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-          <SegmentViewNode type="page" pagePath="/storelink...">
-            <SegmentTrieNode>
-            <LandingPage>
-              <LandingPageWrapper products={[...]} stores={[...]}>
-                <div className="min-h-scre...">
-                  <Navbar>
-                  <Hero>
-                  <ValueProp>
-                  <HowItWorks>
-                  <section>
-                  <Marketplace>
-                  <FAQ>
-                  <TrustCenter>
-                  <ComingSoonCountdown>
-                    <section className="py-20 px-4...">
-                      <div className="max-w-7xl ...">
-                        <div className="flex flex-...">
-                          <div className="flex-1">
-                            <div>
-                            <h2>
-                            <div className="grid grid-...">
-                              <div className="rounded-2x...">
-                                <p className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">
-+                                 90
--                                 89
-                                ...
-                              ...
-                            ...
-                          ...
-                  ...
-          ...
-        ...
-
-[00:04:52.990] Server  LOG      ✓ Compiled in 458ms
-[00:05:00.093] Server  LOG      ✓ Compiled in 337ms
-[00:08:21.876] Server  LOG      ✓ Compiled in 1380ms
-[00:09:02.060] Server  LOG      ○ Compiling /login ...
-[00:09:18.006] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:12:50.406] Server  LOG      ✓ Compiled in 285ms
-[00:13:00.367] Server  LOG      ✓ Compiled in 389ms
-[00:13:00.501] Browser ERROR   ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx:200:1
-Parsing ecmascript source code failed
-  198 |     </section>
-  199 |   );
-> 200 | }
-      | ^
-  201 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-[00:13:00.923] Browser ERROR   ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx:200:1
-Parsing ecmascript source code failed
-  198 |     </section>
-  199 |   );
-> 200 | }
-      | ^
-  201 |
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-[00:13:24.463] Server  LOG      ✓ Compiled in 514ms
-[00:14:02.775] Server  LOG      ✓ Compiled in 878ms
-[00:14:13.983] Server  LOG      ✓ Compiled in 273ms
-[00:14:14.082] Browser ERROR   ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx:208:5
-Parsing ecmascript source code failed
-  206 |         </div>
-  207 |       </div>
-> 208 |     </section>
-      |     ^
-  209 |   );
-  210 | }
-  211 |
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-[00:14:14.082] Browser ERROR   ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx:208:6
-Parsing ecmascript source code failed
-  206 |         </div>
-  207 |       </div>
-> 208 |     </section>
-      |      ^^^^^^^^^
-  209 |   );
-  210 | }
-  211 |
-
-Unterminated regexp literal
-
-Import traces:
-  Client Component Browser:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-[00:14:14.918] Browser ERROR   ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx:208:5
-Parsing ecmascript source code failed
-  206 |         </div>
-  207 |       </div>
-> 208 |     </section>
-      |     ^
-  209 |   );
-  210 | }
-  211 |
-
-Expression expected
-
-Import traces:
-  Client Component Browser:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-[00:14:14.918] Browser ERROR   ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx:208:6
-Parsing ecmascript source code failed
-  206 |         </div>
-  207 |       </div>
-> 208 |     </section>
-      |      ^^^^^^^^^
-  209 |   );
-  210 | }
-  211 |
-
-Unterminated regexp literal
-
-Import traces:
-  Client Component Browser:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component Browser]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./storelink-app-and-web/store-link-storefront/components/landing/ComingSoonCountdown.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Client Component SSR]
-    ./storelink-app-and-web/store-link-storefront/components/landing/LandingPageWrapper.tsx [Server Component]
-    ./storelink-app-and-web/store-link-storefront/app/page.tsx [Server Component]
-[00:14:32.857] Server  LOG      ✓ Compiled in 495ms
-[00:14:35.677] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:15:21.564] Server  LOG      ○ Compiling /dashboard/orders ...
-[00:21:34.769] Server  LOG      ✓ Compiled in 1898ms
-[00:21:43.943] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:23:38.007] Server  LOG      ✓ Compiled in 620ms
-[00:24:18.905] Server  LOG      ✓ Compiled in 269ms
-[00:26:54.713] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:28:56.241] Server  LOG      ✓ Compiled in 303ms
-[00:30:05.807] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:30:35.225] Server  LOG      ✓ Compiled in 243ms
-[00:32:23.920] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:34:02.023] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:34:02.338] Browser WARN    Image with src "https://yolqfndprzohjkrizbzu.supabase.co/storage/v1/object/public/products/23ba185c-201a-4453-a1e0-911eb6ba2caf/1778415373163-21fevi" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:35:20.484] Server  LOG      ✓ Compiled in 890ms
-[00:35:26.093] Server  LOG      ✓ Compiled in 224ms
-[00:37:16.126] Server  LOG      ✓ Compiled in 206ms
-[00:37:20.826] Server  LOG      ✓ Compiled in 371ms
-[00:37:23.513] Server  LOG      ✓ Compiled in 883ms
-[00:37:26.320] Server  LOG      ✓ Compiled in 537ms
-[00:37:44.891] Server  LOG      ✓ Compiled in 235ms
-[00:37:47.513] Server  LOG      ✓ Compiled in 600ms
-[00:37:50.252] Server  LOG      ✓ Compiled in 202ms
-[00:37:54.195] Server  LOG      ✓ Compiled in 226ms
-[00:39:46.941] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:48:04.764] Server  LOG      ✓ Compiled in 353ms
-[00:48:09.027] Server  LOG      ✓ Compiled in 360ms
-[00:48:21.614] Server  LOG      ✓ Compiled in 412ms
-[00:48:34.492] Server  LOG      ✓ Compiled in 457ms
-[00:48:50.472] Server  LOG      ✓ Compiled in 205ms
-[00:49:04.351] Server  LOG      ✓ Compiled in 292ms
-[00:49:17.754] Server  LOG      ✓ Compiled in 673ms
-[00:49:40.413] Server  LOG      ✓ Compiled in 301ms
-[00:49:56.957] Server  LOG      ✓ Compiled in 215ms
-[00:50:11.770] Server  LOG      ✓ Compiled in 886ms
-[00:50:41.907] Server  LOG      ✓ Compiled in 1468ms
-[00:50:51.071] Server  LOG      ✓ Compiled in 426ms
-[00:51:04.904] Server  LOG      ✓ Compiled in 537ms
-[00:51:32.527] Server  LOG      ✓ Compiled in 373ms
-[00:51:33.760] Server  LOG      ✓ Compiled in 300ms
-[00:51:44.727] Server  LOG      ✓ Compiled in 264ms
-[00:57:10.367] Server  LOG      ✓ Compiled in 460ms
-[00:57:24.019] Server  LOG      ✓ Compiled in 442ms
-[00:57:39.235] Server  LOG      ✓ Compiled in 378ms
-[00:57:49.388] Server  LOG      ✓ Compiled in 319ms
-[00:58:21.528] Server  LOG      ✓ Compiled in 251ms
-[00:58:43.526] Server  LOG      ✓ Compiled in 248ms
-[00:58:45.410] Server  LOG      ✓ Compiled in 258ms
-[00:59:08.127] Server  LOG      ✓ Compiled in 673ms
-[00:59:21.484] Server  LOG      ✓ Compiled in 240ms
-[00:59:34.877] Server  LOG      ✓ Compiled in 656ms
-[00:59:48.840] Server  LOG      ✓ Compiled in 352ms
-[01:00:00.384] Server  LOG      ✓ Compiled in 250ms
-[01:10:44.562] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:12:42.784] Server  LOG      ✓ Compiled in 393ms
-[01:13:00.003] Server  LOG      ✓ Compiled in 1024ms
-[01:13:08.890] Server  LOG      ✓ Compiled in 224ms
-[01:13:17.057] Server  LOG      ✓ Compiled in 191ms
-[01:13:40.045] Server  LOG      ✓ Compiled in 225ms
-[01:13:50.377] Server  LOG      ✓ Compiled in 637ms
-[01:13:55.181] Server  LOG      ✓ Compiled in 481ms
-[01:14:10.442] Server  LOG      ✓ Compiled in 297ms
-[01:19:31.666] Server  LOG      ✓ Compiled in 435ms
-[01:19:45.294] Server  LOG      ✓ Compiled in 191ms
-[01:19:50.201] Server  LOG      ✓ Compiled in 282ms
-[01:22:56.073] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:22:57.224] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:25:02.152] Server  LOG      ✓ Compiled in 385ms
-[01:25:37.180] Server  LOG      ✓ Compiled in 565ms
-[01:25:56.793] Server  LOG      ✓ Compiled in 1245ms
-[01:26:17.094] Server  LOG      ✓ Compiled in 361ms
-[01:39:57.277] Server  LOG      ✓ Compiled in 488ms
-[01:42:32.333] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:42:53.683] Server  LOG      ○ Compiling /dashboard/loyalty ...
-[01:48:09.148] Server  LOG      ✓ Compiled in 252ms
-[01:48:19.674] Server  LOG      ✓ Compiled in 412ms
-[01:48:56.128] Server  LOG      ✓ Compiled in 313ms
-[01:49:04.119] Server  LOG      ✓ Compiled in 254ms
-[01:49:15.192] Server  LOG      ✓ Compiled in 311ms
-[02:02:01.715] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:02:50.319] Server  ERROR   Error: fetch failed
+[00:01:54.817] Server  LOG      ○ Compiling middleware ...
+[00:02:13.036] Server  WARN     ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[00:02:24.804] Server  LOG      ✓ Ready in 120s
+[00:02:39.641] Server  LOG      ○ Compiling /verify ...
+[00:03:59.940] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:08.930] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:27.904] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:42.654] Server  ERROR   Error: fetch failed
     at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:577:23
-    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:931:24)
-    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:918:24)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:4156:290
-    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:4025:26)
-    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:4141:20)
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:4125:20
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:3973:28 {
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
+    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
+    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
+    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
+    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
   
 }
-[02:03:01.146] Server  ERROR   Error: fetch failed
+[00:05:53.433] Server  ERROR   Error: fetch failed
     at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:577:23
-    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:931:24)
-    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:918:24)
-    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:4156:290
-    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:4025:26)
-    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:4141:20)
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:4125:20
-    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\6171c_@supabase_auth-js_dist_module_8495d377._.js:3973:28 {
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
+    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
+    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
+    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
+    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
   
 }
-[02:20:30.271] Server  LOG      ✓ Compiled in 1666ms
-[02:22:23.556] Server  LOG      ✓ Compiled in 3.7s
-[02:22:48.626] Server  LOG      ✓ Compiled in 405ms
-[02:23:16.748] Server  LOG      ✓ Compiled in 970ms
-[02:23:20.539] Server  LOG      ✓ Compiled in 920ms
-[02:23:35.007] Server  LOG      ✓ Compiled in 373ms
-[02:24:13.384] Server  LOG      ✓ Compiled in 235ms
-[02:24:26.999] Server  LOG      ✓ Compiled in 435ms
-[02:24:39.048] Server  LOG      ✓ Compiled in 667ms
-[02:25:15.396] Server  LOG      ✓ Compiled in 1569ms
-[02:25:28.061] Server  LOG      ✓ Compiled in 950ms
-[02:26:07.670] Server  LOG      ✓ Compiled in 284ms
-[02:26:07.908] Browser ERROR   uncaughtError: ReferenceError: useEffect is not defined
-[02:26:30.232] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:26:30.247] Server  LOG      ✓ Compiled in 205ms
-[02:26:39.332] Browser ERROR   uncaughtError: ReferenceError: handleNameChange is not defined
-[02:26:41.158] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:26:43.903] Browser ERROR   uncaughtError: ReferenceError: handleNameChange is not defined
-[02:27:00.465] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:27:00.470] Server  LOG      ✓ Compiled in 223ms
-[02:27:13.762] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:27:24.764] Server  LOG      ✓ Compiled in 1984ms
-[02:27:26.901] Browser ERROR   uncaughtError: ReferenceError: handleNameChange is not defined
-[02:27:38.669] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:27:38.687] Server  LOG      ✓ Compiled in 220ms
-[02:27:40.429] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:30:31.639] Server  LOG      ✓ Compiled in 764ms
-[02:30:36.282] Server  LOG      ✓ Compiled in 305ms
-[02:33:58.011] Server  LOG      ✓ Compiled in 264ms
-[02:34:13.844] Server  LOG      ✓ Compiled in 383ms
-[02:42:57.054] Server  LOG      ✓ Compiled in 656ms
-[02:43:05.054] Server  ERROR   C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\chunks\ssr\[root-of-the-server]__329bb0f4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:43:05.070] Server  ERROR    ⨯ ReferenceError: joinLocation is not defined
-[02:43:05.986] Server  ERROR   C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\chunks\ssr\[root-of-the-server]__329bb0f4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:43:05.990] Server  ERROR    ⨯ ReferenceError: joinLocation is not defined
-[02:43:07.139] Browser ERROR   uncaughtError: ReferenceError: joinLocation is not defined
-[02:43:08.025] Server  LOG      ✓ Compiled in 228ms
-[02:43:08.399] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[02:43:12.866] Browser ERROR   uncaughtError: ReferenceError: joinLocation is not defined
-[02:43:22.121] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:01:12.006] Server  LOG      ✓ Compiled in 515ms
-[03:01:17.287] Server  LOG      ✓ Compiled in 0ms
-[03:01:35.887] Server  LOG      ✓ Compiled in 573ms
-[03:02:18.772] Server  LOG      ✓ Compiled in 883ms
-[03:02:43.822] Server  LOG      ✓ Compiled in 2s
-[03:02:52.954] Server  LOG      ✓ Compiled in 662ms
-[03:03:25.439] Server  LOG      ✓ Compiled in 304ms
-[03:03:45.081] Server  LOG      ✓ Compiled in 314ms
-[03:24:36.067] Server  LOG      ✓ Compiled in 1894ms
-[03:25:47.330] Server  LOG      ✓ Compiled in 324ms
-[03:26:06.714] Server  LOG      ✓ Compiled in 1791ms
-[03:26:16.096] Server  LOG      ✓ Compiled in 475ms
-[03:26:33.196] Server  LOG      ✓ Compiled in 271ms
-[03:35:11.428] Server  LOG      ✓ Compiled in 905ms
-[03:53:31.685] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:56.457] Server  LOG      ○ Compiling /login ...
+[00:05:59.174] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:14.217] Server  LOG      ○ Compiling /post-login ...
+[00:13:18.115] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:31.750] Server  ERROR   C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\chunks\node_modules_@supabase_auth-js_dist_module_02e1b12e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:13:31.917] Server  ERROR   TypeError: fetch failed
+[00:13:38.710] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:45.305] Server  ERROR   C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\chunks\node_modules_@supabase_auth-js_dist_module_02e1b12e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:13:45.308] Server  ERROR   TypeError: fetch failed
+[00:17:55.388] Server  LOG      ✓ Compiled in 544ms
+[00:18:06.610] Server  LOG      ✓ Compiled in 324ms
+[00:18:08.667] Server  LOG      ✓ Compiled in 1548ms
+[00:18:40.376] Server  LOG      ✓ Compiled in 784ms
+[00:23:31.956] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
+    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
+    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
+    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
+    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
+  
+}
+[00:23:35.077] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:24:21.736] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:26:34.178] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
+    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
+    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
+    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
+    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
+  
+}
+[00:26:44.856] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
+    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
+    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
+    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
+    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
+  
+}
+[00:27:20.584] Server  ERROR   Error: fetch failed
+    at context.fetch (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\node_modules\next\dist\server\web\sandbox\context.js:322:60)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:577:23
+    at _handleRequest (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:931:24)
+    at _request (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:918:24)
+    at C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4156:225
+    at SupabaseAuthClient._useSession (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4025:26)
+    at async SupabaseAuthClient._getUser (C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4141:20)
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:4125:20
+    at async C:\Users\Kaelo\storelink-app-and-web\store-link-storefront\.next\dev\server\edge\chunks\node_modules_@supabase_auth-js_dist_module_33c852e9._.js:3973:28 {
+  
+}
+[00:32:32.736] Server  LOG      ✓ Compiled in 512ms
+[00:51:13.336] Browser ERROR   {}
+[00:51:15.556] Browser ERROR   {}
+[00:51:15.967] Browser ERROR   {}
+[01:04:57.340] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:09:12.330] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:09:29.807] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

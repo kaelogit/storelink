@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { flushSync } from "react-dom";
 import { useCart } from "@/context/CartContext";
 import {
   X,
@@ -18,11 +19,12 @@ import {
   MapPin,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { usePathname, useRouter } from "next/navigation";
 import { sendGAEvent } from '@next/third-parties/google';
 import { PaystackTerminalModal } from "@/components/shared/PaystackTerminalModal";
-import { fetchOnboardingContext, getOnboardingHubRedirect } from "@/lib/onboardingState";
+import { fetchOnboardingContext, isProfileOnboardingComplete } from "@/lib/onboardingState";
 import { isWalletTableUnavailable } from "@/lib/walletSync";
 import { TOUCH_TARGET, STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 import {
@@ -32,23 +34,32 @@ import {
   profilePhoneToFormValue,
   type ShippingAddress,
 } from "@/lib/shippingAddresses";
+import { estimateNgnSellerSettlementFromGross } from "@/lib/settlementFees";
 
 function isAbortLikeError(err: unknown) {
   const msg = String((err as { message?: string } | null)?.message || err || "").toLowerCase();
   return msg.includes("aborterror") || msg.includes("signal is aborted");
 }
 
+type ReceiptLine = { name: string; quantity: number; unitPrice: number };
+
 type PendingPayment = {
   orderId: string;
   /** Seller profile id (`profiles.id`) — matches `orders.seller_id` / `products.seller_id`. */
   sellerId: string;
+  /** Seller notification email (sent only after Paystack confirms payment). */
+  sellerNotifyEmail: string | null;
   storeName: string;
   finalPayable: number;
   cleanPhone: string;
   cleanEmail: string;
   coinsToApply: number;
   itemIds: string[];
-  checkoutMode: "guest" | "account";
+  checkoutMode: "account";
+  customerName: string;
+  shippingAddress: string;
+  storeTotalGross: number;
+  itemLines: ReceiptLine[];
 };
 
 export default function GlobalCartSidebar() {
@@ -70,13 +81,13 @@ export default function GlobalCartSidebar() {
 
   const pathname = usePathname();
   const [formData, setFormData] = useState({ name: "", phone: "", address: "", email: "" });
-  const [checkoutMode, setCheckoutMode] = useState<"guest" | "account">("account");
   const [accountUserId, setAccountUserId] = useState<string | null>(null);
   const [authGate, setAuthGate] = useState<null | { sellerId: string; store: any; items: any[] }>(null);
   const [signupPassword, setSignupPassword] = useState("");
   const [authGateBusy, setAuthGateBusy] = useState(false);
   const [authGateError, setAuthGateError] = useState("");
   const [authGateInfo, setAuthGateInfo] = useState("");
+  const [authGateAgreedLegal, setAuthGateAgreedLegal] = useState(false);
   const [loadingStoreId, setLoadingStoreId] = useState<string | null>(null);
   const [isSyncingWallet, setIsSyncingWallet] = useState(false);
   const [liveStoreSettings, setLiveStoreSettings] = useState<Record<string, any>>({});
@@ -85,11 +96,12 @@ export default function GlobalCartSidebar() {
   const [pendingStoreName, setPendingStoreName] = useState("");
   const [pendingOrderId, setPendingOrderId] = useState("");
   const [checkoutError, setCheckoutError] = useState("");
-  const [postAuthSellerIntent, setPostAuthSellerIntent] = useState(false);
   const [paystackOpen, setPaystackOpen] = useState(false);
   const [settlingPayment, setSettlingPayment] = useState(false);
   const [pendingPayment, setPendingPayment] = useState<PendingPayment | null>(null);
-  const [checkoutFollowUp, setCheckoutFollowUp] = useState<"none" | "guest_account" | "profile">("none");
+  /** Major currency units (e.g. ₦) — set synchronously before opening Paystack so the modal never reads amount 0 on the first paint. */
+  const paystackChargeMajorRef = useRef(0);
+  const [checkoutFollowUp, setCheckoutFollowUp] = useState<"none" | "profile">("none");
   const [profileContinueHref, setProfileContinueHref] = useState<string | null>(null);
   const [savedShippingAddresses, setSavedShippingAddresses] = useState<ShippingAddress[]>([]);
   const [profileLocationLine, setProfileLocationLine] = useState("");
@@ -118,15 +130,8 @@ export default function GlobalCartSidebar() {
   }, []);
 
   useEffect(() => {
-    if (!isCartOpen) return;
-    setPostAuthSellerIntent(localStorage.getItem("storelink_post_auth_seller_intent") === "1");
-  }, [isCartOpen]);
-
-  useEffect(() => {
     if (!accountUserId) {
       setUseCoins(false);
-    } else {
-      setCheckoutMode("account");
     }
   }, [accountUserId, setUseCoins]);
 
@@ -145,6 +150,7 @@ export default function GlobalCartSidebar() {
       setAuthGateError("");
       setAuthGateInfo("");
       setSignupPassword("");
+      setAuthGateAgreedLegal(false);
     }
   }, [accountUserId, authGate]);
 
@@ -372,13 +378,18 @@ export default function GlobalCartSidebar() {
       return;
     }
     if (accountUserId) {
-      setCheckoutMode("account");
       void handleCheckout(sellerId, storeData, items);
+      return;
+    }
+    const gateEmail = (formData.email || "").trim().toLowerCase();
+    if (gateEmail.length < 3 || !gateEmail.includes("@")) {
+      setCheckoutError("Add a valid email — we use it for your account and order updates.");
       return;
     }
     setAuthGateError("");
     setAuthGateInfo("");
     setSignupPassword("");
+    setAuthGateAgreedLegal(false);
     setAuthGate({ sellerId, store: storeData, items });
   };
 
@@ -394,8 +405,13 @@ export default function GlobalCartSidebar() {
         setAuthGateError("Enter a valid email.");
         return;
       }
-      if (pw.length < 6) {
-        setAuthGateError("Password must be at least 6 characters.");
+      if (!authGateAgreedLegal) {
+        setAuthGateError("Please agree to the Terms of Service and Privacy Policy.");
+        return;
+      }
+      const pwHasNumber = /\d/.test(pw);
+      if (pw.length < 8 || !pwHasNumber) {
+        setAuthGateError("Password must be at least 8 characters and include at least one number.");
         return;
       }
       if (!formData.name.trim()) {
@@ -414,6 +430,7 @@ export default function GlobalCartSidebar() {
         options: {
           emailRedirectTo: origin ? `${origin}/post-login` : undefined,
           data: {
+            display_name: formData.name.trim(),
             full_name: formData.name.trim(),
             phone_number: `234${cleanPhone}`,
           },
@@ -424,54 +441,59 @@ export default function GlobalCartSidebar() {
       const uid = data.user?.id;
       if (sess && uid) {
         setAccountUserId(uid);
-        setCheckoutMode("account");
         const addressParts = formData.address
           .split(",")
           .map((v) => v.trim())
           .filter(Boolean);
         const inferredState = addressParts.length >= 1 ? addressParts[addressParts.length - 1] : null;
         const inferredCity = addressParts.length >= 2 ? addressParts[addressParts.length - 2] : null;
-        await supabase
-          .from("profiles")
-          .update({
+        const { error: profErr } = await supabase.from("profiles").upsert(
+          {
+            id: uid,
+            email,
             full_name: formData.name.trim(),
             display_name: formData.name.trim(),
             phone_number: `234${cleanPhone}`,
             location: formData.address.trim(),
             location_state: inferredState,
             location_city: inferredCity,
+            acquisition_channel: "storefront",
             updated_at: new Date().toISOString(),
-          })
-          .eq("id", uid);
+          },
+          { onConflict: "id" }
+        );
+        if (profErr) {
+          console.error("Checkout gate profile upsert:", profErr);
+          throw new Error(profErr.message || "Could not save your profile. Try logging in, or contact support.");
+        }
         setAuthGate(null);
         setSignupPassword("");
-        await handleCheckout(authGate.sellerId, authGate.store, authGate.items);
+        setAuthGateAgreedLegal(false);
+        await handleCheckout(authGate.sellerId, authGate.store, authGate.items, { userIdOverride: uid });
       } else {
         setAuthGateInfo(
           "Check your inbox to verify your email. After verification, log in with this email — your cart is saved here — then tap checkout again."
         );
       }
-    } catch (e: any) {
-      setAuthGateError(e?.message || "Sign up failed.");
+    } catch (e: unknown) {
+      const msg = String((e as { message?: string })?.message || e || "");
+      if (/already registered|already been registered|User already/i.test(msg)) {
+        setAuthGateError("An account with this email already exists. Use “Log in instead”, then checkout again.");
+      } else if (/Database error saving new user|database error/i.test(msg)) {
+        setAuthGateError(
+          "We could not finish creating your account (server profile step). This is often fixed by applying the latest Supabase migration, or the email may already be in use — try Log in instead."
+        );
+      } else {
+        setAuthGateError(msg || "Sign up failed.");
+      }
     } finally {
       setAuthGateBusy(false);
     }
   };
 
-  const runGuestFromGate = () => {
-    if (!authGate) return;
-    if (!(formData.email || "").trim()) {
-      setAuthGateError("Email is required for guest checkout.");
-      return;
-    }
-    setCheckoutMode("guest");
-    setAuthGate(null);
-    setSignupPassword("");
-    void handleCheckout(authGate.sellerId, authGate.store, authGate.items);
-  };
-
   const finalizePaidOrder = async (reference: string) => {
     if (!pendingPayment) return;
+    const receipt = pendingPayment;
     setSettlingPayment(true);
     setCheckoutError("");
     try {
@@ -479,7 +501,7 @@ export default function GlobalCartSidebar() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          orderId: pendingPayment.orderId,
+          orderId: receipt.orderId,
           reference,
         }),
       });
@@ -492,7 +514,7 @@ export default function GlobalCartSidebar() {
         const { data: latestOrder } = await supabase
           .from("orders")
           .select("status")
-          .eq("id", pendingPayment.orderId)
+          .eq("id", receipt.orderId)
           .maybeSingle();
         const latestStatus = String((latestOrder as { status?: string } | null)?.status || "").toUpperCase();
         if (["PAID", "SHIPPED", "COMPLETED", "DISPUTE_OPEN"].includes(latestStatus)) {
@@ -501,48 +523,83 @@ export default function GlobalCartSidebar() {
         await new Promise((resolve) => setTimeout(resolve, 800));
       }
 
-      if (pendingPayment.coinsToApply > 0) {
+      if (receipt.coinsToApply > 0) {
         await supabase.rpc("decrement_wallet", {
-          arg_phone: pendingPayment.cleanPhone,
-          arg_amount: Number(pendingPayment.coinsToApply),
-          arg_store: String(pendingPayment.storeName),
+          arg_phone: receipt.cleanPhone,
+          arg_amount: Number(receipt.coinsToApply),
+          arg_store: String(receipt.storeName),
         });
         setUseCoins(false);
       }
 
-      if (pendingPayment.checkoutMode === "guest") {
-        localStorage.setItem("storelink_guest_identity", JSON.stringify({
-          email: pendingPayment.cleanEmail,
-          phone: pendingPayment.cleanPhone,
-        }));
+      const buyerEmail = (receipt.cleanEmail || "").trim().toLowerCase();
+      if (buyerEmail.includes("@")) {
+        void fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "BUYER_CHECKOUT_RECEIPT",
+            email: buyerEmail,
+            data: {
+              orderId: receipt.orderId,
+              orderShortId: String(receipt.orderId).slice(0, 8).toUpperCase(),
+              storeName: receipt.storeName,
+              customerName: receipt.customerName,
+              shippingAddress: receipt.shippingAddress,
+              storeTotalGross: receipt.storeTotalGross,
+              coinsApplied: receipt.coinsToApply,
+              amountPaid: receipt.finalPayable,
+              items: receipt.itemLines,
+            },
+          }),
+        }).catch((e) => console.error("Buyer receipt email failed:", e));
       }
 
-      let followUp: "none" | "guest_account" | "profile" = "none";
+      const sellerNotify = (receipt.sellerNotifyEmail || "").trim().toLowerCase();
+      if (sellerNotify.includes("@")) {
+        void fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "CHECKOUT_ALERT",
+            email: sellerNotify,
+            data: {
+              paymentCompleted: true,
+              productName: receipt.itemLines.map((l) => l.name),
+              storeName: receipt.storeName,
+              customerName: receipt.customerName,
+              customerEmail: buyerEmail || "—",
+              customerPhone: receipt.cleanPhone ? `0${receipt.cleanPhone}` : "—",
+              orderAmount: receipt.finalPayable,
+              orderIdFull: receipt.orderId,
+              orderShortId: String(receipt.orderId).slice(0, 8).toUpperCase(),
+            },
+          }),
+        }).catch((e) => console.error("Seller paid-order email failed:", e));
+      }
+
+      let followUp: "none" | "profile" = "none";
       let nextProfileHref: string | null = null;
-      if (pendingPayment.checkoutMode === "guest") {
-        followUp = "guest_account";
-      } else {
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
-        if (user?.id) {
-          const ctx = await fetchOnboardingContext(supabase, user.id);
-          const path = getOnboardingHubRedirect(ctx);
-          if (path.startsWith("/onboarding")) {
-            followUp = "profile";
-            nextProfileHref = path;
-          }
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user?.id) {
+        const ctx = await fetchOnboardingContext(supabase, user.id);
+        if (ctx.profile && !isProfileOnboardingComplete(ctx.profile)) {
+          followUp = "profile";
+          nextProfileHref = "/onboarding/role";
         }
       }
       setCheckoutFollowUp(followUp);
       setProfileContinueHref(nextProfileHref);
 
-      setPendingStoreName(pendingPayment.storeName);
-      setPendingOrderId(String(pendingPayment.orderId).slice(0, 8).toUpperCase());
+      setPendingStoreName(receipt.storeName);
+      setPendingOrderId(String(receipt.orderId).slice(0, 8).toUpperCase());
       setShowSuccessModal(true);
-      sendGAEvent("event", "purchase", { store: pendingPayment.storeName, value: pendingPayment.finalPayable });
-      pendingPayment.itemIds.forEach((id) => removeFromCart(id));
+      sendGAEvent("event", "purchase", { store: receipt.storeName, value: receipt.finalPayable });
+      receipt.itemIds.forEach((id) => removeFromCart(id));
       setPendingPayment(null);
+      paystackChargeMajorRef.current = 0;
     } catch (err: any) {
       setCheckoutError(err?.message || "Payment verification failed.");
     } finally {
@@ -551,20 +608,43 @@ export default function GlobalCartSidebar() {
     }
   };
 
-  const handleCheckout = async (sellerId: string, storeData: any, items: any[]) => {
+  const handleCheckout = async (
+    sellerId: string,
+    storeData: any,
+    items: any[],
+    opts?: { userIdOverride?: string | null },
+  ) => {
     setCheckoutError("");
-    setLoadingStoreId(sellerId);
-    const cleanPhone = formData.phone.replace(/\D/g, '').slice(-10);
+    const uuidRe =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    const fromStore = typeof sellerId === "string" ? sellerId.trim() : "";
+    const fromProduct =
+      typeof items[0]?.product?.seller_id === "string" ? String(items[0].product.seller_id).trim() : "";
+    const effectiveSellerId = uuidRe.test(fromStore) ? fromStore : uuidRe.test(fromProduct) ? fromProduct : "";
+    if (!effectiveSellerId) {
+      setCheckoutError(
+        "This bag is missing seller information (often from an old saved cart). Empty the bag, add the products again, then checkout.",
+      );
+      setLoadingStoreId(null);
+      return;
+    }
+    setLoadingStoreId(effectiveSellerId);
+    const cleanPhone = formData.phone.replace(/\D/g, "").slice(-10);
     const cleanEmail = (formData.email || "").trim().toLowerCase();
+    const uid = (opts?.userIdOverride ?? accountUserId)?.trim() || null;
 
-    if (checkoutMode === 'guest' && !cleanEmail) {
-      setCheckoutError("Email is required for guest checkout.");
+    if (!uid) {
+      setCheckoutError(
+        cleanEmail.includes("@")
+          ? "We couldn’t attach your session to checkout yet. Close the cart, wait a second, and tap checkout again — or refresh the page."
+          : "Sign in to complete checkout.",
+      );
       setLoadingStoreId(null);
       return;
     }
 
-    if (checkoutMode === "account" && !accountUserId) {
-      setCheckoutError("Sign in to use account checkout, or use guest checkout from the cart.");
+    if (!cleanEmail.includes("@")) {
+      setCheckoutError("Add a valid email for receipts and account recovery.");
       setLoadingStoreId(null);
       return;
     }
@@ -572,133 +652,109 @@ export default function GlobalCartSidebar() {
     try {
         // Mini onboarding sync for account checkout:
         // persist essentials so users don't repeat onboarding later in app.
-        if (checkoutMode === "account" && accountUserId) {
-          const { data: profile } = await supabase
-            .from("profiles")
-            .select("is_seller, full_name, display_name, phone_number, slug, location, location_state, location_city, onboarding_step")
-            .eq("id", accountUserId)
-            .maybeSingle();
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("is_seller, full_name, display_name, phone_number, slug, location, location_state, location_city, onboarding_step")
+          .eq("id", uid)
+          .maybeSingle();
 
-          const addressParts = formData.address
-            .split(",")
-            .map((v) => v.trim())
-            .filter(Boolean);
-          const inferredState = addressParts.length >= 1 ? addressParts[addressParts.length - 1] : null;
-          const inferredCity = addressParts.length >= 2 ? addressParts[addressParts.length - 2] : null;
+        const addressParts = formData.address
+          .split(",")
+          .map((v) => v.trim())
+          .filter(Boolean);
+        const inferredState = addressParts.length >= 1 ? addressParts[addressParts.length - 1] : null;
+        const inferredCity = addressParts.length >= 2 ? addressParts[addressParts.length - 2] : null;
 
-          const updates: Record<string, any> = {
-            updated_at: new Date().toISOString(),
-          };
-          if (!profile?.full_name && formData.name.trim()) updates.full_name = formData.name.trim();
-          if (!profile?.display_name && formData.name.trim()) updates.display_name = formData.name.trim();
-          if (!profile?.phone_number && cleanPhone) updates.phone_number = `234${cleanPhone}`;
-          if (!profile?.location && formData.address.trim()) updates.location = formData.address.trim();
-          if (!profile?.location_state && inferredState) updates.location_state = inferredState;
-          if (!profile?.location_city && inferredCity) updates.location_city = inferredCity;
-          const looksLikeSeller = profile?.is_seller === true;
-          if (!looksLikeSeller) {
-            const hasIdentityAfterSync = Boolean(
-              (profile?.full_name || formData.name.trim()) &&
-              (profile?.phone_number || cleanPhone) &&
-              profile?.slug
-            );
-            const hasLocationAfterSync = Boolean(
-              (profile?.location || formData.address.trim()) &&
-              (profile?.location_state || inferredState) &&
-              (profile?.location_city || inferredCity)
-            );
-            if (!hasIdentityAfterSync) {
-              updates.onboarding_step = "buyer_identity";
-            } else if (!hasLocationAfterSync) {
-              updates.onboarding_step = "buyer_location";
-            } else {
-              updates.onboarding_step = "done";
-              updates.onboarding_completed = true;
-            }
-          }
+        const updates: Record<string, any> = {
+          updated_at: new Date().toISOString(),
+        };
+        if (!profile?.full_name && formData.name.trim()) updates.full_name = formData.name.trim();
+        if (!profile?.display_name && formData.name.trim()) updates.display_name = formData.name.trim();
+        if (!profile?.phone_number && cleanPhone) updates.phone_number = `234${cleanPhone}`;
+        if (!profile?.location && formData.address.trim()) updates.location = formData.address.trim();
+        if (!profile?.location_state && inferredState) updates.location_state = inferredState;
+        if (!profile?.location_city && inferredCity) updates.location_city = inferredCity;
+        // Do not advance onboarding_step / onboarding_completed here. Checkout pre-fills profile
+        // fields only; /onboarding/role must stay first so users can choose shopper vs storefront.
 
-          if (Object.keys(updates).length > 1) {
-            await supabase.from("profiles").update(updates).eq("id", accountUserId);
-          }
+        if (Object.keys(updates).length > 1) {
+          await supabase.from("profiles").update(updates).eq("id", uid);
         }
 
-        const storeTotal = items.reduce((sum: number, i: any) => sum + (i.product.price * i.qty), 0);
-        const allowCoins = checkoutMode === "account" && !!accountUserId && useCoins;
+        const lineTotal = (i: any) => Number(i?.product?.price ?? 0) * Number(i?.qty ?? 0);
+        const storeTotal = Math.round(items.reduce((sum: number, i: any) => sum + lineTotal(i), 0));
+        const allowCoins = !!uid && useCoins;
         const coinsToApply = allowCoins ? Math.min(actualBalance, Math.floor(storeTotal * 0.05)) : 0;
-        const finalPayable = storeTotal - coinsToApply;
-        
-        // 1. Save order to Supabase
-       const { data: newOrderId, error: orderError } = await supabase.rpc('create_new_order', {
-    p_seller_id: sellerId,
-    customer_name: formData.name,
-    customer_phone: cleanPhone,
-    customer_email: cleanEmail || null,
-    customer_address: formData.address,
-    total_amount_paid: finalPayable,
-    coins_used: coinsToApply,
-    checkout_mode: checkoutMode,
-    origin_channel: 'storefront',
-    is_guest_checkout: checkoutMode === 'guest',
-    p_user_id: checkoutMode === 'account' ? accountUserId : null,
-    order_items_array: items.map((item) => ({
-        product_id: item.product.id,
-        product_name: item.product.name,
-        quantity: item.qty,
-        price: item.product.price
-    })),
+        const finalPayable = Math.max(0, Math.round(storeTotal - coinsToApply));
+        if (!Number.isFinite(finalPayable) || finalPayable < 1) {
+          setCheckoutError("Order total is invalid or too low to charge. Check item prices and try again.");
+          setLoadingStoreId(null);
+          return;
+        }
+
+        const currentStoreSettings = liveStoreSettings[effectiveSellerId];
+        const sellerNotifyEmail =
+          typeof currentStoreSettings?.owner_email === "string"
+            ? String(currentStoreSettings.owner_email).trim()
+            : null;
+
+        // RPC reads buyer name / phone / email from public.profiles (p_user_id); we only send delivery line + totals.
+        // p_seller_id must always be a real UUID — undefined is omitted by JSON and PostgREST then looks up the wrong overload.
+        const { data: newOrderId, error: orderError } = await supabase.rpc("create_new_order", {
+          p_seller_id: effectiveSellerId,
+          customer_address: formData.address,
+          total_amount_paid: finalPayable,
+          coins_used: coinsToApply,
+          checkout_mode: "account",
+          origin_channel: "storefront",
+          p_user_id: uid,
+          is_guest_checkout: false,
+          order_items_array: items.map((item) => ({
+            product_id: item.product.id,
+            product_name: item.product.name,
+            quantity: item.qty,
+            price: item.product.price,
+          })),
         });
 
         if (orderError) throw orderError;
 
-        // Notify vendor via email (checkout alert)
-        const currentStoreSettings = liveStoreSettings[sellerId];
-        const targetEmail = currentStoreSettings?.owner_email;
-
-        if (targetEmail) {
-          try {
-            await fetch("/api/send-email", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                email: targetEmail,
-                type: "CHECKOUT_ALERT",
-                data: {
-                  productName: items.map(i => i.product.name),
-                  storeName: storeData.name,
-                  customerName: formData.name,
-                  orderId: newOrderId.slice(0, 8)
-                }
-              }),
-            });
-          } catch (e) { 
-            console.error("Vendor email notification failed:", e); 
-          }
-        }
-
-        setPendingPayment({
+        const nextPending: PendingPayment = {
           orderId: String(newOrderId),
-          sellerId,
+          sellerId: effectiveSellerId,
+          sellerNotifyEmail: sellerNotifyEmail && sellerNotifyEmail.includes("@") ? sellerNotifyEmail : null,
           storeName: String(storeData.name),
           finalPayable,
           cleanPhone,
           cleanEmail,
           coinsToApply,
           itemIds: items.map((item: any) => String(item.product.id)),
-          checkoutMode,
+          checkoutMode: "account" as const,
+          customerName: formData.name.trim(),
+          shippingAddress: formData.address.trim(),
+          storeTotalGross: storeTotal,
+          itemLines: items.map((item: any) => ({
+            name: String(item.product.name),
+            quantity: Number(item.qty),
+            unitPrice: Number(item.product.price),
+          })),
+        };
+        paystackChargeMajorRef.current = finalPayable;
+        flushSync(() => {
+          setPendingPayment(nextPending);
+          setPaystackOpen(true);
         });
-        setPaystackOpen(true);
-
     } catch (err: any) {
-        setCheckoutError(err?.message || "Order failed. Please try again.");
+      setCheckoutError(err?.message || "Order failed. Please try again.");
     } finally {
-        setLoadingStoreId(null); 
+      setLoadingStoreId(null);
     }
   };
 
   const isInternalPage = pathname?.startsWith('/dashboard') || pathname?.startsWith('/admin');
   if (isInternalPage || !isCartOpen) return null;
 
-  const canApplyCoins = checkoutMode === "account" && !!accountUserId;
+  const canApplyCoins = !!accountUserId;
 
   const cartByVendor = cart.reduce((acc, item) => {
     const vendorKey = item.store.owner_id;
@@ -727,39 +783,9 @@ export default function GlobalCartSidebar() {
              <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 animate-bounce">
                 <Check size={40} strokeWidth={3} />
              </div>
-             <h2 className="font-black text-2xl uppercase tracking-tighter mb-2 text-gray-900">Order Placed!</h2>
-             <p className="text-gray-500 text-sm font-medium mb-3">Your order for <span className="text-gray-900 font-bold">{pendingStoreName}</span> has been submitted.</p>
+             <h2 className="font-black text-2xl uppercase tracking-tighter mb-2 text-gray-900">Order paid</h2>
+             <p className="text-gray-500 text-sm font-medium mb-3">Your order for <span className="text-gray-900 font-bold">{pendingStoreName}</span> is confirmed.</p>
              <p className="text-gray-900 text-xs font-black uppercase tracking-widest mb-8">Order ID: #{pendingOrderId}</p>
-             {postAuthSellerIntent && (
-              <button
-                onClick={() => {
-                  localStorage.removeItem("storelink_post_auth_seller_intent");
-                  setCheckoutFollowUp("none");
-                  setShowSuccessModal(false);
-                  setIsCartOpen(false);
-                  router.push("/onboarding/seller/identity");
-                }}
-                className="mb-4 w-full border border-emerald-200 text-emerald-700 py-3 rounded-[1.4rem] font-black text-[11px] uppercase tracking-widest hover:bg-emerald-50 transition-all"
-              >
-                Continue Seller Setup
-              </button>
-             )}
-
-             {checkoutFollowUp === "guest_account" && (
-               <button
-                 type="button"
-                 onClick={() => {
-                   setCheckoutFollowUp("none");
-                   setShowSuccessModal(false);
-                   setIsCartOpen(false);
-                   router.push("/signup?next=%2Fpost-login");
-                 }}
-                 className="mb-3 w-full bg-gray-900 text-white py-3 rounded-[1.4rem] font-black text-[11px] uppercase tracking-widest hover:bg-emerald-600 transition-all"
-               >
-                 Create account &amp; verify email
-               </button>
-             )}
-
              {checkoutFollowUp === "profile" && profileContinueHref && (
                <button
                  type="button"
@@ -771,7 +797,7 @@ export default function GlobalCartSidebar() {
                  }}
                  className="mb-3 w-full bg-emerald-600 text-white py-3 rounded-[1.4rem] font-black text-[11px] uppercase tracking-widest hover:bg-emerald-700 transition-all"
                >
-                 Complete StoreLink profile
+                 Continue account setup
                </button>
              )}
              
@@ -781,9 +807,9 @@ export default function GlobalCartSidebar() {
                 setShowSuccessModal(false);
                 if (cart.length === 0) setIsCartOpen(false);
               }}
-              className="w-full bg-emerald-600 text-white py-5 rounded-4xl font-black text-[13px] uppercase tracking-widest hover:bg-emerald-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-emerald-200"
+              className="w-full bg-gray-900 text-white py-5 rounded-4xl font-black text-[13px] uppercase tracking-widest hover:bg-emerald-600 transition-all flex items-center justify-center gap-3 shadow-xl shadow-emerald-200"
              >
-                Continue
+                Continue shopping
              </button>
 
              <button 
@@ -794,7 +820,7 @@ export default function GlobalCartSidebar() {
               }}
               className="mt-6 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors"
              >
-                Return to Cart
+                Back to bag
              </button>
           </div>
         )}
@@ -972,19 +998,22 @@ export default function GlobalCartSidebar() {
               </p>
             )}
 
-            {Object.values(cartByVendor).map(({ store, items }) => {
+            {Object.entries(cartByVendor).map(([vendorKey, { store, items }]) => {
               const settings = {
                 ...store,
                 ...(liveStoreSettings[store.owner_id] || {}),
               };
-              const storeTotal = items.reduce((sum, i) => sum + (i.product.price * i.qty), 0);
+              const storeTotal = items.reduce(
+                (sum, i) => sum + Number(i.product.price ?? 0) * Number(i.qty ?? 0),
+                0,
+              );
               const discount =
                 canApplyCoins && useCoins ? Math.min(actualBalance, Math.floor(storeTotal * 0.05)) : 0;
               const finalTotal = storeTotal - discount;
               const earned = settings.loyalty_enabled ? Math.floor(finalTotal * (settings.loyalty_percentage / 100)) : 0;
 
               return (
-                <div key={store.owner_id} className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden relative mb-4">
+                <div key={vendorKey} className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden relative mb-4">
                    <div className="flex justify-between items-start border-b border-gray-50 pb-4 mb-4">
                       <h3 className="font-black text-[11px] uppercase tracking-tighter text-gray-400">{store.name}</h3>
                       <div className="text-right">
@@ -994,8 +1023,11 @@ export default function GlobalCartSidebar() {
                    </div>
 
                    <div className="space-y-4 mb-6">
-                      {items.map((item) => (
-                        <div key={item.product.id} className="flex gap-3 items-center group text-left min-w-0">
+                      {items.map((item, lineIdx) => (
+                        <div
+                          key={`${vendorKey}-${String(item.product.id)}-${lineIdx}`}
+                          className="flex gap-3 items-center group text-left min-w-0"
+                        >
                           <div className="relative w-12 h-12 bg-gray-50 rounded-xl overflow-hidden border shrink-0">
                             {item.product.image_urls?.[0] && (
                               <Image src={item.product.image_urls[0]} alt="" fill className="object-cover" unoptimized />
@@ -1004,7 +1036,18 @@ export default function GlobalCartSidebar() {
                           <div className="flex-1 min-w-0">
                             <p className="font-bold text-[13px] text-gray-900 uppercase truncate">{item.product.name}</p>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                              ₦{item.product.price.toLocaleString()} each
+                              {item.product.compare_at_price != null &&
+                              Number(item.product.compare_at_price) > Number(item.product.price) ? (
+                                <span className="inline">
+                                  <span className="text-gray-300 line-through decoration-gray-300">
+                                    ₦{Number(item.product.compare_at_price).toLocaleString()}
+                                  </span>{" "}
+                                  <span className="text-emerald-600">₦{Number(item.product.price).toLocaleString()}</span>{" "}
+                                  each
+                                </span>
+                              ) : (
+                                <span className="inline">₦{Number(item.product.price).toLocaleString()} each</span>
+                              )}
                             </p>
                           </div>
                           <div className="flex items-center gap-1 shrink-0">
@@ -1048,10 +1091,33 @@ export default function GlobalCartSidebar() {
                      </div>
                    )}
 
+                   {(() => {
+                     const est = estimateNgnSellerSettlementFromGross(finalTotal);
+                     return (
+                       <div className="mb-4 rounded-2xl border border-gray-100 bg-gray-50 p-3 text-[9px] font-medium leading-relaxed text-gray-600">
+                         <p className="font-black uppercase tracking-widest text-gray-400">What you pay vs. seller payout</p>
+                         <p className="mt-1.5">
+                           You pay <strong className="text-gray-900">₦{finalTotal.toLocaleString()}</strong> at checkout. The seller&apos;s estimated
+                           settlement after <strong>StoreLink 2.5%</strong> (₦{est.storelinkFeeNgn.toLocaleString()}) and{" "}
+                           <strong>Paystack ~1.5%</strong> (₦{est.paystackFeeNgn.toLocaleString()}) — about{" "}
+                           <strong className="text-gray-900">₦{est.estimatedNetToSellerNgn.toLocaleString()}</strong> — final amounts follow Paystack
+                           settlement. See{" "}
+                           <Link href="/terms" className="font-black text-emerald-700 underline underline-offset-2">
+                             Terms
+                           </Link>
+                           .
+                         </p>
+                       </div>
+                     );
+                   })()}
+
                    <button
                      type="button"
                      onClick={() => {
-                       if (pendingPayment?.sellerId === store.owner_id) {
+                       const pending = pendingPayment;
+                       if (pending && pending.sellerId === store.owner_id) {
+                         const major = Number(pending.finalPayable);
+                         paystackChargeMajorRef.current = Number.isFinite(major) ? major : 0;
                          setPaystackOpen(true);
                          return;
                        }
@@ -1070,13 +1136,13 @@ export default function GlobalCartSidebar() {
                      {loadingStoreId === store.owner_id ? (
                        <Loader2 className="animate-spin" size={18} />
                      ) : pendingPayment?.sellerId === store.owner_id ? (
-                       <>
-                         <Send size={16} /> Continue payment
-                       </>
+                       <span className="inline-flex items-center justify-center gap-2">
+                         <Send size={16} aria-hidden /> Continue payment
+                       </span>
                      ) : (
-                       <>
-                         <Send size={16} /> Checkout with {store.name}
-                       </>
+                       <span className="inline-flex items-center justify-center gap-2">
+                         <Send size={16} aria-hidden /> Checkout with {store.name}
+                       </span>
                      )}
                    </button>
                 </div>
@@ -1100,7 +1166,7 @@ export default function GlobalCartSidebar() {
                 <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Checkout</p>
                 <h3 className="text-lg font-black text-gray-900 tracking-tight mt-1">Almost there</h3>
                 <p className="text-xs text-gray-500 font-medium mt-2 leading-relaxed">
-                  Create a free StoreLink account in seconds, or log in — then you&apos;ll pay{" "}
+                  Create a free StoreLink account (same as signing up on our site), or log in — then you&apos;ll pay{" "}
                   <span className="font-bold text-gray-900">{authGate.store.name}</span> securely.
                 </p>
               </div>
@@ -1111,6 +1177,7 @@ export default function GlobalCartSidebar() {
                   setAuthGate(null);
                   setAuthGateError("");
                   setAuthGateInfo("");
+                  setAuthGateAgreedLegal(false);
                 }}
                 aria-label="Close"
               >
@@ -1129,15 +1196,35 @@ export default function GlobalCartSidebar() {
             <input
               type="password"
               autoComplete="new-password"
-              placeholder="Choose a password (min 6 characters)"
-              className="mb-4 w-full min-h-[48px] rounded-2xl border border-gray-100 bg-gray-50 p-4 text-base font-bold outline-none focus:ring-2 focus:ring-emerald-500"
+              placeholder="8+ characters, include at least one number"
+              className="mb-3 w-full min-h-[48px] rounded-2xl border border-gray-100 bg-gray-50 p-4 text-base font-bold outline-none focus:ring-2 focus:ring-emerald-500"
               value={signupPassword}
               onChange={(e) => setSignupPassword(e.target.value)}
             />
 
+            <label className="mb-4 flex min-h-[48px] cursor-pointer items-start gap-3 rounded-xl border border-gray-100 bg-gray-50 p-3">
+              <input
+                type="checkbox"
+                checked={authGateAgreedLegal}
+                onChange={(e) => setAuthGateAgreedLegal(e.target.checked)}
+                className="mt-0.5 h-5 w-5 shrink-0 accent-emerald-600"
+              />
+              <span className="text-[11px] font-bold leading-relaxed text-gray-600 normal-case tracking-normal">
+                I agree to the{" "}
+                <Link href="/terms" className="font-black text-emerald-700 underline underline-offset-2">
+                  Terms of Service
+                </Link>{" "}
+                and{" "}
+                <Link href="/privacy" className="font-black text-emerald-700 underline underline-offset-2">
+                  Privacy Policy
+                </Link>
+                .
+              </span>
+            </label>
+
             <button
               type="button"
-              disabled={authGateBusy}
+              disabled={authGateBusy || !authGateAgreedLegal}
               onClick={() => void runSignupFromGate()}
               className="mb-3 flex min-h-[52px] w-full items-center justify-center rounded-2xl bg-emerald-600 py-4 text-[11px] font-black uppercase tracking-widest text-white transition hover:bg-emerald-700 disabled:opacity-50"
             >
@@ -1152,15 +1239,6 @@ export default function GlobalCartSidebar() {
             >
               Log in instead
             </button>
-
-            <button
-              type="button"
-              disabled={authGateBusy}
-              onClick={() => runGuestFromGate()}
-              className="flex min-h-[44px] w-full items-center justify-center text-center text-[10px] font-bold uppercase tracking-widest text-gray-400 underline"
-            >
-              Order as guest (email required)
-            </button>
           </div>
         )}
       </div>
@@ -1174,14 +1252,19 @@ export default function GlobalCartSidebar() {
         }}
         onSuccess={(reference) => void finalizePaidOrder(reference)}
         email={(pendingPayment?.cleanEmail || formData.email || (accountUserId ? `buyer-${accountUserId}@storelink.ng` : "buyer@storelink.ng") || "").trim()}
-        amount={Number(pendingPayment?.finalPayable || 0)}
+        amount={(() => {
+          if (!paystackOpen) return 0;
+          const fromRef = Number(paystackChargeMajorRef.current);
+          if (Number.isFinite(fromRef) && fromRef > 0) return fromRef;
+          const fromState = Number(pendingPayment?.finalPayable);
+          return Number.isFinite(fromState) && fromState > 0 ? fromState : 0;
+        })()}
         currency="NGN"
         metadata={{
           order_id: pendingPayment?.orderId,
           seller_id: pendingPayment?.sellerId,
-          checkout_mode: pendingPayment?.checkoutMode,
+          checkout_mode: "account",
           origin_channel: "storefront",
-          is_guest_checkout: pendingPayment?.checkoutMode === "guest",
         }}
       />
       {settlingPayment && (

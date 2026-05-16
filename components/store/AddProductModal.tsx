@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { buildR2Key, uploadFileToR2 } from "@/lib/mediaUpload";
 import { useRouter } from "next/navigation";
 import { X, Loader2, Trash2, Plus, Gem, Sparkles, ExternalLink } from "lucide-react";
 import { compressImage } from "@/utils/imageCompressor";
@@ -46,6 +47,8 @@ export default function AddProductModal({
     stock: "1",
     description: "",
     categoryId: "",
+    storefrontNewArrival: false,
+    storefrontBestSeller: false,
   });
   
   const [imageFiles, setImageFiles] = useState<File[]>([]);
@@ -65,12 +68,14 @@ export default function AddProductModal({
           stock: productToEdit.stock_quantity.toString(),
           description: productToEdit.description || "",
           categoryId: productToEdit.category_id || "",
+          storefrontNewArrival: Boolean(productToEdit.storefront_new_arrival),
+          storefrontBestSeller: Boolean(productToEdit.storefront_best_seller),
         });
         setExistingImages(productToEdit.image_urls || []);
         setPreviews([]);
         setImageFiles([]);
       } else {
-        setFormData({ name: "", price: "", stock: "1", description: "", categoryId: "" });
+        setFormData({ name: "", price: "", stock: "1", description: "", categoryId: "", storefrontNewArrival: false, storefrontBestSeller: false });
         setExistingImages([]);
         setPreviews([]);
         setImageFiles([]);
@@ -201,15 +206,21 @@ export default function AddProductModal({
       const uploadedUrls: string[] = [];
       for (const file of imageFiles) {
         const compressedFile = await compressImage(file);
-        const fileName = `${storeId}/${Date.now()}-${Math.random().toString(36).substring(7)}`;
-        const { error: uploadErr } = await supabase.storage.from("products").upload(fileName, compressedFile);
-        if (uploadErr) throw uploadErr;
-        const { data } = supabase.storage.from("products").getPublicUrl(fileName);
-        uploadedUrls.push(data.publicUrl);
+        const ext = (compressedFile.name.split(".").pop() || "jpg").toLowerCase();
+        const key = buildR2Key("product-images", `${storeId}/${Date.now()}-${Math.random().toString(36).substring(7)}.${ext}`);
+        const publicUrl = await uploadFileToR2({
+          bucket: "product-images",
+          key,
+          file: compressedFile,
+        });
+        uploadedUrls.push(publicUrl);
       }
 
       const finalImageUrls = [...existingImages, ...uploadedUrls];
       const newStock = parseInt(formData.stock);
+
+      const na = Boolean(formData.storefrontNewArrival);
+      const bs = Boolean(formData.storefrontBestSeller);
 
       const payload: any = {
         seller_id: user.id,
@@ -220,6 +231,8 @@ export default function AddProductModal({
         category_id: formData.categoryId,
         image_urls: finalImageUrls,
         is_active: true,
+        storefront_new_arrival: na,
+        storefront_best_seller: na ? false : bs,
       };
 
       if (newStock === 0) payload.sold_out_at = new Date().toISOString();
@@ -357,6 +370,43 @@ export default function AddProductModal({
                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Description (Compulsory)</label>
                   <textarea required maxLength={500} className="w-full p-4 bg-gray-50 border-none rounded-2xl text-sm font-bold focus:ring-2 focus:ring-gray-900 outline-none h-24 resize-none shadow-sm text-gray-900" placeholder="Describe your item..." value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
                 </div>
+
+                <div className="rounded-2xl border border-gray-100 bg-gray-50/80 p-4 space-y-3">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Web storefront only</p>
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.storefrontNewArrival}
+                      onChange={(e) => {
+                        const on = e.target.checked;
+                        setFormData((prev) => ({
+                          ...prev,
+                          storefrontNewArrival: on,
+                          storefrontBestSeller: on ? false : prev.storefrontBestSeller,
+                        }));
+                      }}
+                      className="size-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-600"
+                    />
+                    <span className="text-xs font-bold text-gray-800">Show in <span className="text-emerald-700">New arrivals</span> strip</span>
+                  </label>
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.storefrontBestSeller}
+                      onChange={(e) => {
+                        const on = e.target.checked;
+                        setFormData((prev) => ({
+                          ...prev,
+                          storefrontBestSeller: on,
+                          storefrontNewArrival: on ? false : prev.storefrontNewArrival,
+                        }));
+                      }}
+                      className="size-4 rounded border-gray-300 text-violet-600 focus:ring-violet-600"
+                    />
+                    <span className="text-xs font-bold text-gray-800">Show in <span className="text-violet-700">Best sellers</span> strip</span>
+                  </label>
+                  <p className="text-[10px] font-medium text-gray-500">Only one strip can be on per product.</p>
+                </div>
               </div>
               
               {errorMsg && !["LIMIT_REACHED", "DIAMOND_ONLY"].includes(errorMsg) && (
@@ -364,7 +414,7 @@ export default function AddProductModal({
               )}
               
               <button type="submit" disabled={loading || processingImages} className="w-full bg-gray-900 text-white py-5 rounded-[1.5rem] font-black text-xs uppercase tracking-widest shadow-xl shadow-gray-200 active:scale-95 transition-all disabled:opacity-50 mt-2">
-                {loading ? <Loader2 className="animate-spin mx-auto" /> : (productToEdit ? "Update Product" : "Save to Warehouse")}
+                {loading ? <Loader2 className="animate-spin mx-auto" /> : (productToEdit ? "Update Product" : "Upload to Store")}
               </button>
             </form>
         </div>

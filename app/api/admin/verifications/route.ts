@@ -116,8 +116,8 @@ export async function POST(request: Request) {
   }
 
   const profilePatch = approved
-    ? { is_verified: true, verification_status: "verified" as const, verification_note: null as string | null }
-    : { verification_status: "rejected" as const };
+    ? { verification_status: "verified" as const, verification_note: null as string | null }
+    : { verification_status: "rejected" as const, verification_note: reason || null };
 
   const { error: profErr } = await gate.svc.from("profiles").update(profilePatch).eq("id", userId);
 

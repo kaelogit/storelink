@@ -1,12 +1,15 @@
 "use client";
 
+// Updated for clarity: Focus on Brand Identity, Trust, and Growth.
+
 import Link from "next/link";
-import { TrendingUp, Search, ShoppingBag, CheckCircle, Star } from "lucide-react";
+import { TrendingUp, Search, ShoppingBag, CheckCircle, Store, CreditCard, Radar } from "lucide-react";
 
 export default function Hero() {
   return (
     <section className="relative pt-20 pb-12 md:pt-28 md:pb-20 overflow-hidden bg-white px-4 md:px-16 lg:px-32">
       
+      {/* Background Blobs - Kept Exactly the Same */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
          <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
          <div className="absolute top-20 right-10 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
@@ -23,52 +26,73 @@ export default function Hero() {
                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                Storefront Growth Infrastructure
+                Storefront · checkout · discovery
             </div>
 
+            {/* Clearer Headline */}
             <h1 className="text-4xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-6 leading-[1.1]">
-               Own a storefront that <br className="hidden md:block" />
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">scales your business digitally.</span>
+                Your brand’s official link, <br className="hidden md:block" />
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">
+                  secure checkout, more sales.
+               </span>
             </h1>
 
-            <p className="text-base md:text-xl text-gray-500 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
-               Personal websites are expensive to build and maintain. StoreLink gives you a ready-to-own storefront plus marketplace exposure to generate sales outside your personal contacts.
+            {/* Simplified Body Text */}
+            <p className="text-base md:text-xl text-gray-500 mb-4 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
+              StoreLink provides a professional home for your products. We give you a{" "}
+              <span className="text-gray-800 font-semibold">dedicated shop link</span> that customers trust, a{" "}
+              <span className="text-gray-800 font-semibold">secure checkout</span> for every order, and a{" "}
+              <span className="text-gray-800 font-semibold">marketplace</span> where new buyers can find your brand.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
-               <Link href="/signup?next=%2Fpost-login&seller_intent=1" className="w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-emerald-600 transition flex items-center justify-center gap-2">
-                  Start Selling
+            <p className="text-sm md:text-base text-gray-500 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed border-l-2 border-emerald-200 pl-4 italic">
+              Your personal shop link is the anchor for your business, while we create more ways for new buyers to find your catalog.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4">
+               <Link href="/signup?next=%2Fpost-login" className="w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-emerald-600 transition flex items-center justify-center gap-2">
+                 Create your storefront
                </Link>
             
-               <Link href="/#marketplace" className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold text-lg hover:bg-gray-50 transition flex items-center justify-center gap-2">
-                  <TrendingUp className="w-5 h-5" /> Trending on StoreLink
+               <Link href="/#marketplace" className="w-full sm:w-auto px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-xl font-bold text-sm md:text-base hover:bg-gray-50 transition flex items-center justify-center gap-2">
+                  <TrendingUp className="w-5 h-5 shrink-0" /> Browse marketplace
                </Link>
             </div>
 
-            <div className="flex items-center justify-center lg:justify-start gap-4 text-sm font-medium text-gray-500">
-               
-               <div className="flex flex-col items-start">
-                  <div className="flex text-yellow-400"><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/><Star size={12} fill="currentColor"/></div>
-                  <span>Trusted by 5000+ Vendors</span>
-               </div>
+            <p className="mb-10 text-center text-sm text-gray-500 lg:text-left">
+              <Link href="/pricing" className="font-semibold text-emerald-700 underline-offset-4 hover:underline">
+                View our pricing
+              </Link>
+              {" "}to find the right fit for your business.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-xs md:text-sm font-semibold text-gray-600">
+               <span className="inline-flex items-center gap-2">
+                 <Store className="h-4 w-4 text-emerald-600 shrink-0" aria-hidden />
+                 Professional Brand Link
+               </span>
+               <span className="inline-flex items-center gap-2">
+                 <CreditCard className="h-4 w-4 text-emerald-600 shrink-0" aria-hidden />
+                 Trusted &amp; Secure Checkout
+               </span>
+               <span className="inline-flex items-center gap-2">
+                 <Radar className="h-4 w-4 text-emerald-600 shrink-0" aria-hidden />
+                 Marketplace Reach
+               </span>
             </div>
           </div>
 
+          {/* Visual Mockup - Kept Exactly the Same */}
           <div className="flex-1 relative w-full max-w-[300px] md:max-w-md lg:max-w-full mx-auto lg:mx-0 mt-4 lg:mt-0">
-             
              <div className="relative z-10 bg-white rounded-[2.5rem] border-[6px] md:border-8 border-gray-900 shadow-2xl overflow-hidden aspect-[9/18] max-h-[500px] md:max-h-[600px] mx-auto rotate-[-2deg] hover:rotate-0 transition duration-500 group">
-                
                 <div className="bg-gray-900 text-white p-3 pt-6 text-center relative">
                    <p className="text-[10px] md:text-xs font-medium opacity-70">yourbrand.storelink.ng</p>
                 </div>
-                
                 <div className="p-3 space-y-3 bg-gray-50 h-full overflow-hidden relative pb-10">
-                   
                    <div className="bg-white p-2 rounded-lg border border-gray-100 flex items-center gap-2 text-gray-300">
                       <Search size={14} /> 
                       <span className="text-[10px]">Search Your Essentials...</span>
                    </div>
-
                    <div className="bg-white p-3 rounded-xl border border-gray-100">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-sm">L</div>
@@ -78,7 +102,6 @@ export default function Hero() {
                         </div>
                       </div>
                    </div>
-
                    <div className="grid grid-cols-2 gap-2">
                       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
                          <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden">
@@ -87,7 +110,6 @@ export default function Hero() {
                          <p className="font-bold text-[10px] text-gray-900 truncate">Nike Air Jordan 1</p>
                          <p className="text-[10px] text-emerald-600 font-bold">₦85,000</p>
                       </div>
-
                       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
                          <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1682364853446-db043f643207?q=80&w=1170&auto=format&fit=crop" alt="Perfume 2" className="object-cover w-full h-full" />
@@ -95,7 +117,6 @@ export default function Hero() {
                          <p className="font-bold text-[10px] text-gray-900 truncate">Gucci</p>
                          <p className="text-[10px] text-emerald-600 font-bold">₦120,000</p>
                       </div>
-
                       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
                          <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=880&auto=format&fit=crop" alt="Perfume 3" className="object-cover w-full h-full" />
@@ -103,7 +124,6 @@ export default function Hero() {
                          <p className="font-bold text-[10px] text-gray-900 truncate">Rayban</p>
                          <p className="text-[10px] text-emerald-600 font-bold">₦95,000</p>
                       </div>
-
                       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm">
                          <div className="w-full aspect-square bg-gray-100 rounded-lg mb-2 relative overflow-hidden">
                             <img src="https://images.unsplash.com/flagged/photo-1555895312-bbc472c964f3?q=80&w=688&auto=format&fit=crop" alt="Perfume 4" className="object-cover w-full h-full" />
@@ -112,7 +132,6 @@ export default function Hero() {
                          <p className="text-[10px] text-emerald-600 font-bold">₦60,000</p>
                       </div>
                    </div>
-
                    <div className="absolute bottom-20 right-4 bg-gray-900 text-white p-3 rounded-full shadow-lg group-hover:scale-110 transition">
                       <ShoppingBag size={18} />
                    </div>
@@ -131,7 +150,6 @@ export default function Hero() {
                 </div>
              </div>
           </div>
-
         </div>
       </div>
     </section>

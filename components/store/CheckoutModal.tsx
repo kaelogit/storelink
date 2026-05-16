@@ -14,7 +14,7 @@ interface CheckoutModalProps {
   onRemoveItem: (id: string) => void;
 }
 
-/** Legacy single-store checkout; main flow uses `GlobalCartSidebar` + Paystack. Guest RPC draft only. */
+/** Legacy single-store WhatsApp handoff; main paid flow uses `GlobalCartSidebar` + Paystack. Requires sign-in. */
 export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveItem }: CheckoutModalProps) {
   const [loading, setLoading] = useState(false);
   const [customer, setCustomer] = useState({ name: "", phone: "", address: "", email: "" });
@@ -51,6 +51,16 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
     }
 
     try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      const userId = session?.user?.id;
+      if (!userId) {
+        setCheckoutError("Sign in to place an order. Open the shopping bag and use checkout there.");
+        setLoading(false);
+        return;
+      }
+
       const { data: orderId, error: orderError } = await supabase.rpc("create_new_order", {
         p_seller_id: store.owner_id,
         customer_name: customer.name.trim(),
@@ -58,10 +68,9 @@ export default function CheckoutModal({ isOpen, onClose, cart, store, onRemoveIt
         customer_address: customer.address.trim() || "No Address Provided",
         total_amount_paid: cartTotal,
         coins_used: 0,
-        checkout_mode: "guest",
+        checkout_mode: "account",
         origin_channel: "storefront",
-        is_guest_checkout: true,
-        p_user_id: null,
+        p_user_id: userId,
         customer_email: email,
         order_items_array: cart.map((item) => ({
           product_id: item.product.id,

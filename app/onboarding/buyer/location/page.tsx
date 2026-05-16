@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { ArrowRight, Loader2, MapPin } from "lucide-react";
-import { fetchOnboardingContext, getOnboardingHubRedirect } from "@/lib/onboardingState";
+import { fetchOnboardingContext, getOnboardingHubRedirect, hasBuyerIdentity } from "@/lib/onboardingState";
 import GooglePlacesAutocomplete from "@/components/address/GooglePlacesAutocomplete";
 import PlaceDerivedLocationReadout from "@/components/address/PlaceDerivedLocationReadout";
 import { getGoogleMapsBrowserKey } from "@/lib/googlePlacesParsed";
 import type { ParsedGooglePlace } from "@/lib/googlePlacesParsed";
+import { getClientUserSafe } from "@/lib/getClientUserSafe";
 
 export default function BuyerLocationPage() {
   const router = useRouter();
@@ -25,42 +26,66 @@ export default function BuyerLocationPage() {
 
   const mapsKey = getGoogleMapsBrowserKey();
 
+  const canContinue = useMemo(
+    () =>
+      Boolean(mapsKey) &&
+      Boolean(homeAddress.trim()) &&
+      lat != null &&
+      lng != null &&
+      Boolean(cityValue.trim()) &&
+      Boolean(stateValue.trim()),
+    [mapsKey, homeAddress, lat, lng, cityValue, stateValue],
+  );
+
   useEffect(() => {
+    let cancelled = false;
     (async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) {
-        router.replace("/login");
-        return;
+      try {
+        const user = await getClientUserSafe(supabase);
+        if (!user) {
+          router.replace("/login");
+          return;
+        }
+
+        const ctx = await fetchOnboardingContext(supabase, user.id);
+        const next = getOnboardingHubRedirect(ctx);
+
+        if (!hasBuyerIdentity(ctx.profile)) {
+          router.replace("/onboarding/setup");
+          return;
+        }
+
+        if (next !== "/onboarding/buyer/location" && next !== "/onboarding/location") {
+          router.replace(next);
+          return;
+        }
+
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("location_state, location_city, location, location_country, location_country_code, discovery_latitude, discovery_longitude")
+          .eq("id", user.id)
+          .maybeSingle();
+
+        if (profile) {
+          setStateValue(String(profile.location_state || ""));
+          setCityValue(String(profile.location_city || ""));
+          setHomeAddress(String(profile.location || ""));
+          setLat(profile.discovery_latitude != null ? Number(profile.discovery_latitude) : null);
+          setLng(profile.discovery_longitude != null ? Number(profile.discovery_longitude) : null);
+          setLocationCountry(String(profile.location_country || ""));
+          setLocationCountryCode(String(profile.location_country_code || ""));
+        }
+      } catch {
+        if (!cancelled) {
+          setErrorMsg("Could not load this step. Check your connection and try again.");
+        }
+      } finally {
+        if (!cancelled) setBooting(false);
       }
-
-      const ctx = await fetchOnboardingContext(supabase, user.id);
-      const next = getOnboardingHubRedirect(ctx);
-
-      if (next !== "/onboarding/buyer/location") {
-        router.replace(next);
-        return;
-      }
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("location_state, location_city, location, location_country, location_country_code, discovery_latitude, discovery_longitude")
-        .eq("id", user.id)
-        .maybeSingle();
-
-      if (profile) {
-        setStateValue(String(profile.location_state || ""));
-        setCityValue(String(profile.location_city || ""));
-        setHomeAddress(String(profile.location || ""));
-        setLat(profile.discovery_latitude != null ? Number(profile.discovery_latitude) : null);
-        setLng(profile.discovery_longitude != null ? Number(profile.discovery_longitude) : null);
-        setLocationCountry(String(profile.location_country || ""));
-        setLocationCountryCode(String(profile.location_country_code || ""));
-      }
-
-      setBooting(false);
     })();
+    return () => {
+      cancelled = true;
+    };
   }, [router]);
 
   const handleContinue = async () => {
@@ -76,9 +101,7 @@ export default function BuyerLocationPage() {
     setLoading(true);
     setErrorMsg("");
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getClientUserSafe(supabase);
       if (!user) return;
 
       const { error } = await supabase
@@ -121,12 +144,9 @@ export default function BuyerLocationPage() {
   return (
     <div className="flex min-h-dvh flex-col items-center bg-gray-50 p-6 pb-24">
       <div className="w-full max-w-xl pt-8">
-        <p className="mb-3 text-center text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">StoreLink · Shopper</p>
+        <p className="mb-3 text-center text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">StoreLink · Shopper · Step 3 of 4</p>
         <h1 className="mb-2 text-center text-3xl font-black uppercase tracking-tighter text-gray-900">Set your home location</h1>
-        <p className="mb-6 text-center text-sm font-medium leading-relaxed text-gray-500">
-          Same flow as Account settings: search, pick one suggestion — city and region are filled from that choice.
-        </p>
-
+  
         <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-500">ADDRESSES</p>
         <p className="mb-4 text-xs font-medium text-gray-500 opacity-90">Picks apply when you continue.</p>
 
@@ -175,7 +195,7 @@ export default function BuyerLocationPage() {
 
           <button
             type="button"
-            disabled={loading || !mapsKey}
+            disabled={loading || !canContinue}
             onClick={handleContinue}
             className="w-full py-4 rounded-2xl bg-gray-900 text-white font-black text-[10px] uppercase tracking-[0.2em] shadow-lg flex items-center justify-center gap-2 disabled:opacity-60"
           >

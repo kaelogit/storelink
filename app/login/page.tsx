@@ -1,18 +1,36 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, ArrowLeft, ShieldCheck } from "lucide-react"; 
 import Link from "next/link";
 import Navbar from "@/components/landing/Navbar";
 import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
+import { isEmailVerifiedForStorefront } from "@/lib/authVerification";
+
+const AUTH_TIMEOUT_MS = 12000;
+const NETWORK_RETRY_LIMIT = 2;
+
+function isNetworkLikeError(err: unknown): boolean {
+  if (err instanceof TypeError) return true;
+  const msg = err instanceof Error ? err.message : String(err || "");
+  return /networkerror|failed to fetch|fetch failed|network request failed/i.test(msg);
+}
+
+async function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+  return await Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error("Network request timed out. Please try again.")), timeoutMs)
+    ),
+  ]);
+}
 
 function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextPath = searchParams.get("next") || "/post-login";
-  const sellerIntent = searchParams.get("seller_intent") === "1";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,6 +38,36 @@ function LoginContent() {
 
   const [needsMFA, setNeedsMFA] = useState(false);
   const [mfaCode, setMfaCode] = useState("");
+  const [checkingSession, setCheckingSession] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (cancelled) return;
+      if (user) {
+        const emailOk = await isEmailVerifiedForStorefront(supabase, user);
+        const dest = emailOk ? nextPath : `/verify?email=${encodeURIComponent(user.email || "")}&type=signup&next=${encodeURIComponent(nextPath)}`;
+        router.replace(dest);
+        return;
+      }
+      setCheckingSession(false);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [nextPath, router]);
+
+  const navigateAfterLogin = (path: string) => {
+    router.replace(path);
+    if (typeof window !== "undefined") {
+      // Hard navigation fallback prevents the button from spinning forever
+      // if client-side route transition gets stuck.
+      window.location.assign(path);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,10 +75,28 @@ function LoginContent() {
     setError(null);
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      let data: Awaited<ReturnType<typeof supabase.auth.signInWithPassword>>["data"] | null = null;
+      let error: Awaited<ReturnType<typeof supabase.auth.signInWithPassword>>["error"] | null = null;
+
+      for (let attempt = 0; attempt <= NETWORK_RETRY_LIMIT; attempt += 1) {
+        try {
+          const result = await withTimeout(
+            supabase.auth.signInWithPassword({
+              email,
+              password,
+            }),
+            AUTH_TIMEOUT_MS
+          );
+          data = result.data;
+          error = result.error;
+          break;
+        } catch (attemptErr) {
+          if (!isNetworkLikeError(attemptErr) || attempt >= NETWORK_RETRY_LIMIT) {
+            throw attemptErr;
+          }
+          await new Promise((resolve) => setTimeout(resolve, 350 * (attempt + 1)));
+        }
+      }
 
       if (error) {
          if (error.message.includes('Email not confirmed')) {
@@ -40,7 +106,11 @@ function LoginContent() {
          }
       }
 
-      const { data: factors } = await supabase.auth.mfa.listFactors();
+      const factorsResult = await Promise.race([
+        supabase.auth.mfa.listFactors(),
+        new Promise<{ data: null }>((resolve) => setTimeout(() => resolve({ data: null }), 6000)),
+      ]);
+      const factors = factorsResult?.data ?? null;
       const has2FA = factors?.all?.some(f => f.status === 'verified');
       
       if (has2FA) {
@@ -49,28 +119,19 @@ function LoginContent() {
         return; 
       }
 
-      if (sellerIntent) {
-        localStorage.setItem("storelink_post_auth_seller_intent", "1");
+      if (!data?.session) {
+        throw new Error("Sign in succeeded but session was not created. Please try again.");
       }
+      navigateAfterLogin(nextPath);
+      return;
 
-      const guestIdentityRaw = localStorage.getItem("storelink_guest_identity");
-      if (guestIdentityRaw && data?.user?.id) {
-        try {
-          const guestIdentity = JSON.parse(guestIdentityRaw);
-          await supabase.rpc("claim_guest_orders", {
-            p_user_id: data.user.id,
-            p_email: guestIdentity?.email || null,
-            p_phone: guestIdentity?.phone || null,
-          });
-        } catch {
-          // best-effort merge; do not block login
-        }
-      }
-
-      router.push(nextPath);
-
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message = isNetworkLikeError(err)
+        ? "Cannot reach auth server right now. Check internet/VPN/firewall and try again."
+        : err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.";
+      setError(message);
       setLoading(false);
     }
   };
@@ -99,33 +160,22 @@ function LoginContent() {
 
       if (verifyError) throw verifyError;
 
-      if (sellerIntent) {
-        localStorage.setItem("storelink_post_auth_seller_intent", "1");
-      }
+      navigateAfterLogin(nextPath);
+      return;
 
-      const { data: authData } = await supabase.auth.getUser();
-      const userId = authData?.user?.id;
-      const guestIdentityRaw = localStorage.getItem("storelink_guest_identity");
-      if (guestIdentityRaw && userId) {
-        try {
-          const guestIdentity = JSON.parse(guestIdentityRaw);
-          await supabase.rpc("claim_guest_orders", {
-            p_user_id: userId,
-            p_email: guestIdentity?.email || null,
-            p_phone: guestIdentity?.phone || null,
-          });
-        } catch {
-          // best-effort merge; do not block login
-        }
-      }
-
-      router.push(nextPath);
-
-    } catch (err: any) {
+    } catch {
       setError("Invalid code. Please try again.");
       setLoading(false);
     }
   };
+
+  if (checkingSession) {
+    return (
+      <div className={`min-h-dvh bg-gray-50 font-sans ${STOREFRONT_SAFE_BOTTOM} flex items-center justify-center`}>
+        <Loader2 className="animate-spin text-emerald-600" />
+      </div>
+    );
+  }
 
   return (
     <div className={`min-h-dvh bg-gray-50 font-sans ${STOREFRONT_SAFE_BOTTOM}`}>
@@ -140,7 +190,8 @@ function LoginContent() {
           {!needsMFA && (
             <>
               <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back!</h1>
-              <p className="text-gray-500 text-sm mb-6">Sign in to shop, track orders, or manage your storefront.</p>
+              <p className="text-gray-500 text-sm mb-2">Sign in to shop, track orders, or manage your storefront.</p>
+              
               
               <form onSubmit={handleLogin} className="space-y-4">
                 {error && <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg text-center font-medium">{error}</div>}
@@ -169,7 +220,7 @@ function LoginContent() {
               <p className="mt-6 text-sm text-gray-500 text-center">
                 New to StoreLink?{" "}
                 <Link
-                  href={`/signup?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`}
+                  href={`/signup?next=${encodeURIComponent(nextPath)}`}
                   className="font-bold text-gray-900 hover:text-emerald-600"
                 >
                   Sign up

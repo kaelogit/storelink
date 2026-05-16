@@ -4,11 +4,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { ArrowRight, Loader2, Tag } from "lucide-react";
-import { fetchOnboardingContext, getOnboardingHubRedirect } from "@/lib/onboardingState";
+import {
+  fetchOnboardingContext,
+  hasBuyerIdentity,
+  hasBuyerLocation,
+} from "@/lib/onboardingState";
 import {
   BUYER_ONBOARDING_CATEGORY_OPTIONS,
   filterBuyerPickSlugsForStorefront,
 } from "@/lib/buyerOnboardingCategories";
+import { getClientUserSafe } from "@/lib/getClientUserSafe";
 
 export default function BuyerInterestsPage() {
   const router = useRouter();
@@ -18,35 +23,48 @@ export default function BuyerInterestsPage() {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
+    let cancelled = false;
     (async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) {
-        router.replace("/login");
-        return;
+      try {
+        const user = await getClientUserSafe(supabase);
+        if (!user) {
+          router.replace("/login");
+          return;
+        }
+
+        const ctx = await fetchOnboardingContext(supabase, user.id);
+        if (!hasBuyerIdentity(ctx.profile)) {
+          router.replace("/onboarding/setup");
+          return;
+        }
+        if (!hasBuyerLocation(ctx.profile)) {
+          router.replace("/onboarding/location");
+          return;
+        }
+        // Keep this step stable: do not auto-forward to dashboard from here.
+        // Users should leave this page only after explicitly saving interests.
+
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("buyer_interested_categories")
+          .eq("id", user.id)
+          .maybeSingle();
+
+        const existing = profile?.buyer_interested_categories;
+        if (Array.isArray(existing) && existing.length > 0) {
+          setSelected(new Set(existing.map(String)));
+        }
+      } catch {
+        if (!cancelled) {
+          setErrorMsg("Could not load this step. Check your connection and try again.");
+        }
+      } finally {
+        if (!cancelled) setBooting(false);
       }
-
-      const ctx = await fetchOnboardingContext(supabase, user.id);
-      const next = getOnboardingHubRedirect(ctx);
-      if (next !== "/onboarding/buyer/interests") {
-        router.replace(next);
-        return;
-      }
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("buyer_interested_categories")
-        .eq("id", user.id)
-        .maybeSingle();
-
-      const existing = profile?.buyer_interested_categories;
-      if (Array.isArray(existing) && existing.length > 0) {
-        setSelected(new Set(existing.map(String)));
-      }
-
-      setBooting(false);
     })();
+    return () => {
+      cancelled = true;
+    };
   }, [router]);
 
   const toggle = (slug: string) => {
@@ -68,9 +86,7 @@ export default function BuyerInterestsPage() {
     setLoading(true);
     setErrorMsg("");
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getClientUserSafe(supabase);
       if (!user) return;
 
       const { error } = await supabase
@@ -79,6 +95,7 @@ export default function BuyerInterestsPage() {
           buyer_interested_categories: arr,
           onboarding_completed: true,
           onboarding_step: "done",
+          is_seller: false,
           updated_at: new Date().toISOString(),
         })
         .eq("id", user.id);
@@ -107,7 +124,7 @@ export default function BuyerInterestsPage() {
   return (
     <div className="min-h-dvh bg-gray-50 flex flex-col items-center p-6 pb-24">
       <div className="w-full max-w-xl pt-10">
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 text-center mb-3">StoreLink · Shopper</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 text-center mb-3">StoreLink · Shopper · Step 4 of 4</p>
         <div className="flex justify-center mb-4">
           <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-100 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
             <Tag size={12} /> Pick interests

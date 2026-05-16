@@ -301,6 +301,12 @@
       "namedRegex": "^/dashboard(?:/)?$"
     },
     {
+      "page": "/dashboard/addresses",
+      "regex": "^/dashboard/addresses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/addresses(?:/)?$"
+    },
+    {
       "page": "/dashboard/loyalty",
       "regex": "^/dashboard/loyalty(?:/)?$",
       "routeKeys": {},
@@ -329,6 +335,12 @@
       "regex": "^/dashboard/settings(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/dashboard/settings(?:/)?$"
+    },
+    {
+      "page": "/dashboard/storefront",
+      "regex": "^/dashboard/storefront(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/storefront(?:/)?$"
     },
     {
       "page": "/dashboard/subscription",

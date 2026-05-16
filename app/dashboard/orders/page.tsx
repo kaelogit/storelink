@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { 
   ShoppingBag, Loader2, Search, Coins, TrendingUp, 
@@ -8,22 +9,8 @@ import {
 } from "lucide-react";
 import OrderDetailsModal from "@/components/dashboard/OrderDetailsModal";
 import { formatOrderPayoutEligibleAt, orderCountsTowardSellerRevenue } from "@/lib/sellerOrderPayoutFlow";
+import { orderCoinRedeemed, orderStatusBadgeClass, orderStatusLabel } from "@/lib/orderTableDisplay";
 import { TOUCH_TARGET } from "@/lib/mobileLayout";
-
-function orderStatusBadgeClass(status: string | null | undefined) {
-  const s = String(status || "").toUpperCase();
-  if (["COMPLETED", "PAID"].includes(s)) return "bg-emerald-100 text-emerald-700";
-  if (["AWAITING_PAYMENT", "PENDING"].includes(s)) return "bg-amber-100 text-amber-700";
-  if (s === "CANCELLED") return "bg-red-100 text-red-700";
-  if (s === "SHIPPED") return "bg-blue-100 text-blue-800";
-  return "bg-gray-100 text-gray-600";
-}
-
-function orderStatusLabel(status: string | null | undefined) {
-  const s = String(status || "").toUpperCase();
-  if (s === "AWAITING_PAYMENT") return "Awaiting payment";
-  return s || "—";
-}
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
@@ -43,16 +30,13 @@ export default function OrdersPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    const [{ data: store }, { data: profile }] = await Promise.all([
-      supabase.from("stores").select("id, name").eq("owner_id", user.id).maybeSingle(),
-      supabase.from("profiles").select("display_name, full_name").eq("id", user.id).maybeSingle(),
-    ]);
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("display_name, full_name")
+      .eq("id", user.id)
+      .maybeSingle();
 
-    const displayName =
-      profile?.display_name?.trim() ||
-      profile?.full_name?.trim() ||
-      store?.name ||
-      "Your storefront";
+    const displayName = profile?.display_name?.trim() || profile?.full_name?.trim() || "Your storefront";
 
     setStoreName(displayName);
 
@@ -105,7 +89,7 @@ export default function OrdersPage() {
     });
 
     const revenue = monthlyData.reduce((sum, o) => sum + (o.total_amount || 0), 0);
-    const coins = monthlyData.reduce((sum, o) => sum + Number(o.coin_redeemed ?? o.coins_redeemed ?? 0), 0);
+    const coins = monthlyData.reduce((sum, o) => sum + orderCoinRedeemed(o), 0);
 
     setMonthlyRevenue(revenue);
     setTotalCoinsGiven(coins);
@@ -124,7 +108,7 @@ export default function OrdersPage() {
     });
 
     currentMonthData.forEach(o => {
-      const coinUsed = Number(o.coin_redeemed ?? o.coins_redeemed ?? 0);
+      const coinUsed = orderCoinRedeemed(o);
       const subtotal = Number(o.total_amount || 0) + coinUsed;
       const b = o.buyer as { display_name?: string; full_name?: string; email?: string } | null;
       const custLabel = String(
@@ -132,7 +116,6 @@ export default function OrdersPage() {
           b?.full_name?.trim() ||
           b?.email?.trim() ||
           o.customer_name ||
-          o.guest_name ||
           "",
       ).replace(/,/g, "");
       const row = [
@@ -165,7 +148,6 @@ export default function OrdersPage() {
     const buyer = o.buyer as { display_name?: string; full_name?: string; email?: string } | null;
     const nameBlob = [
       o.customer_name,
-      o.guest_name,
       buyer?.display_name,
       buyer?.full_name,
       buyer?.email,
@@ -190,6 +172,8 @@ export default function OrdersPage() {
         <div>
           <h1 className="text-3xl font-black text-gray-900 tracking-tighter uppercase">Orders</h1>
           <p className="text-gray-500 font-medium">Product orders from your public storefront and checkout.</p>
+          
+        
         </div>
         
         <div className="flex items-center gap-3 w-full md:w-auto">
@@ -238,15 +222,30 @@ export default function OrdersPage() {
       </div>
 
       <div className="bg-white border border-gray-100 rounded-4xl overflow-hidden shadow-sm">
-        {filteredOrders.length === 0 ? (
+        {orders.length === 0 ? (
            <div className="p-20 text-center text-gray-400">
              <ShoppingBag size={48} className="mx-auto mb-4 opacity-20"/>
-             <p className="font-bold uppercase text-[10px] tracking-widest">No orders found.</p>
+             <p className="font-bold uppercase text-[10px] tracking-widest">No orders yet</p>
+             <p className="mt-2 max-w-md mx-auto text-xs font-medium text-gray-500">
+               When buyers check out on your storefront, orders show up here with payout status.
+             </p>
+             <Link
+               href="/dashboard#inventory"
+               className="mt-6 inline-flex items-center justify-center rounded-xl bg-gray-900 px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white hover:bg-emerald-600 transition"
+             >
+               Add products
+             </Link>
+           </div>
+        ) : filteredOrders.length === 0 ? (
+           <div className="p-16 text-center text-gray-400">
+             <Search size={40} className="mx-auto mb-4 opacity-30"/>
+             <p className="font-bold uppercase text-[10px] tracking-widest">No matches</p>
+             <p className="mt-2 text-xs font-medium text-gray-500">Try a different search or clear the box to see all orders.</p>
            </div>
         ) : (
            <div className="overflow-x-auto">
              <table className="w-full text-left min-w-[720px]">
-               <thead className="bg-gray-50/50 border-b border-gray-100 text-[10px] uppercase text-gray-400 tracking-widest">
+               <thead className="border-b border-gray-100 bg-gray-50/50 text-[10px] uppercase tracking-widest text-gray-400">
                  <tr>
                    <th className="px-6 py-5 font-black">Order ID</th>
                    <th className="px-6 py-5 font-black">Customer</th>
@@ -254,12 +253,12 @@ export default function OrdersPage() {
                    <th className="px-6 py-5 font-black">Cash total</th>
                    <th className="px-6 py-5 font-black">Status</th>
                    <th className="px-6 py-5 font-black">Date</th>
-                   <th className="px-6 py-5 font-black text-right">Action</th>
+                   <th className="px-6 py-5 text-right font-black">Action</th>
                  </tr>
                </thead>
                <tbody className="divide-y divide-gray-100">
                  {filteredOrders.map((order) => {
-                   const coinUsed = Number(order.coin_redeemed ?? order.coins_redeemed ?? 0);
+                   const coinUsed = orderCoinRedeemed(order);
                    const buyerProf = order.buyer as {
                      display_name?: string | null;
                      full_name?: string | null;
@@ -271,9 +270,8 @@ export default function OrdersPage() {
                        buyerProf?.display_name?.trim() ||
                          buyerProf?.full_name?.trim() ||
                          order.customer_name ||
-                         order.guest_name ||
                          "",
-                     ).trim() || "Guest";
+                     ).trim() || "Buyer";
                    return (
                    <tr key={order.id} className="hover:bg-gray-50/80 transition group">
                      <td className="px-6 py-4 font-mono text-[10px] text-gray-400">#{order.id.slice(0, 8)}</td>

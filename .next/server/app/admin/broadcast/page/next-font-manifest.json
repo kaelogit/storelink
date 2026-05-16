@@ -1,7 +1,7 @@
 {
   "pages": {},
   "app": {
-    "[project]/storelink-app-and-web/store-link-storefront/app/admin/broadcast/page": [
+    "[project]/app/admin/broadcast/page": [
       "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
     ]
   },

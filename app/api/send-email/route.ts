@@ -4,6 +4,14 @@ import { storefrontAbsolutePath } from "@/lib/storefrontPublicUrl";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(s: unknown): string {
+  return String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -182,35 +190,118 @@ export async function POST(request: Request) {
       `;
     }
 
-    else if (type === 'CHECKOUT_ALERT') {
-      const products = Array.isArray(data?.productName) ? data.productName : [data?.productName];
-      const isMultiple = products.length > 1;
+    else if (type === "BUYER_CHECKOUT_RECEIPT") {
+      const d = data || {};
+      const shortId = String(d.orderShortId || "").replace(/[^\w-]/g, "") || "ORDER";
+      const plainStore = String(d.storeName || "Store").slice(0, 48);
+      subject = `Order confirmed #${shortId} — ${plainStore}`;
+      previewText = "Your payment and order details.";
+      title = "ORDER CONFIRMED";
+      description = `Thank you for shopping on <strong>${escapeHtml(d.storeName)}</strong>. Your payment was received. Keep this email for your records.`;
 
-      subject = `💰 NEW SALE INTENT: ${isMultiple ? products.length + ' Items' : products[0]}!`;
-      previewText = 'A customer just moved forward on an order.';
-      title = 'YOU HAVE A LEAD! 🚀';
-      description = `A customer has just initiated a checkout for <strong>${isMultiple ? products.length + ' items' : products[0]}</strong>. 
-      <br/><br/>
-      <strong style="color: #111827;">✅ NEXT STEPS:</strong><br/>
-      1. Confirm payment and availability in <strong>Dashboard &gt; Orders</strong>.<br/>
-      2. Fulfill and update status so your buyer sees progress in-app.<br/>
-      3. Mark the order as <strong>"Complete"</strong>. This generates a professional digital receipt for your buyer automatically.`;
-      
-      const productList = products.map((p: string) => `
-        <div style="padding: 12px 0; border-bottom: 1px solid #f3f4f6; color: #111827; font-size: 14px; font-weight: 700; text-align: left;">
-          • ${p}
-        </div>
-      `).join('');
+      const items = Array.isArray(d.items) ? d.items : [];
+      const itemRows = items
+        .map((row: { name?: string; quantity?: number; unitPrice?: number }) => {
+          const nm = escapeHtml(row.name);
+          const qty = Number(row.quantity) || 0;
+          const up = Math.floor(Number(row.unitPrice) || 0);
+          const line = qty * up;
+          return `<tr>
+            <td style="padding:10px 8px;border-bottom:1px solid #f3f4f6;text-align:left;font-size:13px;color:#111827;">${nm}</td>
+            <td style="padding:10px 8px;border-bottom:1px solid #f3f4f6;text-align:center;font-size:13px;color:#374151;">${qty}</td>
+            <td style="padding:10px 8px;border-bottom:1px solid #f3f4f6;text-align:right;font-size:13px;color:#374151;">₦${up.toLocaleString()}</td>
+            <td style="padding:10px 8px;border-bottom:1px solid #f3f4f6;text-align:right;font-size:13px;font-weight:800;color:#111827;">₦${line.toLocaleString()}</td>
+          </tr>`;
+        })
+        .join("");
+
+      const gross = Math.floor(Number(d.storeTotalGross) || 0);
+      const coins = Math.floor(Number(d.coinsApplied) || 0);
+      const paid = Math.floor(Number(d.amountPaid) || 0);
+      const orderUrl = storefrontAbsolutePath(`/account/orders/${encodeURIComponent(String(d.orderId || ""))}`);
 
       customContent = `
-        <div style="background-color: #f9fafb; border-radius: 24px; padding: 24px; border: 1px solid #e5e7eb; margin-bottom: 32px;">
-          <p style="margin: 0 0 10px 0; font-size: 10px; font-weight: 800; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.1em; text-align: left;">Items in Cart:</p>
+        <div style="background-color:#f9fafb;border-radius:20px;padding:20px;border:1px solid #e5e7eb;margin-bottom:20px;text-align:left;">
+          <p style="margin:0 0 8px 0;font-size:10px;font-weight:800;color:#9ca3af;text-transform:uppercase;letter-spacing:0.08em;">Order</p>
+          <p style="margin:0;font-size:14px;font-weight:900;color:#111827;">#${escapeHtml(d.orderShortId)}</p>
+          <p style="margin:8px 0 0 0;font-size:11px;color:#6b7280;">Full ID: <span style="font-family:monospace;">${escapeHtml(d.orderId)}</span></p>
+        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;border-collapse:collapse;">
+          <thead><tr>
+            <th align="left" style="padding:8px;font-size:10px;font-weight:800;color:#9ca3af;text-transform:uppercase;">Item</th>
+            <th align="center" style="padding:8px;font-size:10px;font-weight:800;color:#9ca3af;text-transform:uppercase;">Qty</th>
+            <th align="right" style="padding:8px;font-size:10px;font-weight:800;color:#9ca3af;text-transform:uppercase;">Each</th>
+            <th align="right" style="padding:8px;font-size:10px;font-weight:800;color:#9ca3af;text-transform:uppercase;">Line</th>
+          </tr></thead>
+          <tbody>${itemRows}</tbody>
+        </table>
+        <div style="background-color:#f0fdf4;border:1px solid #bbf7d0;border-radius:16px;padding:16px;margin-bottom:20px;text-align:left;">
+          <p style="margin:0 0 6px 0;font-size:12px;color:#14532d;"><strong>Subtotal</strong> ₦${gross.toLocaleString()}</p>
+          ${coins > 0 ? `<p style="margin:0 0 6px 0;font-size:12px;color:#14532d;"><strong>Store Coins</strong> −₦${coins.toLocaleString()}</p>` : ""}
+          <p style="margin:0;font-size:14px;font-weight:900;color:#065f46;"><strong>Amount paid</strong> ₦${paid.toLocaleString()}</p>
+        </div>
+        <div style="background-color:#f9fafb;border-radius:16px;padding:16px;margin-bottom:24px;text-align:left;">
+          <p style="margin:0 0 6px 0;font-size:10px;font-weight:800;color:#9ca3af;text-transform:uppercase;">Delivery</p>
+          <p style="margin:0;font-size:13px;color:#374151;white-space:pre-wrap;">${escapeHtml(d.shippingAddress)}</p>
+          <p style="margin:12px 0 0 0;font-size:10px;font-weight:800;color:#9ca3af;text-transform:uppercase;">Contact on order</p>
+          <p style="margin:4px 0 0 0;font-size:13px;color:#374151;">${escapeHtml(d.customerName)}</p>
+        </div>
+        <div style="text-align:center;">
+          <a href="${orderUrl}" style="display:inline-block;background-color:#10b981;color:#ffffff;padding:16px 28px;border-radius:14px;text-decoration:none;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;">View order in dashboard</a>
+        </div>
+      `;
+    }
+
+    else if (type === "CHECKOUT_ALERT") {
+      const paid = Boolean(data?.paymentCompleted);
+      const products = Array.isArray(data?.productName) ? data.productName : [data?.productName];
+      const safeProducts = products.map((p: string) => escapeHtml(p)).filter(Boolean);
+      const head = safeProducts[0] || (paid ? "New paid order" : "New order");
+      const isMultiple = safeProducts.length > 1;
+
+      if (paid) {
+        subject = `Paid order: ${isMultiple ? `${safeProducts.length} items` : head} — ${escapeHtml(data?.storeName)}`;
+        previewText = "Payment confirmed on StoreLink Shop.";
+        title = "ORDER PAID";
+        description = `Payment has been confirmed for <strong>${isMultiple ? `${safeProducts.length} items` : head}</strong> on <strong>${escapeHtml(data?.storeName)}</strong>. Fulfill from <strong>Dashboard → Orders</strong>.`;
+      } else {
+        subject = `Checkout started: ${isMultiple ? safeProducts.length + " items" : head}`;
+        previewText = "A customer opened Paystack for this order.";
+        title = "CHECKOUT IN PROGRESS";
+        description = `A customer is paying for <strong>${isMultiple ? `${safeProducts.length} items` : head}</strong> on <strong>${escapeHtml(data?.storeName)}</strong>. Confirm funds in <strong>Dashboard → Orders</strong>.`;
+      }
+
+      const productList = safeProducts
+        .map(
+          (p: string) => `
+        <div style="padding: 12px 0; border-bottom: 1px solid #f3f4f6; color: #111827; font-size: 14px; font-weight: 700; text-align: left;">
+          • ${p}
+        </div>`,
+        )
+        .join("");
+
+      const amt = Math.floor(Number(data?.orderAmount) || 0);
+      const meta = `
+        <div style="margin-bottom:20px;text-align:left;font-size:12px;color:#374151;line-height:1.6;">
+          <p style="margin:0 0 4px 0;"><strong>Order ref</strong> #${escapeHtml(data?.orderShortId)}</p>
+          <p style="margin:0 0 4px 0;"><strong>Amount (charged)</strong> ₦${amt.toLocaleString()}</p>
+          <p style="margin:0 0 4px 0;"><strong>Buyer</strong> ${escapeHtml(data?.customerName)}</p>
+          <p style="margin:0 0 4px 0;"><strong>Email</strong> ${escapeHtml(data?.customerEmail)}</p>
+          <p style="margin:0;"><strong>Phone</strong> ${escapeHtml(data?.customerPhone)}</p>
+        </div>`;
+
+      customContent = `
+        ${meta}
+        <div style="background-color: #f9fafb; border-radius: 24px; padding: 24px; border: 1px solid #e5e7eb; margin-bottom: 24px;">
+          <p style="margin: 0 0 10px 0; font-size: 10px; font-weight: 800; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.1em; text-align: left;">Items</p>
           ${productList}
         </div>
         <div style="text-align: center;">
-           <a href="${storefrontAbsolutePath("/dashboard/orders")}" style="display: inline-block; background-color: #111827; color: #ffffff; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">Manage Orders</a>
+           <a href="${storefrontAbsolutePath("/dashboard/orders")}" style="display: inline-block; background-color: #111827; color: #ffffff; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">Open orders</a>
         </div>
       `;
+    } else {
+      return NextResponse.json({ error: "Unsupported email type" }, { status: 400 });
     }
 
     const html = `
@@ -260,10 +351,17 @@ export async function POST(request: Request) {
       html: html,
     });
 
-    if (error) return NextResponse.json({ error }, { status: 400 });
+    if (error) {
+      const errorMessage =
+        typeof error?.message === "string" && error.message.length > 0
+          ? error.message
+          : "Email provider rejected this request.";
+      return NextResponse.json({ error: errorMessage }, { status: 400 });
+    }
     return NextResponse.json({ success: true, id: resendData?.id });
 
-  } catch (err: any) {
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : "Internal Server Error";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

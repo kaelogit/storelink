@@ -5,33 +5,39 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { Loader2, ShoppingBag, Store, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { fetchOnboardingContext, getOnboardingHubRedirect } from "@/lib/onboardingState";
+import {
+  fetchOnboardingContext,
+  getOnboardingHubRedirect,
+} from "@/lib/onboardingState";
+import { getClientUserSafe } from "@/lib/getClientUserSafe";
+import { buildVerifyRedirectPath, isEmailVerifiedForStorefront } from "@/lib/authVerification";
 
 export default function OnboardingRolePage() {
   const router = useRouter();
   const [loading, setLoading] = useState<string | null>(null);
   const [checking, setChecking] = useState(true);
-  const [sellerHint, setSellerHint] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getClientUserSafe(supabase);
       if (!user) {
         router.replace("/login");
         return;
       }
-      const meta = user.user_metadata as Record<string, unknown> | undefined;
-      const wantsSell =
-        meta?.wants_to_sell === true ||
-        localStorage.getItem("storelink_post_auth_seller_intent") === "1";
-      setSellerHint(!!wantsSell);
-
+      const verified = await isEmailVerifiedForStorefront(supabase, user);
+      if (!verified) {
+        router.replace(buildVerifyRedirectPath(user.email, "/onboarding/role"));
+        return;
+      }
       const ctx = await fetchOnboardingContext(supabase, user.id);
-      const skip = getOnboardingHubRedirect(ctx);
-      if (skip !== "/onboarding/role") {
-        router.replace(skip);
+      const p = ctx.profile;
+      if (!p) {
+        router.replace("/login");
+        return;
+      }
+      const canonicalNext = getOnboardingHubRedirect(ctx);
+      if (canonicalNext !== "/onboarding/role") {
+        router.replace(canonicalNext);
         return;
       }
       setChecking(false);
@@ -41,26 +47,45 @@ export default function OnboardingRolePage() {
   const chooseBuyer = async () => {
     setLoading("buyer");
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getClientUserSafe(supabase);
       if (!user) return;
 
-      await supabase
+      const { data: existing } = await supabase.from("profiles").select("onboarding_step").eq("id", user.id).maybeSingle();
+      const current = String(existing?.onboarding_step || "")
+        .trim()
+        .toLowerCase();
+      const preserveSteps = new Set([
+        "buyer_identity",
+        "buyer_location",
+        "buyer_interests",
+        "collector-setup",
+        "pick-categories",
+        "follow-stores",
+        "follow_stores",
+        "location_setup",
+        "home_address",
+      ]);
+      const nextStep = preserveSteps.has(current) ? current : "buyer_identity";
+
+      const { error: upErr } = await supabase
         .from("profiles")
         .update({
           is_seller: false,
           prestige_weight: 1,
-          onboarding_step: "buyer_identity",
+          onboarding_step: nextStep,
           subscription_plan: null,
           subscription_status: null,
           updated_at: new Date().toISOString(),
         })
         .eq("id", user.id);
+      if (upErr) throw upErr;
 
-      localStorage.removeItem("storelink_post_auth_seller_intent");
-      router.push("/onboarding/buyer/identity");
+      const ctx2 = await fetchOnboardingContext(supabase, user.id);
+      const buyerNext = getOnboardingHubRedirect(ctx2);
+      router.push(buyerNext.startsWith("/onboarding") ? buyerNext : "/onboarding/buyer/identity");
       router.refresh();
+    } catch {
+      /* stay on role; errors surfaced via toast in future */
     } finally {
       setLoading(null);
     }
@@ -69,26 +94,41 @@ export default function OnboardingRolePage() {
   const chooseSeller = async () => {
     setLoading("seller");
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getClientUserSafe(supabase);
       if (!user) return;
 
-      await supabase
+      const { data: existing } = await supabase.from("profiles").select("onboarding_step").eq("id", user.id).maybeSingle();
+      const current = String(existing?.onboarding_step || "")
+        .trim()
+        .toLowerCase();
+      const preserveSeller = new Set([
+        "seller_identity",
+        "seller_location",
+        "seller_brand",
+        "seller_store",
+        "setup",
+      ]);
+      const nextStep = preserveSeller.has(current) ? current : "seller_identity";
+
+      const { error: upErr } = await supabase
         .from("profiles")
         .update({
           is_seller: true,
           prestige_weight: 2,
           subscription_plan: "standard",
           subscription_status: "active",
-          onboarding_step: "seller_identity",
+          onboarding_step: nextStep,
           updated_at: new Date().toISOString(),
         })
         .eq("id", user.id);
+      if (upErr) throw upErr;
 
-      localStorage.removeItem("storelink_post_auth_seller_intent");
-      router.push("/onboarding/seller/identity");
+      const ctx2 = await fetchOnboardingContext(supabase, user.id);
+      const sellerNext = getOnboardingHubRedirect(ctx2);
+      router.push(sellerNext.startsWith("/onboarding") ? sellerNext : "/onboarding/seller/identity");
       router.refresh();
+    } catch {
+      /* stay on role */
     } finally {
       setLoading(null);
     }
@@ -144,7 +184,6 @@ export default function OnboardingRolePage() {
             <div className="flex-1 min-w-0">
               <p className="font-black uppercase tracking-tight text-lg">Open my storefront</p>
               <p className="text-xs text-gray-400 font-medium mt-1">Standard plan is free.</p>
-              {sellerHint && <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mt-2">You chose seller at signup</p>}
             </div>
             {loading === "seller" ? (
               <Loader2 className="animate-spin shrink-0" />

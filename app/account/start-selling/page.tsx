@@ -15,10 +15,7 @@ import {
 } from "lucide-react";
 import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 
-/**
- * Buyer → seller: same informational beat as the mobile “What is selling?” screen,
- * then continue into storefront wizard (no profile writes until setup completes).
- */
+/** Buyer → seller: web storefront setup — explains the shop on StoreLink Shop, not social-commerce reels. */
 export default function StartSellingPage() {
   const router = useRouter();
 
@@ -70,8 +67,8 @@ export default function StartSellingPage() {
               <div>
                 <p className="font-black text-gray-900">Products & listings</p>
                 <p className="mt-1 text-sm font-medium text-gray-600">
-                  List inventory with photos and prices. Buyers discover you in feed, explore, and search — not only your
-                  followers.
+                  List inventory with photos and prices on your public storefront. Shoppers find you on the Shop marketplace,
+                  your branded store link, and search — without building a separate social following first.
                 </p>
               </div>
             </li>
@@ -82,7 +79,7 @@ export default function StartSellingPage() {
               <div>
                 <p className="font-black text-gray-900">Bookable services</p>
                 <p className="mt-1 text-sm font-medium text-gray-600">
-                  If you offer services, customers can request and book you in-app with clear expectations.
+                  If you offer services, customers can request and book you through StoreLink with clear expectations.
                 </p>
               </div>
             </li>
@@ -93,7 +90,7 @@ export default function StartSellingPage() {
               <div>
                 <p className="font-black text-gray-900">Orders & chat</p>
                 <p className="mt-1 text-sm font-medium text-gray-600">
-                  Manage conversations and orders in one place so serious buyers can trust your store.
+                  Track orders and buyer messages from your dashboard so serious shoppers can trust your storefront.
                 </p>
               </div>
             </li>
@@ -104,7 +101,7 @@ export default function StartSellingPage() {
               <div>
                 <p className="font-black text-gray-900">Local discovery</p>
                 <p className="mt-1 text-sm font-medium text-gray-600">
-                  Distance and location help nearby customers find you when it matters.
+                  Your shop location powers discovery on the Shop marketplace so nearby customers can find you when it matters.
                 </p>
               </div>
             </li>
@@ -143,7 +140,7 @@ export default function StartSellingPage() {
           </button>
 
           <div className="mt-4 text-center">
-            <Link href="/account/profile" className="text-sm font-bold text-gray-500 hover:text-gray-800">
+            <Link href="/dashboard" className="text-sm font-bold text-gray-500 hover:text-gray-800">
               Not now
             </Link>
           </div>

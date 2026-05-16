@@ -106,8 +106,8 @@ export default function DeliveryAddressesPage() {
   };
 
   const submitForm = async () => {
-    if (!form.street_address.trim() || !form.city.trim() || !form.phone_contact.trim()) {
-      setError("Street, city, and contact phone are required.");
+    if (!form.street_address.trim() || !form.city.trim() || !form.state.trim() || !form.phone_contact.trim()) {
+      setError("Street, city, region/state, and contact phone are required.");
       return;
     }
     let list = [...addresses];
@@ -168,6 +168,14 @@ export default function DeliveryAddressesPage() {
           <MapPin className="mx-auto mb-3 h-10 w-10 text-gray-300" />
           <p className="text-sm font-bold text-gray-700">No saved addresses yet</p>
           <p className="mt-1 text-xs text-gray-500">Add one so checkout can fill delivery for you automatically.</p>
+          <button
+            type="button"
+            onClick={openAdd}
+            disabled={saving || !userId}
+            className="mt-6 inline-flex items-center justify-center gap-2 rounded-2xl bg-gray-900 px-5 py-3 text-[10px] font-black uppercase tracking-widest text-white transition hover:bg-emerald-600 disabled:bg-gray-200 disabled:text-gray-400"
+          >
+            <Plus size={16} /> Add address
+          </button>
         </div>
       ) : (
         <ul className="space-y-3">

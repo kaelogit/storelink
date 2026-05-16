@@ -3,11 +3,20 @@
  * Aligns with `orders` columns: status, payout_status, payout_eligible_at (see mobile `supabase` types).
  */
 
+import { formatPayoutErrorForSellerDisplay } from "@/lib/payoutErrorCopy";
+
+function payoutDetail(raw: string | null | undefined, fallback?: string): string | undefined {
+  const mapped = formatPayoutErrorForSellerDisplay(raw);
+  if (mapped) return mapped;
+  return fallback;
+}
+
 export type SellerOrderPayoutRow = {
   status?: string | null;
   payout_status?: string | null;
   payout_eligible_at?: string | null;
   payment_reference?: string | null;
+  payout_reference?: string | null;
   origin_channel?: string | null;
   payout_error_log?: string | null;
   payout_retry_count?: number | null;
@@ -41,16 +50,17 @@ export function describeSellerOrderPayoutFlow(row: SellerOrderPayoutRow): Seller
   if (st === "CANCELLED") {
     return {
       headline: "Cancelled",
-      detail: row.payout_error_log || undefined,
+      detail: payoutDetail(row.payout_error_log),
     };
   }
 
   if (ps === "failed") {
     return {
       headline: "Payout failed",
-      detail:
-        row.payout_error_log ||
+      detail: payoutDetail(
+        row.payout_error_log,
         "Check payout bank details under membership / payout settings, then contact support if this persists.",
+      ),
     };
   }
 
@@ -62,11 +72,22 @@ export function describeSellerOrderPayoutFlow(row: SellerOrderPayoutRow): Seller
   }
 
   if (ps === "retry_queued") {
+    const ref = row.payout_reference?.trim();
+    if (ref) {
+      return {
+        headline: "Payout transfer recorded",
+        detail: payoutDetail(
+          row.payout_error_log,
+          "A Paystack transfer reference is saved for this order. If your dashboard still shows retry, refresh in a moment — the processor may still be syncing.",
+        ),
+      };
+    }
     return {
       headline: "Payout retry scheduled",
-      detail:
-        row.payout_error_log ||
-        "Paystack returned a retriable error; the processor will retry automatically.",
+      detail: payoutDetail(
+        row.payout_error_log,
+        "Paystack returned a retriable error; the payout processor (cron) will retry automatically.",
+      ),
     };
   }
 

@@ -12,6 +12,16 @@ type PatchBody = {
   verification_status?: string | null;
 };
 
+function normalizeVerificationStatus(value: string | null | undefined): string | null | undefined {
+  if (value === undefined) return undefined;
+  if (value === null) return null;
+  const status = value.trim().toLowerCase();
+  if (!status) return null;
+  if (status === "approved") return "verified";
+  if (status === "verified" || status === "pending" || status === "rejected" || status === "none") return status;
+  return status;
+}
+
 export async function PATCH(request: Request, ctx: { params: Promise<{ id: string }> }) {
   const gate = await requireStorefrontAdmin();
   if (!gate.ok) return gate.response;
@@ -38,7 +48,9 @@ export async function PATCH(request: Request, ctx: { params: Promise<{ id: strin
   if (body.loyalty_enabled !== undefined) updates.loyalty_enabled = body.loyalty_enabled;
   if (body.loyalty_percentage !== undefined) updates.loyalty_percentage = body.loyalty_percentage;
   if (body.is_verified !== undefined) updates.is_verified = body.is_verified;
-  if (body.verification_status !== undefined) updates.verification_status = body.verification_status;
+  if (body.verification_status !== undefined) {
+    updates.verification_status = normalizeVerificationStatus(body.verification_status);
+  }
 
   if (Object.keys(updates).length === 0) {
     return NextResponse.json({ error: "No valid fields to update" }, { status: 400 });

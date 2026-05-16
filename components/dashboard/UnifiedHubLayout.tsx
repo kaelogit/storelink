@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, useMemo, type ReactNode } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
@@ -20,19 +20,26 @@ import {
   LifeBuoy,
   Store,
   MapPin,
+  Landmark,
+  HelpCircle,
+  Receipt,
+  LayoutTemplate,
+  BadgeCheck,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
 import {
   fetchOnboardingContext,
-  getAccountOnboardingContinuePath,
-  getOnboardingHubRedirect,
+  getDashboardOnboardingGatePath,
+  getOnboardingResumePath,
   isProfileOnboardingComplete,
 } from "@/lib/onboardingState";
+import { getClientUserSafe } from "@/lib/getClientUserSafe";
+import { buildVerifyRedirectPath, isEmailVerifiedForStorefront } from "@/lib/authVerification";
 import OnboardingProgressCard from "@/components/onboarding/OnboardingProgressCard";
-import { getMissingOnboardingFields } from "@/lib/onboardingChecklist";
-import { claimGuestOrdersForSession } from "@/lib/claimGuestOrders";
+import { getMissingOnboardingFields, type OnboardingProfileLike } from "@/lib/onboardingChecklist";
 import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM, TOUCH_TARGET } from "@/lib/mobileLayout";
+import { normalizeStorefrontTheme, STOREFRONT_DEFAULT_ACCENT } from "@/lib/storefrontTheme";
 
 type HubLink = {
   name: string;
@@ -68,22 +75,38 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
   const [sellingLinks, setSellingLinks] = useState<HubLink[]>([]);
   const [shoppingLinks, setShoppingLinks] = useState<HubLink[]>([]);
   const [growLinks, setGrowLinks] = useState<HubLink[]>([]);
+  const [dashboardAccent, setDashboardAccent] = useState(STOREFRONT_DEFAULT_ACCENT);
+
+  const accentVars = useMemo(() => {
+    const hex = /^#([0-9a-f]{6})$/i.test(dashboardAccent) ? dashboardAccent : STOREFRONT_DEFAULT_ACCENT;
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return {
+      ["--dash-accent" as string]: hex,
+      ["--dash-accent-soft" as string]: `rgba(${r}, ${g}, ${b}, 0.12)`,
+      ["--dash-accent-soft-strong" as string]: `rgba(${r}, ${g}, ${b}, 0.2)`,
+    };
+  }, [dashboardAccent]);
 
   useEffect(() => {
     let cancelled = false;
     let notifyChannel: ReturnType<typeof supabase.channel> | null = null;
 
     const load = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getClientUserSafe(supabase);
       if (!user) {
-        router.push("/login");
+        const next = pathname || "/dashboard";
+        router.replace(`/post-login?next=${encodeURIComponent(next)}`);
+        return;
+      }
+      const verified = await isEmailVerifiedForStorefront(supabase, user);
+      if (!verified) {
+        router.replace(buildVerifyRedirectPath(user.email, pathname || "/dashboard"));
         return;
       }
 
-      const [{ data: storeRes }, notifyRes, profileRes, ctx] = await Promise.all([
-        supabase.from("stores").select("id, subscription_expiry, subscription_plan, subscription_status, slug, location").eq("owner_id", user.id).maybeSingle(),
+      const [notifyRes, profileRes, ctx] = await Promise.all([
         supabase
           .from("storefront_site_notifications")
           .select("*", { count: "exact", head: true })
@@ -92,37 +115,29 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
         supabase
           .from("profiles")
           .select(
-            "full_name, phone_number, slug, location_state, location_city, location, display_name, logo_url, is_seller, onboarding_completed, onboarding_step, buyer_interested_categories, subscription_plan, subscription_expiry, subscription_status, service_latitude, service_longitude, shop_address"
+            "full_name, phone_number, slug, gender, bio, location_state, location_city, location, discovery_latitude, discovery_longitude, display_name, logo_url, is_seller, onboarding_completed, onboarding_step, buyer_interested_categories, subscription_plan, subscription_expiry, subscription_status, service_latitude, service_longitude, shop_address, storefront_theme"
           )
           .eq("id", user.id)
           .maybeSingle(),
         fetchOnboardingContext(supabase, user.id),
       ]);
 
-      const resume = getAccountOnboardingContinuePath(ctx, ctx.profile);
-      if (resume.startsWith("/onboarding")) {
-        router.replace(resume);
+      const gate = ctx.profile ? getDashboardOnboardingGatePath(ctx) : null;
+      if (gate && gate !== pathname) {
+        setLoading(false);
+        router.replace(gate);
         return;
       }
 
       const profile = profileRes.data as Record<string, unknown> | null;
       const onboardingDone = isProfileOnboardingComplete(ctx.profile);
-      const pPhone = String(profile?.phone_number ?? "");
-
-      await claimGuestOrdersForSession(supabase, {
-        userId: user.id,
-        email: user.email ?? null,
-        phoneDigits: pPhone || null,
-      });
 
       if (cancelled) return;
 
-      const store = storeRes;
       const seller = !!profile?.is_seller;
 
-      /** Seller hub: legacy `stores` row OR completed seller profile (profile-as-storefront). */
-      const hasLegacyStore = !!store?.id;
-      const hasSellerHub = hasLegacyStore || (seller && onboardingDone);
+      /** Seller hub: completed seller profile (`profiles` is source of truth). */
+      const hasSellerHub = seller && onboardingDone;
 
       setHasStore(hasSellerHub);
       setIsSellerFlag(seller);
@@ -130,11 +145,11 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
         String(profile?.display_name || profile?.full_name || user.email?.split("@")[0] || "Account").trim()
       );
       setMeLogoUrl(profile?.logo_url ? String(profile.logo_url).trim() || null : null);
+      setDashboardAccent(normalizeStorefrontTheme(profile?.storefront_theme).accent);
 
-      const postLoginPath = getOnboardingHubRedirect(ctx);
-      setOnboardingPath(postLoginPath.startsWith("/onboarding") ? postLoginPath : null);
+      setOnboardingPath(getOnboardingResumePath(ctx));
       setMissingFields(
-        getMissingOnboardingFields(profile as any, Boolean(profile?.is_seller), store as any)
+        getMissingOnboardingFields(profile as OnboardingProfileLike | null, Boolean(profile?.is_seller), null)
       );
 
       const unread = notifyRes.error ? 0 : notifyRes.count || 0;
@@ -148,16 +163,15 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
             profile.subscription_status as string | null | undefined
           )
         );
-      } else if (store?.subscription_plan != null) {
-        setEffectivePlan(
-          effectiveSellerTier(store.subscription_plan, store.subscription_expiry, store.subscription_status)
-        );
       }
 
       const sell: HubLink[] = hasSellerHub
         ? [
             { name: "Store orders", href: "/dashboard/orders", icon: ShoppingBag },
+            { name: "Storefront customization", href: "/dashboard/storefront", icon: LayoutTemplate },
+            { name: "Payout bank details", href: "/dashboard/payout", icon: Landmark },
             { name: "Store Coin loyalty", href: "/dashboard/loyalty", icon: Coins, isNew: true, color: "text-amber-500" },
+            { name: "Verification", href: "/dashboard/verification", icon: BadgeCheck },
             { name: "Visibility & plans", href: "/dashboard/subscription", icon: Crown },
             { name: "Settings", href: "/account/settings", icon: Settings },
           ]
@@ -206,7 +220,7 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
       cancelled = true;
       if (notifyChannel) supabase.removeChannel(notifyChannel);
     };
-  }, [router]);
+  }, [router, pathname]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -231,7 +245,7 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
         href={link.href}
         onClick={onNavigate}
         className={`flex min-h-[44px] items-center gap-3 px-4 py-2.5 rounded-xl transition-all font-bold text-sm ${
-          active ? "bg-emerald-50 text-emerald-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+          active ? "bg-[var(--dash-accent-soft)] text-[var(--dash-accent)]" : "text-gray-500 hover:bg-gray-50 hover:text-[var(--dash-accent)]"
         }`}
       >
         <div className="relative">
@@ -264,11 +278,14 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
 
   const closeMobile = () => setIsMobileMenuOpen(false);
 
+  /** Shoppers who never opted into selling do not need seller pricing in the hub. */
+  const showPricingInResources = isSellerFlag || hasStore;
+
   const navInner = (
     <>
       <div className="p-6 border-b border-gray-100 shrink-0">
         <Link href="/" className="font-extrabold text-xl text-gray-900 flex items-center gap-2 tracking-tight">
-          <LayoutDashboard className="text-emerald-600" size={24} /> StoreLink
+          <LayoutDashboard className="text-[var(--dash-accent)]" size={24} /> StoreLink
         </Link>
         <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mt-4">Your hub</p>
         <div className="flex items-center gap-3 mt-3">
@@ -284,7 +301,7 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
             <p className="font-bold text-gray-900 text-sm truncate">{meName}</p>
             <div className="flex flex-wrap gap-1.5 mt-1">
               {hasStore && (
-                <span className="text-[9px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
+                <span className="text-[9px] font-black uppercase tracking-wider text-[var(--dash-accent)] bg-[var(--dash-accent-soft)] px-2 py-0.5 rounded-md">
                   Seller
                 </span>
               )}
@@ -309,10 +326,10 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
           href={overviewHref}
           onClick={closeMobile}
           className={`flex min-h-[44px] items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition-all ${
-            pathname === "/dashboard" ? "bg-emerald-50 text-emerald-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+            pathname === "/dashboard" ? "bg-[var(--dash-accent-soft)] text-[var(--dash-accent)]" : "text-gray-500 hover:bg-gray-50 hover:text-[var(--dash-accent)]"
           }`}
         >
-          <LayoutDashboard size={18} className="text-emerald-600" />
+          <LayoutDashboard size={18} className="text-[var(--dash-accent)]" />
           Home
         </Link>
 
@@ -332,12 +349,47 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
             {growLinks.map((l) => renderLink(l, closeMobile))}
           </>
         )}
+
+        <p className="px-4 pt-6 pb-1 text-[9px] font-black uppercase tracking-widest text-gray-400">RESOURCES</p>
+        {showPricingInResources ? (
+          <Link
+            href="/pricing"
+            onClick={closeMobile}
+            className={`flex min-h-[44px] items-center gap-3 px-4 py-2.5 rounded-xl transition-all font-bold text-sm ${
+              pathname === "/pricing" ? "bg-[var(--dash-accent-soft)] text-[var(--dash-accent)]" : "text-gray-500 hover:bg-gray-50 hover:text-[var(--dash-accent)]"
+            }`}
+          >
+            <Receipt size={18} />
+            Pricing &amp; fees
+          </Link>
+        ) : null}
+        <Link
+          href="/faq"
+          onClick={closeMobile}
+          className={`flex min-h-[44px] items-center gap-3 px-4 py-2.5 rounded-xl transition-all font-bold text-sm ${
+            pathname === "/faq" ? "bg-[var(--dash-accent-soft)] text-[var(--dash-accent)]" : "text-gray-500 hover:bg-gray-50 hover:text-[var(--dash-accent)]"
+          }`}
+        >
+          <HelpCircle size={18} />
+          FAQ
+        </Link>
       </nav>
 
       {hasStore && (
-        <div className="mx-4 mb-2 p-3 rounded-xl border bg-emerald-50/50 border-emerald-100 shrink-0">
-          <p className="text-[10px] font-black text-emerald-800 uppercase tracking-widest leading-relaxed">{planHint}</p>
-          <p className="text-[9px] text-emerald-800/75 mt-1 leading-snug">Standard is free forever. Upgrade for marketplace visibility boosts.</p>
+        <div className="mx-4 mb-2 p-3 rounded-xl border bg-[var(--dash-accent-soft)] border-[var(--dash-accent-soft-strong)] shrink-0">
+          <p className="text-[10px] font-black text-[var(--dash-accent)] uppercase tracking-widest leading-relaxed">{planHint}</p>
+          <p className="text-[9px] text-[var(--dash-accent)]/80 mt-1 leading-snug">
+            {effectivePlan === "diamond"
+              ? "Diamond adds marketplace visibility boosts while it is active. Renew before expiry to avoid dropping back to Standard."
+              : "Standard keeps your storefront free. Upgrade to Diamond when you want marketplace visibility boosts."}
+          </p>
+          <Link
+            href="/dashboard/subscription"
+            onClick={closeMobile}
+            className="mt-2 inline-flex text-[9px] font-black uppercase tracking-widest text-[var(--dash-accent)] hover:opacity-80"
+          >
+            Manage plan →
+          </Link>
         </div>
       )}
 
@@ -354,12 +406,12 @@ export default function UnifiedHubLayout({ children }: { children: ReactNode }) 
   );
 
   return (
-    <div className="flex min-h-dvh bg-gray-50">
+    <div className="flex min-h-dvh bg-gray-50" style={accentVars}>
       <div
         className={`md:hidden fixed top-0 left-0 right-0 z-30 flex items-center justify-between border-b border-gray-200 bg-white pt-[max(0.5rem,env(safe-area-inset-top,0px))] ${STOREFRONT_GUTTER_X} pb-3`}
       >
         <Link href="/" className="font-extrabold text-lg text-gray-900 flex min-h-[44px] items-center gap-2 pr-2">
-          <LayoutDashboard className="text-emerald-600 shrink-0" size={20} /> StoreLink
+          <LayoutDashboard className="text-[var(--dash-accent)] shrink-0" size={20} /> StoreLink
         </Link>
         <div className="flex items-center gap-1 shrink-0">
           {unreadCount > 0 && (

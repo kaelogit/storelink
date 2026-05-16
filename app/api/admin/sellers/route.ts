@@ -4,6 +4,14 @@ import { requireStorefrontAdmin } from "@/lib/adminRouteAuth";
 const PROFILE_SELECT =
   "id, email, full_name, display_name, slug, phone_number, is_seller, is_verified, verification_status, subscription_plan, subscription_expiry, subscription_status, account_status, loyalty_enabled, loyalty_percentage, category, created_at";
 
+function normalizeVerificationStatus(value: unknown): "none" | "pending" | "verified" | "rejected" {
+  const status = String(value || "").trim().toLowerCase();
+  if (status === "approved" || status === "verified") return "verified";
+  if (status === "pending") return "pending";
+  if (status === "rejected") return "rejected";
+  return "none";
+}
+
 export async function GET() {
   const gate = await requireStorefrontAdmin();
   if (!gate.ok) return gate.response;
@@ -21,7 +29,7 @@ export async function GET() {
 
   const rows = profiles ?? [];
   const ids = rows.map((p) => p.id);
-  let mvMap = new Map<string, { id_url: string; face_url: string }>();
+  const mvMap = new Map<string, { id_url: string; face_url: string }>();
   if (ids.length > 0) {
     const { data: mvs } = await gate.svc.from("merchant_verifications").select("user_id, id_url, face_url").in("user_id", ids);
     for (const m of mvs || []) {
@@ -44,7 +52,7 @@ export async function GET() {
       whatsapp_number: (p.phone_number as string | null) ?? null,
       status: suspended ? "banned" : "active",
       is_verified: Boolean(p.is_verified),
-      verification_status: p.verification_status,
+      verification_status: normalizeVerificationStatus(p.verification_status),
       subscription_plan: p.subscription_plan,
       subscription_expiry: p.subscription_expiry,
       subscription_status: p.subscription_status,

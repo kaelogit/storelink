@@ -51,8 +51,8 @@ export default function AddToCartButton({ product, store }: AddToCartButtonProps
             ${isOutOfStock 
                ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
                : isAdded 
-                 ? 'bg-emerald-600 text-white shadow-emerald-100' 
-                 : 'bg-gray-900 text-white hover:bg-black'
+                 ? 'sf-bg-accent text-white shadow-lg' 
+                 : 'sf-btn-accent text-white hover:opacity-95'
             }
           `}
         >

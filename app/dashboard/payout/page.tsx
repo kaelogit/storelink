@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { CheckCircle2, ChevronRight, Landmark, Loader2, Search, X } from "lucide-react";
 
@@ -18,6 +19,7 @@ type BankDetails = {
 type BankFormState = {
   bank_name: string;
   bank_code: string;
+  /** Paystack / bank-resolved account holder (read-only in UI). */
   account_name: string;
   account_number: string;
   recipient_code: string;
@@ -29,6 +31,18 @@ type ProfileRow = {
   is_seller?: boolean | null;
   bank_details?: BankDetails | null;
 };
+
+/** Same-origin proxy → Supabase Edge Function (avoids browser `FunctionsFetchError` to *.supabase.co). */
+async function fetchPaystackResolve(body: object): Promise<{ ok: boolean; status: number; data: unknown }> {
+  const res = await fetch("/api/paystack-account-resolve", {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json().catch(() => ({}));
+  return { ok: res.ok, status: res.status, data };
+}
 
 export default function DashboardPayoutPage() {
   const [loading, setLoading] = useState(true);
@@ -75,11 +89,10 @@ export default function DashboardPayoutPage() {
   }, []);
 
   const loadBanks = useCallback(async () => {
-    const { data } = await supabase.functions.invoke("paystack-account-resolve", {
-      body: { action: "list_banks" },
-    });
-    if (data?.status && Array.isArray(data.data)) {
-      setBanks(data.data as BankItem[]);
+    const { ok, data } = await fetchPaystackResolve({ action: "list_banks" });
+    const payload = data as { status?: boolean; data?: unknown } | null;
+    if (ok && payload?.status && Array.isArray(payload.data)) {
+      setBanks(payload.data as BankItem[]);
     }
   }, []);
 
@@ -112,25 +125,44 @@ export default function DashboardPayoutPage() {
       setVerifying(true);
       setError(null);
       try {
-        const { data, error: invokeError } = await supabase.functions.invoke("paystack-account-resolve", {
-          body: { account_number, bank_code },
-        });
-        if (invokeError || !data?.success) {
-          throw new Error("Invalid account details. Please check account number and bank.");
+        const { ok, status, data } = await fetchPaystackResolve({ account_number, bank_code });
+        const payload = data as {
+          success?: boolean;
+          message?: string;
+          account_name?: string;
+          recipient_label?: string;
+          recipient_code?: string;
+        } | null;
+        if (!ok) {
+          setForm((prev) => ({ ...prev, recipient_code: "", account_name: "" }));
+          setError(
+            typeof payload?.message === "string" && payload.message.trim()
+              ? payload.message
+              : status === 401
+                ? "Session expired. Sign in again."
+                : "Could not reach verification service.",
+          );
+          return;
         }
+        if (!payload?.success) {
+          setForm((prev) => ({ ...prev, recipient_code: "", account_name: "" }));
+          setError(typeof payload?.message === "string" ? payload.message : "Could not verify account.");
+          return;
+        }
+        const resolvedName = String(payload.account_name || payload.recipient_label || "").trim();
         setForm((prev) => ({
           ...prev,
-          account_name: String(data.account_name || ""),
-          recipient_code: String(data.recipient_code || ""),
+          account_name: resolvedName,
+          recipient_code: String(payload.recipient_code || ""),
         }));
       } catch (e: unknown) {
-        setForm((prev) => ({ ...prev, account_name: "", recipient_code: "" }));
+        setForm((prev) => ({ ...prev, recipient_code: "", account_name: "" }));
         setError(e instanceof Error ? e.message : "Could not verify account.");
       } finally {
         setVerifying(false);
       }
     },
-    []
+    [],
   );
 
   useEffect(() => {
@@ -138,7 +170,7 @@ export default function DashboardPayoutPage() {
     if (!ready) return;
     const t = setTimeout(() => {
       void verifyAccount(form.account_number, form.bank_code);
-    }, 300);
+    }, 450);
     return () => clearTimeout(t);
   }, [form.account_number, form.bank_code, isEditing, verifyAccount]);
 
@@ -151,13 +183,13 @@ export default function DashboardPayoutPage() {
     setSaving(true);
     setError(null);
     try {
-      const payload: BankFormState = {
+      const payload = {
         bank_name: form.bank_name,
         bank_code: form.bank_code,
-        account_name: form.account_name,
+        account_name: form.account_name.trim(),
         account_number: form.account_number,
         recipient_code: form.recipient_code,
-        currency: "NGN",
+        currency: "NGN" as const,
       };
       const { error: upErr } = await supabase
         .from("profiles")
@@ -189,9 +221,9 @@ export default function DashboardPayoutPage() {
     return (
       <div className="mx-auto max-w-lg rounded-3xl border border-gray-200 bg-white p-8 text-center">
         <p className="text-sm font-semibold text-gray-600">Payout bank details are for seller accounts.</p>
-        <a href="/account/start-selling" className="mt-4 inline-block text-sm font-black text-emerald-600 uppercase tracking-widest hover:underline">
+        <Link href="/account/start-selling" className="mt-4 inline-block text-sm font-black text-emerald-600 uppercase tracking-widest hover:underline">
           Start selling
-        </a>
+        </Link>
       </div>
     );
   }
@@ -200,12 +232,40 @@ export default function DashboardPayoutPage() {
     <div className="max-w-2xl mx-auto w-full pb-12">
       <div className="mb-8">
         <h1 className="text-3xl font-black text-gray-900">Payout bank account</h1>
-        <p className="text-gray-500 mt-2 text-sm font-medium">
-          Storefront payouts go to this verified account (same as the StoreLink app). You need a saved recipient before product orders can pay out.
+        <p className="mt-2 text-xs text-gray-400">
+          Questions on payout timing or fees?{" "}
+          <Link href="/faq" className="font-bold text-emerald-600 hover:underline">
+            See the FAQ
+          </Link>
+          .
         </p>
       </div>
 
       {error ? <p className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 font-medium">{error}</p> : null}
+
+      {!hasExistingDetails ? (
+        <section className="mb-6 rounded-3xl border border-dashed border-emerald-200 bg-emerald-50/50 p-5 md:p-6">
+          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-800">Get paid on storefront orders</p>
+          <p className="mt-2 text-sm font-semibold leading-relaxed text-emerald-950">
+            Add a verified Nigerian bank account so completed shop orders can settle to you through Paystack. This is separate from
+            your shopper wallet — it is the account we use for seller payouts.
+          </p>
+          <ul className="mt-3 list-inside list-disc space-y-1 text-xs font-medium text-emerald-900/90">
+            <li>Save once, then payouts queue automatically after orders complete.</li>
+          </ul>
+          <p className="mt-4 text-xs font-medium text-emerald-900/80">
+            Need help?{" "}
+            <Link href="/faq" className="font-bold text-emerald-800 underline-offset-2 hover:underline">
+              Read the FAQ
+            </Link>{" "}
+            or{" "}
+            <Link href="/account/support" className="font-bold text-emerald-800 underline-offset-2 hover:underline">
+              contact support
+            </Link>
+            .
+          </p>
+        </section>
+      ) : null}
 
       {!isEditing && hasExistingDetails ? (
         <section className="rounded-[1.5rem] border border-gray-100 bg-white p-6 shadow-sm">
@@ -232,10 +292,6 @@ export default function DashboardPayoutPage() {
         </section>
       ) : (
         <section className="rounded-[1.5rem] border border-gray-100 bg-white p-6 shadow-sm">
-          <div className="mb-5 rounded-2xl bg-emerald-50/80 border border-emerald-100 p-4 text-sm text-gray-800 font-medium">
-            Use an account that matches your verified identity to avoid payout delays.
-          </div>
-
           <label className="mb-2 ml-1 block text-[10px] font-black uppercase tracking-widest text-gray-400">Bank name</label>
           <button
             type="button"
@@ -265,11 +321,24 @@ export default function DashboardPayoutPage() {
             {verifying ? <span className="ml-3 text-xs text-gray-500">Verifying…</span> : null}
           </div>
 
-          {form.account_name ? (
-            <div className="mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-50 px-3 py-2 text-sm font-bold text-emerald-800">
-              <CheckCircle2 size={16} />
-              <span>{form.account_name}</span>
-            </div>
+          <div className="mt-6">
+            <p className="mb-2 ml-1 text-[10px] font-black uppercase tracking-widest text-gray-400">Account holder name</p>
+            {form.account_name ? (
+              <div className="flex items-center gap-2 rounded-xl border border-emerald-100 bg-emerald-50/60 px-4 py-3">
+                <CheckCircle2 size={18} className="shrink-0 text-emerald-600" aria-hidden />
+                <span className="text-sm font-bold text-gray-900">{form.account_name}</span>
+              </div>
+            ) : (
+              <p className="rounded-xl border border-dashed border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-500">
+                {verifying && form.account_number.length === 10 && form.bank_code
+                  ? "Confirming with your bank…"
+                  : "After you enter a valid account number and bank, the registered name from your bank will show here."}
+              </p>
+            )}
+          </div>
+
+          {form.recipient_code ? (
+            <p className="mt-3 text-xs font-bold text-emerald-700">Verified — you can save this payout account.</p>
           ) : null}
 
           <div className="mt-8 flex items-center gap-3">
@@ -327,7 +396,13 @@ export default function DashboardPayoutPage() {
                   type="button"
                   className="w-full border-b border-gray-100 px-5 py-3.5 text-left text-sm font-bold text-gray-900 hover:bg-gray-50"
                   onClick={() => {
-                    setForm((prev) => ({ ...prev, bank_name: bank.name, bank_code: bank.code, account_name: "", recipient_code: "" }));
+                    setForm((prev) => ({
+                      ...prev,
+                      bank_name: bank.name,
+                      bank_code: bank.code,
+                      account_name: "",
+                      recipient_code: "",
+                    }));
                     setShowPicker(false);
                     setPickerSearch("");
                   }}

@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { fetchOnboardingContext, getOnboardingHubRedirect } from "@/lib/onboardingState";
+import { getClientUserSafe } from "@/lib/getClientUserSafe";
+import { buildVerifyRedirectPath, isEmailVerifiedForStorefront } from "@/lib/authVerification";
 
 /** Progressive onboarding router — buyers/sellers use dedicated steps. */
 export default function OnboardingHubPage() {
@@ -13,11 +15,14 @@ export default function OnboardingHubPage() {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const user = await getClientUserSafe(supabase);
       if (!user) {
         router.replace("/login");
+        return;
+      }
+      const verified = await isEmailVerifiedForStorefront(supabase, user);
+      if (!verified) {
+        router.replace(buildVerifyRedirectPath(user.email, "/onboarding"));
         return;
       }
       const ctx = await fetchOnboardingContext(supabase, user.id);

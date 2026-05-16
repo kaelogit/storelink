@@ -21,19 +21,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   try {
-    const { data: stores, error } = await supabase.from("stores").select("slug, created_at");
+    const { data: rows, error } = await supabase
+      .from("profiles")
+      .select("slug, updated_at")
+      .eq("is_seller", true)
+      .not("slug", "is", null);
 
     if (error) {
       console.error("❌ SITEMAP DATABASE ERROR:", error.message);
       return staticRoutes;
     }
 
-    const storefrontRoutes: MetadataRoute.Sitemap = (stores || []).map((store) => ({
-      url: sellerStorefrontPublicUrl(String(store.slug || "")),
-      lastModified: new Date(store.created_at || new Date()),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    }));
+    const storefrontRoutes: MetadataRoute.Sitemap = (rows || [])
+      .filter((r) => String(r.slug || "").trim())
+      .map((r) => ({
+        url: sellerStorefrontPublicUrl(String(r.slug)),
+        lastModified: new Date((r as { updated_at?: string }).updated_at || new Date()),
+        changeFrequency: "weekly",
+        priority: 0.7,
+      }));
 
     console.log(`✅ SITEMAP SUCCESS: Generated ${storefrontRoutes.length} storefront links.`);
     return [...staticRoutes, ...storefrontRoutes];

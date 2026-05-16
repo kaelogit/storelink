@@ -1,16 +1,16 @@
 import type { Store } from "@/types";
 import { displayLocationFull } from "@/lib/displayRegion";
+import { normalizeStorefrontTheme } from "@/lib/storefrontTheme";
 
 /**
- * Single source of truth for public seller identity: `profiles` (aligned with mobile).
- * Legacy `stores` rows remain supported for back-compat until fully migrated.
+ * Single source of truth for public seller identity: `profiles` (aligned with mobile / web app).
  *
- * Column mapping (profile → storefront UI fields that used to come from `stores`):
+ * Column mapping (profile → storefront `Store` UI shape):
  * - display_name / full_name → name
  * - slug → slug (public URL)
  * - bio → description
  * - logo_url → logo_url; cover_image_url → header image (falls back to logo)
- * - shop_address → public shop line when no legacy `stores` row
+ * - shop_address → public shop / pickup line when set
  * - phone_number → whatsapp_number (normalized digits)
  * - location*, location → location string
  * - subscription_plan, subscription_expiry, subscription_status → visibility tier
@@ -22,7 +22,7 @@ export const PROFILE_STOREFRONT_SELECT =
   "instagram_handle, tiktok_url, " +
   "is_seller, email, subscription_plan, subscription_expiry, subscription_status, " +
   "verification_status, loyalty_enabled, loyalty_percentage, view_count, account_status, " +
-  "is_store_open, coin_balance, seller_type";
+  "is_store_open, coin_balance, seller_type, storefront_theme, service_latitude, service_longitude";
 
 export type ProfileStorefrontRow = {
   id: string;
@@ -53,7 +53,16 @@ export type ProfileStorefrontRow = {
   account_status?: string | null;
   is_store_open?: boolean | null;
   seller_type?: string | null;
+  storefront_theme?: unknown;
 };
+
+function normalizeStoreVerificationStatus(value: string | null | undefined): Store["verification_status"] {
+  const status = String(value || "").trim().toLowerCase();
+  if (status === "approved" || status === "verified") return "verified";
+  if (status === "pending") return "pending";
+  if (status === "rejected") return "rejected";
+  return "none";
+}
 
 function normalizeWhatsApp(raw: string | null | undefined): string {
   let wa = String(raw || "").replace(/\D/g, "");
@@ -63,7 +72,7 @@ function normalizeWhatsApp(raw: string | null | undefined): string {
   return wa;
 }
 
-/** @deprecated Use `displayLocationFull` — kept for `ensureWebStorefront` imports. */
+/** @deprecated Use `displayLocationFull` instead. */
 export function joinProfileDisplayLocation(p: ProfileStorefrontRow): string {
   const full = displayLocationFull({
     location: p.location,
@@ -77,16 +86,15 @@ export function joinProfileDisplayLocation(p: ProfileStorefrontRow): string {
 }
 
 /**
- * Maps a profile row into the legacy `Store` shape used by StoreFront / dashboard.
- * `owner_id` is always the profile id. `id` is the linked `stores.id` when one exists, else the profile id.
- * Checkout uses `owner_id` as `p_seller_id` for `create_new_order` (no `stores` row required).
+ * Maps a profile row into the `Store` shape used by StoreFront / dashboard.
+ * `id` and `owner_id` are both the profile id. Orders use `owner_id` as seller id.
  */
 export function profileRowToLegacyStoreShape(
   p: ProfileStorefrontRow,
-  opts?: { legacyStoreId?: string | null; ownerEmail?: string | null }
+  opts?: { ownerEmail?: string | null }
 ): Store & {
   __surface: "profile";
-  __legacy_store_id?: string | null;
+  __legacy_store_id: null;
   owner_email?: string;
   status?: string;
 } {
@@ -108,8 +116,8 @@ export function profileRowToLegacyStoreShape(
 
   return {
     __surface: "profile",
-    __legacy_store_id: opts?.legacyStoreId ?? null,
-    id: opts?.legacyStoreId ?? p.id,
+    __legacy_store_id: null,
+    id: p.id,
     owner_id: p.id,
     slug,
     name,
@@ -125,13 +133,14 @@ export function profileRowToLegacyStoreShape(
     cover_image_url: p.cover_image_url?.trim() || p.logo_url?.trim() || null,
     instagram_handle: p.instagram_handle?.trim() || undefined,
     tiktok_url: p.tiktok_url?.trim() || undefined,
-    verification_status: (p.verification_status as Store["verification_status"]) ?? "none",
+    verification_status: normalizeStoreVerificationStatus(p.verification_status),
     view_count: Number(p.view_count ?? 0),
     subscription_plan: (p.subscription_plan as Store["subscription_plan"]) || "standard",
     subscription_expiry: p.subscription_expiry ?? null,
     subscription_status: p.subscription_status ?? "active",
     loyalty_enabled: p.loyalty_enabled ?? false,
     loyalty_percentage: Number(p.loyalty_percentage ?? 0),
+    storefront_theme: normalizeStorefrontTheme(p.storefront_theme),
     status: p.account_status === "suspended" ? "banned" : "active",
     seller_type: p.seller_type ?? undefined,
   };

@@ -129,3 +129,83 @@
   width: max-content;
   animation: marquee 45s linear infinite;
 }
+
+/* Per-seller storefront theme — `--sf-*` set on `.storefront-root` (see `StoreFront.tsx`) */
+.storefront-root {
+  --sf-accent: #059669;
+  --sf-accent-soft: color-mix(in srgb, #059669 16%, white);
+  --sf-accent-softer: color-mix(in srgb, #059669 10%, white);
+  --sf-accent-foreground: color-mix(in srgb, #059669 8%, #0f172a);
+  --sf-accent-strong: color-mix(in srgb, #059669 78%, #020617);
+}
+
+.sf-accent-text {
+  color: var(--sf-accent, #059669);
+}
+.sf-accent-stroke {
+  stroke: var(--sf-accent, #059669);
+}
+.sf-bg-accent {
+  background-color: var(--sf-accent, #059669);
+}
+.sf-price {
+  color: color-mix(in srgb, var(--sf-accent, #059669) 82%, black);
+}
+
+.sf-heading {
+  font-family: inherit;
+}
+
+.sf-font-serif {
+  font-family: var(--font-sf-serif), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+.sf-font-display {
+  font-family: var(--font-sf-display), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.sf-pill-active {
+  background-color: var(--sf-accent-strong, #0f172a);
+  color: #fff;
+}
+
+.sf-btn-accent {
+  background-color: var(--sf-accent-strong, #111827);
+  color: #fff;
+}
+.sf-btn-accent:hover {
+  background-color: var(--sf-accent, #059669);
+}
+
+.sf-input-focus:focus {
+  outline: 2px solid color-mix(in srgb, var(--sf-accent, #059669) 55%, transparent);
+  outline-offset: 0;
+}
+
+.sf-load-more {
+  border-color: var(--sf-accent-strong, #111827);
+  color: var(--sf-accent-strong, #111827);
+  background: #fff;
+}
+.sf-load-more:hover {
+  background: var(--sf-accent-strong, #111827);
+  color: #fff;
+}
+
+.sf-cart-fab:hover {
+  background-color: var(--sf-accent-strong, #111827);
+  color: #fff;
+}
+
+.sf-skeleton {
+  background: linear-gradient(110deg, #f4f4f5 8%, #e4e4e7 18%, #f4f4f5 33%);
+  background-size: 200% 100%;
+  animation: sf-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes sf-shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}

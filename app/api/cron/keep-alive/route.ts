@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   )
 
-  const { error } = await supabase.from('stores').select('id').limit(1)
+  const { error } = await supabase.from("profiles").select("id").limit(1)
 
   if (error) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 })

@@ -1,12 +1,24 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 import Link from "next/link"; 
-import { 
-  Search, Package, Filter, Loader2, CheckCircle, 
-  Plus, ShoppingBag, BadgeCheck, Gem, Zap, TrendingUp 
+import {
+  Search,
+  Package,
+  Filter,
+  Loader2,
+  CheckCircle,
+  Plus,
+  ShoppingBag,
+  BadgeCheck,
+  Gem,
+  Zap,
+  TrendingUp,
+  Sparkles,
+  Store,
 } from "lucide-react"; 
 import { useCart } from "@/context/CartContext";
 import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
@@ -16,16 +28,43 @@ import {
   fetchMergedStoreRowsForSellerIds,
 } from "@/lib/storefrontCatalogMerge";
 import { compactSellerRegion } from "@/lib/displayRegion";
-import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
+import {
+  isProductFlashDropActive,
+  productDisplayPrice,
+  productFlashPriceNumber,
+} from "@/lib/productFlashDrop";
+import { expandMarketplaceSearch, MARKETPLACE_SUGGESTED_SEARCHES } from "@/lib/marketplaceSearchExpand";
+import MarketplaceTrackedProductLink from "@/components/marketplace/MarketplaceTrackedProductLink";
 
 interface FullMarketplaceClientProps {
   initialProducts: any[];
-  categories: { id: string; name: string; slug: string }[]; 
+  categories: { id: string; name: string; slug: string }[];
+  /** True when the server had zero marketplace rows to show (distinct from “filters returned nothing”). */
+  initialFeedEmpty: boolean;
 }
 
-export default function FullMarketplaceClient({ initialProducts, categories }: FullMarketplaceClientProps) {
+export default function FullMarketplaceClient({ initialProducts, categories, initialFeedEmpty }: FullMarketplaceClientProps) {
   const { addToCart, cartCount, setIsCartOpen } = useCart();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const BATCH_SIZE = 40;
+
+  const userAdjustedFilters = useRef(false);
+  const urlInitRan = useRef(false);
+
+  const [viewerId, setViewerId] = useState<string | null>(null);
+  const [viewerLat, setViewerLat] = useState<number | null>(null);
+  const [viewerLon, setViewerLon] = useState<number | null>(null);
+
+  const viewerRpc = useMemo(
+    () => ({
+      p_viewer_id: viewerId,
+      p_viewer_latitude: viewerLat,
+      p_viewer_longitude: viewerLon,
+    }),
+    [viewerId, viewerLat, viewerLon],
+  );
 
   // --- 1. CORE STATES ---
   const [products, setProducts] = useState(initialProducts);
@@ -38,6 +77,8 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
   const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
   const [flashOnly, setFlashOnly] = useState(false); 
   const [isJumping, setIsJumping] = useState(false);
+
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -63,15 +104,62 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
     return () => clearTimeout(handler);
   }, [search]);
 
+  /** Optional coarse location for ranking (same RPC fields as mobile); permission is browser-driven. */
+  useEffect(() => {
+    let cancelled = false;
+    void supabase.auth.getUser().then(({ data }) => {
+      if (!cancelled) setViewerId(data.user?.id ?? null);
+    });
+    if (typeof navigator === "undefined" || !navigator.geolocation) return () => { cancelled = true; };
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        if (cancelled) return;
+        setViewerLat(pos.coords.latitude);
+        setViewerLon(pos.coords.longitude);
+      },
+      () => {},
+      { enableHighAccuracy: false, maximumAge: 600_000, timeout: 12_000 },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  /** One-time hydrate from ?q=&category=&flash= (shareable marketplace links). */
+  useEffect(() => {
+    if (urlInitRan.current) return;
+    urlInitRan.current = true;
+    const q = searchParams.get("q")?.trim() || "";
+    const cat = searchParams.get("category")?.trim() || "all";
+    const flash = searchParams.get("flash") === "1";
+    if (q) setSearch(q);
+    if (cat !== "all" && categories.some((c) => c.slug === cat)) setSelectedCategory(cat);
+    if (flash) setFlashOnly(true);
+  }, [searchParams, categories]);
+
+  /** Keep the address bar in sync after the shopper changes filters (not on first URL-driven hydrate). */
+  useEffect(() => {
+    if (!userAdjustedFilters.current) return;
+    const next = new URLSearchParams();
+    if (debouncedSearch.trim()) next.set("q", debouncedSearch.trim());
+    if (selectedCategory !== "all") next.set("category", selectedCategory);
+    if (flashOnly) next.set("flash", "1");
+    const qs = next.toString();
+    const href = qs ? `${pathname}?${qs}` : pathname;
+    router.replace(href, { scroll: false });
+  }, [debouncedSearch, selectedCategory, flashOnly, pathname, router]);
+
+  const markFilterInteraction = useCallback(() => {
+    userAdjustedFilters.current = true;
+  }, []);
+
   const trendingDrops = useMemo(() => {
     const now = new Date();
-    return products.filter(p => 
-      p.flash_drop_expiry && new Date(p.flash_drop_expiry) > now
-    ).slice(0, 8);
+    return products.filter((p) => isProductFlashDropActive(p, now)).slice(0, 8);
   }, [products]);
 
   const handleAddToCart = (product: any) => {
-    const isFlashActive = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
+    const isFlashActive = isProductFlashDropActive(product);
     if (isFlashActive) {
       const audio = new Audio('/sounds/empire-drop.mp3');
       audio.volume = 0.5;
@@ -112,6 +200,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
     const fetchFiltered = async () => {
       if (selectedCategory === "all" && !debouncedSearch && !flashOnly) {
+        setFetchError(null);
         setProducts(initialProducts);
         setHasMore(initialProducts.length >= BATCH_SIZE);
         setPage(Math.max(1, Math.ceil(initialProducts.length / BATCH_SIZE)));
@@ -120,6 +209,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
       setLoading(true);
       setPage(1);
+      setFetchError(null);
 
       const categoryName = selectedCategory !== "all" ? categories.find((c) => c.slug === selectedCategory)?.name || null : null;
       if (selectedCategory !== "all" && !categoryName) {
@@ -129,14 +219,73 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
         return;
       }
 
-      const { data } = await supabase.rpc("get_storefront_marketplace_products", {
+      const rpcBase = {
         p_limit: BATCH_SIZE,
         p_offset: 0,
         p_category: categoryName,
-        p_search: debouncedSearch || null,
         p_flash_only: flashOnly,
-      });
-      const merged = await mergeProductRows(data);
+        ...viewerRpc,
+      };
+
+      let dataRows: any[] | null = null;
+
+      if (debouncedSearch.trim()) {
+        const { primary, alternatives } = expandMarketplaceSearch(debouncedSearch);
+        const { data: primaryData, error: e0 } = await supabase.rpc("get_storefront_marketplace_products", {
+          ...rpcBase,
+          p_search: primary,
+        });
+        if (e0) {
+          console.error(e0);
+          setFetchError("Could not refresh search results. Check your connection and try again.");
+          setProducts([]);
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        const byId = new Map<string, any>();
+        for (const row of primaryData || []) {
+          byId.set(row.id, row);
+        }
+        if (alternatives.length) {
+          const extraResults = await Promise.all(
+            alternatives.map((term) =>
+              supabase.rpc("get_storefront_marketplace_products", {
+                ...rpcBase,
+                p_search: term,
+              }),
+            ),
+          );
+          for (const ex of extraResults) {
+            if (ex.error) {
+              console.error(ex.error);
+              continue;
+            }
+            for (const row of ex.data || []) {
+              if (!byId.has(row.id)) byId.set(row.id, row);
+            }
+          }
+        }
+        dataRows = [...byId.values()].sort(
+          (a, b) => Number(b.ranking_score ?? 0) - Number(a.ranking_score ?? 0),
+        );
+      } else {
+        const { data, error: e1 } = await supabase.rpc("get_storefront_marketplace_products", {
+          ...rpcBase,
+          p_search: null,
+        });
+        if (e1) {
+          console.error(e1);
+          setFetchError("Could not load marketplace products. Try again shortly.");
+          setProducts([]);
+          setHasMore(false);
+          setLoading(false);
+          return;
+        }
+        dataRows = data;
+      }
+
+      const merged = await mergeProductRows(dataRows);
       let processed = merged;
 
       if (debouncedSearch) {
@@ -144,12 +293,13 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
       }
 
       setProducts(processed);
-      setHasMore(Boolean(data && data.length >= BATCH_SIZE));
+      setFetchError(null);
+      setHasMore(Boolean((dataRows?.length ?? 0) >= BATCH_SIZE));
       setLoading(false);
     };
 
     fetchFiltered();
-  }, [selectedCategory, debouncedSearch, flashOnly, initialProducts, categories, BATCH_SIZE]);
+  }, [selectedCategory, debouncedSearch, flashOnly, initialProducts, categories, BATCH_SIZE, viewerRpc]);
 
   const loadMore = async () => {
     if (loading || !hasMore) return;
@@ -162,13 +312,24 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
       setLoading(false);
       return;
     }
-    const { data: newProducts } = await supabase.rpc("get_storefront_marketplace_products", {
+    const { primary } = expandMarketplaceSearch(debouncedSearch);
+    const searchForPaging = debouncedSearch.trim() ? primary : null;
+
+    const { data: newProducts, error: pageErr } = await supabase.rpc("get_storefront_marketplace_products", {
       p_limit: BATCH_SIZE,
       p_offset: from,
       p_category: categoryName,
-      p_search: debouncedSearch || null,
+      p_search: searchForPaging,
       p_flash_only: flashOnly,
+      ...viewerRpc,
     });
+    if (pageErr) {
+      console.error(pageErr);
+      setFetchError("Could not load more products.");
+      setHasMore(false);
+      setLoading(false);
+      return;
+    }
     if (newProducts && newProducts.length > 0) {
       const sellerIds = [...new Set(newProducts.map((p: { seller_id?: string }) => p.seller_id).filter(Boolean))] as string[];
       const storeRows = await fetchMergedStoreRowsForSellerIds(supabase, sellerIds);
@@ -177,6 +338,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
       setProducts((prev) => [...prev, ...joined]);
       setPage((prev) => prev + 1);
       setHasMore(newProducts.length >= BATCH_SIZE);
+      setFetchError(null);
     } else {
       setHasMore(false);
     }
@@ -185,7 +347,19 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
-      
+      {fetchError ? (
+        <div className="mb-4 flex items-start justify-between gap-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3">
+          <p className="text-sm font-medium text-red-900">{fetchError}</p>
+          <button
+            type="button"
+            onClick={() => setFetchError(null)}
+            className="shrink-0 text-[11px] font-black uppercase tracking-widest text-red-800 underline-offset-2 hover:underline"
+          >
+            Dismiss
+          </button>
+        </div>
+      ) : null}
+
       {trendingDrops.length > 0 && !search && !flashOnly && (
         <div className="mb-10 animate-in fade-in slide-in-from-top-4 duration-1000">
            <div className="flex items-center gap-2 mb-4 px-1">
@@ -193,16 +367,31 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
               <h2 className="font-black text-gray-900 uppercase tracking-tighter text-sm">Trending Live Drops</h2>
            </div>
            <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4 -mx-1 px-1">
-              {trendingDrops.map(product => {
+              {trendingDrops.map((product, ti) => {
+                const displayP = productDisplayPrice({ ...product, price: Number(product.price) });
                 const coins = product.stores?.loyalty_enabled 
-                  ? Math.floor(product.price * (product.stores.loyalty_percentage / 100)) 
+                  ? Math.floor(displayP * (product.stores.loyalty_percentage / 100)) 
                   : 0;
 
                 return (
-                  <Link key={`trending-${product.id}`} href={`/product/${product.id}`} className="min-w-[150px] md:min-w-[190px] bg-white p-2 rounded-2xl border-2 border-amber-100 shadow-sm active:scale-95 transition relative">
+                  <MarketplaceTrackedProductLink
+                    key={`trending-${product.id}`}
+                    href={`/product/${product.id}`}
+                    product={{ id: product.id, seller_id: product.seller_id }}
+                    position={ti}
+                    band="trending"
+                    className="min-w-[150px] md:min-w-[190px] bg-white p-2 rounded-2xl border-2 border-amber-100 shadow-sm active:scale-95 transition relative"
+                  >
                      <div className="aspect-square relative rounded-xl overflow-hidden mb-2">
                         {product.image_urls?.[0] ? (
-                          <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover" unoptimized />
+                          <Image
+                            src={product.image_urls[0]}
+                            alt={product.name}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                            fetchPriority={ti < 2 ? "high" : undefined}
+                          />
                         ) : (
                           <div className="h-full w-full flex items-center justify-center text-gray-300 bg-gray-50">
                             <Package size={24} />
@@ -217,8 +406,8 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
                         )}
                      </div>
                      <p className="font-bold text-gray-900 text-[10px] truncate uppercase">{product.name}</p>
-                     <p className="text-emerald-600 font-black text-xs mt-1">₦{product.flash_drop_price?.toLocaleString()}</p>
-                  </Link>
+                     <p className="text-emerald-600 font-black text-xs mt-1">₦{displayP.toLocaleString()}</p>
+                  </MarketplaceTrackedProductLink>
                 );
               })}
            </div>
@@ -234,29 +423,45 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
           <div className="flex flex-col md:flex-row gap-3">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-3.5 text-gray-400 w-5 h-5" />
-              <input 
-                placeholder="Search products..." 
+              <input
+                placeholder="Search products, brands, or categories…"
                 className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 bg-white text-base font-medium"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={(e) => {
+                  markFilterInteraction();
+                  setSearch(e.target.value);
+                }}
+                aria-label="Search marketplace products"
               />
             </div>
             <div className="relative min-w-[200px]">
-               <Filter className="absolute left-4 top-3.5 text-gray-500 w-4 h-4" />
-               <select 
-                 className="w-full pl-10 pr-8 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 bg-white text-gray-700 appearance-none font-bold cursor-pointer"
-                 value={selectedCategory}
-                 onChange={(e) => setSelectedCategory(e.target.value)}
-               >
-                 <option value="all">Global Feed</option>
-                 {(categories || []).map(cat => <option key={cat.id} value={cat.slug}>{cat.name}</option>)}
-               </select>
+              <Filter className="absolute left-4 top-3.5 text-gray-500 w-4 h-4" />
+              <select
+                className="w-full pl-10 pr-8 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 bg-white text-gray-700 appearance-none font-bold cursor-pointer"
+                value={selectedCategory}
+                onChange={(e) => {
+                  markFilterInteraction();
+                  setSelectedCategory(e.target.value);
+                }}
+                aria-label="Filter by product category"
+              >
+                <option value="all">All categories</option>
+                {(categories || []).map((cat) => (
+                  <option key={cat.id} value={cat.slug}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
+        
 
           <div className="flex gap-2">
              <button 
-                onClick={() => setFlashOnly(!flashOnly)}
+                onClick={() => {
+                  markFilterInteraction();
+                  setFlashOnly(!flashOnly);
+                }}
                 className={`px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 border ${
                   flashOnly 
                   ? "bg-amber-500 text-white border-amber-600 shadow-lg shadow-amber-200 scale-105" 
@@ -270,19 +475,69 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
         </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6">
-        {products.map((product: any) => {
-          const isFlash = product.flash_drop_expiry && new Date(product.flash_drop_expiry) > new Date();
-          const isDiamond = product.stores?.subscription_plan === 'diamond';
-          const rewardCoins = product.stores?.loyalty_enabled 
-            ? Math.floor((isFlash ? product.flash_drop_price : product.price) * (product.stores.loyalty_percentage / 100)) 
-            : 0;
-          const regionLabel = product.stores ? compactSellerRegion(product.stores) : "";
+      <div className="max-w-5xl mx-auto mb-4 flex flex-wrap items-center gap-2 px-1">
+        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Popular searches</span>
+        <div className="flex flex-wrap gap-2">
+          {MARKETPLACE_SUGGESTED_SEARCHES.map((term) => (
+            <button
+              key={term}
+              type="button"
+              onClick={() => {
+                markFilterInteraction();
+                setSearch(term);
+              }}
+              className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-[11px] font-bold text-gray-700 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50/80"
+            >
+              {term}
+            </button>
+          ))}
+        </div>
+      </div>
 
-          return (
-            <Link 
-              href={`/product/${product.id}`} 
-              key={product.id} 
+      {selectedCategory !== "all" ? (
+        <div className="max-w-5xl mx-auto mb-3 px-1">
+          <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-[11px] font-black uppercase tracking-widest text-gray-700">
+            Category: {categories.find((c) => c.slug === selectedCategory)?.name || selectedCategory}
+          </span>
+        </div>
+      ) : null}
+
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6">
+        {loading && products.length === 0 ? (
+          Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={`sk-${i}`}
+              className="animate-pulse rounded-2xl border border-gray-100 bg-white p-2.5 shadow-sm"
+            >
+              <div className="aspect-square rounded-xl bg-gray-100" />
+              <div className="mt-3 h-3 w-[78%] rounded bg-gray-100" />
+              <div className="mt-2 h-3 w-[52%] rounded bg-gray-100" />
+              <div className="mt-4 h-4 w-[36%] rounded bg-gray-100" />
+            </div>
+          ))
+        ) : (
+          products.map((product: any, index: number) => {
+            const isFlash = isProductFlashDropActive(product);
+            const isDiamond =
+              effectiveSellerTier(
+                product.stores?.subscription_plan,
+                product.stores?.subscription_expiry,
+                product.stores?.subscription_status,
+              ) === "diamond";
+            const displayPrice = productDisplayPrice({ ...product, price: Number(product.price) });
+            const rewardCoins = product.stores?.loyalty_enabled
+              ? Math.floor(displayPrice * (product.stores.loyalty_percentage / 100))
+              : 0;
+            const regionLabel = product.stores ? compactSellerRegion(product.stores) : "";
+            const verified = product.stores?.verification_status === "verified";
+
+            return (
+            <MarketplaceTrackedProductLink
+              key={product.id}
+              href={`/product/${product.id}`}
+              product={{ id: product.id, seller_id: product.seller_id }}
+              position={index}
+              band="grid"
               className={`bg-white p-2.5 rounded-2xl border transition-all duration-500 flex flex-col relative h-full group ${
                 isDiamond 
                 ? 'border-purple-200 shadow-[0_10px_30px_rgba(147,51,234,0.08)] ring-1 ring-purple-50' 
@@ -291,7 +546,14 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
             >
               <div className="aspect-square bg-gray-50 rounded-xl mb-3 relative overflow-hidden">
                 {product.image_urls?.[0] ? (
-                  <Image src={product.image_urls[0]} alt={product.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" unoptimized />
+                  <Image
+                    src={product.image_urls[0]}
+                    alt={product.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    unoptimized
+                    fetchPriority={index < 6 ? "high" : undefined}
+                  />
                 ) : (
                   <div className="h-full w-full flex items-center justify-center text-gray-300">
                     <Package size={30} />
@@ -325,8 +587,23 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
               <div className="px-1 flex flex-col flex-1">
                 <h3 className="font-bold text-gray-900 text-xs md:text-sm truncate uppercase tracking-tight mb-0.5">{product.name}</h3>
                 <div className="flex items-center gap-1 text-[10px] text-gray-400 mb-1 truncate font-bold">
+                  <Store size={11} className="shrink-0 text-gray-300" aria-hidden />
                   <span className="truncate">{product.stores?.name}</span>
-                  {product.stores?.verification_status === 'verified' && <BadgeCheck size={12} className="text-blue-500 fill-blue-50" />}
+                  {verified ? (
+                    <span className="inline-flex shrink-0" title="Verified seller">
+                      <BadgeCheck size={12} className="text-blue-500 fill-blue-50" aria-hidden />
+                    </span>
+                  ) : null}
+                  {isDiamond ? (
+                    <span className="inline-flex shrink-0" title="Diamond visibility">
+                      <Gem size={11} className="text-purple-500" aria-hidden />
+                    </span>
+                  ) : null}
+                  {product.stores?.loyalty_enabled ? (
+                    <span className="inline-flex shrink-0" title="Store Coins on">
+                      <Sparkles size={11} className="text-amber-500" aria-hidden />
+                    </span>
+                  ) : null}
                 </div>
                 {regionLabel ? (
                   <p className="text-[9px] font-bold text-gray-400 mb-2 truncate uppercase tracking-wider">{regionLabel}</p>
@@ -335,7 +612,7 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
                   {isFlash ? (
                     <div>
                       <p className="text-[9px] font-bold text-gray-300 line-through">₦{product.price.toLocaleString()}</p>
-                      <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">₦{product.flash_drop_price.toLocaleString()}</p>
+                      <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">₦{(productFlashPriceNumber(product) ?? product.price).toLocaleString()}</p>
                     </div>
                   ) : (
                     <p className="text-emerald-700 font-black text-sm md:text-base">₦{product.price.toLocaleString()}</p>
@@ -346,10 +623,74 @@ export default function FullMarketplaceClient({ initialProducts, categories }: F
                 </div>
               </div>
               {isDiamond && <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-purple-500/10 transition-colors" />}
-            </Link>
-          );
-        })}
+            </MarketplaceTrackedProductLink>
+            );
+          })
+        )}
       </div>
+
+      {!loading && products.length === 0 ? (
+        initialFeedEmpty && selectedCategory === "all" && !debouncedSearch && !flashOnly ? (
+          <div className="mx-auto mt-12 max-w-lg rounded-3xl border border-dashed border-emerald-200 bg-emerald-50/40 px-6 py-10 text-center shadow-sm">
+            <Store className="mx-auto mb-4 h-12 w-12 text-emerald-300" strokeWidth={1.25} />
+            <h2 className="text-lg font-black uppercase tracking-tight text-gray-900">Marketplace is quiet right now</h2>
+            <p className="mt-2 text-sm font-medium leading-relaxed text-gray-700">
+              There are no active listings in the feed yet. Check back soon, or open a seller shop from social or WhatsApp
+              using their StoreLink handle.
+            </p>
+            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
+              <Link
+                href="/account/start-selling"
+                className="inline-flex items-center justify-center rounded-2xl bg-gray-900 px-5 py-3 text-[11px] font-black uppercase tracking-widest text-white transition hover:bg-gray-800"
+              >
+                Start selling
+              </Link>
+              <Link
+                href="/faq#discovery-loyalty"
+                className="inline-flex items-center justify-center rounded-2xl border border-emerald-200 bg-white px-5 py-3 text-[11px] font-black uppercase tracking-widest text-emerald-900 transition hover:bg-emerald-50"
+              >
+                How discovery works
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="mx-auto mt-12 max-w-lg rounded-3xl border border-dashed border-gray-200 bg-white px-6 py-10 text-center shadow-sm">
+            <Package className="mx-auto mb-4 h-12 w-12 text-gray-200" strokeWidth={1.25} />
+            <h2 className="text-lg font-black uppercase tracking-tight text-gray-900">No products match</h2>
+            <p className="mt-2 text-sm font-medium leading-relaxed text-gray-600">
+              Try a shorter search, pick <span className="font-bold text-gray-800">All categories</span>, or turn off live drops.
+              Search looks at product titles; we also fetch a few related words when it helps.
+            </p>
+            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
+              <button
+                type="button"
+                onClick={() => {
+                  markFilterInteraction();
+                  setSearch("");
+                  setSelectedCategory("all");
+                  setFlashOnly(false);
+                }}
+                className="rounded-2xl bg-gray-900 px-5 py-3 text-[11px] font-black uppercase tracking-widest text-white transition hover:bg-gray-800"
+              >
+                Clear filters
+              </button>
+              <Link
+                href="/"
+                className="inline-flex items-center justify-center rounded-2xl border border-gray-200 bg-white px-5 py-3 text-[11px] font-black uppercase tracking-widest text-gray-800 transition hover:bg-gray-50"
+              >
+                Back to home
+              </Link>
+            </div>
+            <p className="mt-6 text-xs font-medium text-gray-500">
+              Sellers: discovery is fair and capped — see{" "}
+              <Link href="/faq#discovery-loyalty" className="font-bold text-emerald-700 underline-offset-2 hover:underline">
+                FAQs on discovery
+              </Link>
+              .
+            </p>
+          </div>
+        )
+      ) : null}
 
       {hasMore && products.length >= 12 && (
         <div className="mt-12 flex justify-center">

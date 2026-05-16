@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { buildR2Key, uploadFileToR2 } from "@/lib/mediaUpload";
 import {
   Loader2,
   ArrowLeft,
@@ -16,7 +17,6 @@ import {
   Phone,
   AlertCircle,
   CheckCircle2,
-  Wrench,
   Store,
   ShieldCheck,
   Users,
@@ -35,6 +35,7 @@ import {
   getPhonePrefixForCountry,
   normalizePhoneSpaces,
 } from "@/lib/accountProfileParity";
+import { homeAddressCityStateError, missingCityOrState, shopAddressCityStateError } from "@/lib/addressCityState";
 
 type ProfileRow = {
   email: string | null;
@@ -68,6 +69,7 @@ type ProfileRow = {
   tiktok_url: string | null;
   shop_address: string | null;
   cover_image_url: string | null;
+  storefront_theme?: unknown;
 };
 
 function addDays(d: Date, days: number): Date {
@@ -89,7 +91,6 @@ export default function AccountProfilePage() {
   const [authEmail, setAuthEmail] = useState("");
   const [userId, setUserId] = useState<string | null>(null);
   const [profile, setProfile] = useState<ProfileRow | null>(null);
-  const [legacyStoreId, setLegacyStoreId] = useState<string | null>(null);
 
   const [fullName, setFullName] = useState("");
   const [bio, setBio] = useState("");
@@ -119,7 +120,6 @@ export default function AccountProfilePage() {
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
-  const [upgradeBusy, setUpgradeBusy] = useState<string | null>(null);
   const redirectAfterSaveRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const mapsKey = getGoogleMapsBrowserKey();
@@ -192,10 +192,7 @@ export default function AccountProfilePage() {
       setUserId(user.id);
       setAuthEmail(user.email || "");
 
-      const [{ data, error }, { data: storeData }] = await Promise.all([
-        supabase.from("profiles").select(ACCOUNT_PROFILE_SELECT).eq("id", user.id).maybeSingle(),
-        supabase.from("stores").select("id, slug, location, cover_image_url").eq("owner_id", user.id).maybeSingle(),
-      ]);
+      const { data, error } = await supabase.from("profiles").select(ACCOUNT_PROFILE_SELECT).eq("id", user.id).maybeSingle();
 
       if (error) {
         setLoadError(error.message);
@@ -256,18 +253,10 @@ export default function AccountProfilePage() {
       setInstagram((p?.instagram_handle ?? "").replace(/^@/, ""));
       setTiktok(p?.tiktok_url || "");
 
-      if (p?.is_seller && storeData) {
-        setLegacyStoreId(storeData.id);
-        const fromStore = storeData.location?.trim() ? String(storeData.location) : "";
-        setStoreAddress(fromStore || (p.shop_address?.trim() ? String(p.shop_address) : ""));
-        const storeCover = storeData.cover_image_url?.trim() ? String(storeData.cover_image_url) : "";
-        setCoverUrl(storeCover || (p.cover_image_url?.trim() ? String(p.cover_image_url) : ""));
-      } else if (p?.is_seller) {
-        setLegacyStoreId(null);
+      if (p?.is_seller) {
         setStoreAddress(p.shop_address?.trim() ? String(p.shop_address) : "");
         setCoverUrl(p.cover_image_url?.trim() ? String(p.cover_image_url) : "");
       } else {
-        setLegacyStoreId(null);
         setStoreAddress("");
         setCoverUrl("");
       }
@@ -304,24 +293,13 @@ export default function AccountProfilePage() {
     setMsg(null);
     try {
       const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-      const filePath = `${userId}/logo_${Date.now()}.${ext}`;
-      const { error: uploadError } = await supabase.storage.from("profiles").upload(filePath, file, {
-        upsert: true,
-        contentType: file.type || "image/jpeg",
+      const key = buildR2Key("profiles", `${userId}/logo_${Date.now()}.${ext}`);
+      const publicUrl = await uploadFileToR2({
+        bucket: "profiles",
+        key,
+        file,
       });
-      if (uploadError) {
-        const pathProducts = `profiles/${userId}/logo_${Date.now()}.${ext}`;
-        const { error: e2 } = await supabase.storage.from("products").upload(pathProducts, file, {
-          upsert: true,
-          contentType: file.type || "image/jpeg",
-        });
-        if (e2) throw e2;
-        const { data } = supabase.storage.from("products").getPublicUrl(pathProducts);
-        setLogoUrl(data.publicUrl);
-      } else {
-        const { data } = supabase.storage.from("profiles").getPublicUrl(filePath);
-        setLogoUrl(data.publicUrl);
-      }
+      setLogoUrl(publicUrl);
     } catch (err: unknown) {
       setMsg(err instanceof Error ? err.message : "Logo upload failed.");
     } finally {
@@ -373,28 +351,39 @@ export default function AccountProfilePage() {
           setSaving(false);
           return;
         }
-        if (!locationCity.trim() || !locationState.trim()) {
-          setMsg("Pick a full address from the list so city and region are filled.");
-          setSaving(false);
-          return;
-        }
+      }
+      const homeCityStateErr = homeAddressCityStateError(homeAddress, locationCity, locationState);
+      if (homeCityStateErr) {
+        setMsg(homeCityStateErr);
+        setSaving(false);
+        return;
       }
 
-      if (profile?.is_seller && mapsKey && !sellerUseHome && storeAddress.trim()) {
-        if (!coordsOk(shopLat, shopLng)) {
+      if (profile?.is_seller && !sellerUseHome && storeAddress.trim()) {
+        if (mapsKey && !coordsOk(shopLat, shopLng)) {
           setMsg("Choose your shop address from the suggestions list.");
           setSaving(false);
           return;
         }
-        if (
+        const sameShopCoordsAsHome =
           coordsOk(homeLat, homeLng) &&
           coordsOk(shopLat, shopLng) &&
-          !coordsNearlyEqual(homeLat, homeLng, shopLat, shopLng) &&
-          (!shopCity.trim() || !shopState.trim())
-        ) {
-          setMsg("Pick a shop address that includes city and region.");
-          setSaving(false);
-          return;
+          coordsNearlyEqual(homeLat, homeLng, shopLat, shopLng);
+        if (sameShopCoordsAsHome) {
+          if (missingCityOrState(locationCity, locationState)) {
+            setMsg(
+              "City and region are required — pick your home address from the list so they apply to your shop at the same location.",
+            );
+            setSaving(false);
+            return;
+          }
+        } else {
+          const shopErr = shopAddressCityStateError(storeAddress, shopCity, shopState);
+          if (shopErr) {
+            setMsg(shopErr);
+            setSaving(false);
+            return;
+          }
         }
       }
 
@@ -414,14 +403,13 @@ export default function AccountProfilePage() {
 
       let resolvedCover: string | null = coverUrl.trim() || null;
       if (coverFile && userId) {
-        const path = legacyStoreId ? `covers/${legacyStoreId}-${Date.now()}` : `covers/profile-${userId}-${Date.now()}`;
-        const { error: upErr } = await supabase.storage.from("products").upload(path, coverFile, {
-          upsert: true,
-          contentType: coverFile.type || "image/jpeg",
+        const ext = (coverFile.name.split(".").pop() || "jpg").toLowerCase();
+        const key = buildR2Key("merchant-assets", `${userId}/covers/profile-${Date.now()}.${ext}`);
+        resolvedCover = await uploadFileToR2({
+          bucket: "merchant-assets",
+          key,
+          file: coverFile,
         });
-        if (upErr) throw upErr;
-        const { data } = supabase.storage.from("products").getPublicUrl(path);
-        resolvedCover = data.publicUrl;
         setCoverFile(null);
         setCoverPreview(null);
         setCoverUrl(resolvedCover || "");
@@ -464,21 +452,6 @@ export default function AccountProfilePage() {
 
       const { error } = await supabase.from("profiles").update(profilePatch).eq("id", userId);
       if (error) throw error;
-
-      if (profile?.is_seller && legacyStoreId) {
-        const { error: storeError } = await supabase
-          .from("stores")
-          .update({
-            slug: normalizeSlug(slug) || null,
-            location: effStoreLine || null,
-            cover_image_url: resolvedCover,
-            instagram_handle: instagram.trim() || null,
-            tiktok_url: tiktok.trim() || null,
-            updated_at: new Date().toISOString(),
-          })
-          .eq("id", legacyStoreId);
-        if (storeError) throw storeError;
-      }
 
       setProfile((prev) =>
         prev
@@ -525,30 +498,6 @@ export default function AccountProfilePage() {
     }
   };
 
-  const handleUpgradeToBoth = async (mode: "add_services" | "add_products") => {
-    if (!userId) return;
-    setUpgradeBusy(mode);
-    setMsg(null);
-    try {
-      const { error } = await supabase.rpc("upgrade_seller_type_to_both", {
-        p_profile_id: userId,
-        p_target_mode: mode,
-      });
-      if (error) throw error;
-      setMsg(
-        mode === "add_services"
-          ? "You can now create service listings from your store."
-          : "You can now add products to your service store.",
-      );
-      router.push("/onboarding/seller?upgrade=1");
-      router.refresh();
-    } catch (err: unknown) {
-      setMsg(err instanceof Error ? err.message : "Upgrade failed.");
-    } finally {
-      setUpgradeBusy(null);
-    }
-  };
-
   if (loading) {
     return (
       <div className="flex justify-center py-20">
@@ -569,9 +518,12 @@ export default function AccountProfilePage() {
   const displayCover = coverPreview || coverUrl;
 
   return (
-    <div className="max-w-lg mx-auto space-y-0 pb-24" id="personal-information">
-      <header className="mb-8 border-b border-gray-200 pb-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div
+      className="mx-auto w-full max-w-lg space-y-0 px-4 pb-24 sm:max-w-2xl sm:px-6 lg:max-w-4xl lg:px-8"
+      id="personal-information"
+    >
+      <header className="mb-8 border-b border-gray-200 pb-6 lg:mb-10 lg:pb-8">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <Link
             href="/dashboard"
             className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition hover:text-gray-900"
@@ -583,13 +535,15 @@ export default function AccountProfilePage() {
             type="submit"
             form="account-profile-form"
             disabled={saving || uploadingLogo || slugStatus === "taken" || slugStatus === "checking"}
-            className="inline-flex w-full items-center justify-center rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
+            className="inline-flex w-full items-center justify-center rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto lg:min-w-[160px]"
           >
             {saving ? <Loader2 className="h-5 w-5 animate-spin" aria-label="Saving" /> : "Save changes"}
           </button>
         </div>
-        <h1 className="mt-6 text-2xl font-bold tracking-tight text-gray-900">Account &amp; profile</h1>
-        <p className="mt-1 text-sm text-gray-500">Update how you appear on StoreLink and where you operate from.</p>
+        <h1 className="mt-6 text-2xl font-bold tracking-tight text-gray-900 lg:text-3xl">Account &amp; profile</h1>
+        <p className="mt-1 max-w-2xl text-sm text-gray-500 lg:text-base">
+          Update how you appear on StoreLink and where you operate from.
+        </p>
       </header>
 
       {msg ? (
@@ -654,32 +608,34 @@ export default function AccountProfilePage() {
           <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-gray-500">Tap to change photo</p>
         </div>
 
-        {/* Web-only: Instagram & TikTok */}
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-gray-500">Instagram</label>
-            <div className="relative">
-              <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-400">@</span>
+        {/* Seller-only socials */}
+        {profile?.is_seller ? (
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-gray-500">Instagram</label>
+              <div className="relative">
+                <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-400">@</span>
+                <input
+                  className="w-full rounded-[20px] border border-gray-200 bg-gray-50 py-3.5 pl-9 pr-4 text-sm font-bold text-gray-900 outline-none focus:ring-2 focus:ring-gray-900"
+                  value={instagram}
+                  onChange={(e) => setInstagram(e.target.value.replace(/^@/, ""))}
+                  placeholder="username"
+                  autoComplete="off"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-gray-500">TikTok</label>
               <input
-                className="w-full rounded-[20px] border border-gray-200 bg-gray-50 py-3.5 pl-9 pr-4 text-sm font-bold text-gray-900 outline-none focus:ring-2 focus:ring-gray-900"
-                value={instagram}
-                onChange={(e) => setInstagram(e.target.value.replace(/^@/, ""))}
-                placeholder="username"
+                className="w-full rounded-[20px] border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm font-bold text-gray-900 outline-none focus:ring-2 focus:ring-gray-900"
+                value={tiktok}
+                onChange={(e) => setTiktok(e.target.value)}
+                placeholder="Profile link or @handle"
                 autoComplete="off"
               />
             </div>
           </div>
-          <div>
-            <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-gray-500">TikTok</label>
-            <input
-              className="w-full rounded-[20px] border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm font-bold text-gray-900 outline-none focus:ring-2 focus:ring-gray-900"
-              value={tiktok}
-              onChange={(e) => setTiktok(e.target.value)}
-              placeholder="Profile link or @handle"
-              autoComplete="off"
-            />
-          </div>
-        </div>
+        ) : null}
 
         <div className="space-y-6 px-1 sm:px-0">
           <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-500">Public identity</p>
@@ -737,72 +693,6 @@ export default function AccountProfilePage() {
             ) : null}
           </div>
 
-          {profile?.is_seller ? (
-            <>
-              <p className="pt-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-500">Seller account</p>
-
-              {profile.seller_type === "product" ? (
-                <button
-                  type="button"
-                  onClick={() => void handleUpgradeToBoth("add_services")}
-                  disabled={!!upgradeBusy}
-                  className="w-full rounded-3xl border-[1.5px] border-gray-200 bg-white p-5 text-left shadow-sm transition hover:border-emerald-200 disabled:opacity-60"
-                >
-                  {upgradeBusy === "add_services" ? (
-                    <Loader2 className="h-5 w-5 animate-spin text-emerald-600" />
-                  ) : (
-                    <>
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl border border-emerald-500/35 bg-emerald-500/10">
-                          <Wrench className="text-emerald-600" size={18} />
-                        </span>
-                        <span className="flex-1 text-[11px] font-black uppercase tracking-wide text-gray-900">
-                          Add services to your store
-                        </span>
-                      </div>
-                      <p className="mt-3 text-sm font-medium leading-snug text-gray-600">
-                        Turn your products into a full storefront: buyers can book services and you unlock the Services
-                        side (without losing your product setup).
-                      </p>
-                      <ul className="mt-3 space-y-2 text-sm font-semibold text-gray-800">
-                        <li className="flex gap-2">
-                          <Sparkles className="mt-0.5 shrink-0 text-emerald-600" size={16} /> Enable service listings +
-                          bookings
-                        </li>
-                        <li className="flex gap-2">
-                          <Check className="mt-0.5 shrink-0 text-emerald-600" size={16} /> Keep your store profile
-                          (name/logo/slug)
-                        </li>
-                        <li className="flex gap-2">
-                          <ArrowRight className="mt-0.5 shrink-0 text-emerald-600" size={16} /> Let buyers see distance
-                          when location is enabled
-                        </li>
-                      </ul>
-                      <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3 text-[11px] font-bold uppercase tracking-wide text-gray-900">
-                        Continue <ArrowRight size={18} />
-                      </div>
-                    </>
-                  )}
-                </button>
-              ) : null}
-
-              {profile.seller_type === "service" ? (
-                <button
-                  type="button"
-                  onClick={() => void handleUpgradeToBoth("add_products")}
-                  disabled={!!upgradeBusy}
-                  className="flex w-full items-center justify-center rounded-full border-[1.5px] border-gray-200 bg-gray-50 py-2.5 text-[11px] font-semibold uppercase tracking-wide text-gray-900 disabled:opacity-60"
-                >
-                  {upgradeBusy === "add_products" ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    "Add products to your store"
-                  )}
-                </button>
-              ) : null}
-            </>
-          ) : null}
-
           <div>
             <div className="mb-1 flex justify-between">
               <label className="text-[11px] font-semibold uppercase tracking-wide text-gray-500">Bio</label>
@@ -854,7 +744,6 @@ export default function AccountProfilePage() {
               title="CITY & REGION (FROM HOME SELECTION)"
               city={locationCity}
               state={locationState}
-              footnote="Not editable separately — pick a different address above to change them."
             />
           </div>
 
@@ -896,7 +785,6 @@ export default function AccountProfilePage() {
                 <GooglePlacesAutocomplete
                   id="profile-shop-address"
                   label="SEARCH SHOP, STUDIO, OR PICKUP POINT"
-                  hint="Pick a suggestion — city and region below follow that choice."
                   value={storeAddress}
                   onChangeText={setStoreAddress}
                   disabled={useHomeAsShop}
@@ -938,10 +826,10 @@ export default function AccountProfilePage() {
                 }
                 footnote={
                   useHomeAsShop
-                    ? "Mirrors your home address. Turn off “Use home as shop” to pick a separate shop address."
+                    ? 'Mirrors your home address. Turn off "Use home as shop" to pick a separate shop address.'
                     : coordsNearlyEqual(homeLat, homeLng, shopLat, shopLng)
                       ? "Same coordinates as home — city and region match your home selection."
-                      : "From your shop pick — not editable separately."
+                      : undefined
                 }
               />
             </div>
@@ -997,27 +885,27 @@ export default function AccountProfilePage() {
               <Store size={15} className="text-emerald-600" />
               <span className="text-[10px] font-black uppercase tracking-widest text-emerald-700">Become a seller</span>
             </div>
-            <p className="text-xl font-black tracking-tight text-gray-900">Open a real shop — not just another post</p>
+            <p className="text-xl font-black tracking-tight text-gray-900">Launch your storefront on StoreLink Shop</p>
             <p className="mt-2 text-sm font-medium leading-relaxed text-gray-600">
-              Spotlight reels are for showing off what you bought. Selling is different: list products or bookable services,
-              chat with buyers, and get paid with protection built in.
+              StoreLink storefront is built for product selling on web. Add your brand, list products, accept secure checkout
+              orders, and manage everything from one dashboard.
             </p>
             <ul className="mt-5 space-y-3 text-sm font-semibold text-gray-800">
               <li className="flex gap-2">
                 <Sparkles className="mt-0.5 shrink-0 text-emerald-600" size={16} />
-                Get discovered in feed, explore, and search — not only your followers
+                Get discovered through marketplace browsing, search, and your custom store link
               </li>
               <li className="flex gap-2">
                 <ShieldCheck className="mt-0.5 shrink-0 text-emerald-600" size={16} />
-                Escrow-friendly orders so serious buyers trust your store
+                Secure payment flow helps buyers trust your storefront and complete checkout
               </li>
               <li className="flex gap-2">
                 <Users className="mt-0.5 shrink-0 text-emerald-600" size={16} />
-                Run bookings, reels, stories, and a storefront from one profile
+                Manage inventory, orders, payouts, and storefront theme in one dashboard
               </li>
               <li className="flex gap-2">
                 <Gift className="mt-0.5 shrink-0 text-emerald-600" size={16} />
-                Start selling free on Standard — we walk you through logo, category, and location
+                Start on Standard and complete quick seller setup: logo, category, city, and phone
               </li>
             </ul>
             <Link
@@ -1028,8 +916,7 @@ export default function AccountProfilePage() {
               <ArrowRight size={20} strokeWidth={2.8} />
             </Link>
             <p className="mt-4 text-xs font-medium leading-relaxed text-gray-500">
-              You&apos;ll complete the same storefront steps as new merchants: brand, what you sell, city, and phone — then
-              your store is ready to sell.
+              You&apos;ll complete storefront onboarding for products only, then your store is ready to publish listings.
             </p>
           </div>
         ) : null}

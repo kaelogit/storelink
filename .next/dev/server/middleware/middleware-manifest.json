@@ -3,11 +3,11 @@
   "middleware": {
     "/": {
       "files": [
-        "server/edge/chunks/storelink-app-and-web_store-link-storefront_9ac6953c._.js",
-        "server/edge/chunks/6171c_@supabase_auth-js_dist_module_8495d377._.js",
-        "server/edge/chunks/6171c_24eea546._.js",
-        "server/edge/chunks/[root-of-the-server]__5b98ba12._.js",
-        "server/edge/chunks/turbopack-storelink-app-and-web_store-link-storefront_edge-wrapper_b89245fa.js"
+        "server/edge/chunks/_e36d360d._.js",
+        "server/edge/chunks/node_modules_@supabase_auth-js_dist_module_33c852e9._.js",
+        "server/edge/chunks/node_modules_f76aabff._.js",
+        "server/edge/chunks/[root-of-the-server]__23205f28._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_9109be2f.js"
       ],
       "name": "middleware",
       "page": "/",
@@ -22,9 +22,9 @@
       "env": {
         "__NEXT_BUILD_ID": "development",
         "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "DtjLbemHr0levpKDlmtwldNvfCB8oHmhFdCIvFj5j1E=",
-        "__NEXT_PREVIEW_MODE_ID": "b1848afb08ac132f23adb9523dcfe3e4",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "ebdcea59d28a034e3a94a6b18023ed05504b3298d54ee564cb18e09b152dba8d",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "480b78ba215f0607f082ccc96be27181152927ce76df03d656df8d19fbc8829a"
+        "__NEXT_PREVIEW_MODE_ID": "ccccaf48b18443d6ab4b988edbb1f01f",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "fc4915e04078e9df0c665100c2c99b57f53089e6ed1c72f8055f8385cc13c1bb",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "1545a273365bf7152f9dfe334e32c94464c29b087299af7dafdca7d2c47d2936"
       }
     }
   },

@@ -6,7 +6,7 @@ import {
   type ProfileStorefrontRow,
 } from "@/lib/profileAsStorefront";
 
-async function attachProfileRegionsToLegacyStores(
+async function attachProfileRegionsToStores(
   supabase: SupabaseClient,
   stores: StoreRow[],
   sellerIds: string[]
@@ -51,8 +51,7 @@ async function attachProfileRegionsToLegacyStores(
 export type StoreRow = Store & Record<string, unknown>;
 
 /**
- * Legacy `stores` rows plus profile-as-storefront rows for sellers without a `stores` row
- * (same as product page / slug routes). Required so marketplace queries do not drop all listings.
+ * Seller rows for marketplace joins: built only from `profiles` (same as `[slug]` / product pages).
  */
 export async function fetchMergedStoreRowsForSellerIds(
   supabase: SupabaseClient,
@@ -61,28 +60,22 @@ export async function fetchMergedStoreRowsForSellerIds(
   const unique = [...new Set(sellerIds.filter(Boolean))];
   if (unique.length === 0) return [];
 
-  const { data: storeRows } = await supabase.from("stores").select("*").in("owner_id", unique);
-  const stores = (storeRows || []) as StoreRow[];
-  await attachProfileRegionsToLegacyStores(supabase, stores, unique);
-  const covered = new Set(stores.map((s) => s.owner_id));
-  const needProfile = unique.filter((id) => !covered.has(id));
-  if (needProfile.length === 0) return stores;
-
   const { data: profiles } = await supabase
     .from("profiles")
     .select(PROFILE_STOREFRONT_SELECT)
-    .in("id", needProfile)
+    .in("id", unique)
     .eq("is_seller", true);
 
-  const synthetic: StoreRow[] = (profiles || []).map((row) => {
+  const stores = (profiles || []).map((row) => {
     const p = row as unknown as ProfileStorefrontRow;
-    return profileRowToLegacyStoreShape(p, { legacyStoreId: null }) as unknown as StoreRow;
+    return profileRowToLegacyStoreShape(p) as unknown as StoreRow;
   });
 
-  return [...stores, ...synthetic];
+  await attachProfileRegionsToStores(supabase, stores, unique);
+  return stores;
 }
 
-/** Join store rows onto product rows using products.seller_id → stores.owner_id */
+/** Join store rows onto product rows using `products.seller_id` → `profiles.id` as `owner_id`. */
 export function attachStoresToProducts<P extends { seller_id: string }>(
   products: P[],
   stores: StoreRow[]

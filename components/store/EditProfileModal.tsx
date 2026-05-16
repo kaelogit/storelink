@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { buildR2Key, uploadFileToR2 } from "@/lib/mediaUpload";
 import { X, Loader2, Phone, Globe, Camera, Image as ImageIcon } from "lucide-react";
 import { Store } from "@/types";
 import Image from "next/image";
@@ -9,18 +10,13 @@ import GooglePlacesAutocomplete from "@/components/address/GooglePlacesAutocompl
 import PlaceDerivedLocationReadout from "@/components/address/PlaceDerivedLocationReadout";
 import { getGoogleMapsBrowserKey } from "@/lib/googlePlacesParsed";
 import type { ParsedGooglePlace } from "@/lib/googlePlacesParsed";
+import { assertShopCityStateIfAddressFilled } from "@/lib/addressCityState";
 
 interface EditProfileModalProps {
   store: Store;
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
-}
-
-function resolveStoresTableId(s: Store): string | undefined {
-  if (s.__legacy_store_id) return s.__legacy_store_id;
-  if (s.__surface === "profile" && s.id === s.owner_id) return undefined;
-  return s.id;
 }
 
 function normalizeInstagramFromStore(s: Store): string {
@@ -159,52 +155,35 @@ export default function EditProfileModal({ store, isOpen, onClose, onSuccess }: 
         if (!coordsOk(shopLat, shopLng)) {
           throw new Error("Choose your shop address from the suggestions list so coordinates stay in sync.");
         }
-        if (!shopCity.trim() || !shopState.trim()) {
-          throw new Error("Pick a full address from the list so city and region are filled.");
-        }
       }
+      assertShopCityStateIfAddressFilled(shopAddress, shopCity, shopState);
 
       let finalLogoUrl = store.logo_url;
       let finalCoverUrl = store.cover_image_url;
 
       if (logoFile) {
-        const fileName = `${store.id}/logo-${Date.now()}`;
-        const { error } = await supabase.storage.from("stores").upload(fileName, logoFile);
-        if (error) throw error;
-        const { data } = supabase.storage.from("stores").getPublicUrl(fileName);
-        finalLogoUrl = data.publicUrl;
+        const ext = (logoFile.name.split(".").pop() || "jpg").toLowerCase();
+        const key = buildR2Key("merchant-assets", `${store.owner_id}/storefront-edit/logo-${Date.now()}.${ext}`);
+        finalLogoUrl = await uploadFileToR2({
+          bucket: "merchant-assets",
+          key,
+          file: logoFile,
+        });
       }
 
       if (coverFile) {
-        const fileName = `${store.id}/cover-${Date.now()}`;
-        const { error } = await supabase.storage.from("stores").upload(fileName, coverFile);
-        if (error) throw error;
-        const { data } = supabase.storage.from("stores").getPublicUrl(fileName);
-        finalCoverUrl = data.publicUrl;
+        const ext = (coverFile.name.split(".").pop() || "jpg").toLowerCase();
+        const key = buildR2Key("merchant-assets", `${store.owner_id}/storefront-edit/cover-${Date.now()}.${ext}`);
+        finalCoverUrl = await uploadFileToR2({
+          bucket: "merchant-assets",
+          key,
+          file: coverFile,
+        });
       }
 
       const wa = normalizeWhatsAppDigits(formData.whatsapp);
       const ig = formData.instagram.replace(/^@/, "").trim();
       const tt = formData.tiktok.trim();
-
-      const storesRowId = resolveStoresTableId(store);
-
-      const storePatch: Record<string, unknown> = {
-        name: formData.name.trim(),
-        description: formData.description.trim() || null,
-        location: shopAddress.trim() || null,
-        whatsapp_number: wa,
-        instagram_handle: ig || null,
-        tiktok_url: tt || null,
-        logo_url: finalLogoUrl,
-        cover_image_url: finalCoverUrl,
-        updated_at: new Date().toISOString(),
-      };
-
-      if (storesRowId) {
-        const { error } = await supabase.from("stores").update(storePatch).eq("id", storesRowId);
-        if (error) throw error;
-      }
 
       const profilePatch: Record<string, unknown> = {
         display_name: formData.name.trim(),
@@ -214,6 +193,8 @@ export default function EditProfileModal({ store, isOpen, onClose, onSuccess }: 
         instagram_handle: ig || null,
         tiktok_url: tt || null,
         logo_url: finalLogoUrl || null,
+        cover_image_url: finalCoverUrl || null,
+        shop_address: shopAddress.trim() || null,
         updated_at: new Date().toISOString(),
       };
 
@@ -359,7 +340,6 @@ export default function EditProfileModal({ store, isOpen, onClose, onSuccess }: 
                     title="CITY & REGION (FROM SHOP SELECTION)"
                     city={shopCity}
                     state={shopState}
-                    footnote="Not editable separately — pick a different address above to change them."
                   />
                 ) : null}
               </div>

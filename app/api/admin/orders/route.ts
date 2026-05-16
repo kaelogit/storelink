@@ -37,7 +37,7 @@ export async function GET(request: Request) {
       const safe = q.replace(/%/g, "");
       const pat = `%${safe}%`;
       query = query.or(
-        `guest_email.ilike.${pat},guest_name.ilike.${pat},guest_phone.ilike.${pat},payment_reference.ilike.${pat},shipping_address.ilike.${pat}`,
+        `buyer.email.ilike.${pat},buyer.display_name.ilike.${pat},buyer.full_name.ilike.${pat},payment_reference.ilike.${pat},shipping_address.ilike.${pat}`,
       );
     }
   }

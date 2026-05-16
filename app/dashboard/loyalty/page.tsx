@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import {
   Coins,
@@ -58,7 +59,7 @@ export default function LoyaltyPage() {
 
       const { data: orders, error: ordersErr } = await supabase
         .from("orders")
-        .select("id, user_id, guest_phone, total_amount, coin_redeemed, status")
+        .select("id, user_id, total_amount, coin_redeemed, status")
         .eq("seller_id", user.id);
 
       if (ordersErr) {
@@ -81,9 +82,8 @@ export default function LoyaltyPage() {
 
       const customerKeys = rewardRows
         .map((o) => {
-          const row = o as { user_id?: string | null; guest_phone?: string | null };
+          const row = o as { user_id?: string | null };
           if (row.user_id) return `u:${row.user_id}`;
-          if (row.guest_phone) return `p:${String(row.guest_phone).trim()}`;
           return "";
         })
         .filter(Boolean);
@@ -124,8 +124,20 @@ export default function LoyaltyPage() {
 
   if (!profile) {
     return (
-      <div className="max-w-4xl mx-auto w-full pb-20">
-        <p className="text-gray-600 text-sm">Sign in as a seller to manage loyalty rewards.</p>
+      <div className="mx-auto max-w-4xl w-full pb-20">
+        <div className="rounded-[2rem] border border-dashed border-gray-200 bg-white p-10 text-center">
+          <Coins className="mx-auto mb-4 h-12 w-12 text-amber-200" />
+          <p className="text-sm font-black uppercase tracking-tight text-gray-900">Seller session required</p>
+          <p className="mt-2 text-sm font-medium text-gray-600">
+            Log in with the seller account that owns this storefront to manage Store Coin loyalty.
+          </p>
+          <Link
+            href="/login"
+            className="mt-6 inline-flex items-center justify-center rounded-2xl bg-gray-900 px-6 py-3 text-[10px] font-black uppercase tracking-widest text-white transition hover:bg-emerald-600"
+          >
+            Go to login
+          </Link>
+        </div>
       </div>
     );
   }

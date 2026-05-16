@@ -19,6 +19,7 @@ import { effectiveSellerTier } from "@/utils/marketplaceDiscovery";
 import { BILLING_DURATIONS, calculateDiamondPrice, majorToPaystackSmallestUnit, SUBSCRIPTION_PRICES } from "@/lib/subscriptionPricing";
 import { STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import dynamic from "next/dynamic"; 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -328,7 +329,7 @@ export default function SubscriptionPage() {
          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
                <h1 className="text-2xl md:text-3xl font-black text-gray-900 flex items-center gap-3 uppercase tracking-tighter">Visibility &amp; boosts</h1>
-               <p className="text-gray-500 text-sm mt-1">Selling on Standard is free forever. Diamond is the optional paid boost for tools and marketplace visibility for <span className="font-bold text-gray-900">{storeName}</span>—same lineup as the StoreLink app.</p>
+               
             </div>
             <button onClick={() => router.push("/dashboard")} className="flex items-center justify-center gap-2 text-gray-500 hover:text-gray-900 font-black text-[10px] uppercase tracking-widest bg-gray-100 px-6 py-3 rounded-2xl transition-all self-start sm:self-center">
               <ArrowLeft size={16} /> Back to Dashboard

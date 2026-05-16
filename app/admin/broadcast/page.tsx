@@ -21,11 +21,22 @@ export default function BroadcastPage() {
   });
 
   useEffect(() => {
-    async function fetchStores() {
-      const { data } = await supabase.from("stores").select("id, name").order("name");
-      if (data) setStores(data);
+    async function fetchSellers() {
+      const { data } = await supabase
+        .from("profiles")
+        .select("id, display_name, full_name, slug")
+        .eq("is_seller", true)
+        .order("display_name");
+      if (data) {
+        setStores(
+          data.map((r: { id: string; display_name?: string | null; full_name?: string | null; slug?: string | null }) => ({
+            id: r.id,
+            name: r.display_name?.trim() || r.full_name?.trim() || r.slug || r.id,
+          })),
+        );
+      }
     }
-    fetchStores();
+    fetchSellers();
   }, []);
 
   const filteredStores = stores.filter((s) => s.name.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -34,7 +45,7 @@ export default function BroadcastPage() {
     e.preventDefault();
 
     if (audience === "store_owner" && !selectedStoreId) {
-      alert("Please select a store.");
+      alert("Please select a seller.");
       return;
     }
 
@@ -42,7 +53,7 @@ export default function BroadcastPage() {
       all: "every profile on StoreLink (sellers and buyers)",
       sellers: "every seller profile (is_seller = true)",
       buyers: "every non-seller profile",
-      store_owner: `the owner of ${stores.find((s) => s.id === selectedStoreId)?.name || "this store"}`,
+      store_owner: `the seller ${stores.find((s) => s.id === selectedStoreId)?.name || "this account"}`,
     };
 
     if (!confirm(`Send this announcement to ${labels[audience]}? Messages appear only in the Storefront web dashboard inbox — not in the mobile app notification feed.`)) {
@@ -61,7 +72,7 @@ export default function BroadcastPage() {
           title: formData.title,
           body: formData.message,
           msg_type: formData.type,
-          ...(audience === "store_owner" ? { storeId: selectedStoreId } : {}),
+          ...(audience === "store_owner" ? { sellerId: selectedStoreId } : {}),
         }),
       });
       const json = await res.json();
@@ -101,7 +112,7 @@ export default function BroadcastPage() {
             { id: "sellers" as const, label: "All sellers", icon: Store },
             { id: "buyers" as const, label: "All buyers", icon: ShoppingBag },
             { id: "all" as const, label: "Everyone", icon: Users },
-            { id: "store_owner" as const, label: "One store", icon: User },
+            { id: "store_owner" as const, label: "One seller", icon: User },
           ] as const
         ).map(({ id, label, icon: Icon }) => (
           <button
@@ -130,12 +141,12 @@ export default function BroadcastPage() {
           <form onSubmit={handleSend} className="space-y-6">
             {audience === "store_owner" && (
               <div className="animate-in slide-in-from-top-2">
-                <label className="block text-[10px] font-black uppercase text-gray-500 mb-2 ml-1 tracking-widest">Select store (legacy stores row)</label>
+                <label className="block text-[10px] font-black uppercase text-gray-500 mb-2 ml-1 tracking-widest">Select seller (profile)</label>
                 <div className="relative group">
                   <Search size={18} className="absolute left-4 top-4 text-gray-600 group-focus-within:text-emerald-500 transition-colors" />
                   <input
                     type="text"
-                    placeholder="Type store name..."
+                    placeholder="Type seller name..."
                     className="w-full bg-black border border-gray-800 rounded-2xl p-4 pl-12 text-white outline-none focus:border-emerald-500 mb-2 font-bold transition-all"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}

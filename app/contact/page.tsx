@@ -67,7 +67,7 @@ export default function ContactPage() {
            </div>
            <div className="mt-8">
               <Link
-                href="/signup?next=%2Fpost-login&seller_intent=1"
+                href="/signup?next=%2Fpost-login"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-gray-900 px-4 py-3 text-[11px] font-black uppercase tracking-wider text-white transition hover:bg-emerald-600"
               >
                 Start selling now <ArrowRight size={14} />

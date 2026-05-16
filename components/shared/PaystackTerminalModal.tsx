@@ -35,16 +35,17 @@ export function PaystackTerminalModal({
   const paystackKey = getPaystackPublicKey(currencyCode);
   const amountSmallest = toSmallestUnit(amount, currencyCode);
   const countryLabel = paystackCountryNameForCurrency(currencyCode);
+  const amountInvalid = !Number.isFinite(amount) || amount <= 0 || !Number.isFinite(amountSmallest) || amountSmallest < 1;
 
   const htmlDoc = useMemo(() => {
-    if (!paystackKey) return "";
+    if (!paystackKey || amountInvalid) return "";
     const metaObj = metadata && typeof metadata === "object" ? metadata : {};
     return `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <style>body{margin:0;background:#0b0f0c;min-height:100dvh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;}</style>
+  <style>body{margin:0;background:#ffffff;color:#111827;min-height:100dvh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;}</style>
 </head>
 <body>
   <script src="https://js.paystack.co/v1/inline.js"></script>
@@ -80,7 +81,7 @@ export function PaystackTerminalModal({
   </script>
 </body>
 </html>`;
-  }, [amountSmallest, currencyCode, email, metadata, paystackKey]);
+  }, [amountSmallest, amountInvalid, currencyCode, email, metadata, paystackKey]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -125,9 +126,17 @@ export function PaystackTerminalModal({
   }, [handleMessage, isOpen]);
 
   useEffect(() => {
-    if (!isOpen || paystackKey) return;
-    setLoadError(`Payments for ${countryLabel} are not configured yet.`);
-  }, [countryLabel, isOpen, paystackKey]);
+    if (!isOpen) return;
+    if (amountInvalid) {
+      setLoadError(
+        "Transaction amount was not set. Close this screen and open your bag, then tap checkout again.",
+      );
+      return;
+    }
+    if (!paystackKey) {
+      setLoadError(`Payments for ${countryLabel} are not configured yet.`);
+    }
+  }, [amountInvalid, countryLabel, isOpen, paystackKey]);
 
   if (!isOpen) return null;
 

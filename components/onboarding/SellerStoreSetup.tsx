@@ -2,20 +2,28 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { buildR2Key, uploadFileToR2 } from "@/lib/mediaUpload";
 import { useRouter } from "next/navigation";
 import { isEmailVerifiedForStorefront } from "@/lib/authVerification";
+import type { User } from "@supabase/supabase-js";
 import { MERCHANT_STORE_CATEGORY_OPTIONS } from "@/lib/merchantStoreCategories";
 import { checkSlugAvailability, normalizeSlug } from "@/lib/slugAvailability";
+import {
+  fetchOnboardingContext,
+  getOnboardingHubRedirect,
+  getSellerOnboardingPathForStep,
+  isProfileOnboardingComplete,
+} from "@/lib/onboardingState";
 import GooglePlacesAutocomplete from "@/components/address/GooglePlacesAutocomplete";
 import PlaceDerivedLocationReadout from "@/components/address/PlaceDerivedLocationReadout";
 import { coordsNearlyEqual } from "@/lib/accountProfileParity";
-import { sellerStorefrontPublicUrl } from "@/lib/storefrontPublicUrl";
+import { missingCityOrState } from "@/lib/addressCityState";
+import { sellerStorefrontTenantUrl } from "@/lib/storefrontPublicUrl";
 import { getGoogleMapsBrowserKey } from "@/lib/googlePlacesParsed";
 import type { ParsedGooglePlace } from "@/lib/googlePlacesParsed";
 import {
   Loader2,
   Store,
-  Phone,
   ShieldCheck,
   Zap,
   Camera,
@@ -29,7 +37,7 @@ import {
 const sellerDraftKey = (uid: string) => `storelink_seller_onboarding_draft_${uid}`;
 
 type Props = {
-  /** Buyer → seller upgrade: sync profile with app after store is created */
+  /** Buyer → seller upgrade: sync profile after web merchant setup */
   upgradeFromBuyer?: boolean;
   initialStep?: number;
   onStepChange?: (step: number) => void;
@@ -38,7 +46,8 @@ type Props = {
 export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, onStepChange }: Props) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [submitStatus, setSubmitStatus] = useState("Uploading brand assets...");
+  const [user, setUser] = useState<User | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [step, setStep] = useState(initialStep);
   useEffect(() => {
@@ -60,19 +69,69 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
       .eq("id", user.id);
   };
 
+  const persistSellerStep1Profile = async () => {
+    if (!user?.id) return;
+    let cleanWhatsApp = formData.whatsapp.replace(/\D/g, "");
+    if (cleanWhatsApp.startsWith("0")) {
+      cleanWhatsApp = "234" + cleanWhatsApp.substring(1);
+    } else if (!cleanWhatsApp.startsWith("234")) {
+      cleanWhatsApp = "234" + cleanWhatsApp;
+    }
+    const hs = homeState.trim();
+    const hc = homeCity.trim();
+    let listingCity = hc;
+    let listingState = hs;
+    if (
+      homeLat != null &&
+      homeLng != null &&
+      shopLat != null &&
+      shopLng != null &&
+      !coordsNearlyEqual(homeLat, homeLng, shopLat, shopLng)
+    ) {
+      listingCity = shopCity.trim() || hc;
+      listingState = shopState.trim() || hs;
+    }
+    await supabase
+      .from("profiles")
+      .update({
+        is_seller: true,
+        display_name: formData.name.trim() || null,
+        full_name: formData.name.trim() || null,
+        slug: normalizeSlug(formData.profileSlug) || null,
+        phone_number: cleanWhatsApp || null,
+        location: homeAddress.trim() || null,
+        location_state: listingState || null,
+        location_city: listingCity || null,
+        discovery_state: hs || null,
+        discovery_city: hc || null,
+        discovery_latitude: homeLat,
+        discovery_longitude: homeLng,
+        shop_address: shopAddress.trim() || null,
+        service_latitude: shopLat,
+        service_longitude: shopLng,
+        location_country: homeCountryName.trim() || null,
+        location_country_code: homeCountryCode.trim().toUpperCase() || null,
+        onboarding_step: "seller_location",
+        onboarding_completed: false,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", user.id);
+  };
+
   const goToStep = (nextStep: number) => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     setStep(nextStep);
     void persistSellerStep(nextStep);
     onStepChange?.(nextStep);
   };
 
 
-  const [slugStatus, setSlugStatus] = useState<"idle" | "checking" | "available" | "taken">("idle");
   const [profileSlugStatus, setProfileSlugStatus] = useState<"idle" | "checking" | "available" | "taken">("idle");
 
   const [formData, setFormData] = useState({
     name: "",
-    slug: "",
     profileSlug: "",
     category: "fashion",
     whatsapp: "",
@@ -116,23 +175,34 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
         return;
       }
 
-      const { data: store } = await supabase.from("stores").select("id").eq("owner_id", user.id).maybeSingle();
-
-      if (store) {
+      const ctx = await fetchOnboardingContext(supabase, user.id);
+      if (isProfileOnboardingComplete(ctx.profile)) {
         router.push("/dashboard");
+        return;
+      }
+
+      const expectedPath = getSellerOnboardingPathForStep(
+        initialStep >= 1 && initialStep <= 3 ? (initialStep as 1 | 2 | 3) : 1,
+      );
+      const hubNext = getOnboardingHubRedirect(ctx);
+      const hubPath = hubNext.split("?")[0];
+      if (hubPath !== expectedPath && hubPath.startsWith("/onboarding/seller")) {
+        const suffix = upgradeFromBuyer ? "?upgrade=1" : "";
+        router.replace(`${hubPath}${suffix}`);
         return;
       }
 
       const { data: profile } = await supabase
         .from("profiles")
-        .select("slug")
+        .select(
+          "slug, display_name, full_name, phone_number, location, location_state, location_city, discovery_latitude, discovery_longitude, shop_address, service_latitude, service_longitude, logo_url, cover_image_url",
+        )
         .eq("id", user.id)
         .maybeSingle();
 
       type DraftShape = {
         formData?: Partial<{
           name: string;
-          slug: string;
           profileSlug: string;
           category: string;
           whatsapp: string;
@@ -167,8 +237,25 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
       setFormData((prev) => ({
         ...prev,
         profileSlug: String(profile?.slug || ""),
+        name: String(profile?.display_name || profile?.full_name || prev.name || ""),
+        whatsapp: String(profile?.phone_number || prev.whatsapp || "").replace(/^\+?234/, ""),
         ...(draft?.formData || {}),
       }));
+
+      if (!draft?.homeAddress && profile?.location) {
+        setHomeAddress(String(profile.location));
+        setHomeState(String(profile.location_state || ""));
+        setHomeCity(String(profile.location_city || ""));
+        setHomeLat(profile.discovery_latitude != null ? Number(profile.discovery_latitude) : null);
+        setHomeLng(profile.discovery_longitude != null ? Number(profile.discovery_longitude) : null);
+      }
+      if (!draft?.shopAddress && profile?.shop_address) {
+        setShopAddress(String(profile.shop_address));
+        setShopLat(profile.service_latitude != null ? Number(profile.service_latitude) : null);
+        setShopLng(profile.service_longitude != null ? Number(profile.service_longitude) : null);
+      }
+      if (profile?.logo_url) setLogoPreview(String(profile.logo_url));
+      if (profile?.cover_image_url) setCoverPreview(String(profile.cover_image_url));
 
       if (draft) {
         if (typeof draft.homeAddress === "string") setHomeAddress(draft.homeAddress);
@@ -188,7 +275,7 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
       setUser(user);
     };
     checkUser();
-  }, [router]);
+  }, [router, initialStep, upgradeFromBuyer]);
 
   useEffect(() => {
     if (!user?.id || typeof window === "undefined") return;
@@ -231,21 +318,6 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      if (!formData.slug) {
-        setSlugStatus("idle");
-        return;
-      }
-
-      setSlugStatus("checking");
-      const status = await checkSlugAvailability(supabase, formData.slug, user?.id || null);
-      setSlugStatus(status);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [formData.slug, user?.id]);
-
-  useEffect(() => {
-    const timer = setTimeout(async () => {
       const trimmed = normalizeSlug(formData.profileSlug);
       if (!trimmed) {
         setProfileSlugStatus("idle");
@@ -261,8 +333,7 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value;
-    const slug = normalizeSlug(name);
-    setFormData({ ...formData, name, slug });
+    setFormData({ ...formData, name });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: "logo" | "cover") => {
@@ -278,7 +349,10 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
     }
   };
 
-  const syncSellerProfile = async (uid: string) => {
+  const syncSellerProfile = async (
+    uid: string,
+    extras: { logoUrl: string; coverUrl: string; phoneDigits: string; shopLine: string },
+  ) => {
     const hs = homeState.trim();
     const hc = homeCity.trim();
     const ha = homeAddress.trim();
@@ -296,6 +370,12 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
       listingCity = sc || hc;
       listingState = ss || hs;
     }
+    if (missingCityOrState(hc, hs)) {
+      throw new Error("Home city and region are required.");
+    }
+    if (missingCityOrState(listingCity, listingState)) {
+      throw new Error("Store listing city and region are required.");
+    }
     const patch = {
       is_seller: true,
       seller_type: "product",
@@ -307,6 +387,13 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
       is_store_open: true,
       slug: normalizeSlug(formData.profileSlug) || null,
       display_name: formData.name.trim() || null,
+      phone_number: extras.phoneDigits || null,
+      bio: formData.description.trim() || null,
+      instagram_handle: formData.instagram.trim() || null,
+      tiktok_url: formData.tiktok.trim() || null,
+      logo_url: extras.logoUrl.trim() || null,
+      cover_image_url: extras.coverUrl.trim() || null,
+      shop_address: extras.shopLine.trim() || null,
       location_state: listingState || null,
       location_city: listingCity || null,
       discovery_state: hs || null,
@@ -338,16 +425,14 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (slugStatus === "taken") {
-      setErrorMsg("This store link is already taken. Please choose another name.");
-      return;
-    }
     if (profileSlugStatus === "taken") {
       setErrorMsg("Profile slug is taken. Use another one.");
       return;
     }
 
-    if (!logoFile || !coverFile) {
+    const hasLogoAsset = Boolean(logoFile || logoPreview);
+    const hasCoverAsset = Boolean(coverFile || coverPreview);
+    if (!hasLogoAsset || !hasCoverAsset) {
       setErrorMsg("Please upload both a Logo and a Cover Image to continue.");
       return;
     }
@@ -379,13 +464,18 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
     }
 
     setLoading(true);
+    setSubmitStatus("Uploading brand assets...");
     setErrorMsg("");
 
-    if (!user) return;
+    if (!user) {
+      setLoading(false);
+      setErrorMsg("Session expired. Please sign in again.");
+      return;
+    }
 
     try {
-      let logoUrl = "";
-      let coverUrl = "";
+      let logoUrl = logoPreview.trim();
+      let coverUrl = coverPreview.trim();
 
       let cleanWhatsApp = formData.whatsapp.replace(/\D/g, "");
       if (cleanWhatsApp.startsWith("0")) {
@@ -395,44 +485,26 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
       }
 
       if (logoFile) {
-        const logoName = `logos/${user.id}-${Date.now()}`;
-        const { error: logoErr } = await supabase.storage.from("products").upload(logoName, logoFile);
-        if (logoErr) throw logoErr;
-        const { data: logoData } = supabase.storage.from("products").getPublicUrl(logoName);
-        logoUrl = logoData.publicUrl;
+        const fileExt = logoFile.name.split(".").pop() || "jpg";
+        const key = buildR2Key("merchant-assets", `${user.id}/logos/${Date.now()}.${fileExt}`);
+        logoUrl = await uploadFileToR2({ bucket: "merchant-assets", key, file: logoFile });
       }
 
       if (coverFile) {
-        const coverName = `covers/${user.id}-${Date.now()}`;
-        const { error: coverErr } = await supabase.storage.from("products").upload(coverName, coverFile);
-        if (coverErr) throw coverErr;
-        const { data: coverData } = supabase.storage.from("products").getPublicUrl(coverName);
-        coverUrl = coverData.publicUrl;
+        const fileExt = coverFile.name.split(".").pop() || "jpg";
+        const key = buildR2Key("merchant-assets", `${user.id}/covers/${Date.now()}.${fileExt}`);
+        coverUrl = await uploadFileToR2({ bucket: "merchant-assets", key, file: coverFile });
       }
 
       const shopLoc = shopAddress.trim();
 
-      const { error } = await supabase.from("stores").insert({
-        owner_id: user.id,
-        owner_email: user.email,
-        name: formData.name,
-        slug: normalizeSlug(formData.slug),
-        category: formData.category,
-        location: shopLoc || null,
-        whatsapp_number: cleanWhatsApp,
-        description: formData.description,
-        instagram_handle: formData.instagram,
-        tiktok_url: formData.tiktok,
-        logo_url: logoUrl,
-        cover_image_url: coverUrl,
-        subscription_plan: "standard",
-        subscription_expiry: null,
-        status: "active",
+      setSubmitStatus("Finalizing storefront profile...");
+      await syncSellerProfile(user.id, {
+        logoUrl,
+        coverUrl,
+        phoneDigits: cleanWhatsApp,
+        shopLine: shopLoc,
       });
-
-      if (error) throw error;
-
-      await syncSellerProfile(user.id);
 
       try {
         sessionStorage.removeItem(sellerDraftKey(user.id));
@@ -440,10 +512,11 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
         /* ignore */
       }
 
+      setSubmitStatus("Done! Opening dashboard...");
       router.push("/dashboard");
       router.refresh();
-    } catch (err: any) {
-      setErrorMsg(err.message);
+    } catch (err: unknown) {
+      setErrorMsg(err instanceof Error ? err.message : "Could not complete setup.");
       setLoading(false);
     }
   };
@@ -460,7 +533,7 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
             <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center text-center p-8">
               <Loader2 className="w-12 h-12 text-emerald-600 animate-spin mb-4" />
               <h3 className="text-xl font-black uppercase italic tracking-tighter">Building your storefront...</h3>
-              <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Uploading Brand Assets</p>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">{submitStatus}</p>
             </div>
           )}
 
@@ -470,7 +543,7 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
             </div>
             <h1 className="text-3xl font-black tracking-tight uppercase italic">Merchant setup</h1>
             <p className="text-[11px] font-medium text-gray-400 mt-2 max-w-sm mx-auto leading-relaxed">
-              Product storefront setup: name, public link, category, location, WhatsApp, logo and cover, and a short pitch. Service listings stay out of this web flow.
+              Product storefront setup: name, public link, category, location, WhatsApp, logo and cover, and a short pitch.
             </p>
             {upgradeFromBuyer && (
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-3">
@@ -504,15 +577,24 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                     onChange={(e) => setFormData({ ...formData, profileSlug: e.target.value })}
                   />
                   {formData.profileSlug && (
-                    <p className={`text-[9px] mt-2 font-bold uppercase ${profileSlugStatus === "taken" ? "text-red-500" : "text-gray-400"}`}>
-                      {profileSlugStatus === "checking" && "Checking profile slug..."}
-                      {profileSlugStatus === "available" && `Available: @${normalizeSlug(formData.profileSlug)}`}
-                      {profileSlugStatus === "taken" && "Profile slug already taken."}
-                    </p>
+                    <div className="mt-2 ml-1">
+                      {profileSlugStatus === "checking" && (
+                        <p className="text-[9px] font-bold text-gray-400 uppercase animate-pulse">Checking slug availability...</p>
+                      )}
+                      {profileSlugStatus === "available" && (
+                        <p className="text-[9px] font-bold text-emerald-600 uppercase">
+                          ✅ URL Available:{" "}
+                          {sellerStorefrontTenantUrl(normalizeSlug(formData.profileSlug)).replace(/^https?:\/\//, "")}
+                        </p>
+                      )}
+                      {profileSlugStatus === "taken" && (
+                        <p className="text-[9px] font-black text-red-500 uppercase">❌ Slug taken. Try another one.</p>
+                      )}
+                    </div>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Store Name</label>
+                  <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Display Name</label>
                   <input
                     required
                     className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-gray-900"
@@ -520,25 +602,6 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                     value={formData.name}
                     onChange={handleNameChange}
                   />
-
-                  {formData.slug && (
-                    <div className="mt-2 ml-1">
-                      {slugStatus === "checking" && (
-                        <p className="text-[9px] font-bold text-gray-400 uppercase animate-pulse">Checking link availability...</p>
-                      )}
-                      {slugStatus === "available" && (
-                        <p className="text-[9px] font-bold text-emerald-600 uppercase">
-                          ✅ URL Available:{" "}
-                          {sellerStorefrontPublicUrl(formData.slug).replace(/^https?:\/\//, "")}
-                        </p>
-                      )}
-                      {slugStatus === "taken" && (
-                        <p className="text-[9px] font-black text-red-500 uppercase">
-                          ❌ Name Taken! Add your city or a keyword (e.g. {formData.slug}-hub)
-                        </p>
-                      )}
-                    </div>
-                  )}
                 </div>
 
                 <div>
@@ -558,14 +621,11 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                 </div>
 
                 <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-500">ADDRESSES</p>
-                <p className="text-xs font-medium text-gray-500">Same layout as the mobile app — picks apply when you complete setup.</p>
 
                 <div className="space-y-4 rounded-[22px] border border-emerald-500/25 bg-emerald-50/35 p-5">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-emerald-900/90">Home address</p>
-                    <p className="mt-1 text-[11px] font-medium leading-relaxed text-gray-600">
-                      Your personal / shipping base — same columns as buyer onboarding and account settings.
-                    </p>
+                   
                   </div>
                   {!mapsKey && (
                     <p className="text-[11px] font-semibold text-amber-900 bg-amber-50 border border-amber-100 rounded-xl p-3 leading-relaxed">
@@ -576,7 +636,6 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                     <GooglePlacesAutocomplete
                       id="seller-onboard-home"
                       label="SEARCH AND SELECT YOUR HOME ADDRESS"
-                      hint="Pick a suggestion so city, region, and coordinates stay unified with the app."
                       value={homeAddress}
                       onChangeText={setHomeAddress}
                       onResolved={(p: ParsedGooglePlace) => {
@@ -603,7 +662,6 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                       title="CITY & REGION (FROM HOME SELECTION)"
                       city={homeCity}
                       state={homeState}
-                      footnote="Not editable separately — pick a different address above to change them."
                     />
                   ) : null}
                 </div>
@@ -611,15 +669,12 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                 <div className="space-y-4 rounded-[22px] border border-gray-200 bg-gray-50/80 p-5">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-gray-700">Shop / pickup location</p>
-                    <p className="mt-1 text-[11px] font-medium leading-relaxed text-gray-600">
-                      Where customers find you — saved on your profile (service coordinates) and on your storefront row.
-                    </p>
+                    
                   </div>
                   {mapsKey ? (
                     <GooglePlacesAutocomplete
                       id="seller-onboard-shop"
                       label="SEARCH SHOP, STUDIO, OR PICKUP POINT"
-                      hint="Pick a suggestion — saved as your storefront location and service coordinates."
                       value={shopAddress}
                       onChangeText={setShopAddress}
                       onResolved={(p: ParsedGooglePlace) => {
@@ -662,25 +717,24 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                           ? homeState
                           : shopState || homeState
                       }
-                      footnote="Read-only — from your shop pick (or same as home if both picks share the same coordinates)."
                     />
                   ) : null}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">WhatsApp Number</label>
+                  <label className="block text-xs font-black uppercase text-gray-400 mb-1 ml-1">Phone Number</label>
                   <input
                     required
                     type="tel"
                     className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-gray-900 outline-none font-bold text-gray-900"
-                    placeholder="08012345678"
+                    placeholder="Calling or Whatsapp"
                     value={formData.whatsapp}
                     onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
                   />
                 </div>
                 <button
                   type="button"
-                  disabled={slugStatus !== "available"}
+                  disabled={profileSlugStatus !== "available"}
                   onClick={() => {
                     if (!formData.name || !formData.whatsapp) {
                       setErrorMsg("Store name and WhatsApp are required.");
@@ -712,10 +766,17 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                       return;
                     }
                     setErrorMsg("");
-                    goToStep(2);
+                    void (async () => {
+                      try {
+                        await persistSellerStep1Profile();
+                        goToStep(2);
+                      } catch (e: unknown) {
+                        setErrorMsg(e instanceof Error ? e.message : "Could not save store details.");
+                      }
+                    })();
                   }}
                   className={`w-full py-5 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg active:scale-95 transition ${
-                    slugStatus === "available" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    profileSlugStatus === "available" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-400 cursor-not-allowed"
                   }`}
                 >
                   Next: Brand Identity <ArrowRight size={18} />
@@ -742,7 +803,13 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                         <span className="text-[10px] font-black uppercase mt-2 text-center px-4">Tap to Upload Cover Photo</span>
                       </div>
                     )}
-                    <input type="file" required accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileChange(e, "cover")} />
+                    <input
+                      type="file"
+                      required={!coverPreview}
+                      accept="image/*"
+                      className="absolute inset-0 opacity-0 cursor-pointer"
+                      onChange={(e) => handleFileChange(e, "cover")}
+                    />
                   </div>
                 </div>
 
@@ -759,7 +826,13 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                           <Camera size={20} />
                         </div>
                       )}
-                      <input type="file" required accept="image/*" className="absolute inset-0 opacity-0 cursor-pointer" onChange={(e) => handleFileChange(e, "logo")} />
+                      <input
+                        type="file"
+                        required={!logoPreview}
+                        accept="image/*"
+                        className="absolute inset-0 opacity-0 cursor-pointer"
+                        onChange={(e) => handleFileChange(e, "logo")}
+                      />
                     </div>
                   </div>
                   <div className="flex-1">
@@ -777,7 +850,9 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                   <button
                     type="button"
                     onClick={() => {
-                      if (!logoFile || !coverFile) {
+                      const hasLogoAsset = Boolean(logoFile || logoPreview);
+                      const hasCoverAsset = Boolean(coverFile || coverPreview);
+                      if (!hasLogoAsset || !hasCoverAsset) {
                         setErrorMsg("Logo and Cover image are compulsory!");
                         return;
                       }
@@ -837,7 +912,7 @@ export default function SellerStoreSetup({ upgradeFromBuyer, initialStep = 1, on
                     disabled={loading}
                     className="w-2/3 bg-emerald-600 text-white py-5 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl shadow-emerald-100 active:scale-95 transition-all flex items-center justify-center gap-2"
                   >
-                    Launch storefront 🚀
+                    Launch storefront
                   </button>
                 </div>
               </div>

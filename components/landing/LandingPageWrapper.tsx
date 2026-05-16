@@ -10,9 +10,16 @@ import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
 
 import Navbar from "./Navbar";
 import Hero from "./Hero";
+import SellerSegments from "./SellerSegments";
 import ValueProp from "./ValueProp";
+import SocialProofStrip from "./SocialProofStrip";
+import SellerTrustStack from "./SellerTrustStack";
 import HowItWorks from "./HowItWorks";
+import OverviewVideo from "./OverviewVideo";
+import SellerJourney from "./SellerJourney";
+import ComparisonFraming from "./ComparisonFraming";
 import TrustCenter from "./TrustCenter";
+import FaqJsonLd from "./FaqJsonLd";
 import Marketplace from "./Marketplace";
 import FAQ from "./FAQ"; // Imported the FAQ component
 import ComingSoonCountdown from "./ComingSoonCountdown";
@@ -24,7 +31,7 @@ interface LandingPageWrapperProps {
 }
 
 export default function LandingPageWrapper({ products, stores }: LandingPageWrapperProps) {
-  const { cart, cartCount, addToCart, setIsCartOpen, isCartOpen } = useCart();
+  const { cartCount, addToCart, setIsCartOpen, isCartOpen } = useCart();
   
   const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
 
@@ -44,8 +51,14 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       <Navbar />
       
       <Hero />
+      <SellerSegments />
       <ValueProp />
+      <SocialProofStrip />
+      <SellerTrustStack />
       <HowItWorks />
+      <OverviewVideo />
+      <SellerJourney />
+      <ComparisonFraming />
 
       <section className={`py-20 ${STOREFRONT_GUTTER_X}`}>
         <div className="max-w-7xl mx-auto bg-gray-900 overflow-hidden relative rounded-[2.5rem] md:rounded-[4rem] border border-white/5 shadow-2xl">
@@ -60,7 +73,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
                 Shop. Earn. <br /><span className="text-amber-500">Store Coins.</span>
               </h2>
               <p className="text-gray-400 text-base md:text-lg mb-10 max-w-md font-medium leading-relaxed mx-auto md:mx-0">
-                Earn Store Coins on marketplace purchases and redeem them as discounts at verified stores—loyalty that keeps buyers coming back to you.
+                Buyers earn Store Coins on eligible marketplace buys and redeem as discounts at participating stores—so loyalty is shared across the ecosystem, not locked to a single chat thread.
               </p>
               <Link href="/store-coins" className="inline-flex min-h-[48px] items-center gap-4 rounded-2xl bg-white px-8 py-4 text-xs font-black uppercase tracking-widest text-black shadow-2xl transition-all hover:bg-amber-500 active:scale-95 group">
                 How it works <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
@@ -101,6 +114,7 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       <Marketplace products={products} stores={stores} onAddToCart={handleAddToCart} />
       
       {/* FAQ placed below Marketplace as requested */}
+      <FaqJsonLd />
       <FAQ />
 
       <TrustCenter />

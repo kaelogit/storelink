@@ -1,8 +1,8 @@
 var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/auth/callback/route.js")
-R.c("server/chunks/[root-of-the-server]__8263cdaf._.js")
-R.c("server/chunks/6171c_1cb64a7d._.js")
-R.c("server/chunks/6171c_@supabase_supabase-js_dist_index_mjs_448f450d._.js")
-R.c("server/chunks/[root-of-the-server]__514d8e6f._.js")
-R.c("server/chunks/56601__next-internal_server_app_auth_callback_route_actions_ff2f3341.js")
-R.m(57783)
-module.exports=R.m(57783).exports
+R.c("server/chunks/[root-of-the-server]__9536a046._.js")
+R.c("server/chunks/node_modules_513fdcd9._.js")
+R.c("server/chunks/node_modules_@supabase_supabase-js_dist_index_mjs_669a44bf._.js")
+R.c("server/chunks/[root-of-the-server]__14685e96._.js")
+R.c("server/chunks/_next-internal_server_app_auth_callback_route_actions_3740e4d4.js")
+R.m(76907)
+module.exports=R.m(76907).exports

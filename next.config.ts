@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
+import path from "node:path";
 
 const nextConfig: NextConfig = {
+  /** When a parent directory has another lockfile, Turbopack may pick the wrong root; pin to this package. */
+  turbopack: {
+    root: path.resolve(process.cwd()),
+  },
   /**
    * Served at origin root. Public entrypoints:
    * - https://shop.storelink.ng (marketplace index)
@@ -16,20 +21,19 @@ const nextConfig: NextConfig = {
   images: {
     // 🔥 EMERGENCY LOCKDOWN: This stops the Vercel Transformation counter immediately.
     // It tells Next.js to serve images directly from the source without resizing them.
-    unoptimized: true, 
+    unoptimized: true,
 
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'images.unsplash.com', 
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
       {
-        protocol: 'https',
-        hostname: '**.supabase.co', 
+        protocol: "https",
+        hostname: "**.supabase.co",
       },
     ],
   },
-  // You can add other config options here if needed (e.g., experimental features)
 };
 
 export default nextConfig;

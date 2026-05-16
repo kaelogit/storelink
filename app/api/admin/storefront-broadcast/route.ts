@@ -8,7 +8,8 @@ type Body = {
   title: string;
   body: string;
   msg_type?: string;
-  /** When audience === store_owner */
+  /** When audience === store_owner: `profiles.id` (seller). Legacy: `storeId` accepted as alias. */
+  sellerId?: string;
   storeId?: string;
 };
 
@@ -51,15 +52,20 @@ export async function POST(request: Request) {
       if (error) throw error;
       userIds = [...new Set((data ?? []).map((r: { id: string }) => r.id).filter(Boolean))];
     } else if (parsed.audience === "store_owner") {
-      const storeId = parsed.storeId?.trim();
-      if (!storeId) {
-        return NextResponse.json({ error: "storeId required for store_owner audience" }, { status: 400 });
+      const sellerId = (parsed.sellerId || parsed.storeId)?.trim();
+      if (!sellerId) {
+        return NextResponse.json({ error: "sellerId required for store_owner audience" }, { status: 400 });
       }
-      const { data: row, error } = await gate.svc.from("stores").select("owner_id").eq("id", storeId).maybeSingle();
+      const { data: row, error } = await gate.svc
+        .from("profiles")
+        .select("id")
+        .eq("id", sellerId)
+        .eq("is_seller", true)
+        .maybeSingle();
       if (error) throw error;
-      const owner = row?.owner_id as string | undefined;
+      const owner = row?.id as string | undefined;
       if (!owner) {
-        return NextResponse.json({ error: "Store not found or has no owner_id" }, { status: 404 });
+        return NextResponse.json({ error: "Seller profile not found" }, { status: 404 });
       }
       userIds = [owner];
     } else {

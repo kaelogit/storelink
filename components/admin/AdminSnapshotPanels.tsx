@@ -13,7 +13,6 @@ export type AdminSnapshot = {
     platformFeesNgn: number;
     platformFeesNote: string | null;
   };
-  guests: { unclaimedCheckouts: number };
   recentSellers: Array<{
     id: string;
     email: string | null;
@@ -30,10 +29,13 @@ export type AdminSnapshot = {
     currency_code: string | null;
     origin_channel: string | null;
     checkout_mode: string | null;
-    is_guest_checkout: boolean | null;
-    guest_name: string | null;
-    guest_email: string | null;
     created_at: string | null;
+    user_id: string | null;
+    buyer?: {
+      display_name: string | null;
+      full_name: string | null;
+      email: string | null;
+    } | null;
   }>;
 };
 
@@ -141,8 +143,9 @@ export function AdminRecentActivity({ snap }: { snap: AdminSnapshot }) {
             <p className="text-gray-500 text-sm p-4">No storefront orders yet.</p>
           )}
           {snap.recentStorefrontOrders.map((o) => {
+            const b = o.buyer;
             const buyer =
-              o.guest_name || (o.is_guest_checkout ? o.guest_email || "Guest" : "Account checkout");
+              b?.full_name?.trim() || b?.display_name?.trim() || b?.email?.trim() || "Buyer account";
             return (
               <div key={o.id} className="flex items-center justify-between p-3 bg-gray-800/60 rounded-xl gap-3">
                 <div className="min-w-0">

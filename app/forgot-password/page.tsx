@@ -12,7 +12,6 @@ function ForgotPasswordContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextPath = searchParams.get("next") || "/dashboard";
-  const sellerIntent = searchParams.get("seller_intent") === "1";
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,11 +28,12 @@ function ForgotPasswordContent() {
 
       // 2. Generate the 6-digit Reset Code
       const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+      const resetExpiryIso = new Date(Date.now() + 15 * 60 * 1000).toISOString();
 
       // 3. Save to our OTP table (re-using the same table)
       const { error: dbError } = await supabase
         .from("otp_verifications")
-        .upsert({ email, code: resetCode }, { onConflict: 'email' });
+        .upsert({ email, code: resetCode, expires_at: resetExpiryIso }, { onConflict: "email" });
 
       if (dbError) throw dbError;
 
@@ -52,11 +52,11 @@ function ForgotPasswordContent() {
 
       // 5. Send to a modified Verify Page for Reset
       // We pass a 'type' so the verify page knows where to send them next
-      router.push(`/verify?email=${encodeURIComponent(email)}&type=recovery&next=${encodeURIComponent(nextPath)}&seller_intent=${sellerIntent ? "1" : "0"}`);
+      router.push(`/verify?email=${encodeURIComponent(email)}&type=recovery&next=${encodeURIComponent(nextPath)}`);
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Reset Error:", err);
-      setError(err.message || "Something went wrong. Try again.");
+      setError(err instanceof Error ? err.message : "Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }
@@ -68,7 +68,7 @@ function ForgotPasswordContent() {
       <div className={`flex min-h-[calc(100dvh-5rem)] flex-col items-center justify-center ${STOREFRONT_GUTTER_X} py-6`}>
         <div className="w-full max-w-md rounded-[2.5rem] border border-gray-100 bg-white p-6 shadow-2xl sm:p-8 md:p-10">
           
-          <Link href={`/login?next=${encodeURIComponent(nextPath)}${sellerIntent ? "&seller_intent=1" : ""}`} className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 mb-8 hover:text-gray-900 transition-colors">
+          <Link href={`/login?next=${encodeURIComponent(nextPath)}`} className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 mb-8 hover:text-gray-900 transition-colors">
             <ArrowLeft size={14}/> Back to Login
           </Link>
           

@@ -28,8 +28,14 @@ export function getPaystackPublicKey(currencyCode: string): string | undefined {
   const country = CURRENCY_TO_COUNTRY[code] ?? code.slice(0, 2);
   if (typeof process === "undefined") return undefined;
   const byCountry = process.env[`NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY_${country}`];
-  const legacy = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY;
-  return (byCountry as string | undefined) || (code === "NGN" ? legacy : undefined);
+  const legacyPublic = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY;
+  /** Some deployments only set `NEXT_PUBLIC_PAYSTACK_KEY` (subscription UI uses this name). */
+  const legacyAlt = process.env.NEXT_PUBLIC_PAYSTACK_KEY;
+  if (byCountry) return byCountry;
+  if (code === "NGN") {
+    return legacyPublic || legacyAlt;
+  }
+  return legacyPublic || undefined;
 }
 
 export function paystackCountryNameForCurrency(currencyCode: string): string {

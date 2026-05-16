@@ -18,7 +18,6 @@ export async function GET() {
       buyerProfiles,
       listingsTotalRes,
       listingsActiveRes,
-      guestUnclaimed,
       payoutFailed,
       payoutQueued,
       storefrontPaidSettlement,
@@ -32,12 +31,6 @@ export async function GET() {
       svc.from("profiles").select("*", { count: "exact", head: true }).or("is_seller.eq.false,is_seller.is.null"),
       svc.from("storefront_products").select("*", { count: "exact", head: true }),
       svc.from("storefront_products").select("*", { count: "exact", head: true }).eq("is_active", true),
-      svc
-        .from("orders")
-        .select("*", { count: "exact", head: true })
-        .eq("origin_channel", sf)
-        .eq("is_guest_checkout", true)
-        .is("claimed_by_user_id", null),
       svc.from("orders").select("*", { count: "exact", head: true }).eq("origin_channel", sf).eq("payout_status", "failed"),
       svc
         .from("orders")
@@ -62,7 +55,7 @@ export async function GET() {
       svc
         .from("orders")
         .select(
-          "id, status, total_amount, currency_code, origin_channel, checkout_mode, is_guest_checkout, guest_name, guest_email, created_at, user_id, seller_id",
+          "id, status, total_amount, currency_code, origin_channel, checkout_mode, created_at, user_id, seller_id, buyer:profiles!orders_user_id_fkey ( display_name, full_name, email )",
         )
         .eq("origin_channel", sf)
         .order("created_at", { ascending: false })
@@ -111,9 +104,6 @@ export async function GET() {
         gmvNgn,
         platformFeesNgn,
         platformFeesNote,
-      },
-      guests: {
-        unclaimedCheckouts: guestUnclaimed.count ?? 0,
       },
       recentSellers: recentSellersRes.data ?? [],
       recentStorefrontOrders: recentSfOrdersRes.data ?? [],

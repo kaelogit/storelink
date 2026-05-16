@@ -83,7 +83,7 @@ export default function AboutPage() {
           </div>
           <div className="mt-12 flex justify-center">
             <Link
-              href="/signup?next=%2Fpost-login&seller_intent=1"
+              href="/signup?next=%2Fpost-login"
               className="inline-flex min-h-[48px] items-center gap-2 rounded-2xl bg-gray-900 px-6 py-4 text-xs font-black uppercase tracking-widest text-white transition hover:bg-emerald-600"
             >
               Start Selling on StoreLink

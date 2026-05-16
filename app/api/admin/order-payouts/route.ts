@@ -38,7 +38,9 @@ export async function GET(request: Request) {
   const filter = (searchParams.get("filter") || "pipeline").toLowerCase();
   let q = gate.svc
     .from("orders")
-    .select(ADMIN_ORDERS_CORE_COLUMNS)
+    .select(
+      `${ADMIN_ORDERS_CORE_COLUMNS}, buyer:profiles!orders_user_id_fkey ( id, email, full_name, display_name )`,
+    )
     .eq("origin_channel", STOREFRONT_ORDER_ORIGIN)
     .order("updated_at", { ascending: false })
     .limit(350);

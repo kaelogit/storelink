@@ -14,10 +14,6 @@ type OrderRow = {
   currency_code?: string | null;
   origin_channel?: string | null;
   checkout_mode?: string | null;
-  is_guest_checkout?: boolean | null;
-  guest_name?: string | null;
-  guest_email?: string | null;
-  guest_phone?: string | null;
   payment_reference?: string | null;
   created_at?: string | null;
   updated_at?: string | null;
@@ -74,17 +70,11 @@ export default function AdminOrdersExplorerPage() {
   }, [load]);
 
   function buyerLabel(o: OrderRow) {
-    if (o.is_guest_checkout) {
-      return o.guest_name || o.guest_email || "Guest";
-    }
     const b = o.buyer;
-    return b?.full_name?.trim() || b?.display_name || b?.email || o.guest_name || o.guest_email || "—";
+    return b?.full_name?.trim() || b?.display_name || b?.email || "—";
   }
 
   function buyerDetail(o: OrderRow) {
-    if (o.is_guest_checkout) {
-      return [o.guest_email, o.guest_phone].filter(Boolean).join(" · ") || "—";
-    }
     const b = o.buyer;
     return [b?.email, b?.phone_number].filter(Boolean).join(" · ") || "—";
   }
@@ -101,7 +91,8 @@ export default function AdminOrdersExplorerPage() {
           </Link>
           <h1 className="text-3xl font-black text-white tracking-tighter uppercase italic">Storefront orders</h1>
           <p className="text-gray-400 mt-2 text-sm font-medium max-w-2xl">
-            Only <span className="font-mono text-gray-500">origin_channel = storefront</span>. Search by guest email, name, Paystack reference, or order UUID.
+            Only <span className="font-mono text-gray-500">origin_channel = storefront</span>. Search by buyer email or name,
+            Paystack reference, shipping text, or order UUID.
           </p>
         </div>
         <button
@@ -188,9 +179,6 @@ export default function AdminOrdersExplorerPage() {
                   <td className="px-4 py-3 align-top text-gray-200">
                     <span className="font-semibold">{buyerLabel(o)}</span>
                     <span className="block text-[10px] text-gray-500 mt-0.5">{buyerDetail(o)}</span>
-                    {o.is_guest_checkout ? (
-                      <span className="inline-block mt-1 text-[9px] font-black uppercase text-amber-400/90">Guest</span>
-                    ) : null}
                   </td>
                   <td className="px-4 py-3 align-top text-gray-300">
                     {o.seller?.full_name?.trim() || o.seller?.display_name || "—"}

@@ -1,31 +1,33 @@
 import type { SupabaseClient, User } from "@supabase/supabase-js";
 
+type ProfileVerificationRow = {
+  is_verified?: boolean | null;
+};
+
 /**
- * Storefront historically required `user_metadata.verified_via_otp` after the custom `/verify` flow.
- * Users who sign up or verify through other clients already have `email_confirmed_at` and/or `profiles.is_verified`.
+ * Email verification only — do not confuse with seller KYC (`profiles.verification_status`).
+ * Access is allowed only when `profiles.is_verified === true`.
  */
-export function hasSupabaseEmailConfirmed(user: User): boolean {
-  return Boolean(user.email_confirmed_at);
-}
-
-export function hasLegacyStorefrontOtpMetadata(user: User): boolean {
-  return user.user_metadata?.verified_via_otp === true;
-}
-
-/** Returns true if the account should be treated as email-verified on the storefront. */
 export async function isEmailVerifiedForStorefront(supabase: SupabaseClient, user: User): Promise<boolean> {
-  if (hasSupabaseEmailConfirmed(user)) return true;
-  if (hasLegacyStorefrontOtpMetadata(user)) return true;
+  try {
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("is_verified")
+      .eq("id", user.id)
+      .maybeSingle();
+    if (error) return false;
+    const row = data as ProfileVerificationRow | null;
+    return row?.is_verified === true;
+  } catch {
+    return false;
+  }
+}
 
-  const { data } = await supabase
-    .from("profiles")
-    .select("is_verified, verification_status")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  const row = data as { is_verified?: boolean; verification_status?: string | null } | null;
-  if (row?.is_verified) return true;
-  if (String(row?.verification_status ?? "").toLowerCase() === "verified") return true;
-
-  return false;
+export function buildVerifyRedirectPath(email: string | null | undefined, nextPath: string): string {
+  const safeEmail = String(email || "").trim();
+  const query = new URLSearchParams();
+  if (safeEmail) query.set("email", safeEmail);
+  query.set("type", "signup");
+  query.set("next", nextPath);
+  return `/verify?${query.toString()}`;
 }

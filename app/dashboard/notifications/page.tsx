@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { Bell, CheckCircle, AlertTriangle, Info, Clock, ChevronRight, ArrowLeft } from "lucide-react";
 
@@ -81,9 +82,21 @@ export default function VendorNotifications() {
             <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs font-medium text-amber-950">{loadError}</div>
           )}
           {notifications.length === 0 && !loading && !loadError && (
-              <div className="text-center py-20 bg-gray-50 rounded-[2.5rem] border-2 border-dashed border-gray-200">
+              <div className="text-center py-20 bg-gray-50 rounded-[2.5rem] border-2 border-dashed border-gray-200 px-4">
                   <Bell size={40} className="mx-auto text-gray-200 mb-4" />
                   <p className="text-gray-400 font-black uppercase text-[10px] tracking-widest">No announcements yet</p>
+                  <p className="mt-2 max-w-sm mx-auto text-xs font-medium text-gray-500 leading-relaxed">
+                    When StoreLink sends a dashboard message, it will appear here. For general help, open the FAQ or support links below.
+                  </p>
+                  <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                    <Link href="/faq" className="text-[10px] font-black uppercase tracking-widest text-emerald-700 hover:underline">
+                      FAQ
+                    </Link>
+                    <span className="text-gray-300">·</span>
+                    <Link href="/account/support" className="text-[10px] font-black uppercase tracking-widest text-emerald-700 hover:underline">
+                      Support
+                    </Link>
+                  </div>
               </div>
           )}
 

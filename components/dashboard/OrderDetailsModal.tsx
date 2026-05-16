@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { describeSellerOrderPayoutFlow, formatOrderPayoutEligibleAt } from "@/lib/sellerOrderPayoutFlow";
 import { enrichOrderItemsWithProductNames, orderLineLabel } from "@/lib/orderItemDisplay";
 import OrderLineThumb from "@/components/orders/OrderLineThumb";
+import { computeSellerNetPayableBreakdown } from "@/lib/sellerOrderNetPayable";
 
 function orderCoinRedeemed(order: any): number {
   return Number(order?.coin_redeemed ?? order?.coins_redeemed ?? 0);
@@ -24,18 +25,18 @@ function orderBuyerProfile(order: any): { display_name?: string; full_name?: str
 function orderBuyerName(order: any): string {
   const b = orderBuyerProfile(order);
   const fromProf = String(b?.display_name?.trim() || b?.full_name?.trim() || "").trim();
-  const n = String(fromProf || order?.customer_name || order?.guest_name || "").trim();
-  return n || "Guest";
+  const n = String(fromProf || order?.customer_name || "").trim();
+  return n || "Buyer";
 }
 
 function orderBuyerPhone(order: any): string {
   const b = orderBuyerProfile(order);
-  return String(b?.phone_number || order?.customer_phone || order?.guest_phone || "").trim() || "—";
+  return String(b?.phone_number || order?.customer_phone || "").trim() || "—";
 }
 
 function orderBuyerEmail(order: any): string {
   const b = orderBuyerProfile(order);
-  return String(b?.email || order?.customer_email || order?.guest_email || "").trim() || "—";
+  return String(b?.email || order?.customer_email || "").trim() || "—";
 }
 
 function orderShippingAddress(order: any): string {
@@ -296,6 +297,11 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
   if (!isOpen || !order) return null;
   const coinsUsed = orderCoinRedeemed(order);
   const subTotal = Number(order.total_amount || 0) + coinsUsed;
+  const cashPaid = Number(order.total_amount || 0);
+  const netBreakdown = computeSellerNetPayableBreakdown({
+    orderSubtotalNaira: subTotal,
+    cashPaidNaira: cashPaid,
+  });
   const storefrontOrder = String(order.origin_channel || "").toLowerCase() === "storefront";
   const normStatus = String(localStatus || order.status || "").toUpperCase();
   const payoutFlow = describeSellerOrderPayoutFlow(order);
@@ -368,7 +374,7 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
                {payoutFlow.detail ? (
                  <p className="text-xs text-gray-600 font-medium mt-2 leading-relaxed">{payoutFlow.detail}</p>
                ) : null}
-               {(order.payment_reference || order.payout_status || order.payout_eligible_at || storefrontOrder) && (
+               {(order.payment_reference || order.payout_status || order.payout_reference || order.payout_eligible_at || storefrontOrder) && (
                  <dl className="mt-4 pt-3 border-t border-gray-100 space-y-2 text-[11px]">
                    {order.payment_reference ? (
                      <div className="flex justify-between gap-3">
@@ -382,6 +388,14 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
                      <div className="flex justify-between gap-3">
                        <dt className="font-black uppercase tracking-wider text-gray-400 shrink-0">Payout status</dt>
                        <dd className="font-bold text-gray-900 text-right uppercase">{String(order.payout_status)}</dd>
+                     </div>
+                   ) : null}
+                   {order.payout_reference ? (
+                     <div className="flex justify-between gap-3">
+                       <dt className="font-black uppercase tracking-wider text-gray-400 shrink-0">Payout transfer</dt>
+                       <dd className="font-mono text-gray-800 text-right truncate max-w-[200px]" title={String(order.payout_reference)}>
+                         {String(order.payout_reference)}
+                       </dd>
                      </div>
                    ) : null}
                    {order.payout_eligible_at ? (
@@ -438,9 +452,29 @@ export default function OrderDetailsModal({ order, storeName, isOpen, onClose, o
                   <span>-₦{coinsUsed.toLocaleString()}</span>
                </div>
              )}
-             <div className="flex justify-between items-center text-2xl font-black text-gray-900 tracking-tighter pt-2">
+             <div className="flex justify-between items-center text-xs font-bold text-gray-500">
+               <span>Cash paid (after coins)</span>
+               <span className="font-black text-gray-800">₦{cashPaid.toLocaleString()}</span>
+             </div>
+             <div className="flex justify-between items-center text-[11px] font-medium text-gray-500">
+               <span>StoreLink platform (2.5% of cash paid)</span>
+               <span className="text-gray-700">−₦{netBreakdown.storelinkFeeNaira.toLocaleString()}</span>
+             </div>
+             <div className="flex justify-between items-center text-[11px] font-medium text-gray-500">
+               <span>Paystack share (1.5% of cash paid)</span>
+               <span className="text-gray-700">−₦{netBreakdown.paystackFeeNaira.toLocaleString()}</span>
+             </div>
+             <p className="text-[10px] font-medium leading-relaxed text-gray-400 pt-1">
+               Automatic payouts use 4% total on cash paid through checkout (2.5% + 1.5%). Coins lower the cash charged, so fees apply to the cash line only. Net is an estimate.
+             </p>
+             {netBreakdown.netPayableNaira === 0 && cashPaid > 0 ? (
+               <p className="text-[10px] font-semibold text-amber-700">
+                 After fees, nothing remains from this cash payment — check coins vs. order size if this looks unexpected.
+               </p>
+             ) : null}
+             <div className="flex justify-between items-center text-2xl font-black text-gray-900 tracking-tighter pt-2 border-t border-gray-100">
                 <span className="uppercase text-sm tracking-widest text-gray-400">Net Payable</span>
-                <span className="text-emerald-600 font-black">₦{Number(order.total_amount || 0).toLocaleString()}</span>
+                <span className="text-emerald-600 font-black">₦{netBreakdown.netPayableNaira.toLocaleString()}</span>
              </div>
           </div>
         </div>

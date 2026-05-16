@@ -1,8 +1,8 @@
 import { supabase } from "@/lib/supabase";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import StoreFront from "@/components/StoreFront";
 import type { Metadata } from "next";
-import { shuffleArray } from "@/utils/shuffle";
+import { prepareStorefrontProductRows } from "@/lib/storefrontCatalogOrder";
 import ProfileStorefrontViewTracker from "@/components/ViewTracker";
 import { ShieldAlert } from "lucide-react";
 import {
@@ -10,8 +10,15 @@ import {
   profileRowToLegacyStoreShape,
   type ProfileStorefrontRow,
 } from "@/lib/profileAsStorefront";
-import { storefrontAbsolutePath, sellerStorefrontPublicUrl } from "@/lib/storefrontPublicUrl";
+import {
+  absoluteUrlForOpenGraph,
+  sellerStorefrontPublicUrl,
+} from "@/lib/storefrontPublicUrl";
+import { storefrontRootDomain } from "@/lib/storefrontHosts";
 import { STOREFRONT_GUTTER_X, STOREFRONT_SAFE_BOTTOM } from "@/lib/mobileLayout";
+import { normalizeSlug } from "@/lib/slugAvailability";
+import { resolveStorefrontSlugRedirect } from "@/lib/storefrontSlugRedirect";
+import StorefrontSlugUnavailable from "@/components/storefront/StorefrontSlugUnavailable";
 
 export const dynamic = "force-dynamic";
 
@@ -21,47 +28,63 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug;
+  const slug = normalizeSlug(resolvedParams.slug);
+  if (!slug) return { title: "Store Not Found" };
 
-  const [{ data: profile }, { data: legacyStore }] = await Promise.all([
-    supabase
-      .from("profiles")
-      .select("display_name, full_name, slug, bio, logo_url, cover_image_url")
-      .eq("slug", slug)
-      .eq("is_seller", true)
-      .maybeSingle(),
-    supabase.from("stores").select("name, description, logo_url, cover_image_url").eq("slug", slug).maybeSingle(),
-  ]);
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("display_name, full_name, slug, bio, logo_url, cover_image_url")
+    .eq("slug", slug)
+    .eq("is_seller", true)
+    .maybeSingle();
 
-  if (!profile && !legacyStore) return { title: "Store Not Found" };
+  if (!profile) {
+    const nextSlug = await resolveStorefrontSlugRedirect(supabase, resolvedParams.slug);
+    if (nextSlug) redirect(sellerStorefrontPublicUrl(nextSlug));
 
-  const name =
-    profile?.full_name?.trim() || profile?.display_name?.trim() || legacyStore?.name?.trim() || "StoreLink";
+    const { data: holder } = await supabase.from("profiles").select("is_seller").eq("slug", slug).maybeSingle();
+    if (holder && holder.is_seller !== true) {
+      return {
+        title: `Not a store · ${slug}`,
+        description: "This StoreLink handle is not a seller storefront.",
+        robots: { index: false, follow: true },
+      };
+    }
+    return {
+      title: "Store not found",
+      description: "No seller shop uses this link on StoreLink.",
+      robots: { index: false, follow: true },
+    };
+  }
+
+  const name = profile?.full_name?.trim() || profile?.display_name?.trim() || "StoreLink";
+  const root = storefrontRootDomain();
+  const tenantHost = root ? `${slug}.${root}` : slug;
   const description =
-    profile?.bio?.trim() || legacyStore?.description?.trim() || `Check out ${name} on StoreLink.`;
-  const ogImage =
-    legacyStore?.cover_image_url ||
-    legacyStore?.logo_url ||
-    profile?.cover_image_url ||
-    profile?.logo_url ||
-    storefrontAbsolutePath("/og-image.png");
+    profile?.bio?.trim() ||
+    `Shop ${name} on StoreLink — ${tenantHost}. Browse products and checkout securely.`;
+  const ogTitle = `${name} · ${tenantHost}`;
+  const ogImage = absoluteUrlForOpenGraph(
+    profile?.cover_image_url || profile?.logo_url || null,
+    "/og-image.jpg",
+  );
 
   const storeCanonical = sellerStorefrontPublicUrl(slug);
   return {
     title: name,
     description,
     openGraph: {
-      title: name,
+      title: ogTitle,
       description,
       url: storeCanonical,
       siteName: "StoreLink",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: name }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${name} storefront` }],
       locale: "en_NG",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: name,
+      title: ogTitle,
       description,
       images: [ogImage],
     },
@@ -71,22 +94,38 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function VendorStorePage({ params }: PageProps) {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug;
+  const slug = normalizeSlug(resolvedParams.slug);
+  if (!slug) notFound();
 
-  const [{ data: profile }, { data: legacyStore }] = await Promise.all([
-    supabase
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select(`${PROFILE_STOREFRONT_SELECT}, account_status`)
+    .eq("slug", slug)
+    .eq("is_seller", true)
+    .maybeSingle();
+
+  if (!profile) {
+    const nextSlug = await resolveStorefrontSlugRedirect(supabase, resolvedParams.slug);
+    if (nextSlug) redirect(sellerStorefrontPublicUrl(nextSlug));
+
+    const { data: holder } = await supabase
       .from("profiles")
-      .select(`${PROFILE_STOREFRONT_SELECT}, account_status`)
+      .select("display_name, full_name, is_seller")
       .eq("slug", slug)
-      .eq("is_seller", true)
-      .maybeSingle(),
-    supabase.from("stores").select("*, owner_email").eq("slug", slug).maybeSingle(),
-  ]);
+      .maybeSingle();
 
-  if (!profile && !legacyStore) return notFound();
+    if (holder && holder.is_seller !== true) {
+      const displayLabel =
+        String(holder.full_name || "").trim() ||
+        String(holder.display_name || "").trim() ||
+        slug;
+      return <StorefrontSlugUnavailable variant="buyer-account" slug={slug} displayLabel={displayLabel} />;
+    }
 
-  const suspended =
-    String(profile?.account_status || "").toLowerCase() === "suspended" || legacyStore?.status === "banned";
+    return <StorefrontSlugUnavailable variant="unknown" slug={slug} />;
+  }
+
+  const suspended = String(profile?.account_status || "").toLowerCase() === "suspended";
 
   if (suspended) {
     return (
@@ -95,9 +134,7 @@ export default async function VendorStorePage({ params }: PageProps) {
           <ShieldAlert size={32} className="text-red-600" />
         </div>
         <h1 className="text-2xl font-black text-gray-900 mb-2 uppercase tracking-tight">Store Suspended</h1>
-        <p className="text-gray-500 max-w-md mb-6 font-medium">
-          This storefront is currently restricted.
-        </p>
+        <p className="text-gray-500 max-w-md mb-6 font-medium">This storefront is currently restricted.</p>
         <div className="mt-8 pt-8 border-t border-gray-200 w-full max-w-xs">
           <p className="text-[10px] text-red-400 font-black uppercase tracking-[0.3em]">Admin Action Enforced</p>
         </div>
@@ -105,34 +142,8 @@ export default async function VendorStorePage({ params }: PageProps) {
     );
   }
 
-  const sellerId = profile?.id ?? legacyStore?.owner_id;
-  if (!sellerId) return notFound();
-
-  let displayStore = profile
-    ? profileRowToLegacyStoreShape(profile as ProfileStorefrontRow, {
-        legacyStoreId: legacyStore?.id ?? null,
-        ownerEmail: legacyStore?.owner_email ?? null,
-      })
-    : legacyStore!;
-
-  if (profile && legacyStore) {
-    const p = profile as ProfileStorefrontRow;
-    const leg = legacyStore as {
-      location?: string | null;
-      cover_image_url?: string | null;
-      instagram_handle?: string | null;
-      tiktok_url?: string | null;
-    };
-    const shopLine = leg.location?.trim() || p.shop_address?.trim();
-    displayStore = {
-      ...displayStore,
-      cover_image_url: leg.cover_image_url ?? displayStore.cover_image_url,
-      /** Shop/pickup line: legacy `stores.location`, else profile `shop_address`. */
-      location: shopLine || displayStore.location,
-      instagram_handle: (p.instagram_handle?.trim() || leg.instagram_handle || displayStore.instagram_handle || "").trim() || undefined,
-      tiktok_url: (p.tiktok_url?.trim() || leg.tiktok_url || displayStore.tiktok_url || "").trim() || undefined,
-    };
-  }
+  const sellerId = profile.id;
+  const displayStore = profileRowToLegacyStoreShape(profile as ProfileStorefrontRow);
 
   const { data: products } = await supabase
     .from("storefront_products")
@@ -142,22 +153,51 @@ export default async function VendorStorePage({ params }: PageProps) {
     .order("created_at", { ascending: false });
 
   let categories: { id: string; name: string }[] = [];
-  if (sellerId) {
-    const { data: bySeller } = await supabase
-      .from("categories")
-      .select("*")
-      .eq("seller_id", sellerId)
-      .eq("category_scope", "seller")
-      .order("name", { ascending: true });
-    categories = (bySeller || []) as { id: string; name: string }[];
+  const { data: bySeller } = await supabase
+    .from("categories")
+    .select("*")
+    .eq("seller_id", sellerId)
+    .eq("category_scope", "seller")
+    .order("name", { ascending: true });
+  categories = (bySeller || []) as { id: string; name: string }[];
+
+  const sfTheme = displayStore.storefront_theme;
+  const catalogProducts = prepareStorefrontProductRows(products || [], {
+    hideOutOfStock: Boolean(sfTheme?.hide_out_of_stock),
+    shuffleUnpinned: true,
+  });
+
+  let blockRows: { id: string; type: string; payload: Record<string, unknown>; sort_order: number }[] = [];
+  const blocksRes = await supabase
+    .from("storefront_blocks")
+    .select("id, type, payload, sort_order")
+    .eq("seller_id", sellerId)
+    .eq("is_visible", true)
+    .order("sort_order", { ascending: true });
+  if (!blocksRes.error && blocksRes.data) {
+    blockRows = blocksRes.data as typeof blockRows;
   }
 
-  const shuffledProducts = shuffleArray(products || []);
+  const shopUrl = sellerStorefrontPublicUrl(displayStore.slug);
+  const storeJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    name: displayStore.name,
+    url: shopUrl,
+    description: (displayStore.description || "").trim() || `Shop ${displayStore.name} on StoreLink.`,
+    image: [displayStore.cover_image_url, displayStore.logo_url].filter(Boolean) as string[],
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(storeJsonLd) }} />
       <ProfileStorefrontViewTracker profileId={sellerId} />
-      <StoreFront store={displayStore} products={shuffledProducts} categories={categories || []} />
+      <StoreFront
+        store={displayStore}
+        products={catalogProducts}
+        categories={categories || []}
+        storefrontBlocks={blockRows}
+      />
     </>
   );
 }

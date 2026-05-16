@@ -20,7 +20,7 @@ export default function HowItWorks() {
     { 
       icon: Share2, 
       title: "3. Get Paid Fast", 
-      desc: "Share your store link, let buyers checkout as guest or account, and settle securely via Paystack.",
+      desc: "Share your store link. Buyers create a quick free account at checkout, then pay securely through Paystack.",
       accent: "bg-amber-500"
     }
   ];
@@ -79,7 +79,7 @@ export default function HowItWorks() {
 
         {/* Bottom CTA for the Section */}
         <div className="mt-20 text-center">
-          <Link href="/signup?next=%2Fpost-login&seller_intent=1" className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-emerald-600 transition-all shadow-xl active:scale-95 group">
+          <Link href="/signup?next=%2Fpost-login" className="inline-flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-emerald-600 transition-all shadow-xl active:scale-95 group">
             Create My Store <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>

@@ -33,7 +33,7 @@ export default function ProductHeader({ storeSlug, storeLogo }: ProductHeaderPro
           className="active:scale-90 transition-transform flex items-center justify-center hover:opacity-80"
           title="Go to Home"
         >
-          <LayoutDashboard size={26} className="text-emerald-600" />
+          <LayoutDashboard size={26} className="sf-accent-text" />
         </Link>
 
         <span className="text-gray-200 font-light text-xl select-none">|</span>
@@ -42,7 +42,7 @@ export default function ProductHeader({ storeSlug, storeLogo }: ProductHeaderPro
           href={`/${storeSlug}`}
           className="active:scale-90 transition-transform group"
         >
-          <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-gray-100 bg-gray-50 shadow-sm group-hover:border-emerald-200 transition-all">
+          <div className="relative h-8 w-8 overflow-hidden rounded-xl border border-gray-100 bg-gray-50 shadow-sm transition-all group-hover:border-[color:var(--sf-accent-soft)]">
             {storeLogo ? (
               <Image 
                 src={storeLogo} 
@@ -67,7 +67,7 @@ export default function ProductHeader({ storeSlug, storeLogo }: ProductHeaderPro
       >
         <ShoppingBag size={24} strokeWidth={2.5} />
         {cartCount > 0 && (
-          <span className="absolute top-1 right-1 bg-emerald-500 text-white text-[8px] font-black w-4.5 h-4.5 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
+          <span className="sf-bg-accent absolute -right-1 -top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full border-2 border-white px-0.5 text-[8px] font-black text-white shadow-sm">
             {cartCount}
           </span>
         )}

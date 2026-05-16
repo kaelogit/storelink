@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from "react";
 import { Product, Store } from "@/types";
+import { productDisplayPrice } from "@/lib/productFlashDrop";
 
 export type CartItem = { 
   product: Product; 
@@ -42,14 +43,34 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const savedCart = localStorage.getItem("storelink_cart");
-    
+
     if (savedCart) {
-      try { 
+      try {
         const parsed = JSON.parse(savedCart);
-        if (Array.isArray(parsed)) setCart(parsed); 
-      } catch (e) { console.error("Cart parse error", e); }
+        if (Array.isArray(parsed)) {
+          const normalized: CartItem[] = [];
+          for (const raw of parsed) {
+            const product = raw?.product;
+            const store = raw?.store;
+            if (!product?.id || !store) continue;
+            const ownerId =
+              (typeof store.owner_id === "string" && store.owner_id.trim()) ||
+              (typeof product.seller_id === "string" && product.seller_id.trim()) ||
+              "";
+            if (!ownerId) continue;
+            normalized.push({
+              product,
+              store: { ...store, owner_id: ownerId },
+              qty: typeof raw.qty === "number" && raw.qty > 0 ? raw.qty : 1,
+            });
+          }
+          setCart(normalized);
+        }
+      } catch (e) {
+        console.error("Cart parse error", e);
+      }
     }
-    
+
     setIsInitialized(true);
   }, []);
 
@@ -63,15 +84,28 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setUseCoins(false);
   }, []);
 
+  function snapshotProductForCart(product: Product): Product {
+    const list = Number(product.price);
+    const effective = productDisplayPrice({ ...product, price: list });
+    if (Number.isFinite(list) && effective !== list) {
+      return { ...product, price: effective, compare_at_price: list };
+    }
+    const { compare_at_price: _omitCompareAt, ...rest } = product;
+    return { ...rest, price: effective };
+  }
+
   const addToCart = (product: Product, store: Store) => {
+    const lineProduct = snapshotProductForCart(product);
     setCart((prev) => {
       const existing = prev.find((item) => item.product.id === product.id);
       if (existing) {
         return prev.map((item) =>
-          item.product.id === product.id ? { ...item, qty: item.qty + 1 } : item
+          item.product.id === product.id
+            ? { ...item, qty: item.qty + 1, product: { ...item.product, ...lineProduct } }
+            : item
         );
       }
-      return [...prev, { product, store, qty: 1 }];
+      return [...prev, { product: lineProduct, store, qty: 1 }];
     });
   };
 

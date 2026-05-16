@@ -54,7 +54,7 @@ export default function Navbar() {
               <Link href="/pricing" className="text-sm font-bold text-gray-600 hover:text-gray-900 transition flex items-center gap-2">
                 <Tag size={16} /> Pricing
               </Link>
-              <Link href="/signup?next=%2Fpost-login&seller_intent=1" className="text-sm font-bold text-gray-600 hover:text-gray-900 transition flex items-center gap-2">
+              <Link href="/signup?next=%2Fpost-login" className="text-sm font-bold text-gray-600 hover:text-gray-900 transition flex items-center gap-2">
                 <Store size={16} /> Sell on StoreLink
               </Link>
           </div>
@@ -113,7 +113,7 @@ export default function Navbar() {
                   <Tag size={18} /> Plan Pricing
                </Link>
                <Link 
-                  href="/signup?next=%2Fpost-login&seller_intent=1" 
+                  href="/signup?next=%2Fpost-login" 
                   className="flex min-h-[44px] items-center gap-3 rounded-xl p-3 text-sm font-bold text-gray-700 hover:bg-gray-50"
                   onClick={() => setIsMenuOpen(false)}
                >

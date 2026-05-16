@@ -1,46 +1,6 @@
 {
-  "app": {
-    "[project]/storelink-app-and-web/store-link-storefront/app/account/orders/[id]/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/account/orders/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/account/settings/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/account/wallet/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/admin/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/dashboard/loyalty/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/dashboard/notifications/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/dashboard/orders/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/dashboard/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/dashboard/verification/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/login/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/marketplace/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ],
-    "[project]/storelink-app-and-web/store-link-storefront/app/page": [
-      "static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2"
-    ]
-  },
-  "appUsingSizeAdjust": true,
+  "app": {},
+  "appUsingSizeAdjust": false,
   "pages": {},
   "pagesUsingSizeAdjust": false
 }

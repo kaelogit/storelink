@@ -29,6 +29,23 @@ export function storefrontAbsolutePath(path: string): string {
 }
 
 /**
+ * Resolve a possibly-relative asset URL to an absolute URL for Open Graph / Twitter cards.
+ */
+export function absoluteUrlForOpenGraph(url: string | null | undefined, fallbackPath = "/og-image.jpg"): string {
+  const fallback = storefrontAbsolutePath(fallbackPath);
+  const raw = (url || "").trim();
+  if (!raw) return fallback;
+  if (/^https?:\/\//i.test(raw)) return raw;
+  const base = storefrontSiteBase();
+  const path = raw.startsWith("/") ? raw : `/${raw}`;
+  try {
+    return new URL(path, `${base}/`).toString();
+  } catch {
+    return fallback;
+  }
+}
+
+/**
  * Public URL for a seller's storefront (subdomain when enabled, else path on shop base).
  */
 export function sellerStorefrontPublicUrl(slug: string): string {
@@ -42,4 +59,18 @@ export function sellerStorefrontPublicUrl(slug: string): string {
     return `https://${encodeURIComponent(s)}.${root}/`;
   }
   return storefrontAbsolutePath(`/${encodeURIComponent(s)}`);
+}
+
+/**
+ * Canonical seller shop host for sharing: `https://{slug}.{root}` (no marketplace `/slug` path).
+ * Used for dashboard copy + QR so links read as `slug.storelink.ng`, not `shop.storelink.ng/slug`.
+ */
+export function sellerStorefrontTenantUrl(slug: string): string {
+  const s = String(slug || "")
+    .trim()
+    .replace(/^\/+|\/+$/g, "");
+  const root = storefrontRootDomain();
+  if (!s || !root) return sellerStorefrontPublicUrl(slug);
+  const host = `${encodeURIComponent(s)}.${root}`;
+  return `https://${host}`;
 }
