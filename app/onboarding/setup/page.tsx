@@ -1,13 +1,23 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { fetchOnboardingContext, getOnboardingHubRedirect } from "@/lib/onboardingState";
 import { getClientUserSafe } from "@/lib/getClientUserSafe";
 
-export default function OnboardingSetupPage() {
+// 1. Extracted Spinner UI
+function SetupLoader() {
+  return (
+    <div className="flex min-h-dvh items-center justify-center bg-gray-50">
+      <Loader2 className="h-10 w-10 animate-spin text-emerald-600" />
+    </div>
+  );
+}
+
+// 2. The inner component that safely isolates useSearchParams()
+function SetupRedirectHandler() {
   const router = useRouter();
   const search = useSearchParams();
 
@@ -37,9 +47,14 @@ export default function OnboardingSetupPage() {
     };
   }, [router, search]);
 
+  return <SetupLoader />;
+}
+
+// 3. Clean default export wrapped in Suspense
+export default function OnboardingSetupPage() {
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-gray-50">
-      <Loader2 className="h-10 w-10 animate-spin text-emerald-600" />
-    </div>
+    <Suspense fallback={<SetupLoader />}>
+      <SetupRedirectHandler />
+    </Suspense>
   );
 }
