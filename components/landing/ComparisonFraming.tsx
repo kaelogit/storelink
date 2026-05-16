@@ -55,7 +55,7 @@ export default function ComparisonFraming() {
           }
           description="Social apps are for attention. Chat is for talking. StoreLink is for selling."
           align="center"
-          singleLine
+          
         />
 
         {/* Table */}

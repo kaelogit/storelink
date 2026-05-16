@@ -56,7 +56,7 @@ export default function FAQ() {
           }
           description="Straight talk on checkout, plans, trust—and what we don't pretend to be."
           align="center"
-          singleLine
+          
         />
 
         {/* Search + filters */}

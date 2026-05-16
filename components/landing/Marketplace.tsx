@@ -72,7 +72,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
           }
           description="Discover top sellers and products from across the network."
           align="center"
-          singleLine
+          
         />
 
         {/* Controls bar */}
@@ -202,7 +202,7 @@ export default function Marketplace({ products, stores, onAddToCart }: Marketpla
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredStores.map(store => (
               <Link 
-                href={`/${store.slug}`} 
+                href={`https://${store.slug}.storelink.ng`} 
                 key={store.id} 
                 className="group relative rounded-3xl border border-gray-200 bg-white p-6 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-500"
               >

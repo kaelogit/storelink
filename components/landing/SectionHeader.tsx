@@ -8,7 +8,6 @@ interface SectionHeaderProps {
   description?: string;
   align?: "left" | "center";
   dark?: boolean;
-  singleLine?: boolean;
 }
 
 export default function SectionHeader({ 
@@ -16,31 +15,29 @@ export default function SectionHeader({
   headline, 
   description, 
   align = "left",
-  dark = false,
-  singleLine = false
+  dark = false
 }: SectionHeaderProps) {
-  const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
-  const maxWidth = singleLine ? "max-w-4xl mx-auto" : align === "center" ? "max-w-3xl mx-auto" : "max-w-2xl";
+  const alignClass = align === "center" ? "text-center mx-auto items-center flex flex-col" : "text-left";
 
   return (
-    <div className={`${maxWidth} mb-14 md:mb-18 ${alignClass}`}>
+    <div className={`max-w-4xl mx-auto mb-10 md:mb-16 ${alignClass} px-4`}>
       {/* Eyebrow */}
-      <div className={`inline-flex items-center gap-3 mb-5 ${align === "center" ? "justify-center" : ""}`}>
+      <div className={`inline-flex items-center gap-3 mb-4 md:mb-5 ${align === "center" ? "justify-center" : ""}`}>
         <span className={`h-px w-6 ${dark ? 'bg-emerald-400/50' : 'bg-emerald-500/60'}`} />
-        <span className={`text-[11px] font-bold uppercase tracking-[0.25em] ${dark ? 'text-emerald-400' : 'text-emerald-600'}`}>
+        <span className={`text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] ${dark ? 'text-emerald-400' : 'text-emerald-600'}`}>
           {eyebrow}
         </span>
-        <span className={`h-px w-6 ${dark ? 'bg-emerald-400/50' : 'bg-emerald-500/60'}`} />
+        {align === "center" && <span className={`h-px w-6 ${dark ? 'bg-emerald-400/50' : 'bg-emerald-500/60'}`} />}
       </div>
 
-      {/* Headline */}
-      <h2 className={`font-bold tracking-tight mb-5 ${singleLine ? 'text-3xl md:text-5xl lg:text-6xl whitespace-nowrap' : 'text-4xl md:text-5xl lg:text-6xl leading-[1.05]' } ${dark ? 'text-white' : 'text-gray-900'}`}>
+      {/* Headline — hero sizes */}
+      <h2 className={`text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-4 md:mb-5 max-w-full ${dark ? 'text-white' : 'text-gray-900'}`}>
         {headline}
       </h2>
 
       {/* Description */}
       {description && (
-        <p className={`text-base md:text-lg leading-relaxed ${dark ? 'text-white/40' : 'text-gray-400'}`}>
+        <p className={`text-sm md:text-base lg:text-lg leading-relaxed ${dark ? 'text-white/40' : 'text-gray-400'} max-w-2xl`}>
           {description}
         </p>
       )}

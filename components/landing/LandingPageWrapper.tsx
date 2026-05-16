@@ -13,7 +13,6 @@ import Hero from "./Hero";
 import SellerSegments from "./SellerSegments";
 import ValueProp from "./ValueProp";
 import SellerTrustStack from "./SellerTrustStack";
-import HowItWorks from "./HowItWorks";
 import SellerJourney from "./SellerJourney";
 import ComparisonFraming from "./ComparisonFraming";
 import TrustCenter from "./TrustCenter";
@@ -52,7 +51,6 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       <SellerSegments />
       <ValueProp />
       <SellerTrustStack />
-      <HowItWorks />
       <SellerJourney />
       <ComparisonFraming />
 

@@ -67,7 +67,7 @@ export default function SellerJourney() {
           }
           description="Skip the agencies. Four steps to a storefront that converts."
           align="center"
-          singleLine
+          
         />
 
         {/* Timeline layout */}
@@ -98,16 +98,7 @@ export default function SellerJourney() {
                       {body}
                     </p>
                     
-                    {/* CTA on last step */}
-                    {i === 3 && (
-                      <Link
-                        href="/signup?next=%2Fpost-login"
-                        className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-gray-900 text-white rounded-xl text-sm font-bold uppercase tracking-wider hover:bg-emerald-600 transition-all group"
-                      >
-                        Start selling
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    )}
+                    
                   </div>
 
                   {/* Orb */}
