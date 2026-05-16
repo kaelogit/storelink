@@ -12,10 +12,8 @@ import Navbar from "./Navbar";
 import Hero from "./Hero";
 import SellerSegments from "./SellerSegments";
 import ValueProp from "./ValueProp";
-import SocialProofStrip from "./SocialProofStrip";
 import SellerTrustStack from "./SellerTrustStack";
 import HowItWorks from "./HowItWorks";
-import OverviewVideo from "./OverviewVideo";
 import SellerJourney from "./SellerJourney";
 import ComparisonFraming from "./ComparisonFraming";
 import TrustCenter from "./TrustCenter";
@@ -53,10 +51,8 @@ export default function LandingPageWrapper({ products, stores }: LandingPageWrap
       <Hero />
       <SellerSegments />
       <ValueProp />
-      <SocialProofStrip />
       <SellerTrustStack />
       <HowItWorks />
-      <OverviewVideo />
       <SellerJourney />
       <ComparisonFraming />
 

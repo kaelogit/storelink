@@ -4,22 +4,22 @@ import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
 const segments = [
   {
     title: "From Influence to Ownership",
-    body: "Transform your personal brand into an official storefront. Launch a complete catalog and checkout system without the cost of custom development.",
+    body: "Turn your audience into an active customer base. Launch a gorgeous digital storefront and automate checkout instantly—no tech skills required.",
     Icon: Sparkles,
   },
   {
     title: "Standardized Operations",
-    body: "Upgrade your sales process. Centralize your stock, pricing, and order history on one professional link that buyers can trust.",
+    body: "Stop selling out of disorganized chat logs. Centralize your inventory, manage flat rates, and accept secure orders with a professional storefront link.",
     Icon: MessageCircle,
   },
   {
     title: "Creators & Retailers",
-    body: "The definitive shop link for your profile. Provide a seamless shopping experience for your audience and gain visibility on our marketplace.",
+    body: "The definitive link-in-bio shop. Provide an elegant mobile-first shopping experience for your followers while gaining exposure on our marketplace.",
     Icon: Store,
   },
   {
     title: "Established & Verified",
-    body: "Premium features for high-volume brands, including verification paths and advanced management tools for serious merchants.",
+    body: "Enterprise-grade performance for high-volume merchants. Unlock verified badges, elite brand positioning, and advanced multi-store logistics.",
     Icon: BadgeCheck,
   },
 ];
@@ -29,25 +29,39 @@ const segments = [
  */
 export default function SellerSegments() {
   return (
-    <section className={`border-b border-gray-100 bg-white py-10 md:py-12 ${STOREFRONT_GUTTER_X}`} aria-labelledby="seller-segments-heading">
+    <section 
+      className={`border-b border-gray-100 bg-white py-14 md:py-20 ${STOREFRONT_GUTTER_X}`} 
+      aria-labelledby="seller-segments-heading"
+    >
       <div className="max-w-7xl mx-auto">
         <h2 id="seller-segments-heading" className="sr-only">
           Who StoreLink is built for
         </h2>
-        <p className="text-center text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-6">
+        
+        <p className="text-center text-[10px] font-black uppercase tracking-[0.25em] text-emerald-600 mb-8 md:mb-12">
           Tailored for modern commerce
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {segments.map(({ title, body, Icon }) => (
             <div
               key={title}
-              className="rounded-2xl border border-gray-100 bg-gray-50/80 p-5 md:p-6 shadow-sm transition hover:border-emerald-200 hover:bg-white"
+              className="group relative rounded-2xl border border-gray-100 bg-gray-50/50 p-6 md:p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-emerald-200/80 hover:bg-white hover:shadow-xl hover:shadow-emerald-50/40"
             >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <Icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
+              {/* Icon Container with elegant micro-gradient background */}
+              <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100/60 text-emerald-600 transition-colors duration-300 group-hover:from-emerald-600 group-hover:to-emerald-500 group-hover:text-white">
+                <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
               </div>
-              <h3 className="text-sm font-black uppercase tracking-tight text-gray-900 mb-2">{title}</h3>
-              <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-medium">{body}</p>
+              
+              {/* Title using modern tracking and semantic gray */}
+              <h3 className="text-sm font-black uppercase tracking-wider text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors duration-200">
+                {title}
+              </h3>
+              
+              {/* Body with balanced weight for high readability */}
+              <p className="text-xs md:text-sm text-gray-500 leading-relaxed font-normal">
+                {body}
+              </p>
             </div>
           ))}
         </div>

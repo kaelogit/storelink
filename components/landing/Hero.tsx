@@ -59,12 +59,7 @@ export default function Hero() {
                </Link>
             </div>
 
-            <p className="mb-10 text-center text-sm text-gray-500 lg:text-left">
-              <Link href="/pricing" className="font-semibold text-emerald-700 underline-offset-4 hover:underline">
-                View our pricing
-              </Link>
-              {" "}to find the right fit for your business.
-            </p>
+      
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-xs md:text-sm font-semibold text-gray-600">
                <span className="inline-flex items-center gap-2">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { STOREFRONT_GUTTER_X } from "@/lib/mobileLayout";
@@ -62,6 +62,42 @@ function HeroBillboard({
 }) {
   const displayHeadline = headline.trim().slice(0, STOREFRONT_HERO_HEADLINE_MAX).toUpperCase();
   const displayTagline = tagline.trim().slice(0, STOREFRONT_HERO_TAGLINE_MAX);
+  
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const [dynamicFontSize, setDynamicFontSize] = useState<string | undefined>(undefined);
+
+  // Dynamic typography scale framework to enforce a strict single-line limit layout
+  useEffect(() => {
+    const el = headlineRef.current;
+    if (!el) return;
+
+    const adjustFontSize = () => {
+      // Clear previous inline scale to measure the native unconstrained bounding box
+      el.style.fontSize = "";
+      
+      const parent = el.parentElement;
+      if (!parent) return;
+
+      const parentWidth = parent.clientWidth;
+      const textWidth = el.scrollWidth;
+
+      if (textWidth > parentWidth && parentWidth > 0) {
+        // Compute precise ratio with a 2% aesthetic padding buffer to prevent edge hugging
+        const scaleFactor = (parentWidth / textWidth) * 0.98;
+        const computedStyle = window.getComputedStyle(el);
+        const nativeFontSize = parseFloat(computedStyle.fontSize);
+        
+        setDynamicFontSize(`${nativeFontSize * scaleFactor}px`);
+      } else {
+        setDynamicFontSize(undefined);
+      }
+    };
+
+    adjustFontSize();
+    window.addEventListener("resize", adjustFontSize);
+    return () => window.removeEventListener("resize", adjustFontSize);
+  }, [headline, font, dense, editorial]);
+
   return (
     <div className={cn("relative", dense ? "min-h-[220px] md:min-h-[260px]" : "min-h-[280px] md:min-h-[360px]")}>
       <div
@@ -92,7 +128,7 @@ function HeroBillboard({
           STOREFRONT_GUTTER_X,
         )}
       >
-        <div className="mx-auto max-w-5xl text-center">
+        <div className="mx-auto w-full min-w-0 max-w-5xl text-center">
           {logoUrl ? (
             <div className={cn("flex justify-center", dense ? "mb-4" : "mb-6")}>
               <div
@@ -106,11 +142,14 @@ function HeroBillboard({
             </div>
           ) : null}
           <p className="text-[10px] font-black uppercase tracking-[0.35em] text-white/50">{eyebrow}</p>
+          
           <h2
+            ref={headlineRef}
+            style={dynamicFontSize ? { fontSize: dynamicFontSize } : undefined}
             className={cn(
-              "mt-3 text-balance font-black leading-[1.05] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]",
+              "mt-3 block w-full whitespace-nowrap overflow-visible font-black leading-[1.05] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]",
               editorial && !dense
-                ? "max-w-4xl text-pretty font-semibold normal-case tracking-tight text-4xl md:text-6xl lg:text-7xl"
+                ? "font-semibold normal-case tracking-tight text-4xl md:text-6xl lg:text-7xl"
                 : cn(
                     "uppercase tracking-tight",
                     dense ? "text-2xl md:text-4xl md:tracking-tighter" : "text-3xl md:text-6xl md:tracking-tighter",
@@ -120,6 +159,7 @@ function HeroBillboard({
           >
             {displayHeadline}
           </h2>
+          
           <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-white/30" aria-hidden />
           {displayTagline ? (
             <p
