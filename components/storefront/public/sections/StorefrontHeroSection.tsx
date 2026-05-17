@@ -72,34 +72,44 @@ function HeroBillboard({
     if (!el) return;
 
     const adjustFontSize = () => {
-      // Clear previous inline scale to measure the native unconstrained bounding box
-      el.style.fontSize = "";
-      
       const parent = el.parentElement;
       if (!parent) return;
 
+      // 1. Create an invisible clone out of the document flow to measure unconstrained native width
+      const clone = el.cloneNode(true) as HTMLHeadingElement;
+      clone.style.visibility = "hidden";
+      clone.style.position = "absolute";
+      clone.style.whiteSpace = "nowrap"; 
+      clone.style.width = "max-content";
+      clone.style.fontSize = ""; // Safely clears scale to measure raw base styles
+      
+      parent.appendChild(clone);
+
       const parentWidth = parent.clientWidth;
-      const textWidth = el.scrollWidth;
+      const textWidth = clone.scrollWidth;
 
       if (textWidth > parentWidth && parentWidth > 0) {
         // Compute precise ratio with a 4% aesthetic padding buffer to guarantee safety on mobile
         const scaleFactor = (parentWidth / textWidth) * 0.96;
-        const computedStyle = window.getComputedStyle(el);
+        const computedStyle = window.getComputedStyle(clone);
         const nativeFontSize = parseFloat(computedStyle.fontSize);
         
         setDynamicFontSize(`${nativeFontSize * scaleFactor}px`);
       } else {
         setDynamicFontSize(undefined);
       }
+
+      // 2. Clean up clone immediately after calculations to prevent DOM bloat
+      parent.removeChild(clone);
     };
 
     // Initial check
     adjustFontSize();
     
-    // 1. Recalculate on screen resize
+    // Recalculate on screen resize
     window.addEventListener("resize", adjustFontSize);
     
-    // 2. FIX: Recalculate precisely when custom webfonts (Oswald/Playfair) swap in
+    // Recalculate precisely when custom webfonts (Oswald/Playfair) swap in
     if ("fonts" in document) {
       document.fonts.ready.then(() => {
         adjustFontSize();
@@ -110,7 +120,6 @@ function HeroBillboard({
   }, [headline, font, dense, editorial]);
 
   return (
-    /* FIX: Added overflow-hidden directly onto this container to choke off absolute circles */
     <div className={cn("relative overflow-hidden w-full max-w-full", dense ? "min-h-[220px] md:min-h-[260px]" : "min-h-[280px] md:min-h-[360px]")}>
       <div
         className="absolute inset-0"
@@ -159,8 +168,7 @@ function HeroBillboard({
             ref={headlineRef}
             style={dynamicFontSize ? { fontSize: dynamicFontSize } : undefined}
             className={cn(
-              /* FIX: Replaced overflow-visible with overflow-hidden text-ellipsis as a final fail-safe */
-              "mt-3 block w-full whitespace-nowrap overflow-hidden text-ellipsis font-black leading-[1.05] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]",
+              "mt-3 block w-full whitespace-nowrap font-black leading-[1.05] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]",
               editorial && !dense
                 ? "font-semibold normal-case tracking-tight text-4xl md:text-6xl lg:text-7xl"
                 : cn(
