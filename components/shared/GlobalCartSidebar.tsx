@@ -1091,26 +1091,7 @@ export default function GlobalCartSidebar() {
                      </div>
                    )}
 
-                   {(() => {
-                     const est = estimateNgnSellerSettlementFromGross(finalTotal);
-                     return (
-                       <div className="mb-4 rounded-2xl border border-gray-100 bg-gray-50 p-3 text-[9px] font-medium leading-relaxed text-gray-600">
-                         <p className="font-black uppercase tracking-widest text-gray-400">What you pay vs. seller payout</p>
-                         <p className="mt-1.5">
-                           You pay <strong className="text-gray-900">₦{finalTotal.toLocaleString()}</strong> at checkout. The seller&apos;s estimated
-                           settlement after <strong>StoreLink 2.5%</strong> (₦{est.storelinkFeeNgn.toLocaleString()}) and{" "}
-                           <strong>Paystack ~1.5%</strong> (₦{est.paystackFeeNgn.toLocaleString()}) — about{" "}
-                           <strong className="text-gray-900">₦{est.estimatedNetToSellerNgn.toLocaleString()}</strong> — final amounts follow Paystack
-                           settlement. See{" "}
-                           <Link href="/terms" className="font-black text-emerald-700 underline underline-offset-2">
-                             Terms
-                           </Link>
-                           .
-                         </p>
-                       </div>
-                     );
-                   })()}
-
+                   
                    <button
                      type="button"
                      onClick={() => {

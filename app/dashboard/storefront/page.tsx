@@ -31,43 +31,40 @@ type HeroPayload = {
 
 function getHeroPayload(payload: Record<string, unknown>): HeroPayload {
   return {
-    headline:
-      typeof payload.headline === "string" ? payload.headline : "",
-    tagline:
-      typeof payload.tagline === "string" ? payload.tagline : "",
+    headline: typeof payload.headline === "string" ? payload.headline : "",
+    tagline: typeof payload.tagline === "string" ? payload.tagline : "",
   };
 }
 
 export default function DashboardStorefrontBlocksPage() {
   const router = useRouter();
 
-  // ── Core state ─────────────────────────────────────────
+  // Global State
   const [loading, setLoading] = useState(true);
   const [savingId, setSavingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Seller & Storefront State
   const [sellerId, setSellerId] = useState<string | null>(null);
   const [slug, setSlug] = useState<string | null>(null);
   const [blocks, setBlocks] = useState<BlockRow[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
-  // Theme state
+  // Theme State
   const [themeAccent, setThemeAccent] = useState("#059669");
   const [themeFont, setThemeFont] = useState<StorefrontFontPreset>("sans");
   const [themeLayout, setThemeLayout] = useState<StorefrontLayoutPreset>("grid");
   const [themeHideOos, setThemeHideOos] = useState(false);
-  const lastNormalizedThemeRef = useRef<ReturnType<
-    typeof normalizeStorefrontTheme
-  > | null>(null);
+  const lastNormalizedThemeRef = useRef<ReturnType<typeof normalizeStorefrontTheme> | null>(null);
 
-  // Hero drafts (keyed by block id)
+  // Hero Draft State
   const [heroDrafts, setHeroDrafts] = useState<Record<string, HeroPayload>>({});
-  const [originalHero, setOriginalHero] = useState<Record<string, HeroPayload>>(
-    {}
-  );
+  const [originalHero, setOriginalHero] = useState<Record<string, HeroPayload>>({});
 
-  // Dirty tracking
+  // Dirty Tracking
   const isThemeDirty = useMemo(() => {
     if (!lastNormalizedThemeRef.current) return false;
     const last = lastNormalizedThemeRef.current;
+    
     return (
       last.accent !== themeAccent ||
       last.font !== themeFont ||
@@ -77,22 +74,24 @@ export default function DashboardStorefrontBlocksPage() {
   }, [themeAccent, themeFont, themeLayout, themeHideOos]);
 
   const dirtyHeroIds = useMemo(() => {
-    const dirty: string[] = [];
-    for (const id of Object.keys(heroDrafts)) {
+    return Object.keys(heroDrafts).filter((id) => {
       const draft = heroDrafts[id];
       const orig = originalHero[id];
-      if (!orig || draft.headline !== orig.headline || draft.tagline !== orig.tagline) {
-        dirty.push(id);
-      }
-    }
-    return dirty;
+      return !orig || draft.headline !== orig.headline || draft.tagline !== orig.tagline;
+    });
   }, [heroDrafts, originalHero]);
 
-  // ── Data loading ────────────────────────────────────────
+  const previewGradient = useMemo(() => ({
+    background: `linear-gradient(125deg, color-mix(in srgb, ${themeAccent} 88%, #020617) 0%, color-mix(in srgb, ${themeAccent} 40%, #0f172a) 100%)`,
+  }), [themeAccent]);
+
+  // Data Loading
   const load = useCallback(async () => {
     setError(null);
+    
     const { data: auth } = await supabase.auth.getUser();
     const uid = auth?.user?.id;
+    
     if (!uid) {
       setSellerId(null);
       setBlocks([]);
@@ -104,7 +103,9 @@ export default function DashboardStorefrontBlocksPage() {
       .select("id, is_seller, slug, storefront_theme")
       .eq("id", uid)
       .maybeSingle();
+      
     if (pErr) throw pErr;
+    
     if (!prof?.is_seller) {
       setSellerId(null);
       setBlocks([]);
@@ -114,7 +115,7 @@ export default function DashboardStorefrontBlocksPage() {
     setSellerId(uid);
     setSlug(typeof prof.slug === "string" ? prof.slug : null);
 
-    // Theme
+    // Initialize Theme
     const t = normalizeStorefrontTheme(prof.storefront_theme);
     lastNormalizedThemeRef.current = t;
     setThemeAccent(t.accent);
@@ -122,7 +123,7 @@ export default function DashboardStorefrontBlocksPage() {
     setThemeLayout(t.layout);
     setThemeHideOos(t.hide_out_of_stock);
 
-    // Fetch hero blocks — ONLY visible ones, enforce single hero
+    // Fetch Hero Blocks
     const { data, error: bErr } = await supabase
       .from("storefront_blocks")
       .select("id, type, payload, sort_order, is_visible")
@@ -130,17 +131,12 @@ export default function DashboardStorefrontBlocksPage() {
       .eq("type", "hero")
       .eq("is_visible", true)
       .order("sort_order", { ascending: true })
-      .limit(2); // fetch 2 so we can detect duplicates
+      .limit(2);
 
     if (bErr) {
-      if (
-        bErr.code === "42P01" ||
-        bErr.message?.includes("storefront_blocks")
-      ) {
+      if (bErr.code === "42P01" || bErr.message?.includes("storefront_blocks")) {
         setBlocks([]);
-        setError(
-          "Storefront blocks are not available yet. Apply the latest database migration, then refresh this page."
-        );
+        setError("Storefront blocks are not available yet. Apply the latest database migration, then refresh this page.");
         return;
       }
       throw bErr;
@@ -148,24 +144,21 @@ export default function DashboardStorefrontBlocksPage() {
 
     let rows = (data || []) as BlockRow[];
 
-    // 🛡️ Deduplication guard: if >1 hero exists, keep first, hide rest
+    // Deduplication Guard: Keep first, hide the rest
     if (rows.length > 1) {
       const [keep, ...duplicates] = rows;
       rows = [keep];
-      // Silently hide duplicates in background (don't await)
+      
       supabase
         .from("storefront_blocks")
         .update({ is_visible: false, updated_at: new Date().toISOString() })
-        .in(
-          "id",
-          duplicates.map((d) => d.id)
-        )
+        .in("id", duplicates.map((d) => d.id))
         .then(({ error: hideErr }) => {
           if (hideErr) console.error("Failed to hide duplicate heroes:", hideErr);
         });
     }
 
-    // Auto-create hero if none exists
+    // Auto-create Hero if none exist
     if (rows.length === 0) {
       const { data: inserted, error: insErr } = await supabase
         .from("storefront_blocks")
@@ -174,14 +167,14 @@ export default function DashboardStorefrontBlocksPage() {
           type: "hero",
           payload: {
             headline: "Your headline in a few bold words",
-            tagline:
-              "One line about shipping, drops, or what makes you different.",
+            tagline: "One line about shipping, drops, or what makes you different.",
           },
           sort_order: 0,
           is_visible: true,
         })
         .select("id, type, payload, sort_order, is_visible")
         .single();
+        
       if (!insErr && inserted) {
         rows = [inserted as BlockRow];
       }
@@ -189,48 +182,48 @@ export default function DashboardStorefrontBlocksPage() {
 
     setBlocks(rows);
 
-    // Set drafts & originals
+    // Populate Drafts & Originals
     const nextDrafts: Record<string, HeroPayload> = {};
     const nextOriginals: Record<string, HeroPayload> = {};
+    
     for (const b of rows) {
       const pl = getHeroPayload(b.payload);
       nextDrafts[b.id] = pl;
       nextOriginals[b.id] = { ...pl };
     }
+    
     setHeroDrafts(nextDrafts);
     setOriginalHero(nextOriginals);
   }, []);
 
   useEffect(() => {
     let mounted = true;
+    
     (async () => {
       setLoading(true);
       try {
         await load();
       } catch (e: unknown) {
-        if (mounted)
-          setError(e instanceof Error ? e.message : "Could not load blocks.");
+        if (mounted) setError(e instanceof Error ? e.message : "Could not load blocks.");
       } finally {
         if (mounted) setLoading(false);
       }
     })();
+    
     return () => {
       mounted = false;
     };
   }, [load]);
 
-  // ── Save handlers ───────────────────────────────────────
+  // Handlers
   const saveHero = async (id: string) => {
     setSavingId(id);
     setError(null);
+    
     try {
       const raw = heroDrafts[id] ?? { headline: "", tagline: "" };
-      const headline = raw.headline
-        .trim()
-        .slice(0, STOREFRONT_HERO_HEADLINE_MAX);
-      const tagline = raw.tagline
-        .trim()
-        .slice(0, STOREFRONT_HERO_TAGLINE_MAX);
+      const headline = raw.headline.trim().slice(0, STOREFRONT_HERO_HEADLINE_MAX);
+      const tagline = raw.tagline.trim().slice(0, STOREFRONT_HERO_TAGLINE_MAX);
       const finalHeadline = headline || "Welcome to our shop";
 
       const { error: upErr } = await supabase
@@ -240,13 +233,14 @@ export default function DashboardStorefrontBlocksPage() {
           updated_at: new Date().toISOString(),
         })
         .eq("id", id);
+        
       if (upErr) throw upErr;
 
-      // Sync original to mark clean
       setOriginalHero((prev) => ({
         ...prev,
         [id]: { headline: finalHeadline, tagline },
       }));
+      
       router.replace("/dashboard?storefront_saved=hero");
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Could not save hero.");
@@ -259,15 +253,16 @@ export default function DashboardStorefrontBlocksPage() {
     if (!sellerId) return;
     setSavingId("theme");
     setError(null);
+    
     try {
       const themePayload = normalizeStorefrontTheme({
         accent: themeAccent,
         font: themeFont,
-        banner_secondary_url:
-          lastNormalizedThemeRef.current?.banner_secondary_url ?? null,
+        banner_secondary_url: lastNormalizedThemeRef.current?.banner_secondary_url ?? null,
         layout: themeLayout,
         hide_out_of_stock: themeHideOos,
       });
+      
       const { error: upErr } = await supabase
         .from("profiles")
         .update({
@@ -281,6 +276,7 @@ export default function DashboardStorefrontBlocksPage() {
           updated_at: new Date().toISOString(),
         })
         .eq("id", sellerId);
+        
       if (upErr) throw upErr;
 
       lastNormalizedThemeRef.current = themePayload;
@@ -292,15 +288,7 @@ export default function DashboardStorefrontBlocksPage() {
     }
   };
 
-  // ── Derived preview style (memoized) ────────────────────
-  const previewGradient = useMemo(
-    () => ({
-      background: `linear-gradient(125deg, color-mix(in srgb, ${themeAccent} 88%, #020617) 0%, color-mix(in srgb, ${themeAccent} 40%, #0f172a) 100%)`,
-    }),
-    [themeAccent]
-  );
-
-  // ── Render ──────────────────────────────────────────────
+  // Render
   if (loading) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center">
@@ -329,7 +317,6 @@ export default function DashboardStorefrontBlocksPage() {
 
   return (
     <div className="mx-auto max-w-3xl pb-16">
-      {/* Header */}
       <div className="mb-8">
         <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">
           Dashboard
@@ -347,7 +334,7 @@ export default function DashboardStorefrontBlocksPage() {
           still open from the <strong className="text-gray-900">About</strong>{" "}
           panel on the live shop.
         </p>
-        {previewHref ? (
+        {previewHref && (
           <a
             href={previewHref}
             target="_blank"
@@ -357,18 +344,16 @@ export default function DashboardStorefrontBlocksPage() {
             <ExternalLink size={14} />
             Preview live storefront
           </a>
-        ) : null}
+        )}
       </div>
 
-      {/* Global error */}
-      {error ? (
+      {error && (
         <div className="mb-4 flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3">
           <AlertTriangle size={16} className="mt-0.5 shrink-0 text-amber-600" />
           <p className="text-sm font-medium text-amber-950">{error}</p>
         </div>
-      ) : null}
+      )}
 
-      {/* ── Appearance & Catalog ─────────────────────────── */}
       <section aria-label="Storefront appearance" className="mb-10 space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-[10px] font-black uppercase tracking-widest text-gray-400">
@@ -408,16 +393,11 @@ export default function DashboardStorefrontBlocksPage() {
         </button>
       </section>
 
-      {/* ── Hero ─────────────────────────────────────────── */}
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-[10px] font-black uppercase tracking-widest text-gray-400">
           Hero
         </h2>
-        {dirtyHeroIds.length > 0 && (
-          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-700">
-            Unsaved
-          </span>
-        )}
+        
       </div>
 
       {blocks.length === 0 ? (
@@ -428,10 +408,7 @@ export default function DashboardStorefrontBlocksPage() {
       ) : (
         <ul className="space-y-4" role="list">
           {blocks.map((row) => {
-            const draft = heroDrafts[row.id] || {
-              headline: "",
-              tagline: "",
-            };
+            const draft = heroDrafts[row.id] || { headline: "", tagline: "" };
             const isDirty = dirtyHeroIds.includes(row.id);
 
             return (
@@ -452,7 +429,6 @@ export default function DashboardStorefrontBlocksPage() {
                 </div>
 
                 <div className="mt-4 space-y-4">
-                  {/* Live preview */}
                   <div
                     className="overflow-hidden rounded-2xl border border-gray-200 px-5 py-8 text-center text-white shadow-inner"
                     style={previewGradient}
@@ -465,14 +441,13 @@ export default function DashboardStorefrontBlocksPage() {
                         .slice(0, STOREFRONT_HERO_HEADLINE_MAX)
                         .toUpperCase()}
                     </p>
-                    {draft.tagline.trim() ? (
+                    {draft.tagline.trim() && (
                       <p className="mt-3 text-xs font-semibold text-white/85">
                         {draft.tagline.slice(0, STOREFRONT_HERO_TAGLINE_MAX)}
                       </p>
-                    ) : null}
+                    )}
                   </div>
 
-                  {/* Headline field */}
                   <div className="space-y-2">
                     <label
                       htmlFor={`hero-headline-${row.id}`}
@@ -502,7 +477,6 @@ export default function DashboardStorefrontBlocksPage() {
                     </p>
                   </div>
 
-                  {/* Tagline field */}
                   <div className="space-y-2">
                     <label
                       htmlFor={`hero-tagline-${row.id}`}
@@ -532,7 +506,6 @@ export default function DashboardStorefrontBlocksPage() {
                     </p>
                   </div>
 
-                  {/* Save button */}
                   <button
                     type="button"
                     disabled={savingId === row.id || !isDirty}

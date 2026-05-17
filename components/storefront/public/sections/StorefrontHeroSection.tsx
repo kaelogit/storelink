@@ -82,8 +82,8 @@ function HeroBillboard({
       const textWidth = el.scrollWidth;
 
       if (textWidth > parentWidth && parentWidth > 0) {
-        // Compute precise ratio with a 2% aesthetic padding buffer to prevent edge hugging
-        const scaleFactor = (parentWidth / textWidth) * 0.98;
+        // Compute precise ratio with a 4% aesthetic padding buffer to guarantee safety on mobile
+        const scaleFactor = (parentWidth / textWidth) * 0.96;
         const computedStyle = window.getComputedStyle(el);
         const nativeFontSize = parseFloat(computedStyle.fontSize);
         
@@ -93,13 +93,25 @@ function HeroBillboard({
       }
     };
 
+    // Initial check
     adjustFontSize();
+    
+    // 1. Recalculate on screen resize
     window.addEventListener("resize", adjustFontSize);
+    
+    // 2. FIX: Recalculate precisely when custom webfonts (Oswald/Playfair) swap in
+    if ("fonts" in document) {
+      document.fonts.ready.then(() => {
+        adjustFontSize();
+      });
+    }
+
     return () => window.removeEventListener("resize", adjustFontSize);
   }, [headline, font, dense, editorial]);
 
   return (
-    <div className={cn("relative", dense ? "min-h-[220px] md:min-h-[260px]" : "min-h-[280px] md:min-h-[360px]")}>
+    /* FIX: Added overflow-hidden directly onto this container to choke off absolute circles */
+    <div className={cn("relative overflow-hidden w-full max-w-full", dense ? "min-h-[220px] md:min-h-[260px]" : "min-h-[280px] md:min-h-[360px]")}>
       <div
         className="absolute inset-0"
         style={{
@@ -123,7 +135,7 @@ function HeroBillboard({
       />
       <div
         className={cn(
-          "relative flex min-h-[inherit] flex-col justify-center",
+          "relative flex min-h-[inherit] flex-col justify-center w-full max-w-full",
           dense ? "py-10 md:py-14" : "py-14 md:py-24",
           STOREFRONT_GUTTER_X,
         )}
@@ -147,7 +159,8 @@ function HeroBillboard({
             ref={headlineRef}
             style={dynamicFontSize ? { fontSize: dynamicFontSize } : undefined}
             className={cn(
-              "mt-3 block w-full whitespace-nowrap overflow-visible font-black leading-[1.05] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]",
+              /* FIX: Replaced overflow-visible with overflow-hidden text-ellipsis as a final fail-safe */
+              "mt-3 block w-full whitespace-nowrap overflow-hidden text-ellipsis font-black leading-[1.05] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]",
               editorial && !dense
                 ? "font-semibold normal-case tracking-tight text-4xl md:text-6xl lg:text-7xl"
                 : cn(
@@ -223,7 +236,7 @@ export default function StorefrontHeroSection({
 
   if (!heroBlocks.length) {
     return (
-      <section aria-label="Shop hero" className="relative overflow-hidden border-b border-black/10 pb-10 md:pb-16">
+      <section aria-label="Shop hero" className="relative overflow-hidden w-full border-b border-black/10 pb-10 md:pb-16">
         <HeroBillboard
           accent={accent}
           font={font}
@@ -239,7 +252,7 @@ export default function StorefrontHeroSection({
   }
 
   return (
-    <section aria-label="Shop hero" className="relative overflow-hidden border-b border-black/10 pb-10 md:pb-16">
+    <section aria-label="Shop hero" className="relative overflow-hidden w-full border-b border-black/10 pb-10 md:pb-16">
       {heroBlocks.map((block) => {
         const pl = block.payload || {};
         const headline = String(typeof pl.headline === "string" ? pl.headline : "")

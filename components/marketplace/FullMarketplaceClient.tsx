@@ -39,7 +39,6 @@ import MarketplaceTrackedProductLink from "@/components/marketplace/MarketplaceT
 interface FullMarketplaceClientProps {
   initialProducts: any[];
   categories: { id: string; name: string; slug: string }[];
-  /** True when the server had zero marketplace rows to show (distinct from “filters returned nothing”). */
   initialFeedEmpty: boolean;
 }
 
@@ -66,7 +65,7 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
     [viewerId, viewerLat, viewerLon],
   );
 
-  // --- 1. CORE STATES ---
+  // --- CORE STATES ---
   const [products, setProducts] = useState(initialProducts);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialProducts.length >= BATCH_SIZE);
@@ -77,25 +76,39 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
   const [toast, setToast] = useState<{ show: boolean; msg: string }>({ show: false, msg: "" });
   const [flashOnly, setFlashOnly] = useState(false); 
   const [isJumping, setIsJumping] = useState(false);
-
   const [fetchError, setFetchError] = useState<string | null>(null);
-
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
+  // --- SCROLL HANDLER (Optimized) ---
   useEffect(() => {
+    let lastScroll = window.scrollY;
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          if (Math.abs(currentScrollY - lastScroll) < 15) {
+            ticking = false;
+            return;
+          }
+
+          if (currentScrollY > lastScroll && currentScrollY > 120) {
+            setIsVisible(false);
+          } else {
+            setIsVisible(true);
+          }
+          lastScroll = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
       }
-      setLastScrollY(currentScrollY);
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -104,7 +117,6 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
     return () => clearTimeout(handler);
   }, [search]);
 
-  /** Optional coarse location for ranking (same RPC fields as mobile); permission is browser-driven. */
   useEffect(() => {
     let cancelled = false;
     void supabase.auth.getUser().then(({ data }) => {
@@ -125,7 +137,6 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
     };
   }, []);
 
-  /** One-time hydrate from ?q=&category=&flash= (shareable marketplace links). */
   useEffect(() => {
     if (urlInitRan.current) return;
     urlInitRan.current = true;
@@ -137,7 +148,6 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
     if (flash) setFlashOnly(true);
   }, [searchParams, categories]);
 
-  /** Keep the address bar in sync after the shopper changes filters (not on first URL-driven hydrate). */
   useEffect(() => {
     if (!userAdjustedFilters.current) return;
     const next = new URLSearchParams();
@@ -174,7 +184,7 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
         whatsapp_number: product.stores?.whatsapp_number || "", 
     };
     addToCart(product, storeData as any);
-    setToast({ show: true, msg: `Secured ${product.name}!` });
+    setToast({ show: true, msg: `Added ${product.name} to bag` });
     setTimeout(() => setToast({ show: false, msg: "" }), 3000);
   };
 
@@ -183,9 +193,7 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
     subscription_expiry?: string | null;
     subscription_status?: string | null;
   }) => {
-    return effectiveSellerTier(stores?.subscription_plan, stores?.subscription_expiry, stores?.subscription_status) === "diamond"
-      ? 2
-      : 1;
+    return effectiveSellerTier(stores?.subscription_plan, stores?.subscription_expiry, stores?.subscription_status) === "diamond" ? 2 : 1;
   };
 
   useEffect(() => {
@@ -257,10 +265,7 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
             ),
           );
           for (const ex of extraResults) {
-            if (ex.error) {
-              console.error(ex.error);
-              continue;
-            }
+            if (ex.error) continue;
             for (const row of ex.data || []) {
               if (!byId.has(row.id)) byId.set(row.id, row);
             }
@@ -346,27 +351,33 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
-      {fetchError ? (
-        <div className="mb-4 flex items-start justify-between gap-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3">
+    <div className="mx-auto max-w-7xl px-4 py-6 md:py-10 bg-gray-50/30 min-h-screen">
+      
+      {/* ERROR TOAST */}
+      {fetchError && (
+        <div className="mb-6 flex items-start justify-between gap-3 rounded-2xl border border-red-100 bg-red-50/80 px-4 py-4 backdrop-blur-md">
           <p className="text-sm font-medium text-red-900">{fetchError}</p>
           <button
             type="button"
             onClick={() => setFetchError(null)}
-            className="shrink-0 text-[11px] font-black uppercase tracking-widest text-red-800 underline-offset-2 hover:underline"
+            className="shrink-0 text-xs font-bold uppercase tracking-wide text-red-800 hover:text-red-600 transition-colors"
           >
             Dismiss
           </button>
         </div>
-      ) : null}
+      )}
 
+      {/* TRENDING CAROUSEL */}
       {trendingDrops.length > 0 && !search && !flashOnly && (
-        <div className="mb-10 animate-in fade-in slide-in-from-top-4 duration-1000">
-           <div className="flex items-center gap-2 mb-4 px-1">
-              <TrendingUp size={18} className="text-amber-500" />
-              <h2 className="font-black text-gray-900 uppercase tracking-tighter text-sm">Trending Live Drops</h2>
+        <div className="mb-12 animate-in fade-in slide-in-from-top-4 duration-700">
+           <div className="flex items-center gap-2 mb-5 px-1">
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-600">
+                <TrendingUp size={16} strokeWidth={2.5} />
+              </div>
+              <h2 className="font-extrabold text-gray-900 uppercase tracking-wide text-sm md:text-base">Trending Live Drops</h2>
            </div>
-           <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4 -mx-1 px-1">
+           
+           <div className="flex gap-4 overflow-x-auto no-scrollbar pb-6 -mx-4 px-4 md:-mx-1 md:px-1 snap-x snap-mandatory">
               {trendingDrops.map((product, ti) => {
                 const displayP = productDisplayPrice({ ...product, price: Number(product.price) });
                 const coins = product.stores?.loyalty_enabled 
@@ -380,33 +391,41 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
                     product={{ id: product.id, seller_id: product.seller_id }}
                     position={ti}
                     band="trending"
-                    className="min-w-[150px] md:min-w-[190px] bg-white p-2 rounded-2xl border-2 border-amber-100 shadow-sm active:scale-95 transition relative"
+                    className="group min-w-[160px] md:min-w-[200px] snap-start bg-white p-2.5 rounded-3xl border border-amber-100/60 shadow-[0_4px_20px_-4px_rgba(251,191,36,0.15)] hover:shadow-[0_8px_30px_-4px_rgba(251,191,36,0.25)] hover:-translate-y-1 active:scale-95 transition-all duration-300 relative"
                   >
-                     <div className="aspect-square relative rounded-xl overflow-hidden mb-2">
+                     <div className="aspect-[4/5] relative rounded-2xl overflow-hidden mb-3 bg-gray-50">
                         {product.image_urls?.[0] ? (
                           <Image
                             src={product.image_urls[0]}
                             alt={product.name}
                             fill
-                            className="object-cover"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                             unoptimized
                             fetchPriority={ti < 2 ? "high" : undefined}
                           />
                         ) : (
-                          <div className="h-full w-full flex items-center justify-center text-gray-300 bg-gray-50">
-                            <Package size={24} />
+                          <div className="h-full w-full flex items-center justify-center text-gray-300">
+                            <Package size={28} strokeWidth={1.5} />
                           </div>
                         )}
-                        <div className="absolute top-1.5 left-1.5 bg-amber-500 text-white text-[7px] font-black px-1.5 py-0.5 rounded animate-pulse">TRENDING</div>
+                        
+                        {/* Gradient overlay for better text contrast */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                        <div className="absolute top-2 left-2 bg-amber-500 text-white text-[10px] font-black px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                          <Zap size={10} fill="currentColor" className="animate-pulse" /> TRENDING
+                        </div>
                         
                         {coins > 0 && (
-                          <div className="absolute top-1.5 right-1.5 bg-emerald-500 text-white text-[7px] font-black px-1.5 py-0.5 rounded flex items-center gap-0.5 shadow-sm">
-                             <Zap size={8} fill="white" /> +₦{coins}
+                          <div className="absolute top-2 right-2 bg-gray-900/90 backdrop-blur-md text-emerald-400 text-[10px] font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                             <Sparkles size={10} /> +₦{coins}
                           </div>
                         )}
                      </div>
-                     <p className="font-bold text-gray-900 text-[10px] truncate uppercase">{product.name}</p>
-                     <p className="text-emerald-600 font-black text-xs mt-1">₦{displayP.toLocaleString()}</p>
+                     <div className="px-1">
+                        <p className="font-semibold text-gray-900 text-xs md:text-sm truncate">{product.name}</p>
+                        <p className="text-emerald-600 font-extrabold text-sm mt-1">₦{displayP.toLocaleString()}</p>
+                     </div>
                   </MarketplaceTrackedProductLink>
                 );
               })}
@@ -414,18 +433,21 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
         </div>
       )}
 
-      <div className={`sticky top-16 z-30 mb-6 border-b border-gray-200 bg-gray-50/95 py-4 backdrop-blur-sm transition-all duration-300 ease-in-out ${
+      {/* STICKY SEARCH & FILTERS */}
+      <div className={`sticky top-16 z-30 mb-8 rounded-3xl border border-white/40 bg-white/70 p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl transition-transform duration-500 ease-out ${
           isVisible 
-          ? "translate-y-0 opacity-100" 
-          : "-translate-y-24 opacity-0 pointer-events-none md:translate-y-0 md:opacity-100 md:pointer-events-auto"
+          ? "translate-y-0" 
+          : "-translate-y-[150%] md:translate-y-0"
       }`}>
         <div className="max-w-5xl mx-auto space-y-4">
           <div className="flex flex-col md:flex-row gap-3">
-            <div className="relative flex-1">
-              <Search className="absolute left-4 top-3.5 text-gray-400 w-5 h-5" />
+            
+            {/* Search Input */}
+            <div className="relative flex-1 group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-gray-900 transition-colors" />
               <input
                 placeholder="Search products, brands, or categories…"
-                className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 bg-white text-base font-medium"
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl border-none bg-gray-100/50 text-gray-900 placeholder-gray-500 font-medium shadow-inner focus:outline-none focus:ring-2 focus:ring-gray-900 focus:bg-white transition-all"
                 value={search}
                 onChange={(e) => {
                   markFilterInteraction();
@@ -434,10 +456,12 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
                 aria-label="Search marketplace products"
               />
             </div>
-            <div className="relative min-w-[200px]">
-              <Filter className="absolute left-4 top-3.5 text-gray-500 w-4 h-4" />
+
+            {/* Category Select */}
+            <div className="relative min-w-[220px] group">
+              <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 group-focus-within:text-gray-900 transition-colors" />
               <select
-                className="w-full pl-10 pr-8 py-3 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 bg-white text-gray-700 appearance-none font-bold cursor-pointer"
+                className="w-full pl-11 pr-10 py-3.5 rounded-2xl border-none bg-gray-100/50 text-gray-800 font-semibold appearance-none cursor-pointer shadow-inner focus:outline-none focus:ring-2 focus:ring-gray-900 focus:bg-white transition-all"
                 value={selectedCategory}
                 onChange={(e) => {
                   markFilterInteraction();
@@ -452,74 +476,64 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
                   </option>
                 ))}
               </select>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
             </div>
           </div>
-        
 
+          {/* Flash Toggle */}
           <div className="flex gap-2">
              <button 
                 onClick={() => {
                   markFilterInteraction();
                   setFlashOnly(!flashOnly);
                 }}
-                className={`px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 border ${
+                className={`px-5 py-2.5 rounded-full text-[11px] font-bold tracking-wide transition-all flex items-center gap-2 border-2 ${
                   flashOnly 
-                  ? "bg-amber-500 text-white border-amber-600 shadow-lg shadow-amber-200 scale-105" 
-                  : "bg-white text-amber-600 border-amber-100 hover:bg-amber-50"
+                  ? "bg-amber-400 text-amber-950 border-amber-400 shadow-[0_4px_15px_-3px_rgba(251,191,36,0.4)] scale-[1.02]" 
+                  : "bg-white text-gray-600 border-gray-100 hover:border-amber-200 hover:text-amber-700"
                 }`}
              >
-                <Zap size={14} fill={flashOnly ? "white" : "currentColor"} className={flashOnly ? "animate-pulse" : ""} />
+                <Zap size={14} className={flashOnly ? "fill-amber-950" : "text-amber-500"} />
                 {flashOnly ? "Viewing Active Drops" : "Show Only Live Drops"}
              </button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto mb-4 flex flex-wrap items-center gap-2 px-1">
-        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Popular searches</span>
-        <div className="flex flex-wrap gap-2">
-          {MARKETPLACE_SUGGESTED_SEARCHES.map((term) => (
-            <button
-              key={term}
-              type="button"
-              onClick={() => {
-                markFilterInteraction();
-                setSearch(term);
-              }}
-              className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-[11px] font-bold text-gray-700 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50/80"
-            >
-              {term}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {selectedCategory !== "all" ? (
-        <div className="max-w-5xl mx-auto mb-3 px-1">
-          <span className="inline-flex items-center rounded-full border border-gray-200 bg-white px-3 py-1 text-[11px] font-black uppercase tracking-widest text-gray-700">
-            Category: {categories.find((c) => c.slug === selectedCategory)?.name || selectedCategory}
+      {/* Active Category Indicator */}
+      {selectedCategory !== "all" && (
+        <div className="max-w-5xl mx-auto mb-6 px-1 animate-in fade-in">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-1.5 text-xs font-bold tracking-wide text-gray-800 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-gray-900"></span>
+            {categories.find((c) => c.slug === selectedCategory)?.name || selectedCategory}
           </span>
         </div>
-      ) : null}
+      )}
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6">
+      {/* PRODUCT GRID */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
         {loading && products.length === 0 ? (
+          // Skeleton Loaders
           Array.from({ length: 10 }).map((_, i) => (
             <div
               key={`sk-${i}`}
-              className="animate-pulse rounded-2xl border border-gray-100 bg-white p-2.5 shadow-sm"
+              className="animate-pulse rounded-3xl bg-white p-3 shadow-sm ring-1 ring-gray-900/5"
             >
-              <div className="aspect-square rounded-xl bg-gray-100" />
-              <div className="mt-3 h-3 w-[78%] rounded bg-gray-100" />
-              <div className="mt-2 h-3 w-[52%] rounded bg-gray-100" />
-              <div className="mt-4 h-4 w-[36%] rounded bg-gray-100" />
+              <div className="aspect-square rounded-2xl bg-gray-100 mb-4" />
+              <div className="h-4 w-3/4 rounded-lg bg-gray-100 mb-2" />
+              <div className="h-3 w-1/2 rounded-lg bg-gray-100 mb-4" />
+              <div className="flex justify-between items-end mt-4">
+                 <div className="h-5 w-1/3 rounded-lg bg-gray-100" />
+                 <div className="h-8 w-8 rounded-full bg-gray-100" />
+              </div>
             </div>
           ))
         ) : (
           products.map((product: any, index: number) => {
             const isFlash = isProductFlashDropActive(product);
-            const isDiamond =
-              effectiveSellerTier(
+            const isDiamond = effectiveSellerTier(
                 product.stores?.subscription_plan,
                 product.stores?.subscription_expiry,
                 product.stores?.subscription_status,
@@ -538,130 +552,125 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
               product={{ id: product.id, seller_id: product.seller_id }}
               position={index}
               band="grid"
-              className={`bg-white p-2.5 rounded-2xl border transition-all duration-500 flex flex-col relative h-full group ${
+              className={`group flex flex-col bg-white p-3 rounded-3xl transition-all duration-300 relative h-full ${
                 isDiamond 
-                ? 'border-purple-200 shadow-[0_10px_30px_rgba(147,51,234,0.08)] ring-1 ring-purple-50' 
-                : 'border-gray-100 shadow-sm'
-              } hover:shadow-2xl hover:-translate-y-2`}
+                ? 'shadow-[0_8px_30px_rgba(147,51,234,0.06)] ring-1 ring-purple-100 hover:shadow-[0_12px_40px_rgba(147,51,234,0.12)]' 
+                : 'shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] ring-1 ring-gray-900/5 hover:shadow-[0_12px_30px_-4px_rgba(0,0,0,0.1)]'
+              } hover:-translate-y-1`}
             >
-              <div className="aspect-square bg-gray-50 rounded-xl mb-3 relative overflow-hidden">
+              {/* Image Container */}
+              <div className="aspect-square bg-gray-50/50 rounded-2xl mb-4 relative overflow-hidden">
                 {product.image_urls?.[0] ? (
                   <Image
                     src={product.image_urls[0]}
                     alt={product.name}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     unoptimized
                     fetchPriority={index < 6 ? "high" : undefined}
                   />
                 ) : (
                   <div className="h-full w-full flex items-center justify-center text-gray-300">
-                    <Package size={30} />
+                    <Package size={32} strokeWidth={1} />
                   </div>
                 )}
                 
-                {isFlash ? (
-                  <div className="absolute top-2 left-2 bg-amber-500 text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20">
-                     <Zap size={10} fill="currentColor" /> LIVE DROP
-                  </div>
-                ) : isDiamond && (
-                  <span className="absolute top-2 left-2 bg-purple-600 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md flex items-center gap-1 z-20">
-                     <Gem size={10} className="fill-white"/> TOP
-                  </span>
-                )}
+                {/* Badges */}
+                <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 z-20 items-start">
+                    {isFlash ? (
+                    <div className="bg-amber-500 text-white text-[10px] px-2.5 py-1 rounded-full font-black shadow-md flex items-center gap-1">
+                        <Zap size={10} fill="currentColor" /> LIVE DROP
+                    </div>
+                    ) : isDiamond && (
+                    <span className="bg-purple-600/90 backdrop-blur-sm text-white text-[10px] px-2.5 py-1 rounded-full font-bold shadow-md flex items-center gap-1">
+                        <Gem size={10} className="fill-white"/> TOP
+                    </span>
+                    )}
 
-                {rewardCoins > 0 && (
-                  <div className="absolute top-2 right-2 bg-emerald-600/90 backdrop-blur-sm text-white text-[9px] px-2 py-1 rounded-lg font-black shadow-lg flex items-center gap-1 z-20 animate-in zoom-in">
-                    <Zap size={10} fill="white" /> +₦{rewardCoins.toLocaleString()}
-                  </div>
-                )}
+                    {rewardCoins > 0 && (
+                    <div className="bg-gray-900/80 backdrop-blur-md text-emerald-400 text-[10px] px-2.5 py-1 rounded-full font-bold shadow-md flex items-center gap-1">
+                        <Sparkles size={10} /> +₦{rewardCoins.toLocaleString()}
+                    </div>
+                    )}
+                </div>
 
+                {/* Quick Add Button */}
                 <button 
                   onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleAddToCart(product); }}
-                  className={`absolute bottom-2 right-2 p-2 rounded-full shadow-lg hover:scale-125 transition-all z-10 ${isFlash ? 'bg-amber-500 text-white' : 'bg-gray-900 text-white'}`}
+                  className={`absolute bottom-2.5 right-2.5 p-2.5 rounded-full shadow-lg hover:scale-110 active:scale-90 transition-all z-10 ${
+                      isFlash ? 'bg-amber-500 text-white' : 'bg-white text-gray-900 ring-1 ring-gray-900/10'
+                  }`}
+                  aria-label="Add to cart"
                 >
-                  <Plus size={18} strokeWidth={3} />
+                  <Plus size={18} strokeWidth={2.5} />
                 </button>
               </div>
 
+              {/* Product Info */}
               <div className="px-1 flex flex-col flex-1">
-                <h3 className="font-bold text-gray-900 text-xs md:text-sm truncate uppercase tracking-tight mb-0.5">{product.name}</h3>
-                <div className="flex items-center gap-1 text-[10px] text-gray-400 mb-1 truncate font-bold">
-                  <Store size={11} className="shrink-0 text-gray-300" aria-hidden />
+                <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 leading-tight mb-1.5 group-hover:text-emerald-700 transition-colors">{product.name}</h3>
+                
+                <div className="flex items-center gap-1.5 text-[11px] text-gray-500 mb-2 truncate font-medium">
+                  <Store size={12} className="shrink-0 text-gray-400" />
                   <span className="truncate">{product.stores?.name}</span>
-                  {verified ? (
-                    <span className="inline-flex shrink-0" title="Verified seller">
-                      <BadgeCheck size={12} className="text-blue-500 fill-blue-50" aria-hidden />
-                    </span>
-                  ) : null}
-                  {isDiamond ? (
-                    <span className="inline-flex shrink-0" title="Diamond visibility">
-                      <Gem size={11} className="text-purple-500" aria-hidden />
-                    </span>
-                  ) : null}
-                  {product.stores?.loyalty_enabled ? (
-                    <span className="inline-flex shrink-0" title="Store Coins on">
-                      <Sparkles size={11} className="text-amber-500" aria-hidden />
-                    </span>
-                  ) : null}
+                  {verified && <BadgeCheck size={14} className="text-blue-500 fill-blue-50 shrink-0" />}
                 </div>
-                {regionLabel ? (
-                  <p className="text-[9px] font-bold text-gray-400 mb-2 truncate uppercase tracking-wider">{regionLabel}</p>
-                ) : null}
-                <div className="mt-auto flex items-center justify-between">
+                
+                {regionLabel && (
+                  <p className="text-[10px] font-bold text-gray-400 mb-3 truncate uppercase tracking-widest">{regionLabel}</p>
+                )}
+
+                <div className="mt-auto flex items-end justify-between pt-2 border-t border-gray-100">
                   {isFlash ? (
-                    <div>
-                      <p className="text-[9px] font-bold text-gray-300 line-through">₦{product.price.toLocaleString()}</p>
-                      <p className="text-emerald-700 font-black text-sm md:text-base tracking-tighter">₦{(productFlashPriceNumber(product) ?? product.price).toLocaleString()}</p>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] font-bold text-gray-400 line-through mb-0.5">₦{product.price.toLocaleString()}</span>
+                      <span className="text-emerald-600 font-black text-base tracking-tight">₦{(productFlashPriceNumber(product) ?? product.price).toLocaleString()}</span>
                     </div>
                   ) : (
-                    <p className="text-emerald-700 font-black text-sm md:text-base">₦{product.price.toLocaleString()}</p>
+                    <span className="text-gray-900 font-extrabold text-base tracking-tight">₦{product.price.toLocaleString()}</span>
                   )}
+                  
                   {product.stock_quantity === 0 && (
-                     <span className="text-[8px] bg-red-50 text-red-600 px-2 py-1 rounded font-black uppercase tracking-widest">Sold Out</span>
+                     <span className="text-[9px] bg-red-50 text-red-600 px-2 py-1 rounded-md font-black uppercase tracking-wider ring-1 ring-red-100">Sold Out</span>
                   )}
                 </div>
               </div>
-              {isDiamond && <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-purple-500/10 transition-colors" />}
             </MarketplaceTrackedProductLink>
             );
           })
         )}
       </div>
 
+      {/* EMPTY STATES */}
       {!loading && products.length === 0 ? (
         initialFeedEmpty && selectedCategory === "all" && !debouncedSearch && !flashOnly ? (
-          <div className="mx-auto mt-12 max-w-lg rounded-3xl border border-dashed border-emerald-200 bg-emerald-50/40 px-6 py-10 text-center shadow-sm">
-            <Store className="mx-auto mb-4 h-12 w-12 text-emerald-300" strokeWidth={1.25} />
-            <h2 className="text-lg font-black uppercase tracking-tight text-gray-900">Marketplace is quiet right now</h2>
-            <p className="mt-2 text-sm font-medium leading-relaxed text-gray-700">
-              There are no active listings in the feed yet. Check back soon, or open a seller shop from social or WhatsApp
-              using their StoreLink handle.
+          <div className="mx-auto mt-16 max-w-lg rounded-[2rem] border border-gray-100 bg-white p-10 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50">
+                <Store className="h-10 w-10 text-emerald-500" strokeWidth={1.5} />
+            </div>
+            <h2 className="text-xl font-extrabold text-gray-900 tracking-tight">Marketplace is quiet right now</h2>
+            <p className="mt-3 text-sm font-medium leading-relaxed text-gray-500">
+              There are no active listings in the feed yet. Check back soon, or open a seller shop from social or WhatsApp using their specific handle.
             </p>
-            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <Link
                 href="/account/start-selling"
-                className="inline-flex items-center justify-center rounded-2xl bg-gray-900 px-5 py-3 text-[11px] font-black uppercase tracking-widest text-white transition hover:bg-gray-800"
+                className="inline-flex items-center justify-center rounded-2xl bg-gray-900 px-6 py-3.5 text-xs font-bold tracking-wide text-white transition hover:bg-gray-800 shadow-lg shadow-gray-900/20"
               >
                 Start selling
-              </Link>
-              <Link
-                href="/faq#discovery-loyalty"
-                className="inline-flex items-center justify-center rounded-2xl border border-emerald-200 bg-white px-5 py-3 text-[11px] font-black uppercase tracking-widest text-emerald-900 transition hover:bg-emerald-50"
-              >
-                How discovery works
               </Link>
             </div>
           </div>
         ) : (
-          <div className="mx-auto mt-12 max-w-lg rounded-3xl border border-dashed border-gray-200 bg-white px-6 py-10 text-center shadow-sm">
-            <Package className="mx-auto mb-4 h-12 w-12 text-gray-200" strokeWidth={1.25} />
-            <h2 className="text-lg font-black uppercase tracking-tight text-gray-900">No products match</h2>
-            <p className="mt-2 text-sm font-medium leading-relaxed text-gray-600">
-              Try a shorter search, pick <span className="font-bold text-gray-800">All categories</span>, or turn off live drops.
-              Search looks at product titles; we also fetch a few related words when it helps.
+          <div className="mx-auto mt-16 max-w-lg rounded-[2rem] border border-gray-100 bg-white p-10 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gray-50">
+                <Search className="h-10 w-10 text-gray-400" strokeWidth={1.5} />
+            </div>
+            <h2 className="text-xl font-extrabold text-gray-900 tracking-tight">No products match</h2>
+            <p className="mt-3 text-sm font-medium leading-relaxed text-gray-500">
+              Try a shorter search, pick <span className="font-bold text-gray-800">All categories</span>, or turn off live drops to see more results.
             </p>
-            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <button
                 type="button"
                 onClick={() => {
@@ -670,54 +679,47 @@ export default function FullMarketplaceClient({ initialProducts, categories, ini
                   setSelectedCategory("all");
                   setFlashOnly(false);
                 }}
-                className="rounded-2xl bg-gray-900 px-5 py-3 text-[11px] font-black uppercase tracking-widest text-white transition hover:bg-gray-800"
+                className="rounded-2xl bg-gray-900 px-6 py-3.5 text-xs font-bold tracking-wide text-white transition hover:bg-gray-800 shadow-lg shadow-gray-900/20"
               >
-                Clear filters
+                Clear all filters
               </button>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-2xl border border-gray-200 bg-white px-5 py-3 text-[11px] font-black uppercase tracking-widest text-gray-800 transition hover:bg-gray-50"
-              >
-                Back to home
-              </Link>
             </div>
-            <p className="mt-6 text-xs font-medium text-gray-500">
-              Sellers: discovery is fair and capped — see{" "}
-              <Link href="/faq#discovery-loyalty" className="font-bold text-emerald-700 underline-offset-2 hover:underline">
-                FAQs on discovery
-              </Link>
-              .
-            </p>
           </div>
         )
       ) : null}
 
+      {/* LOAD MORE */}
       {hasMore && products.length >= 12 && (
-        <div className="mt-12 flex justify-center">
+        <div className="mt-16 flex justify-center">
           <button 
             onClick={loadMore} 
             disabled={loading}
-            className="px-10 py-4 bg-white border-2 border-gray-900 text-gray-900 rounded-2xl font-black uppercase text-xs tracking-[0.2em] hover:bg-gray-900 hover:text-white transition-all disabled:opacity-50 flex items-center gap-3 active:scale-95 shadow-xl"
+            className="group px-8 py-4 bg-white border border-gray-200 text-gray-900 rounded-full font-bold text-sm hover:border-gray-900 transition-all disabled:opacity-50 flex items-center gap-3 active:scale-95 shadow-sm hover:shadow-md"
           >
-            {loading ? <Loader2 className="animate-spin" size={18} /> : "Load More Products"}
+            {loading ? <Loader2 className="animate-spin text-gray-400" size={18} /> : "Load More Products"}
           </button>
         </div>
       )}
 
+      {/* TOAST NOTIFICATION */}
       {toast.show && (
-        <div className="fixed top-24 right-4 z-[60] bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-in slide-in-from-right-10">
-           <CheckCircle size={20} className="text-emerald-400" />
-           <span className="font-bold text-sm">{toast.msg}</span>
+        <div className="fixed top-24 right-4 z-[60] bg-gray-900/95 backdrop-blur-md text-white px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in slide-in-from-right-8 fade-in duration-300">
+           <div className="bg-emerald-500/20 p-1 rounded-full">
+               <CheckCircle size={18} className="text-emerald-400" />
+           </div>
+           <span className="font-semibold text-sm tracking-wide">{toast.msg}</span>
         </div>
       )}
 
+      {/* FLOATING CART (PWA Style) */}
       {cartCount > 0 && ( 
         <button 
           onClick={() => setIsCartOpen(true)} 
-          className={`fixed bottom-8 right-8 bg-gray-900 text-white p-5 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-50 transition-all active:scale-90 ${isJumping ? 'animate-bounce bg-emerald-600' : 'hover:scale-110 animate-in zoom-in'}`}
+          className={`fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-gray-900 text-white p-4 md:p-5 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.3)] z-50 transition-all duration-300 ${isJumping ? 'scale-110 bg-emerald-600 shadow-emerald-600/40' : 'hover:scale-105 hover:bg-gray-800 active:scale-95 animate-in slide-in-from-bottom-8 zoom-in'}`}
+          aria-label="Open cart"
         >
-          <ShoppingBag size={24} />
-          <span className="absolute -top-1 -right-1 bg-emerald-500 w-7 h-7 rounded-full flex items-center justify-center text-xs font-black border-2 border-white">
+          <ShoppingBag size={24} strokeWidth={2} />
+          <span className="absolute -top-1 -right-1 bg-amber-500 min-w-[24px] h-6 px-1.5 rounded-full flex items-center justify-center text-[11px] font-black border-2 border-gray-900 shadow-sm transition-transform duration-300">
             {cartCount} 
           </span>
         </button>

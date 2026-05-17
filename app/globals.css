@@ -250,3 +250,9 @@
     background-position-x: -200%;
   }
 }
+
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+}
