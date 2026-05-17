@@ -104,23 +104,6 @@ export default function ComparisonFraming() {
             </table>
           </div>
         </div>
-
-        {/* CTA bar */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-          <Link
-            href="/signup"
-            className="inline-flex items-center gap-2 rounded-xl bg-gray-900 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white shadow-lg shadow-gray-900/20 hover:bg-emerald-600 transition-all group"
-          >
-            Upgrade your setup
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link 
-            href="/#faq" 
-            className="text-sm font-semibold text-gray-400 hover:text-emerald-600 transition-colors"
-          >
-            Questions? Read FAQ
-          </Link>
-        </div>
       </div>
     </section>
   );
