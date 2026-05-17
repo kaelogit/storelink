@@ -331,7 +331,7 @@ export default function DashboardStorefrontBlocksPage() {
   </strong>
   , looks and feels to customers. Configure your colors, layout, fonts, 
   catalog rules, and hero copy here. To update your logo and cover image, 
-  head over to the <strong className="text-gray-900">[Profile]</strong> panel.
+  head over to the <strong className="text-gray-900">Profile</strong> Section.
 </p>
         {previewHref && (
           <a
