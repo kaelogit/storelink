@@ -54,7 +54,7 @@ function PostLoginHandler() {
             : null;
         const gate = getOnboardingHubRedirect(ctx);
 
-        setMsg("Redirecting…");
+        setMsg("Loading...");
         router.replace(safeNext || gate);
         router.refresh();
       } catch {

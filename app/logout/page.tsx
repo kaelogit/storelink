@@ -41,7 +41,7 @@ export default function LogoutSuccessPage() {
 
       <div className="mt-12 flex items-center gap-3 text-emerald-600 font-black text-[10px] uppercase tracking-[0.25em]">
         <Loader2 className="animate-spin" size={16} />
-        Redirecting…
+        Loading...
       </div>
     </div>
   );
