@@ -297,7 +297,7 @@ export default async function ProductPage(props: PageProps) {
           <LayoutDashboard size={20} className="sf-accent-text" />
           <span className="font-black text-gray-900 uppercase tracking-widest text-sm">StoreLink social engine</span>
         </Link>
-        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.4em] mt-6">Secure Cloud Infrastructure • 2025</p>
+        <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.4em] mt-6">Secure Cloud Infrastructure • 2026</p>
       </footer>
     </div>
   );

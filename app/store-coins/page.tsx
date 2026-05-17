@@ -200,7 +200,7 @@ export default function StoreCoinsPage() {
             </Link>
           </div>
 
-          <p className="text-[9px] font-bold text-gray-200 uppercase tracking-[0.5em] mt-12">Infrastructure by StoreLink™ • 2025</p>
+          <p className="text-[9px] font-bold text-gray-200 uppercase tracking-[0.5em] mt-12">Infrastructure by StoreLink™ • 2026</p>
         </div>
       </footer>
     </div>

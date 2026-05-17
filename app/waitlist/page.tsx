@@ -268,7 +268,7 @@ function WaitlistContent() {
                 <LayoutDashboard size={18} />
                 <span className="font-black text-base tracking-tighter uppercase italic">StoreLink</span>
               </div>
-              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">© 2025 StoreLink</p>
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-1">© 2026 StoreLink</p>
            </div>
            
            <div className="flex flex-col items-center md:items-end gap-4">
