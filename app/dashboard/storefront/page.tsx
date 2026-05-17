@@ -325,15 +325,14 @@ export default function DashboardStorefrontBlocksPage() {
           Storefront customization
         </h1>
         <p className="mt-2 text-sm font-medium text-gray-600">
-          Tune how your public shop{" "}
-          <strong className="font-mono text-gray-900">
-            {slug ? `/${slug}` : "link"}
-          </strong>{" "}
-          looks and behaves: colors, layout, fonts, catalog rules, then your{" "}
-          <strong className="text-gray-900">hero</strong> copy. Logo and cover
-          still open from the <strong className="text-gray-900">About</strong>{" "}
-          panel on the live shop.
-        </p>
+  Personalize how your shop,{" "}
+  <strong className="font-mono text-gray-900">
+    {slug || "link"}
+  </strong>
+  , looks and feels to customers. Configure your colors, layout, fonts, 
+  catalog rules, and hero copy here. To update your logo and cover image, 
+  head over to the <strong className="text-gray-900">[Profile]</strong> panel.
+</p>
         {previewHref && (
           <a
             href={previewHref}
